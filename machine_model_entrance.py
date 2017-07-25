@@ -9,7 +9,6 @@ import os
 import re
 import sys
 import time
-
 # TODO 执行之前安装所需模块
 from machine_scripts.install_module import install_module;install_module()
 from machine_scripts.custom_log import WorkLogger
@@ -221,29 +220,33 @@ def machine_main():
         on_off_line_save_flag = judge_get_config('on_off_line_save_flag', purl_bak_string)
         confirm_time, newest_week_type_string_list, link_WW_week_string, Silver_url_list = \
             machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save_flag)
-        end_time = time.time()
-        _logger.print_message('Confirm Excel and Send Email Time:\t%.5f' % confirm_time, file_name)
-        _logger.print_message('Program Run Total Time:\t%.5f' % (end_time - start_time), file_name)
 
         # TODO 生成趋势图
+        chart_start = time.time()
         _logger.print_message('>>>>>>>>>> Please Wait .... The program is generating the Image File <<<<<<<<<<', file_name)
         generate_chart(purl_bak_string=purl_bak_string, log_time=log_time, logger=_logger, auto_run_flag=AUTO_RUN_FLAG)
         _logger.print_message('>>>>>>>>>> generating the Image File Finished <<<<<<<<<<', file_name)
+        chart_time = time.time() - chart_start
         # TODO 备份图片
         _logger.print_message('>>>>>>>>>> Please Wait .... The program is backing up the Image File <<<<<<<<<<', file_name)
         backup_chart(purl_bak_string, log_time)
         _logger.print_message('>>>>>>>>>> Backing up Image File Finished <<<<<<<<<<', file_name)
         # TODO 更改excel名称
-        _logger.print_message('>>>>>>>>>> Please Wait .... The program is Renaming the Log File <<<<<<<<<<', file_name)
-        rename_log_file_name(logger=_logger, purl_bak_string=purl_bak_string, link_WW_week_string=link_WW_week_string, Silver_url_list=Silver_url_list,
+        _logger.print_message('>>>>>>>>>> Please Wait .... The program is Renaming the Excel File <<<<<<<<<<', file_name)
+        rename_log_file_name(logger=_logger, purl_bak_string=purl_bak_string, Silver_url_list=Silver_url_list,
                              newest_week_type_string_list=newest_week_type_string_list, log_time=log_time)
-        _logger.print_message('>>>>>>>>>> Renaming the Log File Finished <<<<<<<<<<', file_name)
-        _logger.file_close()
+        _logger.print_message('>>>>>>>>>> Renaming the Excel File Finished <<<<<<<<<<', file_name)
+        end_time = time.time()
+        _logger.print_message('Confirm Excel and Send Email Time:\t%.5f' % confirm_time, file_name)
+        _logger.print_message('Image shows waiting Time:\t%.5f' % chart_time, file_name)
+        _logger.print_message('Program Run Total Time:\t%.5f' % (end_time - start_time - chart_time), file_name)
 
         global LOGGER_CLOSE_FLAG
         LOGGER_CLOSE_FLAG = True
+        _logger.file_close()
+
         # TODO 修改日志名与excel同名
-        rename_log_file_name(logger=None, purl_bak_string=purl_bak_string, link_WW_week_string=link_WW_week_string,Silver_url_list=Silver_url_list,
+        rename_log_file_name(logger=None, purl_bak_string=purl_bak_string, Silver_url_list=Silver_url_list,
                              newest_week_type_string_list=newest_week_type_string_list, log_time=log_time, rename_log=True)
     except (InterruptError, KeyboardInterrupt):
         # TODO 程序中断清理文件
