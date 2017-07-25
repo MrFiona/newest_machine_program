@@ -96,8 +96,10 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
     weeks_list, first_data, second_data, third_data, fourth_data, fifth_data = [], [], [], [], [], []
     if type_string == '':
         image_html_result = IMAGE_ORIGINAL_RESULT
+        chart_link_string = ''
     else:
         image_html_result = MANUAL_IMAGE_ORIGINAL_RESULT
+        chart_link_string = '_' + type_string
 
     read_file = open(image_html_result + os.sep + purl_bak_string + '_image_data.txt', 'r')
 
@@ -190,7 +192,7 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
     if not os.path.exists(PRESERVE_TABLE_CHART_DIR):
         os.makedirs(PRESERVE_TABLE_CHART_DIR)
 
-    foo_fig.savefig(PRESERVE_TABLE_CHART_DIR + os.sep + purl_bak_string + '_table_chart.png', format='png', dpi=fig.dpi)
+    foo_fig.savefig(PRESERVE_TABLE_CHART_DIR + os.sep + purl_bak_string + chart_link_string + '_table_chart.png', format='png', dpi=fig.dpi)
     # TODO 自动运行则不开启
     if not auto_run_flag:
         plt.show()
