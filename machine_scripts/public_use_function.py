@@ -25,7 +25,7 @@ from machine_scripts.machine_config import MachineConfig
 from setting_global_variable import DO_PROF, BACKUP_EXCEL_DIR, CONFIG_FILE_PATH, BACKUP_cache_DIR, \
     SRC_CACHE_DIR, MANUAL_CONFIG_FILE_PATH, MANUAL_SRC_SAVE_MISS_WEEK_DIR, REPORT_HTML_DIR, \
     SRC_SAVE_MISS_WEEK_DIR, IMAGE_ORIGINAL_RESULT, MANUAL_IMAGE_ORIGINAL_RESULT, ORIGINAL_HTML_RESULT, SRC_EXCEL_DIR, \
-    MACHINE_LOG_DIR, PRESERVE_TABLE_CHART_DIR, BACKUP_PRESERVE_TABLE_CHART_DIR
+    MACHINE_LOG_DIR, PRESERVE_TABLE_CHART_DIR, BACKUP_PRESERVE_TABLE_CHART_DIR, MANUAL_ORIGINAL_HTML_RESULT
 
 
 # TODO 获取手动执行配置参数
@@ -849,12 +849,17 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
 
 
 # TODO 对html文件处理，增加表格样式
-def deal_html_data():
-    read_file_list = glob.glob(ORIGINAL_HTML_RESULT + os.sep + '*.html')
+def deal_html_data(type_string):
+    if type_string == '':
+        original_html_result_dir = ORIGINAL_HTML_RESULT
+    else:
+        original_html_result_dir = MANUAL_ORIGINAL_HTML_RESULT
+
+    read_file_list = glob.glob(original_html_result_dir + os.sep + '*.html')
 
     for file in read_file_list:
         read_file = open(file, 'r')
-        write_file = open(ORIGINAL_HTML_RESULT + os.sep + 'temp.html', 'w')
+        write_file = open(original_html_result_dir + os.sep + 'temp.html', 'w')
 
         line = read_file.readline()
         write_file.write(line)
@@ -872,8 +877,8 @@ def deal_html_data():
         read_file.close()
         write_file.close()
         os.remove(file)
-        shutil.copy(ORIGINAL_HTML_RESULT + os.sep + 'temp.html', file)
-        os.remove(ORIGINAL_HTML_RESULT + os.sep + 'temp.html')
+        shutil.copy(original_html_result_dir + os.sep + 'temp.html', file)
+        os.remove(original_html_result_dir + os.sep + 'temp.html')
 
 
 # TODO 输出重定向到文件
@@ -1013,7 +1018,7 @@ def error_tracking_decorator(logger, module_name, log_time):
 
 
 # TODO 更改excel名称并且修改日志名与excel同名  更改名称以excel save-miss周为准
-def rename_log_file_name(logger, purl_bak_string, link_WW_week_string, Silver_url_list, newest_week_type_string_list,
+def rename_log_file_name(logger, purl_bak_string, Silver_url_list, newest_week_type_string_list,
                          log_time, rename_log=False):
     week_actual_list = return_actual_week_list(logger, rename_log)
     link_WW_week_string = week_actual_list[0]
@@ -1137,7 +1142,7 @@ def interrupt_clear_excel_file(log_time, logger):
 # TODO 返回新产生的excel表里实际周数据
 def return_actual_week_list(logger, rename_log):
     if not rename_log:
-        logger.print_message("SRC_SAVE_MISS_WEEK_DIR:\t%s" % SRC_SAVE_MISS_WEEK_DIR, os.path.split(__file__)[1], ERROR)
+        logger.print_message("SRC_SAVE_MISS_WEEK_DIR:\t%s" % SRC_SAVE_MISS_WEEK_DIR, os.path.split(__file__)[1])
     with open(SRC_SAVE_MISS_WEEK_DIR + os.sep + 'actually_week_info.txt', 'r') as f:
         week_actual_info_strings = f.readline()
 
