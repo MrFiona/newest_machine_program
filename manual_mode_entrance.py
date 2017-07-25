@@ -8,7 +8,7 @@
 
 import os
 import time
-
+from logging import ERROR
 # TODO 执行之前安装所需模块
 from machine_scripts.install_module import install_module;install_module()
 from machine_scripts.create_email_html import create_save_miss_html
@@ -26,6 +26,7 @@ log_time = time.strftime('%Y_%m_%d_%H_%M_%S', time.localtime(time.time()))
 _logger = WorkLogger(log_filename='manual_machine_log', log_time=log_time)
 WIN_BOOK_CLOSE_FLAG = False
 file_name = os.path.split(__file__)[1]
+LOGGER_CLOSE_FLAG = False
 
 
 # TODO 生成html文件
@@ -78,8 +79,6 @@ def manual_machine_model_entrance():
         win_book = easyExcel(excel_file)
         pur_string_info = win_book.getCell(sheet='Save-Miss', row=1, col=1)
         purl_bak_string = pur_string_info.split()[-1]
-        if purl_bak_string == 'Skylake-DE':
-            purl_bak_string = 'Bakerville'
         _logger.print_message('purl_bak_string:\t%s' % purl_bak_string, file_name)
 
         object_get_html = GetUrlFromHtml(html_url_pre='https://dcg-oss.intel.com/ossreport/auto/', logger=_logger)
@@ -101,6 +100,13 @@ def manual_machine_model_entrance():
         # TODO 生成图表
         generate_chart(purl_bak_string, log_time, _logger, 'manual_')
     except:
+        _logger.print_message('occurred error', file_name, ERROR)
+        global LOGGER_CLOSE_FLAG
+        LOGGER_CLOSE_FLAG = True
+        _logger.file_close()
+
+    if not LOGGER_CLOSE_FLAG:
+        _logger.print_message('close normal', file_name)
         _logger.file_close()
 
 
