@@ -192,7 +192,8 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
     if not os.path.exists(PRESERVE_TABLE_CHART_DIR):
         os.makedirs(PRESERVE_TABLE_CHART_DIR)
 
-    foo_fig.savefig(PRESERVE_TABLE_CHART_DIR + os.sep + purl_bak_string + chart_link_string + '_table_chart.png', format='png', dpi=fig.dpi)
+    foo_fig.savefig(PRESERVE_TABLE_CHART_DIR + os.sep + purl_bak_string + chart_link_string + '_table_chart' + '_' +
+                    log_time + '.png', format='png', dpi=fig.dpi)
     # TODO 自动运行则不开启
     if not auto_run_flag:
         plt.show()
