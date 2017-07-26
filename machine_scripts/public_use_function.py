@@ -444,29 +444,31 @@ def performance_analysis_decorator(filename):
     return wrapper
 
 
-# TODO 备份Excel文件----默认保留20个文件
-def backup_excel_file(src_dir=SRC_EXCEL_DIR, backup_dir=BACKUP_EXCEL_DIR, reserve_file_max_num=20000, log_time=None,
-                      link_WW_week_string=None, Silver_url_list=None):
-    backup_name = backup_dir + os.sep + 'backup_excel_' + time.strftime('%Y_%m_%d_%H_%M_%S',
+# TODO 备份Excel文件----默认保留2000个文件 在自动模式下，要求excel_dir目录下始终保存各个项目
+# TODO 最新的结果文件以完成迭代(执行对应项目的第二次)，否则可能会重新迭代
+def backup_excel_file(logger, reserve_file_max_num=2000, log_time=None, link_WW_week_string=None, Silver_url_list=None,
+                      auto_iteration_flag=False):
+    file_name = os.path.split(__file__)[1]
+    backup_name = BACKUP_EXCEL_DIR + os.sep + 'backup_excel_' + time.strftime('%Y_%m_%d_%H_%M_%S',
                                 time.localtime(time.time()))
     # 原始备份目录不存在则跳过备份
-    if not os.path.exists(src_dir):
+    if not os.path.exists(SRC_EXCEL_DIR):
         return
 
     # check excel file num default max=20
-    original_file_list = glob.glob(src_dir + os.sep + '*.xlsx')
+    original_file_list = glob.glob(SRC_EXCEL_DIR + os.sep + '*.xlsx')
 
-    if os.path.exists(src_dir):
-        if not os.path.exists(backup_dir):
-            os.makedirs(backup_dir)
+    if os.path.exists(SRC_EXCEL_DIR):
+        if not os.path.exists(BACKUP_EXCEL_DIR):
+            os.makedirs(BACKUP_EXCEL_DIR)
 
-        backup_file_list, file_num = os.listdir(backup_dir), len(os.listdir(backup_dir))
+        backup_file_list, file_num = os.listdir(BACKUP_EXCEL_DIR), len(os.listdir(BACKUP_EXCEL_DIR))
         if file_num >= reserve_file_max_num:
             backup_file_list.sort()
             # 删除时间最久的目录以及文件
-            for file in os.listdir(backup_dir + os.sep + backup_file_list[0]):
-                os.remove(backup_dir + os.sep + backup_file_list[0] + os.sep + file)
-            os.rmdir(backup_dir + os.sep + backup_file_list[0])
+            for file in os.listdir(BACKUP_EXCEL_DIR + os.sep + backup_file_list[0]):
+                os.remove(BACKUP_EXCEL_DIR + os.sep + backup_file_list[0] + os.sep + file)
+            os.rmdir(BACKUP_EXCEL_DIR + os.sep + backup_file_list[0])
 
         if not os.path.exists(backup_name):
             os.makedirs(backup_name)
@@ -475,43 +477,69 @@ def backup_excel_file(src_dir=SRC_EXCEL_DIR, backup_dir=BACKUP_EXCEL_DIR, reserv
         # TODO 类型: Bakerville or Purley-FPGA
         conf = MachineConfig(CONFIG_FILE_PATH)
         purl_bak_string = conf.get_node_info('real-time_control_parameter_value', 'default_purl_bak_string')
-        for file_name in original_file_list:
-            # print 'orignal_file:\t', src_dir + os.sep + purl_bak_string + '_' + str(judge_get_config('week_num', purl_bak_string)) + '_report_result_%s.xlsx' %setting_gloab_variable.FILE_CREATED_TIME
-            # print 'file:\t', file
-            try:
-                shutil.copy2(file_name, backup_name)
-                if src_dir + os.sep + purl_bak_string + '_' + judge_get_config('week_num', purl_bak_string) + '_' + \
-                        link_WW_week_string + '_' + str(len(Silver_url_list)) + '_%s.xlsx' % log_time == file_name:
-                    continue
-                os.remove(file_name)
-            except (WindowsError, IOError):
-                pass
+        # TODO 正常模式备份 只保留该项目当前产生的excel
+        if not auto_iteration_flag:
+            for file_name in original_file_list:
+                try:
+                    shutil.copy2(file_name, backup_name)
+                    if SRC_EXCEL_DIR + os.sep + purl_bak_string + '_' + judge_get_config('week_num', purl_bak_string) + '_' + \
+                            link_WW_week_string + '_' + str(len(Silver_url_list)) + '_%s.xlsx' % log_time == file_name:
+                        continue
+                    os.remove(file_name)
+                except (WindowsError, IOError):
+                    pass
+        # TODO 自动模式备份 保留三个项目最新的excel
+        else:
+            Bak_excel_list = [ name for name in original_file_list if 'Bakerville' in name ]
+            NFVi_excel_list = [ name for name in original_file_list if 'NFVi' in name ]
+            FPGA_excel_list = [ name for name in original_file_list if 'Purley-FPGA' in name ]
+            # TODO 每个项目仅按照时间排序 保留最新的
+            Bak_excel_list.sort(key=lambda x: x.split('_')[-6:])
+            NFVi_excel_list.sort(key=lambda x: x.split('_')[-6:])
+            FPGA_excel_list.sort(key=lambda x: x.split('_')[-6:])
+            preserve_project_excel_list = []
+            if Bak_excel_list:
+                preserve_project_excel_list.append(Bak_excel_list[-1])
+            if NFVi_excel_list:
+                preserve_project_excel_list.append(NFVi_excel_list[-1])
+            if FPGA_excel_list:
+                preserve_project_excel_list.append(FPGA_excel_list[-1])
+            logger.print_message('preserve_project_excel_list:\t%s' % preserve_project_excel_list, file_name)
+
+            for file_name in original_file_list:
+                try:
+                    shutil.copy2(file_name, backup_name)
+                    if file_name in preserve_project_excel_list:
+                        continue
+                    os.remove(file_name)
+                except (WindowsError, IOError):
+                    pass
 
 
-# TODO 删除原始缓存文件----默认保留10个文件
-def backup_cache(purl_bak_string, src_dir=SRC_CACHE_DIR, backup_dir=BACKUP_cache_DIR, reserve_file_max_num=10000):
+# TODO 删除原始缓存文件----默认保留1000个文件
+def backup_cache(purl_bak_string, reserve_file_max_num=1000):
     # TODO 1、原始数据源
-    backup_name = backup_dir + os.sep + 'backup_' + purl_bak_string + '_' + time.strftime('%Y_%m_%d_%H_%M_%S',
+    backup_name = BACKUP_cache_DIR + os.sep + 'backup_' + purl_bak_string + '_' + time.strftime('%Y_%m_%d_%H_%M_%S',
                     time.localtime(time.time())) + os.sep + purl_bak_string
 
     # TODO 原始备份目录不存在则跳过备份
-    if not os.path.exists(src_dir):
+    if not os.path.exists(SRC_CACHE_DIR):
         return
 
-    if os.path.exists(src_dir):
-        if not os.path.exists(backup_dir):
-            os.makedirs(backup_dir)
+    if os.path.exists(SRC_CACHE_DIR):
+        if not os.path.exists(BACKUP_cache_DIR):
+            os.makedirs(BACKUP_cache_DIR)
 
-        backup_file_list, file_num = os.listdir(backup_dir), len(os.listdir(backup_dir))
+        backup_file_list, file_num = os.listdir(BACKUP_cache_DIR), len(os.listdir(BACKUP_cache_DIR))
         if file_num >= reserve_file_max_num:
             backup_file_list.sort()
             # TODO 删除时间最久的目录
-            shutil.rmtree(backup_dir + os.sep + backup_file_list[0])
+            shutil.rmtree(BACKUP_cache_DIR + os.sep + backup_file_list[0])
 
-    list_dir_list_1 = os.listdir(src_dir)
-    if purl_bak_string in list_dir_list_1 and os.path.exists(src_dir + os.sep + purl_bak_string):
-        shutil.copytree(src_dir + os.sep + purl_bak_string, backup_name)
-        shutil.rmtree(src_dir + os.sep + purl_bak_string)
+    list_dir_list_1 = os.listdir(SRC_CACHE_DIR)
+    if purl_bak_string in list_dir_list_1 and os.path.exists(SRC_CACHE_DIR + os.sep + purl_bak_string):
+        shutil.copytree(SRC_CACHE_DIR + os.sep + purl_bak_string, backup_name)
+        shutil.rmtree(SRC_CACHE_DIR + os.sep + purl_bak_string)
 
 
 # TODO 备份图片目录
@@ -529,7 +557,7 @@ def backup_chart(purl_bak_string, log_time):
     for file_name in original_file_list:
         try:
             shutil.copy2(file_name, backup_name)
-            if purl_bak_string + '_table_chart.png' in file_name:
+            if purl_bak_string in file_name and log_time in file_name:
                 continue
             os.remove(file_name)
         except (WindowsError, IOError):
@@ -1260,8 +1288,6 @@ def get_project_newest_file(purl_bak_string, logger):
     file_list = [ele for ele in glob.glob(SRC_EXCEL_DIR + os.sep + '*.xlsx') if purl_bak_string in ele]
     file_list.sort(reverse=True)
 
-    if purl_bak_string == 'Bakerville':
-        purl_bak_string = 'ITF_Skylake_DE'
     if purl_bak_string == 'Purley-FPGA':
         purl_bak_string = 'ITF_Skylake_FPGA'
 
@@ -1273,7 +1299,7 @@ def get_project_newest_file(purl_bak_string, logger):
             template_file = pwd_file_list[0]
         else:
             logger.print_message('The template file is not detected', file_name, 30)
-            logger.close()
+            logger.file_close()
             sys.exit(1)
 
     logger.print_message('newest template file:\t%s' % template_file, file_name)
