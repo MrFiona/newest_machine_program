@@ -36,7 +36,7 @@ LOGGER_CLOSE_FLAG = False
 
 
 # TODO 模型执行入口函数
-def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save_flag):
+def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save_flag, auto_run_flag):
     if on_off_line_save_flag == 'offline':
         _logger.print_message('Program Offline Run Mode Switch is on', file_name)
     # TODO 是否重新获取数据标记  开启:YES   关闭:NO
@@ -159,7 +159,8 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
 
     # TODO 备份excel文件
     _logger.print_message('>>>>>>>>>> Please Wait .... The program is backing up the Excel File <<<<<<<<<<', file_name)
-    backup_excel_file(log_time=log_time, link_WW_week_string=link_WW_week_string, Silver_url_list=Silver_url_list)
+    backup_excel_file(logger=_logger, log_time=log_time, link_WW_week_string=link_WW_week_string, Silver_url_list=Silver_url_list,
+                      auto_iteration_flag=auto_run_flag)
     _logger.print_message('>>>>>>>>>> Backing up Excel File Finished <<<<<<<<<<', file_name)
     confirm_time = time.time() - start
     return  confirm_time, newest_week_type_string_list, link_WW_week_string, Silver_url_list
@@ -219,7 +220,7 @@ def machine_main():
         # TODO 是否离线标记获取
         on_off_line_save_flag = judge_get_config('on_off_line_save_flag', purl_bak_string)
         confirm_time, newest_week_type_string_list, link_WW_week_string, Silver_url_list = \
-            machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save_flag)
+            machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save_flag, AUTO_RUN_FLAG)
 
         # TODO 生成趋势图
         chart_start = time.time()
