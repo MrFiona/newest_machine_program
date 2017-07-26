@@ -20,6 +20,7 @@ from bs4 import BeautifulSoup
 from machine_scripts.cache_mechanism import DiskCache
 from machine_scripts.public_use_function import remove_line_break
 from setting_global_variable import REPORT_HTML_DIR
+from machine_scripts.common_interface_func import remove_non_alphanumeric_characters
 
 
 # 强制ssl使用TLSv2
@@ -95,17 +96,6 @@ class GetAnalysisData(object):
         except urllib2.URLError as e:
             self.logger.print_message(e, self.__file_name, definition_log_level=40)
             return
-
-    #去除特殊字符策略函数
-    def _remove_non_alphanumeric_characters(self, object_string_list):
-        # 对提取的字符串列表进行清洗，统一组合格式：空格分隔  Mon Apr 10 14:00:27 2017
-        for ele in range(len(object_string_list)):
-            object_string_list[ele] = re.sub('[\s]', 'MrFiona', object_string_list[ele])
-            object_string_list[ele] = re.sub('[^\w\"\'\.\_\-\>\[\]\(\)\@\~\/\*]', '', object_string_list[ele])
-            temp_ele_list = re.split('MrFiona', object_string_list[ele])
-            ele_list = [effective for effective in temp_ele_list if len(effective) != 0]
-            object_string_list[ele] = ' '.join(ele_list)
-        return object_string_list
 
     #提取通用的部分,如果bkc_flag=True并且BKC和Gold都没有数据则取Silver数据 优先级：BKC > Gold > Silver
     def _common_regex(self, data_type, bkc_flag=False, replace_flag=False, header_list=None, cell_data_list=None):
@@ -430,7 +420,7 @@ class GetAnalysisData(object):
                                 effective_header_list.append(td_data)
                                 effective_header_list, effective_num_list = self._get_hw_effective_header_list(effective_header_list)
                 if temp:
-                    temp = self._remove_non_alphanumeric_characters(temp)
+                    temp = remove_non_alphanumeric_characters(temp)
                     cell_data_list.append(temp[1:])
                 #适配html表列名对应行中含有标签不含有td标签
                 if t == tr_list[0]:
@@ -447,7 +437,7 @@ class GetAnalysisData(object):
                     effective_header_list, effective_num_list = self._get_hw_effective_header_list(effective_header_list)
 
             cell_data_list = self._insert_numers_to_cell_data_list(cell_data_list)
-            header_list = self._remove_non_alphanumeric_characters(header_list)
+            header_list = remove_non_alphanumeric_characters(header_list)
             if cell_data_list:
                 cell_data_list[0] = effective_header_list
             header_list = header_list[ -(len(cell_data_list) -1): ]
@@ -686,7 +676,7 @@ class GetAnalysisData(object):
                     soup_string = BeautifulSoup(str(effective_th_or_td_list[0]), 'html.parser')
                     string_list = list(soup_string.strings)
                     string_list = remove_line_break(string_list, line_break=True)
-                    string_list = self._remove_non_alphanumeric_characters(string_list)
+                    string_list = remove_non_alphanumeric_characters(string_list)
                     header_list.append(string_list[0])
 
                 if not (td_list and th_list):
@@ -701,7 +691,7 @@ class GetAnalysisData(object):
                     cell_string_list = list(cell_soup.strings)
                     # print 'th_string_list_4:\t', cell_string_list
                     cell_string_list = remove_line_break(cell_string_list, line_break=True)
-                    cell_string_list = self._remove_non_alphanumeric_characters(cell_string_list)
+                    cell_string_list = remove_non_alphanumeric_characters(cell_string_list)
                     temp.append(cell_string_list[0])
                 cell_data_list.append(temp)
 
@@ -776,7 +766,7 @@ class GetAnalysisData(object):
                         temp_string_list = temp_string_list[header_length - 4:]
 
                 #获取cell_data_list数据
-                temp_string_list = self._remove_non_alphanumeric_characters(temp_string_list)
+                temp_string_list = remove_non_alphanumeric_characters(temp_string_list)
 
                 if (len(temp_string_list) >= header_length + 1):
                     temp_string_list = [ele for ele in temp_string_list if len(ele) != 0]
@@ -946,7 +936,7 @@ class GetAnalysisData(object):
                             object_string_list.append('')
                         object_string_list.append(temp_string)
             # 对提取的字符串列表进行清洗，统一组合格式：空格分隔  Mon Apr 10 14:00:27 2017
-            object_string_list = self._remove_non_alphanumeric_characters(object_string_list)
+            object_string_list = remove_non_alphanumeric_characters(object_string_list)
             object_string_list[0] = re.sub('[()]', '', object_string_list[0]).strip()
             object_string_list = remove_line_break(object_string_list, empty_string=True)
             # print object_string_list, len(object_string_list); print Silver_Gold_BKC_string
@@ -970,7 +960,7 @@ class GetAnalysisData(object):
                 for child in range(len(child_tag_list)):
                     child_soup = BeautifulSoup(str(child_tag_list[child]), 'html.parser')
                     string_list = list(child_soup.strings)
-                    string_list = self._remove_non_alphanumeric_characters(string_list)
+                    string_list = remove_non_alphanumeric_characters(string_list)
                     string_list = remove_line_break(string_list, empty_string=True)
                     if child == 1:
                         temp_list.extend(string_list)
@@ -1047,7 +1037,7 @@ class GetAnalysisData(object):
                     url_list[k] = re.sub('[\s]', '', url_list[k])
                 effective_url_list.append(url_list)
                 #移除非字母数字字符
-                temp = self._remove_non_alphanumeric_characters(temp)
+                temp = remove_non_alphanumeric_characters(temp)
                 cell_data_list.append(temp)
 
             for k in range(len(cell_data_list)):
@@ -1101,7 +1091,7 @@ class GetAnalysisData(object):
                                 continue
                             if temp_list:
                                 temp.append(temp_list[0])
-                    temp = self._remove_non_alphanumeric_characters(temp)
+                    temp = remove_non_alphanumeric_characters(temp)
                     cell_data_list.append(temp)
             # print '\033[31mheader_list:\t\033[0m', header_list
             # print '\033[36mcell_data_list:\t\033[0m', cell_data_list
@@ -1144,7 +1134,7 @@ class GetAnalysisData(object):
                                 continue
                             if temp_list:
                                 temp.append(temp_list[0])
-                    temp = self._remove_non_alphanumeric_characters(temp)
+                    temp = remove_non_alphanumeric_characters(temp)
                     cell_data_list.append(temp)
             # print '\033[31mheader_list:\t\033[0m', header_list
             # print '\033[36mcell_data_list:\t\033[0m', cell_data_list
@@ -1254,22 +1244,31 @@ if __name__ == '__main__':
     #Purley-FPGA Bakerville
     import time
     start = time.time()
-
     key_url_list = []
-    f = open(os.getcwd() + os.sep + 'report_html' + os.sep + 'url_info.txt')
-    for line in f:
-        if 'NFVi' in line and 'Silver' in line:
-            key_url_list.append(line.strip('\n'))
+    # f = open(os.getcwd() + os.sep + 'report_html' + os.sep + 'url_info.txt')
+    # for line in f:
+    #     if 'NFVi' in line and 'Silver' in line:
+    #         key_url_list.append(line.strip('\n'))
 
-    cache = DiskCache('NFVi')
-    key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html']
-    for url in key_url_list:
-        obj = GetAnalysisData(url, 'Bakerville', get_info_not_save_flag=True, cache=cache)
-        obj.get_caseresult_data('Platform Integration Validation Result', True)
+    cache = DiskCache('Purley-FPGA')
+    key_url_list = ['https://oss-sh.ccr.corp.intel.com/test_report/test_report/6421/0/']
+    html = urllib2.urlopen('https://oss-sh.ccr.corp.intel.com/test_report/test_report/6421/0/').read()
+    # print html
+    regex = re.compile(r'<span class="sh2">&nbsp; SW Configuration: </span>(.*?)<span class="sh2">&nbsp; IFWI Configuration: </span>', re.S | re.M)
+    header = re.findall(regex, html)
+    string_data = ''.join(header)
+    # 提取所有的tr部分
+    soup_tr = BeautifulSoup(string_data, 'html.parser')
+    tr_list = soup_tr.find_all(re.compile('tr'))
+    # print string_data
+    # for url in key_url_list:
+    #     obj = GetAnalysisData(url, 'Purley-FPGA', get_info_not_save_flag=True, cache=cache)
+        # obj.get_caseresult_data('Platform Integration Validation Result', True)
+        # obj.get_sw_data('SW Configuration', True)
     print time.time() - start
-    import pstats
-    p = pstats.Stats('mkm_run.prof')
-    print p.strip_dirs().sort_stats('cumtime').print_stats(10, 10, '.*')
+    # import pstats
+    # p = pstats.Stats('mkm_run.prof')
+    # print p.strip_dirs().sort_stats('cumtime').print_stats(10, 10, '.*')
 
 #\xe2\u20ac\u2122t '
 #\u2019 '右单引号
