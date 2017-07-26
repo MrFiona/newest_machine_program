@@ -1288,9 +1288,6 @@ def get_project_newest_file(purl_bak_string, logger):
     file_list = [ele for ele in glob.glob(SRC_EXCEL_DIR + os.sep + '*.xlsx') if purl_bak_string in ele]
     file_list.sort(reverse=True)
 
-    if purl_bak_string == 'Purley-FPGA':
-        purl_bak_string = 'ITF_Skylake_FPGA'
-
     if file_list:
         template_file = file_list[0]
     else:
@@ -1322,4 +1319,9 @@ if __name__ == '__main__':
     # win_book.close()
     # process_ids, process_name_list = get_win_process_ids()
     # print process_name_list
+    from pymemcache.client.base import Client
+    client = Client(('localhost', 11211))
+    client.set('some', 'value')
+    result = client.get('some')
+    print result
     print time.time() - start
