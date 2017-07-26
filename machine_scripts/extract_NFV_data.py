@@ -16,7 +16,8 @@ from logging import ERROR
 from bs4 import BeautifulSoup
 
 from cache_mechanism import DiskCache
-from machine_scripts.public_use_function import FilterTag, remove_line_break
+from machine_scripts.public_use_function import remove_line_break
+from machine_scripts.common_interface_func import (NFVi_remove_non_alphanumeric_characters, FilterTag)
 from setting_global_variable import REPORT_HTML_DIR
 
 reload(sys)
@@ -94,17 +95,6 @@ class GetAnalysisData(object):
         except urllib2.URLError as e:
             print e
             return
-
-    # 去除特殊字符策略函数
-    def _remove_non_alphanumeric_characters(self, object_string_list):
-        # 对提取的字符串列表进行清洗，统一组合格式：空格分隔  Mon Apr 10 14:00:27 2017
-        for ele in range(len(object_string_list)):
-            object_string_list[ele] = re.sub('[\s]', 'MrFiona', object_string_list[ele])
-            object_string_list[ele] = re.sub('[^\w\"\'\.\_\-\>\[\]\(\)\@\~\/\*!+,;]', '', object_string_list[ele])
-            temp_ele_list = re.split('MrFiona', object_string_list[ele])
-            ele_list = [effective for effective in temp_ele_list if len(effective) != 0]
-            object_string_list[ele] = ' '.join(ele_list)
-        return object_string_list
 
     # 提取通用的部分,如果bkc_flag=True并且BKC和Gold都没有数据则取Silver数据 优先级：BKC > Gold > Silver
     def _common_regex(self, data_type, bkc_flag=False, replace_flag=False):
@@ -221,7 +211,7 @@ class GetAnalysisData(object):
                         td_string_list = list(soup_td.strings)
                         if td_string_list:
                             td_string_list = remove_line_break(td_string_list, line_break=True, empty_string=True, blank_string=True)
-                            td_string_list = self._remove_non_alphanumeric_characters(td_string_list)
+                            td_string_list = NFVi_remove_non_alphanumeric_characters(td_string_list)
                             temp_td_string_list.append('\n'.join(td_string_list))
                 header_list.append(temp_td_string_list[0])
                 cell_data_list.append(temp_td_string_list)
@@ -242,58 +232,24 @@ class GetAnalysisData(object):
 
 
 if __name__ == '__main__':
-#Purley-FPGA Bakerville
+    #Purley-FPGA Bakerville
     import time
     start = time.time()
     from machine_scripts.public_use_function import get_url_list_by_keyword
-
-    key_url_list = []
-    f = open(os.getcwd() + os.sep + 'report_html' + os.sep + 'url_info.txt')
-    for line in f:
-        if 'Bakerville' in line and 'Silver' in line:
-            key_url_list.append(line.strip('\n'))
-
-    # key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW18/5945_Silver.html',
-    #                 'https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW20/6054_Silver.html',
-    #                 'https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW23/6131_Silver.html'
-    #                 ]
-
     cache = DiskCache('NFVi')
     key_url_list = get_url_list_by_keyword('NFVi', 'Silver')
-    # print key_url_list
     key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html']
     for url in key_url_list:
-    #     verify = verify_validity_url(url)
-    #     if not verify:
-    #         continue
-    #     print '\033[31m开始提取 %s 数据\033[0m' % url
-    # url = 'https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW11/5691_Silver.html'
         obj = GetAnalysisData(url, 'NFVi', get_info_not_save_flag=True, cache=cache)
-    # data_url, purl_bak_string, get_info_not_save_flag=False, cache=None, insert_flag=False, logger=None
-        # obj.save_html()
         # obj.get_platform_data('Platform Integration Validation Result', True)
         # obj.get_caseresult_data('Platform Integration Validation Result', True)
         # obj.get_bak_rework_data('HW Rework', True)
         # obj.get_rework_data('HW Rework', True)
-        # Silver_Gold_BKC_string, header_length, date_string, url_list, header_list, cell_data_list, left_col_list_1, left_col_list_2 = \
         # obj.get_sw_data('SW Configuration', True)
         # obj.get_bak_hw_data('HW Configuration', True)
         obj.get_hw_data('HW Configuration', True)
         # obj.get_ifwi_data('IFWI Configuration')
-    #     obj.get_platform_data('Platform Integration Validation Result')
     #     obj.get_existing_sighting_data('Existing Sightings', True)
     #     obj.get_new_sightings_data('New Sightings')
     #     obj.get_closed_sightings_data('Closed Sightings')
-    #     obj.get_caseresult_data('Platform Integration Validation Result')
-    # f = unichr(213)
-    # start = time.time()
-    # unicode_set = set()
-    # replace_list = []
-    # for i in xrange(65536):
-    #     unicode_set.add(unichr(i))
-    #     if unichr(i) in [u'\u2018', u'\xb7', u'\xa0']:
-    #         print i, unichr(i)
-    #         replace_list.append(unichr(i))
-    # print unicode_set
-    # print replace_list
     print time.time() - start
