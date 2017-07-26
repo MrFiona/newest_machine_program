@@ -16,8 +16,9 @@ from machine_scripts.custom_log import WorkLogger
 from machine_scripts.get_all_html import GetUrlFromHtml
 from machine_scripts.machine_config import MachineConfig
 from machine_scripts.manual_machine_config_gui import manual_machine_config_gui_main
-from machine_scripts.public_use_function import easyExcel, performance_analysis_decorator, \
-    get_url_list_by_keyword, error_tracking_decorator
+from machine_scripts.public_use_function import (easyExcel, get_url_list_by_keyword, 
+        error_tracking_decorator)
+from machine_scripts.common_interface_func import performance_analysis_decorator
 from machine_scripts.send_email import SendEmail
 from machine_scripts.generate_chart import generate_chart
 from setting_global_variable import type_sheet_name_list, MANUAL_CONFIG_FILE_PATH
@@ -25,7 +26,7 @@ from setting_global_variable import type_sheet_name_list, MANUAL_CONFIG_FILE_PAT
 log_time = time.strftime('%Y_%m_%d_%H_%M_%S', time.localtime(time.time()))
 _logger = WorkLogger(log_filename='manual_machine_log', log_time=log_time)
 WIN_BOOK_CLOSE_FLAG = False
-file_name = os.path.split(__file__)[1]
+_file_name = os.path.split(__file__)[1]
 LOGGER_CLOSE_FLAG = False
 
 
@@ -37,7 +38,7 @@ def manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list):
         data = win_book.getCell(sheet='Save-Miss', row=3, col=j)
         if data is not None and data != 'Average':
             Silver_url_list.append(data)
-    _logger.print_message('Silver_url_list:\t%s\t%d' % (Silver_url_list, len(Silver_url_list)), file_name)
+    _logger.print_message('Silver_url_list:\t%s\t%d' % (Silver_url_list, len(Silver_url_list)), _file_name)
     conf = MachineConfig(MANUAL_CONFIG_FILE_PATH)
     week_info = conf.get_node_info('manual_machine_info', 'week_info')
     if week_info not in Silver_url_list:
@@ -46,11 +47,11 @@ def manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list):
     if Silver_url_list:
         if week_info in all_Silver_url_list:
             newest_week_index = all_Silver_url_list.index(week_info)
-            _logger.print_message('newest_week_index:\t%s' % newest_week_index, file_name)
+            _logger.print_message('newest_week_index:\t%s' % newest_week_index, _file_name)
             Silver_url_list = all_Silver_url_list[newest_week_index:]
 
-    _logger.print_message('Silver_url_list:\t%s\t%d' % (Silver_url_list, len(Silver_url_list)), file_name)
-    _logger.print_message('get week info time:\t%d' % (time.time() - start), file_name)
+    _logger.print_message('Silver_url_list:\t%s\t%d' % (Silver_url_list, len(Silver_url_list)), _file_name)
+    _logger.print_message('get week info time:\t%d' % (time.time() - start), _file_name)
 
     try:
         for type_name in type_sheet_name_list:
@@ -64,12 +65,12 @@ def manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list):
     if not WIN_BOOK_CLOSE_FLAG:
         win_book.close()
 
-    _logger.print_message('create html time:\t%d' % (time.time() - start), file_name)
+    _logger.print_message('create html time:\t%d' % (time.time() - start), _file_name)
 
 
 # TODO 手动执行模型主程序
 @performance_analysis_decorator('manual_mkm_run.prof')
-@error_tracking_decorator(_logger, os.path.split(__file__)[1], log_time)
+@error_tracking_decorator(_logger, _file_name, log_time)
 def manual_machine_model_entrance():
     try:
         # TODO 界面参数配置
@@ -79,7 +80,7 @@ def manual_machine_model_entrance():
         win_book = easyExcel(excel_file)
         pur_string_info = win_book.getCell(sheet='Save-Miss', row=1, col=1)
         purl_bak_string = pur_string_info.split()[-1]
-        _logger.print_message('purl_bak_string:\t%s' % purl_bak_string, file_name)
+        _logger.print_message('purl_bak_string:\t%s' % purl_bak_string, _file_name)
 
         object_get_html = GetUrlFromHtml(html_url_pre='https://dcg-oss.intel.com/ossreport/auto/', logger=_logger)
         object_get_html.get_all_type_data(purl_bak_string, get_only_department=True)
@@ -91,7 +92,7 @@ def manual_machine_model_entrance():
             date_string = ''.join([year_string, week_string])
             all_Silver_url_list[ele] = date_string
 
-        _logger.print_message('all_Silver_url_list:\t%s\t%d' % (all_Silver_url_list, len(all_Silver_url_list)), file_name)
+        _logger.print_message('all_Silver_url_list:\t%s\t%d' % (all_Silver_url_list, len(all_Silver_url_list)), _file_name)
 
         # TODO 生成html文件
         manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list)
@@ -100,14 +101,16 @@ def manual_machine_model_entrance():
         # TODO 生成图表
         generate_chart(purl_bak_string, log_time, _logger, 'manual_')
     except:
-        _logger.print_message('occurred error', file_name, ERROR)
+        _logger.print_message('occurred error', _file_name, ERROR)
         global LOGGER_CLOSE_FLAG
         LOGGER_CLOSE_FLAG = True
         _logger.file_close()
 
     if not LOGGER_CLOSE_FLAG:
-        _logger.print_message('close normal', file_name)
+        _logger.print_message('close normal', _file_name)
         _logger.file_close()
+
+
 
 
 if __name__ == '__main__':
