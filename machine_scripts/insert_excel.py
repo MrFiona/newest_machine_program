@@ -12,12 +12,12 @@
 # TODO          2、无最新的周出现且需要覆盖  保持既定位置不变
 # TODO          3、正常情况不需要覆盖       保持既定位置不变
 
-import collections
-import copy
 import os
 import re
 import sys
 import time
+import copy
+import collections
 
 import openpyxl
 import xlsxwriter
@@ -29,8 +29,11 @@ import extract_NFV_data
 from cache_mechanism import DiskCache
 from machine_config import MachineConfig
 from setting_global_variable import CONFIG_FILE_PATH, SRC_EXCEL_DIR
-from machine_scripts.public_use_function import verify_validity_url, hidden_data_by_column, get_url_list_by_keyword, \
-    get_interface_config, judge_get_config
+from machine_scripts.public_use_function import (get_url_list_by_keyword,
+    get_interface_config, judge_get_config)
+from machine_scripts.common_interface_func import (verify_validity_url,
+    hidden_data_by_column)
+
 
 
 class InsertDataIntoExcel(object):
