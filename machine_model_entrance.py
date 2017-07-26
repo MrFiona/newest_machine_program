@@ -16,9 +16,11 @@ log_time = time.strftime('%Y_%m_%d_%H_%M_%S', time.localtime(time.time()))
 _logger = WorkLogger(log_filename='machine_log', log_time=log_time)
 from machine_scripts.get_all_html import GetUrlFromHtml
 from machine_scripts.insert_excel import InsertDataIntoExcel
-from machine_scripts.public_use_function import backup_excel_file, backup_cache, get_url_list_by_keyword, confirm_result_excel, \
-    judge_get_config, easyExcel, error_tracking_decorator, rename_log_file_name, interrupt_clear_excel_file, InterruptError, \
-    detect_memory_usage, get_win_process_ids, get_project_newest_file, performance_analysis_decorator, backup_chart
+from machine_scripts.public_use_function import (get_url_list_by_keyword, judge_get_config,
+    easyExcel, error_tracking_decorator)
+from machine_scripts.common_interface_func import (get_project_newest_file, detect_memory_usage,
+    rename_log_file_name, interrupt_clear_excel_file, InterruptError, get_win_process_ids,
+    confirm_result_excel, backup_chart, backup_excel_file, backup_cache, performance_analysis_decorator)
 from setting_global_variable import type_sheet_name_list
 from machine_scripts.cache_mechanism import DiskCache
 from machine_scripts.send_email import SendEmail
