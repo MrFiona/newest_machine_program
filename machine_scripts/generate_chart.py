@@ -5,10 +5,12 @@
 # Author  : MrFiona 一枚程序员
 # Time     : 2017-05-24 13:01
 
+from __future__ import absolute_import
 
-import glob
+
 import os
 import re
+import glob
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -19,6 +21,8 @@ from machine_scripts.machine_config import MachineConfig
 from machine_scripts.public_use_function import get_interface_config
 from setting_global_variable import CONFIG_FILE_PATH, SRC_EXCEL_DIR, MANUAL_CONFIG_FILE_PATH, \
     PRESERVE_TABLE_CHART_DIR, IMAGE_ORIGINAL_RESULT, MANUAL_IMAGE_ORIGINAL_RESULT
+
+_file_name = os.path.split(__file__)[1]
 
 
 def get_max_num(first_data, second_data, third_data, fourth_data, fifth_data,
@@ -70,16 +74,15 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
         object_file_list = [ ele for ele in file_list if log_time in ele ]
         if object_file_list:
             object_excel_file = object_file_list[0]
-            logger.print_message('object_excel_file:\t%s' % object_excel_file, os.path.split(__file__)[1])
+            logger.print_message('object_excel_file:\t%s' % object_excel_file, _file_name)
     else:
         conf = MachineConfig(MANUAL_CONFIG_FILE_PATH)
         object_excel_file = conf.get_node_info('manual_machine_info', 'template_info')
-        logger.print_message('object_excel_file:\t%s' % object_excel_file, os.path.split(__file__)[1])
+        logger.print_message('object_excel_file:\t%s' % object_excel_file, _file_name)
 
     fig = plt.figure()
     fig.set_size_inches(w=15, h=8)
 
-    file_logger_name = os.path.split(__file__)[1]
     # TODO 获取代表是否显示五个表的参数
     display_software = get_interface_config('display_software', purl_bak_string)
     display_New = get_interface_config('display_new', purl_bak_string)
@@ -117,22 +120,22 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
         weeks_list[index] = weeks_list_ele_list[0] + '\n' + 'WW' + weeks_list_ele_list[-1]
 
     if display_software == 'YES':
-        logger.print_message('Software Change:\t%s\t%d' %(first_data, len(first_data)), file_logger_name)
+        logger.print_message('Software Change:\t%s\t%d' %(first_data, len(first_data)), _file_name)
     if display_New == 'YES':
-        logger.print_message('New Sighting:\t%s\t%d' %(second_data, len(second_data)), file_logger_name)
+        logger.print_message('New Sighting:\t%s\t%d' %(second_data, len(second_data)), _file_name)
     if display_Existing == 'YES':
-        logger.print_message('Existing Sighting:\t%s\t%d' %(third_data, len(third_data)), file_logger_name)
+        logger.print_message('Existing Sighting:\t%s\t%d' %(third_data, len(third_data)), _file_name)
     if display_Closed == 'YES':
-        logger.print_message('Closed Sighting:\t%s\t%d' %(fourth_data, len(fourth_data)), file_logger_name)
+        logger.print_message('Closed Sighting:\t%s\t%d' %(fourth_data, len(fourth_data)), _file_name)
     if display_Total == 'YES':
-        logger.print_message('Total Sighting:\t%s\t%d' %(fifth_data, len(fifth_data)), file_logger_name)
+        logger.print_message('Total Sighting:\t%s\t%d' %(fifth_data, len(fifth_data)), _file_name)
 
-    logger.print_message('weeks_list:\t%s\t%d' %(weeks_list, len(weeks_list)), file_logger_name)
+    logger.print_message('weeks_list:\t%s\t%d' %(weeks_list, len(weeks_list)), _file_name)
 
     max_negative_num, max_positive_num = get_max_num(first_data, second_data, third_data, fourth_data, fifth_data,
                                                      display_software, display_New, display_Existing, display_Closed, display_Total)
-    logger.print_message('max_negative_num:\t%d' %(max_negative_num), file_logger_name)
-    logger.print_message('max_positive_num:\t%d' %(max_positive_num), file_logger_name)
+    logger.print_message('max_negative_num:\t%d' %(max_negative_num), _file_name)
+    logger.print_message('max_positive_num:\t%d' %(max_positive_num), _file_name)
 
     max_length = len(weeks_list);n_groups = len(weeks_list)
     index = np.arange(n_groups); bar_width = 0.60
@@ -182,7 +185,7 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
         import xlwings as xw
         obj_book = xw.Book(object_excel_file)
         sht = obj_book.sheets['Trend']
-        sht.pictures.add(fig, name='Trend_chart', update=True, left=400, top=300, width=1500, height=500)
+        sht.pictures.add(fig, name='Trend_chart', update=True, left=400, top=300, width=1500, height=800)
         obj_book.save()
         os.system('taskkill /F /IM excel.exe')
 
