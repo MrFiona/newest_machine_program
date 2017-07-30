@@ -5,17 +5,19 @@
 # File    : extract_NFV_data.py
 # Software: PyCharm Community Edition
 
-import HTMLParser
-import codecs
+from __future__ import absolute_import
+
+
 import os
 import re
 import sys
+import codecs
 import urllib2
-from logging import ERROR
+from logging import ERROR, CRITICAL
 
 from bs4 import BeautifulSoup
 
-from cache_mechanism import DiskCache
+from machine_scripts.cache_mechanism import DiskCache
 from machine_scripts.public_use_function import remove_line_break
 from machine_scripts.common_interface_func import (NFVi_remove_non_alphanumeric_characters, FilterTag)
 from setting_global_variable import REPORT_HTML_DIR
@@ -79,21 +81,15 @@ class GetAnalysisData(object):
 
     def save_html(self):
         try:
-            filters = FilterTag()
             html = urllib2.urlopen(self.data_url, context=context).read().decode('utf-8')
-            response_parser = HTMLParser.HTMLParser()
-            html = response_parser.unescape(html)
-            html = filters.filterHtmlTag(html)
-            html = filters.replaceCharEntity(html)
-            # 将源代码写入文件
             with codecs.open(self.save_file_path + os.sep + self.save_file_name, 'w', encoding='utf-8') as file:
                 file.write(html)
         except urllib2.HTTPError as e:
-            print e
-            print 'Access error, please check whether address [ %s ] is valid!!!' % self.data_url
+            self.logger.print_message(e, self.__file_name, CRITICAL)
+            self.logger.print_message('Access error, please check whether address [ %s ] is valid!!!' % self.data_url, self.__file_name, CRITICAL)
             return
         except urllib2.URLError as e:
-            print e
+            self.logger.print_message(e, self.__file_name, CRITICAL)
             return
 
     # 提取通用的部分,如果bkc_flag=True并且BKC和Gold都没有数据则取Silver数据 优先级：BKC > Gold > Silver
