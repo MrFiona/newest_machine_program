@@ -5,15 +5,17 @@
 # File    : extract_data.py
 # Software: PyCharm Community Edition
 
-import codecs
-import collections
+from __future__ import absolute_import
+
 import os
 import re
 import ssl
 import sys
+import codecs
 import urllib2
+import collections
 from functools import wraps
-from logging import ERROR
+from logging import ERROR, CRITICAL
 
 from bs4 import BeautifulSoup
 
@@ -79,22 +81,17 @@ class GetAnalysisData(object):
         if get_info_not_save_flag:
             self.save_html()
 
-    #获取url详细信息
-    def get_info_detail(self):
-        return self.data_url
-
     def save_html(self):
         try:
             html = urllib2.urlopen(self.data_url, context=context).read().decode('utf-8')
             with codecs.open(self.save_file_path + os.sep + self.save_file_name, 'w', encoding='utf-8') as file:
                 file.write(html)
-
         except urllib2.HTTPError as e:
-            self.logger.print_message(e, self.__file_name, definition_log_level=40)
-            self.logger.print_message('Access error, please check whether address [ %s ] is valid!!!' % self.data_url, self.__file_name, definition_log_level=40)
+            self.logger.print_message(e, self.__file_name, CRITICAL)
+            self.logger.print_message('Access error, please check whether address [ %s ] is valid!!!' % self.data_url, self.__file_name, CRITICAL)
             return
         except urllib2.URLError as e:
-            self.logger.print_message(e, self.__file_name, definition_log_level=40)
+            self.logger.print_message(e, self.__file_name, CRITICAL)
             return
 
     #提取通用的部分,如果bkc_flag=True并且BKC和Gold都没有数据则取Silver数据 优先级：BKC > Gold > Silver
