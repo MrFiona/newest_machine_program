@@ -1,13 +1,8 @@
-beautifulsoup4==4.5.3
-bs4==0.0.1
-future==0.16.0
-chardet==3.0.1
 lxml==3.7.3
+pyparsing==2.2.0
+bs4==0.0.1
 openpyxl==2.4.5
 matplotlib==2.0.2
-numpy==1.11.2
-python-dateutil==2.6.0
 XlsxWriter==0.9.6
 xlwings==0.10.4
-PyH==0.1.1
 psutil==5.2.2
