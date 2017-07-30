@@ -5,6 +5,8 @@
 # File    : manual_machine_config_gui.py
 # Software: PyCharm Community Edition
 
+from __future__ import absolute_import
+
 
 import os
 import re
@@ -12,7 +14,7 @@ from Tkinter import Tk, Button, Label, Entry, END, mainloop
 from tkFileDialog import askopenfilename
 from tkMessageBox import showwarning
 
-from machine_config import MachineConfig
+from machine_scripts.machine_config import MachineConfig
 from setting_global_variable import MANUAL_CONFIG_FILE_PATH
 
 
