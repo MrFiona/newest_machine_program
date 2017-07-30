@@ -3,20 +3,17 @@
 
 """
         开发出一个日志系统，既要把日志输出到控制台，还要写入日志文件
+        CRITICAL = 50
+        FATAL = CRITICAL
+        ERROR = 40
+        WARNING = 30
+        WARN = WARNING
+        INFO = 20
+        DEBUG = 10
+        NOTSET = 0
 """
 
-"""
-
-CRITICAL = 50
-FATAL = CRITICAL
-ERROR = 40
-WARNING = 30
-WARN = WARNING
-INFO = 20
-DEBUG = 10
-NOTSET = 0
-
-"""
+from __future__ import absolute_import
 
 import os
 import os.path
