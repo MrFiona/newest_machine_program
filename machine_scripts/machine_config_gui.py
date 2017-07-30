@@ -5,6 +5,7 @@
 # File    : temp.py
 # Software: PyCharm Comm|unity Edition
 
+from __future__ import absolute_import
 
 import Tkinter
 import os
@@ -15,8 +16,8 @@ from Tkinter import (StringVar, Tk, END, IntVar, Label, Entry, Button, LabelFram
 from tkFileDialog import askopenfilename
 from tkMessageBox import askokcancel, askyesno
 
-from get_all_html import GetUrlFromHtml
-from machine_config import MachineConfig
+from machine_scripts.get_all_html import GetUrlFromHtml
+from machine_scripts.machine_config import MachineConfig
 from machine_scripts.public_use_function import get_interface_config, judge_get_config, get_url_list_by_keyword
 from setting_global_variable import CONFIG_FILE_PATH, SRC_WEEK_DIR
 
