@@ -5,6 +5,8 @@
 # File    : send_email.py
 # Software: PyCharm Community Edition
 
+from __future__ import absolute_import
+
 
 import glob
 import os
@@ -13,7 +15,7 @@ from email.header import Header
 from email.mime.text import MIMEText
 from email.utils import parseaddr, formataddr
 
-from machine_config import MachineConfig
+from machine_scripts.machine_config import MachineConfig
 from machine_scripts.public_use_function import deal_html_data, get_url_list_by_keyword, judge_get_config
 from setting_global_variable import DEBUG_FLAG, MANUAL_CONFIG_FILE_PATH
 
