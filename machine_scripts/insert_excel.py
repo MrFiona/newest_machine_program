@@ -12,6 +12,9 @@
 # TODO          2、无最新的周出现且需要覆盖  保持既定位置不变
 # TODO          3、正常情况不需要覆盖       保持既定位置不变
 
+from __future__ import absolute_import
+
+
 import os
 import re
 import sys
@@ -25,9 +28,9 @@ import xlsxwriter
 reload(sys)
 sys.setdefaultencoding('utf-8')
 from machine_scripts import extract_data
-import extract_NFV_data
-from cache_mechanism import DiskCache
-from machine_config import MachineConfig
+from machine_scripts import extract_NFV_data
+from machine_scripts.cache_mechanism import DiskCache
+from machine_scripts.machine_config import MachineConfig
 from setting_global_variable import CONFIG_FILE_PATH, SRC_EXCEL_DIR
 from machine_scripts.public_use_function import (get_url_list_by_keyword,
     get_interface_config, judge_get_config)
