@@ -5,6 +5,8 @@
 # File    : machine_model_entrance.py
 # Software: PyCharm Community Edition
 
+from __future__ import absolute_import
+
 import os
 import re
 import sys
