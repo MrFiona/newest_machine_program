@@ -5,6 +5,8 @@
 # File    : common_interface_func.py
 # Software: PyCharm Community Edition
 
+from __future__ import absolute_import
+
 import re
 import os
 import sys
