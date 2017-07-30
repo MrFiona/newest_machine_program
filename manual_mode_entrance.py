@@ -5,6 +5,8 @@
 # File    : manual_mode_entrance.py
 # Software: PyCharm Community Edition
 
+from __future__ import absolute_import
+
 
 import os
 import time
@@ -16,7 +18,7 @@ from machine_scripts.custom_log import WorkLogger
 from machine_scripts.get_all_html import GetUrlFromHtml
 from machine_scripts.machine_config import MachineConfig
 from machine_scripts.manual_machine_config_gui import manual_machine_config_gui_main
-from machine_scripts.public_use_function import (easyExcel, get_url_list_by_keyword, 
+from machine_scripts.public_use_function import (easyExcel, get_url_list_by_keyword,
         error_tracking_decorator)
 from machine_scripts.common_interface_func import performance_analysis_decorator
 from machine_scripts.send_email import SendEmail
