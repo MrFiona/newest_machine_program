@@ -5,19 +5,21 @@
 # File    : get_all_html.py
 # Software: PyCharm Community Edition
 
-import codecs
+from __future__ import absolute_import
+
 import os
 import re
-import shutil
 import ssl
 import time
+import codecs
+import shutil
+import chardet
 import urllib2
 from functools import wraps
 
-import chardet
 from bs4 import BeautifulSoup
 
-from cache_mechanism import DiskCache
+from machine_scripts.cache_mechanism import DiskCache
 from machine_scripts.extract_data import GetAnalysisData
 from machine_scripts.public_use_function import get_url_list_by_keyword
 from setting_global_variable import SRC_WEEK_DIR, REPORT_HTML_DIR, SRC_CACHE_DIR
@@ -181,7 +183,6 @@ class GetUrlFromHtml(object):
         return file_name
 
     # TODO 更新相应周缓存
-    # @findcaller
     def write_html_by_multi_thread(self, purl_bak_string, keep_continuous):
         cache = DiskCache(purl_bak_string)
         effective_url_list = []
