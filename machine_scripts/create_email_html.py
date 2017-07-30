@@ -11,7 +11,7 @@ import os
 import sys
 import time
 
-from pyh import PyH, h1, table, td, tr
+from machine_scripts.pyh import PyH, h1, table, td, tr
 
 from machine_scripts.public_use_function import get_report_data, get_url_list_by_keyword, get_interface_config
 from setting_global_variable import ORIGINAL_HTML_RESULT, MANUAL_ORIGINAL_HTML_RESULT
