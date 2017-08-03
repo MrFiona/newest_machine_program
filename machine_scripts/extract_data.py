@@ -1248,20 +1248,11 @@ if __name__ == '__main__':
     #         key_url_list.append(line.strip('\n'))
 
     cache = DiskCache('Purley-FPGA')
-    key_url_list = ['https://oss-sh.ccr.corp.intel.com/test_report/test_report/6421/0/']
-    html = urllib2.urlopen('https://oss-sh.ccr.corp.intel.com/test_report/test_report/6421/0/').read()
-    # print html
-    regex = re.compile(r'<span class="sh2">&nbsp; SW Configuration: </span>(.*?)<span class="sh2">&nbsp; IFWI Configuration: </span>', re.S | re.M)
-    header = re.findall(regex, html)
-    string_data = ''.join(header)
-    # 提取所有的tr部分
-    soup_tr = BeautifulSoup(string_data, 'html.parser')
-    tr_list = soup_tr.find_all(re.compile('tr'))
-    # print string_data
-    # for url in key_url_list:
-    #     obj = GetAnalysisData(url, 'Purley-FPGA', get_info_not_save_flag=True, cache=cache)
+    key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html']
+    for url in key_url_list:
+        obj = GetAnalysisData(url, 'Bakerville', get_info_not_save_flag=True, insert_flag=True, cache=cache)
         # obj.get_caseresult_data('Platform Integration Validation Result', True)
-        # obj.get_sw_data('SW Configuration', True)
+        obj.get_sw_data('SW Configuration', True)
     print time.time() - start
     # import pstats
     # p = pstats.Stats('mkm_run.prof')
