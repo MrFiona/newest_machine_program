@@ -753,7 +753,7 @@ class InsertDataIntoExcel(object):
         hidden_data_by_column(self.worksheet_sw_info, self.Silver_url_list, 1, 1)
         self.get_formula_data('SWInfo', self.worksheet_sw_info)
 
-    def insert_IFWI_Orignal_data(self, k):
+    def insert_IFWI_Original_data(self, k):
         self.logger.print_message('Start inserting [ IFWI_Orignal Configuration ] data.........', self.__file_name)
         red = self.workbook.add_format({'color': 'red'})
         fail_url_list = []
@@ -988,7 +988,7 @@ class InsertDataIntoExcel(object):
         self.get_formula_data('Mapping', self.worksheet_mapping)
         # 标记True为红色
         self.worksheet_mapping.conditional_format(self.__WEEK_NUM + 7, 5, 200, self.__WEEK_NUM + 6, {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
-        self.worksheet_mapping.conditional_format(self.__WEEK_NUM + 7, self.__WEEK_NUM + 7, 200, self.__WEEK_NUM + 41, {'type': 'cell', 'criteria': '=', 'value': 1, 'format': self.format1})
+        self.worksheet_mapping.conditional_format(self.__WEEK_NUM + 7, self.__WEEK_NUM + 7, 200, self.__WEEK_NUM + 41, {'type': 'cell', 'criteria': '>', 'value': 0, 'format': self.format1})
         insert_date_list = []
         orignal_url_list = Silver_url_list
         for url in orignal_url_list:
@@ -1035,9 +1035,9 @@ class InsertDataIntoExcel(object):
                                 'ExistingSighting in previous test result?', 'Fixed Sighting in release notes?',
                                 'Fixed Sighting in test result?', 'Missed Fixed Sighting in test plan?',
                                 'New Add Test Case comparing to previous test plan pool?', 'Mapped in Mapping table?',
-                                'NOT Found in Mapping table?', 'Covered new Sighting?', 'Covered exsiting sighting?',
+                                'NOT Found in Mapping table?', 'Covered new Sighting?', 'Covered existing sighting?',
                                 'Covered Sighting?', 'Missed Sighting in test plan', 'No run in the past x(x<=10) weeks?',
-                                'No Issue found in the latest y(y<=10) tests?', 'Basic Case?', 'Efforts override',
+                                'No Issue found in the latest y(y<=10) tests?', 'Basic Case?', 'Selected override',
                                 'Efforts', 'Not in actual test result but is selected in Test Plan.', 'Selected(z = threshold value)?']
         last_header_list = ['Domain', 'Category', 'Case', 'New Added Test Case Comparing to Previous Test Case Pool',
                             'New Added Test Case Comparing to Entire Test Case Pool']
@@ -1193,7 +1193,7 @@ if __name__ == '__main__':
     print purl_bak_string
     start = time.time()
     cache = DiskCache(purl_bak_string)
-    from custom_log import WorkLogger
+    from machine_scripts.custom_log import WorkLogger
 
     log_time = time.strftime('%Y_%m_%d_%H_%M_%S', time.localtime(time.time()))
     link_WW_week_string = 'Default'
