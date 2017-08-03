@@ -105,7 +105,7 @@ def rename_log_file_name(logger, purl_bak_string, Silver_url_list, newest_week_t
     # TODO 修改log日志名
     else:
         actual_log_file = ''
-        for ele_name in glob.glob(MACHINE_LOG_DIR + os.sep + '*machine_log.txt'):
+        for ele_name in glob.glob(MACHINE_LOG_DIR + os.sep + 'machine_log*.txt'):
             if log_time in ele_name:
                 actual_log_file = ele_name
         try:
