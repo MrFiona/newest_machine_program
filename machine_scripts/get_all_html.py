@@ -303,7 +303,7 @@ class GetUrlFromHtml(object):
 if __name__ == '__main__':
     start = time.time()
     # TODO 类型: Bakerville or Purley-FPGA
-    from custom_log import WorkLogger
+    from machine_scripts.custom_log import WorkLogger
     _logger = WorkLogger('get_all_html_log', create_log_flag=False)
 
     # purl_bak_string = get_interface_config('default_purl_bak_string', 'PURL_BAK_STRING')
@@ -312,7 +312,6 @@ if __name__ == '__main__':
     # object.get_all_type_data(purl_bak_string, get_only_department=True, remove_week_cache_flag=True, remove_week_list=None)
     #多线程写文件
     object.update_week_cache(purl_bak_string)
-    os.makedirs('ddddddddddddd')
     # object.write_html_by_multi_thread(purl_bak_string)
     # object.get_department_stage_date_list()
     print '用时: [ %d ]' %(time.time() - start)
