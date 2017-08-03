@@ -81,8 +81,8 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
         # TODO 获取对应周url列表
         section_Silver_url_list = get_url_list_by_keyword(purl_bak_string, 'Silver', pre_url_list=effective_week_string_list)
 
-    # TODO verificate_flag改为了True，兼容新加的功能 提取最新周的类型 : Silver、Gold、BKC
-    insert_object = InsertDataIntoExcel(verificate_flag=True, purl_bak_string=purl_bak_string, link_WW_week_string=link_WW_week_string, cache=cache,
+    # TODO verify_flag_flag改为了True，兼容新加的功能 提取最新周的类型 : Silver、Gold、BKC
+    insert_object = InsertDataIntoExcel(verify_flag=True, purl_bak_string=purl_bak_string, link_WW_week_string=link_WW_week_string, cache=cache,
                         silver_url_list=Silver_url_list, section_Silver_url_list=section_Silver_url_list, logger=_logger, log_time=log_time,
                         keep_continuous=keep_continuous)
     func_name_list = insert_object.return_name().keys()
@@ -95,6 +95,10 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
     try:
         for func in call_func_list:
             getattr(insert_object, func)(1)
+        insert_object.predict_insert_IFWI_data()
+        insert_object.predict_insert_IFWI_Original_data()
+        insert_object.predict_insert_SW_data()
+        insert_object.predict_insert_SW_Original_data()
     except:
         insert_object.close_workbook()
         raise InterruptError('Interrupt Error occurred!!!')
