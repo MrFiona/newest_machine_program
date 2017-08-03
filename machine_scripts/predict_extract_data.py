@@ -6,6 +6,7 @@
 # Software: PyCharm Community Edition
 
 
+import os
 import re
 import urllib2
 from bs4 import BeautifulSoup
@@ -15,17 +16,19 @@ from machine_scripts.common_interface_func import remove_non_alphanumeric_charac
 
 class PredictGetData(object):
 
-    def __init__(self, predict_url):
+    def __init__(self, logger, predict_url):
+        self.logger = logger
         self.predict_url = predict_url
         self.html = urllib2.urlopen(self.predict_url).read()
-        self.date_string = 'fffff'
+        self.date_string = 'default_date_string_value'
+        self._file_name = os.path.split(__file__)[1]
         soup_html = BeautifulSoup(self.html, 'html.parser')
         object_string = soup_html.find_all('table')[0]
         soup_string = BeautifulSoup(str(object_string), 'html.parser')
         candidate_string = soup_string.find_all('p')[1]
-        result_dict = re.search('<p\s+.*\s+--\s+(?P<name>(.*)</p>)', str(candidate_string))
+        result_dict = re.search('<p\s+.*\s+--\s+(?P<name>(.*))</p>', str(candidate_string))
         if result_dict:
-            print result_dict.group('name')
+            self.logger.print_message('result_dict:\t%s' % result_dict.group('name'), self._file_name)
             self.date_string = result_dict.group('name')
 
     def predict_get_sw_data(self):
@@ -117,9 +120,9 @@ class PredictGetData(object):
             if header_length < 4:
                 header_length = 4
 
-            print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
-            print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
-            print '\033[31murl_list:\t\033[0m', url_list, len(url_list)
+            # print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
+            # print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
+            # print '\033[31murl_list:\t\033[0m', url_list, len(url_list)
             return 'Candidate', header_length, self.date_string, url_list, header_list, cell_data_list
         except:
             return 'Error', 0, '', [], [], []
@@ -153,7 +156,8 @@ class PredictGetData(object):
                     if td_string_list:
                         td_string_list[0] = td_string_list[0].lstrip(' ')
                     cell_data_list.append(td_string_list)
-            # print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
+            # print '\033[31mself.date_string:\t\033[0m', self.date_string, len(self.date_string)
+            # print '\033[36mheader_list:\t\033[0m', header_list, len(header_list)
             # print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
             return 'Candidate', self.date_string, header_list, cell_data_list
         except:
