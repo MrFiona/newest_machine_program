@@ -87,6 +87,7 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
                         keep_continuous=keep_continuous)
     func_name_list = insert_object.return_name().keys()
     call_func_list = [ func for func in func_name_list if func.startswith('insert') ]
+    predict_call_func_list = [func for func in func_name_list if func.startswith('predict_insert')]
     if 'insert_CaseResult' in call_func_list:
         call_func_list.remove('insert_CaseResult')
         call_func_list.append('insert_CaseResult')
@@ -94,11 +95,9 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
 
     try:
         for func in call_func_list:
-            getattr(insert_object, func)(1)
-        insert_object.predict_insert_IFWI_data()
-        insert_object.predict_insert_IFWI_Original_data()
-        insert_object.predict_insert_SW_data()
-        insert_object.predict_insert_SW_Original_data()
+            getattr(insert_object, func)()
+        for func in predict_call_func_list:
+            getattr(insert_object, func)()
     except:
         insert_object.close_workbook()
         raise InterruptError('Interrupt Error occurred!!!')
