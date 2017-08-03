@@ -20,8 +20,8 @@ import re
 import sys
 import time
 import copy
+import urllib2
 import collections
-
 import openpyxl
 import xlsxwriter
 
@@ -31,16 +31,17 @@ from machine_scripts import extract_data
 from machine_scripts import extract_NFV_data
 from machine_scripts.cache_mechanism import DiskCache
 from machine_scripts.machine_config import MachineConfig
-from setting_global_variable import CONFIG_FILE_PATH, SRC_EXCEL_DIR
+from setting_global_variable import CONFIG_FILE_PATH, SRC_EXCEL_DIR, PROGRAM_NAME_ID_DICT
 from machine_scripts.public_use_function import (get_url_list_by_keyword,
     get_interface_config, judge_get_config)
 from machine_scripts.common_interface_func import (verify_validity_url,
     hidden_data_by_column)
+from machine_scripts.predict_extract_data import PredictGetData
 
 
 
 class InsertDataIntoExcel(object):
-    def __init__(self, silver_url_list, section_Silver_url_list, link_WW_week_string, verificate_flag=False, purl_bak_string=None, cache=None,
+    def __init__(self, silver_url_list, section_Silver_url_list, link_WW_week_string, verify_flag=False, purl_bak_string=None, cache=None,
                  logger=None, log_time=None, keep_continuous=False):
         logger.print_message('>>>>>>>>>> Please Wait ... The Program is being read for Excel Initialization <<<<<<<<<<', os.path.split(__file__)[1])
         self.cache = cache
@@ -49,7 +50,7 @@ class InsertDataIntoExcel(object):
         self.Silver_url_list = silver_url_list
         self.section_Silver_url_list = section_Silver_url_list
         # TODO 验证标志,默认不开启,即预测
-        self.verify_flag = verificate_flag
+        self.verify_flag = verify_flag
         self.purl_bak_string = purl_bak_string
         self.link_WW_week_string = link_WW_week_string
         # TODO 支持只覆盖某些周
@@ -57,6 +58,8 @@ class InsertDataIntoExcel(object):
         self.date_string_list = []
         self.__file_name = os.path.split(__file__)[1]
         self.newest_week_type_string_list = []
+        # TODO 控制预测周数据的获取渠道 True: 从接口渠道获取 False: 正常渠道获取
+        self.predict_insert_flag = False
 
         # TODO 模板周数获取
         self.__WEEK_NUM = int(judge_get_config('week_num', self.purl_bak_string))
@@ -100,8 +103,8 @@ class InsertDataIntoExcel(object):
         self.worksheet_sw = self.workbook.add_worksheet('SW')
         self.worksheet_ifwi = self.workbook.add_worksheet('IFWI')
         self.worksheet_platform = self.workbook.add_worksheet('ValidationResult')
-        self.worksheet_sw_orignal = self.workbook.add_worksheet('SW_Original')
-        self.worksheet_ifwi_orignal = self.workbook.add_worksheet('IFWI_Original')
+        self.worksheet_sw_original = self.workbook.add_worksheet('SW_Original')
+        self.worksheet_ifwi_original = self.workbook.add_worksheet('IFWI_Original')
         self.worksheet_rework_info = self.workbook.add_worksheet('ReworkInfo')
         self.worksheet_hw_info = self.workbook.add_worksheet('HWInfo')
         self.worksheet_sw_info = self.workbook.add_worksheet('SWInfo')
@@ -147,14 +150,34 @@ class InsertDataIntoExcel(object):
         self.reserve_zero_decimal_format.set_num_format( 0x09 )      #0%
         self.reserve_two_decimal_format.set_num_format( 0x0a )       #0.00%
 
+        self._predict_url = self.predict_week_insert()
+
         self.logger.print_message('>>>>>>>>>> Excel Initialization End <<<<<<<<<<', self.__file_name)
+
+    def predict_week_insert(self):
+        program_id = PROGRAM_NAME_ID_DICT.get(self.purl_bak_string)
+        if program_id is None:
+            self.logger.print_message('The project id does not exist', self.__file_name, 50)
+            return None
+        else:
+            self.logger.print_message('The project id exists:\t%s' % program_id, self.__file_name)
+            predict_url = 'https://dcg-oss.intel.com/get_last_candidate_link/' + program_id
+            response = urllib2.urlopen(predict_url).read()
+            # TODO 返回字符串不为0则未生成静态页面，数据从指定渠道获取
+            if len(response) == 0:
+                self.predict_insert_flag = True
+            return predict_url
 
     def get_url_list(self):
         return self.Silver_url_list
-
-    def calculate_head_num(self, multiple, num, add_num=0):
-        url_length = len(self.Silver_url_list)
-        return multiple*(self.__WEEK_NUM - url_length + num) + add_num
+    
+    def calculate_head_num(self, multiple, num, add_num=0, predict_calculate_flag=False):
+        if not predict_calculate_flag:
+            url_length = len(self.Silver_url_list)
+            return multiple*(self.__WEEK_NUM - url_length + num) + add_num
+        else:
+            url_length = len(self.Silver_url_list) + 1
+            return multiple*(self.__WEEK_NUM - url_length + num) + add_num
 
     def get_formula_data(self, data_type, wb_sheet_name):
         rb_sheet = self.rb.get_sheet_by_name(data_type)
@@ -194,11 +217,8 @@ class InsertDataIntoExcel(object):
     def insert_change_history_data(self, k):
         self.get_formula_data('Change History', self.worksheet_change)
 
-    def insert_Newsi_data(self, k):
+    def insert_NewSi_data(self, k):
         self.logger.print_message('Start inserting [ New Sightings ] data.........', self.__file_name)
-        insert_data_list_1 = ['Sighting in Test Result', 'Test Case in Test Result', 'Corresponding Test Case',
-                              'Purley-FPGA No corresponding test case in test result?']
-
         #隐藏部分数据
         hidden_data_by_column(self.worksheet_newsi, self.Silver_url_list, 13, 1)
         # 获取公式并插入指定位置
@@ -234,7 +254,6 @@ class InsertDataIntoExcel(object):
             self.worksheet_newsi.write(2, self.calculate_head_num(13, j, 1), Silver_BkC_string, self.format1)
             self.worksheet_newsi.write(2, self.calculate_head_num(13, j), date_string, self.format1)
             self.worksheet_newsi.write(2, self.calculate_head_num(13, j, 12), 'Comments')
-            self.worksheet_newsi.write_row(3, self.calculate_head_num(13, j), insert_data_list_1)
 
             if not effective_url_list and not header_list and not cell_data_list:
                 continue
@@ -256,11 +275,7 @@ class InsertDataIntoExcel(object):
                     self.worksheet_newsi.write(4 + i, self.calculate_head_num(13, j, 11), cell_data_list[i][-1])
 
     def insert_ExistingSi_data(self, k):
-        prompt_statement_list = ['Sighting in Test Result', 'Test Case in Test Result', 'Corresponding Test Case'
-                                'Purley-FPGA No corresponding test case in test result?']
-        # Add the standard url link format.
         fail_url_list = []
-
         self.logger.print_message('Start inserting [ Existing Sightings ] data.........', self.__file_name)
         hidden_data_by_column(self.worksheet_existing, self.Silver_url_list, 13, 1)
         # 获取公式并插入指定位置
@@ -297,8 +312,6 @@ class InsertDataIntoExcel(object):
                                                            {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
                 self.worksheet_existing.write(2, self.calculate_head_num(13, j, 1), Silver_BkC_string, self.header_format)
                 self.worksheet_existing.write(2, self.calculate_head_num(13, j), date_string, self.format1)
-                # 写入工作表的第二行,提示语
-                self.worksheet_existing.write_row(3, self.calculate_head_num(13, j), prompt_statement_list)
 
                 if not url_list and not header_list and not cell_data_list:
                     continue
@@ -340,8 +353,6 @@ class InsertDataIntoExcel(object):
 
     def insert_ClosedSi_data(self, k):
         self.logger.print_message('Start inserting [ Closed Sightings ] data.........', self.__file_name)
-        insert_data_list_1 = ['Sighting in Test Result', 'Test Case in Test Result', 'Corresponding Test Case',
-                              'Purley-FPGA No corresponding test case in test result?']
         # 获取公式并插入指定位置
         fail_url_list = []
         self.get_formula_data('ClosedSi', self.worksheet_closesi)
@@ -374,7 +385,6 @@ class InsertDataIntoExcel(object):
                                                           {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
                 self.worksheet_closesi.write(2, self.calculate_head_num(13, j, 1), Silver_BkC_string, self.format1)
                 self.worksheet_closesi.write(2, self.calculate_head_num(13, j), date_string, self.format1)
-                self.worksheet_closesi.write_row(3, self.calculate_head_num(13, j), insert_data_list_1)
 
                 if not effective_url_list and not header_list and not cell_data_list:
                     continue
@@ -476,10 +486,10 @@ class InsertDataIntoExcel(object):
         # TODO FPGA 23周  DE 24周  最新格式适配边界位置
         if self.purl_bak_string == 'Purley-FPGA':
             FPGA_border_position = self.Silver_url_list.index('https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW23/6131_Silver.html')
-            self.logger.print_message('FPGA_border_position:\t%s' % FPGA_border_position, os.path.split(__file__)[1])
+            self.logger.print_message('FPGA_border_position:\t%s' % FPGA_border_position, self.__file_name)
         elif self.purl_bak_string == 'Bakerville':
             DE_border_position = self.Silver_url_list.index('https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW24/6170_Silver.html')
-            self.logger.print_message('DE_border_position:\t%s' % DE_border_position, os.path.split(__file__)[1])
+            self.logger.print_message('DE_border_position:\t%s' % DE_border_position, self.__file_name)
 
         # 获取公式并插入指定位置
         self.get_formula_data('HW', self.worksheet_hw)
@@ -576,8 +586,8 @@ class InsertDataIntoExcel(object):
 
         red = self.workbook.add_format({'color': 'red'})
         # 获取公式并插入指定位置
-        hidden_data_by_column(self.worksheet_sw_orignal, self.Silver_url_list, 9, 1)
-        self.get_formula_data('SW_Original', self.worksheet_sw_orignal)
+        hidden_data_by_column(self.worksheet_sw_original, self.Silver_url_list, 9, 1)
+        self.get_formula_data('SW_Original', self.worksheet_sw_original)
         for j in range(len(self.Silver_url_list)):
             # TODO 不在url列表范围则跳过不覆盖
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
@@ -602,19 +612,19 @@ class InsertDataIntoExcel(object):
                     if self.keep_continuous == 'YES' and j == self.actual_newest_week_position:
                         self.newest_week_type_string_list.append(Silver_BkC_string)
 
-                self.worksheet_sw_orignal.write_rich_string(1, self.calculate_head_num(9, j, 1), red, date_string, self.header_format)
-                self.worksheet_sw_orignal.write_rich_string(1, self.calculate_head_num(9, j, 2), red, Silver_BkC_string, self.header_format)
+                self.worksheet_sw_original.write_rich_string(1, self.calculate_head_num(9, j, 1), red, date_string, self.header_format)
+                self.worksheet_sw_original.write_rich_string(1, self.calculate_head_num(9, j, 2), red, Silver_BkC_string, self.header_format)
 
                 if not header_list and not cell_data_list:
                     continue
 
                 # 标记True为红色
-                self.worksheet_sw_orignal.conditional_format(3, self.calculate_head_num(9, j), 40, self.calculate_head_num(9, j, 1),
+                self.worksheet_sw_original.conditional_format(3, self.calculate_head_num(9, j), 40, self.calculate_head_num(9, j, 1),
                                                              {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
                 # 标记0为黄色
-                self.worksheet_sw_orignal.conditional_format(3, self.calculate_head_num(9, j, 2), 40, self.calculate_head_num(9, j, 2),
+                self.worksheet_sw_original.conditional_format(3, self.calculate_head_num(9, j, 2), 40, self.calculate_head_num(9, j, 2),
                                                              {'type': 'cell', 'criteria': '=', 'value': 0, 'format': self.yellow_data_format})
-                self.worksheet_sw_orignal.write_row(2, self.calculate_head_num(9, j, 5), header_list, self.header_format)
+                self.worksheet_sw_original.write_row(2, self.calculate_head_num(9, j, 5), header_list, self.header_format)
                 #插入数据 最后一列可能会出现多值多行的情况，计算每行数据占有的行数
                 line_num_list = []
                 for ele in cell_data_list:
@@ -626,26 +636,26 @@ class InsertDataIntoExcel(object):
                 #插入数据第一列到第三列
                 for line in range(len(cell_data_list)):
                     if line_num_list[line] == 1:
-                        self.worksheet_sw_orignal.write(nu, self.calculate_head_num(9, j, 5), first_insert_data[line])
-                        self.worksheet_sw_orignal.write_url(nu, self.calculate_head_num(9, j, 6), url_list[line][0], self.url_format, cell_data_list[line][1])
-                        self.worksheet_sw_orignal.write(nu, self.calculate_head_num(9, j, 7), second_insert_data[line])
+                        self.worksheet_sw_original.write(nu, self.calculate_head_num(9, j, 5), first_insert_data[line])
+                        self.worksheet_sw_original.write_url(nu, self.calculate_head_num(9, j, 6), url_list[line][0], self.url_format, cell_data_list[line][1])
+                        self.worksheet_sw_original.write(nu, self.calculate_head_num(9, j, 7), second_insert_data[line])
 
                         if (len(url_list[line]) >= 2) and cell_data_list[line][3]:
-                            self.worksheet_sw_orignal.write_url(nu, self.calculate_head_num(9, j, 8), url_list[line][1], self.url_format, cell_data_list[line][3])
+                            self.worksheet_sw_original.write_url(nu, self.calculate_head_num(9, j, 8), url_list[line][1], self.url_format, cell_data_list[line][3])
                         else:
-                            self.worksheet_sw_orignal.write(nu, self.calculate_head_num(9, j, 8), cell_data_list[line][3])
+                            self.worksheet_sw_original.write(nu, self.calculate_head_num(9, j, 8), cell_data_list[line][3])
                         nu += 1
 
                     elif line_num_list[line] > 1:
                         length_merge = len(url_list[line][1:])
-                        self.worksheet_sw_orignal.merge_range(nu, self.calculate_head_num(9, j, 5), nu + line_num_list[line] -1, self.calculate_head_num(9, j, 5), first_insert_data[line], self.title_format_merage)
-                        self.worksheet_sw_orignal.merge_range(nu, self.calculate_head_num(9, j, 6), nu + line_num_list[line] - 1, self.calculate_head_num(9, j, 6), '')
-                        self.worksheet_sw_orignal.write_url(nu, self.calculate_head_num(9, j, 6), url_list[line][0], self.url_format, cell_data_list[line][1])
-                        self.worksheet_sw_orignal.merge_range(nu, self.calculate_head_num(9, j, 7), nu + line_num_list[line] -1, self.calculate_head_num(9, j, 7), second_insert_data[line], self.title_format_merage)
+                        self.worksheet_sw_original.merge_range(nu, self.calculate_head_num(9, j, 5), nu + line_num_list[line] -1, self.calculate_head_num(9, j, 5), first_insert_data[line], self.title_format_merage)
+                        self.worksheet_sw_original.merge_range(nu, self.calculate_head_num(9, j, 6), nu + line_num_list[line] - 1, self.calculate_head_num(9, j, 6), '')
+                        self.worksheet_sw_original.write_url(nu, self.calculate_head_num(9, j, 6), url_list[line][0], self.url_format, cell_data_list[line][1])
+                        self.worksheet_sw_original.merge_range(nu, self.calculate_head_num(9, j, 7), nu + line_num_list[line] -1, self.calculate_head_num(9, j, 7), second_insert_data[line], self.title_format_merage)
 
                         for i in range(nu, length_merge + nu):
-                            self.worksheet_sw_orignal.write_url(i, self.calculate_head_num(9, j, 8), url_list[line][1 + i - nu], self.url_format, cell_data_list[line][3:][i - nu])
-                        self.worksheet_sw_orignal.write(line_num_list[line] + nu - 1, self.calculate_head_num(9, j, 8), cell_data_list[line][3:][-1])
+                            self.worksheet_sw_original.write_url(i, self.calculate_head_num(9, j, 8), url_list[line][1 + i - nu], self.url_format, cell_data_list[line][3:][i - nu])
+                        self.worksheet_sw_original.write(line_num_list[line] + nu - 1, self.calculate_head_num(9, j, 8), cell_data_list[line][3:][-1])
                         nu += line_num_list[line]
 
             except:
@@ -754,13 +764,13 @@ class InsertDataIntoExcel(object):
         self.get_formula_data('SWInfo', self.worksheet_sw_info)
 
     def insert_IFWI_Original_data(self, k):
-        self.logger.print_message('Start inserting [ IFWI_Orignal Configuration ] data.........', self.__file_name)
+        self.logger.print_message('Start inserting [ IFWI_Original Configuration ] data.........', self.__file_name)
         red = self.workbook.add_format({'color': 'red'})
         fail_url_list = []
 
         # 获取公式并插入指定位置
-        hidden_data_by_column(self.worksheet_ifwi_orignal, self.Silver_url_list, 6, 1)
-        self.get_formula_data('IFWI_Original', self.worksheet_ifwi_orignal)
+        hidden_data_by_column(self.worksheet_ifwi_original, self.Silver_url_list, 6, 1)
+        self.get_formula_data('IFWI_Original', self.worksheet_ifwi_original)
         for j in range(len(self.Silver_url_list)):
             # TODO 不在url列表范围则跳过不覆盖
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
@@ -784,18 +794,18 @@ class InsertDataIntoExcel(object):
                     if self.keep_continuous == 'YES' and j == self.actual_newest_week_position:
                         self.newest_week_type_string_list.append(Silver_BkC_string)
                 # Set up some formats to use.
-                self.worksheet_ifwi_orignal.conditional_format(4, self.calculate_head_num(6, j), 50, self.calculate_head_num(6, j, 1),
+                self.worksheet_ifwi_original.conditional_format(4, self.calculate_head_num(6, j), 50, self.calculate_head_num(6, j, 1),
                                                              {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
                 # 标记0为黄色
-                self.worksheet_ifwi_orignal.conditional_format(4, self.calculate_head_num(6, j, 2), 49, self.calculate_head_num(6, j, 2),
+                self.worksheet_ifwi_original.conditional_format(4, self.calculate_head_num(6, j, 2), 49, self.calculate_head_num(6, j, 2),
                                                              {'type': 'cell', 'criteria': '=', 'value': 0, 'format': self.yellow_data_format})
-                self.worksheet_ifwi_orignal.write_rich_string(1, self.calculate_head_num(6, j, 1), red, date_string, self.header_format)
-                self.worksheet_ifwi_orignal.write_rich_string(1, self.calculate_head_num(6, j, 2), red, Silver_BkC_string, self.format1)
+                self.worksheet_ifwi_original.write_rich_string(1, self.calculate_head_num(6, j, 1), red, date_string, self.header_format)
+                self.worksheet_ifwi_original.write_rich_string(1, self.calculate_head_num(6, j, 2), red, Silver_BkC_string, self.format1)
 
                 if not header_list and not cell_data_list:
                     continue
 
-                self.worksheet_ifwi_orignal.write_row(3, self.calculate_head_num(6, j, 3), header_list, self.header_format)
+                self.worksheet_ifwi_original.write_row(3, self.calculate_head_num(6, j, 3), header_list, self.header_format)
                 #插入数据,需要考虑有数字的情况，前面加Nic字母
                 for ele in range(len(cell_data_list)):
                     #以数字开头的元素前面加Nic
@@ -804,8 +814,8 @@ class InsertDataIntoExcel(object):
                         cell_data_list[ele][0] = 'Nic' + cell_data_list[ele][0]
                     cell_data_list[ele][0] = cell_data_list[ele][0].lstrip(' ')
 
-                for begain in range(len(cell_data_list)):
-                    self.worksheet_ifwi_orignal.write_row(begain + 4,  self.calculate_head_num(6, j, 3), cell_data_list[begain])
+                for begin in range(len(cell_data_list)):
+                    self.worksheet_ifwi_original.write_row(begin + 4,  self.calculate_head_num(6, j, 3), cell_data_list[begin])
             except:
                 self.logger.print_message('The data crawling failed for the %dth url [ %s ]' % (j + 1, self.Silver_url_list[j]), self.__file_name)
                 fail_url_list.append(self.Silver_url_list[j])
@@ -863,8 +873,8 @@ class InsertDataIntoExcel(object):
                     cell_data_list[ele][0] = cell_data_list[ele][0].lstrip(' ')
 
                 cell_data_list.sort(key=lambda x: x[0].upper())
-                for begain in range(len(cell_data_list)):
-                    self.worksheet_ifwi.write_row(begain + 4,  self.calculate_head_num(6, j, 3), cell_data_list[begain])
+                for begin in range(len(cell_data_list)):
+                    self.worksheet_ifwi.write_row(begin + 4,  self.calculate_head_num(6, j, 3), cell_data_list[begin])
             except:
                 self.logger.print_message('The data crawling failed for the %dth url [ %s ]' % (j + 1, self.Silver_url_list[j]), self.__file_name)
                 fail_url_list.append(self.Silver_url_list[j])
@@ -1180,14 +1190,262 @@ class InsertDataIntoExcel(object):
     def return_newest_week_type_string_list(self):
         return self.newest_week_type_string_list
 
+    def predict_insert_NewSi_data(self):
+        pass
+
+    def predict_insert_ExistingSi_data(self):
+        pass
+
+    def predict_insert_ClosedSi_data(self):
+        pass
+
+    def predict_insert_Rework_data(self):
+        pass
+
+    def predict_insert_HW_data(self):
+        pass
+
+    def predict_insert_SW_data(self):
+        if self.predict_insert_flag and self._predict_url:
+            red = self.workbook.add_format({'color': 'red'})
+            predict_insert_location = self.calculate_head_num(9, 0, 0, True)
+            print 'SW predict_insert_location:\t', predict_insert_location
+            self.worksheet_sw.write_rich_string(1, predict_insert_location, red, 'Candidate', self.header_format)
+            if self.on_off_line_save_flag == 'online':
+                # 验证url有效性
+                is_validity = verify_validity_url(self._predict_url, self.logger)
+                if not is_validity:
+                    return
+            try:
+                obj = PredictGetData(self._predict_url)
+                Silver_BkC_string, header_length, date_string, url_list, header_list, cell_data_list = obj.predict_get_sw_data()
+                self.worksheet_sw.write_rich_string(1, predict_insert_location + 1, red, date_string, self.header_format)
+                self.worksheet_sw.write_rich_string(1, predict_insert_location + 2, red, Silver_BkC_string, self.header_format)
+
+                if not header_list and not cell_data_list:
+                    return
+
+                # Set up some formats to use.
+                self.worksheet_sw.conditional_format(3, predict_insert_location, 40, predict_insert_location + 1,
+                                                     {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
+                # 标记0为黄色
+                self.worksheet_sw.conditional_format(3, predict_insert_location + 2, 40, predict_insert_location + 2,
+                                                     {'type': 'cell', 'criteria': '=', 'value': 0, 'format': self.yellow_data_format})
+                self.worksheet_sw.write_row(2, predict_insert_location + 5, header_list, self.header_format)
+                # 插入数据 最后一列可能会出现多值多行的情况，计算每行数据占有的行数
+                line_num_list = []
+                for ele in cell_data_list:
+                    num = len(ele[header_length - 1:])
+                    line_num_list.append(num)
+
+                # print 'line_num_list:\t', line_num_list, len(line_num_list)
+
+                # 处理并插入数据
+                insert_data = zip(cell_data_list, url_list, line_num_list)
+                insert_data.sort(key=lambda x: x[0][0].upper())
+
+                cell_data_list, url_list, line_num_list = zip(*insert_data)
+                # print 'line_num_list:\t', line_num_list, len(line_num_list)
+
+                first_insert_data = [cell_data_list[k][0] for k in range(len(cell_data_list))]
+                second_insert_data = [cell_data_list[k][2] for k in range(len(cell_data_list))]
+                # 插入数据第一列到第三列
+                nu = 3
+                for line in range(len(cell_data_list)):
+                    if line_num_list[line] == 1:
+                        self.worksheet_sw.write(nu, predict_insert_location + 5, first_insert_data[line])
+                        self.worksheet_sw.write_url(nu, predict_insert_location + 6, url_list[line][0], self.url_format, cell_data_list[line][1])
+                        self.worksheet_sw.write(nu, predict_insert_location + 7, second_insert_data[line])
+
+                        if (len(url_list[line]) >= 2) and cell_data_list[line][3]:
+                            self.worksheet_sw.write_url(nu, predict_insert_location + 8, url_list[line][1], self.url_format, cell_data_list[line][3])
+                        else:
+                            self.worksheet_sw.write(nu, predict_insert_location + 8, cell_data_list[line][3])
+                        nu += 1
+
+                    elif line_num_list[line] > 1:
+                        length_merge = len(url_list[line][1:])
+                        self.worksheet_sw.merge_range(nu, predict_insert_location + 5, nu + line_num_list[line] - 1,
+                                                      predict_insert_location + 5, first_insert_data[line], self.title_format_merage)
+                        self.worksheet_sw.merge_range(nu, predict_insert_location + 6, nu + line_num_list[line] - 1, predict_insert_location + 6, '')
+                        self.worksheet_sw.write_url(nu, predict_insert_location + 6, url_list[line][0], self.url_format, cell_data_list[line][1])
+                        self.worksheet_sw.merge_range(nu, predict_insert_location + 7, nu + line_num_list[line] - 1, predict_insert_location + 7,
+                                                      second_insert_data[line], self.title_format_merage)
+                        for i in range(nu, length_merge + nu):
+                            self.worksheet_sw.write_url(i, predict_insert_location + 8, url_list[line][1 + i - nu], self.url_format, cell_data_list[line][3:][i - nu])
+                        self.worksheet_sw.write(line_num_list[line] + nu - 1, predict_insert_location + 8, cell_data_list[line][3:][-1])
+                        nu += line_num_list[line]
+            except:
+                pass
+            
+    def predict_insert_SW_Original_data(self):
+        if self.predict_insert_flag and self._predict_url:
+            red = self.workbook.add_format({'color': 'red'})
+            predict_insert_location = self.calculate_head_num(9, 0, 0, True)
+            self.worksheet_sw_original.write_rich_string(1, predict_insert_location, red, 'Candidate', self.header_format)
+            if self.on_off_line_save_flag == 'online':
+                # 验证url有效性
+                is_validity = verify_validity_url(self._predict_url, self.logger)
+                if not is_validity:
+                    return
+            try:
+                obj = PredictGetData(self._predict_url)
+                Silver_BkC_string, header_length, date_string, url_list, header_list, cell_data_list = obj.predict_get_sw_data()
+                self.worksheet_sw_original.write_rich_string(1, predict_insert_location + 1, red, date_string, self.header_format)
+                self.worksheet_sw_original.write_rich_string(1, predict_insert_location + 2, red, Silver_BkC_string, self.header_format)
+
+                if not header_list and not cell_data_list:
+                    return
+
+                # Set up some formats to use.
+                self.worksheet_sw_original.conditional_format(3, predict_insert_location, 40, predict_insert_location + 1,
+                                                     {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
+                # 标记0为黄色
+                self.worksheet_sw_original.conditional_format(3, predict_insert_location + 2, 40, predict_insert_location + 2,
+                                                     {'type': 'cell', 'criteria': '=', 'value': 0, 'format': self.yellow_data_format})
+                self.worksheet_sw_original.write_row(2, predict_insert_location + 5, header_list, self.header_format)
+                # 插入数据 最后一列可能会出现多值多行的情况，计算每行数据占有的行数
+                line_num_list = []
+                for ele in cell_data_list:
+                    num = len(ele[header_length - 1:])
+                    line_num_list.append(num)
+
+                # print 'line_num_list:\t', line_num_list, len(line_num_list)
+
+                # 处理并插入数据
+                insert_data = zip(cell_data_list, url_list, line_num_list)
+                insert_data.sort(key=lambda x: x[0][0].upper())
+
+                cell_data_list, url_list, line_num_list = zip(*insert_data)
+                # print 'line_num_list:\t', line_num_list, len(line_num_list)
+
+                first_insert_data = [cell_data_list[k][0] for k in range(len(cell_data_list))]
+                second_insert_data = [cell_data_list[k][2] for k in range(len(cell_data_list))]
+                # 插入数据第一列到第三列
+                nu = 3
+                for line in range(len(cell_data_list)):
+                    if line_num_list[line] == 1:
+                        self.worksheet_sw_original.write(nu, predict_insert_location + 5, first_insert_data[line])
+                        self.worksheet_sw_original.write_url(nu, predict_insert_location + 6, url_list[line][0], self.url_format, cell_data_list[line][1])
+                        self.worksheet_sw_original.write(nu, predict_insert_location + 7, second_insert_data[line])
+
+                        if (len(url_list[line]) >= 2) and cell_data_list[line][3]:
+                            self.worksheet_sw_original.write_url(nu, predict_insert_location + 8, url_list[line][1], self.url_format, cell_data_list[line][3])
+                        else:
+                            self.worksheet_sw_original.write(nu, predict_insert_location + 8, cell_data_list[line][3])
+                        nu += 1
+
+                    elif line_num_list[line] > 1:
+                        length_merge = len(url_list[line][1:])
+                        self.worksheet_sw_original.merge_range(nu, predict_insert_location + 5, nu + line_num_list[line] - 1,
+                                                      predict_insert_location + 5, first_insert_data[line], self.title_format_merage)
+                        self.worksheet_sw_original.merge_range(nu, predict_insert_location + 6, nu + line_num_list[line] - 1, predict_insert_location + 6, '')
+                        self.worksheet_sw_original.write_url(nu, predict_insert_location + 6, url_list[line][0], self.url_format, cell_data_list[line][1])
+                        self.worksheet_sw_original.merge_range(nu, predict_insert_location + 7, nu + line_num_list[line] - 1, predict_insert_location + 7,
+                                                      second_insert_data[line], self.title_format_merage)
+                        for i in range(nu, length_merge + nu):
+                            self.worksheet_sw_original.write_url(i, predict_insert_location + 8, url_list[line][1 + i - nu], self.url_format, cell_data_list[line][3:][i - nu])
+                        self.worksheet_sw_original.write(line_num_list[line] + nu - 1, predict_insert_location + 8, cell_data_list[line][3:][-1])
+                        nu += line_num_list[line]
+            except:
+                pass
+
+    def predict_insert_IFWI_Original_data(self):
+        if self.predict_insert_flag and self._predict_url:
+            predict_insert_location = self.calculate_head_num(6, 0, 0, True)
+            red = self.workbook.add_format({'color': 'red'})
+
+            if self.on_off_line_save_flag == 'online':
+                # 验证url有效性
+                is_validity = verify_validity_url(self._predict_url, self.logger)
+                if not is_validity:
+                    return
+            try:
+                obj = PredictGetData(self._predict_url)
+                Silver_BkC_string, date_string, header_list, cell_data_list = obj.predict_get_ifwi_data()
+                self.worksheet_ifwi_original.conditional_format(4, predict_insert_location, 50, predict_insert_location + 1,
+                                                               {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
+                # 标记0为黄色
+                self.worksheet_ifwi_original.conditional_format(4, predict_insert_location + 2, 49, predict_insert_location + 2,
+                                                               {'type': 'cell', 'criteria': '=', 'value': 0, 'format': self.yellow_data_format})
+                self.worksheet_ifwi_original.write_rich_string(1, predict_insert_location + 1, red, date_string, self.header_format)
+                self.worksheet_ifwi_original.write_rich_string(1, predict_insert_location + 2, red, Silver_BkC_string, self.format1)
+
+                if not header_list and not cell_data_list:
+                    return 
+
+                self.worksheet_ifwi_original.write_row(3, predict_insert_location + 3, header_list, self.header_format)
+                # 插入数据,需要考虑有数字的情况，前面加Nic字母
+                for ele in range(len(cell_data_list)):
+                    # 以数字开头的元素前面加Nic
+                    match_obj = re.match('\s+\d+', str(cell_data_list[ele][0]))
+                    if match_obj:
+                        cell_data_list[ele][0] = 'Nic' + cell_data_list[ele][0]
+                    cell_data_list[ele][0] = cell_data_list[ele][0].lstrip(' ')
+
+                for begin in range(len(cell_data_list)):
+                    self.worksheet_ifwi_original.write_row(begin + 4, predict_insert_location + 3, cell_data_list[begin])
+            except:
+                pass
+            
+    def predict_insert_IFWI_data(self):
+        if self.predict_insert_flag and self._predict_url:
+            predict_insert_location = self.calculate_head_num(6, 0, 0, True)
+            red = self.workbook.add_format({'color': 'red'})
+
+            if self.on_off_line_save_flag == 'online':
+                # 验证url有效性
+                is_validity = verify_validity_url(self._predict_url, self.logger)
+                if not is_validity:
+                    return
+            try:
+                obj = PredictGetData(self._predict_url)
+                Silver_BkC_string, date_string, header_list, cell_data_list = obj.predict_get_ifwi_data()
+                self.worksheet_ifwi.conditional_format(4, predict_insert_location, 50, predict_insert_location + 1,
+                                                               {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
+                # 标记0为黄色
+                self.worksheet_ifwi.conditional_format(4, predict_insert_location + 2, 49, predict_insert_location + 2,
+                                                               {'type': 'cell', 'criteria': '=', 'value': 0, 'format': self.yellow_data_format})
+                self.worksheet_ifwi.write_rich_string(1, predict_insert_location + 1, red, date_string, self.header_format)
+                self.worksheet_ifwi.write_rich_string(1, predict_insert_location + 2, red, Silver_BkC_string, self.format1)
+
+                if not header_list and not cell_data_list:
+                    return 
+
+                self.worksheet_ifwi.write_row(3, predict_insert_location + 3, header_list, self.header_format)
+                # 插入数据,需要考虑有数字的情况，前面加Nic字母
+                for ele in range(len(cell_data_list)):
+                    # 以数字开头的元素前面加Nic
+                    match_obj = re.match('\s+\d+', str(cell_data_list[ele][0]))
+                    if match_obj:
+                        cell_data_list[ele][0] = 'Nic' + cell_data_list[ele][0]
+                    cell_data_list[ele][0] = cell_data_list[ele][0].lstrip(' ')
+                    
+                cell_data_list.sort(key=lambda x: x[0].upper())
+                for begin in range(len(cell_data_list)):
+                    self.worksheet_ifwi.write_row(begin + 4, predict_insert_location + 3, cell_data_list[begin])
+            except:
+                pass
+
+    def predict_insert_Platform_data(self):
+        pass
+
+    def predict_insert_Mapping(self):
+        pass
+
+    def predict_insert_CaseResult(self):
+        pass
+
+    def predict_insert_save_miss_data(self):
+        pass
+
+    def predict_insert_trend_data(self):
+        pass
 
 
 if __name__ == '__main__':
     conf = MachineConfig(CONFIG_FILE_PATH)
     purl_bak_string = conf.get_node_info('real-time_control_parameter_value', 'default_purl_bak_string')
-    # TODO 类型: Bakerville or Purley-FPGA
-    # purl_bak_string = get_interface_config('default_purl_bak_string', purl_bak_string)
-    # purl_bak_string = 'NFVi'
     Silver_url_list = get_url_list_by_keyword(purl_bak_string, 'Silver')
     print Silver_url_list
     print purl_bak_string
@@ -1202,26 +1460,12 @@ if __name__ == '__main__':
         link_WW_week_string = WW_week_info_string[0] + 'WW' + WW_week_info_string[-1]
 
     _logger = WorkLogger(log_filename='machine.log', log_level=20, create_log_flag= True, log_time=log_time)
-    # obj = InsertDataIntoExcel(verificate_flag=True, cache=cache, silver_url_list=Silver_url_list,
-    #                           link_WW_week_string=link_WW_week_string, purl_bak_string=purl_bak_string, logger=_logger, log_time=log_time)
-    obj = InsertDataIntoExcel(verificate_flag=True, purl_bak_string=purl_bak_string,
+    obj = InsertDataIntoExcel(verify_flag=True, purl_bak_string=purl_bak_string,
                                         link_WW_week_string=link_WW_week_string, cache=cache,
                                         silver_url_list=Silver_url_list,
                                         section_Silver_url_list=[], logger=_logger,
                                         log_time=log_time, keep_continuous=False)
-    # obj.insert_Mapping('Purley-FPGA', 1)
     obj.insert_HW_data(2)
-    # obj.insert_SW_data(1)
-    # obj.insert_SW_Original_data(1)
-    # obj.insert_Rework_data('Bakerville', 2)
-    # obj.insert_CaseResult('Purley-FPGA', 2)
-    # # getattr(obj, 'insert_ExistingSi_data')()
-    # func_name_list = obj.return_name().keys()
-    # use_func_list = [func for func in func_name_list if func.startswith('insert')]
-    # print use_func_list
-    #
-    # for func in use_func_list:
-    #     getattr(obj, func)(purl_bak_string, 1)
     obj.close_workbook()
     _logger.file_close()
 
