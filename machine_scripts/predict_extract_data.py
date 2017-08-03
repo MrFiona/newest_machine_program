@@ -31,6 +31,12 @@ class PredictGetData(object):
             self.logger.print_message('result_dict:\t%s' % result_dict.group('name'), self._file_name)
             self.date_string = result_dict.group('name')
 
+    def return_save_miss_bkc_string(self):
+        save_miss_insert_bkc_string = self.date_string
+        re_bkc_obj_list = re.findall('\d{4}\s+WW\d{2}', save_miss_insert_bkc_string)
+        effect_bkc_string = ''.join(re_bkc_obj_list[0].split())
+        return effect_bkc_string
+
     def predict_get_sw_data(self):
         regex = re.compile(r'<span class="sh2">&nbsp; SW Configuration: </span>(.*?)<span class="sh2">&nbsp; IFWI Configuration: </span>', re.S|re.M)
         header = re.findall(regex, self.html)
@@ -123,7 +129,7 @@ class PredictGetData(object):
             # print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
             # print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
             # print '\033[31murl_list:\t\033[0m', url_list, len(url_list)
-            return 'Candidate', header_length, self.date_string, url_list, header_list, cell_data_list
+            return 'Candidate', header_length, url_list, header_list, cell_data_list
         except:
             return 'Error', 0, '', [], [], []
 
@@ -159,7 +165,7 @@ class PredictGetData(object):
             # print '\033[31mself.date_string:\t\033[0m', self.date_string, len(self.date_string)
             # print '\033[36mheader_list:\t\033[0m', header_list, len(header_list)
             # print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
-            return 'Candidate', self.date_string, header_list, cell_data_list
+            return 'Candidate', header_list, cell_data_list
         except:
             return 'Error', self.date_string, [], []
 
