@@ -967,7 +967,7 @@ def week_gui_config(purl_bak_string, logger):
 
 if __name__ == '__main__':
     # TODO 类型: Bakerville or Purley-FPGA
-    from custom_log import WorkLogger
+    from machine_scripts.custom_log import WorkLogger
     import time
 
     log_time = time.strftime('%Y_%m_%d_%H_%M_%S', time.localtime(time.time()))
