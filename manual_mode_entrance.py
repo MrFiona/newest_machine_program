@@ -114,6 +114,5 @@ def manual_machine_model_entrance():
 
 
 
-
 if __name__ == '__main__':
     manual_machine_model_entrance()
