@@ -84,7 +84,7 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
     # TODO verificate_flag改为了True，兼容新加的功能 提取最新周的类型 : Silver、Gold、BKC
     insert_object = InsertDataIntoExcel(verificate_flag=True, purl_bak_string=purl_bak_string, link_WW_week_string=link_WW_week_string, cache=cache,
                         silver_url_list=Silver_url_list, section_Silver_url_list=section_Silver_url_list, logger=_logger, log_time=log_time,
-                                        keep_continuous=keep_continuous)
+                        keep_continuous=keep_continuous)
     func_name_list = insert_object.return_name().keys()
     call_func_list = [ func for func in func_name_list if func.startswith('insert') ]
     if 'insert_CaseResult' in call_func_list:
@@ -107,6 +107,18 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
     global INTERRUPTED_CLEAR_FILE_CONDITION_FLAG
     # TODO 插入表格已经完成置错误清理标记为False
     INTERRUPTED_CLEAR_FILE_CONDITION_FLAG = False
+
+    # TODO 是否验证excel  开启:YES   关闭:NO
+    verify_file_flag = judge_get_config('verify_file_flag', purl_bak_string)
+
+    if verify_file_flag == 'YES':
+        # TODO 完成excel操作后，打开结果excel文件确认
+        _logger.print_message(
+            '>>>>>>>>>> Please Wait .... The program begins to confirm the generated Excel File <<<<<<<<<<', file_name)
+        confirm_result_excel(purl_bak_string, link_WW_week_string, Silver_url_list, _logger, log_time)
+        _logger.print_message('>>>>>>>>>> Comfirm the Excel File Finished <<<<<<<<<<', file_name)
+    else:
+        os.system('taskkill /F /IM excel.exe')
 
     # TODO 生成html
     _logger.print_message('>>>>>>>>>> Please Wait .... the program is generating Html File <<<<<<<<<<', file_name)
@@ -137,17 +149,6 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
 
     _logger.print_message('>>>>>>>>>> Generating Html File Finished <<<<<<<<<<', file_name)
     _logger.print_message('failed_sheet_name_list:%s\t' % failed_sheet_name_list, file_name)
-
-    # TODO 是否验证excel  开启:YES   关闭:NO
-    verify_file_flag = judge_get_config('verify_file_flag', purl_bak_string)
-
-    if verify_file_flag == 'YES':
-        # TODO 完成excel操作后，打开结果excel文件确认
-        _logger.print_message('>>>>>>>>>> Please Wait .... The program begins to confirm the generated Excel File <<<<<<<<<<', file_name)
-        confirm_result_excel(purl_bak_string, link_WW_week_string, Silver_url_list, _logger, log_time)
-        _logger.print_message('>>>>>>>>>> Comfirm the Excel File Finished <<<<<<<<<<', file_name)
-    else:
-        os.system('taskkill /F /IM excel.exe')
 
     # TODO 是否发送邮件标记  开启:YES   关闭:NO
     send_email_flag = judge_get_config('send_email_flag', purl_bak_string)
