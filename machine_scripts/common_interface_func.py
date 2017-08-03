@@ -394,6 +394,7 @@ def confirm_result_excel(purl_bak_string, link_WW_week_string, Silver_url_list, 
     purl_bak_string = get_interface_config('default_purl_bak_string', purl_bak_string)
     file_path = SRC_EXCEL_DIR + os.sep + '{0}_{1}_{2}_{3}_{4}.xlsx'.format(purl_bak_string, judge_get_config('week_num', purl_bak_string),
                                 link_WW_week_string, len(Silver_url_list), log_time)
+    print 'file_path:\t%s',file_path
     # todo 目标文件不存在
     while (not os.path.exists(file_path)):
         logger.print_message("Please wait until %s is created" % (file_path), _file_name)
