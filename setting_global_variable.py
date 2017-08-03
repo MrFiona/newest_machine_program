@@ -31,3 +31,5 @@ MANUAL_CONFIG_FILE_PATH = os.getcwd() + os.sep + 'machineConfig' + os.sep + 'man
 
 type_sheet_name_list = ['Save-Miss', 'NewSi', 'ExistingSi', 'CaseResult', 'Trend']
 type_sheet_name_list.sort(reverse=True)
+
+PROGRAM_NAME_ID_DICT = {'Bakerville':'17', 'Purley-FPGA':'16', 'NFVi':'25'}
