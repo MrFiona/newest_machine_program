@@ -31,7 +31,7 @@ class WorkLogger(object):
 
         if create_log_flag:
             self.log_time = log_time
-            self.log_name = self.log_time + '_' + self.log_filename + '.txt'
+            self.log_name = self.log_filename + '_' + self.log_time + '.txt'
 
         if not os.path.isdir(MACHINE_LOG_DIR):
             os.mkdir(MACHINE_LOG_DIR)
