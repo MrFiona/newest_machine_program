@@ -23,6 +23,7 @@ from machine_scripts.cache_mechanism import DiskCache
 from machine_scripts.public_use_function import remove_line_break
 from setting_global_variable import REPORT_HTML_DIR
 from machine_scripts.common_interface_func import remove_non_alphanumeric_characters
+from machine_scripts.common_interface_branch_func import extract_sw_data_deal_bracket
 
 
 # 强制ssl使用TLSv2
@@ -727,7 +728,6 @@ class GetAnalysisData(object):
             for i in range(len(header_list)):
                 header_list[i] = header_list[i].replace('\n', '')
             #排除部分周会有更多的列
-            # print 'header:list:\t', header_list
             header_length = len(header_list)
             header_list = header_list[:4]
             url_list = []
@@ -738,7 +738,6 @@ class GetAnalysisData(object):
                 td_list = soup_tr.find_all('td')
                 #默认情况是正常列数
                 actual_td_list = td_list
-
                 num = len(td_list)
                 if num == header_length + 1:
                     soup_5 = BeautifulSoup(str(t), 'html.parser')
@@ -746,22 +745,22 @@ class GetAnalysisData(object):
                     string_5_list = remove_line_break(string_5_list, line_break=True)
                     temp_string_list = string_5_list[1:]
                     actual_td_list = td_list[1:]
-
                 elif num == header_length + 2:
                     actual_td_list = td_list[2:]
                     soup_6 = BeautifulSoup(str(t), 'html.parser')
                     string_6_list = list(soup_6.strings)
                     string_6_list = remove_line_break(string_6_list, line_break=True)
                     temp_string_list = string_6_list[2:]
-
                 elif num <= header_length:
                     soup_4 = BeautifulSoup(str(t), 'html.parser')
                     string_4_list = list(soup_4.strings)
                     string_4_list = remove_line_break(string_4_list, line_break=True)
                     temp_string_list = string_4_list
                     if header_length > 4 and len(temp_string_list) > 4:
-                        temp_string_list = temp_string_list[header_length - 4:]
-
+                        if '2017%20WW28' in self.data_url and self.purl_bak_string in self.data_url:
+                            temp_string_list = temp_string_list[header_length - 4 - 2:]
+                        else:
+                            temp_string_list = temp_string_list[header_length - 4:]
                 #获取cell_data_list数据
                 temp_string_list = remove_non_alphanumeric_characters(temp_string_list)
 
@@ -770,6 +769,9 @@ class GetAnalysisData(object):
 
                 elif (len(temp_string_list) >= header_length + 2) and len(temp_string_list[-1]) == 0:
                     temp_string_list = temp_string_list[:-1]
+
+                # todo 括号分离合并处理
+                temp_string_list = extract_sw_data_deal_bracket(temp_string_list)
 
                 if temp_string_list:
                     if len(temp_string_list) < 4:
@@ -788,16 +790,13 @@ class GetAnalysisData(object):
 
                 if temp_url_list:
                     url_list.append(temp_url_list)
-
             for k in range(len(cell_data_list)):
                 if header_length > 4 and len(cell_data_list[k]) > 4:
                     cell_data_list[k] = cell_data_list[k][:4 - header_length]
 
             header_length = len(header_list)
-
             if header_length < 4:
                 header_length = 4
-
             # print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
             # print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
             # print '\033[31murl_list:\t\033[0m', url_list, len(url_list)
@@ -1247,8 +1246,9 @@ if __name__ == '__main__':
     #     if 'NFVi' in line and 'Silver' in line:
     #         key_url_list.append(line.strip('\n'))
 
-    cache = DiskCache('Purley-FPGA')
-    key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html']
+    cache = DiskCache('Bakerville')
+    key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW28/6359_Silver.html',
+                    'https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW25/6211_BKC.html']
     for url in key_url_list:
         obj = GetAnalysisData(url, 'Bakerville', get_info_not_save_flag=True, insert_flag=True, cache=cache)
         # obj.get_caseresult_data('Platform Integration Validation Result', True)
