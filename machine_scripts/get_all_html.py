@@ -7,16 +7,16 @@
 
 from __future__ import absolute_import
 
+import codecs
 import os
 import re
+import shutil
 import ssl
 import time
-import codecs
-import shutil
-import chardet
 import urllib2
 from functools import wraps
 
+import chardet
 from bs4 import BeautifulSoup
 
 from machine_scripts.cache_mechanism import DiskCache
