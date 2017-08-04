@@ -195,7 +195,7 @@ def performance_analysis_decorator(filename):
 
 
 # TODO 检测内存使用情况，防止发生内存错误
-def detect_memory_usage(logger, cycle_times=5):
+def detect_memory_usage(logger, cycle_times=1):
     import psutil
 
     cpu_value_list = []
