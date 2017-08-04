@@ -50,7 +50,7 @@ def center_window(root, width, height):
 
 # todo 预留函数 为显示参数用
 def print_var(var):
-    pass
+    print var
 
 
 # TODO 将当前的邮件或者文件配置信息保存到文件  新增默认保存标记 default_save_flag: True则当前配置保存为默认配置
@@ -131,16 +131,16 @@ def file_config(name, tab2, logger):
     file_reacquire_data_var = StringVar()
     check_file_var = StringVar()
 
-    lable1 = Label(monty, text="Retrieve Data", font=("Calibri", 12), background='seashell')
-    lable2 = Label(monty, text="Verify Excel File", font=("Calibri", 12), background='skyblue')
-    lable3 = Label(monty, text='Maximum Time', font=("Calibri", 12), background='yellowgreen')
-    lable4 = Label(monty, text='minute(s)', font=("Calibri", 12))
+    label1 = Label(monty, text="Retrieve Data", font=("Calibri", 12), background='seashell')
+    label2 = Label(monty, text="Verify Excel File", font=("Calibri", 12), background='skyblue')
+    label3 = Label(monty, text='Maximum Time', font=("Calibri", 12), background='yellowgreen')
+    label4 = Label(monty, text='minute(s)', font=("Calibri", 12))
     file_max_time = Entry(monty, borderwidth=2, width=25, font=("Calibri", 12))
 
-    lable1.grid(row=1, column=0, padx=20, pady=15, sticky='E')
-    lable2.grid(row=2, column=0, padx=20, pady=15, sticky='E')
-    lable3.grid(row=3, column=0, padx=20, pady=15, sticky='E')
-    lable4.grid(row=3, column=2, pady=15, sticky='W')
+    label1.grid(row=1, column=0, padx=20, pady=15, sticky='E')
+    label2.grid(row=2, column=0, padx=20, pady=15, sticky='E')
+    label3.grid(row=3, column=0, padx=20, pady=15, sticky='E')
+    label4.grid(row=3, column=2, pady=15, sticky='W')
     file_max_time.grid(row=3, column=1, padx=10, pady=15, sticky='W')
 
     global file_reacquire_numberChosen1, file_check_numberChosen2
@@ -230,8 +230,6 @@ def email_config(name, tab1, logger):
 
 # TODO 图表配置界面
 def chart_config(name, tab4, logger):
-    # conf = MachineConfig(CONFIG_FILE_PATH)
-    # purl_bak_string = conf.get_node_info('real-time_control_parameter_value', 'default_purl_bak_string')
     current_display_software = get_interface_config('display_software', name)
     current_display_new = get_interface_config('display_new', name)
     current_display_existing = get_interface_config('display_existing', name)
@@ -321,13 +319,20 @@ def load_default_as_current(purl_bak_string):
     from_address = conf.get_node_info(project_name_sep + '_from_address', 'from_address')
     receive_address = conf.get_node_info(project_name_sep + '_receive_address', 'receive_address')
 
-    conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_choose_week_num', week_num)
-    conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_reacquire_data_flag', reacquire_data_flag)
-    conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_verify_file_flag', verify_file_flag)
-    conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_max_waiting_time', max_waiting_time)
-    conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_on_off_line_save_flag', on_off_line_save_flag)
-    conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_send_email_flag', send_email_flag)
-    conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_keep_continuous', keep_continuous)
+    conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_choose_week_num',
+                           week_num if len(week_num.strip()) != 0 else '100')
+    conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_reacquire_data_flag',
+                           'YES' if reacquire_data_flag == 'YES' else 'NO')
+    conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_verify_file_flag',
+                           'YES' if verify_file_flag == 'YES' else 'NO')
+    conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_max_waiting_time',
+                           max_waiting_time if len(max_waiting_time.strip()) != 0 else '120')
+    conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_on_off_line_save_flag',
+                           'online' if on_off_line_save_flag == 'online' else 'offline')
+    conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_send_email_flag',
+                           'YES' if send_email_flag == 'YES' else 'NO')
+    conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_keep_continuous',
+                           'YES' if keep_continuous == 'YES' else 'NO')
 
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_server_address', server_address)
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_send_address', from_address)
@@ -414,19 +419,19 @@ def load_default_configuration_info(name, tab6, logger):
         receive_address_string = ','.join(receive_address_list)
         update_parameter_value(email_receive, receive_address_string)
 
-        file_reacquire_numberChosen1.set(reacquire_data_flag)
-        file_check_numberChosen2.set(verify_file_flag)
+        file_reacquire_numberChosen1.set('YES' if reacquire_data_flag.strip() == 'YES' else 'NO')
+        file_check_numberChosen2.set('YES' if verify_file_flag.strip() == 'YES' else 'NO')
 
-        update_parameter_value(file_max_time, max_waiting_time)
-        on_off_numberChosen1.set(on_off_line_save_flag)
-        email_send_email_flag.set(send_email_flag)
+        update_parameter_value(file_max_time, max_waiting_time if len(max_waiting_time.strip()) != 0 else '120')
+        on_off_numberChosen1.set('YES' if on_off_line_save_flag.strip() == 'YES' else 'NO')
+        email_send_email_flag.set('YES' if send_email_flag.strip() == 'YES' else 'NO')
 
-        choose_weeks_numberChosen1.set(choose_week_flag)
-        chart_software_numberChosen1.set(software_flag)
-        chart_new_numberChosen2.set(new_flag)
-        chart_exist_numberChosen3.set(exist_flag)
-        chart_closed_numberChosen4.set(close_flag)
-        chart_total_numberChosen5.set(total_flag)
+        choose_weeks_numberChosen1.set('YES' if choose_week_flag.strip() == 'YES' else 'NO')
+        chart_software_numberChosen1.set('YES' if software_flag.strip() == 'YES' else 'NO')
+        chart_new_numberChosen2.set('YES' if new_flag.strip() == 'YES' else 'NO')
+        chart_exist_numberChosen3.set('YES' if exist_flag.strip() == 'YES' else 'NO')
+        chart_closed_numberChosen4.set('YES' if close_flag.strip() == 'YES' else 'NO')
+        chart_total_numberChosen5.set('YES' if total_flag.strip() == 'YES' else 'NO')
 
     # TODO 绑定按钮事件实现实时更新界面参数值
     button1.bind('<Button-1>', update_config_value)
@@ -438,7 +443,7 @@ def load_default_configuration_info(name, tab6, logger):
 def display_config_info(logger, purl_bak_string):
     file_logger_name = os.path.split(__file__)[1]
 
-    from_addr = judge_get_config('from_address', purl_bak_string)
+    from_address = judge_get_config('from_address', purl_bak_string)
     receive_address = judge_get_config('receive_address', purl_bak_string)
     server_address = judge_get_config('server_address', purl_bak_string)
 
@@ -501,7 +506,7 @@ def display_config_info(logger, purl_bak_string):
         conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_send_email_flag', 'YES')
 
     # TODO 以下参数必须非空
-    if len(from_addr.strip()) == 0:
+    if len(from_address.strip()) == 0:
         logger.print_message('The sender email address is null!!!', _file_name, 30)
         raise UserWarning('The sender email address is null!!!')
     if len(receive_address.strip()) == 0:
@@ -514,7 +519,7 @@ def display_config_info(logger, purl_bak_string):
         logger.print_message('The template file path is null!!!', _file_name, 30)
         raise UserWarning('The template file path is null!!!')
 
-    from_addr = judge_get_config('from_address', purl_bak_string)
+    from_address = judge_get_config('from_address', purl_bak_string)
     receive_address = judge_get_config('receive_address', purl_bak_string)
     server_address = judge_get_config('server_address', purl_bak_string)
 
@@ -535,7 +540,7 @@ def display_config_info(logger, purl_bak_string):
 
     logger.print_message('purl_bak_string:%s%s' % (' ' * (10 + 19 - len('purl_bak_string')), purl_bak_string), file_logger_name)
 
-    logger.print_message('from_address:%s%s' % (' ' * (10 + 19 - len('from_address')), from_addr), file_logger_name)
+    logger.print_message('from_address:%s%s' % (' ' * (10 + 19 - len('from_address')), from_address), file_logger_name)
     logger.print_message('receive_address:%s%s' % (' ' * (10 + 19 - len('receive_address')), receive_address), file_logger_name)
     logger.print_message('server_address:%s%s' % (' ' * (10 + 19 - len('server_address')), server_address), file_logger_name)
 
@@ -558,14 +563,14 @@ def display_config_info(logger, purl_bak_string):
 
 
 # TODO excel模板文件配置回调函数
-def file_choose(root, e):
+def file_choose(e):
     filename = askopenfilename(initialdir=os.getcwd(), filetypes=(("excel file", "*.xlsx;*.xls;*.csv"),))
     e.delete(0, END); e.insert(0, filename)
     return filename
 
 
 # TODO excel模板文件配置界面
-def template_file_choose(name, tab3, logger):
+def template_file_choose(name, tab3):
     current_template_file = get_interface_config('template_file', name)
     monty = ttk.LabelFrame(tab3, text='Template config')
     monty.grid()
@@ -574,7 +579,7 @@ def template_file_choose(name, tab3, logger):
     template_file_path = Entry(monty, font=("Calibri", 12), width=40)
     template_file_path.grid(row=1, column=2, columnspan=2, padx=20, pady=15)
     template_file_path.insert(0, current_template_file)
-    button1 = Button(monty, text="Excel Template", font=("Calibri", 12), background='yellow', command=lambda x=monty, y=template_file_path: file_choose(monty, template_file_path))
+    button1 = Button(monty, text="Excel Template", font=("Calibri", 12), background='yellow', command=lambda y=template_file_path: file_choose(template_file_path))
     button1.grid(row=1, column=0, columnspan=2, padx=20, pady=15)
 
 
@@ -669,9 +674,9 @@ def sub_main(name, top, logger):
 
     email_config(name, tab1, logger)
     file_config(name, tab2, logger)
-    template_file_choose(name, tab3, logger)
+    template_file_choose(name, tab3)
     chart_config(name, tab4, logger)
-    online_or_offline_interface(name, tab5, logger)
+    online_or_offline_interface(name, tab5)
     load_default_configuration_info(name, tab6, logger)
 
     # make Esc exit the program
@@ -716,9 +721,7 @@ def main(logger):
 
 
 #TODO 配置离线以及控制周数据界面变量的界面
-def online_or_offline_interface(purl_bak_string, tab5, logger):
-    # conf = MachineConfig(CONFIG_FILE_PATH)
-    # purl_bak_string = conf.get_node_info('real-time_control_parameter_value', 'default_purl_bak_string')
+def online_or_offline_interface(purl_bak_string, tab5):
     current_on_off_line_save_flag = judge_get_config('on_off_line_save_flag', purl_bak_string)
     current_keep_continuous = judge_get_config('keep_continuous', purl_bak_string)
 
@@ -823,7 +826,7 @@ def display_text_info(text, entry, week_info_list, step_length):
 
 
 # TODO  检测所填入的数据的有效性 格式检查以及值有效检查
-def check_week_vality(purl_bak_string, week_info_list, url_info_list, logger):
+def check_week_valid(week_info_list, url_info_list, logger):
     # TODO 如果选择的周不在所有的周里面说明是不合法的周数据  无效值url信息集合judge_set
     judge_set = set(week_info_list) - set(url_info_list)
 
@@ -832,19 +835,19 @@ def check_week_vality(purl_bak_string, week_info_list, url_info_list, logger):
         [ week_info_list.remove(url) for url in judge_set ]
 
     week_compile = re.compile('\d+W{2}\d+')
-    week_complie_object_list = [ re.search(week_compile, week) for  week in week_info_list ]
+    week_compile_object_list = [ re.search(week_compile, week) for  week in week_info_list ]
     week_length_list = [ len(week) for week in week_info_list ]
 
     # TODO 若数据有效则返回, 否则去除无效的数据，返回有效的数据
-    if week_complie_object_list and all(week_complie_object_list) and week_length_list.count(week_length_list[0]) == len(week_length_list) and week_length_list[0] == 8:
+    if week_compile_object_list and all(week_compile_object_list) and week_length_list.count(week_length_list[0]) == len(week_length_list) and week_length_list[0] == 8:
         return week_info_list
     else:
         return [ week for week in week_info_list if re.search(week_compile, week) and len(week) == 8 ]
 
 
 # TODO 检测日期周配置窗口是否关闭 关闭则保存当前日期周配置
-def week_callback(win, purl_bak_string, entry_input_string_list, logger):
-    print 'entry_input_string_list:\t', entry_input_string_list
+def week_callback(win, entry_input_string_list, logger):
+    logger.print_message('entry_input_string_list:\t%s' % entry_input_string_list, _file_name)
     # TODO 保存日期值
     if not os.path.exists(SRC_WEEK_DIR):
         os.makedirs(SRC_WEEK_DIR)
@@ -856,7 +859,7 @@ def week_callback(win, purl_bak_string, entry_input_string_list, logger):
 
     win.eval('::ttk::CancelRepeat')
     win.destroy()
-    logger.print_message('The week windows of configuration is closed!', _file_name, 20)
+    logger.print_message('The week windows of configuration is closed!', _file_name)
 
 
 # TODO 配置周数据界面 choose_weeks_var为YES时触发
@@ -910,7 +913,7 @@ def week_gui_config(purl_bak_string, logger):
             week_input_string_list = data_list
 
             # TODO  检测所填入的数据的有效性, 并返回有效的周列表
-            week_input_string_list = check_week_vality(purl_bak_string, data_list, url_info_list, logger)
+            week_input_string_list = check_week_valid(data_list, url_info_list, logger)
             if data_list and cmp(week_input_string_list, data_list) != 0:
                 # TODO 去除无效的数据 显示有效的数据 默认倒序排序
                 insert_week_string = ','.join(sorted(week_input_string_list, reverse=True))
@@ -930,7 +933,7 @@ def week_gui_config(purl_bak_string, logger):
     entry.bind("<Leave>", auto_func)
     entry.grid(row=week_list_length / step_length + 2, column=2, columnspan=2)
 
-    tk.protocol("WM_DELETE_WINDOW", lambda x=tk: week_callback(tk, purl_bak_string, week_input_string_list, logger))
+    tk.protocol("WM_DELETE_WINDOW", lambda x=tk: week_callback(tk, week_input_string_list, logger))
     tk.bind('<Escape>', lambda e: tk.destroy())
 
     tk.mainloop()
