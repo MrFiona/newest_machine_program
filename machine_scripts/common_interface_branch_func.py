@@ -17,3 +17,43 @@ def analysis_url_address_string(original_url_list):
         result_url_sep_list.append(object_string)
 
     return result_url_sep_list
+
+#todo 括号分离合并处理
+def extract_sw_data_deal_bracket(pending_deal_list):
+    # todo 括号分离合并处理
+    separate_temp_list = []
+    left_index_exist_flag = False
+    right_index_exist_flag = False
+    left_index, right_index = 0, -1
+    if '(' in pending_deal_list:
+        for temp_ele in pending_deal_list:
+            if temp_ele.startswith('('):
+                left_index = pending_deal_list.index(temp_ele)
+                left_index_exist_flag = True
+            if temp_ele.endswith(')'):
+                right_index = pending_deal_list.index(temp_ele)
+                right_index_exist_flag = True
+
+    if left_index_exist_flag and right_index_exist_flag:
+        to_deal_ele_list = pending_deal_list[left_index:right_index + 1]
+        if to_deal_ele_list:
+            separate_temp_list.extend(pending_deal_list[:left_index])
+            separate_temp_list.append(''.join(to_deal_ele_list))
+            separate_temp_list.extend(pending_deal_list[right_index + 1:])
+        if separate_temp_list:
+            return separate_temp_list
+    else:
+        return pending_deal_list
+
+
+#todo 获取项目前缀
+def obtain_prefix_project_name(project_name):
+    # TODO classify 项目配置前缀
+    if project_name == 'Purley-FPGA':
+        project_string_sep = 'FPGA'
+    elif project_name == 'Bakerville':
+        project_string_sep = 'Bak'
+    else:
+        project_string_sep = 'NFV'
+
+    return project_string_sep
