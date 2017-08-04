@@ -47,7 +47,7 @@ class PredictGetData(object):
         url_list, header_list, cell_data_list = [], [], []
         try:
             if not tr_list:
-                return 'null', 0, 'null', [], [], []
+                return 'null', 0, [], [], []
             soup_header = BeautifulSoup(str(tr_list[0]), 'html.parser')
             header_list = list(soup_header.strings)
             header_list = remove_line_break(header_list, line_break=True)
@@ -131,7 +131,7 @@ class PredictGetData(object):
             # print '\033[31murl_list:\t\033[0m', url_list, len(url_list)
             return 'Candidate', header_length, url_list, header_list, cell_data_list
         except:
-            return 'Error', 0, '', [], [], []
+            return 'Error', 0, [], [], []
 
     def predict_get_ifwi_data(self):
         regex = re.compile(r'<span class="sh2">&nbsp; IFWI Configuration: </span>(.*?)<span class="sh2">&nbsp; BKC Useful Info: </span>', re.S|re.M)
@@ -143,7 +143,7 @@ class PredictGetData(object):
         url_list, header_list, cell_data_list = [], [], []
         try:
             if not tr_list:
-                return '', '', [], []
+                return '', [], []
             for tr in tr_list:
                 soup = BeautifulSoup(str(tr), 'html.parser')
                 th_list = soup.find_all('th')
@@ -167,7 +167,7 @@ class PredictGetData(object):
             # print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
             return 'Candidate', header_list, cell_data_list
         except:
-            return 'Error', self.date_string, [], []
+            return 'Error', [], []
 
 if __name__ == '__main__':
     # https://dcg-oss.intel.com/test_report/test_report/6446/0/
