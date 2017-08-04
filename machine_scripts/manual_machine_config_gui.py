@@ -10,14 +10,20 @@ from __future__ import absolute_import
 
 import os
 import re
-from Tkinter import Tk, Button, Label, Entry, END, mainloop
+import ttk
+from tkMessageBox import askyesno
+from Tkinter import Tk, Button, Label, Entry, END, mainloop, StringVar
 from tkFileDialog import askopenfilename
 from tkMessageBox import showwarning
 
 from machine_scripts.machine_config import MachineConfig
 from setting_global_variable import MANUAL_CONFIG_FILE_PATH
 
+chart_software_var, chart_new_var, chart_exist_var, chart_closed_var, chart_total_var = '', '', '', '', ''
+chart_software_numberChosen1, chart_new_numberChosen2, chart_exist_numberChosen3, chart_closed_numberChosen4, chart_total_numberChosen5 = '', '', '', '', ''
 
+
+# TODO 文件选择
 def template_choose(template_file_path, week_choose):
     filename = askopenfilename(initialdir=os.getcwd(), filetypes=(("excel file", "*.xlsx;*.xls;*.csv"),))
     # TODO 此处不需要模板验证
@@ -91,6 +97,120 @@ def check_week_template_info(root, week_choose, template_file_path, email_server
         root.destroy()
 
 
+# TODO 加载配置里的图表参数值
+def manual_load_default_chart_config():
+    conf = MachineConfig(MANUAL_CONFIG_FILE_PATH)
+    default_display_software = conf.get_node_info('manual_chart_config', 'display_software')
+    default_display_new = conf.get_node_info('manual_chart_config', 'display_new')
+    default_display_existing = conf.get_node_info('manual_chart_config', 'display_existing')
+    default_display_closed = conf.get_node_info('manual_chart_config', 'display_closed')
+    default_display_total = conf.get_node_info('manual_chart_config', 'display_total')
+
+    chart_software_numberChosen1.set('YES' if default_display_software == 'YES' else 'NO')
+    chart_new_numberChosen2.set('YES' if default_display_new == 'YES' else 'NO')
+    chart_exist_numberChosen3.set('YES' if default_display_existing == 'YES' else 'NO')
+    chart_closed_numberChosen4.set('YES' if default_display_closed == 'YES' else 'NO')
+    chart_total_numberChosen5.set('YES' if default_display_total == 'YES' else 'NO')
+
+
+# TODO 将当前界面的值保存为配置参数值功能函数
+def manual_current_config_save_as_default():
+    conf = MachineConfig(MANUAL_CONFIG_FILE_PATH)
+    current_display_software = chart_software_var.get()
+    current_display_new = chart_new_var.get()
+    current_display_existing = chart_exist_var.get()
+    current_display_closed = chart_closed_var.get()
+    current_display_total = chart_total_var.get()
+
+    conf.modify_node_value('manual_chart_config', 'display_software', current_display_software)
+    conf.modify_node_value('manual_chart_config', 'display_new', current_display_new)
+    conf.modify_node_value('manual_chart_config', 'display_existing', current_display_existing)
+    conf.modify_node_value('manual_chart_config', 'display_closed', current_display_closed)
+    conf.modify_node_value('manual_chart_config', 'display_total', current_display_total)
+    
+
+# TODO 加载图表配置参数值
+def manual_chart_load_default():
+    default_load_flag = askyesno('Load the default chart configuration window',
+                                 'Are you sure you need to load the default chart configuration?')
+    if default_load_flag:
+        manual_load_default_chart_config()
+
+
+# TODO 将当前界面的值保存为配置参数值
+def manual_chart_save_default():
+    default_save_flag = askyesno('Save the default chart configuration window',
+                                 'Are you sure you need to save the current chart configuration as the default chart configuration?')
+    if default_save_flag:
+        manual_current_config_save_as_default()
+
+
+# TODO 图表配置界面
+def manual_machine_chart_gui():
+    chart_tk = Tk()
+    chart_tk.title('manual chart config gui')
+    conf = MachineConfig(MANUAL_CONFIG_FILE_PATH)
+    current_display_software = conf.get_node_info('manual_chart_config', 'display_software')
+    current_display_new = conf.get_node_info('manual_chart_config', 'display_new')
+    current_display_existing = conf.get_node_info('manual_chart_config', 'display_existing')
+    current_display_closed = conf.get_node_info('manual_chart_config', 'display_closed')
+    current_display_total = conf.get_node_info('manual_chart_config', 'display_total')
+
+    label1 = Label(chart_tk, text="Software Change", font=("Calibri", 12), background='gray')
+    label2 = Label(chart_tk, text="New Sighting", font=("Calibri", 12), background='gray')
+    label3 = Label(chart_tk, text="Existing Sighting", font=("Calibri", 12), background='gray')
+    label4 = Label(chart_tk, text="Closed Sighting", font=("Calibri", 12), background='gray')
+    label5 = Label(chart_tk, text="Total Sighting", font=("Calibri", 12), background='gray')
+
+    label1.grid(row=1, column=0, columnspan=5, padx=20, pady=10, sticky='E')
+    label2.grid(row=2, column=0, columnspan=5, padx=20, pady=10, sticky='E')
+    label3.grid(row=3, column=0, columnspan=5, padx=20, pady=10, sticky='E')
+    label4.grid(row=4, column=0, columnspan=5, padx=20, pady=10, sticky='E')
+    label5.grid(row=5, column=0, columnspan=5, padx=20, pady=10, sticky='E')
+
+    global chart_software_var, chart_new_var, chart_exist_var, chart_closed_var, chart_total_var
+    global chart_software_numberChosen1, chart_new_numberChosen2, chart_exist_numberChosen3, chart_closed_numberChosen4, chart_total_numberChosen5
+
+    chart_software_var = StringVar()
+    chart_new_var = StringVar()
+    chart_exist_var = StringVar()
+    chart_closed_var = StringVar()
+    chart_total_var = StringVar()
+
+    chart_software_numberChosen1 = ttk.Combobox(chart_tk, textvariable=chart_software_var, width=30, state='readonly')
+    chart_new_numberChosen2 = ttk.Combobox(chart_tk, width=30, textvariable=chart_new_var, state='readonly')
+    chart_exist_numberChosen3 = ttk.Combobox(chart_tk, width=30, textvariable=chart_exist_var, state='readonly')
+    chart_closed_numberChosen4 = ttk.Combobox(chart_tk, width=30, textvariable=chart_closed_var, state='readonly')
+    chart_total_numberChosen5 = ttk.Combobox(chart_tk, width=30, textvariable=chart_total_var, state='readonly')
+
+    chart_software_numberChosen1['values'] = ('YES', 'NO')
+    chart_new_numberChosen2['values'] = ('YES', 'NO')
+    chart_exist_numberChosen3['values'] = ('YES', 'NO')
+    chart_closed_numberChosen4['values'] = ('YES', 'NO')
+    chart_total_numberChosen5['values'] = ('YES', 'NO')
+
+    chart_software_numberChosen1.grid(column=6, row=1, padx=10)
+    chart_new_numberChosen2.grid(column=6, row=2, padx=10)
+    chart_exist_numberChosen3.grid(column=6, row=3, padx=10)
+    chart_closed_numberChosen4.grid(column=6, row=4, padx=10)
+    chart_total_numberChosen5.grid(column=6, row=5, padx=10)
+
+    chart_software_numberChosen1.current(0 if current_display_software == 'YES' else 1)
+    chart_new_numberChosen2.current(0 if current_display_new == 'YES' else 1)
+    chart_exist_numberChosen3.current(0 if current_display_existing == 'YES' else 1)
+    chart_closed_numberChosen4.current(0 if current_display_closed == 'YES' else 1)
+    chart_total_numberChosen5.current(0 if current_display_total == 'YES' else 1)
+
+    button1 = Button(chart_tk, text='Load Default', font=("Calibri", 12), width=14, background='peru',
+                     command=manual_chart_load_default, activeforeground='blue', activebackground='turquoise')
+    button2 = Button(chart_tk, text='Save Default', font=("Calibri", 12), width=14, background='green',
+                     command=manual_chart_save_default, activeforeground='blue', activebackground='palegreen')
+    button1.grid(row=6, column=0, padx=20, pady=15, sticky='W')
+    button2.grid(row=6, column=6, padx=20, pady=15, sticky='E')
+
+    mainloop()
+
+
 # TODO 手动配置界面主程序
 def manual_machine_config_gui_main():
     manual_tk = Tk()
@@ -136,6 +256,10 @@ def manual_machine_config_gui_main():
     manual_tk.protocol("WM_DELETE_WINDOW", lambda x=email_server, y=email_send, z=email_receive:
                             check_week_template_info(manual_tk, week_choose, template_file_path, email_server, email_send, email_receive))
     mainloop()
+
+    # TODO 图表配置界面
+    manual_machine_chart_gui()
+
 
 
 if __name__ == '__main__':
