@@ -240,24 +240,24 @@ def detect_memory_usage(logger, cycle_times=1):
 
     buffers = sum(buffers_value_list) / len(buffers_value_list)
     cached = sum(cached_value_list) / len(cached_value_list)
-    phy_percent = sum(phy_percent_value_list) / len(phy_percent_value_list)
+    # phy_percent = sum(phy_percent_value_list) / len(phy_percent_value_list)
     phy_total = sum(phy_total_value_list) / len(phy_total_value_list)
-    cpu_percent = sum(cpu_value_list) / len(cpu_value_list)
+    # cpu_percent = sum(cpu_value_list) / len(cpu_value_list)
     phy_free = sum(phy_free_value_list) / len(phy_free_value_list)
 
     used = phy_total - (phy_free + buffers + cached)
 
-    line = " Memory: %5s%% %6s/%s" % (
-        phy_percent,
-        str(int(used / 1024 / 1024)) + "M",
-        str(int(phy_total / 1024 / 1024)) + "M"
-    )
+    # line = " Memory: %5s%% %6s/%s" % (
+    #     phy_percent,
+    #     str(int(used / 1024 / 1024)) + "M",
+    #     str(int(phy_total / 1024 / 1024)) + "M"
+    # )
 
     # TODO 需达到预留2000M内存空间
     available_memory_size = int(phy_total / 1024 / 1024) - int(used / 1024 / 1024)
-    logger.print_message(
-        'Average:%s\t' % (' ' * (len('The %d time') - len('Average'))) + time.asctime() + " | " + " CPU: " +
-        '%.1f' % cpu_percent + "%" + " | " + line, _file_name)
+    # logger.print_message(
+    #     'Average:%s\t' % (' ' * (len('The %d time') - len('Average'))) + time.asctime() + " | " + " CPU: " +
+    #     '%.1f' % cpu_percent + "%" + " | " + line, _file_name)
     # TODO 低于2000M则弹出提示窗口
     if available_memory_size < 2000:
         response_detect_memory_gui(available_memory_size)
