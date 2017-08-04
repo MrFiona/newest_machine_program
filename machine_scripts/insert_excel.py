@@ -153,6 +153,7 @@ class InsertDataIntoExcel(object):
         self.predict_extract_object = None
         self.save_miss_insert_bkc_string = 'default_bkc'
         self._predict_url = self.predict_week_insert()
+        self.predict_execute_flag = False
         self.logger.print_message('_predict_url:\t%s' % self._predict_url, self.__file_name)
 
         self.logger.print_message('>>>>>>>>>> Excel Initialization End <<<<<<<<<<', self.__file_name)
@@ -165,24 +166,24 @@ class InsertDataIntoExcel(object):
         else:
             self.logger.print_message('The project id exists:\t%s' % program_id, self.__file_name)
             predict_url = 'https://dcg-oss.intel.com/get_last_candidate_link/' + program_id
-            response = urllib2.urlopen(predict_url).read()
-            # TODO 返回字符串不为0则未生成静态页面，数据从指定渠道获取
-            if len(response) == 0:
-                self.predict_insert_flag = True
-                self.logger.print_message('predict_insert_flag:\t%s' % self.predict_insert_flag, self.__file_name)
+            try:
+                return_result_url = urllib2.urlopen(predict_url).read()
+                self.predict_execute_flag = True
+                # TODO 返回字符串不为0则未生成静态页面，数据从指定渠道获取
+                if len(return_result_url) != 0:
+                    self.predict_insert_flag = True
+                    self.logger.print_message('predict_insert_flag:\t%s' % self.predict_insert_flag, self.__file_name)
+                    self.logger.print_message('return_result_url:\t%s' % return_result_url, self.__file_name)
+                    # TODO 统一管理对象
+                    self.predict_extract_object = PredictGetData(self.logger, return_result_url)
+                    # TODO 插入save-miss表的bkc数据
+                    self.save_miss_insert_bkc_string = self.predict_extract_object.return_save_miss_bkc_string()
+                    return return_result_url
+            except:
+                self.logger.print_message('The Candidate date is not exists:\t%s' % program_id, self.__file_name, 50)
 
-                if self.purl_bak_string == 'Bakerville':
-                    return_result_url = 'https://dcg-oss.intel.com/test_report/test_report/6446/0/'
-                elif self.purl_bak_string == 'Purley-FPGA':
-                    return_result_url = 'https://dcg-oss.intel.com/test_report/test_report/6464/0/'
-                else:
-                    return_result_url = ''
-                self.logger.print_message('return_result_url:\t%s' % return_result_url, self.__file_name)
-                # TODO 统一管理对象
-                self.predict_extract_object = PredictGetData(self.logger, return_result_url)
-                # TODO 插入save-miss表的bkc数据
-                self.save_miss_insert_bkc_string = self.predict_extract_object.return_save_miss_bkc_string()
-                return return_result_url
+    def return_predict_execute_flag(self):
+        return self.predict_execute_flag
 
     def get_url_list(self):
         return self.Silver_url_list
