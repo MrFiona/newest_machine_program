@@ -85,9 +85,10 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
     insert_object = InsertDataIntoExcel(verify_flag=True, purl_bak_string=purl_bak_string, link_WW_week_string=link_WW_week_string, cache=cache,
                         silver_url_list=Silver_url_list, section_Silver_url_list=section_Silver_url_list, logger=_logger, log_time=log_time,
                         keep_continuous=keep_continuous)
+    predict_execute_flag = insert_object.return_predict_execute_flag()
+    _logger.print_message('predict_execute_flag:\t%s' % predict_execute_flag, file_name)
     func_name_list = insert_object.return_name().keys()
     call_func_list = [ func for func in func_name_list if func.startswith('insert') ]
-    predict_call_func_list = [func for func in func_name_list if func.startswith('predict_insert')]
     if 'insert_CaseResult' in call_func_list:
         call_func_list.remove('insert_CaseResult')
         call_func_list.append('insert_CaseResult')
@@ -96,8 +97,10 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
     try:
         for func in call_func_list:
             getattr(insert_object, func)()
-        for func in predict_call_func_list:
-            getattr(insert_object, func)()
+        if predict_execute_flag:
+            predict_call_func_list = [func for func in func_name_list if func.startswith('predict_insert')]
+            for func in predict_call_func_list:
+                getattr(insert_object, func)()
     except:
         insert_object.close_workbook()
         raise InterruptError('Interrupt Error occurred!!!')
