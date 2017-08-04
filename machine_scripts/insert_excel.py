@@ -14,21 +14,20 @@
 
 from __future__ import absolute_import
 
-
+import collections
+import copy
 import os
 import re
 import sys
 import time
-import copy
 import urllib2
-import collections
+
 import openpyxl
 import xlsxwriter
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
-from machine_scripts import extract_data
-from machine_scripts import extract_NFV_data
+from machine_scripts import extract_NFV_data, extract_data
 from machine_scripts.cache_mechanism import DiskCache
 from machine_scripts.machine_config import MachineConfig
 from setting_global_variable import SRC_EXCEL_DIR, PROGRAM_NAME_ID_DICT
@@ -154,7 +153,7 @@ class InsertDataIntoExcel(object):
         self.predict_extract_object = None
         self.save_miss_insert_bkc_string = 'default_bkc'
         self._predict_url = self.predict_week_insert()
-        print '_predict_url:\t', self._predict_url
+        self.logger.print_message('_predict_url:\t%s' % self._predict_url, self.__file_name)
 
         self.logger.print_message('>>>>>>>>>> Excel Initialization End <<<<<<<<<<', self.__file_name)
 
@@ -170,7 +169,7 @@ class InsertDataIntoExcel(object):
             # TODO 返回字符串不为0则未生成静态页面，数据从指定渠道获取
             if len(response) == 0:
                 self.predict_insert_flag = True
-                print 'predict_insert_flag:\t', self.predict_insert_flag
+                self.logger.print_message('predict_insert_flag:\t%s' % self.predict_insert_flag, self.__file_name)
 
                 if self.purl_bak_string == 'Bakerville':
                     return_result_url = 'https://dcg-oss.intel.com/test_report/test_report/6446/0/'
@@ -178,7 +177,7 @@ class InsertDataIntoExcel(object):
                     return_result_url = 'https://dcg-oss.intel.com/test_report/test_report/6464/0/'
                 else:
                     return_result_url = ''
-                print 'return_result_url:\t', return_result_url
+                self.logger.print_message('return_result_url:\t%s' % return_result_url, self.__file_name)
                 # TODO 统一管理对象
                 self.predict_extract_object = PredictGetData(self.logger, return_result_url)
                 # TODO 插入save-miss表的bkc数据
