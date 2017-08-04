@@ -20,9 +20,11 @@ from machine_scripts.get_all_html import GetUrlFromHtml
 from machine_scripts.machine_config import MachineConfig
 from machine_scripts.public_use_function import get_interface_config, judge_get_config, get_url_list_by_keyword
 from setting_global_variable import CONFIG_FILE_PATH, SRC_WEEK_DIR
+from machine_scripts.common_interface_branch_func import obtain_prefix_project_name
 
 # TODO Global Variable start
 template_file_path, on_off_var, choose_weeks_var, on_off_numberChosen1, choose_weeks_numberChosen1 = '', '', '', '', ''
+chart_software_numberChosen1, chart_new_numberChosen2, chart_exist_numberChosen3, chart_closed_numberChosen4, chart_total_numberChosen5 = '', '', '', '', ''
 file_reacquire_data_var, check_file_var, file_max_time, file_reacquire_numberChosen1, file_check_numberChosen2 = '', '', '', '', ''
 email_server, email_send, email_receive, email_send_email_flag = '', '', '', ''
 chart_software_var, chart_new_var, chart_exist_var, chart_closed_var, chart_total_var = '', '', '', '', ''
@@ -54,15 +56,7 @@ def print_var(var):
 # TODO 将当前的邮件或者文件配置信息保存到文件  新增默认保存标记 default_save_flag: True则当前配置保存为默认配置
 def rewrite_config_file(purl_bak_string, default_save_flag=False, current_save_falg=False):
     conf = MachineConfig(CONFIG_FILE_PATH)
-    # purl_bak_string = conf.get_node_info(purl_bak_string + '_real-time_control_parameter_value', 'default_purl_bak_string')
-
-    # TODO classify 项目配置前缀
-    if purl_bak_string == 'Purley-FPGA':
-        string_sep = 'FPGA'
-    elif purl_bak_string == 'Bakerville':
-        string_sep = 'Bak'
-    else:
-        string_sep = 'NFV'
+    project_name_sep = obtain_prefix_project_name(purl_bak_string)
 
     # TODO 接收邮件地址去重
     final_receive_list = []; index = 0; receive_address_list = []
@@ -71,31 +65,26 @@ def rewrite_config_file(purl_bak_string, default_save_flag=False, current_save_f
     for receive_add in temp_receive_list:
         final_receive_list.insert(index, receive_add)
         index += 1
-
     for i in range(len(final_receive_list)):
         final_receive_list[i] = re.sub('[ ]', '', final_receive_list[i].strip())
-
     for address in final_receive_list:
         if address not in receive_address_list:
             receive_address_list.append(address)
-
     receive_address_string = ','.join(receive_address_list)
-
-
     # TODO 将当前的配置更新为默认配置
     if default_save_flag:
-        conf.modify_node_value(string_sep + '_other_config', 'reacquire_data_flag', file_reacquire_data_var.get())
-        conf.modify_node_value(string_sep + '_other_config', 'verify_file_flag', check_file_var.get())
-        conf.modify_node_value(string_sep + '_other_config', 'max_waiting_time', file_max_time.get())
-        conf.modify_node_value(string_sep + '_other_config', 'week_num', '100')
+        conf.modify_node_value(project_name_sep + '_other_config', 'reacquire_data_flag', file_reacquire_data_var.get())
+        conf.modify_node_value(project_name_sep + '_other_config', 'verify_file_flag', check_file_var.get())
+        conf.modify_node_value(project_name_sep + '_other_config', 'max_waiting_time', file_max_time.get())
+        conf.modify_node_value(project_name_sep + '_other_config', 'week_num', '100')
 
-        conf.modify_node_value(string_sep + '_server', 'server_address', email_server.get() if len(email_server.get().strip()) != 0 else 'smtp.intel.com')
-        conf.modify_node_value(string_sep + '_from_address', 'from_address', email_send.get())
-        conf.modify_node_value(string_sep + '_receive_address', 'receive_address',receive_address_string)
-        conf.modify_node_value(string_sep + '_other_config', 'send_email_flag', email_send_email_flag.get())
-        conf.modify_node_value(string_sep + '_other_config', 'keep_continuous', choose_weeks_var.get())
+        conf.modify_node_value(project_name_sep + '_server', 'server_address', email_server.get() if len(email_server.get().strip()) != 0 else 'smtp.intel.com')
+        conf.modify_node_value(project_name_sep + '_from_address', 'from_address', email_send.get())
+        conf.modify_node_value(project_name_sep + '_receive_address', 'receive_address',receive_address_string)
+        conf.modify_node_value(project_name_sep + '_other_config', 'send_email_flag', email_send_email_flag.get())
+        conf.modify_node_value(project_name_sep + '_other_config', 'keep_continuous', choose_weeks_var.get())
 
-        conf.modify_node_value(string_sep + '_other_config', 'on_off_line_save_flag', on_off_var.get())
+        conf.modify_node_value(project_name_sep + '_other_config', 'on_off_line_save_flag', on_off_var.get())
 
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_reacquire_data_flag', file_reacquire_data_var.get())
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_verify_file_flag', check_file_var.get())
@@ -110,13 +99,13 @@ def rewrite_config_file(purl_bak_string, default_save_flag=False, current_save_f
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_keep_continuous', choose_weeks_var.get())
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_on_off_line_save_flag', on_off_var.get())
 
-    conf.modify_node_value(string_sep + '_other_config', 'template_file', template_file_path.get())
+    conf.modify_node_value(project_name_sep + '_other_config', 'template_file', template_file_path.get())
 
-    conf.modify_node_value(string_sep + '_other_config', 'display_software', chart_software_var.get())
-    conf.modify_node_value(string_sep + '_other_config', 'display_new', chart_new_var.get())
-    conf.modify_node_value(string_sep + '_other_config', 'display_existing', chart_exist_var.get())
-    conf.modify_node_value(string_sep + '_other_config', 'display_closed', chart_closed_var.get())
-    conf.modify_node_value(string_sep + '_other_config', 'display_total', chart_total_var.get())
+    conf.modify_node_value(project_name_sep + '_other_config', 'display_software', chart_software_var.get())
+    conf.modify_node_value(project_name_sep + '_other_config', 'display_new', chart_new_var.get())
+    conf.modify_node_value(project_name_sep + '_other_config', 'display_existing', chart_exist_var.get())
+    conf.modify_node_value(project_name_sep + '_other_config', 'display_closed', chart_closed_var.get())
+    conf.modify_node_value(project_name_sep + '_other_config', 'display_total', chart_total_var.get())
 
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_get_default_flag', load_default_var)
 
@@ -265,6 +254,7 @@ def chart_config(name, tab4, logger):
     label5.grid(row=5, column=0, columnspan=5, padx=20, pady=10, sticky='E')
 
     global chart_software_var, chart_new_var, chart_exist_var, chart_closed_var, chart_total_var
+    global chart_software_numberChosen1, chart_new_numberChosen2, chart_exist_numberChosen3, chart_closed_numberChosen4, chart_total_numberChosen5
 
     chart_software_var = StringVar()
     chart_new_var = StringVar()
@@ -315,30 +305,21 @@ def save_default(purl_bak_string):
 
 
 # TODO 加载默认配置为当前配置
-def load_defalut_as_current(purl_bak_string):
+def load_default_as_current(purl_bak_string):
     conf = MachineConfig(CONFIG_FILE_PATH)
+    project_name_sep = obtain_prefix_project_name(purl_bak_string)
 
-    # purl_bak_string = conf.get_node_info('real-time_control_parameter_value', 'default_purl_bak_string')
+    week_num = conf.get_node_info(project_name_sep + '_other_config', 'week_num')
+    reacquire_data_flag = conf.get_node_info(project_name_sep + '_other_config', 'reacquire_data_flag')
+    verify_file_flag = conf.get_node_info(project_name_sep + '_other_config', 'verify_file_flag')
+    max_waiting_time = conf.get_node_info(project_name_sep + '_other_config', 'max_waiting_time')
+    on_off_line_save_flag = conf.get_node_info(project_name_sep + '_other_config', 'on_off_line_save_flag')
+    send_email_flag = conf.get_node_info(project_name_sep + '_other_config', 'send_email_flag')
+    keep_continuous = conf.get_node_info(project_name_sep + '_other_config', 'keep_continuous')
 
-    # TODO classify 项目配置前缀
-    if purl_bak_string == 'Purley-FPGA':
-        string_sep = 'FPGA'
-    elif purl_bak_string == 'Bakerville':
-        string_sep = 'Bak'
-    else:
-        string_sep = 'NFV'
-
-    week_num = conf.get_node_info(string_sep + '_other_config', 'week_num')
-    reacquire_data_flag = conf.get_node_info(string_sep + '_other_config', 'reacquire_data_flag')
-    verify_file_flag = conf.get_node_info(string_sep + '_other_config', 'verify_file_flag')
-    max_waiting_time = conf.get_node_info(string_sep + '_other_config', 'max_waiting_time')
-    on_off_line_save_flag = conf.get_node_info(string_sep + '_other_config', 'on_off_line_save_flag')
-    send_email_flag = conf.get_node_info(string_sep + '_other_config', 'send_email_flag')
-    keep_continuous = conf.get_node_info(string_sep + '_other_config', 'keep_continuous')
-
-    server_address = conf.get_node_info(string_sep + '_server', 'server_address')
-    from_address = conf.get_node_info(string_sep + '_from_address', 'from_address')
-    receive_address = conf.get_node_info(string_sep + '_receive_address', 'receive_address')
+    server_address = conf.get_node_info(project_name_sep + '_server', 'server_address')
+    from_address = conf.get_node_info(project_name_sep + '_from_address', 'from_address')
+    receive_address = conf.get_node_info(project_name_sep + '_receive_address', 'receive_address')
 
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_choose_week_num', week_num)
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_reacquire_data_flag', reacquire_data_flag)
@@ -357,15 +338,12 @@ def load_defalut_as_current(purl_bak_string):
 def load_default(purl_bak_string):
     default_load_flag = askyesno('Load the %s default configuration window' % purl_bak_string,
                                  'Are you sure you need to load the %s default configuration?' % purl_bak_string)
-
     global load_default_var
     global load_default_flag
     # global close_windows_update_config_flag
-
     load_default_flag = True
     # close_windows_update_config_flag = True
     load_default_var = 'NO'
-
     conf = MachineConfig(CONFIG_FILE_PATH)
 
     if default_load_flag:
@@ -373,7 +351,7 @@ def load_default(purl_bak_string):
         # TODO 修改加载默认配置参数标记
         conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_get_default_flag', load_default_var)
         # TODO 加载默认配置的时候将默认值配置值更新到当前配置
-        load_defalut_as_current(purl_bak_string)
+        load_default_as_current(purl_bak_string)
 
 
 # TODO 载入默认邮件和文件参数配置  置 get_default_flag标记为 : YES
@@ -389,37 +367,36 @@ def load_default_configuration_info(name, tab6, logger):
     # TODO 刷新配置界面参数 Save Default按钮按下时触发
     def update_config_value(event):
         conf = MachineConfig(CONFIG_FILE_PATH)
-        # purl_bak_string = conf.get_node_info(name + '_real-time_control_parameter_value', 'default_purl_bak_string')
+        project_name_sep = obtain_prefix_project_name(name)
 
-        # TODO classify 项目配置前缀
-        if name == 'Purley-FPGA':
-            string_sep = 'FPGA'
-        elif name == 'Bakerville':
-            string_sep = 'Bak'
-        else:
-            string_sep = 'NFV'
+        reacquire_data_flag = conf.get_node_info(project_name_sep + '_other_config', 'reacquire_data_flag')
+        verify_file_flag = conf.get_node_info(project_name_sep + '_other_config', 'verify_file_flag')
+        max_waiting_time = conf.get_node_info(project_name_sep + '_other_config', 'max_waiting_time')
+        on_off_line_save_flag = conf.get_node_info(project_name_sep + '_other_config', 'on_off_line_save_flag')
+        send_email_flag = conf.get_node_info(project_name_sep + '_other_config', 'send_email_flag')
 
-        reacquire_data_flag = conf.get_node_info(string_sep + '_other_config', 'reacquire_data_flag')
-        verify_file_flag = conf.get_node_info(string_sep + '_other_config', 'verify_file_flag')
-        max_waiting_time = conf.get_node_info(string_sep + '_other_config', 'max_waiting_time')
-        on_off_line_save_flag = conf.get_node_info(string_sep + '_other_config', 'on_off_line_save_flag')
-        send_email_flag = conf.get_node_info(string_sep + '_other_config', 'send_email_flag')
+        template_file = conf.get_node_info(project_name_sep + '_other_config', 'template_file')
+        choose_week_flag = conf.get_node_info(project_name_sep + '_other_config', 'keep_continuous')
 
-        server_address = conf.get_node_info(string_sep + '_server', 'server_address')
-        from_address = conf.get_node_info(string_sep + '_from_address', 'from_address')
-        receive_address = conf.get_node_info(string_sep + '_receive_address', 'receive_address')
+        server_address = conf.get_node_info(project_name_sep + '_server', 'server_address')
+        from_address = conf.get_node_info(project_name_sep + '_from_address', 'from_address')
+        receive_address = conf.get_node_info(project_name_sep + '_receive_address', 'receive_address')
+
+        software_flag = conf.get_node_info(project_name_sep + '_other_config', 'display_software')
+        new_flag = conf.get_node_info(project_name_sep + '_other_config', 'display_new')
+        exist_flag = conf.get_node_info(project_name_sep + '_other_config', 'display_existing')
+        close_flag = conf.get_node_info(project_name_sep + '_other_config', 'display_closed')
+        total_flag = conf.get_node_info(project_name_sep + '_other_config', 'display_total')
 
         # TODO 关闭窗口需要保存当前配置
         global close_windows_update_config_flag
 
         close_windows_update_config_flag = False
 
-        # email_server, email_send, email_receive, email_send_email_flag
-        # file_reacquire_data_var, check_file_var, file_max_time
-        # on_off_var
         # TODO 更新界面参数值 刷新界面
         update_parameter_value(email_server, server_address)
         update_parameter_value(email_send, from_address.strip())
+        update_parameter_value(template_file_path, template_file.strip())
 
         # TODO 接收邮件地址去重
         final_receive_list = []; index = 0; receive_address_list = []
@@ -444,9 +421,15 @@ def load_default_configuration_info(name, tab6, logger):
         on_off_numberChosen1.set(on_off_line_save_flag)
         email_send_email_flag.set(send_email_flag)
 
+        choose_weeks_numberChosen1.set(choose_week_flag)
+        chart_software_numberChosen1.set(software_flag)
+        chart_new_numberChosen2.set(new_flag)
+        chart_exist_numberChosen3.set(exist_flag)
+        chart_closed_numberChosen4.set(close_flag)
+        chart_total_numberChosen5.set(total_flag)
+
     # TODO 绑定按钮事件实现实时更新界面参数值
     button1.bind('<Button-1>', update_config_value)
-
     button1.grid(row=6, column=0, padx=20, pady=15, sticky='W')
     button2.grid(row=6, column=6, padx=20, pady=15, sticky='E')
 
@@ -478,37 +461,31 @@ def display_config_info(logger, purl_bak_string):
     # TODO 检测是否有空值，有则添加默认值 2017-06-02
     conf = MachineConfig(CONFIG_FILE_PATH)
     if get_default_flag == 'YES' or len(get_default_flag.strip()) == 0:
-        # TODO classify 项目配置前缀
-        if purl_bak_string == 'Purley-FPGA':
-            string_sep = 'FPGA'
-        elif purl_bak_string == 'Bakerville':
-            string_sep = 'Bak'
-        else:
-            string_sep = 'NFV'
+        project_name_sep = obtain_prefix_project_name(purl_bak_string)
 
         if len(week_num.strip()) == 0:
-            conf.modify_node_value(string_sep + '_other_config', 'week_num', '100')
+            conf.modify_node_value(project_name_sep + '_other_config', 'week_num', '100')
         if len(reacquire_data_flag.strip()) == 0:
-            conf.modify_node_value(string_sep + '_other_config', 'reacquire_data_flag', 'YES')
+            conf.modify_node_value(project_name_sep + '_other_config', 'reacquire_data_flag', 'YES')
         if len(verify_file_flag.strip()) == 0:
-            conf.modify_node_value(string_sep + '_other_config', 'verify_file_flag', 'NO')
+            conf.modify_node_value(project_name_sep + '_other_config', 'verify_file_flag', 'NO')
         if len(max_waiting_time.strip()) == 0:
-            conf.modify_node_value(string_sep + '_other_config', 'max_waiting_time', '30min')
+            conf.modify_node_value(project_name_sep + '_other_config', 'max_waiting_time', '30min')
         if len(on_off_line_save_flag.strip()) == 0:
-            conf.modify_node_value(string_sep + '_other_config', 'on_off_line_save_flag', 'online')
+            conf.modify_node_value(project_name_sep + '_other_config', 'on_off_line_save_flag', 'online')
         if len(send_email_flag.strip()) == 0:
-            conf.modify_node_value(string_sep + '_other_config', 'send_email_flag', 'YES')
+            conf.modify_node_value(project_name_sep + '_other_config', 'send_email_flag', 'YES')
 
         if len(display_software.strip()) == 0:
-            conf.modify_node_value(string_sep + '_other_config', 'display_software', 'YES')
+            conf.modify_node_value(project_name_sep + '_other_config', 'display_software', 'YES')
         if len(display_new.strip()) == 0:
-            conf.modify_node_value(string_sep + '_other_config', 'display_new', 'YES')
+            conf.modify_node_value(project_name_sep + '_other_config', 'display_new', 'YES')
         if len(display_existing.strip()) == 0:
-            conf.modify_node_value(string_sep + '_other_config', 'display_existing', 'YES')
+            conf.modify_node_value(project_name_sep + '_other_config', 'display_existing', 'YES')
         if len(display_closed.strip()) == 0:
-            conf.modify_node_value(string_sep + '_other_config', 'display_closed', 'YES')
+            conf.modify_node_value(project_name_sep + '_other_config', 'display_closed', 'YES')
         if len(display_total.strip()) == 0:
-            conf.modify_node_value(string_sep + '_other_config', 'display_total', 'YES')
+            conf.modify_node_value(project_name_sep + '_other_config', 'display_total', 'YES')
 
     if len(week_num.strip()) == 0:
         conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_choose_week_num', '100')
@@ -589,20 +566,14 @@ def file_choose(root, e):
 
 # TODO excel模板文件配置界面
 def template_file_choose(name, tab3, logger):
-    # conf = MachineConfig(CONFIG_FILE_PATH)
-    # purl_bak_string = conf.get_node_info(name + '_real-time_control_parameter_value', 'default_purl_bak_string')
     current_template_file = get_interface_config('template_file', name)
-
     monty = ttk.LabelFrame(tab3, text='Template config')
     monty.grid()
 
     global template_file_path
-
     template_file_path = Entry(monty, font=("Calibri", 12), width=40)
     template_file_path.grid(row=1, column=2, columnspan=2, padx=20, pady=15)
-
     template_file_path.insert(0, current_template_file)
-
     button1 = Button(monty, text="Excel Template", font=("Calibri", 12), background='yellow', command=lambda x=monty, y=template_file_path: file_choose(monty, template_file_path))
     button1.grid(row=1, column=0, columnspan=2, padx=20, pady=15)
 
