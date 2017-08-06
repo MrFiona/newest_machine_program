@@ -322,17 +322,17 @@ def load_default_as_current(purl_bak_string):
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_choose_week_num',
                            week_num if len(week_num.strip()) != 0 else '100')
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_reacquire_data_flag',
-                           'YES' if reacquire_data_flag == 'YES' else 'NO')
+                           'YES' if reacquire_data_flag.strip() == 'YES' else 'NO')
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_verify_file_flag',
-                           'YES' if verify_file_flag == 'YES' else 'NO')
+                           'YES' if verify_file_flag.strip() == 'YES' else 'NO')
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_max_waiting_time',
                            max_waiting_time if len(max_waiting_time.strip()) != 0 else '120')
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_on_off_line_save_flag',
-                           'online' if on_off_line_save_flag == 'online' else 'offline')
+                           'online' if on_off_line_save_flag.strip() == 'online' else 'offline')
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_send_email_flag',
-                           'YES' if send_email_flag == 'YES' else 'NO')
+                           'YES' if send_email_flag.strip() == 'YES' else 'NO')
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_keep_continuous',
-                           'YES' if keep_continuous == 'YES' else 'NO')
+                           'YES' if keep_continuous.strip() == 'YES' else 'NO')
 
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_server_address', server_address)
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_send_address', from_address)
