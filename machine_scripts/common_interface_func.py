@@ -294,30 +294,28 @@ def interrupt_clear_excel_file(log_time, logger):
         if remove_success_flag:
             break
         file_list = glob.glob(SRC_EXCEL_DIR + os.sep + '*.xlsx')
+        file_list = [ file_ele for file_ele in file_list if log_time in file_ele ]
         logger.print_message('file_list:\t%s' % file_list, _file_name, ERROR)
         logger.print_message('log_time:\t%s' % log_time, _file_name, ERROR)
         time.sleep(2)
         for file_name in file_list:
-            if log_time in file_name:
+            try:
+                os.remove(file_name)
+                remove_success_flag = True
+                is_contain_object_file = True
+                break
+            except WindowsError:
                 try:
+                    logger.print_message('Start cleaning up the file:\t%s' % file_name, _file_name)
+                    os.system('taskkill /F /IM excel.exe')
+                    os.system('attrib -s -h /s %s' % file_name)
                     os.remove(file_name)
                     remove_success_flag = True
                     is_contain_object_file = True
+                    logger.print_message('delete %s sucessfully!!!' % file_name, _file_name)
                     break
-                except WindowsError:
-                    try:
-                        logger.print_message('Start cleaning up the file:\t%s' % file_name, _file_name)
-                        os.system('taskkill /F /IM excel.exe')
-                        os.system('attrib -s -h /s %s' % file_name)
-                        os.remove(file_name)
-                        remove_success_flag = True
-                        is_contain_object_file = True
-                        logger.print_message('delete %s sucessfully!!!' % file_name, _file_name)
-                        break
-                    except:
-                        logger.print_message('error return', _file_name, ERROR)
-            else:
-                continue
+                except:
+                    logger.print_message('error return', _file_name, ERROR)
         else:
             if not remove_success_flag:
                 is_contain_object_file = True
