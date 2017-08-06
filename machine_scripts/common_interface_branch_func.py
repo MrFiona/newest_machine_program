@@ -6,6 +6,10 @@
 # Software: PyCharm Community Edition
 
 
+import os
+import traceback
+_file_name = os.path.split(__file__)[1]
+
 
 def analysis_url_address_string(original_url_list):
     result_url_sep_list = []
@@ -57,3 +61,10 @@ def obtain_prefix_project_name(project_name):
         project_string_sep = 'NFV'
 
     return project_string_sep
+
+
+#todo 错误异常信息
+def traceback_print_info(logger):
+    logger.print_message('Error#####################################################Error', _file_name, 50)
+    logger.print_message('traceback.format_exc():\n%s' % traceback.format_exc(), _file_name, 50)
+    logger.print_message('Error#####################################################Error', _file_name, 50)
