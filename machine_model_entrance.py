@@ -11,6 +11,7 @@ import os
 import re
 import sys
 import time
+import traceback
 # TODO 执行之前安装所需模块
 from machine_scripts.install_module import install_module;install_module()
 from machine_scripts.custom_log import WorkLogger
@@ -23,6 +24,7 @@ from machine_scripts.public_use_function import (get_url_list_by_keyword, judge_
 from machine_scripts.common_interface_func import (get_project_newest_file, detect_memory_usage,
     rename_log_file_name, interrupt_clear_excel_file, InterruptError, get_win_process_ids,
     confirm_result_excel, backup_chart, backup_excel_file, backup_cache, performance_analysis_decorator)
+from machine_scripts.common_interface_branch_func import traceback_print_info, obtain_prefix_project_name
 from setting_global_variable import type_sheet_name_list
 from machine_scripts.cache_mechanism import DiskCache
 from machine_scripts.send_email import SendEmail
@@ -102,6 +104,7 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
             for func in predict_call_func_list:
                 getattr(insert_object, func)()
     except:
+        traceback_print_info(logger=_logger)
         insert_object.close_workbook()
         raise InterruptError('Interrupt Error occurred!!!')
 
@@ -141,6 +144,7 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
             _logger.print_message('Excel table [ %s ] data html has been generated' % type_name, file_name)
         # TODO 异常关闭文件
         except:
+            traceback_print_info(logger=_logger)
             failed_sheet_name_list.append(type_name)
             global WIN_BOOK_CLOSE_FLAG
             WIN_BOOK_CLOSE_FLAG = True
@@ -166,7 +170,7 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
             SendEmail(purl_bak_string, _logger)
             _logger.print_message('>>>>>>>>>> Send the Email Finished <<<<<<<<<<', file_name)
         except:
-            pass
+            traceback_print_info(logger=_logger)
 
     # TODO 备份excel文件
     _logger.print_message('>>>>>>>>>> Please Wait .... The program is backing up the Excel File <<<<<<<<<<', file_name)
@@ -180,8 +184,8 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
 @performance_analysis_decorator('mkm_run.prof')
 @error_tracking_decorator(_logger, os.path.split(__file__)[1], log_time)
 def machine_main():
+    file_name = os.path.split(__file__)[1]
     try:
-        file_name = os.path.split(__file__)[1]
         _logger.print_message('sys.argv:\t%s' % sys.argv, file_name)
         if 'auto' in sys.argv:
             global AUTO_RUN_FLAG
@@ -215,15 +219,10 @@ def machine_main():
             conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_send_email_flag', 'YES')
             conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_get_default_flag', 'NO')
             # TODO classify 项目配置前缀
-            if purl_bak_string == 'Purley-FPGA':
-                string_sep = 'FPGA'
-            elif purl_bak_string == 'Bakerville':
-                string_sep = 'Bak'
-            else:
-                string_sep = 'NFV'
+            project_name_sep = obtain_prefix_project_name(project_name=purl_bak_string)
 
             TEMPLATE_FILE = get_project_newest_file(purl_bak_string, _logger)
-            conf.modify_node_value(string_sep + '_other_config', 'template_file', TEMPLATE_FILE)
+            conf.modify_node_value(project_name_sep + '_other_config', 'template_file', TEMPLATE_FILE)
             _logger.print_message('modify successfully!!!!', file_name)
             display_config_info(logger=_logger, purl_bak_string=purl_bak_string)
 
@@ -263,13 +262,13 @@ def machine_main():
     except (InterruptError, KeyboardInterrupt):
         # TODO 程序中断清理文件
         if not LOGGER_CLOSE_FLAG:
-            _logger.print_message('The cleanup file tag is already open:\t%s' % INTERRUPTED_CLEAR_FILE_CONDITION_FLAG, os.path.split(__file__)[1], 30)
+            _logger.print_message('The cleanup file tag is already open:\t%s' % INTERRUPTED_CLEAR_FILE_CONDITION_FLAG, file_name, 30)
         if INTERRUPTED_CLEAR_FILE_CONDITION_FLAG:
             interrupt_clear_excel_file(log_time, _logger)
     # todo 内存异常时选择终止程序
     except SystemExit:
         if not LOGGER_CLOSE_FLAG:
-            _logger.print_message('Check out insufficient memory to exit', os.path.split(__file__)[1], 30)
+            _logger.print_message('Check out insufficient memory to exit', file_name, 30)
         else:
             pass
 
