@@ -21,6 +21,7 @@ from machine_scripts.manual_machine_config_gui import manual_machine_config_gui_
 from machine_scripts.public_use_function import (easyExcel, get_url_list_by_keyword,
         error_tracking_decorator)
 from machine_scripts.common_interface_func import performance_analysis_decorator
+from machine_scripts.common_interface_branch_func import traceback_print_info
 from machine_scripts.send_email import SendEmail
 from machine_scripts.generate_chart import generate_chart
 from setting_global_variable import type_sheet_name_list, MANUAL_CONFIG_FILE_PATH
@@ -60,6 +61,7 @@ def manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list):
             create_save_miss_html(sheet_name=type_name, purl_bak_string=purl_bak_string, Silver_url_list=Silver_url_list,
                                 win_book=win_book, WEEK_NUM=100, type_string='manual_')
     except:
+        traceback_print_info(logger=_logger)
         global WIN_BOOK_CLOSE_FLAG
         WIN_BOOK_CLOSE_FLAG = True
         win_book.close()
@@ -103,6 +105,7 @@ def manual_machine_model_entrance():
         # TODO 生成图表
         generate_chart(purl_bak_string, log_time, _logger, 'manual_')
     except:
+        traceback_print_info(logger=_logger)
         _logger.print_message('occurred error', _file_name, ERROR)
         global LOGGER_CLOSE_FLAG
         LOGGER_CLOSE_FLAG = True
