@@ -8,7 +8,7 @@
 import os
 
 def install_module():
-    'requirements.txt' in os.listdir(os.getcwd()) and os.system('pip --proxy child-prc.intel.com:913 install -r requirements.txt')
+    'requirements.txt' in os.listdir(os.getcwd()) and os.system('pip install -r requirements.txt')
 
 if __name__ == '__main__':
     install_module()
