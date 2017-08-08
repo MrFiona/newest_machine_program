@@ -183,7 +183,7 @@ class GetUrlFromHtml(object):
         return file_name
 
     # TODO 更新相应周缓存
-    def write_html_by_multi_thread(self, purl_bak_string, keep_continuous):
+    def  write_html_by_multi_thread(self, purl_bak_string, keep_continuous):
         cache = DiskCache(purl_bak_string)
         effective_url_list = []
         # TODO 此时已经删除缓存不置标记为False
