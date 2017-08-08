@@ -1,0 +1,707 @@
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | sys.argv:	['C:/Users/pengzh5x/Desktop/machine_scripts/machine_model_entrance.py']
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | >>>>>>>>>> Please Wait .... The program is detecting memory <<<<<<<<<<
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The 1 time:	Fri Aug 04 16:15:31 2017 |  CPU: 4.2% |  Memory:  60.1%  4872M/8103M
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | >>>>>>>>>> Memory detection Finished <<<<<<<<<<
+2017_08_04_16_15_27 | machine_config_gui.pyc | INFO | The main windows of configuration is closed!
+2017_08_04_16_15_27 | machine_config_gui.pyc | INFO | purl_bak_string:              NFVi
+2017_08_04_16_15_27 | machine_config_gui.pyc | INFO | from_address:                 pengx.zhang@intel.com
+2017_08_04_16_15_27 | machine_config_gui.pyc | INFO | receive_address:              pengx.zhang@intel.com,libo.fu@intel.com
+2017_08_04_16_15_27 | machine_config_gui.pyc | INFO | server_address:               smtp.intel.com
+2017_08_04_16_15_27 | machine_config_gui.pyc | INFO | week_num:                     100
+2017_08_04_16_15_27 | machine_config_gui.pyc | INFO | reacquire_data_flag:          YES
+2017_08_04_16_15_27 | machine_config_gui.pyc | INFO | verify_file_flag:             YES
+2017_08_04_16_15_27 | machine_config_gui.pyc | INFO | max_waiting_time:             30 minute(s)
+2017_08_04_16_15_27 | machine_config_gui.pyc | INFO | on_off_line_save_flag:        online
+2017_08_04_16_15_27 | machine_config_gui.pyc | INFO | keep_continuous:              NO
+2017_08_04_16_15_27 | machine_config_gui.pyc | INFO | send_email_flag:              YES
+2017_08_04_16_15_27 | machine_config_gui.pyc | INFO | get_default_flag:             
+2017_08_04_16_15_27 | machine_config_gui.pyc | INFO | display_software:             YES
+2017_08_04_16_15_27 | machine_config_gui.pyc | INFO | display_new:                  YES
+2017_08_04_16_15_27 | machine_config_gui.pyc | INFO | display_existing:             YES
+2017_08_04_16_15_27 | machine_config_gui.pyc | INFO | display_closed:               YES
+2017_08_04_16_15_27 | machine_config_gui.pyc | INFO | display_total:                YES
+2017_08_04_16_15_27 | machine_config_gui.pyc | INFO | template_file:                C:/Users/pengzh5x/Desktop/machine_scripts/ITF_Skylake_NFVi_BKC_TestCase_WW31_v2.5.0_Template_100W.xlsx
+2017_08_04_16_15_27 | machine_config_gui.pyc | INFO | week_input_string_list:       []
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | >>>>>>>>>> Please Wait .... The program is getting Html Data <<<<<<<<<<
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW31/6445_Gold.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW29/6392_Gold.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW27/6349_Gold.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW25/6243_Gold.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW23/6128_Gold.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW21/6089_Gold.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW19/5989_Gold.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW17/5931_Gold.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW15/5843_Gold.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW13/5778_Gold.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW11/5699_Gold.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW09/5645_Gold.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW07/5536_Gold.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW04/5301_Gold.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW02/5245_Gold.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW29/6392_BKC.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW27/6349_BKC.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW25/6243_BKC.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW23/6128_BKC.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW21/6089_BKC.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW19/5989_BKC.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW17/5931_BKC.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW15/5843_BKC.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW13/5778_BKC.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW11/5699_BKC.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW09/5645_BKC.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW07/5536_BKC.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW04/5301_BKC.html
+2017_08_04_16_15_27 | get_all_html.pyc | INFO | https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW02/5245_BKC.html
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | >>>>>>>>>> Get Html Data Finished <<<<<<<<<<
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | >>>>>>>>>> Please Wait .... The program is inserting Excel Data <<<<<<<<<<
+2017_08_04_16_15_27 | insert_excel.py | INFO | >>>>>>>>>> Please Wait ... The Program is being read for Excel Initialization <<<<<<<<<<
+2017_08_04_16_15_27 | insert_excel.py | INFO | template_file:C:/Users/pengzh5x/Desktop/machine_scripts/ITF_Skylake_NFVi_BKC_TestCase_WW31_v2.5.0_Template_100W.xlsx	
+2017_08_04_16_15_27 | insert_excel.py | INFO | The project id exists:	25
+2017_08_04_16_15_27 | insert_excel.py | INFO | _predict_url:	None
+2017_08_04_16_15_27 | insert_excel.py | INFO | >>>>>>>>>> Excel Initialization End <<<<<<<<<<
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | predict_execute_flag:	False
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | call_func_list:	['insert_Rework_data', 'insert_HWInfo', 'insert_ExistingSi_data', 'insert_ReworkInfo', 'insert_IFWIInfo', 'insert_ClosedSi_data', 'insert_HW_data', 'insert_SWInfo', 'insert_IFWI_data', 'insert_save_miss_data', 'insert_Mapping', 'insert_test_time_data', 'insert_NewSi_data', 'insert_SW_data', 'insert_Platform_data', 'insert_SW_Original_data', 'insert_trend_data', 'insert_change_history_data', 'insert_IFWI_Original_data', 'insert_CaseResult']
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting [ HW Rework ] data.........
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html ]
+2017_08_04_16_15_27 | extract_data.pyc | ERROR | Get [ https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW21/6089_BKC.html ] Orignal Data Error
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html ]
+2017_08_04_16_15_27 | extract_data.pyc | ERROR | Get [ https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW19/5989_BKC.html ] Orignal Data Error
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html ]
+2017_08_04_16_15_27 | extract_data.pyc | ERROR | Get [ https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW17/5931_BKC.html ] Orignal Data Error
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html ]
+2017_08_04_16_15_27 | extract_data.pyc | ERROR | Get [ https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW15/5843_BKC.html ] Orignal Data Error
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html ]
+2017_08_04_16_15_27 | extract_data.pyc | ERROR | Get [ https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW13/5778_BKC.html ] Orignal Data Error
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html ]
+2017_08_04_16_15_27 | extract_data.pyc | ERROR | Get [ https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW11/5699_BKC.html ] Orignal Data Error
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html ]
+2017_08_04_16_15_27 | extract_data.pyc | ERROR | Get [ https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW09/5645_BKC.html ] Orignal Data Error
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html ]
+2017_08_04_16_15_27 | extract_data.pyc | ERROR | Get [ https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW07/5536_BKC.html ] Orignal Data Error
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html ]
+2017_08_04_16_15_27 | extract_data.pyc | ERROR | Get [ https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW04/5301_BKC.html ] Orignal Data Error
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html ]
+2017_08_04_16_15_27 | extract_data.pyc | ERROR | Get [ https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW02/5245_BKC.html ] Orignal Data Error
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting [ Existing Sightings ] data.........
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html ]
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting [ Closed Sightings ] data.........
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html ]
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting [ HW Configuration ] data.........
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html ]
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting [ IFWI Configuration ] data.........
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html ]
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting [ New Sightings ] data.........
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html ]
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting [ SW Configuration ] data.........
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html ]
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting [ Platform Integration Validation Result ] data.........
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html ]
+2017_08_04_16_15_27 | insert_excel.py | INFO | The data crawling failed for the 9th url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html ]
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting [ SW_Original Configuration ] data.........
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html ]
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting [ IFWI_Original Configuration ] data.........
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html ]
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting [ CaseResult ] data.........
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW31/6445_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW29/6392_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW27/6349_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW25/6243_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW23/6128_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW21/6089_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW19/5989_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW17/5931_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW13/5778_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW11/5699_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html ]
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html Start
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Verifying url https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html End
+2017_08_04_16_15_27 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html ]
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | newest_week_type_string_list:	['Gold', 'Gold', 'Gold', 'Gold', 'Gold', 'Gold', 'Gold', 'Gold', 'Gold', 'Gold', 'Gold']
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | >>>>>>>>>> Inserting Excel Data Finished <<<<<<<<<<
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | >>>>>>>>>> Please Wait .... The program begins to confirm the generated Excel File <<<<<<<<<<
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Please make sure C:\Users\pengzh5x\Desktop\machine_scripts\excel_dir\NFVi_100_2017WW31_15_2017_08_04_16_15_27.xlsx is opened, review it, save and close.
+Last modified : Fri Aug 04 16:19:18 2017
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1800 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1799 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1798 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1797 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1796 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1795 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1794 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1793 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1792 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1791 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1790 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1789 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1788 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1787 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1786 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1785 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1784 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1783 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1782 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1781 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1780 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1779 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1778 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1777 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1776 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1775 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1774 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1773 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1772 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1771 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1770 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1769 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1768 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1767 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1766 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1765 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1764 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1763 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1762 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1761 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1760 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1759 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1758 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1757 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1756 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1755 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1754 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1753 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1752 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1751 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1750 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1749 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1748 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1747 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1746 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1745 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1744 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1743 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1742 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1741 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | The modification time is 1740 seconds left.......
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | 
+C:\Users\pengzh5x\Desktop\machine_scripts\excel_dir\NFVi_100_2017WW31_15_2017_08_04_16_15_27.xlsx is closed.
+Last modified : Fri Aug 04 16:20:19 2017
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | >>>>>>>>>> Comfirm the Excel File Finished <<<<<<<<<<
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | >>>>>>>>>> Please Wait .... the program is generating Html File <<<<<<<<<<
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | 2017_08_04_16_15_27
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | Excel table [ Trend ] data html has been generated
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | Excel table [ Save-Miss ] data html has been generated
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | Excel table [ NewSi ] data html has been generated
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | Excel table [ ExistingSi ] data html has been generated
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | Excel table [ CaseResult ] data html has been generated
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | Start setting the caseresult table data format
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | End Sets the caseresult table data format
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | Set the format time-consuming:	3.26600003242
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | >>>>>>>>>> Generating Html File Finished <<<<<<<<<<
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | failed_sheet_name_list:[]	
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | >>>>>>>>>> Please Wait .... The program starts sending Email <<<<<<<<<<
+2017_08_04_16_15_27 | send_email.pyc | INFO | from address: pengx.zhang@intel.com
+2017_08_04_16_15_27 | send_email.pyc | INFO | to address: pengx.zhang@intel.com,libo.fu@intel.com
+2017_08_04_16_15_27 | send_email.pyc | INFO | server address:  smtp.intel.com
+2017_08_04_16_15_27 | send_email.pyc | INFO | ***************************** Message body *****************************
+2017_08_04_16_15_27 | send_email.pyc | INFO |          subject: BKC ITF Test Plan of NFVi WW31
+2017_08_04_16_15_27 | send_email.pyc | INFO | ************************************************************************
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | >>>>>>>>>> Send the Email Finished <<<<<<<<<<
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | >>>>>>>>>> Please Wait .... The program is backing up the Excel File <<<<<<<<<<
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | >>>>>>>>>> Backing up Excel File Finished <<<<<<<<<<
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | >>>>>>>>>> Please Wait .... The program is generating the Image File <<<<<<<<<<
+2017_08_04_16_15_27 | generate_chart.pyc | INFO | object_excel_file:	C:\Users\pengzh5x\Desktop\machine_scripts\excel_dir\NFVi_100_2017WW31_15_2017_08_04_16_15_27.xlsx
+2017_08_04_16_15_27 | generate_chart.pyc | INFO | Software Change:	[0, 8, 7, 9, 6, 7, 5, 3, 16, 7, 13, 11, 8, 9, 10]	15
+2017_08_04_16_15_27 | generate_chart.pyc | INFO | New Sighting:	[7, 1, 2, 1, 1, 2, 1, 1, 0, 0, 0, 2, 2, 0, 0]	15
+2017_08_04_16_15_27 | generate_chart.pyc | INFO | Existing Sighting:	[0, 4, 3, 4, 2, 2, 2, 2, 4, 2, 1, 0, 1, 1, 1]	15
+2017_08_04_16_15_27 | generate_chart.pyc | INFO | Closed Sighting:	[0, -3, -2, -1, -4, -1, -2, -1, 0, -2, -1, -1, -1, -2, 0]	15
+2017_08_04_16_15_27 | generate_chart.pyc | INFO | Total Sighting:	[7, 5, 5, 5, 3, 4, 3, 3, 4, 2, 1, 2, 3, 1, 1]	15
+2017_08_04_16_15_27 | generate_chart.pyc | INFO | weeks_list:	['2017\nWW02', '2017\nWW04', '2017\nWW07', '2017\nWW09', '2017\nWW11', '2017\nWW13', '2017\nWW15', '2017\nWW17', '2017\nWW19', '2017\nWW21', '2017\nWW23', '2017\nWW25', '2017\nWW27', '2017\nWW29', '2017\nWW31']	15
+2017_08_04_16_15_27 | generate_chart.pyc | INFO | max_negative_num:	4
+2017_08_04_16_15_27 | generate_chart.pyc | INFO | max_positive_num:	16
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | >>>>>>>>>> generating the Image File Finished <<<<<<<<<<
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | >>>>>>>>>> Please Wait .... The program is backing up the Image File <<<<<<<<<<
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | >>>>>>>>>> Backing up Image File Finished <<<<<<<<<<
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | >>>>>>>>>> Please Wait .... The program is Renaming the Excel File <<<<<<<<<<
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | SRC_SAVE_MISS_WEEK_DIR:	C:\Users\pengzh5x\Desktop\machine_scripts\actually_week_info_dir
+2017_08_04_16_15_27 | common_interface_func.pyc | INFO | Changing the excel file [ C:\Users\pengzh5x\Desktop\machine_scripts\excel_dir\NFVi_100_2017WW31_15_2017_08_04_16_15_27.xlsx ]  name successfully!!!
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | >>>>>>>>>> Renaming the Excel File Finished <<<<<<<<<<
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | Confirm Excel and Send Email Time:	6.67200
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | Image shows waiting Time:	19.04700
+2017_08_04_16_15_27 | machine_model_entrance.py | INFO | Program Run Total Time:	342.36600
