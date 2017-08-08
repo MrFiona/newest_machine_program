@@ -75,7 +75,8 @@ def return_actual_week_list(logger, rename_log):
 
 
 # TODO 更改excel名称并且修改日志名与excel同名  更改名称以excel save-miss周为准
-def rename_log_file_name(logger, purl_bak_string, Silver_url_list, newest_week_type_string_list, log_time, rename_log=False):
+def rename_log_file_name(logger, purl_bak_string, Silver_url_list, newest_week_type_string_list, log_time,
+                         rename_log=False, predict_execute_flag=False):
     week_actual_list = return_actual_week_list(logger, rename_log)
     link_WW_week_string = week_actual_list[0]
     file_week_length = len(week_actual_list)
@@ -94,11 +95,16 @@ def rename_log_file_name(logger, purl_bak_string, Silver_url_list, newest_week_t
     elif 'Silver' in newest_week_type_string_list:
         week_type_string = 'Silver'
 
+    if predict_execute_flag:
+        file_candidate_string = 'Candidate_'
+    else:
+        file_candidate_string = ''
+
     # TODO 修改excel文件名
     if not rename_log:
         try:
             os.rename(actual_excel_file, SRC_EXCEL_DIR + os.sep + purl_bak_string + '_' + str(week_num) + '_' + link_WW_week_string + '_' +
-                      str(file_week_length) + '_' + week_type_string + '_' + log_time + '.xlsx')
+                      file_candidate_string + str(file_week_length) + '_' + week_type_string + '_' + log_time + '.xlsx')
             logger.print_message("Changing the excel file [ %s ]  name successfully!!!" % actual_excel_file, _file_name)
         except EOFError:
             logger.print_message("Changing the excel file [ %s ]  name failed!!!" % actual_excel_file, _file_name, ERROR)
@@ -110,7 +116,7 @@ def rename_log_file_name(logger, purl_bak_string, Silver_url_list, newest_week_t
                 actual_log_file = ele_name
         try:
             os.rename(actual_log_file, MACHINE_LOG_DIR + os.sep + purl_bak_string + '_' + str(week_num) + '_' + link_WW_week_string + '_' +
-                      str(len(Silver_url_list)) + '_' + week_type_string +'_' + log_time + '_log.txt')
+                      file_candidate_string + str(len(Silver_url_list)) + '_' + week_type_string +'_' + log_time + '_log.txt')
             print "The log file [ %s ] was modified to excel's file name successfully!!!" % actual_log_file
         except:
             print "The log file [ %s ] was modified to excel's file name failed!!!" % actual_log_file
@@ -289,40 +295,36 @@ def NFVi_remove_non_alphanumeric_characters(object_string_list):
 # TODO 当程序发生中断时强制清理文件
 def interrupt_clear_excel_file(log_time, logger):
     remove_success_flag = False
-    is_contain_object_file = False
-    while True:
-        if remove_success_flag:
+    # while 1:
+    #     if remove_success_flag:
+    #         break
+    file_list = glob.glob(SRC_EXCEL_DIR + os.sep + '*.xlsx')
+    file_list = [ file_ele for file_ele in file_list if log_time in file_ele ]
+    logger.print_message('file_list:\t%s' % file_list, _file_name, ERROR)
+    logger.print_message('log_time:\t%s' % log_time, _file_name, ERROR)
+    for file_name in file_list:
+        try:
+            os.remove(file_name)
+            remove_success_flag = True
+            logger.print_message('delete %s successfully!!!' % file_name, _file_name)
             break
-        file_list = glob.glob(SRC_EXCEL_DIR + os.sep + '*.xlsx')
-        file_list = [ file_ele for file_ele in file_list if log_time in file_ele ]
-        logger.print_message('file_list:\t%s' % file_list, _file_name, ERROR)
-        logger.print_message('log_time:\t%s' % log_time, _file_name, ERROR)
-        time.sleep(2)
-        for file_name in file_list:
+        except WindowsError:
             try:
+                logger.print_message('Start cleaning up the file:\t%s' % file_name, _file_name)
+                os.system('taskkill /F /IM excel.exe')
+                os.system('attrib -s -h /s %s' % file_name)
                 os.remove(file_name)
                 remove_success_flag = True
-                is_contain_object_file = True
+                logger.print_message('delete %s successfully!!!' % file_name, _file_name)
                 break
-            except WindowsError:
-                try:
-                    logger.print_message('Start cleaning up the file:\t%s' % file_name, _file_name)
-                    os.system('taskkill /F /IM excel.exe')
-                    os.system('attrib -s -h /s %s' % file_name)
-                    os.remove(file_name)
-                    remove_success_flag = True
-                    is_contain_object_file = True
-                    logger.print_message('delete %s sucessfully!!!' % file_name, _file_name)
-                    break
-                except:
-                    logger.print_message('error return', _file_name, ERROR)
-        else:
-            if not remove_success_flag:
-                is_contain_object_file = True
-
-            if is_contain_object_file:
-                remove_success_flag = True
-                logger.print_message('The files that need to be deleted are not detected', _file_name)
+            except:
+                logger.print_message('error return', _file_name, ERROR)
+    else:
+        if not remove_success_flag:
+            if len(file_list) == 0:
+                logger.print_message('The files that need to be deleted are not detected', _file_name, 40)
+            else:
+                logger.print_message('delete %s file failed!!!' % file_list[0], _file_name, 40)
 
 
 # TODO 中断错误类
@@ -415,8 +417,13 @@ def confirm_result_excel(purl_bak_string, link_WW_week_string, Silver_url_list, 
 
 
 # TODO 备份图片目录
-def backup_chart(purl_bak_string, log_time):
-    backup_name = BACKUP_PRESERVE_TABLE_CHART_DIR + os.sep + 'backup_' + purl_bak_string + '_' + log_time
+def backup_chart(purl_bak_string, log_time, predict_execute_flag=False):
+    if predict_execute_flag:
+        backup_candidate_string = 'Candidate_'
+    else:
+        backup_candidate_string = ''
+
+    backup_name = BACKUP_PRESERVE_TABLE_CHART_DIR + os.sep + 'backup_' + backup_candidate_string + purl_bak_string + '_' + log_time
     # TODO 原始备份目录不存在则跳过备份
     if not os.path.exists(PRESERVE_TABLE_CHART_DIR):
         return
@@ -465,8 +472,13 @@ def backup_cache(purl_bak_string, reserve_file_max_num=1000):
 # TODO 备份Excel文件----默认保留2000个文件 在自动模式下，要求excel_dir目录下始终保存各个项目
 # TODO 最新的结果文件以完成迭代(执行对应项目的第二次)，否则可能会重新迭代
 def backup_excel_file(logger, reserve_file_max_num=2000, log_time=None, link_WW_week_string=None, Silver_url_list=None,
-                      auto_iteration_flag=False):
-    backup_name = BACKUP_EXCEL_DIR + os.sep + 'backup_excel_' + time.strftime('%Y_%m_%d_%H_%M_%S',
+                      auto_iteration_flag=False, predict_execute_flag=False):
+    if predict_execute_flag:
+        backup_candidate_string = 'Candidate_'
+    else:
+        backup_candidate_string = ''
+
+    backup_name = BACKUP_EXCEL_DIR + os.sep + 'backup_excel_' + backup_candidate_string + time.strftime('%Y_%m_%d_%H_%M_%S',
                                 time.localtime(time.time()))
     # todo 原始备份目录不存在则跳过备份
     if not os.path.exists(SRC_EXCEL_DIR):
