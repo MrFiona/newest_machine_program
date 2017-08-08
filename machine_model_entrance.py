@@ -5,13 +5,12 @@
 # File    : machine_model_entrance.py
 # Software: PyCharm Community Edition
 
-from __future__ import absolute_import
+# from __future__ import absolute_import
 
 import os
 import re
 import sys
 import time
-import traceback
 # TODO 执行之前安装所需模块
 from machine_scripts.install_module import install_module;install_module()
 from machine_scripts.custom_log import WorkLogger
@@ -51,17 +50,18 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
     # TODO 获取week周覆盖标记 YES：部分周覆盖
     keep_continuous = judge_get_config('keep_continuous', purl_bak_string)
 
-    _logger.print_message('>>>>>>>>>> Please Wait .... The program is getting Html Data <<<<<<<<<<', file_name)
     # TODO 正常流程
     if reacquire_data_flag == 'YES' and keep_continuous != 'YES':
+        _logger.print_message('>>>>>>>>>> Please Wait .... The program is getting Html Data <<<<<<<<<<', file_name)
         # TODO 获取之前需清理缓存，存在url更新的情况
         backup_cache(purl_bak_string)
     get_url_object = GetUrlFromHtml(html_url_pre='https://dcg-oss.intel.com/ossreport/auto/', logger=_logger)
-    # TODO 获取html
-    get_url_object.get_all_type_data(purl_bak_string, get_only_department=True)
-    # TODO keep_continuous:YES 则更新相应周缓存
-    get_url_object.write_html_by_multi_thread(purl_bak_string, keep_continuous='NO')
-    _logger.print_message('>>>>>>>>>> Get Html Data Finished <<<<<<<<<<', file_name)
+    if on_off_line_save_flag == 'online':
+        # TODO 获取html
+        get_url_object.get_all_type_data(purl_bak_string, get_only_department=True)
+        # TODO keep_continuous:YES 则更新相应周缓存
+        get_url_object.write_html_by_multi_thread(purl_bak_string, keep_continuous='NO')
+        _logger.print_message('>>>>>>>>>> Get Html Data Finished <<<<<<<<<<', file_name)
 
     cache = DiskCache(purl_bak_string)
     Silver_url_list = get_url_list_by_keyword(purl_bak_string, 'Silver')
@@ -85,8 +85,8 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
 
     # TODO verify_flag_flag改为了True，兼容新加的功能 提取最新周的类型 : Silver、Gold、BKC
     insert_object = InsertDataIntoExcel(verify_flag=True, purl_bak_string=purl_bak_string, link_WW_week_string=link_WW_week_string, cache=cache,
-                        silver_url_list=Silver_url_list, section_Silver_url_list=section_Silver_url_list, logger=_logger, log_time=log_time,
-                        keep_continuous=keep_continuous)
+                                        silver_url_list=Silver_url_list, section_Silver_url_list=section_Silver_url_list, logger=_logger, log_time=log_time,
+                                        keep_continuous=keep_continuous)
     predict_execute_flag = insert_object.return_predict_execute_flag()
     _logger.print_message('predict_execute_flag:\t%s' % predict_execute_flag, file_name)
     func_name_list = insert_object.return_name().keys()
@@ -109,7 +109,11 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
         raise InterruptError('Interrupt Error occurred!!!')
 
     insert_object.close_workbook()
+    # todo 返回日期类型字符串列表，不包括candidate
     newest_week_type_string_list = insert_object.return_newest_week_type_string_list()
+    # todo 返回candidate日期字符串，没有candidate则默认：default_bkc_string
+    predict_newest_insert_bkc_string = insert_object.return_predict_bkc_string()
+    _logger.print_message('predict_newest_insert_bkc_string:\t%s' % predict_newest_insert_bkc_string, file_name)
     _logger.print_message('newest_week_type_string_list:\t%s' % newest_week_type_string_list, file_name)
     _logger.print_message('>>>>>>>>>> Inserting Excel Data Finished <<<<<<<<<<', file_name)
 
@@ -119,7 +123,6 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
 
     # TODO 是否验证excel  开启:YES   关闭:NO
     verify_file_flag = judge_get_config('verify_file_flag', purl_bak_string)
-
     if verify_file_flag == 'YES':
         # TODO 完成excel操作后，打开结果excel文件确认
         _logger.print_message(
@@ -133,14 +136,13 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
     _logger.print_message('>>>>>>>>>> Please Wait .... the program is generating Html File <<<<<<<<<<', file_name)
     failed_sheet_name_list = []
     WEEK_NUM = judge_get_config('week_num', purl_bak_string)
-
     _logger.print_message(log_time, file_name)
-
-    win_book = easyExcel(os.getcwd() + os.sep + 'excel_dir' + os.sep + purl_bak_string + '_%s_%s_%d_%s.xlsx' % (WEEK_NUM, link_WW_week_string, len(Silver_url_list), log_time))
-
+    win_book = easyExcel(os.getcwd() + os.sep + 'excel_dir' + os.sep + purl_bak_string + '_%s_%s_%d_%s.xlsx'
+                         % (WEEK_NUM, link_WW_week_string, len(Silver_url_list), log_time))
     for type_name in type_sheet_name_list:
         try:
-            create_save_miss_html(sheet_name=type_name, purl_bak_string=purl_bak_string, Silver_url_list=Silver_url_list, win_book=win_book, WEEK_NUM=WEEK_NUM)
+            create_save_miss_html(sheet_name=type_name, purl_bak_string=purl_bak_string, Silver_url_list=Silver_url_list,
+                                  win_book=win_book, logger=_logger, WEEK_NUM=WEEK_NUM, predict_execute_flag=predict_execute_flag)
             _logger.print_message('Excel table [ %s ] data html has been generated' % type_name, file_name)
         # TODO 异常关闭文件
         except:
@@ -167,7 +169,7 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
         try:
             # TODO 发送email
             _logger.print_message('>>>>>>>>>> Please Wait .... The program starts sending Email <<<<<<<<<<', file_name)
-            SendEmail(purl_bak_string, _logger)
+            SendEmail(purl_bak_string=purl_bak_string, logger=_logger, predict_newest_insert_bkc_string=predict_newest_insert_bkc_string)
             _logger.print_message('>>>>>>>>>> Send the Email Finished <<<<<<<<<<', file_name)
         except:
             traceback_print_info(logger=_logger)
@@ -175,10 +177,10 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
     # TODO 备份excel文件
     _logger.print_message('>>>>>>>>>> Please Wait .... The program is backing up the Excel File <<<<<<<<<<', file_name)
     backup_excel_file(logger=_logger, log_time=log_time, link_WW_week_string=link_WW_week_string, Silver_url_list=Silver_url_list,
-                      auto_iteration_flag=auto_run_flag)
+                      auto_iteration_flag=auto_run_flag, predict_execute_flag=predict_execute_flag)
     _logger.print_message('>>>>>>>>>> Backing up Excel File Finished <<<<<<<<<<', file_name)
     confirm_time = time.time() - start
-    return  confirm_time, newest_week_type_string_list, link_WW_week_string, Silver_url_list
+    return  confirm_time, newest_week_type_string_list, link_WW_week_string, Silver_url_list, predict_execute_flag, predict_newest_insert_bkc_string
 
 
 @performance_analysis_decorator('mkm_run.prof')
@@ -229,23 +231,25 @@ def machine_main():
         start_time = time.time()
         # TODO 是否离线标记获取
         on_off_line_save_flag = judge_get_config('on_off_line_save_flag', purl_bak_string)
-        confirm_time, newest_week_type_string_list, link_WW_week_string, Silver_url_list = \
-            machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save_flag, AUTO_RUN_FLAG)
+        confirm_time, newest_week_type_string_list, link_WW_week_string, Silver_url_list, predict_execute_flag,\
+        predict_newest_insert_bkc_string = machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save_flag, AUTO_RUN_FLAG)
 
         # TODO 生成趋势图
         chart_start = time.time()
         _logger.print_message('>>>>>>>>>> Please Wait .... The program is generating the Image File <<<<<<<<<<', file_name)
-        generate_chart(purl_bak_string=purl_bak_string, log_time=log_time, logger=_logger, auto_run_flag=AUTO_RUN_FLAG)
+        generate_chart(purl_bak_string=purl_bak_string, log_time=log_time, logger=_logger, auto_run_flag=AUTO_RUN_FLAG,
+                       predict_execute_flag=predict_execute_flag)
         _logger.print_message('>>>>>>>>>> generating the Image File Finished <<<<<<<<<<', file_name)
         chart_time = time.time() - chart_start
         # TODO 备份图片
         _logger.print_message('>>>>>>>>>> Please Wait .... The program is backing up the Image File <<<<<<<<<<', file_name)
-        backup_chart(purl_bak_string, log_time)
+        backup_chart(purl_bak_string, log_time, predict_execute_flag)
         _logger.print_message('>>>>>>>>>> Backing up Image File Finished <<<<<<<<<<', file_name)
         # TODO 更改excel名称
         _logger.print_message('>>>>>>>>>> Please Wait .... The program is Renaming the Excel File <<<<<<<<<<', file_name)
         rename_log_file_name(logger=_logger, purl_bak_string=purl_bak_string, Silver_url_list=Silver_url_list,
-                             newest_week_type_string_list=newest_week_type_string_list, log_time=log_time)
+                             newest_week_type_string_list=newest_week_type_string_list, log_time=log_time,
+                             predict_execute_flag=predict_execute_flag)
         _logger.print_message('>>>>>>>>>> Renaming the Excel File Finished <<<<<<<<<<', file_name)
         end_time = time.time()
         _logger.print_message('Confirm Excel and Send Email Time:\t%.5f' % confirm_time, file_name)
@@ -258,17 +262,27 @@ def machine_main():
 
         # TODO 修改日志名与excel同名
         rename_log_file_name(logger=None, purl_bak_string=purl_bak_string, Silver_url_list=Silver_url_list,
-                             newest_week_type_string_list=newest_week_type_string_list, log_time=log_time, rename_log=True)
-    except (InterruptError, KeyboardInterrupt):
+                             newest_week_type_string_list=newest_week_type_string_list, log_time=log_time,
+                             rename_log=True, predict_execute_flag=predict_execute_flag)
+    except InterruptError:
+        _logger.print_message('Insert the data exception caused by the exit', file_name, 50)
         # TODO 程序中断清理文件
         if not LOGGER_CLOSE_FLAG:
-            _logger.print_message('The cleanup file tag is already open:\t%s' % INTERRUPTED_CLEAR_FILE_CONDITION_FLAG, file_name, 30)
+            _logger.print_message('The cleanup file tag is already open:\t%s' % INTERRUPTED_CLEAR_FILE_CONDITION_FLAG, file_name, 50)
+        if INTERRUPTED_CLEAR_FILE_CONDITION_FLAG:
+            interrupt_clear_excel_file(log_time, _logger)
+    except KeyboardInterrupt:
+        _logger.print_message('Abort by user request!!!', file_name, 50)
+        # TODO 程序中断清理文件
+        if not LOGGER_CLOSE_FLAG:
+            _logger.print_message('The cleanup file tag is already open:\t%s' % INTERRUPTED_CLEAR_FILE_CONDITION_FLAG,
+                                  file_name, 50)
         if INTERRUPTED_CLEAR_FILE_CONDITION_FLAG:
             interrupt_clear_excel_file(log_time, _logger)
     # todo 内存异常时选择终止程序
     except SystemExit:
         if not LOGGER_CLOSE_FLAG:
-            _logger.print_message('Check out insufficient memory to exit', file_name, 30)
+            _logger.print_message('Check out insufficient memory to exit', file_name, 50)
         else:
             pass
 
