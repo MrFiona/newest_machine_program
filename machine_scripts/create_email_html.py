@@ -24,13 +24,14 @@ except ImportError:
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-def create_save_miss_html(sheet_name, Silver_url_list, purl_bak_string, win_book, WEEK_NUM, type_string=''):
+def create_save_miss_html(sheet_name, Silver_url_list, purl_bak_string, win_book, WEEK_NUM, logger,
+                          predict_execute_flag=False, type_string='',):
     if sheet_name != 'Trend':
         if sheet_name == 'Save-Miss':
             page = PyH('excel结果html表格数据')
             page << h1(sheet_name + ' result')
             cell_data_list = get_report_data(sheet_name, win_book, purl_bak_string=purl_bak_string, Silver_url_list=Silver_url_list, WEEK_NUM=WEEK_NUM
-                                             ,type_string='' if type_string == '' else 'manual_')
+                                             ,type_string='' if type_string == '' else 'manual_', predict_execute_flag=predict_execute_flag, logger=logger)
 
             mytab = table(border="1", cellspacing="1px")
             for i in range(len(cell_data_list)):
@@ -46,7 +47,7 @@ def create_save_miss_html(sheet_name, Silver_url_list, purl_bak_string, win_book
             page = PyH('excel结果html表格数据')
             page << h1(sheet_name + ' result')
             cell_data_list = get_report_data(sheet_name, win_book, purl_bak_string=purl_bak_string, Silver_url_list=Silver_url_list, WEEK_NUM=WEEK_NUM
-                                             , type_string='' if type_string == '' else 'manual_')
+                                             ,type_string='' if type_string == '' else 'manual_', predict_execute_flag=predict_execute_flag, logger=logger)
             mytab = table(border="1", cellspacing="1px")
 
             for k in range(len(cell_data_list)):
@@ -65,7 +66,7 @@ def create_save_miss_html(sheet_name, Silver_url_list, purl_bak_string, win_book
             page = PyH('excel结果html表格数据')
             page << h1(sheet_name + ' result')
             cell_data_list = get_report_data(sheet_name, win_book, purl_bak_string=purl_bak_string, Silver_url_list=Silver_url_list, WEEK_NUM=WEEK_NUM
-                                             , type_string='' if type_string == '' else 'manual_')
+                                             , type_string='' if type_string == '' else 'manual_', predict_execute_flag=predict_execute_flag, logger=logger)
             mytab = table(border="1", cellspacing="1px")
 
             cell_data_list[0][2] = ''
@@ -102,7 +103,7 @@ def create_save_miss_html(sheet_name, Silver_url_list, purl_bak_string, win_book
 
     else:
         get_report_data(sheet_name, win_book, purl_bak_string=purl_bak_string, Silver_url_list=Silver_url_list, WEEK_NUM=WEEK_NUM
-                        , type_string='' if type_string == '' else 'manual_')
+                        , type_string='' if type_string == '' else 'manual_', predict_execute_flag=predict_execute_flag, logger=logger)
 
 
 
