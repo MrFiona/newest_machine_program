@@ -59,7 +59,7 @@ def manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list):
     try:
         for type_name in type_sheet_name_list:
             create_save_miss_html(sheet_name=type_name, purl_bak_string=purl_bak_string, Silver_url_list=Silver_url_list,
-                                win_book=win_book, WEEK_NUM=100, type_string='manual_')
+                                win_book=win_book, WEEK_NUM=100, type_string='manual_', logger=_logger)
     except:
         traceback_print_info(logger=_logger)
         global WIN_BOOK_CLOSE_FLAG
