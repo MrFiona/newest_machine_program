@@ -34,7 +34,7 @@ from setting_global_variable import SRC_EXCEL_DIR, PROGRAM_NAME_ID_DICT
 from machine_scripts.public_use_function import (get_interface_config, judge_get_config)
 from machine_scripts.common_interface_func import (verify_validity_url, hidden_data_by_column)
 from machine_scripts.predict_extract_data import PredictGetData
-from machine_scripts.common_interface_branch_func import analysis_url_address_string
+from machine_scripts.common_interface_branch_func import analysis_url_address_string, traceback_print_info
 
 
 
@@ -151,12 +151,15 @@ class InsertDataIntoExcel(object):
 
         # TODO 统一管理对象
         self.predict_extract_object = None
-        self.save_miss_insert_bkc_string = 'default_bkc'
-        self._predict_url = self.predict_week_insert()
+        self.save_miss_insert_bkc_string = 'default_bkc_string'
         self.predict_execute_flag = False
+        self._predict_url = self.predict_week_insert()
         self.logger.print_message('_predict_url:\t%s' % self._predict_url, self.__file_name)
 
         self.logger.print_message('>>>>>>>>>> Excel Initialization End <<<<<<<<<<', self.__file_name)
+
+    def return_predict_bkc_string(self):
+        return self.save_miss_insert_bkc_string
 
     def predict_week_insert(self):
         program_id = PROGRAM_NAME_ID_DICT.get(self.purl_bak_string)
@@ -168,9 +171,10 @@ class InsertDataIntoExcel(object):
             predict_url = 'https://dcg-oss.intel.com/get_last_candidate_link/' + program_id
             try:
                 return_result_url = urllib2.urlopen(predict_url).read()
-                self.predict_execute_flag = True
+                # return_result_url = 'https://dcg-oss.intel.com/test_report/test_report/6495/0/'
                 # TODO 返回字符串不为0则未生成静态页面，数据从指定渠道获取
                 if len(return_result_url) != 0:
+                    self.predict_execute_flag = True
                     self.predict_insert_flag = True
                     self.logger.print_message('predict_insert_flag:\t%s' % self.predict_insert_flag, self.__file_name)
                     self.logger.print_message('return_result_url:\t%s' % return_result_url, self.__file_name)
@@ -180,6 +184,7 @@ class InsertDataIntoExcel(object):
                     self.save_miss_insert_bkc_string = self.predict_extract_object.return_save_miss_bkc_string()
                     return return_result_url
             except:
+                # traceback_print_info(self.logger)
                 self.logger.print_message('The Candidate date is not exists:\t%s' % program_id, self.__file_name, 50)
 
     def return_predict_execute_flag(self):
@@ -605,13 +610,19 @@ class InsertDataIntoExcel(object):
                 obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
 
                 if j == 0:
-                    Silver_BkC_string, header_length, date_string, url_list, header_list, cell_data_list = obj.get_sw_data('SW Configuration', self.verify_flag)
+                    if 'Purley-FPGA/Silver/2017%20WW31' in self.Silver_url_list[j]:
+                        Silver_BkC_string, header_length, date_string, url_list, header_list, cell_data_list = obj.get_sw_data_1('SW Configuration', self.verify_flag)
+                    else:
+                        Silver_BkC_string, header_length, date_string, url_list, header_list, cell_data_list = obj.get_sw_data('SW Configuration', self.verify_flag)
                     if self.keep_continuous != 'YES':
                         self.newest_week_type_string_list.append(Silver_BkC_string)
                     elif self.keep_continuous == 'YES' and self.equal_silver_list_flag:
                         self.newest_week_type_string_list.append(Silver_BkC_string)
                 else:
-                    Silver_BkC_string, header_length, date_string, url_list, header_list, cell_data_list = obj.get_sw_data('SW Configuration', True)
+                    if 'Purley-FPGA/Silver/2017%20WW31' in self.Silver_url_list[j]:
+                        Silver_BkC_string, header_length, date_string, url_list, header_list, cell_data_list = obj.get_sw_data_1('SW Configuration', True)
+                    else:
+                        Silver_BkC_string, header_length, date_string, url_list, header_list, cell_data_list = obj.get_sw_data('SW Configuration', True)
                     if self.keep_continuous == 'YES' and j == self.actual_newest_week_position:
                         self.newest_week_type_string_list.append(Silver_BkC_string)
 
@@ -683,13 +694,19 @@ class InsertDataIntoExcel(object):
                 obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
 
                 if j == 0:
-                    Silver_BkC_string, header_length, date_string, url_list, header_list, cell_data_list = obj.get_sw_data('SW Configuration', self.verify_flag)
+                    if 'Purley-FPGA/Silver/2017%20WW31' in self.Silver_url_list[j]:
+                        Silver_BkC_string, header_length, date_string, url_list, header_list, cell_data_list = obj.get_sw_data_1('SW Configuration', self.verify_flag)
+                    else:
+                        Silver_BkC_string, header_length, date_string, url_list, header_list, cell_data_list = obj.get_sw_data('SW Configuration', self.verify_flag)
                     if self.keep_continuous != 'YES':
                         self.newest_week_type_string_list.append(Silver_BkC_string)
                     elif self.keep_continuous == 'YES' and self.equal_silver_list_flag:
                         self.newest_week_type_string_list.append(Silver_BkC_string)
                 else:
-                    Silver_BkC_string, header_length, date_string, url_list, header_list, cell_data_list = obj.get_sw_data('SW Configuration', True)
+                    if 'Purley-FPGA/Silver/2017%20WW31' in self.Silver_url_list[j]:
+                        Silver_BkC_string, header_length, date_string, url_list, header_list, cell_data_list = obj.get_sw_data_1('SW Configuration', True)
+                    else:
+                        Silver_BkC_string, header_length, date_string, url_list, header_list, cell_data_list = obj.get_sw_data('SW Configuration', True)
                     if self.keep_continuous == 'YES' and j == self.actual_newest_week_position:
                         self.newest_week_type_string_list.append(Silver_BkC_string)
 
@@ -1349,7 +1366,8 @@ class InsertDataIntoExcel(object):
                 for ele in range(len(cell_data_list)):
                     # 以数字开头的元素前面加Nic
                     match_obj = re.match('\s+\d+', str(cell_data_list[ele][0]))
-                    if match_obj:
+                    match_obj_back = re.match('^\d', str(cell_data_list[ele][0]))
+                    if match_obj or match_obj_back:
                         cell_data_list[ele][0] = 'Nic' + cell_data_list[ele][0]
                     cell_data_list[ele][0] = cell_data_list[ele][0].lstrip(' ')
 
@@ -1386,7 +1404,8 @@ class InsertDataIntoExcel(object):
                 for ele in range(len(cell_data_list)):
                     # 以数字开头的元素前面加Nic
                     match_obj = re.match('\s+\d+', str(cell_data_list[ele][0]))
-                    if match_obj:
+                    match_obj_back = re.match('^\d', str(cell_data_list[ele][0]))
+                    if match_obj or match_obj_back:
                         cell_data_list[ele][0] = 'Nic' + cell_data_list[ele][0]
                     cell_data_list[ele][0] = cell_data_list[ele][0].lstrip(' ')
                     
