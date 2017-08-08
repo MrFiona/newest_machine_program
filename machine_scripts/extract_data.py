@@ -20,8 +20,8 @@ from logging import ERROR, CRITICAL
 from bs4 import BeautifulSoup
 
 from machine_scripts.cache_mechanism import DiskCache
-from machine_scripts.public_use_function import remove_line_break
-from setting_global_variable import REPORT_HTML_DIR
+from machine_scripts.public_use_function import remove_line_break, judge_get_config
+from setting_global_variable import REPORT_HTML_DIR, CONFIG_FILE_PATH
 from machine_scripts.common_interface_func import remove_non_alphanumeric_characters
 from machine_scripts.common_interface_branch_func import extract_sw_data_deal_bracket
 
@@ -352,8 +352,11 @@ class GetAnalysisData(object):
 
         print '\033[32mpage_url:\t\033[0m', page_url
         # _logger.print_message('page_url:\t%s' % page_url, file_name)
-        html = urllib2.urlopen(page_url, context=context).read()
-        self.cache[page_url] = html
+        # TODO 是否离线标记获取
+        on_off_line_save_flag = judge_get_config('on_off_line_save_flag', self.purl_bak_string)
+        if on_off_line_save_flag == 'online':
+            html = urllib2.urlopen(page_url, context=context).read()
+            self.cache[page_url] = html
 
     # 判断插入到cell_data_list的次数并插入数据
     # 根据表头列数字和cell_data_list进一步处理,生成新的cell_data_list,effective_num_list
@@ -806,6 +809,43 @@ class GetAnalysisData(object):
                                       definition_log_level=ERROR)
             return 'Error', 0, self.date_string, [], [], []
 
+    def get_sw_data_1(self, data_type, bkc_flag=True):
+        try:
+            Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self.judge_silver_bkc_func(data_type, bkc_flag)
+            if not tr_list:
+                return Silver_Gold_BKC_string, 0, self.date_string, [], [], []
+            url_list = []
+            soup_header = BeautifulSoup(str(tr_list[0]), 'html.parser')
+            header_td_list = soup_header.find_all('td')
+            for header_td in header_td_list[1:]:
+                header_td_soup = BeautifulSoup(str(header_td), 'html.parser')
+                td_string_list = list(header_td_soup.strings)
+                header_list.extend(td_string_list)
+            header_list = list(remove_line_break(object_string_list=header_list, first_method=False, second_method=True, line_break=True))
+            header_list = header_list[:4]
+            header_list = remove_non_alphanumeric_characters(header_list)
+            header_length = len(header_list)
+
+            for tr_ele in tr_list[1:]:
+                tr_string_soup = BeautifulSoup(str(tr_ele), 'html.parser')
+                tr_string_list = list(tr_string_soup.strings)
+                tr_string_list = remove_non_alphanumeric_characters(tr_string_list)
+                tr_string_list = list(remove_line_break(object_string_list=tr_string_list, empty_string=True, second_method=True, first_method=False))
+                tr_string_list = tr_string_list[-6:-2]
+                cell_data_list.append(tr_string_list)
+
+                obj_list = re.findall('<a href="(.*?)">', str(tr_ele), re.M | re.S)
+                if obj_list:
+                    url_list.append(list(obj_list))
+            # print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
+            # print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
+            # print '\033[31murl_list:\t\033[0m', url_list, len(url_list)
+            return Silver_Gold_BKC_string, header_length, self.date_string, url_list, header_list, cell_data_list
+        except:
+            self.logger.print_message(msg='Get [ %s ] Orignal Data Error' % self.data_url, logger_name=self.__file_name,
+                                      definition_log_level=ERROR)
+            return 'Error', 0, self.date_string, [], [], []
+
     def get_ifwi_data(self, data_type, bkc_flag=True):
         try:
             Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self.judge_silver_bkc_func(data_type, bkc_flag)
@@ -1241,18 +1281,19 @@ if __name__ == '__main__':
     import time
     start = time.time()
     key_url_list = []
-    # f = open(os.getcwd() + os.sep + 'report_html' + os.sep + 'url_info.txt')
-    # for line in f:
-    #     if 'NFVi' in line and 'Silver' in line:
-    #         key_url_list.append(line.strip('\n'))
+    f = open(os.getcwd() + os.sep + 'report_html' + os.sep + 'url_info.txt')
+    for line in f:
+        if 'Purley-FPGA' in line and 'Silver' in line:
+            key_url_list.append(line.strip('\n'))
 
-    cache = DiskCache('Bakerville')
-    key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW28/6359_Silver.html',
-                    'https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW25/6211_BKC.html']
+    cache = DiskCache('Purley-FPGA')
+    # key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/BKC/2017%20WW31/6464_BKC.html',]
+                    # 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW25/6211_BKC.html']
     for url in key_url_list:
-        obj = GetAnalysisData(url, 'Bakerville', get_info_not_save_flag=True, insert_flag=True, cache=cache)
+        obj = GetAnalysisData(url, 'Purley-FPGA', get_info_not_save_flag=False, insert_flag=True, cache=cache)
         # obj.get_caseresult_data('Platform Integration Validation Result', True)
-        obj.get_sw_data('SW Configuration', True)
+        # obj.get_sw_data_1('SW Configuration', True)
+        obj.get_platform_data('Platform Integration Validation Result', True)
     print time.time() - start
     # import pstats
     # p = pstats.Stats('mkm_run.prof')
