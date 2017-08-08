@@ -23,6 +23,7 @@ from setting_global_variable import (CONFIG_FILE_PATH, MANUAL_SRC_SAVE_MISS_WEEK
     REPORT_HTML_DIR, SRC_SAVE_MISS_WEEK_DIR, IMAGE_ORIGINAL_RESULT, MACHINE_LOG_DIR,
     MANUAL_IMAGE_ORIGINAL_RESULT, ORIGINAL_HTML_RESULT, MANUAL_ORIGINAL_HTML_RESULT)
 
+_file_name = os.path.split(__file__)[1]
 
 
 # TODO 获取配置参数信息
@@ -357,8 +358,8 @@ class easyExcel(object):
 
 
 # TODO 读取Excel表数据----用于发邮件
-def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK_NUM, cell_data_list=None,
-                    type_string=''):
+def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK_NUM, logger, cell_data_list=None,
+                    type_string='', predict_execute_flag=False):
     if type_string == '':
         actually_week_info_dir = SRC_SAVE_MISS_WEEK_DIR
     else:
@@ -370,6 +371,12 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
 
     # TODO 新增对周数进行统计 方便定位最新周的位置 最新周从后往前算
     if sheet_name == 'Save-Miss':
+        if predict_execute_flag:
+            save_miss_left_location = WEEK_NUM + 3 - len(Silver_url_list) - 1
+        else:
+            save_miss_left_location = WEEK_NUM + 3 - len(Silver_url_list)
+        logger.print_message('save_miss_left_location:\t%s' % save_miss_left_location, _file_name)
+
         for i in range(1, 8):
             temp_cell_list = []
             for j in range(1, 3):
@@ -385,7 +392,7 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
                     data = ''
                 temp_cell_list.append(data)
 
-            for k in range(WEEK_NUM + 3 - len(Silver_url_list), WEEK_NUM + 4):
+            for k in range(save_miss_left_location, WEEK_NUM + 4):
                 data = win_book.getCell(sheet=sheet_name, row=i, col=k)
                 if i in (1, 2, 6, 7) and isinstance(data, float):
                     data = int(round(data))
@@ -399,7 +406,7 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
 
         # TODO 统计实际周数存放指定文件 已与用户约定原始数据删除需要删除save-miss对应标记
         week_info_list = []
-        for col in range(WEEK_NUM - len(Silver_url_list) + 3, WEEK_NUM + 3):
+        for col in range(save_miss_left_location, WEEK_NUM + 3):
             week_data = win_book.getCell(sheet=sheet_name, row=3, col=col)
             week_compile = re.compile('\d+WW\d+')
             if re.match(week_compile, str(week_data)):
@@ -413,13 +420,18 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
 
     elif sheet_name in ('NewSi', 'ExistingSi'):
         stop_flag = False
+        if predict_execute_flag:
+            new_exist_left_location = (WEEK_NUM - len(Silver_url_list) + 1 - 1) * 13
+        else:
+            new_exist_left_location = (WEEK_NUM - len(Silver_url_list) + 1) * 13
+        logger.print_message('new_exist_left_location:\t%s' % new_exist_left_location, _file_name)
+
         for i in range(3, 200):
             temp_cell_list = []
             # NewSi和existingSi用上一周的
-            for j in range((WEEK_NUM - len(Silver_url_list) + 1) * 13 + 3,
-                           (WEEK_NUM - len(Silver_url_list) + 1) * 13 + 1 + 13):
+            for j in range(new_exist_left_location + 3, new_exist_left_location + 1 + 13):
                 data = win_book.getCell(sheet=sheet_name, row=i, col=j)
-                if j == ((WEEK_NUM - len(Silver_url_list) + 1) * 13 + 1 + 1) and not data:
+                if j == (new_exist_left_location + 1 + 1) and not data:
                     stop_flag = True
 
                 if data is None:
@@ -441,6 +453,12 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
 
     # TODO 为后续作图提供数据  修复bug 在选择部分周时出现无法提取数据 2017-07-03
     elif sheet_name == 'Trend':
+        if predict_execute_flag:
+            trend_right_location = len(Silver_url_list) + 2 + 1
+        else:
+            trend_right_location = len(Silver_url_list) + 2
+        logger.print_message('trend_right_location:\t%s' % trend_right_location, _file_name)
+
         if type_string == '':
             write_file_dir = IMAGE_ORIGINAL_RESULT
         else:
@@ -450,7 +468,7 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
             os.makedirs(write_file_dir)
         write_file = open(write_file_dir + os.sep + purl_bak_string + '_image_data.txt', 'w')
 
-        for i in range(1, len(Silver_url_list) + 2):
+        for i in range(1, trend_right_location):
             temp_cell_list = []
             for j in range(1, 8):
                 data = win_book.getCell(sheet=sheet_name, row=i, col=j)
@@ -464,14 +482,19 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
 
     else:
         fstop_flag = False
-        m = (WEEK_NUM - len(Silver_url_list)) * 41 + 35 + 10 + 2
+        if predict_execute_flag:
+            case_result_left_location = (WEEK_NUM - len(Silver_url_list) - 1) * 41 + 35 + 10 + 2
+        else:
+            case_result_left_location = (WEEK_NUM - len(Silver_url_list)) * 41 + 35 + 10 + 2
+        logger.print_message('case_result_left_location:\t%s' % case_result_left_location, _file_name)
+
         for i in range(7, 400):
             temp_cell_list = []
-            for j in range(m, m + 4):
+            for j in range(case_result_left_location, case_result_left_location + 4):
                 data = win_book.getCell(sheet=sheet_name, row=i, col=j)
                 if data is None:
                     data = ''
-                if (j == m + 1) and data == '':
+                if (j == case_result_left_location + 1) and data == '':
                     fstop_flag = True
 
                 temp_cell_list.append(data)
