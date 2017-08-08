@@ -169,9 +169,11 @@ class PredictGetData(object):
         except:
             return 'Error', [], []
 
+
+
 if __name__ == '__main__':
     # https://dcg-oss.intel.com/test_report/test_report/6446/0/
     # https://oss-sh.ccr.corp.intel.com/test_report/test_report/6421/0/
-    obj = PredictGetData('https://dcg-oss.intel.com/test_report/test_report/6446/0/')
+    obj = PredictGetData('', 'https://dcg-oss.intel.com/test_report/test_report/6495/0/')
     # obj.predict_get_sw_data()
     obj.predict_get_ifwi_data()
