@@ -67,7 +67,7 @@ def get_max_num(first_data, second_data, third_data, fourth_data, fifth_data,
         max_positive_num = 0
     return max_negative_num, max_positive_num
 
-def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_flag=False):
+def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_flag=False, predict_execute_flag=False):
     file_list = glob.glob(SRC_EXCEL_DIR + os.sep + '*.xlsx')
     object_excel_file = None
     if type_string == '':
@@ -167,10 +167,14 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
         plt.plot(range(1,max_length + 1), fifth_data, 'o--c', linewidth=2)
         autolabel(fifth_data)
 
+    if predict_execute_flag:
+        candidate_string = 'Candidate_'
+    else:
+        candidate_string = ''
 
     plt.xlabel(u"x-axis : Weeks", fontsize=18,  color='blue')
     plt.ylabel(u"y-axis : Value", fontsize=18,  color='blue')
-    plt.title(u"%s Excel Table Charts (Line Charts)\n" % purl_bak_string, fontsize=22,  color='red')
+    plt.title(u"%s Excel Table Charts (%s Line Charts)\n" % (purl_bak_string, candidate_string.replace('_', '')), fontsize=22,  color='red')
 
     # plt.xticks(np.arange(- 0.2 + 2 * bar_width, len(weeks_list), 2), weeks_list, fontsize = 10, rotation=-45)
     plt.xticks(index - 0.2 + 2 * bar_width, weeks_list, fontsize = 10, rotation=-45)
@@ -195,8 +199,8 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
     if not os.path.exists(PRESERVE_TABLE_CHART_DIR):
         os.makedirs(PRESERVE_TABLE_CHART_DIR)
 
-    foo_fig.savefig(PRESERVE_TABLE_CHART_DIR + os.sep + purl_bak_string + chart_link_string + '_table_chart' + '_' +
-                    log_time + '.png', format='png', dpi=fig.dpi)
+    foo_fig.savefig(PRESERVE_TABLE_CHART_DIR + os.sep + purl_bak_string + chart_link_string + '_table_chart_' +
+                    candidate_string + log_time + '.png', format='png', dpi=fig.dpi)
     # TODO 自动运行则不开启
     if not auto_run_flag:
         plt.show()
