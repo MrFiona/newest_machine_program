@@ -37,6 +37,7 @@ class DiskCache(object):
             with open(path, 'rb') as fp:
                 return pickle.load(fp)
         else:
+            print path
             raise KeyError(url + ' does not exist')
 
     def __setitem__(self, url, result):
