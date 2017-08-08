@@ -1,0 +1,406 @@
+                <span class="sh2">&nbsp; Platform Integration Validation Result </span>
+                <div class="FoldIcon">
+                    <div id="PlatformIntegrationValidationResultBtn" class="CollapseBtn not-collapsed" data-toggle="collapse" href="#collapsePlatformIntegrationValidationResult">
+</div>
+                </div>
+            </div>
+
+            <div id="collapsePlatformIntegrationValidationResult" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <table class="MsoNormalTable" width="100%">
+                        <tbody><tr>
+                            <th rowspan="15" width="9%">Purley_FPGA Test Execution Status</th>
+                            <th width="9%">Domains</th>
+                            <th width="8%">Attempted</th>
+                            <th width="8%">Blocked</th>
+                            <th width="8%">No Run</th>
+                            <th width="8%">Failed</th>
+                            <th width="8%">Passed</th>
+                            <th width="8%">Total</th>
+                            <th width="8%">% Attempted</th>
+                            <th width="8%">Passed% (per attempted)</th>
+                            <th width="8%">Pass%</th>
+                            <th width="10%">Key Sightings</th>
+                        </tr>
+                        
+                        
+                        <tr>
+                            
+                             <td>Power Management</td>
+                            
+                             <td>7</td>
+                             <td>1</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>7</td>
+                             <td>8</td>
+                             <td>87.50%</td>
+                             <td>7/7</td>
+                             <td>87.50%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Networking</td>
+                            
+                             <td>7</td>
+                             <td>1</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>7</td>
+                             <td>8</td>
+                             <td>87.50%</td>
+                             <td>7/7</td>
+                             <td>87.50%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>USB</td>
+                            
+                             <td>5</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>5</td>
+                             <td>5</td>
+                             <td>100.00%</td>
+                             <td>5/5</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>FPGA</td>
+                            
+                             <td>3</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>3</td>
+                             <td>3</td>
+                             <td>100.00%</td>
+                             <td>3/3</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Video</td>
+                            
+                             <td>1</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>1</td>
+                             <td>1</td>
+                             <td>100.00%</td>
+                             <td>1/1</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Storage</td>
+                            
+                             <td>4</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>4</td>
+                             <td>4</td>
+                             <td>100.00%</td>
+                             <td>4/4</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>PCIe</td>
+                            
+                             <td>2</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>2</td>
+                             <td>2</td>
+                             <td>100.00%</td>
+                             <td>2/2</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Manageability</td>
+                            
+                             <td>6</td>
+                             <td>1</td>
+                             <td>0</td>
+                            
+                            <td style="background:#ff6633">1</td>
+                            
+                             <td>5</td>
+                             <td>7</td>
+                             <td>85.71%</td>
+                             <td>5/6</td>
+                             <td>71.43%</td>
+                             <td>
+                                 
+                                     
+                                        <p><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345465" style="color:#0071c5">5345465</a></p>
+                                     
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Virtualization</td>
+                            
+                             <td>6</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>6</td>
+                             <td>6</td>
+                             <td>100.00%</td>
+                             <td>6/6</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Memory</td>
+                            
+                             <td>2</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>2</td>
+                             <td>2</td>
+                             <td>100.00%</td>
+                             <td>2/2</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Stress &amp; Stability</td>
+                            
+                             <td>5</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>5</td>
+                             <td>5</td>
+                             <td>100.00%</td>
+                             <td>5/5</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Security</td>
+                            
+                             <td>2</td>
+                             <td>3</td>
+                             <td>0</td>
+                            
+                            <td style="background:#ff6633">1</td>
+                            
+                             <td>1</td>
+                             <td>5</td>
+                             <td>40.00%</td>
+                             <td>1/2</td>
+                             <td>20.00%</td>
+                             <td>
+                                 
+                                     
+                                        <p><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345424" style="color:#0071c5">5345424</a></p>
+                                     
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Processor</td>
+                            
+                             <td>1</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>1</td>
+                             <td>1</td>
+                             <td>100.00%</td>
+                             <td>1/1</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Summary</td>
+                            
+                             <td>51</td>
+                             <td>6</td>
+                             <td>0</td>
+                            
+                            <td style="background:#ff6633">2</td>
+                            
+                             <td>49</td>
+                             <td>57</td>
+                             <td>89.47%</td>
+                             <td>49/51</td>
+                             <td>85.96%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </tbody></table><br>
+                    <div class="stable">Detail case result could be found in this <a href="http://dcg-oss.intel.com/test_report/report_case/4112/BKC/Purley_FPGA" target="_blank" style="text-decoration: underline;">page</a></div>
+                    <div style="border:1px solid #000000">
+                        <div id="cases_domain_chart" style="width:70%;float:left;"></div>
+                        <div id="cases_pie_chart" style="width:28%;float:right;border-left:1px solid #000000"></div>
+                        <div style="clear:both;"></div>
+                        <div style="border-top:1px solid #000000" id="cases_history_chart"></div>
+                    </div>
+
+                <br>
+                
+
+                </div>
+            </div>
+            
+            <script>
+                document.getElementById("PlatformIntegrationValidationResultBtn").setAttribute("class","CollapseBtn not-collapsed collapsed")
+                document.getElementById("collapsePlatformIntegrationValidationResult").setAttribute("class","panel-collapse collapse ")
+            </script>
+            
+        </div>
+    
+        
+    
+    
+        <br>
+        <br>
+    </div>
+
+</div>
+
+</body></html>

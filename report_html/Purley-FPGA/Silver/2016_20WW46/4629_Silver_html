@@ -1,0 +1,1889 @@
+<!DOCTYPE html><html lang="en"><head>
+	<title>One Stop Shop Reports</title>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./4629_Silver_files/bootstrap.css">
+	<script src="./4629_Silver_files/jquery.min.js"></script>
+    <script src="./4629_Silver_files/highcharts.js"></script>
+    <link href="/templates/css/showLoading.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/templates/js/jquery.showLoading.min.js"></script>
+    <script>
+        
+    </script>
+</head>
+<body>
+	<div id="content">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Test Report</title>
+<link rel="stylesheet" type="text/css" href="./4629_Silver_files/report_frame.css">
+<script src="./4629_Silver_files/highcharts.js"></script>
+<script src="./4629_Silver_files/table.js"></script>
+<script src="./4629_Silver_files/bootstrap.min.js"></script>
+<style type="text/css">
+    .stable,.sh1,.sh2,.sh3 {font-family:'Intel Clear',Arial,sans-serif;}
+    .sh2{font-size: 15px;font-weight:bold;overflow: hidden;color: #000000;}
+    .sh3{font-size: 13px;overflow: hidden;color: #000000;}
+    .MsoNormalTable .sh2{font-size: 15px;font-weight:bold;overflow: hidden;text-align: left;margin: 4px 0;color: #000000}
+    .DetailHeardTable .sh2{font-size: 15px;font-weight:bold;overflow: hidden;text-align: left;margin: 4px 0;color: #000000}
+    .ReportHead{font-size: 22px;font-weight: bold;background: #ffffff;color: #0071c5;margin: 12px 0;overflow: hidden; text-align:center;}
+    .MsoNormalTable{font-size:10.0pt;border-width: 1px;border-color:Black;border-style:solid;border-collapse: collapse;width:100%;}
+    .MsoNormalTable td{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:9.5pt;padding-left:5px;padding-right:5px;text-align:center;padding-bottom:5px;padding-top:5px;}
+    .MsoNormalTable th{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:9.5pt;padding-left:5px;padding-right:5px;background-color:#A3CBFF;color:#000000;font-weight:bold;text-align:center;padding-bottom:5px;padding-top:5px;}
+    .DetailTable{font-size:10.0pt;border-width: 1px;border-color:Black;border-style:solid;border-collapse: collapse;width:100%;}
+    .DetailTable td{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:10.0pt;padding-left:10px;padding-right: 10px;text-align: left;padding-bottom:5px;padding-top:5px;}
+    .DetailTable th{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:10.0pt;padding-left:10px;background-color:#A3CBFF;color:#000000;font-weight:bold;padding-right: 10px;text-align: left;padding-bottom:5px;padding-top:5px;}
+    .NormalTable td{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:10.0pt;}
+    .DetailHeardTable{font-size:10.0pt;border-width: 1px;border-collapse: collapse;}
+    .DetailHeardTable td{ border-width: 1px;border-color:Black;border-style:solid;border-collapse:collapse;text-align:center;font-size:10.0pt;}
+    .td-center {text-align:center;}
+    table a:link,table a:focus,table a:visited ,table a:active,table a:hover {text-decoration:underline;}
+    a{color: #0071c5}
+    table{background-color: #FFFFFF;font-family:'Intel Clear',Arial,sans-serif;}
+    td{padding-bottom: 5px;padding-top: 5px}
+    .ReportHead{background-color: transparent}
+</style>
+
+
+    <div class="panel-group" id="main-panel-group">
+        <script>
+            jQuery(document).ready(function ($) {
+                if('True' == 'True' && '0' == '1' ){
+                uniteTable(sw_table, 2);
+                autoRowSpan(sw_table, 0);
+                }
+            });
+
+            $('.CollapseBtn').click(function(){
+                var btn = $(this),
+                on = 'not-collapsed',
+                off = 'collapsed';
+                console.log("CollapseBtn!")
+                //这里通过切换按钮中图标的类来控制出现不同的按钮图标，每次点击来回切换声音开关图标
+                if(btn.hasClass('not-collapsed')) {
+                    btn.removeClass('not-collapsed');
+                    btn.addClass('collapsed');
+                }else if(btn.hasClass('collapsed')) {
+                    btn.removeClass('collapsed');
+                    btn.addClass('not-collapsed');
+                }else {
+                    btn.addClass('not-collapsed');
+                }
+            });
+            function init_cases_domain_bars(div_id){
+                if(div_id == 'cases_domain_chart'){
+                    var domains = 'Power Management,FPGA';
+                    var pass_data = '8,6';
+                    var fail_data = '0,0';
+                    var block_data = '0,0';
+                    var norun_data = '0,0';}
+                else{
+                    var domains = '';
+                    var pass_data = '';
+                    var fail_data = '';
+                    var block_data = '';
+                    var norun_data = '';
+                }
+                domains = domains.split(',');
+                pass_data = pass_data.split(',');
+                fail_data = fail_data.split(',');
+                block_data = block_data.split(',');
+                norun_data = norun_data.split(',');
+
+                for(var j=0; j<pass_data.length; j++){
+                    pass_data[j] = parseInt(pass_data[j]);
+                }
+
+                for(var j=0; j<fail_data.length; j++){
+                    fail_data[j] = parseInt(fail_data[j]);
+                }
+
+                for(var j=0; j<block_data.length; j++){
+                    block_data[j] = parseInt(block_data[j]);
+                }
+
+                for(var j=0; j<norun_data.length; j++){
+                    norun_data[j] = parseInt(norun_data[j]);
+                }
+
+                series = [
+                             {name:'NoRun',data:norun_data,color:'#717171'},
+                             {name:'Block',data:block_data,color:'#ffae00'},
+                             {name:'Fail',data:fail_data,color:'#fd4f02'},
+                             {name:'Pass',data:pass_data,color:'#6fd007'}
+                         ];
+                if (1 == 2){
+                    if(div_id == 'cases_domain_chart'){
+                        var title_name = 'Purley_FPGA Silver Validation Result'
+                    }else{
+                        var title_name = ' Silver Validation Result'
+                    }
+                }else{
+                    var title_name = 'Purley-FPGA Server SKX/LBG B-Stepping Silver Validation Result'
+                }
+                $('#'+div_id).highcharts({
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: title_name
+                    },
+                    credits:{enabled: false},
+                    xAxis: {
+                        categories: domains
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Pass Rate'
+                        }
+                    },
+                    tooltip: {
+                        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                        shared: true
+                    },
+                    plotOptions: {
+                        column: {
+                            stacking: 'percent'
+                        }
+                    },
+                    series: series
+                });
+            }
+
+            function init_cases_pie(div_id){
+                if(div_id == 'cases_pie_chart'){
+                    var pie_data = [
+                                    {name:'Pass',y:parseInt('14'),selected:true,sliced:true,color:'#6fd007'},
+                                    {name:'Fail',y:parseInt('0'),color:'#fd4f02'},
+                                    {name:'Block',y:parseInt('0'),color:'#ffae00'},
+                                    {name:'NoRun',y:parseInt('0'),color:'#717171'}
+                               ];
+                }else{
+                    var pie_data = [
+                                    {name:'Pass',y:parseInt(''),selected:true,sliced:true,color:'#6fd007'},
+                                    {name:'Fail',y:parseInt(''),color:'#fd4f02'},
+                                    {name:'Block',y:parseInt(''),color:'#ffae00'},
+                                    {name:'NoRun',y:parseInt(''),color:'#717171'}
+                               ];
+                }
+                if (1 == 2){
+                    if(div_id == 'cases_pie_chart'){
+                        var title_name = 'Purley_FPGA Silver Validation Result'
+                    }else{
+                        var title_name = ' Silver Validation Result'
+                    }
+                }else{
+                    var title_name = 'Purley-FPGA Server SKX/LBG B-Stepping Silver Validation Status'
+                }
+                $('#'+div_id).highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: title_name
+                    },
+                    credits:{enabled: false},
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        name: 'Cases',
+                        colorByPoint: true,
+                        data: pie_data
+                    }]
+                });
+            }
+
+            function init_cases_pass_rate_history(div_id){
+
+                if(div_id == 'cases_history_chart'){
+                    var ww_names = '2016 WW40,2016 WW42,2016 WW43,2016 WW44,2016 WW45,2016 WW46';
+                    var history_passrate = 'null,90.91%,100.00%,100.00%,100.00%,100.00%';
+                }else{
+                     var ww_names = '';
+                    var history_passrate = '';
+                }
+                ww_names = ww_names.split(',');
+                history_passrate = history_passrate.split(',');
+                for(var j=0; j<history_passrate.length; j++){
+                    if(history_passrate[j]=='null'){
+                        history_passrate[j] = null;
+                    }else{
+                        history_passrate[j] = parseFloat(history_passrate[j]);
+                    }
+                }
+                if (1 == 2){
+                    if(div_id == 'cases_history_chart'){
+                        var title_name = 'Purley_FPGA Silver Analysis PASS%'
+                    }else{
+                        var title_name = ' Silver Analysis PASS%'
+                    }
+                }else{
+                    var title_name = 'Purley-FPGA Server SKX/LBG B-Stepping Silver Analysis PASS%'
+                }
+                $('#'+div_id).highcharts({
+                    chart: {
+                        type: 'line'
+                    },
+                    title: {
+                        text: title_name
+                    },
+                    credits:{enabled: false},
+                    xAxis: {
+                        categories: ww_names
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Pass Rate'
+                        },
+                        min:0,
+                        max:100,
+                        labels: {formatter:function(){return this.value + " %";}},
+                    },
+                    plotOptions: {
+                        line: {
+                            dataLabels: {
+                            enabled: true
+                            },
+                        enableMouseTracking: false,
+                        },
+                        series: { connectNulls: true}
+                    },
+                    tooltip: {valueSuffix: '%'},
+                    series: [{
+                        name: 'Silver',
+                        data: history_passrate
+                    }]
+                });
+            }
+
+            $(function () {
+                init_cases_domain_bars('cases_domain_chart');
+                init_cases_pie('cases_pie_chart');
+                init_cases_pass_rate_history('cases_history_chart');
+                if (1 == 2)
+                {
+                    init_cases_domain_bars('cases_domain_chart_2');
+                    init_cases_pie('cases_pie_chart_2');
+                    init_cases_pass_rate_history('cases_history_chart_2');
+                }
+                if(0 == 1)
+                {
+                    var pnp_result = {"Performance": {}, "Power": {}}
+
+                    for (var object  in pnp_result)
+                    {
+                        var ratio = pnp_result[object].ratio;
+                        var case_name =  pnp_result[object].case_name;
+
+                        var categories_data = pnp_result[object].categories
+                        var series_data = new Array();
+                        for(var i=0; i<ratio.length; i++)
+                        {
+                            dict = {};
+
+                            dict['name'] = case_name[i];
+                            for(var k=0; k < ratio[i].length; k++)
+                            {
+                                if(ratio[i][k] == -1)
+                                {
+                                    ratio[i][k] = null;
+                                }
+                            }
+                            dict['data'] = ratio[i];
+                            series_data[i] = dict;
+                        }
+                        var chart1;
+                        var xAxis_list = new Array();
+                        if(pnp_result[object].target_ww == 'WW00'){
+                            title_content = object + ' Trend-- WWn to Target Ratio'
+                        }else{
+                            title_content = object + ' Trend-- WWn to ' + pnp_result[object].target_ww + ' ' +  pnp_result[object].target_cpu +' Ratio'
+                        }
+                        $('#'+object + '_highcharts').highcharts({
+                            title:  {text: title_content},
+                            xAxis: {categories: categories_data ,
+                                    labels: {rotation:30,y:45}
+                            },
+                            yAxis: {title: {text: object},
+
+                                                    labels: {formatter:function(){return this.value + " %";}},
+                                                    plotLines: [{value: 0, width: 1, color: '#808080'}]
+                                                    },
+                            tooltip: {valueSuffix: '%'},
+                            credits:{enabled: false},
+                            plotOptions: {series: { connectNulls: true}, spline : {dataLabels: {enabled: true},enableMouseTracking: true}},
+                            series: series_data
+                        });
+                    }
+                }
+            });
+
+
+        </script>
+        <div style="margin-left:-4px">
+            
+            <img src="./4629_Silver_files/Purley-FPGA_Silver.png">
+            
+            <!--<img src="cid:Purley-FPGA_Silver.png">-->
+        </div>
+        <div style="width:600px">
+        
+        <table class="DetailTable">
+            <tbody><tr>
+                
+                <td width="200px" style="background-color:#DBDBDB;">Silver: Basic Test Coverage</td>
+                <td width="200px">Gold: Medium Test Coverage</td>
+                <td width="200px">BKC: Full Test Coverage</td>
+                
+                
+                
+            </tr>
+        </tbody></table>
+        
+        </div>
+        <table width="100%" class="ReportHead">
+            <tbody><tr>
+                
+                    <td>
+
+                
+                
+                    
+                     <!--<p style="text-align:left;margin-bottom:0px">Purley-FPGA Server SKX/LBG B-Stepping Silver Release Announcement - 2016 WW46 (BKC #5)</p>-->
+                    <p style="text-align:left;margin-bottom:0px">2016 WW46 Purley-FPGA Server SKX/LBG B-Stepping Silver Release Announcement (BKC #5)</p>
+                    
+                
+                <p style="color:black;font-size:13px;text-align:left">DEG Platform Integration Team</p>
+                
+                </td>
+            </tr>
+        </tbody></table>
+        <p class="sh3" style="width:100%">The DEG platform Integration team announces the release of <font style="font-weight:bold">2016 WW46 Purley-FPGA Server SKX/LBG B-Stepping Silver release package</font> for Intel internal use. The release is based on OS of
+            
+                Linux
+             server. The auto-installer packages are available on the Artifactory server (both SH site and OR site). Any questions please contact <a href="mailto:ling.bei@intel.com">Bei, Ling</a>.</p>
+        <table class="DetailTable" width="100%">
+            <tbody><tr>
+                <th width="20%">Auto Installer</th>
+                <th width="40%">SH Artifactory Server</th>
+                <th width="40%">OR Artifactory Server</th>
+            </tr>
+            
+            <tr>
+                <td width="20%">Linux</td>
+                <td width="40%"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/Purley_FPGA/2016WW46/WithoutOS_BKC-PurleyFPGA_BkcLinux_51.105412-2016WW46.zip" style="color:#0071c5">WithoutOS_BKC-PurleyFPGA_BkcLinux_51.105412-2016WW46.zip</a>
+               
+                                <br><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/OS/RHEL/RHEL7.2x86_64.zip" style="color:#0071c5">RHEL7.2x86_64.zip</a>
+                                </td>
+                <td width="40%"><a href="https://ubit-artifactory-or.intel.com/artifactory/DEG-Purley-sh-cache/Release/Purley_FPGA/2016WW46/WithoutOS_BKC-PurleyFPGA_BkcLinux_51.105412-2016WW46.zip" style="color:#0071c5">WithoutOS_BKC-PurleyFPGA_BkcLinux_51.105412-2016WW46.zip</a>
+                   
+                                <br><a href="https://ubit-artifactory-or.intel.com/artifactory/DEG-Purley-sh-cache/Release/OS/RHEL/RHEL7.2x86_64.zip" style="color:#0071c5">RHEL7.2x86_64.zip</a>
+                                </td>
+            </tr>
+            
+            
+        </tbody></table>
+        <div><p class="sh3" style="width:100%">*Note: Please select the server which is closer to your region to get the better data accessing/downloading performance</p></div>
+        <br>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Summary </span>
+                <div class="FoldIcon" style="display: none">
+                    <div class="CollapseBtn not-collapsed" data-toggle="collapse" href="#collapseSummary"></div>
+                </div>
+            </div>
+            <div id="collapseSummary" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <table class="DetailTable" width="100%">
+                        
+                        <tbody><tr>
+                            <td>
+                                <h4 style="margin:0in;margin-bottom:.0001pt;line-height:15.55pt"><u><span lang="EN-GB" style="font-family:&quot;Calibri&quot;,sans-serif;color:#333333;mso-ansi-language:
+EN-GB">Test Result:</span></u><o:p></o:p></h4><h4 style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in;line-height:15.55pt"><span style="font-family: Symbol; color: rgb(51, 51, 51);">·</span><span style="font-size: 7pt; font-family: &quot;Times New Roman&quot;, serif; color: rgb(51, 51, 51);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family: Calibri, sans-serif; color: rgb(51, 51, 51);">Finish
+BKC test execution on RHEL 7.2. Please visit<span class="apple-converted-space">&nbsp;</span></span><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2554437"><span style="font-family: Calibri, sans-serif;">HPQC</span></a><span class="apple-converted-space"><span style="font-family: Calibri, sans-serif; color: rgb(51, 51, 51);">&nbsp;</span></span><span style="font-family: Calibri, sans-serif; color: rgb(51, 51, 51);">for test details</span><o:p></o:p></h4><h4 style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in;line-height:15.55pt"><span style="font-family: Symbol; color: rgb(51, 51, 51);">·</span><span style="font-size: 7pt; font-family: &quot;Times New Roman&quot;, serif; color: rgb(51, 51, 51);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family: Calibri, sans-serif; color: rgb(51, 51, 51);">Purley<span class="apple-converted-space">&nbsp;FPGA</span>&nbsp;(RP</span><span class="apple-converted-space"><span style="font-family: Calibri, sans-serif; color: rgb(31, 73, 125);">&nbsp;</span></span><span style="font-family: Calibri, sans-serif; color: rgb(51, 51, 51);">Board:</span><span class="apple-converted-space"><span style="font-family: Calibri, sans-serif; color: rgb(31, 73, 125);">&nbsp;</span></span><span style="font-family: Calibri, sans-serif; color: rgb(51, 51, 51);">Neon City FPGA)</span><o:p></o:p></h4><h4 style="margin: 0in 0in 0.0001pt 72.6pt; text-indent: -18.6pt; line-height: 15.55pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><!--[if !supportLists]--><span style="font-family: &quot;Courier New&quot;; color: rgb(51, 51, 51);">o<span style="font-variant-numeric: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp;&nbsp;
+</span></span><!--[endif]--><span style="font-family: Calibri, sans-serif; color: rgb(51, 51, 51);">Total test cases: </span><span style="font-family: Calibri, sans-serif; color: rgb(31, 73, 125);">14</span><span style="font-family: Calibri, sans-serif;">; Passed test
+cases is <span style="color:#1F497D">14</span> and pass rate is <span style="color:#1F497D">100</span><span style="color:#333333">%. The full
+validation result can be found in<span class="apple-converted-space">&nbsp;</span></span></span><span style="font-size: 13.5pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: rgb(51, 51, 51);"><a href="https://dcg-oss.intel.com/test_report/report_case/4629/Silver/Purley_FPGA/" target="_blank">OSS</a></span><span style="font-size: 13.5pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: rgb(31, 73, 125);"><o:p></o:p></span></h4><h4 style="margin: 0in 0in 0.0001pt 72.6pt; text-indent: -18.6pt; line-height: 15.55pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><!--[if !supportLists]--><span style="font-family: &quot;Courier New&quot;; color: rgb(51, 51, 51);">o<span style="font-variant-numeric: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp;&nbsp;
+</span></span><!--[endif]--><span style="font-family: Calibri, sans-serif; color: rgb(51, 51, 51);">Test coverage:&nbsp;&nbsp;</span><span style="font-size: 13.5pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: rgb(31, 73, 125);"><o:p></o:p></span></h4><h4 style="margin: 0in 0in 0.0001pt 1in; text-indent: -3.3pt; line-height: 15.55pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><!--[if !supportLists]--><span style="font-family: Wingdings;">§<span style="font-variant-numeric: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp; </span></span><!--[endif]--><span style="font-family:&quot;Calibri&quot;,sans-serif;color:#333333">SKX-FPGA B0 ES2/LBG B1</span><span style="font-family: Calibri, sans-serif; color: rgb(51, 51, 51);">: </span><span style="font-family: Calibri, sans-serif;">Run P1 &amp; P2 BKC
+<span style="color:#333333">test cases</span></span><o:p></o:p></h4><h4 style="margin: 0in 0in 0.0001pt 1in; text-indent: -3.3pt; line-height: 15.55pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><!--[if !supportLists]--><span style="font-size: 13.5pt; font-family: Wingdings; color: rgb(31, 73, 125);">§<span style="font-variant-numeric: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp; </span></span><!--[endif]--><span style="font-family:&quot;Calibri&quot;,sans-serif;color:#333333">SKX-FPGA B0 VIS/LBG B1</span><span style="font-size: 13.5pt; font-family: Calibri, sans-serif; color: rgb(51, 51, 51);">:&nbsp;</span><span style="font-family: Calibri, sans-serif;">Run power cycling test</span><span style="font-size: 13.5pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: rgb(31, 73, 125);"><o:p></o:p></span></h4><h4 style="margin: 0in 0in 0.0001pt 104.7pt; text-indent: -0.5in; line-height: 15.55pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="color: rgb(31, 78, 121); font-family: Calibri, sans-serif; font-size: 10pt; line-height: 15.55pt;">&nbsp;</span><br></h4><h4 style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in;line-height:15.55pt">&nbsp;<o:p></o:p></h4><h4 style="margin:0in;margin-bottom:.0001pt;line-height:15.55pt"><u><span lang="EN-GB" style="font-family:&quot;Calibri&quot;,sans-serif;color:#333333;mso-ansi-language:
+EN-GB">Sighting Update:</span></u><o:p></o:p></h4><h4 style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in;line-height:15.55pt"><span style="font-family: Symbol; color: rgb(51, 51, 51);">·</span><span style="font-size: 7pt; font-family: &quot;Times New Roman&quot;, serif; color: rgb(51, 51, 51);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family: Calibri, sans-serif; color: black;">Key
+Sightings:</span><span style="font-family: Calibri, sans-serif; color: rgb(31, 73, 125);"> </span><span style="font-family: Calibri, sans-serif;"><o:p></o:p></span></h4><h4 style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:37.2pt;
+margin-bottom:.0001pt;text-indent:0in;line-height:15.55pt;mso-list:l1 level1 lfo4"><!--[if !supportLists]--><span style="font-size: 9.5pt; font-family: &quot;Courier New&quot;; color: rgb(51, 51, 51);">o<span style="font-variant-numeric: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]--><span style="font-size: 9.5pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: rgb(51, 51, 51); background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">[2016_WW44
+BKC][BIOS:106_D11][Neon city FPGA]PTT support option is gray and can't be
+enable in BIOS setup </span><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345514"><span style="font-size: 9.5pt; font-family: &quot;Intel Clear&quot;, sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">5345514</span></a><span style="font-size: 9.5pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: rgb(51, 51, 51); background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><o:p></o:p></span></h4><h4 style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:37.2pt;
+margin-bottom:.0001pt;text-indent:0in;line-height:15.55pt;mso-list:l1 level1 lfo4"><!--[if !supportLists]--><span style="font-size: 11pt; font-family: &quot;Courier New&quot;; color: rgb(31, 73, 125);">o<span style="font-variant-numeric: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]--><span style="font-size: 9.5pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: rgb(51, 51, 51); background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">[2016_WW43
+BKC][BIOS:105_D11][Neon city FPGA] Cannot enter OS after enable VT-d in BIOS</span><span class="MsoHyperlink"><span style="color: rgb(0, 113, 197); background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"> </span></span><span class="MsoHyperlink"><span style="font-size: 9.5pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: rgb(0, 113, 197); background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345474">5345474</a></span></span><span style="font-size: 11pt; font-family: Calibri, sans-serif; color: rgb(31, 73, 125);"><o:p></o:p></span></h4><h4 style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in;line-height:15.55pt"><span style="font-family: Symbol; color: rgb(51, 51, 51);">·</span><span style="font-size: 7pt; font-family: &quot;Times New Roman&quot;, serif; color: rgb(51, 51, 51);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family: Calibri, sans-serif; color: rgb(51, 51, 51);">Open
+Sighting details</span><span style="font-family: Calibri, sans-serif; color: rgb(31, 73, 125);"> </span><span style="font-family: Calibri, sans-serif; color: rgb(51, 51, 51);">can be found<span class="apple-converted-space">&nbsp;</span></span><a href="#_New_Sightings"><span style="font-family: Calibri, sans-serif;">here</span></a><i><span style="font-family: Calibri, sans-serif; color: rgb(31, 73, 125);">;<span class="apple-converted-space">&nbsp;</span></span></i><span style="font-family: Calibri, sans-serif; color: rgb(51, 51, 51);">Full sighting list can
+be found<span class="apple-converted-space">&nbsp;</span></span><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2554441"><span style="font-family: Calibri, sans-serif;">in
+HSD</span></a><o:p></o:p></h4><h4 style="margin:0in;margin-bottom:.0001pt;line-height:13.8pt">&nbsp;<o:p></o:p></h4><h4 style="margin:0in;margin-bottom:.0001pt;line-height:15.55pt"><u><span lang="EN-GB" style="font-family:&quot;Calibri&quot;,sans-serif;color:#333333;mso-ansi-language:
+EN-GB">SW&amp;HW Configurations:</span></u><o:p></o:p></h4><h4 style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:37.2pt;
+margin-bottom:.0001pt;text-indent:-.25in;line-height:15.55pt;mso-list:l2 level1 lfo3"><!--[if !supportLists]--><span style="font-family: Symbol;">·<span style="font-variant-numeric: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]--><span style="font-family: Calibri, sans-serif; color: rgb(51, 51, 51);">SW and IFWI changes can be found<span class="apple-converted-space">&nbsp;</span></span><a href="#_SW_Configuration:"><span style="font-family: Calibri, sans-serif; color: rgb(0, 112, 192);">here</span><span style="font-family: Calibri, sans-serif;">&nbsp;</span></a><span style="font-family: Calibri, sans-serif; color: rgb(51, 51, 51);">; HW
+configuration can be found</span><a href="#_HW_Configuration:"><span class="apple-converted-space"><span style="font-family: Calibri, sans-serif;">&nbsp;</span></span><span style="font-family: Calibri, sans-serif;">here</span></a><o:p></o:p></h4><h4 style="margin:0in;margin-bottom:.0001pt;line-height:15.55pt">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</h4><h4 style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in;line-height:13.8pt"><span style="font-family: Symbol;">·</span><span style="font-size: 7pt; font-family: &quot;Times New Roman&quot;, serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span style="color:#1F497D">&nbsp;&nbsp;</span></span><span style="font-family: Calibri, sans-serif; color: rgb(51, 51, 51);">WA/HW Reword can be
+found</span><i><span style="font-size:10.0pt;font-family:&quot;Calibri&quot;,sans-serif;
+color:#1F497D"> </span></i><a href="#_Key_Workaround_(detail"><span style="font-size: 10pt; font-family: Calibri, sans-serif;">here</span></a><o:p></o:p></h4>
+                                </td>
+                        </tr>
+                        
+                     </tbody></table>
+                </div>
+            </div>
+        </div>
+        <br>
+    <!--     <span class="sh2">&nbsp Key Sightings: </span>
+             <table class="MsoNormalTable">
+                 <tr>
+                    <th width="7%">ID</th>
+                    <th width="93%">Title</th>
+                 </tr>
+                 
+                 
+             </table><br/> -->
+        
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; New Sightings </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseNewSightings"></div>
+                </div>
+            </div>
+            <div id="collapseNewSightings" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    
+                    <p>&nbsp; N/A</p>
+                    
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Existing Sightings </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseExistingSightings"></div>
+                </div>
+            </div>
+            <div id="collapseExistingSightings" class="panel-collapse collapse ">
+                <div class="panel-body">
+                
+                <table class="MsoNormalTable" width="100%">
+                    <tbody><tr>
+                         <th width="5%">ID</th>
+                        <th width="45%">Title</th>
+                        <th width="7%">Priority</th>
+                        <th width="7%">Severity</th>
+                        <th width="7%">Owner</th>
+                        <th width="7%">Status</th>
+                        <th width="10%">Subsystem</th>
+                        <th width="12%">Promoted ID</th>
+                    </tr>
+                      
+                        
+                            <tr style="background-color:#ff6633">
+                        
+                        
+                         <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345474">5345474</a></td>
+                        
+                         <td style="text-align:left;">[2016_WW43 BKC][BIOS:105_D11][Neon city FPGA] Can not enter OS after enable VT-d in BIOS.</td>
+                         <td>P1</td>
+                         <td>2 High</td>
+                         <td>yanghe1</td>
+                         <td>Assigned</td>
+                         <td></td>
+                         <td>
+                                    
+                                
+                                            <p>N/A</p>
+                                        
+                                    
+                        </td>
+                     </tr>
+                     
+                        
+                            <tr>
+                        
+                        
+                         <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345424">5345424</a></td>
+                        
+                         <td style="text-align:left;">[2016_WW40 BKC][BIOS:102_D12][Neon city FPGA]System  will  Reboot when boot to  tboot  kernel</td>
+                         <td>P2</td>
+                         <td>3 Medium</td>
+                         <td>yanghe1</td>
+                         <td>Assigned</td>
+                         <td></td>
+                         <td>
+                                    
+                                
+                                            <p>N/A</p>
+                                        
+                                    
+                        </td>
+                     </tr>
+                     
+                        
+                            <tr>
+                        
+                        
+                         <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345509">5345509</a></td>
+                        
+                         <td style="text-align:left;">[2016_WW44 BKC][BIOS:106_D11][Neon city FPGA]Occasionally cat error and hang at code 'A9' during warmboot cycling tests</td>
+                         <td>P2</td>
+                         <td>3 Medium</td>
+                         <td>yanghe1</td>
+                         <td>Assigned</td>
+                         <td></td>
+                         <td>
+                                    
+                                
+                                            <p>N/A</p>
+                                        
+                                    
+                        </td>
+                     </tr>
+                     
+                        
+                            <tr style="background-color:#ff6633">
+                        
+                        
+                         <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345514">5345514</a></td>
+                        
+                         <td style="text-align:left;">[2016_WW44 BKC][BIOS:106_D11][Neon city FPGA]PTT support option is gray and can't be enable in BIOS setup.</td>
+                         <td>P2</td>
+                         <td>3 Medium</td>
+                         <td>mdelgado</td>
+                         <td>Assigned</td>
+                         <td></td>
+                         <td>
+                                    
+                                
+                                            <p>N/A</p>
+                                        
+                                    
+                        </td>
+                     </tr>
+                     
+                        
+                            <tr>
+                        
+                        
+                         <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345465">5345465</a></td>
+                        
+                         <td style="text-align:left;">[2016_WW42 BKC][BIOS:104_D12][Neon city FPGA]The consumption can’t rise when set T state from maxmum to minimum.</td>
+                         <td>P3</td>
+                         <td>3 Medium</td>
+                         <td>jwesteba</td>
+                         <td>Assigned</td>
+                         <td></td>
+                         <td>
+                                    
+                                
+                                            <p>N/A</p>
+                                        
+                                    
+                        </td>
+                     </tr>
+                     
+                        
+                            <tr>
+                        
+                        
+                         <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345530">5345530</a></td>
+                        
+                         <td style="text-align:left;">[2016_WW45 BKC][BIOS:107_D07][Neon city FPGA]Can't ping SUT BMC IP from a RHEL server  .</td>
+                         <td>P3</td>
+                         <td>3 Medium</td>
+                         <td>yanghe1</td>
+                         <td>Assigned</td>
+                         <td></td>
+                         <td>
+                                    
+                                
+                                            <p>N/A</p>
+                                        
+                                    
+                        </td>
+                     </tr>
+                     
+                        
+                            <tr>
+                        
+                        
+                         <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345546">5345546</a></td>
+                        
+                         <td style="text-align:left;">[2016_WW45 BKC][BIOS:107_D07][Neon city FPGA]WOL function is still working when disabled in BIOS.</td>
+                         <td>P3</td>
+                         <td>3 Medium</td>
+                         <td>yanghe1</td>
+                         <td>Assigned</td>
+                         <td></td>
+                         <td>
+                                    
+                                
+                                            <p>N/A</p>
+                                        
+                                    
+                        </td>
+                     </tr>
+                     
+                        
+                            <tr>
+                        
+                        
+                         <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345420">5345420</a></td>
+                        
+                         <td style="text-align:left;">[2016_WW40 BKC][BIOS:102_D12][Neon city FPGA]CPLD 1 version show‘F.F’ after flash CPLD 0x11_0x22</td>
+                         <td>P3</td>
+                         <td>4 Low</td>
+                         <td>jdbolano</td>
+                         <td>Assigned</td>
+                         <td></td>
+                         <td>
+                                    
+                                
+                                            <p>N/A</p>
+                                        
+                                    
+                        </td>
+                     </tr>
+                     
+                        
+                            <tr>
+                        
+                        
+                         <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345493">5345493</a></td>
+                        
+                         <td style="text-align:left;">[2016_WW43 BKC][BIOS:105_D11][Neon city FPGA] Entering "Platform Configuration -&gt; PCH Configuration" resets other saved change.</td>
+                         <td>P3</td>
+                         <td>4 Low</td>
+                         <td>yanghe1</td>
+                         <td>Assigned</td>
+                         <td></td>
+                         <td>
+                                    
+                                
+                                            <p>N/A</p>
+                                        
+                                    
+                        </td>
+                     </tr>
+                     
+
+                 
+                </tbody></table><br>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Closed Sightings </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed data-toggle=" collapse"="" href="#collapseClosedSightings"></div>
+                </div>
+            </div>
+            <div id="collapseClosedSightings" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    
+                    <p>&nbsp; N/A</p>
+                    
+                    <br>
+                
+                </div>
+            </div>
+        </div>
+        <br>
+        
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; HW Rework </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseHWRework"></div>
+                </div>
+            </div>
+            <div id="collapseHWRework" class="panel-collapse collapse ">
+                <div class="panel-body">
+                <table class="DetailTable" width="100%">
+                    <tbody><tr>
+                        <td> 
+                                <h4 style="margin: 0in 0in 0pt;"><u><span lang="EN-GB" style="font-family: Calibri, sans-serif; font-size: 11pt;">Key Workaround</span></u><span lang="EN-GB" style="font-family: Calibri, sans-serif; font-size: 11pt;"> (detail guide is</span><span lang="EN-GB" style="font-family: Calibri, sans-serif; font-size: 11pt;"> </span><a href="https://dcg-oss.intel.com/document_download/16/?file_id=37" target="_blank">here</a><span lang="EN-GB" style="font-family: Calibri, sans-serif; font-size: 11pt;">)</span><o:p></o:p></h4>
+
+<p class="default" style="margin: 0in 0in 0pt 0.5in; line-height: 115%; text-indent: -0.25in;"><span style="line-height: 115%; font-family: Symbol; font-size: 11pt;">·</span><span style="line-height: 115%; font-family: &quot;Times New Roman&quot;, serif; font-size: 7pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="line-height: 115%; font-family: Calibri, sans-serif; font-size: 11pt;">Please use PCIe Video card instead of onboard BMC video due to
+known BMC issue</span><o:p></o:p></p>
+
+<h4 style="margin: 0in 0in 0pt;">&nbsp;<o:p></o:p></h4>
+
+<h4 style="margin: 0in 0in 0pt; line-height: 15.55pt;"><u><span lang="EN-GB" style="color: black; font-family: &quot;Calibri&quot;,sans-serif; font-size: 11pt; mso-ansi-language: EN-GB;">Pedigree and Board Jumper Settings:</span></u><a href="https://dcg-oss.intel.com/document_download/16/?file_id=34"><span style="color: rgb(31, 73, 125); font-family: &quot;Calibri&quot;,sans-serif; font-size: 11pt;"> </span><span style="font-family: &quot;Calibri&quot;,sans-serif; font-size: 11pt;">guide</span></a><o:p></o:p></h4>
+
+<p class="MsoNormal" style="line-height: 12.1pt;"><i><span style="color: black; font-family: &quot;Calibri&quot;,sans-serif; font-size: 11pt;">Note:
+Only mandatory and necessary optional rework is implemented by BKC team</span></i><i><span style="font-family: &quot;Calibri&quot;,sans-serif; font-size: 11pt;"><o:p></o:p></span></i></p>
+
+<p class="MsoListParagraph" style="line-height: 12.1pt; text-indent: -0.25in;"><!--[if !supportLists]--><span style="font-family: Symbol; font-size: 11pt; mso-fareast-font-family: Symbol; mso-bidi-font-family: Symbol;">·<span style="line-height: normal; font-family: &quot;Times New Roman&quot;; font-size: 7pt; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]-->Mandatory rework FPGA JTAG chain missing CPU1
+TCK resistor<span style="font-size: 11pt;"><o:p></o:p></span></p>
+
+<p class="MsoListParagraph" style="line-height: 12.1pt; text-indent: -0.25in;"><!--[if !supportLists]--><span style="font-family: Symbol; mso-fareast-font-family: Symbol; mso-bidi-font-family: Symbol;">·<span style="line-height: normal; font-family: &quot;Times New Roman&quot;; font-size: 7pt; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]-->Mandatory rework to replace FPGA KR RX AC Caps<o:p></o:p></p>
+
+<p class="MsoListParagraph" style="line-height: 12.1pt; text-indent: -0.25in;"><!--[if !supportLists]--><span style="font-family: Symbol; mso-fareast-font-family: Symbol; mso-bidi-font-family: Symbol;">·<span style="line-height: normal; font-family: &quot;Times New Roman&quot;; font-size: 7pt; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]-->Mandatory rework add a pull down to RSMRST<o:p></o:p></p>
+
+<p class="MsoListParagraph" style="line-height: 12.1pt; text-indent: -0.25in;"><!--[if !supportLists]--><span style="font-family: Symbol; mso-fareast-font-family: Symbol; mso-bidi-font-family: Symbol;">·<span style="line-height: normal; font-family: &quot;Times New Roman&quot;; font-size: 7pt; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]-->Mandatory rework to update VR FW<o:p></o:p></p>
+
+<p class="MsoListParagraph" style="line-height: 12.1pt; text-indent: -0.25in;"><!--[if !supportLists]--><span style="font-family: Symbol; mso-fareast-font-family: Symbol; mso-bidi-font-family: Symbol;">·<span style="line-height: normal; font-family: &quot;Times New Roman&quot;; font-size: 7pt; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]-->Required CPLD updates to address reset and FSC
+issues<o:p></o:p></p>
+
+<span style="font-family: &quot;Times New Roman&quot;,serif; font-size: 12pt; mso-ansi-language: EN-US; mso-fareast-font-family: 宋体; mso-fareast-theme-font: minor-fareast; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA;">CPLD updates to address IFWI issue with 2 SKX
+FPGA CPUs populated</span><br>
+                            
+                        </td>
+                    </tr>
+                </tbody></table><br>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; HW Configuration </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseHWConfiguration"></div>
+                </div>
+            </div>
+            <div id="collapseHWConfiguration" class="panel-collapse collapse ">
+                <div class="panel-body">
+                
+                    
+                        <table border="0" cellpadding="0" cellspacing="0" class="DetailTable">
+<colgroup><col style="mso-width-source:userset;mso-width-alt:8640;width:203pt" width="270">
+<col style="mso-width-source:userset;mso-width-alt:7264;width:170pt" width="227">
+<col style="mso-width-source:userset;mso-width-alt:8128;width:191pt" width="254">
+<col style="mso-width-source:userset;mso-width-alt:6048;width:142pt" width="189">
+<col style="mso-width-source:userset;mso-width-alt:6592;width:155pt" width="206">
+</colgroup><tbody><tr height="29">
+<td height="48" rowspan="2">　</td>
+<td rowspan="2">System 1~2</td>
+<td rowspan="2">System 3~4</td>
+<td rowspan="2">System 5</td>
+<td rowspan="2">System 6<font class="font9">（</font><font class="font5">cyclingt
+  est</font><font class="font9">）</font></td>
+</tr>
+<tr height="19">
+</tr>
+<tr height="25">
+<td height="25">Ingredient</td>
+<td>HW/SW Version Details</td>
+<td>HW/SW Version Details</td>
+<td>HW/SW Version Details</td>
+<td>HW/SW Version Details</td>
+</tr>
+<tr height="25">
+<td height="25">CPU 0/1</td>
+<td>QL5P ( B0 )</td>
+<td>QLGZ ( B0 )</td>
+<td>QLG7 ( B0 )</td>
+<td>QL66 ( B0 )</td>
+</tr>
+<tr height="25">
+<td height="25">PCH</td>
+<td>QLJ7(LBG&nbsp; B1)</td>
+<td>QLJ7(LBG&nbsp; B1)</td>
+<td>QLJ7(LBG&nbsp; B1)</td>
+<td>QLJ7(LBG&nbsp; B1)</td>
+</tr>
+<tr height="52">
+<td height="52">Memory<font class="font7">&nbsp;</font><font class="font6">Type</font></td>
+<td>&nbsp;Samsung
+  M393A2K43BB1-CTD6Q 16GB 2Rx8 PC4-2666V-RE1-11-MA0</td>
+<td>&nbsp;Samsung
+  M393A2K43BB1-CTD6Q 16GB 2Rx8 PC4-2666V-RE1-11-MA0</td>
+<td>&nbsp;Samsung
+  M393A2K43BB1-CTD6Q 16GB 2Rx8 PC4-2666V-RE1-11-MA0</td>
+<td>Samsung
+  M393A2K43BB1-CTD6Q 16GB 2Rx8 PC4-2666V-RE1-11-MA0</td>
+</tr>
+<tr height="29">
+<td height="29">Memory Amount</td>
+<td>12*16GB</td>
+<td>12*16GB</td>
+<td>12*16GB</td>
+<td>2*16GB</td>
+</tr>
+<tr height="25">
+<td height="25">Base
+  Board</td>
+<td>Neon City FPGA PBA H90983-300</td>
+<td>Neon City FPGA PBA H90983-300</td>
+<td>Neon City FPGA PBA H90983-300</td>
+<td>Neon City FPGA PBA H90983-200</td>
+</tr>
+<tr height="25">
+<td height="25">Chassis</td>
+<td>ASSEMBLY NO.H36149-004</td>
+<td>ASSEMBLY NO.H36149-004</td>
+<td>ASSEMBLY NO.H48593-003</td>
+<td>ASSEMBLY NO.H48593-003</td>
+</tr>
+<tr height="25">
+<td height="25">Video
+  Card</td>
+<td>NVDIA GEFORCE 210&nbsp;</td>
+<td>NVDIA GEFORCE 210&nbsp;</td>
+<td>NVDIA GEFORCE 210&nbsp;</td>
+<td>NVDIA GEFORCE 210&nbsp;</td>
+</tr></tbody></table>
+                    
+                
+                </div>
+            </div>
+        </div>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; SW Configuration </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseSWConfiguration"></div>
+                </div>
+            </div>
+            <div id="collapseSWConfiguration" class="panel-collapse collapse ">
+                <div class="panel-body">
+                
+                    
+                        <table border="0" cellpadding="0" cellspacing="0" class="DetailTable">
+<tbody><tr>
+<th colspan="2"></th>
+<th>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><b><span style="">Ingredient</span></b></div>
+</th>
+<th>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><b><span style="">SW
+  Version Details</span></b></div>
+</th>
+<th>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><b><span style="">Changed</span></b></div>
+</th>
+<th>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><b><span style="">Release
+  Notes</span></b></div>
+</th>
+</tr>
+<tr>
+<td rowspan="5">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">APPs</span></div>
+</td>
+<td rowspan="5">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">APPs</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">hw_rework</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607660"><span style="background-image: initial;background-position: initial;background-size: initial;background-repeat: initial;background-attachment: initial;background-origin: initial;background-clip: initial;">WW42.2</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">qemu</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607661"><span style="">2.6.1</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">AAL_pkg</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607662"><span style="">6.2.1-RC0</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="color:#1F497D">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">GBS</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607663"><span style="">6.2.2</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="color:#1F497D">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">AAL_doc</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607664"><span style="">WW42</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="color:#1F497D">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Internal use
+  ONLY</span></div>
+</td>
+</tr>
+<tr>
+<td rowspan="11">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Firmwares</span></div>
+</td>
+<td rowspan="11">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Firmwares</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">IFWI</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/FW/IFWI/FPGA_2016.45.5.08.zip">2016.45.5.08</a><o:p></o:p></span></div>
+</td>
+<td id="tb__6_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="color:red">(2016.44.3.02-&gt;2016.45.5.08)</span><span style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Documents/ReleaseNotes/IFWI/2016.45.5.08%20Orange%20Release%20Notes.docx"><span style="">Release
+  Notes</span></a></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">BMC</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607667"><span style="">79.16.r10118</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">CPLD</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607668"><span style="">0d12_0x22</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">SKX_CPLD</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607669"><span style="">0430_1209</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">SPS</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="background:yellow;mso-highlight:yellow"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/FW/SPS/SPS_E5_04.00.03.110.0.zip">E5_04.00.03.110</a><o:p></o:p></span></div>
+</td>
+<td id="tb__10_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="color:red;background:yellow;mso-highlight:yellow">(E5_04.00.03.103-&gt;E5_04.00.03.110)</span><span style="background:yellow;mso-highlight:yellow"><o:p></o:p></span></div>
+</td>
+<td>
+<div class="MsoNormal" style="word-break:break-all"><span style="">The SPS FW in IFWI is E4_04.003.111.0<o:p></o:p></span></div>
+<div class="MsoNormal" style="word-break:break-all"><span style="">The latest check-in of SPS was E4_04.003.110.0
+  (by the time BKC pkg was built)<o:p></o:p></span></div>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">The SPS FW
+  E4_04.003.111.0 can be found <span style="color:red"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/SPS/SPS_E5_04.00.03.111.0_BKC.zip">in
+  ATF server</a></span></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">SPS_Config</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/FW/SPS/SPS_E5_04.00.03.111.0_ConfigFile_WW45.zip">SPS_E5_04.00.03.111.0_ConfigFile_WW45</a><o:p></o:p></span></div>
+</td>
+<td id="tb__11_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="color:red">(SPS_E5_04.00.03.103.0_ConfigFile_WW44-&gt;SPS_E5_04.00.03.111.0_ConfigFile_WW45)</span><span style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">RSTe-PreOS</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607672"><span style="">5.0.0.1116</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">ACM</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/FW/ACM/PurleyACM094_prod.zip">0.94_prod</a></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="color:red">(0.94-&gt;0.94_prod)</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">FPGA</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/FW/FPGA/FPGA_BBS_N4PE_6.2.2_08.12.4_WW46.zip">6.22_08.12.4_WW45</a></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="color:red">(6.22_08.12.4-&gt;6.22_08.12.4_WW45)</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Omin-Path</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607675"><span style="">2016WW42</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">VR</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607676"><span style="">0x03</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td rowspan="13">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Linux</span></div>
+</td>
+<td rowspan="6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">APPs</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">RRC_Tools</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607677"><span style="">4.1.7</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">SPS_Tool</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607678"><span style="">4.2.42.66</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">IDK</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607679"><span style="">2.11</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">SST</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607680"><span style="">3.0.1037</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">DPDK</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607681"><span style="">16.07</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">QAT</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607682"><span style="">1.7.L.0.0.0-278</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Configs</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">kernel_update_RHEL7.2_4.7.0</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607683"><span style="background-image: initial;background-position: initial;background-size: initial;background-repeat: initial;background-attachment: initial;background-origin: initial;background-clip: initial;">RHEL7.2_4.7.0-patched-rev02</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Internal Use
+  ONLY</span></div>
+</td>
+</tr>
+<tr>
+<td rowspan="5">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Drivers</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">LOM_Jacksonville</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607684"><span style="">3.3.5</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607685"><span style="">Release
+  Notes</span></a></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">LOM_FortPark</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/drivers/LOM_FortPark/2016_WW45_LBG_B1_LEK_PKG_IP_Plans.zip">2016.WW45</a></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="color:red">(2016.WW40-&gt;2016.WW45)</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">NIC_FM10K</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607687"><span style="">0.21.3</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">RSTe</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607688"><span style="">Beta-Linux-5</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607689"><span style="">Release
+  Notes</span></a></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">IntelOPA-IFS</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607690"><span style="">10.2.0.0.158</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A</span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">OSes</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">RHEL</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2607641"><span style="">7.2</span></a></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N</span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Internal Use
+  ONLY</span></div>
+</td>
+</tr>
+</tbody></table>
+                    
+                    <br>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; IFWI Configuration </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseIFWIConfiguration"></div>
+                </div>
+            </div>
+            <div id="collapseIFWIConfiguration" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    <table class="MsoNormalTable" width="100%">
+                        <tbody><tr>
+                            <th width="40%">Ingredient</th>
+                            <th width="30%">Version Details</th>
+                            <th width="30%">Changed</th>
+                        </tr>
+                         
+                            <tr>
+                                <td> IFWI File</td>
+
+                                <td>PLYDCRB.86B.BR.64.2016.45.5.08.0430_LBG_SPS_FPGA.bin</td>
+                                
+                                <td style="color:#FF0000" class="td-center">PLYDCRB.86B.BR.64.2016.44.3.02.0557_LBG_SPS_FPGA.bin-&gt;PLYDCRB.86B.BR.64.2016.45.5.08.0430_LBG_SPS_FPGA.bin</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> BiosID</td>
+
+                                <td>PLYDCRB1.86B.0108.D11.1611032030</td>
+                                
+                                <td style="color:#FF0000" class="td-center">PLYDCRB1.86B.0107.D07.1610252157-&gt;PLYDCRB1.86B.0108.D11.1611032030</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> 10GNicEFI</td>
+
+                                <td>v4.2.22</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> 1GNicEFI</td>
+
+                                <td>v00.00.11</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> ASTVBIOS</td>
+
+                                <td>800</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> AspeedVideo</td>
+
+                                <td>PrePO</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> BIOSACM</td>
+
+                                <td>Debug_NT,v0.9.4_LBG</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> BiosGuard</td>
+
+                                <td>Beta</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> FPGABBS</td>
+
+                                <td>NA</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> FPGAN4PE</td>
+
+                                <td>v081204_signed</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> FabricBoot</td>
+
+                                <td>NA</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> FpkSi</td>
+
+                                <td>v3.14_80000695</td>
+                                
+                                <td style="color:#FF0000" class="td-center">v3.10_80000630-&gt;v3.14_80000695</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> GBE</td>
+
+                                <td>_I219_Nahum7_Purley_LM_No-LAN-Switch_Rev0.2</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> HfiPcieGen3</td>
+
+                                <td>v29</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> IccOverClocking</td>
+
+                                <td>PrePO</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> JacksonvillePxe</td>
+
+                                <td>v1.07</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> LBGNSPcieGen3</td>
+
+                                <td>PrePO</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> ME</td>
+
+                                <td>SPS/4.0.3.111</td>
+                                
+                                <td style="color:#FF0000" class="td-center">SPS/4.0.3.103-&gt;SPS/4.0.3.111</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> Mebx</td>
+
+                                <td>v11.0.0.0005</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> MebxSetupBrowser</td>
+
+                                <td>PrePo</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> Microcode1</td>
+
+                                <td>M1350650_8000002B.inc</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> Microcode2</td>
+
+                                <td>M1350651_8000002B.inc</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> Microcode3</td>
+
+                                <td>M9750652_8000002D.inc</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> Microcode4</td>
+
+                                <td>M9750653_01000030.inc</td>
+                                
+                                <td style="color:#FF0000" class="td-center">M9750653_0100002C.inc-&gt;M9750653_01000030.inc</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> Microcode5</td>
+
+                                <td>M9750654_82000007.inc</td>
+                                
+                                <td style="color:#FF0000" class="td-center">M9750654_82000005.inc-&gt;M9750654_82000007.inc</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> NvmDimmDriver</td>
+
+                                <td>v01.00.01.1011</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> NvmDimmHii</td>
+
+                                <td>v01.00.01.1011</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> PDR</td>
+
+                                <td>PrePO</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> RSTSataEfi</td>
+
+                                <td>PrePO</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> RSTeSataEfi</td>
+
+                                <td>v5.0.0.1116</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> RSTeSataLegacy</td>
+
+                                <td>v5.0.0.1116</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> RSTeSataRaidEfi</td>
+
+                                <td>v5.0.0.1116</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> RSTesSataEfi</td>
+
+                                <td>v5.0.0.1116</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> RSTesSataLegacy</td>
+
+                                <td>v5.0.0.1116</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> SINIT</td>
+
+                                <td>Debug_NT,v0.9.4_LBG</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> SataAHCI</td>
+
+                                <td>v2.00i</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> TwinvillePxe</td>
+
+                                <td>v2.3.17</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> VMDDxeEfi</td>
+
+                                <td>v1.0.0.5053</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> iBMCVideo</td>
+
+                                <td>v3.8SQ</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> iBMCVideoGop</td>
+
+                                <td>v26</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                        
+
+                    </tbody></table><br>
+                </div>
+            </div>
+        </div>
+        
+
+        <br>
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Platform Integration Validation Result </span>
+                <div class="FoldIcon">
+                    <div id="PlatformIntegrationValidationResultBtn" class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapsePlatformIntegrationValidationResult">
+</div>
+                </div>
+            </div>
+
+            <div id="collapsePlatformIntegrationValidationResult" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    <table class="MsoNormalTable" width="100%">
+                        <tbody><tr>
+                            <th rowspan="4" width="9%">Purley_FPGA Test Execution Status</th>
+                            <th width="9%">Domains</th>
+                            <th width="8%">Attempted</th>
+                            <th width="8%">Blocked</th>
+                            <th width="8%">No Run</th>
+                            <th width="8%">Failed</th>
+                            <th width="8%">Passed</th>
+                            <th width="8%">Total</th>
+                            <th width="8%">% Attempted</th>
+                            <th width="8%">Passed% (per attempted)</th>
+                            <th width="8%">Pass%</th>
+                            <th width="10%">Key Sightings</th>
+                        </tr>
+                        
+                        
+                        <tr>
+                            
+                             <td>Power Management</td>
+                            
+                             <td>8</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>8</td>
+                             <td>8</td>
+                             <td>100.00%</td>
+                             <td>8/8</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>FPGA</td>
+                            
+                             <td>6</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>6</td>
+                             <td>6</td>
+                             <td>100.00%</td>
+                             <td>6/6</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Summary</td>
+                            
+                             <td>14</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>14</td>
+                             <td>14</td>
+                             <td>100.00%</td>
+                             <td>14/14</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                    </tbody></table><br>
+                    <div class="stable">Detail case result could be found in this <a href="http://dcg-oss.intel.com/test_report/report_case/4629/Silver/Purley_FPGA" target="_blank" style="text-decoration: underline;">page</a></div>
+                    <div style="border:1px solid #000000">
+                        <div id="cases_domain_chart" style="width:70%;float:left;" data-highcharts-chart="0"><div class="highcharts-container" id="highcharts-0" style="position: relative; overflow-x: hidden; overflow-y: hidden; width: 427px; height: 400px; text-align: left; line-height: normal; z-index: 0; "><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="427" height="400"><desc>Created with Highcharts 4.1.7</desc><defs><clipPath id="highcharts-1"><rect x="0" y="0" width="350" height="259"></rect></clipPath></defs><rect x="0" y="0" width="427" height="400" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect><g class="highcharts-grid" zIndex="1"></g><g class="highcharts-grid" zIndex="1"><path fill="none" d="M 67 327.5 L 417 327.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 67 262.5 L 417 262.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 67 198.5 L 417 198.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 67 133.5 L 417 133.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 67 67.5 L 417 67.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path></g><g class="highcharts-axis" zIndex="2"><path fill="none" d="M 241.5 327 L 241.5 337" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 417.5 327 L 417.5 337" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 66.5 327 L 66.5 337" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 67 327.5 L 417 327.5" stroke="#C0D0E0" stroke-width="1" zIndex="7" visibility="visible"></path></g><g class="highcharts-axis" zIndex="2"><text x="24" zIndex="7" text-anchor="middle" transform="translate(0,0) rotate(270 24 197.5)" class=" highcharts-yaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="197.5"><tspan>Pass Rate</tspan></text></g><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(67,299.575216752762) scale(1 0.10678130681077513)" style="" clip-path="url(#highcharts-1)"><rect x="45.5" y="-0.5" width="84" height="1" stroke="#FFFFFF" stroke-width="1" fill="#717171" rx="0" ry="0"></rect><rect x="220.5" y="-0.5" width="84" height="1" stroke="#FFFFFF" stroke-width="1" fill="#717171" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(67,68) scale(1 1)"></g><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(67,299.575216752762) scale(1 0.10678130681077513)" style="" clip-path="url(#highcharts-1)"><rect x="45.5" y="-0.5" width="84" height="1" stroke="#FFFFFF" stroke-width="1" fill="#ffae00" rx="0" ry="0"></rect><rect x="220.5" y="-0.5" width="84" height="1" stroke="#FFFFFF" stroke-width="1" fill="#ffae00" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(67,68) scale(1 1)"></g><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(67,299.575216752762) scale(1 0.10678130681077513)" style="" clip-path="url(#highcharts-1)"><rect x="45.5" y="-0.5" width="84" height="1" stroke="#FFFFFF" stroke-width="1" fill="#fd4f02" rx="0" ry="0"></rect><rect x="220.5" y="-0.5" width="84" height="1" stroke="#FFFFFF" stroke-width="1" fill="#fd4f02" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(67,68) scale(1 1)"></g><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(67,299.575216752762) scale(1 0.10678130681077513)" style="" clip-path="url(#highcharts-1)"><rect x="45.5" y="-0.5" width="84" height="260" stroke="#FFFFFF" stroke-width="1" fill="#6fd007" rx="0" ry="0"></rect><rect x="220.5" y="-0.5" width="84" height="260" stroke="#FFFFFF" stroke-width="1" fill="#6fd007" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(67,68) scale(1 1)"></g></g><text x="214" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:363px;" y="24"><tspan>Purley-FPGA Server SKX/LBG B-Stepping</tspan><tspan dy="21" x="214">Silver Validation Result</tspan><title>Purley-FPGA Server SKX/LBG B-Stepping Silver Validation Result</title></text><g class="highcharts-legend" zIndex="7" transform="translate(74,360)"><g zIndex="1"><g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)"><text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2" y="15">NoRun</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#717171"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(90,3)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">Block</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#ffae00"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(163,3)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">Fail</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#fd4f02"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(223,3)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">Pass</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#6fd007"></rect></g></g></g></g><g class="highcharts-axis-labels highcharts-xaxis-labels" zIndex="7"><text x="154.5" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:165px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1"><tspan>Power Management</tspan></text><text x="329.5" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:165px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1">FPGA</text></g><g class="highcharts-axis-labels highcharts-yaxis-labels" zIndex="7"><text x="52" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:131px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="332" opacity="1">0</text><text x="52" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:131px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="267" opacity="1">25</text><text x="52" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:131px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="202" opacity="1">50</text><text x="52" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:131px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="137" opacity="1">75</text><text x="52" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:131px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="73" opacity="1">100</text></g><g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(0,-9999)"><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"></path><path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5"></path><text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="20"></text></g></svg></div></div>
+                        <div id="cases_pie_chart" style="width:28%;float:right;border-left:1px solid #000000" data-highcharts-chart="1"><div class="highcharts-container" id="highcharts-2" style="position: relative; overflow-x: hidden; overflow-y: hidden; width: 170px; height: 400px; text-align: left; line-height: normal; z-index: 0; "><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="170" height="400"><desc>Created with Highcharts 4.1.7</desc><defs><clipPath id="highcharts-3"><rect x="0" y="0" width="150" height="147"></rect></clipPath></defs><rect x="0" y="0" width="170" height="400" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(10,173) scale(1 1)" style="cursor:pointer;"><path fill="#6fd007" d="M 74.99985499115199 66.77616318226013 A 6.723836819303525 6.723836819303525 0 0 1 79.14512899158092 68.20586293946056 L 75 73.5 A 0 0 0 0 0 75 73.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,10)"></path><path fill="#fd4f02" d="M 79.15042105519477 68.2100107148296 A 6.723836819303525 6.723836819303525 0 0 1 79.14512899158092 68.20586293946056 L 75 73.5 A 0 0 0 0 0 75 73.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path><path fill="#ffae00" d="M 79.15042105519477 68.2100107148296 A 6.723836819303525 6.723836819303525 0 0 1 79.14512899158092 68.20586293946056 L 75 73.5 A 0 0 0 0 0 75 73.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path><path fill="#717171" d="M 79.15042105519477 68.2100107148296 A 6.723836819303525 6.723836819303525 0 0 1 79.14512899158092 68.20586293946056 L 75 73.5 A 0 0 0 0 0 75 73.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(10,173) scale(1 1)"></g></g><text x="85" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:106px;" y="24"><tspan>Purley-FPGA</tspan><tspan dy="21" x="85">Server</tspan><tspan dy="21" x="85">SKX/LBG B-</tspan><tspan dy="21" x="85">Stepping</tspan><tspan dy="21" x="85">Silver</tspan><tspan dy="21" x="85">Validation</tspan><tspan dy="21" x="85">Status</tspan><title>Purley-FPGA Server SKX/LBG B-Stepping Silver Validation Status</title></text><g class="highcharts-legend" zIndex="7" transform="translate(23,332)"><g zIndex="1"><g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)"><text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2" y="15">Pass</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#6fd007"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(76,3)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">Fail</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#fd4f02"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,17)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">Block</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#ffae00"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,31)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">NoRun</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#717171"></rect></g></g></g></g><g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(0,-9999)"><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"></path><path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5"></path><text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="20"></text></g></svg></div></div>
+                        <div style="clear:both;"></div>
+                        <div style="border-top:1px solid #000000" id="cases_history_chart" data-highcharts-chart="2"><div class="highcharts-container" id="highcharts-4" style="position: relative; overflow-x: hidden; overflow-y: hidden; width: 611px; height: 400px; text-align: left; line-height: normal; z-index: 0; "><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="611" height="400"><desc>Created with Highcharts 4.1.7</desc><defs><clipPath id="highcharts-5"><rect x="0" y="0" width="520" height="280"></rect></clipPath><clipPath id="highcharts-6"><rect x="-99" y="-47" width="154.06134088248555" height="400"></rect></clipPath><clipPath id="highcharts-7"><rect x="0" y="0" width="55.06134088248556" height="280"></rect></clipPath></defs><rect x="0" y="0" width="611" height="400" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect><g class="highcharts-grid" zIndex="1"></g><g class="highcharts-grid" zIndex="1"><path fill="none" d="M 81 327.5 L 601 327.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 81 257.5 L 601 257.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 81 187.5 L 601 187.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 81 117.5 L 601 117.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 81 46.5 L 601 46.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path></g><g class="highcharts-axis" zIndex="2"><path fill="none" d="M 167.5 327 L 167.5 337" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 253.5 327 L 253.5 337" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 340.5 327 L 340.5 337" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 427.5 327 L 427.5 337" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 513.5 327 L 513.5 337" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 601.5 327 L 601.5 337" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 80.5 327 L 80.5 337" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 81 327.5 L 601 327.5" stroke="#C0D0E0" stroke-width="1" zIndex="7" visibility="visible"></path></g><g class="highcharts-axis" zIndex="2"><text x="24" zIndex="7" text-anchor="middle" transform="translate(0,0) rotate(270 24 187)" class=" highcharts-yaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="187"><tspan>Pass Rate</tspan></text></g><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series" visibility="visible" zIndex="0.1" transform="translate(81,47) scale(1 1)" clip-path="url(#highcharts-7)"><path fill="none" d="M 130 25.452000000000027 L 216.66666666666669 0 L 303.3333333333333 0 L 390 0 L 476.6666666666667 0" stroke="#7cb5ec" stroke-width="2" zIndex="1" stroke-linejoin="round" stroke-linecap="round"></path></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(81,47) scale(1 1)" clip-path="url(#highcharts-6)"><path fill="#7cb5ec" d="M 476 -4 C 481.328 -4 481.328 4 476 4 C 470.672 4 470.672 -4 476 -4 Z"></path><path fill="#7cb5ec" d="M 390 -4 C 395.328 -4 395.328 4 390 4 C 384.672 4 384.672 -4 390 -4 Z"></path><path fill="#7cb5ec" d="M 303 -4 C 308.328 -4 308.328 4 303 4 C 297.672 4 297.672 -4 303 -4 Z"></path><path fill="#7cb5ec" d="M 216 -4 C 221.328 -4 221.328 4 216 4 C 210.672 4 210.672 -4 216 -4 Z"></path><path fill="#7cb5ec" d="M 130 21.452000000000027 C 135.328 21.452000000000027 135.328 29.452000000000027 130 29.452000000000027 C 124.672 29.452000000000027 124.672 21.452000000000027 130 21.452000000000027 Z"></path></g></g><text x="306" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:547px;" y="24"><tspan>Purley-FPGA Server SKX/LBG B-Stepping Silver Analysis PASS%</tspan></text><g class="highcharts-data-labels" visibility="visible" zIndex="6" transform="translate(81,47) scale(1 1)" opacity="0"><g zIndex="1" style="" transform="translate(110,2)"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>90.91</tspan></text></g><g zIndex="1" style="" transform="translate(201,0)"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>100</tspan></text></g><g zIndex="1" style="" transform="translate(288,0)"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>100</tspan></text></g><g zIndex="1" style="" transform="translate(375,0)"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>100</tspan></text></g><g zIndex="1" style="" transform="translate(461,0)"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>100</tspan></text></g></g><g class="highcharts-legend" zIndex="7" transform="translate(271,360)"><g zIndex="1"><g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)"><path fill="none" d="M 0 11 L 16 11" stroke="#7cb5ec" stroke-width="2"></path><path fill="#7cb5ec" d="M 8 7 C 13.328 7 13.328 15 8 15 C 2.6719999999999997 15 2.6719999999999997 7 8 7 Z"></path><text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2" y="15">Silver</text></g></g></g></g><g class="highcharts-axis-labels highcharts-xaxis-labels" zIndex="7"><text x="124.33333333333334" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:77px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1"><tspan>2016 WW40</tspan></text><text x="211" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:77px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1"><tspan>2016 WW42</tspan></text><text x="297.6666666666667" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:77px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1"><tspan>2016 WW43</tspan></text><text x="384.33333333333337" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:77px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1"><tspan>2016 WW44</tspan></text><text x="470.99999999999994" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:77px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1"><tspan>2016 WW45</tspan></text><text x="557.6666666666666" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:77px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1"><tspan>2016 WW46</tspan></text></g><g class="highcharts-axis-labels highcharts-yaxis-labels" zIndex="7"><text x="66" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:192px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="332" opacity="1"><tspan>0 %</tspan></text><text x="66" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:192px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="262" opacity="1"><tspan>25 %</tspan></text><text x="66" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:192px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="192" opacity="1"><tspan>50 %</tspan></text><text x="66" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:192px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="122" opacity="1"><tspan>75 %</tspan></text><text x="66" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:192px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="52" opacity="1"><tspan>100 %</tspan></text></g><g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(0,-9999)"><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"></path><path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5"></path><text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="20"></text></g></svg></div></div>
+                    </div>
+
+                <br>
+                
+
+                </div>
+            </div>
+            
+            <script>
+                document.getElementById("PlatformIntegrationValidationResultBtn").setAttribute("class","CollapseBtn not-collapsed collapsed")
+                document.getElementById("collapsePlatformIntegrationValidationResult").setAttribute("class","panel-collapse collapse ")
+            </script>
+            
+        </div>
+    
+    
+        <br>
+        <br>
+    </div>
+
+</div>
+
+</body></html>

@@ -1,0 +1,18 @@
+                <span class="sh2">&nbsp; Closed Sightings </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseClosedSightings"></div>
+                </div>
+            </div>
+            <div id="collapseClosedSightings" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    
+                    <p>&nbsp; N/A</p>
+                    
+                    <br>
+                
+                </div>
+            </div>
+        </div>
+        <br>
+        
+        <div class="panel collapse-report-panel">

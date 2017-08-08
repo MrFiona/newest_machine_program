@@ -1,0 +1,2048 @@
+<!DOCTYPE html><html lang="en"><head>
+	<title>One Stop Shop Reports</title>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./6054_Gold_files/bootstrap.css">
+	<script src="./6054_Gold_files/jquery.min.js"></script>
+    <link href="/templates/css/showLoading.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/templates/js/jquery.showLoading.min.js"></script>
+    <script>
+        
+    </script>
+</head>
+<body>
+	<div id="content">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Test Report</title>
+<link rel="stylesheet" type="text/css" href="./6054_Gold_files/report_frame.css">
+<script src="./6054_Gold_files/jquery.min.js"></script>
+<script src="./6054_Gold_files/highcharts.js"></script>
+<script src="./6054_Gold_files/table.js"></script>
+<script src="./6054_Gold_files/bootstrap.min.js"></script>
+<style type="text/css">
+    .stable,.sh1,.sh2,.sh3 {font-family:'Intel Clear',Arial,sans-serif;}
+    .sh2{font-size: 15px;font-weight:bold;overflow: hidden;color: #000000;}
+    .sh3{font-size: 13px;overflow: hidden;color: #000000;}
+    .MsoNormalTable .sh2{font-size: 15px;font-weight:bold;overflow: hidden;text-align: left;margin: 4px 0;color: #000000}
+    .DetailHeardTable .sh2{font-size: 15px;font-weight:bold;overflow: hidden;text-align: left;margin: 4px 0;color: #000000}
+    .ReportHead{font-size: 22px;font-weight: bold;background: #ffffff;color: #0071c5;margin: 12px 0;overflow: hidden; text-align:center;}
+    .MsoNormalTable{font-size:10.0pt;border-width: 1px;border-color:Black;border-style:solid;border-collapse: collapse;width:100%;}
+    .MsoNormalTable td{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:9.5pt;padding-left:5px;padding-right:5px;text-align:center;padding-bottom:5px;padding-top:5px;}
+    .MsoNormalTable th{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:9.5pt;padding-left:5px;padding-right:5px;background-color:#A3CBFF;color:#000000;font-weight:bold;text-align:center;padding-bottom:5px;padding-top:5px;}
+    .DetailTable{font-size:10.0pt;border-width: 1px;border-color:Black;border-style:solid;border-collapse: collapse;width:100%;}
+    .DetailTable td{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:10.0pt;padding-left:10px;padding-right: 10px;text-align: left;padding-bottom:5px;padding-top:5px;}
+    .DetailTable th{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:10.0pt;padding-left:10px;background-color:#A3CBFF;color:#000000;font-weight:bold;padding-right: 10px;text-align: left;padding-bottom:5px;padding-top:5px;}
+    .NormalTable td{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:10.0pt;}
+    .DetailHeardTable{font-size:10.0pt;border-width: 1px;border-collapse: collapse;}
+    .DetailHeardTable td{ border-width: 1px;border-color:Black;border-style:solid;border-collapse:collapse;text-align:center;font-size:10.0pt;}
+    .td-center {text-align:center;}
+    table a:link,table a:focus,table a:visited ,table a:active,table a:hover {text-decoration:underline;}
+    a{color: #0071c5}
+    table{background-color: #FFFFFF;font-family:'Intel Clear',Arial,sans-serif;}
+    td{padding-bottom: 5px;padding-top: 5px}
+    .ReportHead{background-color: transparent}
+</style>
+
+
+    <div class="panel-group" id="main-panel-group">
+        <script>
+            $(function () {
+                if('True' == 'True' && '0' == '1' ){
+                uniteTable(sw_table, 2);
+                autoRowSpan(sw_table, 0);
+                }
+            });
+
+            $('.CollapseBtn').click(function(){
+                var btn = $(this),
+                on = 'not-collapsed',
+                off = 'collapsed';
+                console.log("CollapseBtn!")
+                //这里通过切换按钮中图标的类来控制出现不同的按钮图标，每次点击来回切换声音开关图标
+                if(btn.hasClass('not-collapsed')) {
+                    btn.removeClass('not-collapsed');
+                    btn.addClass('collapsed');
+                }else if(btn.hasClass('collapsed')) {
+                    btn.removeClass('collapsed');
+                    btn.addClass('not-collapsed');
+                }else {
+                    btn.addClass('not-collapsed');
+                }
+            });
+            function init_cases_domain_bars(div_id){
+                if(div_id == 'cases_domain_chart'){
+                    var domains = 'Power Management,Manageability,Virtualization,FPGA,Stress and Stability,Security,Processor';
+                    var pass_data = '7,7,7,6,1,5,2';
+                    var fail_data = '4,0,0,0,0,0,0';
+                    var block_data = '0,0,0,0,0,0,0';
+                    var norun_data = '0,0,0,0,0,0,0';}
+                else{
+                    var domains = '';
+                    var pass_data = '';
+                    var fail_data = '';
+                    var block_data = '';
+                    var norun_data = '';
+                }
+                domains = domains.split(',');
+                pass_data = pass_data.split(',');
+                fail_data = fail_data.split(',');
+                block_data = block_data.split(',');
+                norun_data = norun_data.split(',');
+
+                for(var j=0; j<pass_data.length; j++){
+                    pass_data[j] = parseInt(pass_data[j]);
+                }
+
+                for(var j=0; j<fail_data.length; j++){
+                    fail_data[j] = parseInt(fail_data[j]);
+                }
+
+                for(var j=0; j<block_data.length; j++){
+                    block_data[j] = parseInt(block_data[j]);
+                }
+
+                for(var j=0; j<norun_data.length; j++){
+                    norun_data[j] = parseInt(norun_data[j]);
+                }
+
+                series = [
+                             {name:'NoRun',data:norun_data,color:'#717171'},
+                             {name:'Block',data:block_data,color:'#ffae00'},
+                             {name:'Fail',data:fail_data,color:'#fd4f02'},
+                             {name:'Pass',data:pass_data,color:'#6fd007'}
+                         ];
+                if (1 == 2){
+                    if(div_id == 'cases_domain_chart'){
+                        var title_name = 'Purley_FPGA Gold Validation Result'
+                    }else{
+                        var title_name = ' Gold Validation Result'
+                    }
+                }else{
+                    var title_name = 'Purley-FPGA Server SKX H0/LBG B1 Gold Validation Result'
+                }
+                $('#'+div_id).highcharts({
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: title_name
+                    },
+                    credits:{enabled: false},
+                    xAxis: {
+                        categories: domains
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Pass Rate'
+                        }
+                    },
+                    tooltip: {
+                        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                        shared: true
+                    },
+                    plotOptions: {
+                        column: {
+                            stacking: 'percent'
+                        }
+                    },
+                    series: series
+                });
+            }
+
+            function init_cases_pie(div_id){
+                if(div_id == 'cases_pie_chart'){
+                    var pie_data = [
+                                    {name:'Pass',y:parseInt('35'),selected:true,sliced:true,color:'#6fd007'},
+                                    {name:'Fail',y:parseInt('4'),color:'#fd4f02'},
+                                    {name:'Block',y:parseInt('0'),color:'#ffae00'},
+                                    {name:'NoRun',y:parseInt('0'),color:'#717171'}
+                               ];
+                }
+                else{
+                    var pie_data = [
+                                    {name:'Pass',y:parseInt(''),selected:true,sliced:true,color:'#6fd007'},
+                                    {name:'Fail',y:parseInt(''),color:'#fd4f02'},
+                                    {name:'Block',y:parseInt(''),color:'#ffae00'},
+                                    {name:'NoRun',y:parseInt(''),color:'#717171'}
+                               ];
+                }
+                if (1 == 2){
+                    if(div_id == 'cases_pie_chart'){
+                        var title_name = 'Purley_FPGA Gold Validation Result'
+                    }else{
+                        var title_name = ' Gold Validation Result'
+                    }
+                }else{
+                    var title_name = 'Purley-FPGA Server SKX H0/LBG B1 Gold Validation Status'
+                }
+                $('#'+div_id).highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: title_name
+                    },
+                    credits:{enabled: false},
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        name: 'Cases',
+                        colorByPoint: true,
+                        data: pie_data
+                    }]
+                });
+            }
+
+            function init_whql_cases_pie(name,div_id,pass,fail,block,norun){
+                var pie_data = [
+                                    {name:'Pass',y:pass,selected:true,sliced:true,color:'#6fd007'},
+                                    {name:'Fail',y:fail,color:'#fd4f02'},
+                                    {name:'Block',y:block,color:'#ffae00'},
+                                    {name:'NoRun',y:norun,color:'#717171'}
+                               ];
+                title_name = name;
+                $('#'+div_id).highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie',
+                        height: 300
+                    },
+                    title: {
+                        text: title_name
+                    },
+                    legend: {
+                        align: "right",
+                        verticalAlign: "middle",
+                        layout:"vertical"
+                    },
+                    credits:{enabled: false},
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        name: 'Cases',
+                        colorByPoint: true,
+                        data: pie_data
+                    }]
+                });
+            }
+
+            function init_cases_pass_rate_history(div_id){
+
+                if(div_id == 'cases_history_chart'){
+                    var ww_names = '2016 WW40,2016 WW42,2016 WW43,2016 WW44,2016 WW45,2016 WW46,2016 WW47,2016 WW48,2016 WW49,2016 WW50,2016 WW51,2016 WW52,2016 WW53,2017 WW01,2017 WW02,2017 WW03,2017 WW04,2017 WW06,2017 WW07,2017 WW08,2017 WW09,2017 WW10,2017 WW11,2017 WW12,2017 WW13,2017 WW14,2017 WW15,2017 WW16,2017 WW17,2017 WW18,2017 WW20';
+                    var history_passrate = 'null,74.07%,81.48%,81.48%,92.59%,93.33%,93.33%,86.67%,86.67%,96.67%,93.33%,93.33%,82.76%,89.66%,89.66%,89.66%,79.31%,79.31%,79.55%,79.07%,79.07%,79.07%,78.05%,78.05%,90.24%,null,89.74%,89.74%,89.74%,89.74%,89.74%';
+                }else{
+                     var ww_names = '';
+                    var history_passrate = '';
+                }
+                ww_names = ww_names.split(',');
+                history_passrate = history_passrate.split(',');
+                for(var j=0; j<history_passrate.length; j++){
+                    if(history_passrate[j]=='null'){
+                        history_passrate[j] = null;
+                    }else{
+                        history_passrate[j] = parseFloat(history_passrate[j]);
+                    }
+                }
+                if (1 == 2){
+                    if(div_id == 'cases_history_chart'){
+                        var title_name = 'Purley_FPGA Gold Analysis PASS%'
+                    }else{
+                        var title_name = ' Gold Analysis PASS%'
+                    }
+                }else{
+                    var title_name = 'Purley-FPGA Server SKX H0/LBG B1 Gold Analysis PASS%'
+                }
+                $('#'+div_id).highcharts({
+                    chart: {
+                        type: 'line'
+                    },
+                    title: {
+                        text: title_name
+                    },
+                    credits:{enabled: false},
+                    xAxis: {
+                        categories: ww_names
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Pass Rate'
+                        },
+                        min:0,
+                        max:100,
+                        labels: {formatter:function(){return this.value + " %";}},
+                    },
+                    plotOptions: {
+                        line: {
+                            dataLabels: {
+                            enabled: true
+                            },
+                        enableMouseTracking: false,
+                        },
+                        series: { connectNulls: true}
+                    },
+                    tooltip: {valueSuffix: '%'},
+                    series: [{
+                        name: 'Gold',
+                        data: history_passrate
+                    }]
+                });
+            }
+
+            $(function () {
+                init_cases_domain_bars('cases_domain_chart');
+                init_cases_pie('cases_pie_chart');
+                init_cases_pass_rate_history('cases_history_chart');
+                if('0' == '1'){
+                    
+                }
+                if (1 == 2)
+                {
+                    init_cases_domain_bars('cases_domain_chart_2');
+                    init_cases_pie('cases_pie_chart_2');
+                    init_cases_pass_rate_history('cases_history_chart_2');
+                }
+                if(0 == 1)
+                {
+                    var pnp_result = {"Performance": {}, "Power": {}}
+                    for (var cpu in pnp_result){
+                        for (var object  in pnp_result[cpu])
+                        {
+                            var ratio = pnp_result[cpu][object].ratio;
+                            var case_name =  pnp_result[cpu][object].case_name;
+
+                            var categories_data = pnp_result[cpu][object].categories
+                            var series_data = new Array();
+                            if(ratio==null){break;}
+                            for(var i=0; i<ratio.length; i++)
+                            {
+                                var is_null = 1
+                                dict = {};
+
+                                dict['name'] = case_name[i];
+                                for(var k=0; k < ratio[i].length; k++)
+                                {
+                                    if(ratio[i][k] == -1)
+                                    {
+                                        ratio[i][k] = null;
+                                    }else{
+                                        is_null = 0
+                                    }
+                                }
+                                dict['data'] = ratio[i];
+                                if(is_null == 0){
+                                    series_data.push(dict)}
+                            }
+                            var chart1;
+                            var xAxis_list = new Array();
+                            if(pnp_result[cpu][object].target_ww == 'WW00'){
+                                title_content = object + ' Trend-- WWn to Target Ratio'
+                            }else{
+                                title_content = object + ' Trend-- WWn to ' + pnp_result[cpu][object].target_ww + ' ' +  pnp_result[cpu][object].target_cpu +' Ratio'
+                            }
+                            $('#'+cpu+'_'+ object + '_highcharts').highcharts({
+                                title:  {text: title_content},
+                                xAxis: {categories: categories_data ,
+                                        labels: {rotation:30,y:45}
+                                },
+                                yAxis: {title: {text: object},
+
+                                                        labels: {formatter:function(){return this.value + " %";}},
+                                                        plotLines: [{value: 0, width: 1, color: '#808080'}]
+                                                        },
+                                tooltip: {valueSuffix: '%'},
+                                credits:{enabled: false},
+                                plotOptions: {series: { connectNulls: true}, spline : {dataLabels: {enabled: true},enableMouseTracking: true}},
+                                series: series_data
+                            });
+                        }
+                    }
+                }
+            });
+            $(document).ready(function () {
+                
+                    $("#title_banner").load('/test_report/title_banner/Purley-FPGA/Gold/');
+                
+            });
+
+        </script>
+        <div id="title_banner" style="margin-left:-4px">
+            <!--<img src="cid:Purley-FPGA_Gold.png">-->
+        </div>
+        <div style="width:600px">
+        
+        <table class="DetailTable">
+            <tbody><tr>
+                
+                
+                <td width="200px">Silver: Basic Test Coverage</td>
+                <td width="200px" style="background-color:#FFCC00;">Gold: Medium Test Coverage</td>
+                <td width="200px">BKC: Full Test Coverage</td>
+                
+                
+            </tr>
+        </tbody></table>
+        
+        </div>
+        <table width="100%" class="ReportHead">
+            <tbody><tr>
+                
+                    <td>
+
+                
+                
+                    
+                    <p style="text-align:left;margin-bottom:0px">2017 WW20 Purley-FPGA Server SKX H0/LBG B1 Gold Release Announcement (
+                        BKC #21)</p>
+                    
+                
+                <p style="color:black;font-size:13px;text-align:left">DEG Platform Integration Team</p>
+                
+                </td>
+            </tr>
+        </tbody></table>
+        <p class="sh3" style="width:100%">The DEG platform Integration team announces the release of <font style="font-weight:bold">2017 WW20 Purley-FPGA Server SKX H0/LBG B1 Gold release package</font> for Intel internal use. The release is based on OS of
+            
+                RHEL7.3
+             server. The auto-installer packages are available in the Artifactory server (both SH site and OR site). Any questions please contact <a href="mailto:feng.y.li@intel.com">Li, Feng Y</a>.</p>
+        <table class="DetailTable" width="100%">
+            <tbody><tr>
+                <th width="20%">Auto Installer</th>
+                <th width="40%">SH Artifactory Server</th>
+                <th width="40%">OR Artifactory Server</th>
+            </tr>
+            
+            <tr>
+                <td width="20%">RHEL7.3</td>
+                <td width="40%"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/Purley_FPGA/2017WW20/WithoutOS_BKC-PurleyFPGA_BkcLinux_88.120538-2017WW20.zip" style="color:#0071c5">WithoutOS_BKC-PurleyFPGA_BkcLinux_88.120538-2017WW20.zip</a>
+               
+                                <br><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/OS/RHEL/RHEL7.3Serverx86_64.zip" style="color:#0071c5">RHEL7.3Serverx86_64.zip</a>
+                                </td>
+                <td width="40%"><a href="https://ubit-artifactory-or.intel.com/artifactory/DEG-Purley-sh-cache/Release/Purley_FPGA/2017WW20/WithoutOS_BKC-PurleyFPGA_BkcLinux_88.120538-2017WW20.zip" style="color:#0071c5">WithoutOS_BKC-PurleyFPGA_BkcLinux_88.120538-2017WW20.zip</a>
+                   
+                                <br><a href="https://ubit-artifactory-or.intel.com/artifactory/DEG-Purley-sh-cache/Release/OS/RHEL/RHEL7.3Serverx86_64.zip" style="color:#0071c5">RHEL7.3Serverx86_64.zip</a>
+                                </td>
+            </tr>
+            
+            
+        </tbody></table>
+        <div><p class="sh3" style="width:100%">*Note: Please select the server which is closer to your region to get the better data accessing/downloading performance</p></div>
+        <br>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Summary </span>
+                <div class="FoldIcon" style="display: none">
+                    <div class="CollapseBtn not-collapsed" data-toggle="collapse" href="#collapseSummary"></div>
+                </div>
+            </div>
+            <div id="collapseSummary" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <table class="DetailTable" width="100%">
+                        
+                        <tbody><tr>
+                            <td>
+                                <h4 style="margin: 0in 0in 0pt; line-height: 15.55pt; font-family: &quot;Intel Clear&quot;, Arial, sans-serif;"><span style="line-height: 15.55pt; font-family: inherit;"><span lang="EN-GB" style="font-family: Calibri, sans-serif;"><p class="wordsection1" style="margin: 0in 0in 0pt; line-height: 15.55pt; text-indent: 1.2pt;"><u style="color: inherit; line-height: 15.55pt; text-indent: 1.2pt; font-family: inherit;"><span lang="EN-GB">Test Result:</span></u><br></p></span></span></h4><h4 style="margin: 0in 0in 0pt; line-height: 15.55pt;"><span style="font-family: &quot;Intel Clear&quot;,sans-serif; mso-fareast-font-family: &quot;Times New Roman&quot;;"></span></h4><h4 style="margin: 0in 0in 0pt 0.5in; line-height: 15.55pt; text-indent: -0.25in;"><span style="color: rgb(51, 51, 51); font-family: Calibri, sans-serif;">Finish Gold test execution
+on RHEL7.3-BU2. Please visit<span class="apple-converted-space">&nbsp;</span></span><span style="font-family: &quot;Intel Clear&quot;, sans-serif;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2554437"><span style="font-family: Calibri, sans-serif;">HPQC</span></a></span><span class="apple-converted-space"><span style="color: rgb(51, 51, 51); font-family: Calibri, sans-serif;">&nbsp;</span></span><span style="color: rgb(51, 51, 51); font-family: Calibri, sans-serif;">for test details. Refer to the <a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/Purley/InstallationGuide/" target="_blank">installation guide</a> for
+the BKC package installation</span></h4><h4 style="margin: 0in 0in 0pt; line-height: 15.55pt;">
+
+
+
+<p class="MsoNormal"><i><span style="font-family: &quot;Calibri&quot;,sans-serif; font-size: 10pt;">&nbsp;</span><span style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 10pt;">&nbsp; &nbsp;</span></i><span style="color: rgb(51, 51, 51); text-indent: -0.25in; font-family: Calibri, sans-serif;">Purley<span class="apple-converted-space">&nbsp;FPGA</span>&nbsp;(RP</span><span class="apple-converted-space" style="color: inherit; text-indent: -0.25in; font-family: inherit;"><span style="color: rgb(31, 73, 125); font-family: Calibri, sans-serif;">&nbsp;</span></span><span style="color: rgb(51, 51, 51); text-indent: -0.25in; font-family: Calibri, sans-serif;">Board:</span><span class="apple-converted-space" style="color: inherit; text-indent: -0.25in; font-family: inherit;"><span style="color: rgb(31, 73, 125); font-family: Calibri, sans-serif;">&nbsp;</span></span><span style="color: rgb(51, 51, 51); text-indent: -0.25in; font-family: Calibri, sans-serif;">Neon City FPGA)</span></p></h4><h4 style="margin: 0in 0in 0pt 72.6pt; line-height: 15.55pt; text-indent: -18.6pt;"><span style="color: rgb(51, 51, 51); font-family: &quot;Courier New&quot;;">o</span><span style="color: rgb(51, 51, 51); font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 7pt;">&nbsp;&nbsp; </span><span style="color: rgb(51, 51, 51); font-family: Calibri, sans-serif;">Total test cases: 39</span><span style="font-family: Calibri, sans-serif;">; Passed test  cases is 35 and pass rate is 89.74<span style="color: rgb(51, 51, 51);">%.&nbsp;</span></span></h4><h4 style="margin: 0in 0in 0pt 72.6pt; line-height: 15.55pt; text-indent: -18.6pt;"><span style="font-family: &quot;Intel Clear&quot;, sans-serif;"></span></h4><h4 style="margin: 0in 0in 0pt 72.6pt; line-height: 15.55pt; text-indent: -18.6pt;"><span style="color: rgb(51, 51, 51); font-family: &quot;Courier New&quot;;">o</span><span style="color: rgb(51, 51, 51); font-size: 7pt;">&nbsp;&nbsp;
+</span><span style="color: rgb(51, 51, 51); font-family: Calibri, sans-serif;">Test coverage:&nbsp;&nbsp;</span><span style="font-family: &quot;Intel Clear&quot;, sans-serif;"></span></h4><h4 style="margin: 0in 0in 0pt 1in; line-height: 15.55pt; text-indent: -3.3pt;"><span style="color: rgb(51, 51, 51); font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;">SKX-FPGA H0 VIS/LBG-4&nbsp;</span><span style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;">B1:<span style="color: rgb(51, 51, 51);">&nbsp;</span>Run full BKC test case &nbsp;and P&amp;P test<span style="color: rgb(31, 73, 125);"></span></span></h4><div><h4 style="margin: 0in 0in 0pt 1in; color: rgb(34, 34, 34); line-height: 15.55pt; text-indent: -3.3pt; font-family: &quot;Intel Clear&quot;, Arial, sans-serif;"><span style="color: rgb(51, 51, 51); font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;">SKX-FPGA H0 VIS/LBG-T&nbsp;</span><span style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;">B1:<span style="color: rgb(51, 51, 51);">&nbsp;</span>Run QAT test case</span></h4></div><div><h4 style="margin: 0in 0in 0pt 1in; color: rgb(34, 34, 34); line-height: 15.55pt; text-indent: -3.3pt; font-family: &quot;Intel Clear&quot;, Arial, sans-serif;"><span style="color: rgb(51, 51, 51); font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;">SKX-FPGA B0 ES2/LBG-4&nbsp;</span><span style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;">B1:<span style="color: rgb(51, 51, 51);">&nbsp;</span>Run boot up test and AAL test case</span></h4></div><div><div><h4 style="margin: 0in 0in 0pt 72.6pt; color: rgb(34, 34, 34); line-height: 15.55pt; text-indent: -18.6pt; font-family: &quot;Intel Clear&quot;, Arial, sans-serif;"><span style="background-color: rgb(255, 255, 255);"><span style="color: rgb(51, 51, 51); font-family: &quot;Courier New&quot;;">o</span><span style="color: rgb(51, 51, 51); font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 7pt;">&nbsp; &nbsp;</span><span style="color: rgb(51, 51, 51); line-height: 15.55pt; text-indent: -18.6pt; font-family: Calibri, sans-serif;">Power cycling (G3/S5/Warm-reboot) are not covered in BKC test due to the key sighting&nbsp;</span><span style="line-height: 15.55pt; text-indent: -18.6pt; font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;"><a style="line-height: 15.55pt; text-indent: -18.6pt; text-decoration: underline;" href="http://targetmailer.intel.com/TMService/Redir.aspx?ID=2744622">5345509</a>, &nbsp;FPGA team is working on the fix.</span></span></h4></div><div><br></div><p class="MsoNormal" style="line-height: 15.55pt;"><b style="color: inherit; line-height: 15.55pt; font-family: inherit; font-size: 18px;"><u><span lang="EN-GB" style="color: rgb(51, 51, 51); font-family: &quot;Calibri&quot;,sans-serif; font-size: 13.5pt; mso-ansi-language: EN-GB;">Sighting Update:</span></u></b><br></p></div><h4 style="margin: 0in 0in 0pt 0.5in; line-height: 15.55pt; text-indent: -0.25in;">Key Sightings:</h4>
+
+<br><h4 style="margin: 0in 0in 0pt 55.8pt; line-height: 15.55pt; text-indent: -18.6pt;"><span style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;">[2016_WW44
+BKC][BIOS:106_D11][Neon city FPGA]Occasionally cat error and hang at code 'A9'
+during warmboot cycling tests </span><span style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2744622">5345509</a></span><o:p></o:p></h4><h4 style="margin: 0in 0in 0pt 55.8pt; line-height: 15.55pt; text-indent: -18.6pt;"><br></h4><h4 style="margin: 0in 0in 0pt; line-height: 15.55pt;">
+
+
+
+
+
+
+
+</h4><h4 style="margin: 0in 0in 0pt 0.5in; line-height: 15.55pt; text-indent: -0.25in;"><span style="color: rgb(51, 51, 51); font-family: Calibri, sans-serif;">Full sighting list can be found<span class="apple-converted-space">&nbsp;</span></span><span style="color: rgb(51, 51, 51);"><a style="font-family: Calibri, sans-serif;" href="http://targetmailer.intel.com/TMService/Redir.aspx?ID=2554441">in HSD</a></span></h4><div><br></div><div><p class="MsoNormal" style="line-height: 15.55pt;"><b><u><span lang="EN-GB" style="color: rgb(51, 51, 51); font-family: &quot;Calibri&quot;,sans-serif; font-size: 13.5pt; mso-ansi-language: EN-GB;">Known Issue/Errata:<o:p></o:p></span></u></b></p></div><div><p class="MsoListParagraph" style="margin: 0in 0in 0pt; text-indent: -0.25in;"><span style="font-family: Symbol; font-size: 10pt;">·</span><span style="font-family: &quot;Times New Roman&quot;,serif; font-size: 7pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="font-family: &quot;Intel Clear&quot;,sans-serif; font-size: 10pt;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2701996">5345546</a> [2016_WW45 BKC][BIOS:107_D07][Neon
+city FPGA]WOL function is still working when disabled in BIOS. &nbsp; <o:p></o:p></span></p>
+
+<p class="MsoListParagraph" style="margin: 0in 0in 0pt;"><span style="font-family: &quot;Intel Clear&quot;,sans-serif; font-size: 10pt;">Status: &nbsp;No
+fix .&nbsp;Purley-FPGA is aligned with Purley-2S/4S Launch collateral. Details
+can be found <a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2701996">5345546</a>&nbsp;in HSD<o:p></o:p></span></p>
+
+<p class="MsoListParagraph" style="margin: 0in 0in 0pt;"><span style="font-family: &quot;Intel Clear&quot;,sans-serif; font-size: 10pt;"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoListParagraph" style="margin: 0in 0in 0pt; text-indent: -0.25in;"><span style="font-family: Symbol; font-size: 10pt;">·</span><span style="font-family: &quot;Times New Roman&quot;,serif; font-size: 7pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="font-family: &quot;Intel Clear&quot;,sans-serif; font-size: 10pt;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2701997">5345493</a> [2016_WW43 BKC][BIOS:105_D11][Neon
+city FPGA] Entering "Platform Configuration -&gt; PCH Configuration"
+resets other saved change.&nbsp; <o:p></o:p></span></p>
+
+<p class="MsoListParagraph" style="margin: 0in 0in 0pt;"><span style="font-family: &quot;Intel Clear&quot;,sans-serif; font-size: 10pt;">Status: &nbsp;No
+fix .&nbsp;Purley-FPGA is aligned with Purley2S/4S Launch collateral. Details
+can be found&nbsp;<a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2701997">5345493</a>&nbsp;in HSD<o:p></o:p></span></p>
+
+<p class="MsoListParagraph" style="margin: 0in 0in 0pt;"><span style="font-family: &quot;Intel Clear&quot;,sans-serif; font-size: 10pt;"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoListParagraph" style="margin: 0in 0in 0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif; font-size: 7pt;">&nbsp;</span><span style="font-family: &quot;Intel Clear&quot;,sans-serif; font-size: 10pt;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2701998"><span>5345843</span></a> [2017_WW03
+BKC][BIOS:118_R01][Neon city FPGA] P3V3 voltage on Purley-FPGA boards is 1.1V
+when system under S5 state&nbsp;<o:p></o:p></span></p>
+
+<span style="font-family: &quot;Intel Clear&quot;,sans-serif; font-size: 10pt; mso-fareast-font-family: Gulim; mso-ansi-language: EN-US; mso-bidi-font-family: 宋体; mso-fareast-language: KO; mso-bidi-language: AR-SA;">Status: No fix. Details can be found&nbsp;<a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2701998">5345843</a>&nbsp;in HSD &nbsp;</span><br></div><h4 style="margin: 0in 0in 0pt 0.5in; line-height: 15.55pt; text-indent: -0.25in;"><br></h4><div><span style="color: rgb(51, 51, 51); font-family: &quot;Intel Clear&quot;, sans-serif;"><br></span></div><p><br></p>
+                                </td>
+                        </tr>
+                        
+                     </tbody></table>
+                </div>
+            </div>
+        </div>
+        <br>
+    <!--     <span class="sh2">&nbsp Key Sightings: </span>
+             <table class="MsoNormalTable">
+                 <tr>
+                    <th width="7%">ID</th>
+                    <th width="93%">Title</th>
+                 </tr>
+                 
+                 <tr >
+                     
+                        <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345509">5345509</a></td>
+                     
+                     <td style="text-align:left;">[2016_WW44 BKC][BIOS:106_D11][Neon city FPGA]Cat error and hang at code &#39;A9&#39; during warmboot cycling tests</td>
+                 </tr>
+                 
+                 
+             </table><br/> -->
+        
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Key Sightings </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseKeySightings"></div>
+                </div>
+            </div>
+            <div id="collapseKeySightings" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    
+                    <table class="MsoNormalTable">
+                        <tbody><tr>
+                            <th width="5%">ID</th>
+                            <th width="25%">Title</th>
+                            <th width="7%">Priority</th>
+                            <th width="7%">Severity</th>
+                            <th width="7%">Owner</th>
+                            <th width="20%">Note</th>
+                            <th width="7%">Status</th>
+                            <th width="10%">Subsystem</th>
+                            <th width="12%">Promoted ID</th>
+                        </tr>
+                        
+                            
+                                <tr style="background-color:#eb9316">
+                                
+                                    <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345509">5345509</a></td>
+                                
+                                <td style="text-align:left;">[2016_WW44 BKC][BIOS:106_D11][Neon city FPGA]Cat error and hang at code 'A9' during warmboot cycling tests</td>
+                                <td>P1</td>
+                                <td>2 High</td>
+                                <td>aneishen</td>
+                                <td>Pending for FPGA BBS debugging.</td>
+                                <td>Assigned</td>
+                                <td>FPGA</td>
+                                <td>
+                                    
+                                        <a href="https://vthsd.sc.intel.com/hsd/skylake_server/default.aspx#sighting/default.aspx?sighting_id=5353692&amp;hsdmsgstr=3">5353692</a><br><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id="></a>
+                                    
+                                </td>
+                                </tr>
+                            
+                        
+                    </tbody></table><br>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; New Sightings </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseNewSightings"></div>
+                </div>
+            </div>
+            <div id="collapseNewSightings" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    
+                    <p>&nbsp; N/A</p>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Existing Sightings </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseExistingSightings"></div>
+                </div>
+            </div>
+            <div id="collapseExistingSightings" class="panel-collapse collapse ">
+                <div class="panel-body">
+                
+                <table class="MsoNormalTable" width="100%">
+                    <tbody><tr>
+                        <th width="5%">ID</th>
+                        <th width="45%">Title</th>
+                        <th width="7%">Priority</th>
+                        <th width="7%">Severity</th>
+                        <th width="7%">Owner</th>
+                        <th width="7%">Status</th>
+                        <th width="10%">Subsystem</th>
+                        <th width="12%">Promoted ID</th>
+                    </tr>
+                        
+
+                                <tr>
+                                
+                                    <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345509">5345509</a></td>
+                                
+                                <td style="text-align:left;">[2016_WW44 BKC][BIOS:106_D11][Neon city FPGA]Cat error and hang at code 'A9' during warmboot cycling tests</td>
+                                <td>P1</td>
+                                <td>2 High</td>
+                                <td>aneishen</td>
+                                <td>Assigned</td>
+                                <td>FPGA</td>
+                                <td>
+                                    
+                                        <a href="https://vthsd.sc.intel.com/hsd/skylake_server/default.aspx#sighting/default.aspx?sighting_id=5353692&amp;hsdmsgstr=3">5353692</a><br><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id="></a>
+                                    
+                                </td>
+                                </tr>
+
+                        
+
+                                <tr>
+                                
+                                    <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5346017">5346017</a></td>
+                                
+                                <td style="text-align:left;">[2017_WW11 BKC][BIOS:126_R06][Neon city FPGA]Caterr and POST code displaying 72 when boot from S5 with FPGA disabled.</td>
+                                <td>P2</td>
+                                <td>3 Medium</td>
+                                <td>emichel</td>
+                                <td>Assigned</td>
+                                <td>Silicon</td>
+                                <td>
+                                    
+                                        <a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id="></a>
+                                    
+                                </td>
+                                </tr>
+
+                        
+
+                                <tr>
+                                
+                                    <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5346049">5346049</a></td>
+                                
+                                <td style="text-align:left;">[2017_WW13 BKC][BIOS:128.R08][Neon city FPGA]System can not enter S4 on VMD Raid mode. </td>
+                                <td>P2</td>
+                                <td>3 Medium</td>
+                                <td>oanalla</td>
+                                <td>Assigned</td>
+                                <td>OS/Driver</td>
+                                <td>
+                                    
+                                        <a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5346067">5346067</a>
+                                    
+                                </td>
+                                </tr>
+
+                        
+
+                                <tr>
+                                
+                                    <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345803">5345803</a></td>
+                                
+                                <td style="text-align:left;">[2016_WW52 BKC][BIOS:114_R09][Neon city FPGA]MCE error found after system reboot</td>
+                                <td>P3</td>
+                                <td>3 Medium</td>
+                                <td>bgbest</td>
+                                <td>Assigned</td>
+                                <td>Silicon</td>
+                                <td>
+                                    
+                                        <a href="https://vthsd.sc.intel.com/hsd/skylake_server/sighting/default.aspx?sighting_id=5353983&amp;hsdmsgstr=1">Promoted to SKX Server HSD</a><br><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345847">5345847</a>
+                                    
+                                </td>
+                                </tr>
+
+                        
+
+                                <tr>
+                                
+                                    <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345917">5345917</a></td>
+                                
+                                <td style="text-align:left;">[2017_WW07 BKC][BIOS 0122.R07][Neon City FPGA] System occasionally stopped at text mode and can't boot into RHEL7.3 GUI during power cycling test</td>
+                                <td>P3</td>
+                                <td>3 Medium</td>
+                                <td>xuewenxi</td>
+                                <td>Pending</td>
+                                <td>OS/Driver</td>
+                                <td>
+                                    
+                                        <a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345919">5345919</a>
+                                    
+                                </td>
+                                </tr>
+
+                        
+
+                                <tr>
+                                
+                                    <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5346123">5346123</a></td>
+                                
+                                <td style="text-align:left;">[2017_WW16 BKC][BIOS:131.R09][Neon city FPGA] System will cat error and reboot,when we insert memory to both socket and disable Numa.</td>
+                                <td>P3</td>
+                                <td>3 Medium</td>
+                                <td>ajgrier</td>
+                                <td>Assigned</td>
+                                <td></td>
+                                <td>
+                                    
+                                        <a href="https://vthsd.sc.intel.com/hsd/skylake_server/default.aspx#sighting/default.aspx?sighting_id=5354118&amp;hsdmsgstr=1"> 5354118 </a><br><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id="></a>
+                                    
+                                </td>
+                                </tr>
+
+                        
+
+                                <tr>
+                                
+                                    <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345420">5345420</a></td>
+                                
+                                <td style="text-align:left;">[2016_WW40 BKC][BIOS:102_D12][Neon city FPGA]CPLD 1 version show‘F.F’ after flash CPLD 0x11_0x22</td>
+                                <td>P3</td>
+                                <td>4 Low</td>
+                                <td>jdbolano</td>
+                                <td>Pending</td>
+                                <td>Board</td>
+                                <td>
+                                    
+                                        <a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id="></a>
+                                    
+                                </td>
+                                </tr>
+
+                        
+                </tbody></table><br>
+                 
+                </div>
+            </div>
+        </div>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Closed Sightings </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseClosedSightings"></div>
+                </div>
+            </div>
+            <div id="collapseClosedSightings" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    
+                    <p>&nbsp; N/A</p>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <br>
+        
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; HW Rework </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseHWRework"></div>
+                </div>
+            </div>
+            <div id="collapseHWRework" class="panel-collapse collapse ">
+                <div class="panel-body">
+                <table class="DetailTable" width="100%">
+                    <tbody><tr>
+                        <td> 
+                                <h4 style="margin: 0cm 0cm 0pt;"><u><span lang="EN-GB" style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;">Key Workaround</span></u><span class="apple-converted-space"><span lang="EN-GB" style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;">&nbsp;</span></span><span lang="EN-GB" style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;">(detail guide is<span class="apple-converted-space">&nbsp;</span></span><span lang="EN-US" style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;"><a href="https://dcg-oss.intel.com/document_download/16/?file_id=33" target="_blank">here</a></span><span lang="EN-GB" style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;">)</span><u1:p></u1:p><span lang="EN-US" style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;"><o:p></o:p></span></h4><h4 style="margin: 0in 0in 0pt;">
+
+<p class="default" style="margin: 0cm 0cm 0pt 36pt; line-height: 15.55pt; text-indent: -18pt;"><span lang="EN-US" style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;">Please
+use PCIe Video card instead of onboard BMC video due to known BMC issue</span><o:p></o:p><u2:p></u2:p></p>
+
+</h4><h4 style="margin: 0cm 0cm 0pt;"><span lang="EN-US" style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;">&nbsp;<u1:p></u1:p></span><o:p></o:p></h4><h4 style="margin: 0cm 0cm 0pt; line-height: 15.55pt;"><u><span lang="EN-GB" style="color: black; font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;">Pedigree
+and Board Jumper Settings:</span></u><span lang="EN-US" style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;"><a href="https://dcg-oss.intel.com/document_download/16/?file_id=60"><span class="apple-converted-space"><span style="color: rgb(31, 73, 125);">&nbsp;</span></span>guide</a><u1:p></u1:p></span><o:p></o:p></h4><h4 style="margin: 0in 0in 0pt;">
+
+
+
+<p class="MsoNormal" style="line-height: 12.1pt; margin-bottom: 7.5pt;"><i><span lang="EN-US" style="color: black; font-family: &quot;Intel Clear&quot;,sans-serif; font-size: 11pt;">Note: Only mandatory and necessary rework
+is implemented by BKC team</span></i><u2:p></u2:p><u1:p></u1:p><span lang="EN-US" style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;"><o:p></o:p></span></p>
+
+<p class="MsoListParagraph" style="text-indent: -21pt; margin-left: 21pt;"><!--[if !supportLists]--><span lang="EN-US" style="color: black; font-family: Wingdings; font-size: 7.5pt; mso-fareast-font-family: Wingdings; mso-bidi-font-family: Wingdings; mso-bidi-font-size: 11.0pt; mso-themecolor: text1;">l<span style="line-height: normal; font-family: &quot;Times New Roman&quot;; font-size: 7pt; font-stretch: normal;">&nbsp;&nbsp;
+</span></span><!--[endif]--><span lang="EN-US" style="color: black; font-family: &quot;Intel Clear&quot;,sans-serif; font-size: 11pt; mso-themecolor: text1;">Mandatory
+rework FPGA JTAG chain missing CPU1 TCK resistor</span><o:p></o:p></p>
+
+<p class="MsoListParagraph" style="text-indent: -21pt; margin-left: 21pt;"><span style="color: inherit;"><!--[if !supportLists]--><span lang="EN-US" style="color: black; font-family: Wingdings; font-size: 7.5pt; mso-fareast-font-family: Wingdings; mso-bidi-font-family: Wingdings; mso-bidi-font-size: 11.0pt; mso-themecolor: text1;">l<span style="line-height: normal; font-family: &quot;Times New Roman&quot;; font-size: 7pt; font-stretch: normal;">&nbsp;&nbsp;
+</span></span><!--[endif]--><span lang="EN-US" style="color: black; font-family: &quot;Intel Clear&quot;,sans-serif; font-size: 11pt; mso-themecolor: text1;">Mandatory
+rework to replace FPGA KR RX AC Caps</span><o:p></o:p></span></p>
+
+<p class="MsoListParagraph" style="text-indent: -21pt; margin-left: 21pt;"><span style="color: inherit;"><!--[if !supportLists]--><span lang="EN-US" style="color: black; font-family: Wingdings; font-size: 7.5pt; mso-fareast-font-family: Wingdings; mso-bidi-font-family: Wingdings; mso-bidi-font-size: 11.0pt; mso-themecolor: text1;">l<span style="line-height: normal; font-family: &quot;Times New Roman&quot;; font-size: 7pt; font-stretch: normal;">&nbsp;&nbsp;
+</span></span><!--[endif]--><span lang="EN-US" style="color: black; font-family: &quot;Intel Clear&quot;,sans-serif; font-size: 11pt; mso-themecolor: text1;">Mandatory
+rework add a pull down to RSMRST</span><o:p></o:p></span></p>
+
+<p class="MsoListParagraph" style="text-indent: -21pt; margin-left: 21pt;"><span style="color: inherit;"><!--[if !supportLists]--><span lang="EN-US" style="color: black; font-family: Wingdings; font-size: 7.5pt; mso-fareast-font-family: Wingdings; mso-bidi-font-family: Wingdings; mso-bidi-font-size: 11.0pt; mso-themecolor: text1;">l<span style="line-height: normal; font-family: &quot;Times New Roman&quot;; font-size: 7pt; font-stretch: normal;">&nbsp;&nbsp;
+</span></span><!--[endif]--><span lang="EN-US" style="color: black; font-family: &quot;Intel Clear&quot;,sans-serif; font-size: 11pt; mso-themecolor: text1;">Mandatory
+rework to update VR FW</span><o:p></o:p></span></p>
+
+<p class="MsoListParagraph" style="text-indent: -21pt; margin-left: 21pt;"><span style="color: inherit;"><!--[if !supportLists]--><span lang="EN-US" style="color: black; font-family: Wingdings; font-size: 7.5pt; mso-fareast-font-family: Wingdings; mso-bidi-font-family: Wingdings; mso-bidi-font-size: 11.0pt; mso-themecolor: text1;">l<span style="line-height: normal; font-family: &quot;Times New Roman&quot;; font-size: 7pt; font-stretch: normal;">&nbsp;&nbsp;
+</span></span><!--[endif]--><span lang="EN-US" style="color: black; font-family: &quot;Intel Clear&quot;,sans-serif; font-size: 11pt; mso-themecolor: text1;">CPLD
+updates to address IFWI issue with 2 SKX FPGA CPUs populated</span><o:p></o:p></span></p>
+
+<p class="MsoListParagraph" style="text-indent: -21pt; margin-left: 21pt;"><span style="color: inherit;"><!--[if !supportLists]--><span lang="EN-US" style="color: black; font-family: Wingdings; font-size: 7.5pt; mso-fareast-font-family: Wingdings; mso-bidi-font-family: Wingdings; mso-bidi-font-size: 11.0pt; mso-themecolor: text1;">l<span style="line-height: normal; font-family: &quot;Times New Roman&quot;; font-size: 7pt; font-stretch: normal;">&nbsp;&nbsp;
+</span></span><!--[endif]--><span lang="EN-US" style="color: black; font-family: &quot;Intel Clear&quot;,sans-serif; font-size: 11pt; mso-themecolor: text1;">Required
+CPLD updates to address reset and FSC issues</span><o:p></o:p></span></p>
+
+<p class="MsoListParagraph" style="text-indent: -21pt; margin-left: 21pt; mso-char-indent-count: 0; mso-list: l0 level1 lfo1;"><!--[if !supportLists]--><span lang="EN-US" style="color: black; font-family: Wingdings; font-size: 7.5pt; mso-fareast-font-family: Wingdings; mso-bidi-font-family: Wingdings; mso-bidi-font-size: 11.0pt; mso-themecolor: text1;">l<span style="line-height: normal; font-family: &quot;Times New Roman&quot;; font-size: 7pt; font-stretch: normal;">&nbsp;&nbsp;
+</span></span><!--[endif]--><span lang="EN-US" style="color: black; font-family: &quot;Intel Clear&quot;,sans-serif; font-size: 11pt; mso-themecolor: text1;">Required
+VR FW update to address VMCP current misreporting issues<o:p></o:p></span></p>
+
+<p class="MsoListParagraph" style="text-indent: -21pt; margin-left: 21pt; mso-char-indent-count: 0; mso-list: l0 level1 lfo1;"><!--[if !supportLists]--><span lang="EN-US" style="color: black; font-family: Wingdings; font-size: 7.5pt; mso-fareast-font-family: Wingdings; mso-bidi-font-family: Wingdings; mso-bidi-font-size: 11.0pt; mso-themecolor: text1;">l<span style="line-height: normal; font-family: &quot;Times New Roman&quot;; font-size: 7pt; font-stretch: normal;">&nbsp;&nbsp;
+</span></span><!--[endif]--><span lang="EN-US" style="color: black; font-family: &quot;Intel Clear&quot;,sans-serif; font-size: 11pt; mso-themecolor: text1;">Required
+VR FW update for boards -301 to address VMCP current misreporting issues<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN-US" style="color: rgb(31, 78, 121); font-size: 11pt; mso-themecolor: accent1; mso-ascii-font-family: Calibri; mso-hansi-font-family: Calibri; mso-themeshade: 128;"><o:p>&nbsp;</o:p></span></p></h4>
+                            
+                        </td>
+                    </tr>
+                </tbody></table><br>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; HW Configuration </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseHWConfiguration"></div>
+                </div>
+            </div>
+            <div id="collapseHWConfiguration" class="panel-collapse collapse ">
+                <div class="panel-body">
+                
+                    
+                        <table border="0" cellpadding="0" cellspacing="0" class="DetailTable">
+<colgroup><col span="6" style="width: 152pt; mso-width-source: userset; mso-width-alt: 6496;" width="203">
+</colgroup><tbody><tr height="29">
+<td height="48" rowspan="2"><span style="font-weight: bold;">　</span></td>
+<td rowspan="2"><span style="font-weight: bold;">System 1~3</span></td>
+<td rowspan="2"><span style="font-weight: bold;">System 4~5</span></td>
+<td rowspan="2"><span style="font-weight: bold;">System 6</span></td>
+<td rowspan="2"><span style="font-weight: bold;">System 7 ~8(cycling test)</span></td>
+<td rowspan="2"><span style="font-weight: bold;">System 9~11 (cycling test)</span></td>
+</tr>
+<tr height="19">
+</tr>
+<tr height="30">
+<td height="30"><span style="font-weight: bold;">Ingredient</span></td>
+<td>HW/SW Version Details</td>
+<td>HW/SW Version Details</td>
+<td>HW/SW Version Details</td>
+<td>HW/SW Version Details</td>
+<td>HW/SW Version Details</td>
+</tr>
+<tr height="25">
+<td height="25"><span style="font-weight: bold;">CPU 0/1</span></td>
+<td>QM3A ( H0 )</td>
+<td>QM3A ( H0 )</td>
+<td>QLG7 ( B0 )</td>
+<td>QM3A ( H0 )</td>
+<td>QM3A ( H0 )</td>
+</tr>
+<tr height="25">
+<td height="25"><span style="font-weight: bold;">PCH</span></td>
+<td>QLJ7(LBG&nbsp; B1)</td>
+<td>QLJ9 (LBG&nbsp; B1)</td>
+<td>QLJ7(LBG&nbsp; B1)</td>
+<td>QLJ7(LBG&nbsp; B1)</td>
+<td>QLJ7(LBG&nbsp; B1)</td>
+</tr>
+<tr height="47">
+<td height="47"><span style="font-weight: bold;">Memory<font class="font6">&nbsp;</font><font class="font5">Type</font></span></td>
+<td>&nbsp;Samsung M393A2K43BB1-CTD6Q 16GB 2Rx8
+  PC4-2666V-RE1-11-MA0</td>
+<td>micron MTA18ASF2G72PDZ-2G6B1QK
+  16GB 2RX8 PC4-2666V-RE1-11</td>
+<td>micron MTA18ASF2G72PDZ-2G6B1QK
+  16GB 2RX8 PC4-2666V-RE1-11</td>
+<td>&nbsp;Samsung M393A2K43BB1-CTD6Q 16GB 2Rx8
+  PC4-2666V-RE1-11-MA0</td>
+<td>micron MTA18ASF2G72PDZ-2G6B1QK
+  16GB 2RX8 PC4-2666V-RE1-11</td>
+</tr>
+<tr height="48">
+<td height="48"><span style="font-weight: bold;">Memory Amount</span></td>
+<td>12*16GB</td>
+<td>12*16GB</td>
+<td>2*16GB</td>
+<td>2*16GB</td>
+<td>2*16GB</td>
+</tr>
+<tr height="43">
+<td height="43"><span style="font-weight: bold;">Base
+  Board</span></td>
+<td>Neon City FPGA PBA H90983-300</td>
+<td>Neon City FPGA PBA H90983-300</td>
+<td>Neon City FPGA PBA H90983-300</td>
+<td>Neon City FPGA PBA H90983-200</td>
+<td>Neon City FPGA PBA H90983-300</td>
+</tr>
+<tr height="25">
+<td height="25"><span style="font-weight: bold;">Chassis</span></td>
+<td>ASSEMBLY NO.H36149-004</td>
+<td>ASSEMBLY NO.H48593-003</td>
+<td>ASSEMBLY NO.H36149-004</td>
+<td>ASSEMBLY NO.H48593-003</td>
+<td>ASSEMBLY NO.H48593-003</td>
+</tr>
+<tr height="25">
+<td height="25"><span style="font-weight: bold;">Video
+  Card</span></td>
+<td>NVDIA GEFORCE 210&nbsp;</td>
+<td>NVDIA GEFORCE 210&nbsp;</td>
+<td>NVDIA GEFORCE 210&nbsp;</td>
+<td>NVDIA GEFORCE 210&nbsp;</td>
+<td>NVDIA GEFORCE 210&nbsp;</td>
+</tr></tbody></table>
+                    
+                
+                </div>
+            </div>
+        </div>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; SW Configuration </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseSWConfiguration"></div>
+                </div>
+            </div>
+            <div id="collapseSWConfiguration" class="panel-collapse collapse ">
+                <div class="panel-body">
+                
+                    
+                        <table border="0" cellpadding="0" cellspacing="0" class="DetailTable">
+<tbody><tr>
+<th colspan="2"></th>
+<th>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><b><span lang="EN-US" style="">Ingredient<o:p></o:p></span></b></div>
+</th>
+<th>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><b><span lang="EN-US" style="">SW Version Details<o:p></o:p></span></b></div>
+</th>
+<th>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><b><span lang="EN-US" style="">Changed(last release)<o:p></o:p></span></b></div>
+</th>
+<th>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><b><span lang="EN-US" style="">Release Notes<o:p></o:p></span></b></div>
+</th>
+</tr>
+<tr>
+<td colspan="2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">APPs<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">HSSI_pkg<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/app/AAL_pkg/SR-6.3_HSSI.zip"><span style="">6.3</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/app/AAL_pkg/HSSI%20Release%20Notes%206.3.pdf"><span style="">Release
+  Notes</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td colspan="2" rowspan="12">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">Firmwares<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">IFWI<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/FW/IFWI/2017.19.4.10.zip"><span style="">2017.19.4.10</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="color:red">(2017.17.2.02-&gt;2017.19.4.10)</span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">BMC<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/FW/BMC/NC_BMC_PO_79_21_r10651.zip"><span style="">79.21.r10651</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">CPLD<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/FW/CPLD/0d12_0x22.zip"><span style="">0d12_0x22</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">SKX_CPLD<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/FW/CPLD/SKX_CPLD_0430_1209.zip"><span style="">0430_1209</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">SPS<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/FW/SPS/SPS_E5_04.00.03.202.0.zip"><span style="">SPS
+  4.0.3.202.0</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="color:red">(SPS_E5_04.00.03.199.0-&gt;SPS 4.0.3.202.0)</span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Documents/ReleaseNotes/SPS/SPS_SPS%204.0.3.202.0_ReleaseNotes.txt"><span style="">Release
+  Notes</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">SPS_Config<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/FW/SPS_Config/SPS_E5_04.00.03.199_ConfigFile_WW17.zip"><span style="">SPS_E5_04.00.03.199.0_ConfigFile_WW17</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">RSTe-PreOS<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/RSTe-PreOS/PreOS-1217.zip"><span style="">5.0.0.1217</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">ACM<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/FW/ACM/Purley_BIOS_ACM_1_1_SINIT_ACM_1_2_1.zip"><span style="">1.2.1</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="color:red">(1.20-&gt;1.2.1)</span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Documents/ReleaseNotes/ACM/ACM_1.2.1_ACM_BIOS_ACM_1.2,SINIT_ACM_1.2.1_Purley_ACM_121_Release_Notes.pdf"><span style="">Release
+  Notes</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">FPGA<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/FW/FPGA/FPGA_BBS_N4PE_6.3.0_08.12.4_2017WW03.zip"><span style="">6.3.0_08.12.4</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">Omni-Path<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/Omni-Path/HfiPcieGen3_1.3.1.0.0_2017WW13.zip"><span style="">1.3.1.0.0_2017WW13</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">BIOSGuard<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/BIOSGuard/BIOSGuard_PC20_20160724.zip"><span style="">PC20_201607248</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/BIOSGuard/BIOSGuard_PC20_20160724.zip!/BIOS_Guard_RN_0_9.pdf"><span style="">Release
+  Notes</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">VR<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/FW/VR/NC_FPGA_VRs_0d03_0d05.zip"><span style="">0d03_0d05</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Documents/ReleaseNotes/VR/VR_0d03_0d05_Readme.txt"><span style="">Release
+  Notes</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td rowspan="19">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">RHEL7.3<o:p></o:p></span></div>
+</td>
+<td rowspan="5">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">APPs<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">SST<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/app/SST/SystemScopeLinux3.0.1044.zip"><span style="">3.0.1044</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Documents/ReleaseNotes/SST/SST_3.0.1044_ReadMe_Linux.html"><span style="">Release
+  Notes</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">DPDK<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/app/DPDK/dpdk-16.11.tar.gz"><span style="">16.11</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">SPS_Tool<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/app/SPS_Tool/SPS_Tools_4.2.64.3.zip"><span style="">4.2.64.3</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">IPMI<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/app/IPMI/ipmiutil-3.0.0.tar.gz"><span style="">3.0.0</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">IDK<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/app/IDK/IDK_3.22.zip"><span style="">3.22</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Documents/ReleaseNotes/IDK/IDK_3.22_Readme.rtf"><span style="">Release
+  Notes</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td rowspan="6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">Configs<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">menu<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/OS/RHEL7.3/RHEL7.3_Server_Config_SupportHibernate_0_0_2_disableQAT.zip"><span style="">0.0.2_disableQAT</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">kernel_update<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/config/kernel_update/kernelupdate_to_RH7.3_3.10.0-514-BU2-signed.tgz"><span style="">RH7.3_3.10.0-514_BU2-signed</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">qemu<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/utility/qemu-2.6.1.tar.bz2"><span style="">2.6.1</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">FPGA_XEN<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/config/kernel_update/FPGA-XEN-4.7.0_4.6.3.tgz"><span style="">FPGA-XEN-4.7.0_4.6.3.tgz</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">FPGA_KVM<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/config/kernel_update/FPGA-KVM-4.7.0.tgz"><span style="">FPGA-KVM-4.7.0</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">auto_install_script<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/config/auto_install_script/RHEL7.3_Purley_FPGA_setup_script_rev1.2.zip"><span style="">v1.2</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td rowspan="7">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">Drivers<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">lan-driver-RHEL7.3_3.10.0<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/drivers/lan-driver-RHEL7.2_3.10.0/intel-lan_linux_RH7.3_3.10.0-514_Purley_bkc_rev0.6.tgz"><span style="">RH7.3_3.10.0-514_rev0.6</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">LOM_Jacksonville<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/drivers/LOM_Jacksonville/e1000e-3.3.5.2.tar.gz"><span style="">3.3.5.2</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">LOM_FortPark<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/drivers/LOM_FortPark/2017_WW14_LBG_B1_LEK_PKG.zip"><span style="">2017.WW14</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Documents/ReleaseNotes/LOM_FortPark/LOM_FortPark_2017.WW14_2017_WW14_LBG_B1_BKC_Release_Notes_LEK_PKG.pdf"><span style="">Release
+  Notes</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">NIC_FM10K<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/drivers/NIC_FM10K/fm10k-0.21.7.tar.gz"><span style="">0.21.7</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">RSTe<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/drivers/RSTe/RSTe_Linux_5.1-PV.zip.zip"><span style="">5.1-PV</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Documents/ReleaseNotes/RSTe/RSTe_5.1-PV_5_1_listofchanges.txt"><span style="">Release
+  Notes</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">IntelOPA-IFS<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/drivers/IntelOPA-IFS/IntelOPA-IFS.RHEL73-x86_64.10.3.0.0.81.tgz"><span style="">10.3.0.0.81</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">QAT<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/drivers/QAT/QAT1.7.Upstream.L.1.0.2-20.tar.gz"><span style="">1.0.2</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">OSes<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">RHEL<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/OS/RHEL/RHEL7.3Serverx86_64.zip"><span style="">7.3</span></a></span><span lang="EN-US" style=""><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N<o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span lang="EN-US" style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+</tbody></table>
+<p class="wordsection1" style="margin:0cm;margin-bottom:.0001pt"><span lang="EN-US" style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">&nbsp;</span></p>
+                    
+                    <br>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; IFWI Configuration </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseIFWIConfiguration"></div>
+                </div>
+            </div>
+            <div id="collapseIFWIConfiguration" class="panel-collapse collapse ">
+                <div class="panel-body">
+                
+                    <table class="DetailTable" width="100%">
+                        <tbody><tr>
+                            <th width="40%">Ingredient</th>
+                            <th width="30%">Version</th>
+                            <th width="30%">Changed (VS 2017 WW18)</th>
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">IFWI File</td>
+                            <td width="35%">PLYDCRB.86B.OR.64.2017.19.4.10.0304_LBG_SPS_FPGA.bin</td>
+                            
+                                <td style="color:red">Y (PLYDCRB.86B.BR.64.2017.17.2.02.1831_LBG_SPS_FPGA.bin-&gt;PLYDCRB.86B.OR.64.2017.19.4.10.0304_LBG_SPS_FPGA.bin)</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">BiosID</td>
+                            <td width="35%">PLYDCRB1.86B.0134.R02.1705110304</td>
+                            
+                                <td style="color:red">Y (PLYDCRB1.86B.0133.R02.1704251831-&gt;PLYDCRB1.86B.0134.R02.1705110304)</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">10GNicEFI</td>
+                            <td width="35%">v4.2.22</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">1GNicEFI</td>
+                            <td width="35%">v00.00.11</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">ASTVBIOS</td>
+                            <td width="35%">800</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">AspeedVideo</td>
+                            <td width="35%">PrePO</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">BIOSACM</td>
+                            <td width="35%">Production,v1.2.0_LBG</td>
+                            
+                                <td style="color:red">Y (Production_NT,v1.2.0_LBG-&gt;Production,v1.2.0_LBG)</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">BiosGuard</td>
+                            <td width="35%">PC v09</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">FPGABBS_GBE</td>
+                            <td width="35%">v6.3.0</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">FPGAN4PE</td>
+                            <td width="35%">v081204_signed</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">FpkSi</td>
+                            <td width="35%">v3.37_80000A70</td>
+                            
+                                <td style="color:red">Y (v3.37_800009E0-&gt;v3.37_80000A70)</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">FpkSiLR</td>
+                            <td width="35%">v3.37_800009B3</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">GBE</td>
+                            <td width="35%">_I219_Nahum7_Purley_LM_No-LAN-Switch_Rev0.2</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">HfiPcieGen3</td>
+                            <td width="35%">v1.3.1.0.0</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">IccOverClocking</td>
+                            <td width="35%">PrePO</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">JacksonvillePxe</td>
+                            <td width="35%">v1.07</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">ME</td>
+                            <td width="35%">SPS/4.0.3.199</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">Mebx</td>
+                            <td width="35%">v11.0.0.0005</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">MebxSetupBrowser</td>
+                            <td width="35%">PrePo</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">Microcode1</td>
+                            <td width="35%">M1350651_8000002B.inc</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">Microcode2</td>
+                            <td width="35%">M9750652_80000034.inc</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">Microcode3</td>
+                            <td width="35%">M9750653_01000137.inc</td>
+                            
+                                <td style="color:red">Y (M9750653_01000136.inc-&gt;M9750653_01000137.inc)</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">Microcode4</td>
+                            <td width="35%">M9750654_0200001c.inc</td>
+                            
+                                <td style="color:red">Y (M9750654_0200001a.inc-&gt;M9750654_0200001c.inc)</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">NvmDimmDriver</td>
+                            <td width="35%">v01.00.01.1018</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">NvmDimmHii</td>
+                            <td width="35%">v01.00.01.1018</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">RSTeSataEfi</td>
+                            <td width="35%">v5.0.0.1217</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">RSTeSataLegacy</td>
+                            <td width="35%">v5.0.0.1217</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">RSTesSataEfi</td>
+                            <td width="35%">v5.0.0.1217</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">RSTesSataLegacy</td>
+                            <td width="35%">v5.0.0.1217</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">SINIT</td>
+                            <td width="35%">Production,v1.2.1_LBG</td>
+                            
+                                <td style="color:red">Y (Production,v1.2.0_LBG-&gt;Production,v1.2.1_LBG)</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">SataAHCI</td>
+                            <td width="35%">v2.00i</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">iBMCVideo</td>
+                            <td width="35%">v3.8SQ</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                    </tbody></table><br>
+                
+                </div>
+            </div>
+        </div>
+        <br>
+        
+        
+
+        
+        
+        <br>
+
+        
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Platform Integration Validation Result </span>
+                <div class="FoldIcon">
+                    <div id="PlatformIntegrationValidationResultBtn" class="CollapseBtn not-collapsed" data-toggle="collapse" href="#collapsePlatformIntegrationValidationResult">
+</div>
+                </div>
+            </div>
+
+            <div id="collapsePlatformIntegrationValidationResult" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <table class="MsoNormalTable" width="100%">
+                        <tbody><tr>
+                            <th rowspan="9" width="9%">Purley_FPGA Test Execution Status</th>
+                            <th width="9%">Domains</th>
+                            <th width="8%">Attempted</th>
+                            <th width="8%">Blocked</th>
+                            <th width="8%">No Run</th>
+                            <th width="8%">Failed</th>
+                            <th width="8%">Passed</th>
+                            <th width="8%">Total</th>
+                            <th width="8%">% Attempted</th>
+                            <th width="8%">Passed% (per attempted)</th>
+                            <th width="8%">Pass%</th>
+                            <th width="10%">Key Sightings</th>
+                        </tr>
+                        
+                        
+                        <tr>
+                            
+                             <td>Power Management</td>
+                            
+                             <td>11</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                            <td style="background:#ff6633">4</td>
+                            
+                             <td>7</td>
+                             <td>11</td>
+                             <td>100.00%</td>
+                             <td>7/11</td>
+                             <td>63.64%</td>
+                             <td>
+                                 
+                                     
+                                        <p><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345803" style="color:#0071c5">5345803</a></p>
+                                     
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Manageability</td>
+                            
+                             <td>7</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>7</td>
+                             <td>7</td>
+                             <td>100.00%</td>
+                             <td>7/7</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Virtualization</td>
+                            
+                             <td>7</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>7</td>
+                             <td>7</td>
+                             <td>100.00%</td>
+                             <td>7/7</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>FPGA</td>
+                            
+                             <td>6</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>6</td>
+                             <td>6</td>
+                             <td>100.00%</td>
+                             <td>6/6</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Stress &amp; Stability</td>
+                            
+                             <td>1</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>1</td>
+                             <td>1</td>
+                             <td>100.00%</td>
+                             <td>1/1</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Security</td>
+                            
+                             <td>5</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>5</td>
+                             <td>5</td>
+                             <td>100.00%</td>
+                             <td>5/5</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Processor</td>
+                            
+                             <td>2</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>2</td>
+                             <td>2</td>
+                             <td>100.00%</td>
+                             <td>2/2</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Summary</td>
+                            
+                             <td>39</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                            <td style="background:#ff6633">4</td>
+                            
+                             <td>35</td>
+                             <td>39</td>
+                             <td>100.00%</td>
+                             <td>35/39</td>
+                             <td>89.74%</td>
+                             <td>
+                                 
+
+
+
+                             </td>
+                        </tr>
+                        
+                        
+                    </tbody></table><br>
+                    <div class="stable">Detail case result could be found in this <a href="//dcg-oss.intel.com/test_report/report_case/6054/Gold/Purley_FPGA" target="_blank" style="text-decoration: underline;">page</a></div>
+                    <div style="border:1px solid #000000">
+                        <div id="cases_domain_chart" style="width:70%;float:left;"></div>
+                        <div id="cases_pie_chart" style="width:28%;float:right;border-left:1px solid #000000"></div>
+                        <div style="clear:both;"></div>
+                        <div style="border-top:1px solid #000000" id="cases_history_chart"></div>
+                    </div>
+
+                <br>
+                
+
+                </div>
+            </div>
+            
+            <script>
+                document.getElementById("PlatformIntegrationValidationResultBtn").setAttribute("class","CollapseBtn not-collapsed collapsed")
+                document.getElementById("collapsePlatformIntegrationValidationResult").setAttribute("class","panel-collapse collapse ")
+            </script>
+            
+        </div>
+
+    
+    
+
+    
+    
+
+    
+    
+        <br>
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; BKC Useful Info </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed" data-toggle="collapse" href="#collapseBKCUsefulInfo"></div>
+                </div>
+            </div>
+            <div id="collapseBKCUsefulInfo" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <p><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+color:#333333">Notes: To subscribe or unsubscribe to the mailing list please
+click</span><span style="font-family:&quot;Helvetica Neue&quot;;color:#333333">&nbsp;<a href="http://targetmailer.intel.com/Subscriptions/?GroupID=30#/30?cat=109">here</a>&nbsp;</span><span style="font-size:10.0pt;
+font-family:&quot;Intel Clear&quot;,sans-serif;color:#333333">and select "Purley FPGA Subscription".</span><span style="font-family:&quot;Helvetica Neue&quot;;
+color:#333333"><o:p></o:p></span></p><table class="NormalTable" border="0" cellspacing="0" cellpadding="0" style="width: 100%; color: rgb(51, 51, 51);"><tbody><tr style="color: rgb(0, 0, 0); font-weight: bold; background-color: rgb(163, 203, 255);"><td width="10%" align="center">Information</td><td width="40%" align="center">Quick Guide</td></tr><tr><td style="padding: 10px; text-align: center; font-weight: bold;">BKC Artifactory Access</td><td style="padding: 10px;"><p>Link (SH server):&nbsp;<a href="https://ubit-artifactory-sh.intel.com/artifactory/webapp/#/artifacts/browse/tree/General/DEG-Purley-local/Release/Purley_FPGA" style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 10pt; background-color: rgb(255, 255, 255);">https://ubit-artifactory-sh.intel.com/artifactory/webapp/#/artifacts/browse/tree/General/DEG-Purley-local/Release/Purley_FPGA</a></p><p class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><o:p></o:p></span></p><p>Link (OR server):&nbsp;<a href="https://ubit-artifactory-or.intel.com/artifactory/webapp/#/artifacts/browse/tree/General/DEG-Purley-sh-cache/Release/Purley_FPGA" style="font-size: 10pt; background-color: rgb(255, 255, 255);">https://ubit-artifactory-or.intel.com/artifactory/webapp/#/artifacts/browse/tree/General/DEG-Purley-sh-cache/Release/Purley_FPGA</a><span style="font-size: 10pt;">
+</span><span style="font-size: 10pt;">&nbsp;</span></p><p class="MsoNormal"><o:p></o:p></p><p>Steps for applying the permission:</p><p></p><ul><li>Go to EAM website:&nbsp;<a href="https://eam.intel.com/EAMWeb/RequestAccess/DisplayTree.aspx?TopNode=757719"><span lang="X-NONE">https://eam.intel.com/EAMWeb/RequestAccess/DisplayTree.aspx?TopNode=757719</span></a></li><li>Apply for the "Project viewer" role<br></li><li>Use your windows credentials for authentication</li></ul><p></p></td></tr><tr><td style="padding: 10px; text-align: center; font-weight: bold;">BKC One Stop Shop</td><td style="padding: 10px;"><p>Link:&nbsp;<a href="https://dcg-oss.intel.com/homepage_view/16/" style="font-size: 10pt; background-color: rgb(255, 255, 255);">https://dcg-oss.intel.com/homepage_view/16/</a></p><p>Steps for applying the permission:</p><p></p><ul><li>Go to EAM website:&nbsp;<a href="https://eam.intel.com/EAMWeb/RequestAccess/DisplayTree.aspx?TopNode=829001" target="_blank">https://eam.intel.com/EAMWeb/RequestAccess/DisplayTree.aspx?TopNode=829001</a></li><li>Navigate to:"BKC -- Purley"</li><li>Apply for the "User" or "Ingredient Owner" role</li><li>Use your windows credentials for authentication</li></ul><p></p><p>Contact Person:&nbsp;<a href="mailto:ling.bei@intel.com">Bei, Ling</a></p></td></tr></tbody></table><p style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;"><br></p>
+                    <br>
+                </div>
+            </div>
+        </div>
+    
+        <br>
+        <br>
+    </div>
+
+</div>
+
+</body></html>

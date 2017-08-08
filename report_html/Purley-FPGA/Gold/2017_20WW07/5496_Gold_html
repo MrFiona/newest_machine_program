@@ -1,0 +1,2201 @@
+<!DOCTYPE html><html lang="en"><head>
+	<title>One Stop Shop Reports</title>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./5496_Gold_files/bootstrap.css">
+	<script src="./5496_Gold_files/jquery.min.js"></script>
+    <script src="./5496_Gold_files/highcharts.js"></script>
+    <link href="/templates/css/showLoading.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/templates/js/jquery.showLoading.min.js"></script>
+    <script>
+        
+    </script>
+</head>
+<body>
+	<div id="content">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Test Report</title>
+<link rel="stylesheet" type="text/css" href="./5496_Gold_files/report_frame.css">
+<script src="./5496_Gold_files/highcharts.js"></script>
+<script src="./5496_Gold_files/table.js"></script>
+<script src="./5496_Gold_files/bootstrap.min.js"></script>
+<style type="text/css">
+    .stable,.sh1,.sh2,.sh3 {font-family:'Intel Clear',Arial,sans-serif;}
+    .sh2{font-size: 15px;font-weight:bold;overflow: hidden;color: #000000;}
+    .sh3{font-size: 13px;overflow: hidden;color: #000000;}
+    .MsoNormalTable .sh2{font-size: 15px;font-weight:bold;overflow: hidden;text-align: left;margin: 4px 0;color: #000000}
+    .DetailHeardTable .sh2{font-size: 15px;font-weight:bold;overflow: hidden;text-align: left;margin: 4px 0;color: #000000}
+    .ReportHead{font-size: 22px;font-weight: bold;background: #ffffff;color: #0071c5;margin: 12px 0;overflow: hidden; text-align:center;}
+    .MsoNormalTable{font-size:10.0pt;border-width: 1px;border-color:Black;border-style:solid;border-collapse: collapse;width:100%;}
+    .MsoNormalTable td{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:9.5pt;padding-left:5px;padding-right:5px;text-align:center;padding-bottom:5px;padding-top:5px;}
+    .MsoNormalTable th{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:9.5pt;padding-left:5px;padding-right:5px;background-color:#A3CBFF;color:#000000;font-weight:bold;text-align:center;padding-bottom:5px;padding-top:5px;}
+    .DetailTable{font-size:10.0pt;border-width: 1px;border-color:Black;border-style:solid;border-collapse: collapse;width:100%;}
+    .DetailTable td{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:10.0pt;padding-left:10px;padding-right: 10px;text-align: left;padding-bottom:5px;padding-top:5px;}
+    .DetailTable th{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:10.0pt;padding-left:10px;background-color:#A3CBFF;color:#000000;font-weight:bold;padding-right: 10px;text-align: left;padding-bottom:5px;padding-top:5px;}
+    .NormalTable td{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:10.0pt;}
+    .DetailHeardTable{font-size:10.0pt;border-width: 1px;border-collapse: collapse;}
+    .DetailHeardTable td{ border-width: 1px;border-color:Black;border-style:solid;border-collapse:collapse;text-align:center;font-size:10.0pt;}
+    .td-center {text-align:center;}
+    table a:link,table a:focus,table a:visited ,table a:active,table a:hover {text-decoration:underline;}
+    a{color: #0071c5}
+    table{background-color: #FFFFFF;font-family:'Intel Clear',Arial,sans-serif;}
+    td{padding-bottom: 5px;padding-top: 5px}
+    .ReportHead{background-color: transparent}
+</style>
+
+
+    <div class="panel-group" id="main-panel-group">
+        <script>
+            jQuery(document).ready(function ($) {
+                if('True' == 'True' && '0' == '1' ){
+                uniteTable(sw_table, 2);
+                autoRowSpan(sw_table, 0);
+                }
+            });
+
+            $('.CollapseBtn').click(function(){
+                var btn = $(this),
+                on = 'not-collapsed',
+                off = 'collapsed';
+                //这里通过切换按钮中图标的类来控制出现不同的按钮图标，每次点击来回切换声音开关图标
+                if(btn.hasClass('not-collapsed')) {
+                    btn.removeClass('not-collapsed');
+                    btn.addClass('collapsed');
+                }else if(btn.hasClass('collapsed')) {
+                    btn.removeClass('collapsed');
+                    btn.addClass('not-collapsed');
+                }else {
+                    btn.addClass('not-collapsed');
+                }
+            });
+            function init_cases_domain_bars(div_id){
+                if(div_id == 'cases_domain_chart'){
+                    var domains = 'Power Management,FPGA,Video,Manageability,Virtualization,Memory,Stress and Stability,Security,Processor';
+                    var pass_data = '7,6,1,4,7,2,1,5,2';
+                    var fail_data = '6,0,0,2,0,0,0,0,0';
+                    var block_data = '0,0,0,1,0,0,0,0,0';
+                    var norun_data = '0,0,0,0,0,0,0,0,0';}
+                else{
+                    var domains = '';
+                    var pass_data = '';
+                    var fail_data = '';
+                    var block_data = '';
+                    var norun_data = '';
+                }
+                domains = domains.split(',');
+                pass_data = pass_data.split(',');
+                fail_data = fail_data.split(',');
+                block_data = block_data.split(',');
+                norun_data = norun_data.split(',');
+
+                for(var j=0; j<pass_data.length; j++){
+                    pass_data[j] = parseInt(pass_data[j]);
+                }
+
+                for(var j=0; j<fail_data.length; j++){
+                    fail_data[j] = parseInt(fail_data[j]);
+                }
+
+                for(var j=0; j<block_data.length; j++){
+                    block_data[j] = parseInt(block_data[j]);
+                }
+
+                for(var j=0; j<norun_data.length; j++){
+                    norun_data[j] = parseInt(norun_data[j]);
+                }
+
+                series = [
+                             {name:'NoRun',data:norun_data,color:'#717171'},
+                             {name:'Block',data:block_data,color:'#ffae00'},
+                             {name:'Fail',data:fail_data,color:'#fd4f02'},
+                             {name:'Pass',data:pass_data,color:'#6fd007'}
+                         ];
+                if (1 == 2){
+                    if(div_id == 'cases_domain_chart'){
+                        var title_name = 'Purley_FPGA Gold Validation Result'
+                    }else{
+                        var title_name = ' Gold Validation Result'
+                    }
+                }else{
+                    var title_name = 'Purley-FPGA Server SKX H0/LBG B1 Gold Validation Result'
+                }
+                $('#'+div_id).highcharts({
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: title_name
+                    },
+                    credits:{enabled: false},
+                    xAxis: {
+                        categories: domains
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Pass Rate'
+                        }
+                    },
+                    tooltip: {
+                        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                        shared: true
+                    },
+                    plotOptions: {
+                        column: {
+                            stacking: 'percent'
+                        }
+                    },
+                    series: series
+                });
+            }
+
+            function init_cases_pie(div_id){
+                if(div_id == 'cases_pie_chart'){
+                    var pie_data = [
+                                    {name:'Pass',y:parseInt('35'),selected:true,sliced:true,color:'#6fd007'},
+                                    {name:'Fail',y:parseInt('8'),color:'#fd4f02'},
+                                    {name:'Block',y:parseInt('1'),color:'#ffae00'},
+                                    {name:'NoRun',y:parseInt('0'),color:'#717171'}
+                               ];
+                }else{
+                    var pie_data = [
+                                    {name:'Pass',y:parseInt(''),selected:true,sliced:true,color:'#6fd007'},
+                                    {name:'Fail',y:parseInt(''),color:'#fd4f02'},
+                                    {name:'Block',y:parseInt(''),color:'#ffae00'},
+                                    {name:'NoRun',y:parseInt(''),color:'#717171'}
+                               ];
+                }
+                if (1 == 2){
+                    if(div_id == 'cases_pie_chart'){
+                        var title_name = 'Purley_FPGA Gold Validation Result'
+                    }else{
+                        var title_name = ' Gold Validation Result'
+                    }
+                }else{
+                    var title_name = 'Purley-FPGA Server SKX H0/LBG B1 Gold Validation Status'
+                }
+                $('#'+div_id).highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: title_name
+                    },
+                    credits:{enabled: false},
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        name: 'Cases',
+                        colorByPoint: true,
+                        data: pie_data
+                    }]
+                });
+            }
+
+            function init_cases_pass_rate_history(div_id){
+
+                if(div_id == 'cases_history_chart'){
+                    var ww_names = '2016 WW40,2016 WW42,2016 WW43,2016 WW44,2016 WW45,2016 WW46,2016 WW47,2016 WW48,2016 WW49,2016 WW50,2016 WW51,2016 WW52,2016 WW53,2017 WW01,2017 WW02,2017 WW03,2017 WW04,2017 WW06,2017 WW07';
+                    var history_passrate = 'null,74.07%,81.48%,81.48%,92.59%,93.33%,93.33%,86.67%,86.67%,96.67%,93.33%,93.33%,82.76%,89.66%,89.66%,89.66%,79.31%,79.31%,79.55%';
+                }else{
+                     var ww_names = '';
+                    var history_passrate = '';
+                }
+                ww_names = ww_names.split(',');
+                history_passrate = history_passrate.split(',');
+                for(var j=0; j<history_passrate.length; j++){
+                    if(history_passrate[j]=='null'){
+                        history_passrate[j] = null;
+                    }else{
+                        history_passrate[j] = parseFloat(history_passrate[j]);
+                    }
+                }
+                if (1 == 2){
+                    if(div_id == 'cases_history_chart'){
+                        var title_name = 'Purley_FPGA Gold Analysis PASS%'
+                    }else{
+                        var title_name = ' Gold Analysis PASS%'
+                    }
+                }else{
+                    var title_name = 'Purley-FPGA Server SKX H0/LBG B1 Gold Analysis PASS%'
+                }
+                $('#'+div_id).highcharts({
+                    chart: {
+                        type: 'line'
+                    },
+                    title: {
+                        text: title_name
+                    },
+                    credits:{enabled: false},
+                    xAxis: {
+                        categories: ww_names
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Pass Rate'
+                        },
+                        min:0,
+                        max:100,
+                        labels: {formatter:function(){return this.value + " %";}},
+                    },
+                    plotOptions: {
+                        line: {
+                            dataLabels: {
+                            enabled: true
+                            },
+                        enableMouseTracking: false,
+                        },
+                        series: { connectNulls: true}
+                    },
+                    tooltip: {valueSuffix: '%'},
+                    series: [{
+                        name: 'Gold',
+                        data: history_passrate
+                    }]
+                });
+            }
+
+            $(function () {
+                init_cases_domain_bars('cases_domain_chart');
+                init_cases_pie('cases_pie_chart');
+                init_cases_pass_rate_history('cases_history_chart');
+                if (1 == 2)
+                {
+                    init_cases_domain_bars('cases_domain_chart_2');
+                    init_cases_pie('cases_pie_chart_2');
+                    init_cases_pass_rate_history('cases_history_chart_2');
+                }
+                if(0 == 1)
+                {
+                    var pnp_result = {"Performance": {}, "Power": {}}
+
+                    for (var object  in pnp_result)
+                    {
+                        var ratio = pnp_result[object].ratio;
+                        var case_name =  pnp_result[object].case_name;
+
+                        var categories_data = pnp_result[object].categories
+                        var series_data = new Array();
+                        for(var i=0; i<ratio.length; i++)
+                        {
+                            var is_null = 1
+                            dict = {};
+
+                            dict['name'] = case_name[i];
+                            for(var k=0; k < ratio[i].length; k++)
+                            {
+                                if(ratio[i][k] == -1)
+                                {
+                                    ratio[i][k] = null;
+                                }else{
+                                    is_null = 0
+                                }
+                            }
+                            dict['data'] = ratio[i];
+                            if(is_null == 0){
+                                series_data.push(dict)}
+                        }
+                        var chart1;
+                        var xAxis_list = new Array();
+                        if(pnp_result[object].target_ww == 'WW00'){
+                            title_content = object + ' Trend-- WWn to Target Ratio'
+                        }else{
+                            title_content = object + ' Trend-- WWn to ' + pnp_result[object].target_ww + ' ' +  pnp_result[object].target_cpu +' Ratio'
+                        }
+                        $('#'+object + '_highcharts').highcharts({
+                            title:  {text: title_content},
+                            xAxis: {categories: categories_data ,
+                                    labels: {rotation:30,y:45}
+                            },
+                            yAxis: {title: {text: object},
+
+                                                    labels: {formatter:function(){return this.value + " %";}},
+                                                    plotLines: [{value: 0, width: 1, color: '#808080'}]
+                                                    },
+                            tooltip: {valueSuffix: '%'},
+                            credits:{enabled: false},
+                            plotOptions: {series: { connectNulls: true}, spline : {dataLabels: {enabled: true},enableMouseTracking: true}},
+                            series: series_data
+                        });
+                    }
+                }
+            });
+            $(document).ready(function () {
+                
+                    $("#title_banner").load('/test_report/title_banner/Purley-FPGA/Gold/');
+                
+            })
+
+        </script>
+        <div id="title_banner" style="margin-left:-4px">
+
+
+    <style>
+    .banner-title {font-family: Calibri;background-repeat:no-repeat ;}
+    .banner-title h1,.banner-title p{text-align:center;font-weight:bold;color:white;}
+    </style>
+
+
+<div class="banner-title" style="border:0;margin:0 0 0 -4px;width:950px;background-image: url('/templates/images/Gold.png')">
+            <p></p>
+            
+                <h1 style="padding:20px 150px 0 0; font-size: 24px;;">Purley-FPGA Server SKX H0/LBG B1 Gold Release Announcement</h1>
+            
+                <p style="padding:0 150px 20px 0;margin-bottom: 0; font-size: 14px;;">[ Intel Use Only – Intel Confidential ]</p>
+</div>
+
+</div>
+        <div style="width:600px">
+        
+        <table class="DetailTable">
+            <tbody><tr>
+                
+                
+                <td width="200px">Silver: Basic Test Coverage</td>
+                <td width="200px" style="background-color:#FFCC00;">Gold: Medium Test Coverage</td>
+                <td width="200px">BKC: Full Test Coverage</td>
+                
+                
+            </tr>
+        </tbody></table>
+        
+        </div>
+        <table width="100%" class="ReportHead">
+            <tbody><tr>
+                
+                    <td>
+
+                
+                
+                    
+                     <!--<p style="text-align:left;margin-bottom:0px">Purley-FPGA Server SKX H0/LBG B1 Gold Release Announcement - 2017 WW07 (BKC #17)</p>-->
+                    <p style="text-align:left;margin-bottom:0px">2017 WW07 Purley-FPGA Server SKX H0/LBG B1 Gold Release Announcement (BKC #17)</p>
+                    
+                
+                <p style="color:black;font-size:13px;text-align:left">DEG Platform Integration Team</p>
+                
+                </td>
+            </tr>
+        </tbody></table>
+        <p class="sh3" style="width:100%">The DEG platform Integration team announces the release of <font style="font-weight:bold">2017 WW07 Purley-FPGA Server SKX H0/LBG B1 Gold release package</font> for Intel internal use. The release is based on OS of
+            
+                Linux
+             server. The auto-installer packages are available in the Artifactory server (both SH site and OR site). Any questions please contact <a href="mailto:ling.bei@intel.com">Bei, Ling</a>.</p>
+        <table class="DetailTable" width="100%">
+            <tbody><tr>
+                <th width="20%">Auto Installer</th>
+                <th width="40%">SH Artifactory Server</th>
+                <th width="40%">OR Artifactory Server</th>
+            </tr>
+            
+            <tr>
+                <td width="20%">Linux</td>
+                <td width="40%"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/Purley_FPGA/2017WW07/WithoutOS_BKC-FPGA_RHEL7.3_38.112415.112413-2017WW07.zip" style="color:#0071c5">WithoutOS_BKC-FPGA_RHEL7.3_38.112415.112413-2017WW07.zip</a>
+               
+                                <br><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/OS/RHEL/RHEL7.3Serverx86_64.zip" style="color:#0071c5">RHEL7.3Serverx86_64.zip</a>
+                                </td>
+                <td width="40%"><a href="https://ubit-artifactory-or.intel.com/artifactory/DEG-Purley-sh-cache/Release/Purley_FPGA/2017WW07/WithoutOS_BKC-FPGA_RHEL7.3_38.112415.112413-2017WW07.zip" style="color:#0071c5">WithoutOS_BKC-FPGA_RHEL7.3_38.112415.112413-2017WW07.zip</a>
+                   
+                                <br><a href="https://ubit-artifactory-or.intel.com/artifactory/DEG-Purley-sh-cache/Release/OS/RHEL/RHEL7.3Serverx86_64.zip" style="color:#0071c5">RHEL7.3Serverx86_64.zip</a>
+                                </td>
+            </tr>
+            
+            
+        </tbody></table>
+        <div><p class="sh3" style="width:100%">*Note: Please select the server which is closer to your region to get the better data accessing/downloading performance</p></div>
+        <br>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Summary </span>
+                <div class="FoldIcon" style="display: none">
+                    <div class="CollapseBtn not-collapsed" data-toggle="collapse" href="#collapseSummary"></div>
+                </div>
+            </div>
+            <div id="collapseSummary" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <table class="DetailTable" width="100%">
+                        
+                        <tbody><tr>
+                            <td>
+                                <h4 style="margin: 0in 0in 0pt; line-height: 15.55pt;"><u><span lang="EN-GB" style="color: rgb(51, 51, 51); font-family: &quot;Calibri&quot;,sans-serif; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-ansi-language: EN-GB;">Test Result:</span></u><span style="font-family: &quot;Intel Clear&quot;,sans-serif; mso-fareast-font-family: &quot;Times New Roman&quot;;"></span></h4><h4 style="margin: 0in 0in 0pt 0.5in; line-height: 15.55pt; text-indent: -0.25in;"><span style="color: rgb(51, 51, 51); font-family: Symbol;">·</span><span style="color: rgb(51, 51, 51); font-size: 7pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="color: rgb(51, 51, 51); font-family: Calibri, sans-serif;">Finish gold test execution
+on RHEL 7.3. Please visit<span class="apple-converted-space">&nbsp;</span></span><span style="font-family: &quot;Intel Clear&quot;, sans-serif;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2554437"><span style="font-family: Calibri, sans-serif;">HPQC</span></a></span><span class="apple-converted-space"><span style="color: rgb(51, 51, 51); font-family: Calibri, sans-serif;">&nbsp;</span></span><span style="color: rgb(51, 51, 51); font-family: Calibri, sans-serif;">for test details. Refer to the <a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/Purley/InstallationGuide/" target="_blank">installation guide</a> for
+the BKC package installation</span></h4><h4 style="margin: 0in 0in 0pt; line-height: 15.55pt;">
+
+
+
+<p class="MsoNormal"><i><span style="font-family: &quot;Calibri&quot;,sans-serif; font-size: 10pt;">&nbsp;</span><span style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 10pt;">&nbsp; &nbsp;</span></i><span style="color: rgb(51, 51, 51); text-indent: -0.25in; font-family: Symbol;">·</span><span style="color: rgb(51, 51, 51); text-indent: -0.25in; font-family: inherit; font-size: 7pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="color: rgb(51, 51, 51); text-indent: -0.25in; font-family: Calibri, sans-serif;">Purley<span class="apple-converted-space">&nbsp;FPGA</span>&nbsp;(RP</span><span class="apple-converted-space" style="color: inherit; text-indent: -0.25in; font-family: inherit;"><span style="color: rgb(31, 73, 125); font-family: Calibri, sans-serif;">&nbsp;</span></span><span style="color: rgb(51, 51, 51); text-indent: -0.25in; font-family: Calibri, sans-serif;">Board:</span><span class="apple-converted-space" style="color: inherit; text-indent: -0.25in; font-family: inherit;"><span style="color: rgb(31, 73, 125); font-family: Calibri, sans-serif;">&nbsp;</span></span><span style="color: rgb(51, 51, 51); text-indent: -0.25in; font-family: Calibri, sans-serif;">Neon City FPGA)</span></p></h4><h4 style="margin: 0in 0in 0pt 72.6pt; line-height: 15.55pt; text-indent: -18.6pt;"><span style="color: rgb(51, 51, 51); font-family: &quot;Courier New&quot;;">o</span><span style="color: rgb(51, 51, 51); font-size: 7pt;">&nbsp;&nbsp;
+</span><span style="color: rgb(51, 51, 51); font-family: Calibri, sans-serif;">Total test cases: 44</span><span style="font-family: Calibri, sans-serif;">; Passed test
+cases is&nbsp;35 and pass rate is <font color="#1f497d">79.55</font><span style="color: rgb(51, 51, 51);">%.&nbsp;</span></span><span style="font-family: &quot;Intel Clear&quot;, sans-serif;"></span></h4><h4 style="margin: 0in 0in 0pt 72.6pt; line-height: 15.55pt; text-indent: -18.6pt;"><span style="color: rgb(51, 51, 51); font-family: &quot;Courier New&quot;;">o</span><span style="color: rgb(51, 51, 51); font-size: 7pt;">&nbsp;&nbsp;
+</span><span style="color: rgb(51, 51, 51); font-family: Calibri, sans-serif;">Test coverage:&nbsp;&nbsp;</span><span style="font-family: &quot;Intel Clear&quot;, sans-serif;"></span></h4><h4 style="margin: 0in 0in 0pt 1in; line-height: 15.55pt; text-indent: -3.3pt;"><span style="color: rgb(51, 51, 51); font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;">SKX-FPGA H0 VIS/LBG </span><span style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 11pt;">B1:<span style="color: rgb(51, 51, 51);">&nbsp;</span>Run full BKC test case, P&amp;P test<span style="color: rgb(31, 73, 125);"></span></span></h4><div><div style="color: rgb(0, 0, 0); font-family: Gulim, sans-serif; font-size: medium; line-height: normal;"><h4 style="margin: 0in 0in 0.0001pt 104.7pt; font-size: 12pt; font-family: Gulim, sans-serif; font-weight: bold; text-indent: -0.5in; line-height: 15.55pt;">&nbsp;</h4></div></div><h4 style="margin: 0in 0in 0pt 1in; line-height: 15.55pt; text-indent: -3.3pt;">
+
+</h4><h4 style="margin: 0in 0in 0pt 1in; line-height: 15.55pt; text-indent: -3.3pt;"><br></h4><div><h4 style="margin: 0in 0in 0pt 104.7pt; color: rgb(51, 51, 51); line-height: 15.55pt; text-indent: -0.5in; font-family: &quot;Intel Clear&quot;, Arial, sans-serif;"><br></h4></div><h4 style="margin: 0in 0in 0pt; line-height: 15.55pt;">
+
+<p class="MsoNormal"><b><u><span lang="EN-GB" style="color: rgb(51, 51, 51); font-family: &quot;Calibri&quot;,sans-serif; font-size: 13.5pt; mso-ansi-language: EN-GB;">Sighting Update:</span></u></b><b><span style="font-family: &quot;Intel Clear&quot;,sans-serif; font-size: 10pt;"><o:p></o:p></span></b></p>
+
+</h4><h4 style="margin: 0in 0in 0pt 0.5in; line-height: 15.55pt; text-indent: -0.25in;"><span style="color: rgb(51, 51, 51); font-family: Symbol;">· &nbsp;</span>Key Sightings:</h4>
+
+<h4 style="margin: 0in 0in 0pt 55.8pt; line-height: 15.55pt; text-indent: -18.6pt;"><span style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 9.5pt;">[2016_WW44 BKC][BIOS:106_D11][Neon
+city FPGA]Occasionally cat error and hang at code 'A9' during warmboot cycling
+tests <a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345509">5345509</a></span><span style="font-family: &quot;Intel Clear&quot;, sans-serif;"><u1:p></u1:p><o:p></o:p></span></h4>
+
+<h4 style="margin: 0in 0in 0pt 37.2pt; line-height: 15.55pt;"><span style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 9.5pt;">[2016_WW43
+BKC][BIOS:105_D11][Neon city FPGA] There would be a caterr and then reset when
+running the reboot stress test</span><span style="font-size: 9.5pt;">.</span><span class="MsoHyperlink"><span style="color: rgb(0, 113, 197); font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;</span></span><span style="font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 9.5pt;"><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2623684">5345474</a>&nbsp;</span><span style="font-family: &quot;Intel Clear&quot;, sans-serif;"><u1:p></u1:p><o:p></o:p></span></h4><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span style="color: inherit; line-height: 15.55pt; font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 18px;">&nbsp;</span></div><h4 style="margin: 0in 0in 0pt; line-height: 15.55pt;">
+
+
+
+
+
+
+
+</h4><h4 style="margin: 0in 0in 0pt 0.5in; line-height: 15.55pt; text-indent: -0.25in;"><span style="color: rgb(51, 51, 51); font-family: Symbol;">·</span><span style="color: rgb(51, 51, 51); font-size: 7pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: rgb(51, 51, 51); font-family: Calibri, sans-serif;"> Full sighting list can be found<span class="apple-converted-space">&nbsp;</span></span><span style="color: rgb(51, 51, 51);"><a href="http://targetmailer.intel.com/TMService/Redir.aspx?ID=2554441" style="font-family: Calibri, sans-serif;">in HSD</a></span></h4><div><br></div><div><span style="font-family: &quot;Intel Clear&quot;, sans-serif; font-weight: bold; text-decoration: underline;">Known Issue/Errata:</span></div><h4 style="margin: 0in 0in 0pt 0.5in; line-height: 15.55pt; text-indent: -0.25in;"><br></h4><div><p class="MsoListParagraph" style="text-indent:-.25in"><span style="font-size:
+10.0pt;font-family:Symbol">·</span><span style="font-size:7.0pt;font-family:
+&quot;Times New Roman&quot;,serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2701996"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">5345546</span></a><span style="font-size:10.0pt;font-family:
+&quot;Intel Clear&quot;,sans-serif"> [2016_WW45 BKC][BIOS:107_D07][Neon city FPGA]WOL
+function is still working when disabled in BIOS. &nbsp; </span><o:p></o:p></p>
+
+<p class="MsoListParagraph"><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif">Status:
+&nbsp;No fix .&nbsp;Purley-FPGA is aligned with Purley-2S/4S Launch collateral.
+Details can be found </span><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2701996"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">5345546</span></a><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">&nbsp;in HSD</span><o:p></o:p></p><p class="MsoListParagraph"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><br></span></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in"><span style="font-size:
+10.0pt;font-family:Symbol">·</span><span style="font-size:7.0pt;font-family:
+&quot;Times New Roman&quot;,serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2701997"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">5345493</span></a><span style="font-size:10.0pt;font-family:
+&quot;Intel Clear&quot;,sans-serif"> [2016_WW43 BKC][BIOS:105_D11][Neon city FPGA]
+Entering "Platform Configuration -&gt; PCH Configuration" resets
+other saved change.&nbsp; </span><o:p></o:p></p>
+
+<p class="MsoListParagraph"><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif">Status:
+&nbsp;No fix .&nbsp;Purley-FPGA is aligned with Purley2S/4S Launch collateral.
+Details can be found&nbsp;</span><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2701997"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">5345493</span></a><span style="font-size:10.0pt;font-family:
+&quot;Intel Clear&quot;,sans-serif">&nbsp;in HSD</span></p><p class="MsoListParagraph"><span style="font-size:10.0pt;font-family:
+&quot;Intel Clear&quot;,sans-serif"><br></span></p><p class="MsoListParagraph"><span style="color: inherit; text-indent: -0.25in; font-size: 7pt; font-family: &quot;Times New Roman&quot;, serif;">&nbsp;</span><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2701998" style="font-family: inherit; font-size: 18px; text-indent: -0.25in; background-color: rgb(255, 255, 255);"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">5345843</span></a><span style="color: inherit; text-indent: -0.25in; font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;"> [2017_WW03
+BKC][BIOS:118_R01][Neon city FPGA] P3V3 voltage on Purley-FPGA boards is 1.1V
+when system under S5 state&nbsp;</span></p><h4 style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in;line-height:15.55pt"><o:p></o:p></h4>
+
+<p class="MsoListParagraph"><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif">Status:
+No fix. Details can be found&nbsp;</span><a href="http://TargetMailer.Intel.com/TMService/Redir.aspx?ID=2701998"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">5345843</span></a><span style="font-size:10.0pt;font-family:
+&quot;Intel Clear&quot;,sans-serif">&nbsp;in HSD</span>&nbsp;&nbsp;</p></div><div><span style="color: rgb(51, 51, 51); font-family: &quot;Intel Clear&quot;, sans-serif;"><br></span></div>
+                                </td>
+                        </tr>
+                        
+                     </tbody></table>
+                </div>
+            </div>
+        </div>
+        <br>
+    <!--     <span class="sh2">&nbsp Key Sightings: </span>
+             <table class="MsoNormalTable">
+                 <tr>
+                    <th width="7%">ID</th>
+                    <th width="93%">Title</th>
+                 </tr>
+                 
+                 
+             </table><br/> -->
+        
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; New Sightings </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseNewSightings"></div>
+                </div>
+            </div>
+            <div id="collapseNewSightings" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    
+                    <p>&nbsp; N/A</p>
+                    
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Existing Sightings </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseExistingSightings"></div>
+                </div>
+            </div>
+            <div id="collapseExistingSightings" class="panel-collapse collapse ">
+                <div class="panel-body">
+                
+                <table class="MsoNormalTable" width="100%">
+                    <tbody><tr>
+                         <th width="5%">ID</th>
+                        <th width="45%">Title</th>
+                        <th width="7%">Priority</th>
+                        <th width="7%">Severity</th>
+                        <th width="7%">Owner</th>
+                        <th width="7%">Status</th>
+                        <th width="10%">Subsystem</th>
+                        <th width="12%">Promoted ID</th>
+                    </tr>
+                      
+                        
+                            <tr style="background-color:#ff6633">
+                        
+                        
+                         <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345509">5345509</a></td>
+                        
+                         <td style="text-align:left;">[2016_WW44 BKC][BIOS:106_D11][Neon city FPGA]Cat error and hang at code 'A9' during warmboot cycling tests</td>
+                         <td>P1</td>
+                         <td>2 High</td>
+                         <td>taylorke</td>
+                         <td>Assigned</td>
+                         <td></td>
+                         <td>
+                                    
+                                
+                                            <p>N/A</p>
+                                        
+                                    
+                        </td>
+                     </tr>
+                     
+                        
+                            <tr style="background-color:#ff6633">
+                        
+                        
+                         <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345474">5345474</a></td>
+                        
+                         <td style="text-align:left;">[2016_WW43 BKC][BIOS:105_D11][Neon city FPGA] There would be a caterr and then reset when running the reboot stress test.</td>
+                         <td>P2</td>
+                         <td>2 High</td>
+                         <td>xililix</td>
+                         <td>Assigned</td>
+                         <td>PMC FW</td>
+                         <td>
+                                    
+                                
+                                    
+                                                
+                                                    <p> <a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345486">5345486</a></p>
+                                                
+                                            
+                                        
+                                    
+                        </td>
+                     </tr>
+                     
+                        
+                            <tr>
+                        
+                        
+                         <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345719">5345719</a></td>
+                        
+                         <td style="text-align:left;">[2016_WW50 BKC][BIOS:112_D10][Neon city FPGA]After run CPU workload by PTU ,QL66 CPU frequency and consumption are less than normal.</td>
+                         <td>P2</td>
+                         <td>3 Medium</td>
+                         <td>kdakdemi</td>
+                         <td>Assigned</td>
+                         <td>Silicon</td>
+                         <td>
+                                    
+                                
+                                            <p>N/A</p>
+                                        
+                                    
+                        </td>
+                     </tr>
+                     
+                        
+                            <tr>
+                        
+                        
+                         <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345865">5345865</a></td>
+                        
+                         <td style="text-align:left;">[2017_WW04 BKC][BIOS 119.R05][P&amp;P][Neon City FPGA]After changed the CPU from B0 QL66 to H0 QM39, the system power consumption with NLB loading test increased 5.93% (from 291.1W to 308.4W)</td>
+                         <td>P2</td>
+                         <td>3 Medium</td>
+                         <td>zyang30</td>
+                         <td>Assigned</td>
+                         <td></td>
+                         <td>
+                                    
+                                
+                                            <p>N/A</p>
+                                        
+                                    
+                        </td>
+                     </tr>
+                     
+                        
+                            <tr>
+                        
+                        
+                         <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345866">5345866</a></td>
+                        
+                         <td style="text-align:left;">[2017_WW04 BKC][BIOS 119.R05][P&amp;P][Neon City FPGA] After changed CPU from B0 QLJ6 to H0 QM38, the MP Linpack score dropped 6.47% (from 1453.7Gflops/s to 1359.6 Gflops/s)</td>
+                         <td>P2</td>
+                         <td>3 Medium</td>
+                         <td>zyang30</td>
+                         <td>Assigned</td>
+                         <td></td>
+                         <td>
+                                    
+                                
+                                            <p>N/A</p>
+                                        
+                                    
+                        </td>
+                     </tr>
+                     
+                        
+                            <tr>
+                        
+                        
+                         <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345867">5345867</a></td>
+                        
+                         <td style="text-align:left;">[2017_WW04 BKC][BIOS 119.R05][P&amp;P][Neon City FPGA] After changed CPU from B0 QLJ6 to H0 QM38,the MLC memory local idle latency increased 28.57% (from 65.8ns to 84.6ns)</td>
+                         <td>P2</td>
+                         <td>3 Medium</td>
+                         <td>zyang30</td>
+                         <td>Assigned</td>
+                         <td></td>
+                         <td>
+                                    
+                                
+                                            <p>N/A</p>
+                                        
+                                    
+                        </td>
+                     </tr>
+                     
+                        
+                            <tr>
+                        
+                        
+                         <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345868">5345868</a></td>
+                        
+                         <td style="text-align:left;">[2017_WW04 BKC][BIOS 119.R05][P&amp;P][Neon City FPGA] After changed CPU from B0 QLJ6 to H0 QM38,MLC memory remote idle latency increased 9.25% (from 135.2ns to 147.7ns)</td>
+                         <td>P2</td>
+                         <td>3 Medium</td>
+                         <td>zyang30</td>
+                         <td>Assigned</td>
+                         <td></td>
+                         <td>
+                                    
+                                
+                                            <p>N/A</p>
+                                        
+                                    
+                        </td>
+                     </tr>
+                     
+                        
+                            <tr>
+                        
+                        
+                         <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345803">5345803</a></td>
+                        
+                         <td style="text-align:left;">[2016_WW52 BKC][BIOS:114_R09][Neon city FPGA]MCE error found after system reboot</td>
+                         <td>P3</td>
+                         <td>3 Medium</td>
+                         <td>yanghe1</td>
+                         <td>Assigned</td>
+                         <td></td>
+                         <td>
+                                    
+                                
+                                            <p>N/A</p>
+                                        
+                                    
+                        </td>
+                     </tr>
+                     
+                        
+                            <tr>
+                        
+                        
+                         <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345853">5345853</a></td>
+                        
+                         <td style="text-align:left;">[2017_WW04 BKC][BIOS:119_R05][Neon city FPGA]After run CPU workload by PTU , QM39 CPU frequency can’t turbo.</td>
+                         <td>P3</td>
+                         <td>3 Medium</td>
+                         <td>kdakdemi</td>
+                         <td>Assigned</td>
+                         <td>uCode</td>
+                         <td>
+                                    
+                                
+                                            <p>N/A</p>
+                                        
+                                    
+                        </td>
+                     </tr>
+                     
+                        
+                            <tr>
+                        
+                        
+                         <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345420">5345420</a></td>
+                        
+                         <td style="text-align:left;">[2016_WW40 BKC][BIOS:102_D12][Neon city FPGA]CPLD 1 version show‘F.F’ after flash CPLD 0x11_0x22</td>
+                         <td>P3</td>
+                         <td>4 Low</td>
+                         <td>jdbolano</td>
+                         <td>Assigned</td>
+                         <td>Board</td>
+                         <td>
+                                    
+                                
+                                            <p>N/A</p>
+                                        
+                                    
+                        </td>
+                     </tr>
+                     
+
+                 
+                </tbody></table><br>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Closed Sightings </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseClosedSightings"></div>
+                </div>
+            </div>
+            <div id="collapseClosedSightings" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    
+                    <p>&nbsp; N/A</p>
+                    
+                    <br>
+                
+                </div>
+            </div>
+        </div>
+        <br>
+        
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; HW Rework </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseHWRework"></div>
+                </div>
+            </div>
+            <div id="collapseHWRework" class="panel-collapse collapse ">
+                <div class="panel-body">
+                <table class="DetailTable" width="100%">
+                    <tbody><tr>
+                        <td> 
+                                <h4 style="margin: 0in 0in 0pt;"><u><span lang="EN-GB" style="font-family: &quot;Calibri&quot;,sans-serif; font-size: 11pt; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-ansi-language: EN-GB;">Key Workaround</span></u><span lang="EN-GB" style="font-family: &quot;Calibri&quot;,sans-serif; font-size: 11pt; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-ansi-language: EN-GB;"> (detail guide is </span><span style="font-family: &quot;Intel Clear&quot;,sans-serif; mso-fareast-font-family: &quot;Times New Roman&quot;;"><a href="https://dcg-oss.intel.com/document_download/16/?file_id=37" target="_blank">here</a></span><span lang="EN-GB" style="font-family: &quot;Calibri&quot;,sans-serif; font-size: 11pt; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-ansi-language: EN-GB;">)</span><span style="font-family: &quot;Intel Clear&quot;,sans-serif; mso-fareast-font-family: &quot;Times New Roman&quot;;"><o:p></o:p></span></h4><h4 style="margin: 0in 0in 0pt;">
+
+<p class="default" style="margin: 0in 0in 0pt 0.5in; line-height: 115%; text-indent: -0.25in;"><span style="font-family: &quot;Calibri&quot;,sans-serif; font-size: 11pt; mso-fareast-font-family: 宋体; mso-ansi-language: EN-US; mso-fareast-theme-font: minor-fareast; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-fareast-language: ZH-CN; mso-bidi-language: AR-SA; mso-bidi-font-weight: bold;">Please use PCIe Video card
+instead of onboard BMC video due to known BMC issue</span><u1:p></u1:p><br></p>
+
+</h4><h4 style="margin: 0in 0in 0pt;"><span style="font-family: &quot;Intel Clear&quot;,sans-serif; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;<o:p></o:p></span></h4><h4 style="margin: 0in 0in 0pt; line-height: 15.55pt;"><u><span lang="EN-GB" style="color: black; font-family: &quot;Calibri&quot;,sans-serif; font-size: 11pt; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-ansi-language: EN-GB;">Pedigree and Board
+Jumper Settings:</span></u><span style="font-family: &quot;Intel Clear&quot;,sans-serif; mso-fareast-font-family: &quot;Times New Roman&quot;;"><a href="https://dcg-oss.intel.com/document_download/16/?file_id=34"><span style="color: rgb(31, 73, 125); font-family: &quot;Calibri&quot;,sans-serif; font-size: 11pt;"> </span><span style="font-family: Calibri, sans-serif; font-size: 11pt;">guide</span></a><o:p></o:p></span></h4><h4 style="margin: 0in 0in 0pt;">
+
+
+
+<p class="MsoNormal" style="line-height: 12.1pt; mso-outline-level: 5;"><i><span style="color: black; font-family: &quot;Calibri&quot;,sans-serif; font-size: 11pt; mso-bidi-font-weight: bold;">Note: Only mandatory and necessary optional rework
+is implemented by BKC team</span></i><u1:p></u1:p><o:p></o:p></p><p class="MsoNormal" style="line-height: 12.1pt; mso-outline-level: 5;"><span style="font-family: &quot;Intel Clear&quot;,sans-serif; font-size: 10pt; mso-bidi-font-weight: bold;">Mandatory rework FPGA JTAG chain missing CPU1 TCK resistor</span></p><p class="MsoNormal" style="line-height: 12.1pt; mso-outline-level: 5;"><span style="color: inherit; text-indent: -0.25in; font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 10pt;">Mandatory rework to replace FPGA KR RX AC Caps</span></p><p class="MsoNormal" style="line-height: 12.1pt; mso-outline-level: 5;"><span style="color: inherit; text-indent: -0.25in; font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 10pt;">Mandatory rework add a pull down to RSMRST</span></p><p class="MsoNormal" style="line-height: 12.1pt; mso-outline-level: 5;"><span style="color: inherit; text-indent: -0.25in; font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 10pt;">Mandatory rework to update VR FW</span></p><p class="MsoNormal" style="line-height: 12.1pt; mso-outline-level: 5;"><span style="color: inherit; text-indent: -0.25in; font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 10pt;">CPLD updates to address IFWI issue with 2 SKX FPGA
+CPUs populated</span></p><p class="MsoNormal" style="line-height: 12.1pt; mso-outline-level: 5;"><span style="color: inherit; font-family: &quot;Intel Clear&quot;, sans-serif; font-size: 10pt;">Required
+CPLD updates to address reset and FSC issues</span></p></h4>
+                            
+                        </td>
+                    </tr>
+                </tbody></table><br>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; HW Configuration </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseHWConfiguration"></div>
+                </div>
+            </div>
+            <div id="collapseHWConfiguration" class="panel-collapse collapse ">
+                <div class="panel-body">
+                
+                    
+                        <table border="0" cellpadding="0" cellspacing="0" class="DetailTable">
+<colgroup><col span="5" style="mso-width-source:userset;mso-width-alt:6240;
+ width:146pt" width="195">
+<col style="mso-width-source:userset;mso-width-alt:7456;width:175pt" width="233">
+<col style="mso-width-source:userset;mso-width-alt:8608;width:202pt" width="269">
+</colgroup><tbody><tr height="18">
+<td height="37" rowspan="2">　</td>
+<td rowspan="2">System 1~3</td>
+<td rowspan="2">System 4</td>
+<td rowspan="2">System 5</td>
+<td rowspan="2">System 6~7</td>
+<td rowspan="2">System 8<font class="font9">（</font><font class="font6">cyclingt
+  est</font><font class="font9">）</font></td>
+<td rowspan="2">System 9<font class="font9">（</font><font class="font6">cyclingt
+  est</font><font class="font9">）</font></td>
+</tr>
+<tr height="19">
+</tr>
+<tr height="25">
+<td height="25">Ingredient</td>
+<td>HW/SW Version Details</td>
+<td>HW/SW Version Details</td>
+<td>HW/SW Version Details</td>
+<td>HW/SW Version Details</td>
+<td>HW/SW Version Details</td>
+<td>HW/SW Version Details</td>
+</tr>
+<tr height="25">
+<td height="25">CPU 0/1</td>
+<td>QM38 ( H0 )</td>
+<td>QM39 ( H0 )</td>
+<td>QM39 ( H0 )</td>
+<td>QM3A ( H0 )</td>
+<td>QM39 ( H0 )</td>
+<td>QM38 ( H0 )</td>
+</tr>
+<tr height="25">
+<td height="25">PCH</td>
+<td>QLJ7(LBG&nbsp; B1)</td>
+<td>QLJ7(LBG&nbsp; B1)</td>
+<td>QLJ7(LBG&nbsp; B1)</td>
+<td>QLJ9 (LBG&nbsp; B1)</td>
+<td>QLJ7(LBG&nbsp; B1)</td>
+<td>QLJ7(LBG&nbsp; B1)</td>
+</tr>
+<tr height="52">
+<td height="52">Memory<font class="font8">&nbsp;</font><font class="font7">Type</font></td>
+<td>&nbsp;Samsung M393A2K43BB1-CTD6Q 16GB 2Rx8
+  PC4-2666V-RE1-11-MA0</td>
+<td>&nbsp;Samsung M393A2K43BB1-CTD6Q 16GB 2Rx8
+  PC4-2666V-RE1-11-MA0</td>
+<td>micron MTA18ASF2G72PDZ-2G6B1QK
+  16GB 2RX8 PC4-2666V-RE1-11</td>
+<td>micron MTA18ASF2G72PDZ-2G6B1QK
+  16GB 2RX8 PC4-2666V-RE1-11</td>
+<td>&nbsp;Samsung M393A2K43BB1-CTD6Q 16GB 2Rx8
+  PC4-2666V-RE1-11-MA0</td>
+<td>Samsung M393A2K43BB1-CTD6Q 16GB
+  2Rx8 PC4-2666V-RE1-11-MA0</td>
+</tr>
+<tr height="25">
+<td height="25">Memory Amount</td>
+<td>12*16GB</td>
+<td>12*16GB</td>
+<td>11*16GB</td>
+<td>4*16GB</td>
+<td>2*16GB</td>
+<td>2*16GB</td>
+</tr>
+<tr height="25">
+<td height="25">Base
+  Board</td>
+<td>Neon City FPGA PBA H90983-300</td>
+<td>Neon City FPGA PBA H90983-300</td>
+<td>Neon City FPGA PBA H90983-300</td>
+<td>Neon City FPGA PBA H90983-300</td>
+<td>Neon City FPGA PBA H90983-200</td>
+<td>Neon City FPGA PBA H90983-300</td>
+</tr>
+<tr height="25">
+<td height="25">Chassis</td>
+<td>ASSEMBLY NO.H36149-004</td>
+<td>ASSEMBLY NO.H36149-004</td>
+<td>ASSEMBLY NO.H48593-003</td>
+<td>ASSEMBLY NO.H48593-003</td>
+<td>ASSEMBLY NO.H48593-003</td>
+<td>ASSEMBLY NO.H48593-003</td>
+</tr>
+<tr height="25">
+<td height="25">Video
+  Card</td>
+<td>NVDIA GEFORCE 210&nbsp;</td>
+<td>NVDIA GEFORCE 210&nbsp;</td>
+<td>NVDIA GEFORCE 210&nbsp;</td>
+<td>NVDIA GEFORCE 210&nbsp;</td>
+<td>NVDIA GEFORCE 210&nbsp;</td>
+<td>NVDIA GEFORCE 210&nbsp;</td>
+</tr></tbody></table>
+                    
+                
+                </div>
+            </div>
+        </div>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; SW Configuration </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseSWConfiguration"></div>
+                </div>
+            </div>
+            <div id="collapseSWConfiguration" class="panel-collapse collapse ">
+                <div class="panel-body">
+                
+                    
+                        <table border="0" cellpadding="0" cellspacing="0" class="DetailTable">
+<tbody><tr>
+<th colspan="2"></th>
+<th>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><b><span style="">Ingredient<o:p></o:p></span></b></div>
+</th>
+<th>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><b><span style="">SW
+  Version Details<o:p></o:p></span></b></div>
+</th>
+<th>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><b><span style="">Changed(last
+  release)<o:p></o:p></span></b></div>
+</th>
+<th>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><b><span style="">Release
+  Notes<o:p></o:p></span></b></div>
+</th>
+</tr>
+<tr>
+<td colspan="2" rowspan="4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">APPs<o:p></o:p></span></div>
+</td>
+<td id="1_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">hw_rework<o:p></o:p></span></div>
+</td>
+<td id="1_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/app/hw_rework/NC_FPGA_Rework_2017WW02.4.zip"><span style="">2017WW02</span></a><o:p></o:p></span></div>
+</td>
+<td id="1_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="1_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="2_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">qemu<o:p></o:p></span></div>
+</td>
+<td id="2_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/utility/qemu-2.6.1.tar.bz2"><span style="">2.6.1</span></a><o:p></o:p></span></div>
+</td>
+<td id="2_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="2_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="3_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">AAL_pkg<o:p></o:p></span></div>
+</td>
+<td id="3_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/app/AAL_pkg/AAL_6.3.0.zip"><span style="">6.3.0</span></a><o:p></o:p></span></div>
+</td>
+<td id="3_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="3_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Documents/ReleaseNotes/AAL_pkg/AAL_pkg_6.3.0_Release%20Notes%20AAL%206%203%200.pdf"><span style="">Release Notes</span></a><o:p></o:p></span></div>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://tigris.intel.com/scripts-edk/viewer/UI_UpdateDesignKits.asp?edkID=12043&amp;ProdID=50112&amp;CatID=0">AAL doc</a><o:p></o:p></span></div>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Internal Use
+  Only<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="4_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">GBS<o:p></o:p></span></div>
+</td>
+<td id="4_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/app/GBS/GBS_6.3.0.zip"><span style="">6.3.0</span></a><o:p></o:p></span></div>
+</td>
+<td id="4_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="4_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Documents/ReleaseNotes/GBS/GBS_6.3.0_ReleaseNotes"><span style="">Release Notes</span></a><o:p></o:p></span></div>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Internal Use
+  Only<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td colspan="2" rowspan="12">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Firmwares<o:p></o:p></span></div>
+</td>
+<td id="5_2">
+<div align="center" class="MsoNormal" style="margin-bottom: 7.5pt; word-break: break-all;"><span style="background: yellow;">SPS<u1:p></u1:p></span><span style="background: yellow;"><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="margin-bottom: 7.5pt; word-break: break-all;"><span style="background: yellow;"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/SPS/SPS_E5_04.00.03.154.0.zip" target="_blank">SPS_E5_04.00.03.154.0</a><u1:p></u1:p></span><span style="background: yellow;"><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="margin-bottom: 7.5pt; word-break: break-all;"><span style="color:red;background:yellow;mso-highlight:yellow">(SPS_E5_04.00.03.148.0-&gt;SPS_E5_04.00.03.154.0)</span><span style="background: yellow;"><o:p></o:p></span></div>
+</td>
+<td>
+<div align="center" class="MsoNormal" style="margin-bottom: 7.5pt; word-break: break-all;"><span style="background: yellow;">It is not included
+  in the BKC pkg, Please follow the link&nbsp;</span><span style="background: yellow;"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/SPS/SPS_E5_04.00.03.154.0.zip" target="_blank"><span style="">SPS_E5_04.00.03.154.0</span></a>&nbsp;to download it</span><span style="background: yellow;">&nbsp;</span><span style="background: yellow;"><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="6_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">SPS_Config<o:p></o:p></span></div>
+</td>
+<td id="6_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/SPS_Config/SPS_E5_04.00.03.154.0_ConfigFile_WW06.zip"><span style="">SPS_E5_04.00.03.154.0_ConfigFile_WW06</span></a><o:p></o:p></span></div>
+</td>
+<td id="6_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="color:red">(SPS_E5_04.00.03.148.0_ConfigFile_WW05-&gt;SPS_E5_04.00.03.154.0_ConfigFile_WW06)</span><span style=""><o:p></o:p></span></div>
+</td>
+<td id="6_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="7_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">RSTe-PreOS<o:p></o:p></span></div>
+</td>
+<td id="7_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/RSTe-PreOS/PreOS-1156.zip"><span style="">5.0.0.1156</span></a><o:p></o:p></span></div>
+</td>
+<td id="7_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="7_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="8_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">ACM<o:p></o:p></span></div>
+</td>
+<td id="8_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/ACM/Purley_ACM_1.1.zip"><span style="">1.1</span></a><o:p></o:p></span></div>
+</td>
+<td id="8_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="8_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Documents/ReleaseNotes/ACM/ACM_1.1_Purley%20ACM%20110%20%20Release%20Notes.pdf"><span style="">Release Notes</span></a><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="9_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Omni-Path<o:p></o:p></span></div>
+</td>
+<td id="9_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/Omni-Path/HfiPcieGen3_1.3.1.0.0_2017WW03.zip"><span style="">1.3.1.0.0_2017WW04</span></a><o:p></o:p></span></div>
+</td>
+<td id="9_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="9_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="10_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">BIOSGuard<o:p></o:p></span></div>
+</td>
+<td id="10_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/BIOSGuard/BIOSGuard_PC20_20160724.zip"><span style="">PC20_201607248</span></a><o:p></o:p></span></div>
+</td>
+<td id="10_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="10_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/BIOSGuard/BIOSGuard_PC20_20160724.zip!/BIOS_Guard_RN_0_9.pdf"><span style="">Release Notes</span></a><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="11_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">IFWI<o:p></o:p></span></div>
+</td>
+<td id="11_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/FW/IFWI/FPGA_2017.06.4.05.zip"><span style="">2017.06.4.05</span></a><o:p></o:p></span></div>
+</td>
+<td id="11_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="color:red">(2017.05.3.03-&gt;2017.06.4.05)</span><span style=""><o:p></o:p></span></div>
+</td>
+<td id="11_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="12_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">BMC<o:p></o:p></span></div>
+</td>
+<td id="12_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/FW/BMC/NC_BMC_PO_79_20_r10373.zip"><span style="">79.20.r10373</span></a><o:p></o:p></span></div>
+</td>
+<td id="12_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="12_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Documents/ReleaseNotes/BMC/BMC_79.20.r10373_ReleaseNotes.txt"><span style="">Release Notes</span></a><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="13_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">CPLD<o:p></o:p></span></div>
+</td>
+<td id="13_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/FW/CPLD/0d12_0x22.zip"><span style="">0d12_0x22</span></a><o:p></o:p></span></div>
+</td>
+<td id="13_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="13_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="14_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">SKX_CPLD<o:p></o:p></span></div>
+</td>
+<td id="14_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/FW/CPLD/SKX_CPLD_0430_1209.zip"><span style="">0430_1209</span></a><o:p></o:p></span></div>
+</td>
+<td id="14_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="14_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="15_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">FPGA<o:p></o:p></span></div>
+</td>
+<td id="15_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/FW/FPGA/FPGA_BBS_N4PE_6.3.0_08.12.4_2017WW03.zip"><span style="">6.3.0_08.12.4</span></a><o:p></o:p></span></div>
+</td>
+<td id="15_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="15_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Internal Use
+  Only<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="16_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">VR<o:p></o:p></span></div>
+</td>
+<td id="16_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/FW/VR/NC_FPGA_VRs_0x04.zip"><span style="">0x04</span></a><o:p></o:p></span></div>
+</td>
+<td id="16_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="16_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td rowspan="16">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Linux<o:p></o:p></span></div>
+</td>
+<td id="17_1" rowspan="5">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">APPs<o:p></o:p></span></div>
+</td>
+<td id="17_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">SST<o:p></o:p></span></div>
+</td>
+<td id="17_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/app/SST/567332_Intel_SystemScopeLinux_Rev_3.0.1042.zip"><span style="">3.0.1042</span></a><o:p></o:p></span></div>
+</td>
+<td id="17_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="17_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Documents/ReleaseNotes/SST/SST_3.0.1042_ReadMe_Linux.html"><span style="">Release Notes</span></a><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="18_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">DPDK<o:p></o:p></span></div>
+</td>
+<td id="18_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/utility/dpdk-16.11.tar.gz"><span style="">16.11</span></a><o:p></o:p></span></div>
+</td>
+<td id="18_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="18_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="19_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">SPS_Tool<o:p></o:p></span></div>
+</td>
+<td id="19_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/app/SPS_Tool/SPS_Tools_4.2.56.47.zip"><span style="">4.2.56.47</span></a><o:p></o:p></span></div>
+</td>
+<td id="19_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="color:red">(4.2.42.66-&gt;4.2.56.47)</span><span style=""><o:p></o:p></span></div>
+</td>
+<td id="19_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Documents/ReleaseNotes/SPS_Tool/SPS_Tool_4.2.56.47_Tools%20User%20Guide.pdf"><span style="">Release Notes</span></a><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="20_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">IDK<o:p></o:p></span></div>
+</td>
+<td id="20_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Apps/TestTool/IDK_3.0.zip"><span style="">3.0</span></a><o:p></o:p></span></div>
+</td>
+<td id="20_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="20_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Documents/ReleaseNotes/IDK/IDK_3.0_Readme.rtf"><span style="">Release Notes</span></a><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="21_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">IPMI<o:p></o:p></span></div>
+</td>
+<td id="21_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/app/IPMI/ipmiutil-3.0.0.tar.gz"><span style="">3.0.0</span></a><o:p></o:p></span></div>
+</td>
+<td id="21_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="21_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Internal Use
+  Only<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="22_1" rowspan="3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Configs<o:p></o:p></span></div>
+</td>
+<td id="22_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">kernel_update<o:p></o:p></span></div>
+</td>
+<td id="22_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/config/kernelupdate_to_RHEL7.2-4.6.3-1-4.7.0-Patched-1.tgz"><span style="">RHEL7.2-4.6.3-1-4.7.0-Patched-rev01</span></a><o:p></o:p></span></div>
+</td>
+<td id="22_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="22_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Internal Use
+  Only<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="23_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">auto_install_script<o:p></o:p></span></div>
+</td>
+<td id="23_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/config/auto_install_script/RHEL7.3_Purley_FPGA_setup_script_rev1.2.zip"><span style="">v1.2</span></a><o:p></o:p></span></div>
+</td>
+<td id="23_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="23_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Internal Use
+  Only (for auto-installer script)<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="24_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">menu<o:p></o:p></span></div>
+</td>
+<td id="24_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/OS/RHEL7.3_Server_Config_SupportHibernate_0_0_2_disableQAT.zip"><span style="">0.0.2_disableQAT</span></a><o:p></o:p></span></div>
+</td>
+<td id="24_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="24_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Internal Use
+  Only (for auto-installer script)<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="25_1" rowspan="7">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Drivers<o:p></o:p></span></div>
+</td>
+<td id="25_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">LOM_Jacksonville<o:p></o:p></span></div>
+</td>
+<td id="25_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/drivers/NIC/e1000e-3.3.5.2.tar.gz"><span style="">3.3.5.2</span></a><o:p></o:p></span></div>
+</td>
+<td id="25_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="25_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="26_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">LOM_FortPark<o:p></o:p></span></div>
+</td>
+<td id="26_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/drivers/LOM_FortPark/2017_WW05_LBG_B1_LEK_PKG.zip"><span style="">2017.WW05</span></a><o:p></o:p></span></div>
+</td>
+<td id="26_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="26_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Documents/ReleaseNotes/LOM_FortPark/LOM_FortPark_2017.WW05_2017_WW05_LBG_B1_Release_Notes_LEK_PKG.pdf"><span style="">Release Notes</span></a><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="27_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">NIC_FM10K<o:p></o:p></span></div>
+</td>
+<td id="27_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/drivers/NIC/fm10k-0.21.7.tar.gz"><span style="">0.21.7</span></a><o:p></o:p></span></div>
+</td>
+<td id="27_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="27_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="28_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">RSTe<o:p></o:p></span></div>
+</td>
+<td id="28_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/Drivers/Storage/rste-5.0-PC-rhel7.3.WW-50.2.zip"><span style="">5.0-PC-rhel7.3.WW-50.2</span></a><o:p></o:p></span></div>
+</td>
+<td id="28_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="28_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="29_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">IntelOPA-IFS<o:p></o:p></span></div>
+</td>
+<td id="29_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/utility/IntelOPA-IFS.RHEL73-x86_64.10.3.0.0.81.tgz"><span style="">10.3.0.0.81</span></a><o:p></o:p></span></div>
+</td>
+<td id="29_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="29_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="30_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">QAT<o:p></o:p></span></div>
+</td>
+<td id="30_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/drivers/QAT/QAT1.7.Upstream.L.0.9.1-15.tar.gz"><span style="">0.9.1-15</span></a><o:p></o:p></span></div>
+</td>
+<td id="30_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="30_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="31_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">lan-driver-RHEL7.2_3.10.0<o:p></o:p></span></div>
+</td>
+<td id="31_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley_FPGA/Linux/drivers/lan-driver-RHEL7.2_3.10.0/intel-lan_linux_RH7.3_3.10.0-514_Purley_bkc_rev0.4.tgz"><span style="">RH7.3_3.10.0-514_rev0.4</span></a><o:p></o:p></span></div>
+</td>
+<td id="31_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="31_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Internal Use
+  Only (for auto-installer script)<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="32_1">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">OSes<o:p></o:p></span></div>
+</td>
+<td id="32_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">RHEL<o:p></o:p></span></div>
+</td>
+<td id="32_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/OS/RHEL/RHEL7.3Serverx86_64.zip"><span style="">7.3</span></a><o:p></o:p></span></div>
+</td>
+<td id="32_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="32_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Internal Use
+  Only <o:p></o:p></span></div>
+</td>
+</tr>
+</tbody></table>
+                    
+                    <br>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; IFWI Configuration </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseIFWIConfiguration"></div>
+                </div>
+            </div>
+            <div id="collapseIFWIConfiguration" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    <table class="MsoNormalTable" width="100%">
+                        <tbody><tr>
+                            <th width="40%">Ingredient</th>
+                            <th width="30%">Version Details</th>
+                            <th width="30%">Changed</th>
+                        </tr>
+                         
+                            <tr>
+                                <td> IFWI File</td>
+
+                                <td>PLYDCRB.86B.BR.64.2017.06.4.05.2054_LBG_SPS_FPGA.bin</td>
+                                
+                                <td style="color:#FF0000" class="td-center">PLYDCRB.86B.OR.64.2017.05.3.03.2027_LBG_SPS_FPGA.bin-&gt;PLYDCRB.86B.BR.64.2017.06.4.05.2054_LBG_SPS_FPGA.bin</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> BiosID</td>
+
+                                <td>PLYDCRB1.86B.0122.R07.1702092054</td>
+                                
+                                <td style="color:#FF0000" class="td-center">PLYDCRB1.86B.0121.R04.1702012027-&gt;PLYDCRB1.86B.0122.R07.1702092054</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> 10GNicEFI</td>
+
+                                <td>v4.2.22</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> 1GNicEFI</td>
+
+                                <td>v00.00.11</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> ASTVBIOS</td>
+
+                                <td>v1.01_800800</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> AspeedVideo</td>
+
+                                <td>PrePO</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> BIOSACM</td>
+
+                                <td>Debug_NT,v1.1.0_LBG</td>
+                                
+                                <td style="color:#FF0000" class="td-center">Unknown-&gt;Debug_NT,v1.1.0_LBG</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> BiosGuard</td>
+
+                                <td>PC_v0_9Beta</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> FPGABBS_GBE</td>
+
+                                <td>v6.3.0</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> FPGABBS_PCIE</td>
+
+                                <td>DUMMY</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> FPGAN4PE</td>
+
+                                <td>v081204_signed</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> FpkSi</td>
+
+                                <td>v3.29_80000800</td>
+                                
+                                <td style="color:#FF0000" class="td-center">Unknown-&gt;v3.29_80000800</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> FpkSiLR</td>
+
+                                <td>NA</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> GBE</td>
+
+                                <td>_I219_Nahum7_Purley_LM_No-LAN-Switch_Rev0.2</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> HfiPcieGen3</td>
+
+                                <td>v1.3.1.0.0</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> IccOverClocking</td>
+
+                                <td>PrePO</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> JacksonvillePxe</td>
+
+                                <td>v1.07</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> LBGNSPcieGen3</td>
+
+                                <td>PrePO</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> ME</td>
+
+                                <td>SPS/4.0.3.154</td>
+                                
+                                <td style="color:#FF0000" class="td-center">SPS/4.0.3.148-&gt;SPS/4.0.3.154</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> Mebx</td>
+
+                                <td>v11.0.0.0005</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> MebxSetupBrowser</td>
+
+                                <td>PrePo</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> Microcode1</td>
+
+                                <td>M1350651_8000002B.inc</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> Microcode2</td>
+
+                                <td>M9750652_80000034.inc</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> Microcode3</td>
+
+                                <td>M9750653_01000132.inc</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> Microcode4</td>
+
+                                <td>M9750654_02000011.inc</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> NvmDimmDriver</td>
+
+                                <td>v01.00.01.1018</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> NvmDimmHii</td>
+
+                                <td>v01.00.01.1018</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> PDR</td>
+
+                                <td>PrePO</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> RSTSataEfi</td>
+
+                                <td>PrePO</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> RSTeSataEfi</td>
+
+                                <td>v5.0.0.1156</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> RSTeSataLegacy</td>
+
+                                <td>v5.0.0.1156</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> RSTeSataRaidEfi</td>
+
+                                <td>v5.0.0.1156</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> RSTesSataEfi</td>
+
+                                <td>v5.0.0.1156</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> RSTesSataLegacy</td>
+
+                                <td>v5.0.0.1156</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> SINIT</td>
+
+                                <td>Debug_NT,v1.1.0_LBG</td>
+                                
+                                <td style="color:#FF0000" class="td-center">Unknown-&gt;Debug_NT,v1.1.0_LBG</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> SataAHCI</td>
+
+                                <td>v2.00i</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> TwinvillePxe</td>
+
+                                <td>v2.3.17</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> VMDDxeEfi</td>
+
+                                <td>v1.0.0.1006</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> iBMCVideo</td>
+
+                                <td>v3.8SQ</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> iBMCVideoGop</td>
+
+                                <td>v26</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                        
+
+                    </tbody></table><br>
+                </div>
+            </div>
+        </div>
+        
+
+        <br>
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Platform Integration Validation Result </span>
+                <div class="FoldIcon">
+                    <div id="PlatformIntegrationValidationResultBtn" class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapsePlatformIntegrationValidationResult">
+</div>
+                </div>
+            </div>
+
+            <div id="collapsePlatformIntegrationValidationResult" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    <table class="MsoNormalTable" width="100%">
+                        <tbody><tr>
+                            <th rowspan="11" width="9%">Purley_FPGA Test Execution Status</th>
+                            <th width="9%">Domains</th>
+                            <th width="8%">Attempted</th>
+                            <th width="8%">Blocked</th>
+                            <th width="8%">No Run</th>
+                            <th width="8%">Failed</th>
+                            <th width="8%">Passed</th>
+                            <th width="8%">Total</th>
+                            <th width="8%">% Attempted</th>
+                            <th width="8%">Passed% (per attempted)</th>
+                            <th width="8%">Pass%</th>
+                            <th width="10%">Key Sightings</th>
+                        </tr>
+                        
+                        
+                        <tr>
+                            
+                             <td>Power Management</td>
+                            
+                             <td>13</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                            <td style="background:#ff6633">6</td>
+                            
+                             <td>7</td>
+                             <td>13</td>
+                             <td>100.00%</td>
+                             <td>7/13</td>
+                             <td>53.85%</td>
+                             <td>
+                                 
+                                     
+                                        <p><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345853" style="color:#0071c5">5345853</a></p>
+                                     
+
+                                 
+                                     
+                                        <p><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345719" style="color:#0071c5">5345719</a></p>
+                                     
+
+                                 
+                                     
+                                        <p><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345803" style="color:#0071c5">5345803</a></p>
+                                     
+
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>FPGA</td>
+                            
+                             <td>6</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>6</td>
+                             <td>6</td>
+                             <td>100.00%</td>
+                             <td>6/6</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Video</td>
+                            
+                             <td>1</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>1</td>
+                             <td>1</td>
+                             <td>100.00%</td>
+                             <td>1/1</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Manageability</td>
+                            
+                             <td>6</td>
+                             <td>1</td>
+                             <td>0</td>
+                            
+                            <td style="background:#ff6633">2</td>
+                            
+                             <td>4</td>
+                             <td>7</td>
+                             <td>85.71%</td>
+                             <td>4/6</td>
+                             <td>57.14%</td>
+                             <td>
+                                 
+                                     
+                                        <p><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345719" style="color:#0071c5">5345719</a></p>
+                                     
+
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Virtualization</td>
+                            
+                             <td>7</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>7</td>
+                             <td>7</td>
+                             <td>100.00%</td>
+                             <td>7/7</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                                     
+                                        <p><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5345474" style="color:#0071c5">5345474</a></p>
+                                     
+
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Memory</td>
+                            
+                             <td>2</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>2</td>
+                             <td>2</td>
+                             <td>100.00%</td>
+                             <td>2/2</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Stress &amp; Stability</td>
+                            
+                             <td>1</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>1</td>
+                             <td>1</td>
+                             <td>100.00%</td>
+                             <td>1/1</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Security</td>
+                            
+                             <td>5</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>5</td>
+                             <td>5</td>
+                             <td>100.00%</td>
+                             <td>5/5</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Processor</td>
+                            
+                             <td>2</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>2</td>
+                             <td>2</td>
+                             <td>100.00%</td>
+                             <td>2/2</td>
+                             <td>100.00%</td>
+                             <td>
+                                 
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Summary</td>
+                            
+                             <td>43</td>
+                             <td>1</td>
+                             <td>0</td>
+                            
+                            <td style="background:#ff6633">8</td>
+                            
+                             <td>35</td>
+                             <td>44</td>
+                             <td>97.73%</td>
+                             <td>35/43</td>
+                             <td>79.55%</td>
+                             <td>
+                                 
+
+
+
+                             </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </tbody></table><br>
+                    <div class="stable">Detail case result could be found in this <a href="http://dcg-oss.intel.com/test_report/report_case/5496/Gold/Purley_FPGA" target="_blank" style="text-decoration: underline;">page</a></div>
+                    <div style="border:1px solid #000000">
+                        <div id="cases_domain_chart" style="width:70%;float:left;" data-highcharts-chart="0"><div class="highcharts-container" id="highcharts-0" style="position: relative; overflow-x: hidden; overflow-y: hidden; width: 427px; height: 400px; text-align: left; line-height: normal; z-index: 0; "><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="427" height="400"><desc>Created with Highcharts 4.1.7</desc><defs><clipPath id="highcharts-1"><rect x="0" y="0" width="350" height="196"></rect></clipPath></defs><rect x="0" y="0" width="427" height="400" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect><g class="highcharts-grid" zIndex="1"></g><g class="highcharts-grid" zIndex="1"><path fill="none" d="M 67 264.5 L 417 264.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 67 215.5 L 417 215.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 67 166.5 L 417 166.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 67 117.5 L 417 117.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 67 67.5 L 417 67.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path></g><g class="highcharts-axis" zIndex="2"><path fill="none" d="M 105.5 264 L 105.5 274" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 144.5 264 L 144.5 274" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 183.5 264 L 183.5 274" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 222.5 264 L 222.5 274" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 260.5 264 L 260.5 274" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 299.5 264 L 299.5 274" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 338.5 264 L 338.5 274" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 377.5 264 L 377.5 274" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 417.5 264 L 417.5 274" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 66.5 264 L 66.5 274" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 67 264.5 L 417 264.5" stroke="#C0D0E0" stroke-width="1" zIndex="7" visibility="visible"></path></g><g class="highcharts-axis" zIndex="2"><text x="24" zIndex="7" text-anchor="middle" transform="translate(0,0) rotate(270 24 166)" class=" highcharts-yaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="166"><tspan>Pass Rate</tspan></text></g><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(67,230.34540406378972) scale(1 0.17253541500139827)" style="" clip-path="url(#highcharts-1)"><rect x="9.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#717171" rx="0" ry="0"></rect><rect x="48.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#717171" rx="0" ry="0"></rect><rect x="87.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#717171" rx="0" ry="0"></rect><rect x="126.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#717171" rx="0" ry="0"></rect><rect x="165.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#717171" rx="0" ry="0"></rect><rect x="204.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#717171" rx="0" ry="0"></rect><rect x="242.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#717171" rx="0" ry="0"></rect><rect x="281.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#717171" rx="0" ry="0"></rect><rect x="320.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#717171" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(67,68) scale(1 1)"></g><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(67,230.34540406378972) scale(1 0.17253541500139827)" style="" clip-path="url(#highcharts-1)"><rect x="9.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#ffae00" rx="0" ry="0"></rect><rect x="48.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#ffae00" rx="0" ry="0"></rect><rect x="87.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#ffae00" rx="0" ry="0"></rect><rect x="126.5" y="-0.5" width="19" height="29" stroke="#FFFFFF" stroke-width="1" fill="#ffae00" rx="0" ry="0"></rect><rect x="165.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#ffae00" rx="0" ry="0"></rect><rect x="204.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#ffae00" rx="0" ry="0"></rect><rect x="242.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#ffae00" rx="0" ry="0"></rect><rect x="281.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#ffae00" rx="0" ry="0"></rect><rect x="320.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#ffae00" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(67,68) scale(1 1)"></g><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(67,230.34540406378972) scale(1 0.17253541500139827)" style="" clip-path="url(#highcharts-1)"><rect x="9.5" y="-0.5" width="19" height="91" stroke="#FFFFFF" stroke-width="1" fill="#fd4f02" rx="0" ry="0"></rect><rect x="48.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#fd4f02" rx="0" ry="0"></rect><rect x="87.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#fd4f02" rx="0" ry="0"></rect><rect x="126.5" y="28.5" width="19" height="56" stroke="#FFFFFF" stroke-width="1" fill="#fd4f02" rx="0" ry="0"></rect><rect x="165.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#fd4f02" rx="0" ry="0"></rect><rect x="204.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#fd4f02" rx="0" ry="0"></rect><rect x="242.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#fd4f02" rx="0" ry="0"></rect><rect x="281.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#fd4f02" rx="0" ry="0"></rect><rect x="320.5" y="-0.5" width="19" height="1" stroke="#FFFFFF" stroke-width="1" fill="#fd4f02" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(67,68) scale(1 1)"></g><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(67,230.34540406378972) scale(1 0.17253541500139827)" style="" clip-path="url(#highcharts-1)"><rect x="9.5" y="90.5" width="19" height="106" stroke="#FFFFFF" stroke-width="1" fill="#6fd007" rx="0" ry="0"></rect><rect x="48.5" y="-0.5" width="19" height="197" stroke="#FFFFFF" stroke-width="1" fill="#6fd007" rx="0" ry="0"></rect><rect x="87.5" y="-0.5" width="19" height="197" stroke="#FFFFFF" stroke-width="1" fill="#6fd007" rx="0" ry="0"></rect><rect x="126.5" y="84.5" width="19" height="112" stroke="#FFFFFF" stroke-width="1" fill="#6fd007" rx="0" ry="0"></rect><rect x="165.5" y="-0.5" width="19" height="197" stroke="#FFFFFF" stroke-width="1" fill="#6fd007" rx="0" ry="0"></rect><rect x="204.5" y="-0.5" width="19" height="197" stroke="#FFFFFF" stroke-width="1" fill="#6fd007" rx="0" ry="0"></rect><rect x="242.5" y="-0.5" width="19" height="197" stroke="#FFFFFF" stroke-width="1" fill="#6fd007" rx="0" ry="0"></rect><rect x="281.5" y="-0.5" width="19" height="197" stroke="#FFFFFF" stroke-width="1" fill="#6fd007" rx="0" ry="0"></rect><rect x="320.5" y="-0.5" width="19" height="197" stroke="#FFFFFF" stroke-width="1" fill="#6fd007" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(67,68) scale(1 1)"></g></g><text x="214" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:363px;" y="24"><tspan>Purley-FPGA Server SKX H0/LBG B1 Gold</tspan><tspan dy="21" x="214">Validation Result</tspan><title>Purley-FPGA Server SKX H0/LBG B1 Gold Validation Result</title></text><g class="highcharts-legend" zIndex="7" transform="translate(74,360)"><g zIndex="1"><g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)"><text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2" y="15">NoRun</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#717171"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(90,3)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">Block</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#ffae00"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(163,3)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">Fail</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#fd4f02"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(223,3)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">Pass</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#6fd007"></rect></g></g></g></g><g class="highcharts-axis-labels highcharts-xaxis-labels" zIndex="7"><text x="89.03716930879511" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 89.03716930879511 280)" y="280" opacity="1"><tspan>Power Management</tspan></text><text x="127.92605819768401" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 127.92605819768401 280)" y="280" opacity="1"><tspan>FPGA</tspan></text><text x="166.8149470865729" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 166.8149470865729 280)" y="280" opacity="1"><tspan>Video</tspan></text><text x="205.7038359754618" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 205.7038359754618 280)" y="280" opacity="1"><tspan>Manageability</tspan></text><text x="244.59272486435066" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 244.59272486435066 280)" y="280" opacity="1"><tspan>Virtualization</tspan></text><text x="283.4816137532395" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 283.4816137532395 280)" y="280" opacity="1"><tspan>Memory</tspan></text><text x="322.37050264212843" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 322.37050264212843 280)" y="280" opacity="1"><tspan>Stress and Stability</tspan></text><text x="361.2593915310173" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 361.2593915310173 280)" y="280" opacity="1"><tspan>Security</tspan></text><text x="400.1482804199062" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 400.1482804199062 280)" y="280" opacity="1"><tspan>Processor</tspan></text></g><g class="highcharts-axis-labels highcharts-yaxis-labels" zIndex="7"><text x="52" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:131px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="269" opacity="1">0</text><text x="52" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:131px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="220" opacity="1">25</text><text x="52" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:131px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="171" opacity="1">50</text><text x="52" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:131px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="122" opacity="1">75</text><text x="52" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:131px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="73" opacity="1">100</text></g><g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(0,-9999)"><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"></path><path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5"></path><text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="20"></text></g></svg></div></div>
+                        <div id="cases_pie_chart" style="width:28%;float:right;border-left:1px solid #000000" data-highcharts-chart="1"><div class="highcharts-container" id="highcharts-2" style="position: relative; overflow-x: hidden; overflow-y: hidden; width: 170px; height: 400px; text-align: left; line-height: normal; z-index: 0; "><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="170" height="400"><desc>Created with Highcharts 4.1.7</desc><defs><clipPath id="highcharts-3"><rect x="0" y="0" width="150" height="168"></rect></clipPath></defs><rect x="0" y="0" width="170" height="400" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(10,152) scale(1 1)" style="cursor:pointer;"><path fill="#6fd007" d="M 74.99960967724277 72.8390370687963 A 11.160962938028916 11.160962938028916 0 0 1 83.43751799708579 76.6941541384376 L 75 84 A 0 0 0 0 0 75 84 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(6,8)"></path><path fill="#fd4f02" d="M 83.44481962297105 76.70259530795106 A 11.160962938028916 11.160962938028916 0 0 1 84.7002058751887 78.47975546891175 L 75 84 A 0 0 0 0 0 75 84 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path><path fill="#ffae00" d="M 84.7057212686972 78.48945843329227 A 11.160962938028916 11.160962938028916 0 0 1 84.83190615912926 78.71788726150878 L 75 84 A 0 0 0 0 0 75 84 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path><path fill="#717171" d="M 84.83718335503472 78.7277218070854 A 11.160962938028916 11.160962938028916 0 0 1 84.83190615912926 78.71788726150878 L 75 84 A 0 0 0 0 0 75 84 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(10,152) scale(1 1)"></g></g><text x="85" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:106px;" y="24"><tspan>Purley-FPGA</tspan><tspan dy="21" x="85">Server SKX</tspan><tspan dy="21" x="85">H0/LBG B1</tspan><tspan dy="21" x="85">Gold</tspan><tspan dy="21" x="85">Validation</tspan><tspan dy="21" x="85">Status</tspan><title>Purley-FPGA Server SKX H0/LBG B1 Gold Validation Status</title></text><g class="highcharts-legend" zIndex="7" transform="translate(23,332)"><g zIndex="1"><g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)"><text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2" y="15">Pass</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#6fd007"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(76,3)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">Fail</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#fd4f02"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,17)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">Block</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#ffae00"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,31)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">NoRun</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#717171"></rect></g></g></g></g><g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(0,-9999)"><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"></path><path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5"></path><text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="20"></text></g></svg></div></div>
+                        <div style="clear:both;"></div>
+                        <div style="border-top:1px solid #000000" id="cases_history_chart" data-highcharts-chart="2"><div class="highcharts-container" id="highcharts-4" style="position: relative; overflow-x: hidden; overflow-y: hidden; width: 611px; height: 400px; text-align: left; line-height: normal; z-index: 0; "><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="611" height="400"><desc>Created with Highcharts 4.1.7</desc><defs><clipPath id="highcharts-5"><rect x="0" y="0" width="520" height="242"></rect></clipPath><clipPath id="highcharts-6"><rect x="-99" y="-47" width="188.28770350423133" height="400"></rect></clipPath><clipPath id="highcharts-7"><rect x="0" y="0" width="89.28770350423133" height="242"></rect></clipPath></defs><rect x="0" y="0" width="611" height="400" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect><g class="highcharts-grid" zIndex="1"></g><g class="highcharts-grid" zIndex="1"><path fill="none" d="M 81 289.5 L 601 289.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 81 229.5 L 601 229.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 81 168.5 L 601 168.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 81 108.5 L 601 108.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 81 46.5 L 601 46.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path></g><g class="highcharts-axis" zIndex="2"><path fill="none" d="M 107.5 289 L 107.5 299" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 135.5 289 L 135.5 299" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 162.5 289 L 162.5 299" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 189.5 289 L 189.5 299" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 217.5 289 L 217.5 299" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 244.5 289 L 244.5 299" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 272.5 289 L 272.5 299" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 299.5 289 L 299.5 299" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 326.5 289 L 326.5 299" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 354.5 289 L 354.5 299" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 381.5 289 L 381.5 299" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 408.5 289 L 408.5 299" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 436.5 289 L 436.5 299" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 463.5 289 L 463.5 299" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 491.5 289 L 491.5 299" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 518.5 289 L 518.5 299" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 545.5 289 L 545.5 299" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 573.5 289 L 573.5 299" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 601.5 289 L 601.5 299" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 80.5 289 L 80.5 299" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 81 289.5 L 601 289.5" stroke="#C0D0E0" stroke-width="1" zIndex="7" visibility="visible"></path></g><g class="highcharts-axis" zIndex="2"><text x="24" zIndex="7" text-anchor="middle" transform="translate(0,0) rotate(270 24 168)" class=" highcharts-yaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="168"><tspan>Pass Rate</tspan></text></g><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series" visibility="visible" zIndex="0.1" transform="translate(81,47) scale(1 1)" clip-path="url(#highcharts-7)"><path fill="none" d="M 41.05263157894737 62.75060000000002 L 68.42105263157895 44.8184 L 95.78947368421053 44.8184 L 123.15789473684211 17.932199999999995 L 150.52631578947367 16.141400000000004 L 177.89473684210526 16.141400000000004 L 205.26315789473682 32.2586 L 232.6315789473684 32.2586 L 260 8.058600000000013 L 287.36842105263156 16.141400000000004 L 314.7368421052631 16.141400000000004 L 342.10526315789474 41.7208 L 369.4736842105263 25.022800000000018 L 396.84210526315786 25.022800000000018 L 424.2105263157895 25.022800000000018 L 451.57894736842104 50.06979999999999 L 478.9473684210526 50.06979999999999 L 506.3157894736842 49.489000000000004" stroke="#7cb5ec" stroke-width="2" zIndex="1" stroke-linejoin="round" stroke-linecap="round"></path></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(81,47) scale(1 1)" clip-path="url(#highcharts-6)"><path fill="#7cb5ec" d="M 506 45.489000000000004 C 511.328 45.489000000000004 511.328 53.489000000000004 506 53.489000000000004 C 500.672 53.489000000000004 500.672 45.489000000000004 506 45.489000000000004 Z"></path><path fill="#7cb5ec" d="M 478 46.06979999999999 C 483.328 46.06979999999999 483.328 54.06979999999999 478 54.06979999999999 C 472.672 54.06979999999999 472.672 46.06979999999999 478 46.06979999999999 Z"></path><path fill="#7cb5ec" d="M 451 46.06979999999999 C 456.328 46.06979999999999 456.328 54.06979999999999 451 54.06979999999999 C 445.672 54.06979999999999 445.672 46.06979999999999 451 46.06979999999999 Z"></path><path fill="#7cb5ec" d="M 424 21.022800000000018 C 429.328 21.022800000000018 429.328 29.022800000000018 424 29.022800000000018 C 418.672 29.022800000000018 418.672 21.022800000000018 424 21.022800000000018 Z"></path><path fill="#7cb5ec" d="M 396 21.022800000000018 C 401.328 21.022800000000018 401.328 29.022800000000018 396 29.022800000000018 C 390.672 29.022800000000018 390.672 21.022800000000018 396 21.022800000000018 Z"></path><path fill="#7cb5ec" d="M 369 21.022800000000018 C 374.328 21.022800000000018 374.328 29.022800000000018 369 29.022800000000018 C 363.672 29.022800000000018 363.672 21.022800000000018 369 21.022800000000018 Z"></path><path fill="#7cb5ec" d="M 342 37.7208 C 347.328 37.7208 347.328 45.7208 342 45.7208 C 336.672 45.7208 336.672 37.7208 342 37.7208 Z"></path><path fill="#7cb5ec" d="M 314 12.141400000000004 C 319.328 12.141400000000004 319.328 20.141400000000004 314 20.141400000000004 C 308.672 20.141400000000004 308.672 12.141400000000004 314 12.141400000000004 Z"></path><path fill="#7cb5ec" d="M 287 12.141400000000004 C 292.328 12.141400000000004 292.328 20.141400000000004 287 20.141400000000004 C 281.672 20.141400000000004 281.672 12.141400000000004 287 12.141400000000004 Z"></path><path fill="#7cb5ec" d="M 260 4.058600000000013 C 265.328 4.058600000000013 265.328 12.058600000000013 260 12.058600000000013 C 254.672 12.058600000000013 254.672 4.058600000000013 260 4.058600000000013 Z"></path><path fill="#7cb5ec" d="M 232 28.2586 C 237.328 28.2586 237.328 36.2586 232 36.2586 C 226.672 36.2586 226.672 28.2586 232 28.2586 Z"></path><path fill="#7cb5ec" d="M 205 28.2586 C 210.328 28.2586 210.328 36.2586 205 36.2586 C 199.672 36.2586 199.672 28.2586 205 28.2586 Z"></path><path fill="#7cb5ec" d="M 177 12.141400000000004 C 182.328 12.141400000000004 182.328 20.141400000000004 177 20.141400000000004 C 171.672 20.141400000000004 171.672 12.141400000000004 177 12.141400000000004 Z"></path><path fill="#7cb5ec" d="M 150 12.141400000000004 C 155.328 12.141400000000004 155.328 20.141400000000004 150 20.141400000000004 C 144.672 20.141400000000004 144.672 12.141400000000004 150 12.141400000000004 Z"></path><path fill="#7cb5ec" d="M 123 13.932199999999995 C 128.328 13.932199999999995 128.328 21.932199999999995 123 21.932199999999995 C 117.672 21.932199999999995 117.672 13.932199999999995 123 13.932199999999995 Z"></path><path fill="#7cb5ec" d="M 95 40.8184 C 100.328 40.8184 100.328 48.8184 95 48.8184 C 89.672 48.8184 89.672 40.8184 95 40.8184 Z"></path><path fill="#7cb5ec" d="M 68 40.8184 C 73.328 40.8184 73.328 48.8184 68 48.8184 C 62.672 48.8184 62.672 40.8184 68 40.8184 Z"></path><path fill="#7cb5ec" d="M 41 58.75060000000002 C 46.328 58.75060000000002 46.328 66.75060000000002 41 66.75060000000002 C 35.672 66.75060000000002 35.672 58.75060000000002 41 58.75060000000002 Z"></path></g></g><text x="306" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:547px;" y="24"><tspan>Purley-FPGA Server SKX H0/LBG B1 Gold Analysis PASS%</tspan></text><g class="highcharts-data-labels" visibility="visible" zIndex="6" transform="translate(81,47) scale(1 1)" opacity="0"><g zIndex="1" style="" transform="translate(21,40)"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>74.07</tspan></text></g><g zIndex="1" style="" transform="translate(48,22)" opacity="0"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>81.48</tspan></text></g><g zIndex="1" style="" transform="translate(75,22)"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>81.48</tspan></text></g><g zIndex="1" style="" transform="translate(103,-5)"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>92.59</tspan></text></g><g zIndex="1" style="" transform="translate(130,16)" opacity="0"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>93.33</tspan></text></g><g zIndex="1" style="" transform="translate(157,16)"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>93.33</tspan></text></g><g zIndex="1" style="" transform="translate(185,9)" opacity="0"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>86.67</tspan></text></g><g zIndex="1" style="" transform="translate(212,9)"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>86.67</tspan></text></g><g zIndex="1" style="" transform="translate(240,8)" opacity="0"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>96.67</tspan></text></g><g zIndex="1" style="" transform="translate(267,16)"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>93.33</tspan></text></g><g zIndex="1" style="" transform="translate(294,16)" opacity="0"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>93.33</tspan></text></g><g zIndex="1" style="" transform="translate(322,19)"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>82.76</tspan></text></g><g zIndex="1" style="" transform="translate(349,2)" opacity="0"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>89.66</tspan></text></g><g zIndex="1" style="" transform="translate(376,2)"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>89.66</tspan></text></g><g zIndex="1" style="" transform="translate(404,2)" opacity="0"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>89.66</tspan></text></g><g zIndex="1" style="" transform="translate(431,27)"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>79.31</tspan></text></g><g zIndex="1" style="" transform="translate(458,27)" opacity="0"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>79.31</tspan></text></g><g zIndex="1" style="" transform="translate(484,26)"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: #000000; text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricprecision; " y="16"><tspan>79.55</tspan></text></g></g><g class="highcharts-legend" zIndex="7" transform="translate(274,360)"><g zIndex="1"><g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)"><path fill="none" d="M 0 11 L 16 11" stroke="#7cb5ec" stroke-width="2"></path><path fill="#7cb5ec" d="M 8 7 C 13.328 7 13.328 15 8 15 C 2.6719999999999997 15 2.6719999999999997 7 8 7 Z"></path><text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2" y="15">Gold</text></g></g></g></g><g class="highcharts-axis-labels highcharts-xaxis-labels" zIndex="7"><text x="97.27693539066645" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 97.27693539066645 305)" y="305" opacity="1"><tspan>2016 WW40</tspan></text><text x="124.64535644329804" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 124.64535644329804 305)" y="305" opacity="1"><tspan>2016 WW42</tspan></text><text x="152.01377749592965" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 152.01377749592965 305)" y="305" opacity="1"><tspan>2016 WW43</tspan></text><text x="179.3821985485612" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 179.3821985485612 305)" y="305" opacity="1"><tspan>2016 WW44</tspan></text><text x="206.7506196011928" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 206.7506196011928 305)" y="305" opacity="1"><tspan>2016 WW45</tspan></text><text x="234.11904065382436" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 234.11904065382436 305)" y="305" opacity="1"><tspan>2016 WW46</tspan></text><text x="261.4874617064559" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 261.4874617064559 305)" y="305" opacity="1"><tspan>2016 WW47</tspan></text><text x="288.8558827590875" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 288.8558827590875 305)" y="305" opacity="1"><tspan>2016 WW48</tspan></text><text x="316.22430381171904" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 316.22430381171904 305)" y="305" opacity="1"><tspan>2016 WW49</tspan></text><text x="343.59272486435066" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 343.59272486435066 305)" y="305" opacity="1"><tspan>2016 WW50</tspan></text><text x="370.9611459169822" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 370.9611459169822 305)" y="305" opacity="1"><tspan>2016 WW51</tspan></text><text x="398.32956696961384" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 398.32956696961384 305)" y="305" opacity="1"><tspan>2016 WW52</tspan></text><text x="425.6979880222454" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 425.6979880222454 305)" y="305" opacity="1"><tspan>2016 WW53</tspan></text><text x="453.06640907487696" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 453.06640907487696 305)" y="305" opacity="1"><tspan>2017 WW01</tspan></text><text x="480.4348301275086" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 480.4348301275086 305)" y="305" opacity="1"><tspan>2017 WW02</tspan></text><text x="507.8032511801401" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 507.8032511801401 305)" y="305" opacity="1"><tspan>2017 WW03</tspan></text><text x="535.1716722327717" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 535.1716722327717 305)" y="305" opacity="1"><tspan>2017 WW04</tspan></text><text x="562.5400932854031" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 562.5400932854031 305)" y="305" opacity="1"><tspan>2017 WW06</tspan></text><text x="589.9085143380348" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:400px;text-overflow:ellipsis;" text-anchor="end" transform="translate(0,0) rotate(-45 589.9085143380348 305)" y="305" opacity="1"><tspan>2017 WW07</tspan></text></g><g class="highcharts-axis-labels highcharts-yaxis-labels" zIndex="7"><text x="66" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:192px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="294" opacity="1"><tspan>0 %</tspan></text><text x="66" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:192px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="233" opacity="1"><tspan>25 %</tspan></text><text x="66" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:192px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="173" opacity="1"><tspan>50 %</tspan></text><text x="66" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:192px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="112" opacity="1"><tspan>75 %</tspan></text><text x="66" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:192px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="52" opacity="1"><tspan>100 %</tspan></text></g><g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(0,-9999)"><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"></path><path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5"></path><text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="20"></text></g></svg></div></div>
+                    </div>
+
+                <br>
+                
+
+                </div>
+            </div>
+            
+            <script>
+                document.getElementById("PlatformIntegrationValidationResultBtn").setAttribute("class","CollapseBtn not-collapsed collapsed")
+                document.getElementById("collapsePlatformIntegrationValidationResult").setAttribute("class","panel-collapse collapse ")
+            </script>
+            
+        </div>
+    
+    
+        <br>
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; BKC Useful Info </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed" data-toggle="collapse" href="#collapseBKCUsefulInfo"></div>
+                </div>
+            </div>
+            <div id="collapseBKCUsefulInfo" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <p><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+color:#333333">Notes: To subscribe or unsubscribe to this mailing list please
+click</span><span style="font-family:&quot;Helvetica Neue&quot;;color:#333333">&nbsp;<a href="http://targetmailer.intel.com/Subscriptions/?GroupID=30#/30?cat=109">here</a>&nbsp;</span><span style="font-size:10.0pt;
+font-family:&quot;Intel Clear&quot;,sans-serif;color:#333333">and select "Purley FPGA Subscription".</span><span style="font-family:&quot;Helvetica Neue&quot;;
+color:#333333"><o:p></o:p></span></p><table class="NormalTable" border="0" cellspacing="0" cellpadding="0" style="width: 100%; color: rgb(51, 51, 51);"><tbody><tr style="color: rgb(0, 0, 0); font-weight: bold; background-color: rgb(163, 203, 255);"><td width="10%" align="center">Information</td><td width="40%" align="center">Quick Guide</td></tr><tr><td style="padding: 10px; text-align: center; font-weight: bold;">BKC Artifactory Access</td><td style="padding: 10px;"><p>Link (SH server):&nbsp;<a href="https://ubit-artifactory-sh.intel.com/artifactory/webapp/#/home">https://ubit-artifactory-sh.intel.com</a></p><p>Link (OR server):&nbsp;<a href="https://ubit-artifactory-or.intel.com/artifactory/webapp/#/home">https://ubit-artifactory-or.intel.com</a></p><p>Steps for applying the permission:</p><p></p><ul><li>Go to EAM website:&nbsp;<a href="https://eam.intel.com/EAMWeb/RequestAccess/DisplayTree.aspx?TopNode=757719"><span lang="X-NONE">https://eam.intel.com/EAMWeb/RequestAccess/DisplayTree.aspx?TopNode=757719</span></a></li><li>Apply for the "Project viewer" role<br></li><li>Use your windows credentials for authentication</li></ul><p></p></td></tr><tr><td style="padding: 10px; text-align: center; font-weight: bold;">BKC One Stop Shop</td><td style="padding: 10px;"><p>Link:&nbsp;<a href="https://dcg-oss.intel.com/">https://dcg-oss.intel.com</a></p><p>Steps for applying the permission:</p><p></p><ul><li>Go to EAM website:&nbsp;<a href="https://eam.intel.com/EAMWeb/RequestAccess/DisplayTree.aspx?TopNode=829001" target="_blank">https://eam.intel.com/EAMWeb/RequestAccess/DisplayTree.aspx?TopNode=829001</a></li><li>Navigate to:"BKC -- Purley"</li><li>Apply for the "User" or "Ingredient Owner" role</li><li>Use your windows credentials for authentication</li></ul><p></p><p>Contact Person:&nbsp;<a href="mailto:ling.bei@intel.com">Bei, Ling</a></p></td></tr></tbody></table><p style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;"><br></p>
+                    <br>
+                </div>
+            </div>
+        </div>
+    
+        <br>
+        <br>
+    </div>
+
+</div>
+
+</body></html>
