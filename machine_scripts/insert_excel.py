@@ -117,15 +117,10 @@ class InsertDataIntoExcel(object):
         self.yellow_data_format = self.workbook.add_format({'bg_color': '#FFFF66'})
         # TODO 为当前workbook添加一个样式名为title format
         self.title_format = self.workbook.add_format()
-        self.title_format_header = self.workbook.add_format()
-        self.title_format_header.set_bold()  # 设置粗体字
         self.title_format.set_font_size(12)  # 设置字体大小为10
-        self.title_format_header.set_font_size(12)  # 设置字体大小为10
         self.title_format.set_font_name('Microsoft yahei')  # 设置字体样式为雅黑
         self.title_format.set_align('center')  # 设置水平居中对齐
-        self.title_format_header.set_align('center')  # 设置水平居中对齐
         self.title_format.set_align('vcenter')  # 设置垂直居中对齐
-        self.title_format_header.set_align('vcenter')  # 设置垂直居中对齐
         self.format1 = self.workbook.add_format({'bg_color': '#FFC7CE', 'font_color': '#9C0006'})
         self.format_white = self.workbook.add_format({'bg_color': '#FFFFFF'})
         self.mapping_format = self.workbook.add_format({'bg_color': '#EAC100'})
@@ -228,6 +223,12 @@ class InsertDataIntoExcel(object):
                             wb_sheet_name.write(row - 1, col - 1, data, self.reserve_zero_decimal_format)
                     elif 11 <= row <= 50 and col == 2:
                         wb_sheet_name.write(row - 1, col - 1, data, self.reserve_int_two_decimal_format)
+                    else:
+                        wb_sheet_name.write(row - 1, col - 1, data)
+
+                elif 'Trend' == data_type:
+                    if (1 <= row <= len(self.Silver_url_list) + 1) and (8 <= col <= 10):
+                        wb_sheet_name.write(row - 1, col - 1, data, self.reserve_zero_decimal_format)
                     else:
                         wb_sheet_name.write(row - 1, col - 1, data)
 
@@ -339,7 +340,7 @@ class InsertDataIntoExcel(object):
                     continue
 
                 # 写入表头行
-                self.worksheet_existing.write_row(2, self.calculate_head_num(13, j, 4), header_list, self.title_format_header)
+                self.worksheet_existing.write_row(2, self.calculate_head_num(13, j, 4), header_list, self.title_format)
 
                 # 最后一列可能会出现多值多行的情况，计算每行数据占有的行数
                 line_num_list = []

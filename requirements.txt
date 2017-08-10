@@ -1,5 +1,5 @@
-lxml==3.7.3
 pyparsing==2.2.0
+lxml==3.7.3
 chardet==3.0.1
 bs4==0.0.1
 openpyxl==2.4.5

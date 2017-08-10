@@ -5,7 +5,8 @@
 # Author  : MrFiona 一枚程序员
 # Time     : 2017-05-24 13:01
 
-from __future__ import absolute_import
+from __future__ import absolute_import, division
+
 
 
 import os
@@ -67,7 +68,29 @@ def get_max_num(first_data, second_data, third_data, fourth_data, fifth_data,
         max_positive_num = 0
     return max_negative_num, max_positive_num
 
-def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_flag=False, predict_execute_flag=False):
+
+
+def get_sighting_num(seven_data, eight_data, nine_data, display_save_test, display_save_effort, display_miss):
+    positive_num_sighting_list = []
+    if display_save_test == 'YES':
+        positive_seven_data = [abs(ele) for ele in seven_data if ele > 0]
+        positive_num_sighting_list.extend(positive_seven_data)
+    if display_save_effort == 'YES':
+        positive_eight_data = [abs(ele) for ele in seven_data if ele > 0]
+        positive_num_sighting_list.extend(positive_eight_data)
+    if display_miss == 'YES':
+        positive_nine_data = [abs(ele) for ele in seven_data if ele > 0]
+        positive_num_sighting_list.extend(positive_nine_data)
+
+    if positive_num_sighting_list:
+        max_positive_num = max(positive_num_sighting_list)
+    else:
+        max_positive_num = 0
+    return max_positive_num
+
+
+
+def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_flag=False, predict_execute_flag=False, week_type_string='default'):
     file_list = glob.glob(SRC_EXCEL_DIR + os.sep + '*.xlsx')
     object_excel_file = None
     if type_string == '':
@@ -83,20 +106,6 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
     fig = plt.figure()
     fig.set_size_inches(w=15, h=8)
 
-    # TODO 获取代表是否显示五个表的参数
-    display_software = get_interface_config('display_software', purl_bak_string)
-    display_New = get_interface_config('display_new', purl_bak_string)
-    display_Existing = get_interface_config('display_existing', purl_bak_string)
-    display_Closed = get_interface_config('display_closed', purl_bak_string)
-    display_Total = get_interface_config('display_total', purl_bak_string)
-
-    header_display_string_list = ['Software Change' if display_software == 'YES' else '', 'New Sighting' if display_New == 'YES' else '',
-                                  'Existing Sighting' if display_Existing == 'YES' else '', 'Closed Sighting' if display_Closed == 'YES' else '',
-                                  'Total Sighting' if display_Total == 'YES' else '']
-
-    header_display_string_list = [ header_data for header_data in header_display_string_list if len(header_data) != 0 ]
-
-    weeks_list, first_data, second_data, third_data, fourth_data, fifth_data = [], [], [], [], [], []
     if type_string == '':
         image_html_result = IMAGE_ORIGINAL_RESULT
         chart_link_string = ''
@@ -104,15 +113,52 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
         image_html_result = MANUAL_IMAGE_ORIGINAL_RESULT
         chart_link_string = '_' + type_string
 
+    if type_string == '':
+        # TODO 获取代表是否显示五个表的参数
+        display_software = get_interface_config('display_software', purl_bak_string)
+        display_New = get_interface_config('display_new', purl_bak_string)
+        display_Existing = get_interface_config('display_existing', purl_bak_string)
+        display_Closed = get_interface_config('display_closed', purl_bak_string)
+        display_Total = get_interface_config('display_total', purl_bak_string)
+        display_save_test = get_interface_config('display_total', purl_bak_string)
+        display_save_effort = get_interface_config('display_total', purl_bak_string)
+        display_miss = get_interface_config('display_total', purl_bak_string)
+    else:
+        conf = MachineConfig(MANUAL_CONFIG_FILE_PATH)
+        display_software = conf.get_node_info('manual_chart_config', 'display_software')
+        display_New = conf.get_node_info('manual_chart_config', 'display_new')
+        display_Existing = conf.get_node_info('manual_chart_config', 'display_existing')
+        display_Closed = conf.get_node_info('manual_chart_config', 'display_closed')
+        display_Total = conf.get_node_info('manual_chart_config', 'display_total')
+        display_save_test = conf.get_node_info('manual_chart_config', 'display_save_test')
+        display_save_effort = conf.get_node_info('manual_chart_config', 'display_save_effort')
+        display_miss = conf.get_node_info('manual_chart_config', 'display_miss')
+
+    header_display_string_list = ['Software Change' if display_software == 'YES' else '', 'New Sighting' if display_New == 'YES' else '',
+                                  'Existing Sighting' if display_Existing == 'YES' else '', 'Closed Sighting' if display_Closed == 'YES' else '',
+                                  'Total Sighting' if display_Total == 'YES' else '']
+
+    header_display_string_list_sighting = ['Saved Test Case (%)' if display_save_test == 'YES' else '',
+                                  'Saved Efforts (%)' if display_save_effort == 'YES' else '',
+                                  'Missed Sighting (%)' if display_miss == 'YES' else '']
+
+    header_display_string_list = [ header_data for header_data in header_display_string_list if len(header_data) != 0 ]
+    header_display_string_list_sighting = [ header_data for header_data in header_display_string_list_sighting if len(header_data) != 0 ]
+
+    weeks_list, first_data, second_data, third_data, fourth_data, fifth_data, seven_data, eight_data, nine_data = [], [], [], [], [], [], [], [], []
+
     read_file = open(image_html_result + os.sep + purl_bak_string + '_image_data.txt', 'r')
 
     for line in read_file:
         string_list = line.strip().split()
-        if len(string_list) == 7 and re.search('\d+WW\d+', string_list[1]):
+        if len(string_list) == 10 and re.search('\d+WW\d+', string_list[1]):
             weeks_list.append(string_list[1].strip('WW'))
             first_data.append(int(string_list[2])); second_data.append(int(string_list[3]))
             third_data.append(int(string_list[4])); fourth_data.append(int(string_list[5]))
-            fifth_data.append(int(string_list[6]))
+            fifth_data.append(int(string_list[6]));seven_data.append(int(string_list[7].replace('%', '')))
+            eight_data.append(int(string_list[8].replace('%', '')))
+            nine_data.append(int(string_list[9].replace('%', '')))
+
 
     # todo 时间日期加人年份 定制显示格式 2017-06-26 update
     for index in range(len(weeks_list)):
@@ -129,11 +175,20 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
         logger.print_message('Closed Sighting:\t%s\t%d' %(fourth_data, len(fourth_data)), _file_name)
     if display_Total == 'YES':
         logger.print_message('Total Sighting:\t%s\t%d' %(fifth_data, len(fifth_data)), _file_name)
+    if display_save_test == 'YES':
+        logger.print_message('Saved Test Case:\t%s\t%d' %(seven_data, len(seven_data)), _file_name)
+    if display_save_effort == 'YES':
+        logger.print_message('Saved Efforts:\t%s\t%d' %(eight_data, len(eight_data)), _file_name)
+    if display_miss == 'YES':
+        logger.print_message('Missed Sighting:\t%s\t%d' %(nine_data, len(nine_data)), _file_name)
 
     logger.print_message('weeks_list:\t%s\t%d' %(weeks_list, len(weeks_list)), _file_name)
 
     max_negative_num, max_positive_num = get_max_num(first_data, second_data, third_data, fourth_data, fifth_data,
                                                      display_software, display_New, display_Existing, display_Closed, display_Total)
+
+    max_positive_num_sighting = get_sighting_num(seven_data, eight_data, nine_data, display_save_test, display_save_effort, display_miss)
+    
     logger.print_message('max_negative_num:\t%d' %(max_negative_num), _file_name)
     logger.print_message('max_positive_num:\t%d' %(max_positive_num), _file_name)
 
@@ -172,9 +227,9 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
     else:
         candidate_string = ''
 
-    plt.xlabel(u"x-axis : Weeks", fontsize=18,  color='blue')
-    plt.ylabel(u"y-axis : Value", fontsize=18,  color='blue')
-    plt.title(u"%s Excel Table Charts (%s Line Charts)\n" % (purl_bak_string, candidate_string.replace('_', '')), fontsize=22,  color='red')
+    plt.xlabel(u"Week", fontsize=18,  color='blue')
+    plt.ylabel(u"Value", fontsize=18,  color='blue')
+    plt.title(u"%s %s %s Trend" % (purl_bak_string, candidate_string.replace('_', ''), week_type_string), fontsize=22,  color='red')
 
     # plt.xticks(np.arange(- 0.2 + 2 * bar_width, len(weeks_list), 2), weeks_list, fontsize = 10, rotation=-45)
     plt.xticks(index - 0.2 + 2 * bar_width, weeks_list, fontsize = 10, rotation=-45)
@@ -189,9 +244,7 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
         import xlwings as xw
         obj_book = xw.Book(object_excel_file)
         sht = obj_book.sheets['Trend']
-        sht.pictures.add(fig, name='Trend_chart', update=True, left=400, top=300, width=1500, height=800)
-        obj_book.save()
-        os.system('taskkill /F /IM excel.exe')
+        sht.pictures.add(fig, name='Trend_chart 1', update=True, left=500, top=300, width=1500, height=800)
 
     plt.tight_layout()
     foo_fig = plt.gcf()  # 'get current figure'
@@ -199,12 +252,61 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
     if not os.path.exists(PRESERVE_TABLE_CHART_DIR):
         os.makedirs(PRESERVE_TABLE_CHART_DIR)
 
-    foo_fig.savefig(PRESERVE_TABLE_CHART_DIR + os.sep + purl_bak_string + chart_link_string + '_table_chart_' +
+    foo_fig.savefig(PRESERVE_TABLE_CHART_DIR + os.sep + purl_bak_string + chart_link_string + '_table_chart_1_' +
                     candidate_string + log_time + '.png', format='png', dpi=fig.dpi)
     # TODO 自动运行则不开启
     if not auto_run_flag:
         plt.show()
     fig.clear()
+
+    # TODO 生成另一张图
+    fig_sighting = plt.figure()
+    fig_sighting.set_size_inches(w=15, h=8)
+    ax1_sighting = plt.gca()
+    plt.grid(color='peru', linestyle='--', )  # 开启网格
+
+    # y轴主刻度最小单位设为1
+    ax1_sighting.yaxis.set_major_locator(MultipleLocator(15))
+    # todo '%1.1f%%'
+    # ax1_sighting.yaxis.set_major_formatter(FormatStrFormatter())
+
+    if display_save_test == 'YES':
+        plt.plot(range(1,max_length + 1), seven_data, 'o--c', linewidth=2)
+        autolabel(seven_data)
+    if display_save_effort == 'YES':
+        plt.plot(range(1,max_length + 1), eight_data, 'o--m', linewidth=2)
+        autolabel(eight_data)
+    if display_miss == 'YES':
+        plt.plot(range(1,max_length + 1), nine_data, 'o--b', linewidth=2)
+        autolabel(nine_data)
+
+    plt.xlabel(u"Week", fontsize=18, color='blue')
+    plt.ylabel(u"Value", fontsize=18, color='blue')
+    plt.title(u"%s %s %s Trend" % (purl_bak_string, candidate_string.replace('_', ''), week_type_string), fontsize=22, color='red')
+
+    plt.xticks(index - 0.2 + 2 * bar_width, weeks_list, fontsize=10, rotation=-45)
+    plt.yticks(fontsize=12)  # change the num axis size
+    
+    plt.axis([0, n_groups + 1, 0, max_positive_num_sighting + 10])
+
+    plt.legend(header_display_string_list_sighting, fontsize=14)
+
+    # # TODO 存在excel文件则填入图表
+    if object_excel_file:
+        sht.pictures.add(fig_sighting, name='Trend_chart 2', update=True, left=2100, top=300, width=1500, height=800)
+        obj_book.save()
+        os.system('taskkill /F /IM excel.exe')
+
+    plt.tight_layout()
+    foo_fig_sighting = plt.gcf()  # 'get current figure'
+
+    foo_fig_sighting.savefig(PRESERVE_TABLE_CHART_DIR + os.sep + purl_bak_string + chart_link_string + '_table_chart_2_' +
+                    candidate_string + log_time + '.png', format='png', dpi=fig.dpi)
+    # TODO 自动运行则不开启
+    if not auto_run_flag:
+        plt.show()
+    fig_sighting.clear()
+
 
 
 
@@ -225,5 +327,9 @@ if __name__ == '__main__':
         object_file = file_list[0]
     if object_file:
         print object_file
-        generate_chart(purl_bak_string, object_file, _logger)
+        generate_chart(purl_bak_string=purl_bak_string, log_time='2017_08_10_15_24_16', logger=_logger)
+        # generate_sighing_chart(purl_bak_string=purl_bak_string, log_time='2017_08_10_15_24_16', logger=_logger)
     print time.time() - start
+
+
+    #generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_flag=False, predict_execute_flag=False, week_type_string='default')

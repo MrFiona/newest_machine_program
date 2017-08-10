@@ -5,31 +5,36 @@
 # File    : machine_model_entrance.py
 # Software: PyCharm Community Edition
 
-# from __future__ import absolute_import
+from __future__ import absolute_import
 
 import os
 import re
 import sys
 import time
+from logging import CRITICAL
 # TODO 执行之前安装所需模块
 from machine_scripts.install_module import install_module;install_module()
 from machine_scripts.custom_log import WorkLogger
 log_time = time.strftime('%Y_%m_%d_%H_%M_%S', time.localtime(time.time()))
 _logger = WorkLogger(log_filename='machine_log', log_time=log_time)
-from machine_scripts.get_all_html import GetUrlFromHtml
-from machine_scripts.insert_excel import InsertDataIntoExcel
-from machine_scripts.public_use_function import (get_url_list_by_keyword, judge_get_config,
-    easyExcel, error_tracking_decorator)
-from machine_scripts.common_interface_func import (get_project_newest_file, detect_memory_usage,
-    rename_log_file_name, interrupt_clear_excel_file, InterruptError, get_win_process_ids,
-    confirm_result_excel, backup_chart, backup_excel_file, backup_cache, performance_analysis_decorator)
-from machine_scripts.common_interface_branch_func import traceback_print_info, obtain_prefix_project_name
-from setting_global_variable import type_sheet_name_list
-from machine_scripts.cache_mechanism import DiskCache
-from machine_scripts.send_email import SendEmail
-from machine_scripts.create_email_html import create_save_miss_html
-from machine_scripts.machine_config_gui import main, display_config_info
-from machine_scripts.generate_chart import generate_chart
+try:
+    from machine_scripts.get_all_html import GetUrlFromHtml
+    from machine_scripts.insert_excel import InsertDataIntoExcel
+    from machine_scripts.public_use_function import (get_url_list_by_keyword, judge_get_config,
+        easyExcel, error_tracking_decorator)
+    from machine_scripts.common_interface_func import (get_project_newest_file, detect_memory_usage,
+        rename_log_file_name, interrupt_clear_excel_file, InterruptError, get_win_process_ids,
+        confirm_result_excel, backup_chart, backup_excel_file, backup_cache, performance_analysis_decorator)
+    from machine_scripts.common_interface_branch_func import traceback_print_info, obtain_prefix_project_name
+    from setting_global_variable import type_sheet_name_list
+    from machine_scripts.cache_mechanism import DiskCache
+    from machine_scripts.send_email import SendEmail
+    from machine_scripts.create_email_html import create_save_miss_html
+    from machine_scripts.machine_config_gui import main, display_config_info
+    from machine_scripts.generate_chart import generate_chart
+except ImportError:
+    _logger.print_message('Please check whether the requirements.txt file is in the current directory or no network state '
+                          'but the installation module is missing', os.path.split(__file__)[1], CRITICAL)
 
 
 # TODO 控制相应的位置发生错误是否清理excel文件
@@ -52,11 +57,13 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
 
     # TODO 正常流程
     if reacquire_data_flag == 'YES' and keep_continuous != 'YES':
-        _logger.print_message('>>>>>>>>>> Please Wait .... The program is getting Html Data <<<<<<<<<<', file_name)
         # TODO 获取之前需清理缓存，存在url更新的情况
         backup_cache(purl_bak_string)
+
     get_url_object = GetUrlFromHtml(html_url_pre='https://dcg-oss.intel.com/ossreport/auto/', logger=_logger)
-    if on_off_line_save_flag == 'online':
+    # todo 只有在在线并且抓取数据标志开启才重新抓取数据
+    if reacquire_data_flag == 'YES' and on_off_line_save_flag == 'online':
+        _logger.print_message('>>>>>>>>>> Please Wait .... The program is getting Html Data <<<<<<<<<<', file_name)
         # TODO 获取html
         get_url_object.get_all_type_data(purl_bak_string, get_only_department=True)
         # TODO keep_continuous:YES 则更新相应周缓存
@@ -238,7 +245,8 @@ def machine_main():
         chart_start = time.time()
         _logger.print_message('>>>>>>>>>> Please Wait .... The program is generating the Image File <<<<<<<<<<', file_name)
         generate_chart(purl_bak_string=purl_bak_string, log_time=log_time, logger=_logger, auto_run_flag=AUTO_RUN_FLAG,
-                       predict_execute_flag=predict_execute_flag)
+                       predict_execute_flag=predict_execute_flag,
+                       week_type_string=newest_week_type_string_list[0] if newest_week_type_string_list else 'default')
         _logger.print_message('>>>>>>>>>> generating the Image File Finished <<<<<<<<<<', file_name)
         chart_time = time.time() - chart_start
         # TODO 备份图片

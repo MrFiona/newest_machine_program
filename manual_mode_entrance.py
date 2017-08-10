@@ -41,18 +41,23 @@ def manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list):
         data = win_book.getCell(sheet='Save-Miss', row=3, col=j)
         if data is not None and data != 'Average':
             Silver_url_list.append(data)
+
     _logger.print_message('Silver_url_list:\t%s\t%d' % (Silver_url_list, len(Silver_url_list)), _file_name)
     conf = MachineConfig(MANUAL_CONFIG_FILE_PATH)
     week_info = conf.get_node_info('manual_machine_info', 'week_info')
     if week_info not in Silver_url_list:
         raise UserWarning('The selected week does not exist!!!')
     # TODO 手动场景
+    newest_week_index = 0
     if Silver_url_list:
         if week_info in all_Silver_url_list:
             newest_week_index = all_Silver_url_list.index(week_info)
             _logger.print_message('newest_week_index:\t%s' % newest_week_index, _file_name)
             Silver_url_list = all_Silver_url_list[newest_week_index:]
 
+    # todo 获取图表日期数据类型字符串 默认从NewSi表中获取
+    week_bkc_gold_silver_string = win_book.getCell(sheet='NewSi', row=3, col=(100 - len(all_Silver_url_list) + newest_week_index)*13 + 1 + 1)
+    _logger.print_message('week_bkc_gold_silver_string:\t%s' % week_bkc_gold_silver_string, _file_name)
     _logger.print_message('Silver_url_list:\t%s\t%d' % (Silver_url_list, len(Silver_url_list)), _file_name)
     _logger.print_message('get week info time:\t%d' % (time.time() - start), _file_name)
 
@@ -70,6 +75,7 @@ def manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list):
         win_book.close()
 
     _logger.print_message('create html time:\t%d' % (time.time() - start), _file_name)
+    return week_bkc_gold_silver_string
 
 
 # TODO 手动执行模型主程序
@@ -99,11 +105,12 @@ def manual_machine_model_entrance():
         _logger.print_message('all_Silver_url_list:\t%s\t%d' % (all_Silver_url_list, len(all_Silver_url_list)), _file_name)
 
         # TODO 生成html文件
-        manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list)
+        week_bkc_gold_silver_string = manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list)
         # TODO 发送邮件
-        SendEmail(purl_bak_string, _logger, type_string='manual_')
+        SendEmail(purl_bak_string=purl_bak_string, logger=_logger, type_string='manual_')
         # TODO 生成图表
-        generate_chart(purl_bak_string, log_time, _logger, 'manual_')
+        generate_chart(purl_bak_string=purl_bak_string, log_time=log_time, logger=_logger, type_string='manual_',
+                       week_type_string=week_bkc_gold_silver_string)
     except:
         traceback_print_info(logger=_logger)
         _logger.print_message('occurred error', _file_name, ERROR)

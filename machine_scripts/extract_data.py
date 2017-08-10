@@ -21,7 +21,7 @@ from bs4 import BeautifulSoup
 
 from machine_scripts.cache_mechanism import DiskCache
 from machine_scripts.public_use_function import remove_line_break, judge_get_config
-from setting_global_variable import REPORT_HTML_DIR, CONFIG_FILE_PATH
+from setting_global_variable import REPORT_HTML_DIR
 from machine_scripts.common_interface_func import remove_non_alphanumeric_characters
 from machine_scripts.common_interface_branch_func import extract_sw_data_deal_bracket
 
@@ -102,15 +102,6 @@ class GetAnalysisData(object):
             header_list = []
         if not cell_data_list:
             cell_data_list = []
-        # # 如果bkc_flag = True并且BKC没有数据则取Silver数据,需将变量恢复原值
-        # if replace_flag and not bkc_flag:
-        #     self.save_file_path = self.save_file_path.replace('BKC', 'Silver')
-        #     self.save_file_path = self.save_file_path.replace('Gold', 'Silver')
-        #     self.data_url = self.data_url.replace('BKC', 'Silver')
-        #     self.data_url = self.data_url.replace('Gold', 'Silver')
-        #     self.save_file_name = self.save_file_name.replace('BKC', 'Silver')
-        #     self.save_file_name = self.save_file_name.replace('Gold', 'Silver')
-        #     Silver_Gold_BKC_string = 'Silver'
 
         #BKC标记开启，自动更换为文件BKC地址
         if bkc_flag:
@@ -142,10 +133,6 @@ class GetAnalysisData(object):
             self.save_file_name = os.path.split(self.data_url)[-1].split('.')[0] + '_html'
             self.save_file_name = bkc_file_name
 
-        # 读取文本中的html代码
-        # with codecs.open(self.save_file_path + os.sep + self.save_file_name, 'r', encoding='utf-8') as f:
-        #     data = f.readlines()
-        # data = ''.join(data)
         data = self.cache[self.data_url]
         # 提取HW Configuration部分的代码
         regex = re.compile(r'<span class="sh2">&nbsp; %s </span>(.*?)<div class="panel-heading">' % data_type, re.S | re.M)
@@ -314,14 +301,11 @@ class GetAnalysisData(object):
                             cell_data_list[i].append( cell_data_list[i][-1] )
                         elif col < len(cell_data_list[i]) - 1:
                             cell_data_list[i].insert( col, cell_data_list[i][col] )
-        # except (ValueError, IndexError) as e:
-        except ImportError:
+        except (ValueError, IndexError) as e:
             self.logger.print_message(e, self.__file_name, definition_log_level=40)
         return cell_data_list
 
     def save_caseresult_url(self, bkc_flag):
-        # _logger = WorkLogger('machine_log')
-        # file_name = os.path.split(__file__)[1]
         parent_caseresult_url = self.data_url
         if bkc_flag:
             parent_caseresult_url = parent_caseresult_url.replace('Silver', 'BKC')
@@ -350,8 +334,7 @@ class GetAnalysisData(object):
         else:
             page_url = page_url_sep
 
-        print '\033[32mpage_url:\t\033[0m', page_url
-        # _logger.print_message('page_url:\t%s' % page_url, file_name)
+        self.logger.print_message('page_url:\t%s' % page_url, self.__file_name)
         # TODO 是否离线标记获取
         on_off_line_save_flag = judge_get_config('on_off_line_save_flag', self.purl_bak_string)
         if on_off_line_save_flag == 'online':
@@ -462,7 +445,7 @@ class GetAnalysisData(object):
             Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self.judge_silver_bkc_func(data_type, bkc_flag)
 
             if not tr_list:
-                return Silver_Gold_BKC_string, self.date_string, [], [], []
+                return 'Error', 'Error', [], [], []
 
             search_td_container_list = []
             effective_header_list = []
@@ -531,6 +514,7 @@ class GetAnalysisData(object):
             effective_header_list = effective_cell_data_td_list[0]
             cell_data_list = effective_cell_data_td_list[1:]
 
+            # print '\033[31mSilver_Gold_BKC_string222:\t\033[0m', Silver_Gold_BKC_string
             # print '\033[32meffective_header_list:\t\033[0m', effective_header_list, len(effective_header_list)
             # print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
             # print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
@@ -626,7 +610,7 @@ class GetAnalysisData(object):
             Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self.judge_silver_bkc_func(data_type, bkc_flag)
 
             if not tr_list:
-                return Silver_Gold_BKC_string, self.date_string, [], [], []
+                return 'Error', 'Error', [], [], []
             # 循环处理tr中的代码，提取出excel表头信息，存放在表头列表header_list
             Index_Error_flag = False
             effective_header_list = []
@@ -702,7 +686,7 @@ class GetAnalysisData(object):
             cell_data_list = self._insert_bak_numers_to_cell_data_list(effective_num_list, cell_data_list)
             # print 'Silver_Gold_BKC_string:\t', Silver_Gold_BKC_string
 
-            # print '\033[31mSilver_Gold_BKC_string:\t\033[0m', Silver_Gold_BKC_string
+            # print '\033[31mSilver_Gold_BKC_string111:\t\033[0m', Silver_Gold_BKC_string
             # print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
             # print '\033[32meffective_header_list:\t\033[0m', effective_header_list, len(effective_header_list)
             # print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
@@ -711,13 +695,10 @@ class GetAnalysisData(object):
         except:
             self.logger.print_message(msg='Get [ %s ] Orignal Data Error' % self.data_url, logger_name=self.__file_name,
                                       definition_log_level=ERROR)
-            return 'Error', self.date_string, [], [], []
+            return 'Error', 'Error', [], [], []
 
     def judge_silver_bkc_func(self, data_type, bkc_flag):
         Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self._common_regex(data_type, bkc_flag)
-        # 如果bkc_flag = True并且BKC没有数据则取Silver数据
-        # if not tr_list and bkc_flag:
-        #     Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self._common_regex(data_type, bkc_flag=False, replace_flag=True)
         return  Silver_Gold_BKC_string, tr_list, header_list, cell_data_list
 
     def get_sw_data(self, data_type, bkc_flag=True):
@@ -975,7 +956,7 @@ class GetAnalysisData(object):
             object_string_list = remove_non_alphanumeric_characters(object_string_list)
             object_string_list[0] = re.sub('[()]', '', object_string_list[0]).strip()
             object_string_list = remove_line_break(object_string_list, empty_string=True)
-            # print object_string_list, len(object_string_list); print Silver_Gold_BKC_string
+            print object_string_list, len(object_string_list); print Silver_Gold_BKC_string
             return Silver_Gold_BKC_string, object_string_list, self.date_string
         except:
             self.logger.print_message(msg='Get [ %s ] Orignal Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
@@ -1281,19 +1262,18 @@ if __name__ == '__main__':
     import time
     start = time.time()
     key_url_list = []
-    f = open(os.getcwd() + os.sep + 'report_html' + os.sep + 'url_info.txt')
-    for line in f:
-        if 'Purley-FPGA' in line and 'Silver' in line:
-            key_url_list.append(line.strip('\n'))
+    # f = open(os.getcwd() + os.sep + 'report_html' + os.sep + 'url_info.txt')
+    # for line in f:
+    #     if 'NFVi' in line and 'Silver' in line:
+    #         key_url_list.append(line.strip('\n'))
 
     cache = DiskCache('Purley-FPGA')
-    # key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/BKC/2017%20WW31/6464_BKC.html',]
+    key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/BKC/2017%20WW31/6464_BKC.html',]
                     # 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW25/6211_BKC.html']
     for url in key_url_list:
-        obj = GetAnalysisData(url, 'Purley-FPGA', get_info_not_save_flag=False, insert_flag=True, cache=cache)
+        obj = GetAnalysisData(url, 'Purley-FPGA', get_info_not_save_flag=True, insert_flag=True, cache=cache)
         # obj.get_caseresult_data('Platform Integration Validation Result', True)
-        # obj.get_sw_data_1('SW Configuration', True)
-        obj.get_platform_data('Platform Integration Validation Result', True)
+        obj.get_sw_data_1('SW Configuration', True)
     print time.time() - start
     # import pstats
     # p = pstats.Stats('mkm_run.prof')

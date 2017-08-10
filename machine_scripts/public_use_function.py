@@ -134,6 +134,15 @@ def get_interface_config(para_name, purl_bak_string):
     elif para_name == 'display_total':
         display_Total = conf.get_node_info(string_sep + '_other_config', 'display_Total')
         return display_Total
+    elif para_name == 'display_save_test':
+        display_save_test = conf.get_node_info(string_sep + '_other_config', 'display_save_test')
+        return display_save_test
+    elif para_name == 'display_save_effort':
+        display_save_effort = conf.get_node_info(string_sep + '_other_config', 'display_save_effort')
+        return display_save_effort
+    elif para_name == 'display_miss':
+        display_miss = conf.get_node_info(string_sep + '_other_config', 'display_miss')
+        return display_miss
     elif para_name == 'template_file':
         template_file = conf.get_node_info(string_sep + '_other_config', 'template_file')
         return template_file
@@ -228,18 +237,18 @@ def judge_get_config(name, purl_bak_string):
 
 
 # TODO 根据关键词获取url链接
-def get_url_list_by_keyword(pre_keyword, back_keyword, key_url_list=None, reserve_url_num=50, pre_url_list=None):
+def get_url_list_by_keyword(purl_bak_string, back_keyword, key_url_list=None, reserve_url_num=50, pre_url_list=None):
     if not key_url_list:
         key_url_list = []
 
-    with open(REPORT_HTML_DIR + os.sep + 'url_info.txt', 'r') as f:
+    with open(REPORT_HTML_DIR + os.sep + purl_bak_string + '_url_info.txt', 'r') as f:
         for line in f:
             if not pre_url_list:
-                if pre_keyword in line and back_keyword in line:
+                if purl_bak_string in line and back_keyword in line:
                     key_url_list.append(line.strip('\n'))
             else:
                 compare_url_string = line.strip('\n').split('/')[-2]
-                if pre_keyword in line and back_keyword in line and compare_url_string + '/' in pre_url_list:
+                if purl_bak_string in line and purl_bak_string in line and compare_url_string + '/' in pre_url_list:
                     key_url_list.append(line.strip('\n'))
         key_url_list = key_url_list[:reserve_url_num]
         if pre_url_list:
@@ -470,15 +479,24 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
 
         for i in range(1, trend_right_location):
             temp_cell_list = []
-            for j in range(1, 8):
+            for j in range(1, 11):
                 data = win_book.getCell(sheet=sheet_name, row=i, col=j)
                 if isinstance(data, float):
-                    data = int(data)
+                    if 1 <= j < 8:
+                        data = int(data)
+                    else:
+                        print data, type(data)
+                        if data < 0.005:
+                            data = '%.f%%' % (data * 0)
+                        else:
+                            data = '%.f%%' % (data * 100)
+
                 temp_cell_list.append(str(data))
 
             write_data = '\t'.join(temp_cell_list)
             write_file.write(write_data + '\n')
             cell_data_list.append(temp_cell_list)
+        print cell_data_list
 
     else:
         fstop_flag = False

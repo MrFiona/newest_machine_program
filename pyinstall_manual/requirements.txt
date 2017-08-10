@@ -1,0 +1,9 @@
+pyparsing==2.2.0
+lxml==3.7.3
+chardet==3.0.1
+bs4==0.0.1
+openpyxl==2.4.5
+matplotlib==2.0.2
+XlsxWriter==0.9.6
+xlwings==0.10.4
+psutil==5.2.2

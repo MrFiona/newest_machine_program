@@ -183,7 +183,7 @@ class GetUrlFromHtml(object):
         return file_name
 
     # TODO 更新相应周缓存
-    def  write_html_by_multi_thread(self, purl_bak_string, keep_continuous):
+    def write_html_by_multi_thread(self, purl_bak_string, keep_continuous):
         cache = DiskCache(purl_bak_string)
         effective_url_list = []
         # TODO 此时已经删除缓存不置标记为False
@@ -199,8 +199,8 @@ class GetUrlFromHtml(object):
             GetAnalysisData(data_url=url, purl_bak_string=purl_bak_string, get_info_not_save_flag=True, cache=cache, insert_flag=False)
 
     # TODO  将url写进文件
-    def save_url_info(self):
-        with open(self.file_path + os.sep + 'url_info.txt', 'w') as f:
+    def save_url_info(self, purl_bak_string):
+        with open(self.file_path + os.sep + purl_bak_string + '_url_info.txt', 'w') as f:
             f.write('\n'.join(self.url_info_list))
 
     # TODO 获取所有的类型的数据
@@ -249,7 +249,7 @@ class GetUrlFromHtml(object):
                     if purl_bak_string in self.html_url_pre + html_suffix:
                         self.logger.print_message(self.html_url_pre + html_suffix, self.logger_file_name)
         #将url列表信息写进文件
-        self.save_url_info()
+        self.save_url_info(purl_bak_string)
 
     # TODO 获取部门, 测试类型, 日期列表
     def get_department_stage_date_list(self):

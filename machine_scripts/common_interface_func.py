@@ -81,19 +81,19 @@ def rename_log_file_name(logger, purl_bak_string, Silver_url_list, newest_week_t
     link_WW_week_string = week_actual_list[0]
     file_week_length = len(week_actual_list)
 
-    week_type_string = 'unknown'
     week_num = int(judge_get_config('week_num', purl_bak_string))
 
     actual_excel_file = ''
     for ele_name in glob.glob(SRC_EXCEL_DIR + os.sep + '*.xlsx'):
         if log_time in ele_name and purl_bak_string in ele_name and '~' not in ele_name:
             actual_excel_file = ele_name
-    if 'BKC' in newest_week_type_string_list:
-        week_type_string = 'BKC'
-    elif 'Gold' in newest_week_type_string_list:
-        week_type_string = 'Gold'
-    elif 'Silver' in newest_week_type_string_list:
-        week_type_string = 'Silver'
+
+    order_num_dict = {'BKC':newest_week_type_string_list.count('BKC'),
+                      'Gold':newest_week_type_string_list.count('Gold'),
+                      'Silver':newest_week_type_string_list.count('Silver')
+                      }
+    num_result_list = sorted(order_num_dict.iteritems(), key=lambda x:x[1], reverse=True)
+    week_type_string = num_result_list[0][0]
 
     if predict_execute_flag:
         file_candidate_string = 'Candidate_'

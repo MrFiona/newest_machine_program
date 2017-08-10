@@ -24,10 +24,12 @@ from machine_scripts.common_interface_branch_func import obtain_prefix_project_n
 
 # TODO Global Variable start
 template_file_path, on_off_var, choose_weeks_var, on_off_numberChosen1, choose_weeks_numberChosen1 = '', '', '', '', ''
-chart_software_numberChosen1, chart_new_numberChosen2, chart_exist_numberChosen3, chart_closed_numberChosen4, chart_total_numberChosen5 = '', '', '', '', ''
+chart_software_numberChosen1, chart_new_numberChosen2, chart_exist_numberChosen3, chart_closed_numberChosen4, chart_total_numberChosen5, \
+chart_save_test_numberChosen6, chart_save_effort_numberChosen7, chart_miss_numberChosen8 = '', '', '', '', '', '', '', ''
 file_reacquire_data_var, check_file_var, file_max_time, file_reacquire_numberChosen1, file_check_numberChosen2 = '', '', '', '', ''
 email_server, email_send, email_receive, email_send_email_flag = '', '', '', ''
-chart_software_var, chart_new_var, chart_exist_var, chart_closed_var, chart_total_var = '', '', '', '', ''
+chart_software_var, chart_new_var, chart_exist_var, chart_closed_var, chart_total_var, chart_save_test_var, chart_save_effort_var, \
+chart_miss_var  = '', '', '', '', '', '', '', ''
 load_default_var, load_default_flag = '', ''
 # todo 是否发送邮件标记   True：不对邮件地址检查  False: 正常流程
 global_check_email_address_vality = True
@@ -106,6 +108,9 @@ def rewrite_config_file(purl_bak_string, default_save_flag=False, current_save_f
     conf.modify_node_value(project_name_sep + '_other_config', 'display_existing', chart_exist_var.get())
     conf.modify_node_value(project_name_sep + '_other_config', 'display_closed', chart_closed_var.get())
     conf.modify_node_value(project_name_sep + '_other_config', 'display_total', chart_total_var.get())
+    conf.modify_node_value(project_name_sep + '_other_config', 'display_total', chart_save_test_var.get())
+    conf.modify_node_value(project_name_sep + '_other_config', 'display_total', chart_save_effort_var.get())
+    conf.modify_node_value(project_name_sep + '_other_config', 'display_total', chart_miss_var.get())
 
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_get_default_flag', load_default_var)
 
@@ -235,6 +240,9 @@ def chart_config(name, tab4, logger):
     current_display_existing = get_interface_config('display_existing', name)
     current_display_closed = get_interface_config('display_closed', name)
     current_display_total = get_interface_config('display_total', name)
+    current_display_save_test = get_interface_config('display_save_test', name)
+    current_display_save_effort = get_interface_config('display_save_effort', name)
+    current_display_miss = get_interface_config('display_miss', name)
 
     monty = ttk.LabelFrame(tab4, text='Chart config')
     monty.grid()
@@ -244,45 +252,69 @@ def chart_config(name, tab4, logger):
     label3 = Label(monty, text="Existing Sighting", font=("Calibri", 12), background='gray')
     label4 = Label(monty, text="Closed Sighting", font=("Calibri", 12), background='gray')
     label5 = Label(monty, text="Total Sighting", font=("Calibri", 12), background='gray')
+    label6 = Label(monty, text="Saved Test Case", font=("Calibri", 12), background='gray')
+    label7 = Label(monty, text="Saved Efforts", font=("Calibri", 12), background='gray')
+    label8 = Label(monty, text="Missed Sighting", font=("Calibri", 12), background='gray')
 
-    label1.grid(row=1, column=0, columnspan=5,padx=20, pady=10, sticky='E')
-    label2.grid(row=2, column=0, columnspan=5, padx=20, pady=10, sticky='E')
-    label3.grid(row=3, column=0, columnspan=5, padx=20, pady=10, sticky='E')
-    label4.grid(row=4, column=0, columnspan=5, padx=20, pady=10, sticky='E')
-    label5.grid(row=5, column=0, columnspan=5, padx=20, pady=10, sticky='E')
+    label1.grid(row=1, column=0, columnspan=5,padx=20, pady=5, sticky='E')
+    label2.grid(row=2, column=0, columnspan=5, padx=20, pady=5, sticky='E')
+    label3.grid(row=3, column=0, columnspan=5, padx=20, pady=5, sticky='E')
+    label4.grid(row=4, column=0, columnspan=5, padx=20, pady=5, sticky='E')
+    label5.grid(row=5, column=0, columnspan=5, padx=20, pady=5, sticky='E')
+    label6.grid(row=6, column=0, columnspan=5, padx=20, pady=5, sticky='E')
+    label7.grid(row=7, column=0, columnspan=5, padx=20, pady=5, sticky='E')
+    label8.grid(row=8, column=0, columnspan=5, padx=20, pady=5, sticky='E')
 
-    global chart_software_var, chart_new_var, chart_exist_var, chart_closed_var, chart_total_var
-    global chart_software_numberChosen1, chart_new_numberChosen2, chart_exist_numberChosen3, chart_closed_numberChosen4, chart_total_numberChosen5
+    global chart_software_var, chart_new_var, chart_exist_var, chart_closed_var, chart_total_var, chart_save_test_var, chart_save_effort_var, chart_miss_var
+    global chart_software_numberChosen1, chart_new_numberChosen2, chart_exist_numberChosen3, chart_closed_numberChosen4, chart_total_numberChosen5,\
+        chart_save_test_numberChosen6, chart_save_effort_numberChosen7, chart_miss_numberChosen8
 
     chart_software_var = StringVar()
     chart_new_var = StringVar()
     chart_exist_var = StringVar()
     chart_closed_var = StringVar()
     chart_total_var = StringVar()
+    chart_save_test_var = StringVar()
+    chart_save_effort_var = StringVar()
+    chart_miss_var = StringVar()
+
+    # todo Add "Saved Test Case (%)", "Saved Efforts (%)", "Missed Sighting (%)" in Trend chart.  For example: if it is 50%, then the value is 50.
 
     chart_software_numberChosen1 = ttk.Combobox(monty, textvariable=chart_software_var, width=30, state='readonly')
     chart_new_numberChosen2 = ttk.Combobox(monty, width=30, textvariable=chart_new_var, state='readonly')
     chart_exist_numberChosen3 = ttk.Combobox(monty, width=30, textvariable=chart_exist_var, state='readonly')
     chart_closed_numberChosen4 = ttk.Combobox(monty, width=30, textvariable=chart_closed_var, state='readonly')
     chart_total_numberChosen5 = ttk.Combobox(monty, width=30, textvariable=chart_total_var, state='readonly')
+    chart_save_test_numberChosen6 = ttk.Combobox(monty, width=30, textvariable=chart_save_test_var, state='readonly')
+    chart_save_effort_numberChosen7 = ttk.Combobox(monty, width=30, textvariable=chart_save_effort_var, state='readonly')
+    chart_miss_numberChosen8 = ttk.Combobox(monty, width=30, textvariable=chart_miss_var, state='readonly')
 
     chart_software_numberChosen1['values'] = ('YES', 'NO')
     chart_new_numberChosen2['values'] = ('YES', 'NO')
     chart_exist_numberChosen3['values'] = ('YES', 'NO')
     chart_closed_numberChosen4['values'] = ('YES', 'NO')
     chart_total_numberChosen5['values'] = ('YES', 'NO')
+    chart_save_test_numberChosen6['values'] = ('YES', 'NO')
+    chart_save_effort_numberChosen7['values'] = ('YES', 'NO')
+    chart_miss_numberChosen8['values'] = ('YES', 'NO')
 
     chart_software_numberChosen1.grid(column=6, row=1, padx=10)
     chart_new_numberChosen2.grid(column=6, row=2, padx=10)
     chart_exist_numberChosen3.grid(column=6, row=3, padx=10)
     chart_closed_numberChosen4.grid(column=6, row=4, padx=10)
     chart_total_numberChosen5.grid(column=6, row=5, padx=10)
+    chart_save_test_numberChosen6.grid(column=6, row=6, padx=10)
+    chart_save_effort_numberChosen7.grid(column=6, row=7, padx=10)
+    chart_miss_numberChosen8.grid(column=6, row=8, padx=10)
 
     chart_software_numberChosen1.current(0 if current_display_software == 'YES' else 1)
     chart_new_numberChosen2.current(0 if current_display_new == 'YES' else 1)
     chart_exist_numberChosen3.current(0 if current_display_existing == 'YES' else 1)
     chart_closed_numberChosen4.current(0 if current_display_closed == 'YES' else 1)
     chart_total_numberChosen5.current(0 if current_display_total == 'YES' else 1)
+    chart_save_test_numberChosen6.current(0 if current_display_save_test == 'YES' else 1)
+    chart_save_effort_numberChosen7.current(0 if current_display_save_effort == 'YES' else 1)
+    chart_miss_numberChosen8.current(0 if current_display_miss == 'YES' else 1)
 
 
 # TODO 验证时间参数的有效性
@@ -392,6 +424,9 @@ def load_default_configuration_info(name, tab6, logger):
         exist_flag = conf.get_node_info(project_name_sep + '_other_config', 'display_existing')
         close_flag = conf.get_node_info(project_name_sep + '_other_config', 'display_closed')
         total_flag = conf.get_node_info(project_name_sep + '_other_config', 'display_total')
+        save_test_flag = conf.get_node_info(project_name_sep + '_other_config', 'display_save_test')
+        save_effort_flag = conf.get_node_info(project_name_sep + '_other_config', 'display_save_effort')
+        miss_flag = conf.get_node_info(project_name_sep + '_other_config', 'display_miss')
 
         # TODO 关闭窗口需要保存当前配置
         global close_windows_update_config_flag
@@ -432,6 +467,9 @@ def load_default_configuration_info(name, tab6, logger):
         chart_exist_numberChosen3.set('YES' if exist_flag.strip() == 'YES' else 'NO')
         chart_closed_numberChosen4.set('YES' if close_flag.strip() == 'YES' else 'NO')
         chart_total_numberChosen5.set('YES' if total_flag.strip() == 'YES' else 'NO')
+        chart_save_test_numberChosen6.set('YES' if save_test_flag.strip() == 'YES' else 'NO')
+        chart_save_effort_numberChosen7.set('YES' if save_effort_flag.strip() == 'YES' else 'NO')
+        chart_miss_numberChosen8.set('YES' if miss_flag.strip() == 'YES' else 'NO')
 
     # TODO 绑定按钮事件实现实时更新界面参数值
     button1.bind('<Button-1>', update_config_value)
@@ -462,6 +500,9 @@ def display_config_info(logger, purl_bak_string):
     display_existing = get_interface_config('display_existing', purl_bak_string)
     display_closed = get_interface_config('display_closed', purl_bak_string)
     display_total = get_interface_config('display_total', purl_bak_string)
+    display_save_test = get_interface_config('display_save_test', purl_bak_string)
+    display_save_effort = get_interface_config('display_save_effort', purl_bak_string)
+    display_miss = get_interface_config('display_miss', purl_bak_string)
 
     # TODO 检测是否有空值，有则添加默认值 2017-06-02
     conf = MachineConfig(CONFIG_FILE_PATH)
@@ -491,6 +532,12 @@ def display_config_info(logger, purl_bak_string):
             conf.modify_node_value(project_name_sep + '_other_config', 'display_closed', 'YES')
         if len(display_total.strip()) == 0:
             conf.modify_node_value(project_name_sep + '_other_config', 'display_total', 'YES')
+        if len(display_save_test.strip()) == 0:
+            conf.modify_node_value(project_name_sep + '_other_config', 'display_save_test', 'YES')
+        if len(display_save_effort.strip()) == 0:
+            conf.modify_node_value(project_name_sep + '_other_config', 'display_save_effort', 'YES')
+        if len(display_miss.strip()) == 0:
+            conf.modify_node_value(project_name_sep + '_other_config', 'display_miss', 'YES')
 
     if len(week_num.strip()) == 0:
         conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_choose_week_num', '100')
@@ -537,6 +584,9 @@ def display_config_info(logger, purl_bak_string):
     display_existing = get_interface_config('display_existing', purl_bak_string)
     display_closed = get_interface_config('display_closed', purl_bak_string)
     display_total = get_interface_config('display_total', purl_bak_string)
+    display_save_test = get_interface_config('display_save_test', purl_bak_string)
+    display_save_effort = get_interface_config('display_save_effort', purl_bak_string)
+    display_miss = get_interface_config('display_miss', purl_bak_string)
 
     logger.print_message('purl_bak_string:%s%s' % (' ' * (10 + 19 - len('purl_bak_string')), purl_bak_string), file_logger_name)
 
@@ -558,6 +608,9 @@ def display_config_info(logger, purl_bak_string):
     logger.print_message('display_existing:%s%s' % (' ' * (10 + 19 - len('display_existing')), display_existing), file_logger_name)
     logger.print_message('display_closed:%s%s' % (' ' * (10 + 19 - len('display_closed')), display_closed), file_logger_name)
     logger.print_message('display_total:%s%s' % (' ' * (10 + 19 - len('display_total')), display_total), file_logger_name)
+    logger.print_message('display_save_test:%s%s' % (' ' * (10 + 19 - len('display_save_test')), display_save_test), file_logger_name)
+    logger.print_message('display_save_effort:%s%s' % (' ' * (10 + 19 - len('display_save_effort')), display_save_effort), file_logger_name)
+    logger.print_message('display_miss:%s%s' % (' ' * (10 + 19 - len('display_miss')), display_miss), file_logger_name)
     logger.print_message('template_file:%s%s' % (' ' * (10 + 19 - len('template_file')), template_file),  file_logger_name)
     logger.print_message('week_input_string_list:%s%s' % (' ' * (10 + 19 - len('week_input_string_list')), week_input_string_list),  file_logger_name)
 
@@ -897,7 +950,7 @@ def week_gui_config(purl_bak_string, logger):
     frame_text = frame.return_text_variable()
 
     # TODO 获取所有的url信息列表
-    all_url_list = get_url_list_by_keyword(pre_keyword=purl_bak_string, back_keyword='Silver')
+    all_url_list = get_url_list_by_keyword(purl_bak_string=purl_bak_string, back_keyword='Silver')
     url_info_list = [re.split('\D+', url.split('/')[-2])[0] + 'WW' + re.split('\D+', url.split('/')[-2])[-1] for url in all_url_list]
 
     # TODO 多个数据之间自动填充分隔符
