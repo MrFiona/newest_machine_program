@@ -918,10 +918,10 @@ def week_callback(win, entry_input_string_list, logger):
 # TODO 配置周数据界面 choose_weeks_var为YES时触发
 def week_gui_config(purl_bak_string, logger):
     # TODO 获取对应周url信息时需要更新url列表
-    logger.print_message('>>>>>>>>>> Update [ %s ] Html url info Start <<<<<<<<<<' % purl_bak_string, _file_name)
+    logger.print_message('>>>>>>>>>> Generates the latest selectable week list info for the [ %s ] Start <<<<<<<<<<' % purl_bak_string, _file_name)
     get_url_object = GetUrlFromHtml(html_url_pre='https://dcg-oss.intel.com/ossreport/auto/', logger=logger)
     get_url_object.get_all_type_data(purl_bak_string, get_only_department=True)
-    logger.print_message('>>>>>>>>>> Update [ %s ] Html url info Finished <<<<<<<<<<' % purl_bak_string, _file_name)
+    logger.print_message('>>>>>>>>>> Generates the latest selectable week list info for the [ %s ] Finished <<<<<<<<<<' % purl_bak_string, _file_name)
 
     url_list = get_url_list_by_keyword(purl_bak_string, 'Silver')
     effective_week_info_list = []

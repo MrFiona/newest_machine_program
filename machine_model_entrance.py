@@ -32,6 +32,7 @@ try:
     from machine_scripts.create_email_html import create_save_miss_html
     from machine_scripts.machine_config_gui import main, display_config_info
     from machine_scripts.generate_chart import generate_chart
+    from setting_global_variable import SRC_WEEK_DIR
 except ImportError:
     _logger.print_message('Please check whether the requirements.txt file is in the current directory or no network state '
                           'but the installation module is missing', os.path.split(__file__)[1], CRITICAL)
@@ -51,10 +52,8 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
         _logger.print_message('Program Offline Run Mode Switch is on', file_name)
     # TODO 是否重新获取数据标记  开启:YES   关闭:NO
     reacquire_data_flag = judge_get_config('reacquire_data_flag', purl_bak_string)
-
     # TODO 获取week周覆盖标记 YES：部分周覆盖
     keep_continuous = judge_get_config('keep_continuous', purl_bak_string)
-
     # TODO 正常流程
     if reacquire_data_flag == 'YES' and keep_continuous != 'YES':
         # TODO 获取之前需清理缓存，存在url更新的情况
@@ -62,12 +61,12 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
 
     get_url_object = GetUrlFromHtml(html_url_pre='https://dcg-oss.intel.com/ossreport/auto/', logger=_logger)
     # todo 只有在在线并且抓取数据标志开启才重新抓取数据
-    if reacquire_data_flag == 'YES' and on_off_line_save_flag == 'online':
+    if reacquire_data_flag == 'YES' and on_off_line_save_flag == 'online' and keep_continuous != 'YES':
         _logger.print_message('>>>>>>>>>> Please Wait .... The program is getting Html Data <<<<<<<<<<', file_name)
-        # TODO 获取html
+        # TODO 获取html并保存到文件
         get_url_object.get_all_type_data(purl_bak_string, get_only_department=True)
-        # TODO keep_continuous:YES 则更新相应周缓存
-        get_url_object.write_html_by_multi_thread(purl_bak_string, keep_continuous='NO')
+        # TODO keep_continuous='NO':重新获取整周项目数据  keep_continuous:YES 只更新相应周缓存
+        get_url_object.write_all_html_by_multi_thread(purl_bak_string)
         _logger.print_message('>>>>>>>>>> Get Html Data Finished <<<<<<<<<<', file_name)
 
     cache = DiskCache(purl_bak_string)
@@ -79,17 +78,15 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
         WW_week_info_string = re.split('\D+', Silver_url_list[0].split('/')[-2])
         link_WW_week_string = WW_week_info_string[0] + 'WW' + WW_week_info_string[-1]
 
-    # TODO 将数据插入excel
-    _logger.print_message('>>>>>>>>>> Please Wait .... The program is inserting Excel Data <<<<<<<<<<', file_name)
     section_Silver_url_list = []
-    if keep_continuous == 'YES':
-        # TODO 获取对应周信息列表并且删除相应缓存
-        effective_week_string_list = get_url_object.get_week_info_by_flag(purl_bak_string, delete_cache_flag=True)
+    if on_off_line_save_flag == 'online' and keep_continuous == 'YES':
         # TODO 更新对应周缓存
-        get_url_object.write_html_by_multi_thread(purl_bak_string, keep_continuous='YES')
+        effective_week_string_list = get_url_object.write_section_html_by_multi_thread(purl_bak_string)
         # TODO 获取对应周url列表
-        section_Silver_url_list = get_url_list_by_keyword(purl_bak_string, 'Silver', pre_url_list=effective_week_string_list)
-
+        section_Silver_url_list = get_url_list_by_keyword(purl_bak_string=purl_bak_string, back_keyword='Silver',
+                                                          pre_url_list=effective_week_string_list)
+        # section_Silver_url_list = [ section_url for section_url in section_Silver_url_list if 'Silver' in section_url ]
+    print 'section_Silver_url_list:\t', section_Silver_url_list
     # TODO verify_flag_flag改为了True，兼容新加的功能 提取最新周的类型 : Silver、Gold、BKC
     insert_object = InsertDataIntoExcel(verify_flag=True, purl_bak_string=purl_bak_string, link_WW_week_string=link_WW_week_string, cache=cache,
                                         silver_url_list=Silver_url_list, section_Silver_url_list=section_Silver_url_list, logger=_logger, log_time=log_time,
@@ -103,6 +100,8 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
         call_func_list.append('insert_CaseResult')
     _logger.print_message('call_func_list:\t%s' % call_func_list, file_name)
 
+    # TODO 将数据插入excel
+    _logger.print_message('>>>>>>>>>> Please Wait .... The program is inserting Excel Data <<<<<<<<<<', file_name)
     try:
         for func in call_func_list:
             getattr(insert_object, func)()
@@ -146,10 +145,15 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
     _logger.print_message(log_time, file_name)
     win_book = easyExcel(os.getcwd() + os.sep + 'excel_dir' + os.sep + purl_bak_string + '_%s_%s_%d_%s.xlsx'
                          % (WEEK_NUM, link_WW_week_string, len(Silver_url_list), log_time))
+
+    type_sheet_name_list.remove('Trend')
+    type_sheet_name_list.insert(0, 'Trend')
     for type_name in type_sheet_name_list:
+        print 'type_name:\t', type_name
         try:
             create_save_miss_html(sheet_name=type_name, purl_bak_string=purl_bak_string, Silver_url_list=Silver_url_list,
-                                  win_book=win_book, logger=_logger, WEEK_NUM=WEEK_NUM, predict_execute_flag=predict_execute_flag)
+                                  win_book=win_book, logger=_logger, WEEK_NUM=WEEK_NUM, predict_execute_flag=predict_execute_flag,
+                                  keep_continuous=keep_continuous)
             _logger.print_message('Excel table [ %s ] data html has been generated' % type_name, file_name)
         # TODO 异常关闭文件
         except:
@@ -176,7 +180,8 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
         try:
             # TODO 发送email
             _logger.print_message('>>>>>>>>>> Please Wait .... The program starts sending Email <<<<<<<<<<', file_name)
-            SendEmail(purl_bak_string=purl_bak_string, logger=_logger, predict_newest_insert_bkc_string=predict_newest_insert_bkc_string)
+            SendEmail(purl_bak_string=purl_bak_string, logger=_logger, predict_newest_insert_bkc_string=predict_newest_insert_bkc_string,
+                      section_Silver_url_list=section_Silver_url_list, keep_continuous=keep_continuous)
             _logger.print_message('>>>>>>>>>> Send the Email Finished <<<<<<<<<<', file_name)
         except:
             traceback_print_info(logger=_logger)

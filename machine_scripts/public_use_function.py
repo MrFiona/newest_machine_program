@@ -21,7 +21,7 @@ from logging import ERROR
 from machine_scripts.machine_config import MachineConfig
 from setting_global_variable import (CONFIG_FILE_PATH, MANUAL_SRC_SAVE_MISS_WEEK_DIR,
     REPORT_HTML_DIR, SRC_SAVE_MISS_WEEK_DIR, IMAGE_ORIGINAL_RESULT, MACHINE_LOG_DIR,
-    MANUAL_IMAGE_ORIGINAL_RESULT, ORIGINAL_HTML_RESULT, MANUAL_ORIGINAL_HTML_RESULT)
+    MANUAL_IMAGE_ORIGINAL_RESULT, ORIGINAL_HTML_RESULT, MANUAL_ORIGINAL_HTML_RESULT, SRC_WEEK_DIR)
 
 _file_name = os.path.split(__file__)[1]
 
@@ -237,7 +237,7 @@ def judge_get_config(name, purl_bak_string):
 
 
 # TODO 根据关键词获取url链接
-def get_url_list_by_keyword(purl_bak_string, back_keyword, key_url_list=None, reserve_url_num=50, pre_url_list=None):
+def get_url_list_by_keyword(purl_bak_string, back_keyword, key_url_list=None, reserve_url_num=100, pre_url_list=None):
     if not key_url_list:
         key_url_list = []
 
@@ -248,12 +248,11 @@ def get_url_list_by_keyword(purl_bak_string, back_keyword, key_url_list=None, re
                     key_url_list.append(line.strip('\n'))
             else:
                 compare_url_string = line.strip('\n').split('/')[-2]
-                if purl_bak_string in line and purl_bak_string in line and compare_url_string + '/' in pre_url_list:
+                if purl_bak_string in line and back_keyword in line and compare_url_string + '/' in pre_url_list:
                     key_url_list.append(line.strip('\n'))
-        key_url_list = key_url_list[:reserve_url_num]
-        if pre_url_list:
-            pass
-            # print 'key_url_list1:\t', key_url_list, len(key_url_list)
+        # todo 在选择周的时候返回的包含三种类型的url 此时reserve_url_num失效
+        if not pre_url_list:
+            key_url_list = key_url_list[:reserve_url_num]
     return key_url_list
 
 
@@ -368,7 +367,42 @@ class easyExcel(object):
 
 # TODO 读取Excel表数据----用于发邮件
 def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK_NUM, logger, cell_data_list=None,
-                    type_string='', predict_execute_flag=False):
+                    type_string='', predict_execute_flag=False, keep_continuous='NO'):
+    '''
+    :param sheet_name:
+    :param win_book:
+    :param purl_bak_string:
+    :param Silver_url_list:
+    :param WEEK_NUM:
+    :param logger:
+    :param cell_data_list:
+    :param type_string: 识别manual和正常模式的字符串标记 manual_则manual模式，默认正常模式
+    :param predict_execute_flag: True candidate数据位置需左移一周
+    :param keep_continuous: 新加标记，选择周模式下发邮件以及产生html要与其对应 debug 2017-08-11 13:59
+    :return:
+    '''
+    choose_week_newest_index = 0
+    if sheet_name in ('NewSi', 'ExistingSi', 'CaseResult'):
+        # TODO 在keep_continuous = YES选择周的情况下处理
+        if keep_continuous == 'YES':
+            with open(SRC_WEEK_DIR + os.sep + 'week_info.txt', 'r') as f:
+                choose_week_string = f.readline()
+                choose_week_list = choose_week_string.split(',')
+
+            choose_compare_string = choose_week_list[0]
+            temp_list = choose_compare_string.split('WW')
+            temp_list[1] = '20WW' + temp_list[1]
+            compare_week_string = '%'.join(temp_list)
+            print 'compare_week_string:\t', compare_week_string
+
+            for silver_url in Silver_url_list:
+                if compare_week_string in silver_url:
+                    choose_week_newest_index = Silver_url_list.index(silver_url)
+                    print 'choose_week_newest_index:\t', choose_week_newest_index, sheet_name
+    else:
+        choose_week_newest_index = 0
+        print 'choose_week_newest_index:\t', choose_week_newest_index, sheet_name
+
     if type_string == '':
         actually_week_info_dir = SRC_SAVE_MISS_WEEK_DIR
     else:
@@ -429,8 +463,12 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
 
     elif sheet_name in ('NewSi', 'ExistingSi'):
         stop_flag = False
+        # TODO 有candidate的情况下以candidate为准
         if predict_execute_flag:
             new_exist_left_location = (WEEK_NUM - len(Silver_url_list) + 1 - 1) * 13
+        # TODO 无candidate而自定义选择了周则按照选择周为准
+        elif not predict_execute_flag and keep_continuous == 'YES':
+            new_exist_left_location = (WEEK_NUM - len(Silver_url_list) + 1 + choose_week_newest_index) * 13
         else:
             new_exist_left_location = (WEEK_NUM - len(Silver_url_list) + 1) * 13
         logger.print_message('new_exist_left_location:\t%s' % new_exist_left_location, _file_name)
@@ -485,7 +523,6 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
                     if 1 <= j < 8:
                         data = int(data)
                     else:
-                        print data, type(data)
                         if data < 0.005:
                             data = '%.f%%' % (data * 0)
                         else:
@@ -496,12 +533,16 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
             write_data = '\t'.join(temp_cell_list)
             write_file.write(write_data + '\n')
             cell_data_list.append(temp_cell_list)
-        print cell_data_list
+        write_file.close()
+        logger.print_message('Trend cell_data_list:\t%s' % cell_data_list, _file_name)
 
     else:
         fstop_flag = False
         if predict_execute_flag:
             case_result_left_location = (WEEK_NUM - len(Silver_url_list) - 1) * 41 + 35 + 10 + 2
+        # TODO 无candidate而自定义选择了周则按照选择周为准
+        elif not predict_execute_flag and keep_continuous == 'YES':
+            case_result_left_location = (WEEK_NUM - len(Silver_url_list) + choose_week_newest_index) * 41 + 35 + 10 + 2
         else:
             case_result_left_location = (WEEK_NUM - len(Silver_url_list)) * 41 + 35 + 10 + 2
         logger.print_message('case_result_left_location:\t%s' % case_result_left_location, _file_name)

@@ -29,7 +29,7 @@ DEBUG_FLAG=True
 CONFIG_FILE_PATH = os.getcwd() + os.sep + 'machineConfig' + os.sep + 'machine.conf'
 MANUAL_CONFIG_FILE_PATH = os.getcwd() + os.sep + 'machineConfig' + os.sep + 'manual_machine.conf'
 
-type_sheet_name_list = ['Save-Miss', 'NewSi', 'ExistingSi', 'CaseResult', 'Trend']
+type_sheet_name_list = ['Trend', 'NewSi', 'ExistingSi', 'CaseResult', 'Save-Miss']
 type_sheet_name_list.sort(reverse=True)
 
 PROGRAM_NAME_ID_DICT = {'Bakerville':'17', 'Purley-FPGA':'16', 'NFVi':'25'}

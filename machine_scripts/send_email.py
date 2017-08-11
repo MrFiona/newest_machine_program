@@ -21,12 +21,15 @@ from setting_global_variable import DEBUG_FLAG, MANUAL_CONFIG_FILE_PATH
 
 
 class SendEmail:
-    def __init__(self, purl_bak_string, logger, type_string='', predict_newest_insert_bkc_string=''):
+    def __init__(self, purl_bak_string, logger, type_string='', predict_newest_insert_bkc_string='', section_Silver_url_list=None,
+                 keep_continuous='NO'):
         self.logger = logger
         self.file_logger_name = os.path.split(__file__)[1]
         self.purl_bak_string = purl_bak_string
         self.type_string = type_string
         self.predict_newest_insert_bkc_string = predict_newest_insert_bkc_string
+        self.section_Silver_url_list = section_Silver_url_list
+        self.keep_continuous = keep_continuous
         deal_html_data(type_string)
         self.send()
 
@@ -43,9 +46,13 @@ class SendEmail:
             to_addr = judge_get_config('receive_address', self.purl_bak_string)
             smtp_server = judge_get_config('server_address', self.purl_bak_string)
 
-            Silver_url_list = get_url_list_by_keyword(self.purl_bak_string, 'Silver')
-            lastest_week_string = Silver_url_list[0]
-            lastest_week_string = 'WW' + lastest_week_string.split('/')[-2].split('%')[-1].split('WW')[-1]
+            if self.keep_continuous != 'YES':
+                Silver_url_list = get_url_list_by_keyword(self.purl_bak_string, 'Silver')
+                lastest_week_string = Silver_url_list[0]
+                lastest_week_string = 'WW' + lastest_week_string.split('/')[-2].split('%')[-1].split('WW')[-1]
+            else:
+                lastest_week_string = self.section_Silver_url_list[0]
+                lastest_week_string = 'WW' + lastest_week_string.split('/')[-2].split('%')[-1].split('WW')[-1]
         # TODO 自动发邮件
         else:
             conf = MachineConfig(MANUAL_CONFIG_FILE_PATH)

@@ -183,20 +183,31 @@ class GetUrlFromHtml(object):
         return file_name
 
     # TODO 更新相应周缓存
-    def write_html_by_multi_thread(self, purl_bak_string, keep_continuous):
+    def write_all_html_by_multi_thread(self, purl_bak_string):
         cache = DiskCache(purl_bak_string)
         effective_url_list = []
         # TODO 此时已经删除缓存不置标记为False
-        effective_week_string_list = []
-        if keep_continuous == 'YES':
-            # TODO 只获取相应周信息列表
-            effective_week_string_list = self.get_week_info_by_flag(purl_bak_string, delete_cache_flag=False)
         for type in ['Silver', 'Gold', 'BKC']:
             # TODO 获取对应周url列表
-            effective_url_list.extend(get_url_list_by_keyword(purl_bak_string, type, pre_url_list=effective_week_string_list))
+            effective_url_list.extend(get_url_list_by_keyword(purl_bak_string, type))
         for url in effective_url_list:
             # TODO 更新对应周缓存
             GetAnalysisData(data_url=url, purl_bak_string=purl_bak_string, get_info_not_save_flag=True, cache=cache, insert_flag=False)
+
+    # TODO 更新相应周缓存
+    def write_section_html_by_multi_thread(self, purl_bak_string):
+        cache = DiskCache(purl_bak_string)
+        effective_url_list = []
+        # TODO 删除缓存置标记为True 获取对应周信息列表在choose_week_info_dir目录下并且删除相应缓存
+        effective_week_string_list = self.get_week_info_by_flag(purl_bak_string, delete_cache_flag=True)
+        for type in ['Silver', 'Gold', 'BKC']:
+            # TODO 获取对应周url列表
+            temp_list = get_url_list_by_keyword(purl_bak_string, type, pre_url_list=effective_week_string_list)
+            effective_url_list.extend(temp_list)
+        for url in effective_url_list:
+            # TODO 更新对应周缓存
+            GetAnalysisData(data_url=url, purl_bak_string=purl_bak_string, get_info_not_save_flag=True, cache=cache, insert_flag=False)
+        return effective_week_string_list
 
     # TODO  将url写进文件
     def save_url_info(self, purl_bak_string):

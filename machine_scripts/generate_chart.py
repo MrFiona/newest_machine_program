@@ -76,10 +76,10 @@ def get_sighting_num(seven_data, eight_data, nine_data, display_save_test, displ
         positive_seven_data = [abs(ele) for ele in seven_data if ele > 0]
         positive_num_sighting_list.extend(positive_seven_data)
     if display_save_effort == 'YES':
-        positive_eight_data = [abs(ele) for ele in seven_data if ele > 0]
+        positive_eight_data = [abs(ele) for ele in eight_data if ele > 0]
         positive_num_sighting_list.extend(positive_eight_data)
     if display_miss == 'YES':
-        positive_nine_data = [abs(ele) for ele in seven_data if ele > 0]
+        positive_nine_data = [abs(ele) for ele in nine_data if ele > 0]
         positive_num_sighting_list.extend(positive_nine_data)
 
     if positive_num_sighting_list:
@@ -244,7 +244,7 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
         import xlwings as xw
         obj_book = xw.Book(object_excel_file)
         sht = obj_book.sheets['Trend']
-        sht.pictures.add(fig, name='Trend_chart 1', update=True, left=500, top=300, width=1500, height=800)
+        sht.pictures.add(fig, name='Trend_chart 1', update=True, left=500, top=150, width=1500, height=800)
 
     plt.tight_layout()
     foo_fig = plt.gcf()  # 'get current figure'
@@ -266,7 +266,7 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
     plt.grid(color='peru', linestyle='--', )  # 开启网格
 
     # y轴主刻度最小单位设为1
-    ax1_sighting.yaxis.set_major_locator(MultipleLocator(15))
+    ax1_sighting.yaxis.set_major_locator(MultipleLocator(5))
     # todo '%1.1f%%'
     # ax1_sighting.yaxis.set_major_formatter(FormatStrFormatter())
 
@@ -277,7 +277,7 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
         plt.plot(range(1,max_length + 1), eight_data, 'o--m', linewidth=2)
         autolabel(eight_data)
     if display_miss == 'YES':
-        plt.plot(range(1,max_length + 1), nine_data, 'o--b', linewidth=2)
+        plt.plot(range(1,max_length + 1), nine_data, 'o--r', linewidth=2)
         autolabel(nine_data)
 
     plt.xlabel(u"Week", fontsize=18, color='blue')
@@ -291,9 +291,9 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
 
     plt.legend(header_display_string_list_sighting, fontsize=14)
 
-    # # TODO 存在excel文件则填入图表
+    # TODO 存在excel文件则填入图表
     if object_excel_file:
-        sht.pictures.add(fig_sighting, name='Trend_chart 2', update=True, left=2100, top=300, width=1500, height=800)
+        sht.pictures.add(fig_sighting, name='Trend_chart 2', update=True, left=500, top=1100, width=1500, height=800)
         obj_book.save()
         os.system('taskkill /F /IM excel.exe')
 

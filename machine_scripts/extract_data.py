@@ -956,7 +956,7 @@ class GetAnalysisData(object):
             object_string_list = remove_non_alphanumeric_characters(object_string_list)
             object_string_list[0] = re.sub('[()]', '', object_string_list[0]).strip()
             object_string_list = remove_line_break(object_string_list, empty_string=True)
-            print object_string_list, len(object_string_list); print Silver_Gold_BKC_string
+            # print object_string_list, len(object_string_list); print Silver_Gold_BKC_string
             return Silver_Gold_BKC_string, object_string_list, self.date_string
         except:
             self.logger.print_message(msg='Get [ %s ] Orignal Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
