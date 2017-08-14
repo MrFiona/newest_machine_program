@@ -393,15 +393,15 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
             temp_list = choose_compare_string.split('WW')
             temp_list[1] = '20WW' + temp_list[1]
             compare_week_string = '%'.join(temp_list)
-            print 'compare_week_string:\t', compare_week_string
+            # print 'compare_week_string:\t', compare_week_string
 
             for silver_url in Silver_url_list:
                 if compare_week_string in silver_url:
                     choose_week_newest_index = Silver_url_list.index(silver_url)
-                    print 'choose_week_newest_index:\t', choose_week_newest_index, sheet_name
+                    # print 'choose_week_newest_index:\t', choose_week_newest_index, sheet_name
     else:
         choose_week_newest_index = 0
-        print 'choose_week_newest_index:\t', choose_week_newest_index, sheet_name
+        # print 'choose_week_newest_index:\t', choose_week_newest_index, sheet_name
 
     if type_string == '':
         actually_week_info_dir = SRC_SAVE_MISS_WEEK_DIR

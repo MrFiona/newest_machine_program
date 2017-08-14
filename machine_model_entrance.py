@@ -85,8 +85,6 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
         # TODO 获取对应周url列表
         section_Silver_url_list = get_url_list_by_keyword(purl_bak_string=purl_bak_string, back_keyword='Silver',
                                                           pre_url_list=effective_week_string_list)
-        # section_Silver_url_list = [ section_url for section_url in section_Silver_url_list if 'Silver' in section_url ]
-    print 'section_Silver_url_list:\t', section_Silver_url_list
     # TODO verify_flag_flag改为了True，兼容新加的功能 提取最新周的类型 : Silver、Gold、BKC
     insert_object = InsertDataIntoExcel(verify_flag=True, purl_bak_string=purl_bak_string, link_WW_week_string=link_WW_week_string, cache=cache,
                                         silver_url_list=Silver_url_list, section_Silver_url_list=section_Silver_url_list, logger=_logger, log_time=log_time,
@@ -149,7 +147,6 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
     type_sheet_name_list.remove('Trend')
     type_sheet_name_list.insert(0, 'Trend')
     for type_name in type_sheet_name_list:
-        print 'type_name:\t', type_name
         try:
             create_save_miss_html(sheet_name=type_name, purl_bak_string=purl_bak_string, Silver_url_list=Silver_url_list,
                                   win_book=win_book, logger=_logger, WEEK_NUM=WEEK_NUM, predict_execute_flag=predict_execute_flag,

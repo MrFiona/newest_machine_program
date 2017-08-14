@@ -111,26 +111,10 @@ class InsertDataIntoExcel(object):
         self.worksheet_change = self.workbook.add_worksheet('Change History')
 
         # TODO 为excel对象设定显示格式
-        self.bold = self.workbook.add_format({'bold': 1, 'align': 'center', 'font_size': 12})
-        self.bold_merge = self.workbook.add_format({'bold': 2, 'align': 'justify', 'valign': 'vcenter', 'bg_color': '#C6EFCE'})
-        self.mapping_flag_style = self.workbook.add_format({'bg_color': '#EAC100'})
         self.yellow_data_format = self.workbook.add_format({'bg_color': '#FFFF66'})
-        # TODO 为当前workbook添加一个样式名为title format
-        self.title_format = self.workbook.add_format()
-        self.title_format.set_font_size(12)  # 设置字体大小为10
-        self.title_format.set_font_name('Microsoft yahei')  # 设置字体样式为雅黑
-        self.title_format.set_align('center')  # 设置水平居中对齐
-        self.title_format.set_align('vcenter')  # 设置垂直居中对齐
+        self.title_format = self.workbook.add_format({'align': 'center', 'valign': 'vcenter', 'font_size': 12})
         self.format1 = self.workbook.add_format({'bg_color': '#FFC7CE', 'font_color': '#9C0006'})
-        self.format_white = self.workbook.add_format({'bg_color': '#FFFFFF'})
-        self.mapping_format = self.workbook.add_format({'bg_color': '#EAC100'})
-        self.mapping_blue_format = self.workbook.add_format({'bg_color': '#ECF5FF'})
         self.url_format = self.workbook.add_format({'font_color': 'blue', 'underline': 1, 'align':'center', 'valign':'vcenter'})
-
-        self.title_format_merage = self.workbook.add_format()
-        self.title_format_merage.set_font_size(12)  # 设置字体大小为10
-        self.title_format_merage.set_align('center')  # 设置水平居中对齐
-        self.title_format_merage.set_align('vcenter')  # 设置垂直居中对齐
         # TODO Add a format for the header cells.
         self.header_format = self.workbook.add_format({'border': 1, 'bg_color': '#C6EFCE', 'bold': True})
         self.red = self.workbook.add_format({'color': 'red'})
@@ -187,7 +171,7 @@ class InsertDataIntoExcel(object):
 
     def get_url_list(self):
         return self.Silver_url_list
-    
+
     def calculate_head_num(self, multiple, num, add_num=0, predict_calculate_flag=False):
         if not predict_calculate_flag:
             url_length = len(self.Silver_url_list)
@@ -276,11 +260,12 @@ class InsertDataIntoExcel(object):
                                                     {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
             self.worksheet_newsi.write(2, self.calculate_head_num(13, j, 1), Silver_BkC_string, self.format1)
             self.worksheet_newsi.write(2, self.calculate_head_num(13, j), date_string, self.format1)
-            self.worksheet_newsi.write(2, self.calculate_head_num(13, j, 12), 'Comments')
+            # self.worksheet_newsi.write(2, self.calculate_head_num(13, j, 12), 'Comments')
 
             if not effective_url_list and not header_list and not cell_data_list:
                 continue
 
+            header_list.append('comments')
             self.worksheet_newsi.write_row(2, self.calculate_head_num(13, j, 4), header_list, self.header_format)
 
             num_url_list = []
@@ -333,14 +318,15 @@ class InsertDataIntoExcel(object):
                 #标记True为红色
                 self.worksheet_existing.conditional_format(4, self.calculate_head_num(13, j, 2), 250, self.calculate_head_num(13, j, 3),
                                                            {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
-                self.worksheet_existing.write(2, self.calculate_head_num(13, j, 1), Silver_BkC_string, self.header_format)
+                self.worksheet_existing.write(2, self.calculate_head_num(13, j, 1), Silver_BkC_string, self.format1)
                 self.worksheet_existing.write(2, self.calculate_head_num(13, j), date_string, self.format1)
+                # self.worksheet_existing.write(2, self.calculate_head_num(13, j, 12), 'comment')
 
                 if not url_list and not header_list and not cell_data_list:
                     continue
 
                 # 写入表头行
-                self.worksheet_existing.write_row(2, self.calculate_head_num(13, j, 4), header_list, self.title_format)
+                self.worksheet_existing.write_row(2, self.calculate_head_num(13, j, 4), header_list, self.header_format)
 
                 # 最后一列可能会出现多值多行的情况，计算每行数据占有的行数
                 line_num_list = []
@@ -364,7 +350,7 @@ class InsertDataIntoExcel(object):
                     elif line_num_list[line] >= 2:
                         length_merge = line_num_list[line]
                         self.worksheet_existing.write_url(nu, self.calculate_head_num(13, j, 4), url_list[line][0], self.url_format, str(cell_data_list[line][0]))
-                        self.worksheet_existing.write_row(nu, self.calculate_head_num(13, j, 5), cell_data_list[line][1:7],self.title_format_merage)
+                        self.worksheet_existing.write_row(nu, self.calculate_head_num(13, j, 5), cell_data_list[line][1:7],self.title_format)
                         for i in range(4, 11):
                             self.worksheet_existing.merge_range(nu, self.calculate_head_num(13, j, i),nu + line_num_list[line] - 1, self.calculate_head_num(13, j, i), '')
                         for m in range(length_merge):
@@ -564,7 +550,7 @@ class InsertDataIntoExcel(object):
                 if self.keep_continuous == 'YES' and j == self.actual_newest_week_position:
                     self.newest_week_type_string_list.append(Silver_BkC_string)
             # 合并单元格
-            self.worksheet_hw.merge_range(3, self.calculate_head_num(18, j), 9, self.calculate_head_num(18, j), "", self.title_format_merage)
+            self.worksheet_hw.merge_range(3, self.calculate_head_num(18, j), 9, self.calculate_head_num(18, j), "", self.title_format)
             self.worksheet_hw.write_rich_string(3, self.calculate_head_num(18, j), self.red, date_string, self.title_format)
 
             self.worksheet_hw.write(2, self.calculate_head_num(18, j), Silver_BkC_string, self.format1)
@@ -663,10 +649,10 @@ class InsertDataIntoExcel(object):
 
                     elif line_num_list[line] > 1:
                         length_merge = len(url_list[line][1:])
-                        self.worksheet_sw_original.merge_range(nu, self.calculate_head_num(9, j, 5), nu + line_num_list[line] -1, self.calculate_head_num(9, j, 5), first_insert_data[line], self.title_format_merage)
+                        self.worksheet_sw_original.merge_range(nu, self.calculate_head_num(9, j, 5), nu + line_num_list[line] -1, self.calculate_head_num(9, j, 5), first_insert_data[line], self.title_format)
                         self.worksheet_sw_original.merge_range(nu, self.calculate_head_num(9, j, 6), nu + line_num_list[line] - 1, self.calculate_head_num(9, j, 6), '')
                         self.worksheet_sw_original.write_url(nu, self.calculate_head_num(9, j, 6), url_list[line][0], self.url_format, cell_data_list[line][1])
-                        self.worksheet_sw_original.merge_range(nu, self.calculate_head_num(9, j, 7), nu + line_num_list[line] -1, self.calculate_head_num(9, j, 7), second_insert_data[line], self.title_format_merage)
+                        self.worksheet_sw_original.merge_range(nu, self.calculate_head_num(9, j, 7), nu + line_num_list[line] -1, self.calculate_head_num(9, j, 7), second_insert_data[line], self.title_format)
 
                         for i in range(nu, length_merge + nu):
                             self.worksheet_sw_original.write_url(i, self.calculate_head_num(9, j, 8), url_list[line][1 + i - nu], self.url_format, cell_data_list[line][3:][i - nu])
@@ -758,13 +744,13 @@ class InsertDataIntoExcel(object):
                     elif line_num_list[line] > 1:
                         length_merge = len(url_list[line][1:])
                         self.worksheet_sw.merge_range(nu, self.calculate_head_num(9, j, 5),
-                                                      nu + line_num_list[line] - 1, self.calculate_head_num(9, j, 5), first_insert_data[line], self.title_format_merage)
+                                                      nu + line_num_list[line] - 1, self.calculate_head_num(9, j, 5), first_insert_data[line], self.title_format)
                         self.worksheet_sw.merge_range(nu, self.calculate_head_num(9, j, 6),
                                                       nu + line_num_list[line] - 1, self.calculate_head_num(9, j, 6), '')
                         self.worksheet_sw.write_url(nu, self.calculate_head_num(9, j, 6),
                                                     url_list[line][0], self.url_format, cell_data_list[line][1])
                         self.worksheet_sw.merge_range(nu, self.calculate_head_num(9, j, 7),
-                                                      nu + line_num_list[line] - 1, self.calculate_head_num(9, j, 7), second_insert_data[line], self.title_format_merage)
+                                                      nu + line_num_list[line] - 1, self.calculate_head_num(9, j, 7), second_insert_data[line], self.title_format)
                         for i in range(nu, length_merge + nu):
                             self.worksheet_sw.write_url(i, self.calculate_head_num(9, j, 8),
                                                         url_list[line][1 + i - nu], self.url_format, cell_data_list[line][3:][i - nu])
@@ -922,11 +908,10 @@ class InsertDataIntoExcel(object):
                         self.newest_week_type_string_list.append(Silver_BkC_string)
 
                 self.worksheet_platform.write_rich_string(1, self.calculate_head_num(12, j, 1), self.red, Silver_BkC_string, self.format1)
-                self.worksheet_platform.write_rich_string(2, self.calculate_head_num(12, j), self.red, date_string, self.title_format)
+                self.worksheet_platform.write_rich_string(2, self.calculate_head_num(12, j), self.red, date_string, self.format1)
 
                 if not header_list and not cell_data_list:
                     continue
-
 
                 self.worksheet_platform.write_row(2, self.calculate_head_num(12, j, 1), header_list, self.header_format)
                 # 最后一列可能会出现多值多行的情况，计算每行数据占有的行数
@@ -940,7 +925,7 @@ class InsertDataIntoExcel(object):
                     if k > 1:
                         merge_width += k - 1
 
-                self.worksheet_platform.merge_range(2, self.calculate_head_num(12, j), merge_width, self.calculate_head_num(12, j), '', self.title_format_merage)
+                self.worksheet_platform.merge_range(2, self.calculate_head_num(12, j), merge_width, self.calculate_head_num(12, j), '', self.title_format)
                 self.worksheet_platform.write_rich_string(2, self.calculate_head_num(12, j), self.red, date_string, self.title_format)
                 # 标记True为红色
                 self.worksheet_platform.conditional_format(3, self.calculate_head_num(12, j, 5), len(cell_data_list) + 3, self.calculate_head_num(12, j, 5),
@@ -964,7 +949,7 @@ class InsertDataIntoExcel(object):
                         length_merge = line_num_list[line]
                         for i in range(1, 11):
                             self.worksheet_platform.merge_range(nu, self.calculate_head_num(12, j, i),nu + line_num_list[line] - 1,self.calculate_head_num(12, j, i), '')
-                        self.worksheet_platform.write_row(nu, self.calculate_head_num(12, j, 1), temp_list[:10], self.title_format_merage)
+                        self.worksheet_platform.write_row(nu, self.calculate_head_num(12, j, 1), temp_list[:10], self.title_format)
                         for m in range(length_merge):
                             self.worksheet_platform.write_url(nu+m, self.calculate_head_num(12, j, 11), url_list[line][m], self.url_format, str(temp_list[10+m]))
                         nu += line_num_list[line]
@@ -1196,7 +1181,7 @@ class InsertDataIntoExcel(object):
     def predict_insert_HW_data(self):
         predict_insert_location = self.calculate_head_num(18, 0, 0, True)
         self.worksheet_hw.write(2, predict_insert_location, 'Candidate', self.format1)
-        self.worksheet_hw.merge_range(3, predict_insert_location, 9, predict_insert_location, "", self.title_format_merage)
+        self.worksheet_hw.merge_range(3, predict_insert_location, 9, predict_insert_location, "", self.title_format)
         self.worksheet_hw.write_rich_string(3, predict_insert_location, self.red, self.save_miss_insert_bkc_string, self.title_format)
 
     def predict_insert_SW_data(self):
@@ -1257,18 +1242,18 @@ class InsertDataIntoExcel(object):
                     elif line_num_list[line] > 1:
                         length_merge = len(url_list[line][1:])
                         self.worksheet_sw.merge_range(nu, predict_insert_location + 5, nu + line_num_list[line] - 1,
-                                                      predict_insert_location + 5, first_insert_data[line], self.title_format_merage)
+                                                      predict_insert_location + 5, first_insert_data[line], self.title_format)
                         self.worksheet_sw.merge_range(nu, predict_insert_location + 6, nu + line_num_list[line] - 1, predict_insert_location + 6, '')
                         self.worksheet_sw.write_url(nu, predict_insert_location + 6, url_list[line][0], self.url_format, cell_data_list[line][1])
                         self.worksheet_sw.merge_range(nu, predict_insert_location + 7, nu + line_num_list[line] - 1, predict_insert_location + 7,
-                                                      second_insert_data[line], self.title_format_merage)
+                                                      second_insert_data[line], self.title_format)
                         for i in range(nu, length_merge + nu):
                             self.worksheet_sw.write_url(i, predict_insert_location + 8, url_list[line][1 + i - nu], self.url_format, cell_data_list[line][3:][i - nu])
                         self.worksheet_sw.write(line_num_list[line] + nu - 1, predict_insert_location + 8, cell_data_list[line][3:][-1])
                         nu += line_num_list[line]
             except:
                 self.logger.print_message('predict_insert_SW_data fail url [ %s ]' % self._predict_url, self.__file_name)
-            
+
     def predict_insert_SW_Original_data(self):
         if self.predict_insert_flag and self._predict_url:
             predict_insert_location = self.calculate_head_num(9, 0, 0, True)
@@ -1327,11 +1312,11 @@ class InsertDataIntoExcel(object):
                     elif line_num_list[line] > 1:
                         length_merge = len(url_list[line][1:])
                         self.worksheet_sw_original.merge_range(nu, predict_insert_location + 5, nu + line_num_list[line] - 1,
-                                                      predict_insert_location + 5, first_insert_data[line], self.title_format_merage)
+                                                      predict_insert_location + 5, first_insert_data[line], self.title_format)
                         self.worksheet_sw_original.merge_range(nu, predict_insert_location + 6, nu + line_num_list[line] - 1, predict_insert_location + 6, '')
                         self.worksheet_sw_original.write_url(nu, predict_insert_location + 6, url_list[line][0], self.url_format, cell_data_list[line][1])
                         self.worksheet_sw_original.merge_range(nu, predict_insert_location + 7, nu + line_num_list[line] - 1, predict_insert_location + 7,
-                                                      second_insert_data[line], self.title_format_merage)
+                                                      second_insert_data[line], self.title_format)
                         for i in range(nu, length_merge + nu):
                             self.worksheet_sw_original.write_url(i, predict_insert_location + 8, url_list[line][1 + i - nu], self.url_format, cell_data_list[line][3:][i - nu])
                         self.worksheet_sw_original.write(line_num_list[line] + nu - 1, predict_insert_location + 8, cell_data_list[line][3:][-1])
@@ -1360,7 +1345,7 @@ class InsertDataIntoExcel(object):
                 self.worksheet_ifwi_original.write_rich_string(1, predict_insert_location + 2, self.red, Silver_BkC_string, self.format1)
 
                 if not header_list and not cell_data_list:
-                    return 
+                    return
 
                 self.worksheet_ifwi_original.write_row(3, predict_insert_location + 3, header_list, self.header_format)
                 # 插入数据,需要考虑有数字的情况，前面加Nic字母
@@ -1398,7 +1383,7 @@ class InsertDataIntoExcel(object):
                 self.worksheet_ifwi.write_rich_string(1, predict_insert_location + 2, self.red, Silver_BkC_string, self.format1)
 
                 if not header_list and not cell_data_list:
-                    return 
+                    return
 
                 self.worksheet_ifwi.write_row(3, predict_insert_location + 3, header_list, self.header_format)
                 # 插入数据,需要考虑有数字的情况，前面加Nic字母
@@ -1409,7 +1394,7 @@ class InsertDataIntoExcel(object):
                     if match_obj or match_obj_back:
                         cell_data_list[ele][0] = 'Nic' + cell_data_list[ele][0]
                     cell_data_list[ele][0] = cell_data_list[ele][0].lstrip(' ')
-                    
+
                 cell_data_list.sort(key=lambda x: x[0].upper())
                 for begin in range(len(cell_data_list)):
                     self.worksheet_ifwi.write_row(begin + 4, predict_insert_location + 3, cell_data_list[begin])
@@ -1419,7 +1404,7 @@ class InsertDataIntoExcel(object):
     def predict_insert_Platform_data(self):
         predict_insert_location = self.calculate_head_num(12, 0, 0, True)
         self.worksheet_platform.write_rich_string(1, predict_insert_location + 1, self.red, 'Candidate', self.format1)
-        self.worksheet_platform.merge_range(2, predict_insert_location, 6, predict_insert_location, '', self.title_format_merage)
+        self.worksheet_platform.merge_range(2, predict_insert_location, 6, predict_insert_location, '', self.title_format)
         self.worksheet_platform.write_rich_string(2, predict_insert_location, self.red, self.save_miss_insert_bkc_string, self.title_format)
 
     def predict_insert_Mapping(self):
