@@ -1,0 +1,38 @@
+2017_08_16_01_57_34 | machine_model_entrance.py | INFO | sys.argv:	['C:\\Users\\Public\\newest_machine_program\\machine_model_entrance.py']
+2017_08_16_01_57_34 | machine_model_entrance.py | INFO | >>>>>>>>>> Please Wait .... The program is detecting memory <<<<<<<<<<
+2017_08_16_01_57_34 | common_interface_func.py | INFO | The 1 time:	Wed Aug 16 01:57:51 2017 |  CPU: 12.0% |  Memory:  49.4%  3996M/8091M
+2017_08_16_01_57_34 | machine_model_entrance.py | INFO | >>>>>>>>>> Memory detection Finished <<<<<<<<<<
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | The main windows of configuration is closed!
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | purl_bak_string:              Bakerville
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | from_address:                 pengx.zhang@intel.com
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | receive_address:              pengx.zhang@intel.com,libo.fu@intel.com
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | server_address:               smtp.intel.com
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | week_num:                     100
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | reacquire_data_flag:          NO
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | verify_file_flag:             YES
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | max_waiting_time:             60 minute(s)
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | on_off_line_save_flag:        offline
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | keep_continuous:              NO
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | send_email_flag:              NO
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | get_default_flag:             
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | display_software:             YES
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | display_new:                  YES
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | display_existing:             YES
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | display_closed:               YES
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | display_total:                YES
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | display_save_test:            YES
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | display_save_effort:          YES
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | display_miss:                 YES
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | template_file:                C:/Users/Public/newest_machine_program/ITF_Skylake_Bakerville_BKC_TestCase_WW31_v2.5.0_Template_100W.xlsx
+2017_08_16_01_57_34 | machine_config_gui.py | INFO | week_input_string_list:       []
+2017_08_16_01_57_34 | machine_model_entrance.py | INFO | Program Offline Run Mode Switch is on
+2017_08_16_01_57_34 | machine_model_entrance.py | ERROR | ###########################################################################################################
+2017_08_16_01_57_34 | machine_model_entrance.py | ERROR | caller filename is C:\Users\Public\newest_machine_program\machine_scripts\common_interface_func.py
+2017_08_16_01_57_34 | machine_model_entrance.py | ERROR | caller lineno is 190
+2017_08_16_01_57_34 | machine_model_entrance.py | ERROR | the passed args is (), {}
+2017_08_16_01_57_34 | machine_model_entrance.py | ERROR | ###########################################################################################################
+2017_08_16_01_57_34 | machine_model_entrance.py | ERROR | *******************************************************************************************************************************************
+2017_08_16_01_57_34 | machine_model_entrance.py | ERROR | the exc type is: <type 'exceptions.IOError'>
+2017_08_16_01_57_34 | machine_model_entrance.py | ERROR | the exc value is: [Errno 2] No such file or directory: 'C:\\Users\\Public\\newest_machine_program\\report_html\\Bakerville_url_info.txt'
+2017_08_16_01_57_34 | machine_model_entrance.py | ERROR | the exc tb is: <traceback object at 0x00000000078C06C8>
+2017_08_16_01_57_34 | machine_model_entrance.py | ERROR | *******************************************************************************************************************************************

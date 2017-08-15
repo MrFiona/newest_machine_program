@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Public\newest_machine_program\machine_scripts\public_use_function.py", line 616, in wrapper
+    func(*args, **kwargs)
+  File "C:\Users\Public\newest_machine_program\machine_model_entrance.py", line 251, in machine_main
+    week_type_string=newest_week_type_string_list[0] if newest_week_type_string_list else 'default')
+  File "C:\Users\Public\newest_machine_program\machine_scripts\generate_chart.py", line 158, in generate_chart
+    fifth_data.append(int(string_list[6]));seven_data.append(int(string_list[7].replace('%', '')))
+ValueError: invalid literal for int() with base 10: 'None'

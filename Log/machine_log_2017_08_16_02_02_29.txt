@@ -1,0 +1,616 @@
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | sys.argv:	['C:\\Users\\Public\\newest_machine_program\\machine_model_entrance.py']
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | >>>>>>>>>> Please Wait .... The program is detecting memory <<<<<<<<<<
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The 1 time:	Wed Aug 16 02:02:33 2017 |  CPU: 15.8% |  Memory:  49.0%  3964M/8091M
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | >>>>>>>>>> Memory detection Finished <<<<<<<<<<
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | The main windows of configuration is closed!
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | purl_bak_string:              Purley-FPGA
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | from_address:                 pengx.zhang@intel.com
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | receive_address:              pengx.zhang@intel.com,libo.fu@intel.com
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | server_address:               smtp.intel.com
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | week_num:                     100
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | reacquire_data_flag:          NO
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | verify_file_flag:             YES
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | max_waiting_time:             120 minute(s)
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | on_off_line_save_flag:        offline
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | keep_continuous:              NO
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | send_email_flag:              NO
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | get_default_flag:             
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | display_software:             YES
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | display_new:                  YES
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | display_existing:             YES
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | display_closed:               YES
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | display_total:                YES
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | display_save_test:            YES
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | display_save_effort:          YES
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | display_miss:                 YES
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | template_file:                C:/Users/Public/newest_machine_program/ITF_Skylake_Purley-FPGA_BKC_TestCase_WW31_v2.5.0_Template_100W.xlsx
+2017_08_16_02_02_29 | machine_config_gui.py | INFO | week_input_string_list:       []
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | Program Offline Run Mode Switch is on
+2017_08_16_02_02_29 | insert_excel.py | INFO | >>>>>>>>>> Please Wait ... The Program is being read for Excel Initialization <<<<<<<<<<
+2017_08_16_02_02_29 | insert_excel.py | INFO | template_file:C:/Users/Public/newest_machine_program/ITF_Skylake_Purley-FPGA_BKC_TestCase_WW31_v2.5.0_Template_100W.xlsx	
+2017_08_16_02_02_29 | insert_excel.py | INFO | The project id exists:	16
+2017_08_16_02_02_29 | insert_excel.py | CRITICAL | The Candidate date is not exists:	16
+2017_08_16_02_02_29 | insert_excel.py | INFO | _predict_url:	None
+2017_08_16_02_02_29 | insert_excel.py | INFO | >>>>>>>>>> Excel Initialization End <<<<<<<<<<
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | predict_execute_flag:	False
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | call_func_list:	['insert_Rework_data', 'insert_HWInfo', 'insert_ExistingSi_data', 'insert_ReworkInfo', 'insert_IFWIInfo', 'insert_ClosedSi_data', 'insert_HW_data', 'insert_SWInfo', 'insert_IFWI_data', 'insert_save_miss_data', 'insert_Mapping', 'insert_test_time_data', 'insert_NewSi_data', 'insert_SW_data', 'insert_Platform_data', 'insert_SW_Original_data', 'insert_trend_data', 'insert_change_history_data', 'insert_IFWI_Original_data', 'insert_CaseResult']
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | >>>>>>>>>> Please Wait .... The program is inserting Excel Data <<<<<<<<<<
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting [ HW Rework ] data.........
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW31/6464_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW30/6421_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW27/6353_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW25/6236_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW23/6131_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW20/6054_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW18/5945_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW17/5917_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW16/5885_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW15/5846_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW14/5825_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW13/5774_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW12/5736_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW11/5691_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW10/5658_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW09/5631_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW08/5562_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW07/5496_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW06/5419_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW04/5305_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW03/5248_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW02/5209_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW01/5165_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW53/5107_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW52/5037_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW51/4929_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW50/4871_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW49/4787_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW48/4723_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW47/4702_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW46/4629_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | ERROR | Get [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/BKC/2016%20WW46/4629_BKC.html ] Original Data Error
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW45/4598_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | ERROR | Get [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/BKC/2016%20WW45/4598_BKC.html ] Original Data Error
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW44/4432_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW43/4146_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | ERROR | Get [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/BKC/2016%20WW43/4146_BKC.html ] Original Data Error
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW42/4112_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | ERROR | Get [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/BKC/2016%20WW42/4112_BKC.html ] Original Data Error
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW40/4064_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | ERROR | Get [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/BKC/2016%20WW40/4064_BKC.html ] Original Data Error
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting [ Existing Sightings ] data.........
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW31/6464_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW30/6421_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW27/6353_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW25/6236_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW23/6131_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW20/6054_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW18/5945_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW17/5917_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW16/5885_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW15/5846_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW14/5825_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW13/5774_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW12/5736_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW11/5691_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW10/5658_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW09/5631_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW08/5562_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW07/5496_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW06/5419_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW04/5305_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW03/5248_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW02/5209_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW01/5165_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW53/5107_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW52/5037_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW51/4929_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW50/4871_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW49/4787_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW48/4723_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW47/4702_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW46/4629_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW45/4598_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW44/4432_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW43/4146_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW42/4112_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW40/4064_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting [ Closed Sightings ] data.........
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW31/6464_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW30/6421_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW27/6353_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW25/6236_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW23/6131_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW20/6054_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW18/5945_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW17/5917_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW16/5885_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW15/5846_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW14/5825_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW13/5774_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW12/5736_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW11/5691_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW10/5658_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW09/5631_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW08/5562_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW07/5496_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW06/5419_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW04/5305_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW03/5248_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW02/5209_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW01/5165_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW53/5107_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW52/5037_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW51/4929_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW50/4871_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW49/4787_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW48/4723_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW47/4702_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW46/4629_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW45/4598_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW44/4432_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW43/4146_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW42/4112_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW40/4064_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting [ HW Configuration ] data.........
+2017_08_16_02_02_29 | insert_excel.py | INFO | FPGA_border_position:	4
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW31/6464_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW30/6421_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW27/6353_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW25/6236_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW23/6131_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW20/6054_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW18/5945_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW17/5917_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW16/5885_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW15/5846_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW14/5825_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW13/5774_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW12/5736_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW11/5691_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW10/5658_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW09/5631_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW08/5562_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW07/5496_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW06/5419_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW04/5305_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW03/5248_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW02/5209_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW01/5165_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW53/5107_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW52/5037_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW51/4929_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW50/4871_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW49/4787_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW48/4723_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW47/4702_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW46/4629_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW45/4598_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW44/4432_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW43/4146_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW42/4112_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW40/4064_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting [ IFWI Configuration ] data.........
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW31/6464_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW30/6421_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW27/6353_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW25/6236_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW23/6131_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW20/6054_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW18/5945_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW17/5917_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW16/5885_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW15/5846_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW14/5825_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW13/5774_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW12/5736_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW11/5691_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW10/5658_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW09/5631_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW08/5562_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW07/5496_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW06/5419_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW04/5305_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW03/5248_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW02/5209_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW01/5165_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW53/5107_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW52/5037_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW51/4929_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW50/4871_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW49/4787_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW48/4723_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW47/4702_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW46/4629_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW45/4598_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW44/4432_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW43/4146_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW42/4112_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW40/4064_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting [ New Sightings ] data.........
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW31/6464_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW30/6421_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW27/6353_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW25/6236_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW23/6131_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW20/6054_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW18/5945_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW17/5917_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW16/5885_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW15/5846_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW14/5825_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW13/5774_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW12/5736_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW11/5691_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW10/5658_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW09/5631_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW08/5562_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW07/5496_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW06/5419_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW04/5305_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW03/5248_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW02/5209_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW01/5165_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW53/5107_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW52/5037_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW51/4929_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW50/4871_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW49/4787_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW48/4723_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW47/4702_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW46/4629_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW45/4598_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW44/4432_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW43/4146_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW42/4112_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW40/4064_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting [ SW Configuration ] data.........
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW31/6464_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW30/6421_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW27/6353_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW25/6236_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW23/6131_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW20/6054_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW18/5945_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW17/5917_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW16/5885_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW15/5846_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW14/5825_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW13/5774_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW12/5736_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW11/5691_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW10/5658_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW09/5631_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW08/5562_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW07/5496_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW06/5419_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW04/5305_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW03/5248_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW02/5209_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW01/5165_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW53/5107_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW52/5037_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW51/4929_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW50/4871_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW49/4787_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW48/4723_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW47/4702_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW46/4629_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW45/4598_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW44/4432_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW43/4146_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW42/4112_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW40/4064_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting [ Platform Integration Validation Result ] data.........
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW31/6464_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/BKC/2017%20WW31/6464_BKC_files/detailed_case_Purley_FPGA.html
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW30/6421_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/BKC/2017%20WW30/6421_BKC_files/detailed_case_Purley_FPGA.html
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW27/6353_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/BKC/2017%20WW27/6353_BKC_files/detailed_case_Purley_FPGA.html
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW25/6236_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/BKC/2017%20WW25/6236_BKC_files/detailed_case_Purley_FPGA.html
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW23/6131_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/BKC/2017%20WW23/6131_BKC_files/detailed_case_Purley_FPGA.html
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW20/6054_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	https://dcg-oss.intel.com/test_report/report_case/6054/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW18/5945_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/5945/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW17/5917_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/5917/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW16/5885_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/5885/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW15/5846_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/5846/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW14/5825_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/5825/Gold/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW13/5774_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/5774/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW12/5736_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/5736/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | The data crawling failed for the 13th url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW12/5736_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW11/5691_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/5691/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW10/5658_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/5658/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | The data crawling failed for the 15th url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW10/5658_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW09/5631_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/5631/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW08/5562_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/5562/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | The data crawling failed for the 17th url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW08/5562_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW07/5496_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/5496/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW06/5419_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/5419/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW04/5305_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/5305/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | The data crawling failed for the 20th url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW04/5305_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW03/5248_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/5248/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | The data crawling failed for the 21th url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW03/5248_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW02/5209_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/5209/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW01/5165_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/5165/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW53/5107_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/5107/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW52/5037_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/5037/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW51/4929_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/4929/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW50/4871_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/4871/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW49/4787_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/4787/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | The data crawling failed for the 28th url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW49/4787_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW48/4723_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/4723/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | The data crawling failed for the 29th url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW48/4723_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW47/4702_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/4702/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | The data crawling failed for the 30th url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW47/4702_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW46/4629_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/4629/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW45/4598_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/4598/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW44/4432_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/4432/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW43/4146_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/4146/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW42/4112_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/4112/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW40/4064_Silver.html ]
+2017_08_16_02_02_29 | extract_data.py | INFO | page_url:	http://dcg-oss.intel.com/test_report/report_case/4064/BKC/Purley_FPGA
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting [ SW_Original Configuration ] data.........
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW31/6464_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW30/6421_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW27/6353_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW25/6236_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW23/6131_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW20/6054_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW18/5945_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW17/5917_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW16/5885_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW15/5846_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW14/5825_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW13/5774_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW12/5736_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW11/5691_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW10/5658_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW09/5631_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW08/5562_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW07/5496_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW06/5419_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW04/5305_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW03/5248_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW02/5209_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW01/5165_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW53/5107_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW52/5037_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW51/4929_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW50/4871_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW49/4787_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW48/4723_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW47/4702_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW46/4629_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW45/4598_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW44/4432_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW43/4146_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW42/4112_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW40/4064_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting [ IFWI_Original Configuration ] data.........
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW31/6464_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW30/6421_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW27/6353_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW25/6236_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW23/6131_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW20/6054_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW18/5945_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW17/5917_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW16/5885_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW15/5846_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW14/5825_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW13/5774_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW12/5736_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW11/5691_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW10/5658_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW09/5631_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW08/5562_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW07/5496_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW06/5419_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW04/5305_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW03/5248_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW02/5209_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW01/5165_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW53/5107_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW52/5037_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW51/4929_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW50/4871_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW49/4787_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW48/4723_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW47/4702_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW46/4629_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW45/4598_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW44/4432_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW43/4146_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW42/4112_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW40/4064_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting [ CaseResult ] data.........
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW31/6464_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW30/6421_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW27/6353_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW25/6236_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW23/6131_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW20/6054_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW18/5945_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW17/5917_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW16/5885_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW15/5846_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW14/5825_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW13/5774_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW12/5736_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW11/5691_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW10/5658_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW09/5631_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW08/5562_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW07/5496_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW06/5419_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW04/5305_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW03/5248_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW02/5209_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW01/5165_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW53/5107_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW52/5037_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW51/4929_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW50/4871_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW49/4787_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW48/4723_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW47/4702_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW46/4629_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW45/4598_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW44/4432_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW43/4146_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW42/4112_Silver.html ]
+2017_08_16_02_02_29 | insert_excel.py | INFO | Start inserting the corresponding data for url [ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW40/4064_Silver.html ]
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | predict_newest_insert_bkc_string:	default_bkc_string
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | newest_week_type_string_list:	['BKC', 'BKC', 'BKC', 'BKC', 'BKC', 'BKC', 'BKC', 'BKC', 'BKC', 'BKC', 'BKC']
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | >>>>>>>>>> Inserting Excel Data Finished <<<<<<<<<<
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | >>>>>>>>>> Please Wait .... The program begins to confirm the generated Excel File <<<<<<<<<<
+2017_08_16_02_02_29 | common_interface_func.py | INFO | Please make sure C:\Users\Public\newest_machine_program\excel_dir\Purley-FPGA_100_2017WW31_36_2017_08_16_02_02_29.xlsx is opened, review it, save and close.
+Last modified : Wed Aug 16 02:07:05 2017
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7200 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7199 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7198 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7197 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7196 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7195 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7194 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7193 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7192 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7191 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7190 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7189 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7188 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7187 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7186 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7185 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7184 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7183 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7182 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7181 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7180 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7179 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7178 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7177 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7176 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7175 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7174 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7173 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7172 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7171 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7170 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7169 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7168 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7167 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7166 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7165 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7164 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7163 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7162 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7161 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7160 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7159 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7158 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7157 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7156 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7155 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7154 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7153 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7152 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7151 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7150 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7149 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7148 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7147 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7146 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7145 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7144 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7143 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7142 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7141 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7140 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7139 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7138 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7137 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7136 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7135 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7134 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7133 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7132 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7131 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7130 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7129 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7128 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7127 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7126 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7125 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7124 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7123 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7122 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | The modification time is 7121 seconds left.......
+2017_08_16_02_02_29 | common_interface_func.py | INFO | 
+C:\Users\Public\newest_machine_program\excel_dir\Purley-FPGA_100_2017WW31_36_2017_08_16_02_02_29.xlsx is closed.
+Last modified : Wed Aug 16 02:08:26 2017
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | >>>>>>>>>> Comfirm the Excel File Finished <<<<<<<<<<
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | >>>>>>>>>> Please Wait .... the program is generating Html File <<<<<<<<<<
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | 2017_08_16_02_02_29
+2017_08_16_02_02_29 | public_use_function.py | INFO | trend_right_location:	38
+2017_08_16_02_02_29 | public_use_function.py | INFO | Trend cell_data_list:	[['Index', 'WW', 'Software Check In', 'New Sighting', 'Existing Sighting', 'Closed Sighting', 'Total Sighting', 'None', 'None', 'None'], ['1', '2016WW40', '26', '5', '0', '0', '5', 'None', 'None', 'None'], ['2', '2016WW42', '6', '1', '4', '-1', '5', 'None', 'None', 'None'], ['3', '2016WW43', '7', '2', '5', '0', '7', 'None', 'None', 'None'], ['4', '2016WW44', '9', '2', '7', '0', '9', 'None', 'None', 'None'], ['5', '2016WW45', '5', '2', '7', '-2', '9', 'None', 'None', 'None'], ['6', '2016WW46', '6', '2', '8', '-1', '10', 'None', 'None', 'None'], ['7', '2016WW47', '7', '1', '10', '0', '11', 'None', 'None', 'None'], ['8', '2016WW48', '5', '0', '11', '0', '11', 'None', 'None', 'None'], ['9', '2016WW49', '10', '0', '10', '-2', '10', 'None', 'None', 'None'], ['10', '2016WW50', '10', '1', '8', '-2', '9', 'None', 'None', 'None'], ['11', '2016WW51', '7', '1', '9', '0', '10', 'None', 'None', 'None'], ['12', '2016WW52', '7', '1', '10', '0', '11', 'None', 'None', 'None'], ['13', '2016WW53', '4', '3', '11', '0', '14', 'None', 'None', 'None'], ['14', '2017WW01', '4', '1', '9', '-3', '10', 'None', 'None', 'None'], ['15', '2017WW02', '4', '0', '9', '-1', '9', 'None', 'None', 'None'], ['16', '2017WW03', '6', '2', '7', '-2', '9', 'None', 'None', 'None'], ['17', '2017WW04', '5', '5', '7', '-2', '12', 'None', 'None', 'None'], ['18', '2017WW06', '6', '0', '10', '-2', '10', 'None', 'None', 'None'], ['19', '2017WW07', '4', '1', '9', '-1', '10', 'None', 'None', 'None'], ['20', '2017WW08', '4', '1', '10', '0', '11', 'None', 'None', 'None'], ['21', '2017WW09', '5', '1', '11', '0', '12', 'None', 'None', 'None'], ['22', '2017WW10', '5', '0', '11', '-1', '11', 'None', 'None', 'None'], ['23', '2017WW11', '8', '3', '10', '-1', '13', 'None', 'None', 'None'], ['24', '2017WW12', '7', '0', '13', '0', '13', 'None', 'None', 'None'], ['25', '2017WW13', '7', '2', '9', '-4', '11', 'None', 'None', 'None'], ['26', '2017WW14', '7', '0', '0', '0', '0', 'None', 'None', 'None'], ['27', '2017WW15', '6', '1', '9', '0', '10', 'None', 'None', 'None'], ['28', '2017WW16', '7', '1', '9', '-1', '10', 'None', 'None', 'None'], ['29', '2017WW17', '5', '0', '7', '-3', '7', 'None', 'None', 'None'], ['30', '2017WW18', '4', '0', '7', '0', '7', 'None', 'None', 'None'], ['31', '2017WW20', '3', '0', '7', '0', '7', 'None', 'None', 'None'], ['32', '2017WW23', '5', '0', '7', '0', '7', 'None', 'None', 'None'], ['33', '2017WW25', '6', '0', '5', '-2', '5', 'None', 'None', 'None'], ['34', '2017WW27', '6', '1', '5', '0', '6', 'None', 'None', 'None'], ['35', '2017WW30', '3', '2', '5', '0', '7', 'None', 'None', 'None'], ['36', '2017WW31', '4', '0', '7', '0', '7', 'None', 'None', 'None']]
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | Excel table [ Trend ] data html has been generated
+2017_08_16_02_02_29 | public_use_function.py | INFO | save_miss_left_location:	67
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | Excel table [ Save-Miss ] data html has been generated
+2017_08_16_02_02_29 | public_use_function.py | INFO | new_exist_left_location:	845
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | Excel table [ NewSi ] data html has been generated
+2017_08_16_02_02_29 | public_use_function.py | INFO | new_exist_left_location:	845
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | Excel table [ ExistingSi ] data html has been generated
+2017_08_16_02_02_29 | public_use_function.py | INFO | case_result_left_location:	2671
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | Excel table [ CaseResult ] data html has been generated
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | Start setting the caseresult table data format
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | End Sets the caseresult table data format
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | Set the format time-consuming:	4.04999995232
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | >>>>>>>>>> Generating Html File Finished <<<<<<<<<<
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | failed_sheet_name_list:[]	
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | >>>>>>>>>> Please Wait .... The program is backing up the Excel File <<<<<<<<<<
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | >>>>>>>>>> Backing up Excel File Finished <<<<<<<<<<
+2017_08_16_02_02_29 | machine_model_entrance.py | INFO | >>>>>>>>>> Please Wait .... The program is generating the Image File <<<<<<<<<<
+2017_08_16_02_02_29 | generate_chart.py | INFO | object_excel_file:	C:\Users\Public\newest_machine_program\excel_dir\Purley-FPGA_100_2017WW31_36_2017_08_16_02_02_29.xlsx
+2017_08_16_02_02_29 | machine_model_entrance.py | ERROR | ###########################################################################################################
+2017_08_16_02_02_29 | machine_model_entrance.py | ERROR | caller filename is C:\Users\Public\newest_machine_program\machine_scripts\common_interface_func.py
+2017_08_16_02_02_29 | machine_model_entrance.py | ERROR | caller lineno is 190
+2017_08_16_02_02_29 | machine_model_entrance.py | ERROR | the passed args is (), {}
+2017_08_16_02_02_29 | machine_model_entrance.py | ERROR | ###########################################################################################################
+2017_08_16_02_02_29 | machine_model_entrance.py | ERROR | *******************************************************************
+2017_08_16_02_02_29 | machine_model_entrance.py | ERROR | the exc type is: <type 'exceptions.ValueError'>
+2017_08_16_02_02_29 | machine_model_entrance.py | ERROR | the exc value is: invalid literal for int() with base 10: 'None'
+2017_08_16_02_02_29 | machine_model_entrance.py | ERROR | the exc tb is: <traceback object at 0x0000000056548088>
+2017_08_16_02_02_29 | machine_model_entrance.py | ERROR | *******************************************************************

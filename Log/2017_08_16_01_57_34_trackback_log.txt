@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\Public\newest_machine_program\machine_scripts\public_use_function.py", line 616, in wrapper
+    func(*args, **kwargs)
+  File "C:\Users\Public\newest_machine_program\machine_model_entrance.py", line 244, in machine_main
+    predict_newest_insert_bkc_string = machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save_flag, AUTO_RUN_FLAG)
+  File "C:\Users\Public\newest_machine_program\machine_model_entrance.py", line 73, in machine_model_entrance
+    Silver_url_list = get_url_list_by_keyword(purl_bak_string, 'Silver')
+  File "C:\Users\Public\newest_machine_program\machine_scripts\public_use_function.py", line 244, in get_url_list_by_keyword
+    with open(REPORT_HTML_DIR + os.sep + purl_bak_string + '_url_info.txt', 'r') as f:
+IOError: [Errno 2] No such file or directory: 'C:\\Users\\Public\\newest_machine_program\\report_html\\Bakerville_url_info.txt'
