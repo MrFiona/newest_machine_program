@@ -137,7 +137,7 @@ def file_config(name, tab2, logger):
     check_file_var = StringVar()
 
     label1 = Label(monty, text="Retrieve Data", font=("Calibri", 12), background='seashell')
-    label2 = Label(monty, text="Verify Excel File", font=("Calibri", 12), background='skyblue')
+    label2 = Label(monty, text="Review Excel File", font=("Calibri", 12), background='skyblue')
     label3 = Label(monty, text='Maximum Time', font=("Calibri", 12), background='yellowgreen')
     label4 = Label(monty, text='minute(s)', font=("Calibri", 12))
     file_max_time = Entry(monty, borderwidth=2, width=25, font=("Calibri", 12))
@@ -458,7 +458,7 @@ def load_default_configuration_info(name, tab6, logger):
         file_check_numberChosen2.set('YES' if verify_file_flag.strip() == 'YES' else 'NO')
 
         update_parameter_value(file_max_time, max_waiting_time if len(max_waiting_time.strip()) != 0 else '120')
-        on_off_numberChosen1.set('YES' if on_off_line_save_flag.strip() == 'YES' else 'NO')
+        on_off_numberChosen1.set('online' if on_off_line_save_flag.strip() == 'online' else 'offline')
         email_send_email_flag.set('YES' if send_email_flag.strip() == 'YES' else 'NO')
 
         choose_weeks_numberChosen1.set('YES' if choose_week_flag.strip() == 'YES' else 'NO')
@@ -707,7 +707,7 @@ def sub_main(name, top, logger):
 
     win.title("%s User configuration interface" % name)
     tabControl = ttk.Notebook(win)  # Create Tab Control
-    center_window(root=win, height=(screen_width - screen_height)/2 - 20, width=(screen_width - screen_height)/2 + 250)
+    center_window(root=win, height=(screen_width - screen_height)/2 - 20 + 50, width=(screen_width - screen_height)/2 + 250)
 
     tab1 = ttk.Frame(tabControl)
     tab2 = ttk.Frame(tabControl)

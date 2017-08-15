@@ -15,6 +15,7 @@ import ssl
 import time
 import urllib2
 from functools import wraps
+from logging import CRITICAL
 
 import chardet
 from bs4 import BeautifulSoup
@@ -24,6 +25,8 @@ from machine_scripts.extract_data import GetAnalysisData
 from machine_scripts.public_use_function import get_url_list_by_keyword
 from setting_global_variable import SRC_WEEK_DIR, REPORT_HTML_DIR, SRC_CACHE_DIR
 
+
+_file_name = os.path.split(__file__)[1]
 
 # 强制ssl使用TLSv2
 def sslwrap(func):
@@ -182,16 +185,15 @@ class GetUrlFromHtml(object):
                 file_name = file[0]
         return file_name
 
-    # TODO 更新相应周缓存
+    # TODO 更新所有周缓存
     def write_all_html_by_multi_thread(self, purl_bak_string):
         cache = DiskCache(purl_bak_string)
         effective_url_list = []
-        # TODO 此时已经删除缓存不置标记为False
         for type in ['Silver', 'Gold', 'BKC']:
-            # TODO 获取对应周url列表
+            # TODO 获取所有周url列表
             effective_url_list.extend(get_url_list_by_keyword(purl_bak_string, type))
         for url in effective_url_list:
-            # TODO 更新对应周缓存
+            # TODO 更新所有周缓存
             GetAnalysisData(data_url=url, purl_bak_string=purl_bak_string, get_info_not_save_flag=True, cache=cache, insert_flag=False)
 
     # TODO 更新相应周缓存
@@ -277,7 +279,11 @@ class GetUrlFromHtml(object):
         if not week_string_list:
             return []
 
-        week_string_list = [week.split('WW')[0] + '_20WW' + week.split('WW')[1] for week in week_string_list]
+        try:
+            week_string_list = [week.split('WW')[0] + '_20WW' + week.split('WW')[1] for week in week_string_list]
+        except IndexError:
+            self.logger.print_message('Selected week mode but did not choose week', _file_name, CRITICAL)
+
         # print 'week_string_list:\t', week_string_list
         if delete_cache_flag:
             search_num = 0
@@ -307,7 +313,7 @@ class GetUrlFromHtml(object):
         self.get_week_info_by_flag(purl_bak_string, delete_cache_flag=True)
         self.get_all_type_data(purl_bak_string)
         # TODO 更新缓存
-        object.write_html_by_multi_thread(purl_bak_string, 'NO')
+        object.write_section_html_by_multi_thread(purl_bak_string)
 
 
 

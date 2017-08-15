@@ -436,7 +436,7 @@ class GetAnalysisData(object):
             # print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
             return Silver_Gold_BKC_string, self.date_string, effective_header_list, header_list, cell_data_list
         except:
-            self.logger.print_message(msg='Get [ %s ] Orignal Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
+            self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
             return 'Error', 'Error', [], [], []
 
     # TODO DE和FPGA DE:24周之后 FPGA: 23周之后 hw格式更改
@@ -521,7 +521,7 @@ class GetAnalysisData(object):
             return Silver_Gold_BKC_string, self.date_string, effective_header_list, header_list, cell_data_list
 
         except:
-            self.logger.print_message(msg='Get [ %s ] Orignal Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
+            self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
             return 'Error', 'Error', [], [], []
 
     # TODO DE和FPGA DE:24周之后 FPGA: 23周之后 hw格式更改
@@ -602,7 +602,7 @@ class GetAnalysisData(object):
             return Silver_Gold_BKC_string, self.date_string, effective_header_list, header_list, cell_data_list
 
         except:
-            self.logger.print_message(msg='Get [ %s ] Orignal Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
+            self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
             return 'Error', 'Error', [], [], []
 
     def get_bak_hw_data(self, data_type, bkc_flag=True):
@@ -693,7 +693,7 @@ class GetAnalysisData(object):
 
             return Silver_Gold_BKC_string, self.date_string, effective_header_list, header_list, cell_data_list
         except:
-            self.logger.print_message(msg='Get [ %s ] Orignal Data Error' % self.data_url, logger_name=self.__file_name,
+            self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name,
                                       definition_log_level=ERROR)
             return 'Error', 'Error', [], [], []
 
@@ -786,7 +786,7 @@ class GetAnalysisData(object):
             # print '\033[31murl_list:\t\033[0m', url_list, len(url_list)
             return Silver_Gold_BKC_string, header_length, self.date_string, url_list, header_list, cell_data_list
         except:
-            self.logger.print_message(msg='Get [ %s ] Orignal Data Error' % self.data_url, logger_name=self.__file_name,
+            self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name,
                                       definition_log_level=ERROR)
             return 'Error', 0, self.date_string, [], [], []
 
@@ -823,7 +823,7 @@ class GetAnalysisData(object):
             # print '\033[31murl_list:\t\033[0m', url_list, len(url_list)
             return Silver_Gold_BKC_string, header_length, self.date_string, url_list, header_list, cell_data_list
         except:
-            self.logger.print_message(msg='Get [ %s ] Orignal Data Error' % self.data_url, logger_name=self.__file_name,
+            self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name,
                                       definition_log_level=ERROR)
             return 'Error', 0, self.date_string, [], [], []
 
@@ -851,11 +851,11 @@ class GetAnalysisData(object):
                     if td_string_list:
                         td_string_list[0] = td_string_list[0].lstrip(' ')
                     cell_data_list.append(td_string_list)
-            # print '\033[31mheader_list:\t\033[0m', header_list
-            # print '\033[36mcell_data_list:\t\033[0m', cell_data_list
+            print '\033[31mheader_list:\t\033[0m', header_list
+            print '\033[36mcell_data_list:\t\033[0m', cell_data_list
             return Silver_Gold_BKC_string, self.date_string, header_list, cell_data_list
         except:
-            self.logger.print_message(msg='Get [ %s ] Orignal Data Error' % self.data_url, logger_name=self.__file_name,
+            self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name,
                                       definition_log_level=ERROR)
             return 'Error', self.date_string, [], []
 
@@ -909,7 +909,7 @@ class GetAnalysisData(object):
             # print '\033[32meffective_url_list:\t\033[0m', effective_url_list, len(effective_url_list)
             return Silver_Gold_BKC_string, self.date_string, effective_url_list, header_list, cell_data_list
         except:
-            self.logger.print_message(msg='Get [ %s ] Orignal Data Error' % self.data_url, logger_name=self.__file_name,
+            self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name,
                                       definition_log_level=ERROR)
             return 'Error', self.date_string, [], [], []
 
@@ -959,7 +959,7 @@ class GetAnalysisData(object):
             # print object_string_list, len(object_string_list); print Silver_Gold_BKC_string
             return Silver_Gold_BKC_string, object_string_list, self.date_string
         except:
-            self.logger.print_message(msg='Get [ %s ] Orignal Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
+            self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
             return 'Error', [], self.date_string
 
     def get_bak_rework_data(self, data_type, bkc_flag=True):
@@ -992,7 +992,7 @@ class GetAnalysisData(object):
             # print object_string_list, len(object_string_list); print Silver_Gold_BKC_string
             return Silver_Gold_BKC_string, object_string_list, self.date_string
         except:
-            self.logger.print_message(msg='Get [ %s ] Orignal Data Error' % self.data_url, logger_name=self.__file_name,
+            self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name,
                                       definition_log_level=ERROR)
             return 'Error', [], self.date_string
 
@@ -1067,7 +1067,7 @@ class GetAnalysisData(object):
             # print '\033[32meffective_link_address_list:\t\033[0m', effective_url_list, len(effective_url_list)
             return Silver_Gold_BKC_string, self.date_string, effective_url_list, header_list, cell_data_list
         except:
-            self.logger.print_message(msg='Get [ %s ] Orignal Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
+            self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
             return 'Error', self.date_string, [], [], []
 
     def get_new_sightings_data(self, data_type, bkc_flag=True):
@@ -1115,7 +1115,7 @@ class GetAnalysisData(object):
             # print '\033[32meffective_url_list:\t\033[0m', effective_url_list
             return Silver_Gold_BKC_string, self.date_string, effective_url_list, header_list, cell_data_list
         except:
-            self.logger.print_message(msg='Get [ %s ] Orignal Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
+            self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
             return 'Error', self.date_string, [], [], []
 
     def get_closed_sightings_data(self, data_type, bkc_flag=True):
@@ -1158,7 +1158,7 @@ class GetAnalysisData(object):
             # print '\033[32meffective_url_list:\t\033[0m', effective_url_list
             return Silver_Gold_BKC_string, self.date_string, effective_url_list, header_list, cell_data_list
         except:
-            self.logger.print_message(msg='Get [ %s ] Orignal Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
+            self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
             return 'Error', self.date_string, [], [], []
 
     def get_caseresult_data(self, data_type, bkc_flag=True):
@@ -1253,7 +1253,7 @@ class GetAnalysisData(object):
                 return self.date_string, '', '', [], []
 
         except ImportError:
-            self.logger.print_message(msg='Get [ %s ] Orignal Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
+            self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
             return self.date_string, 'Error', 'Error', [], []
 
 

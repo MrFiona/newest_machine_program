@@ -56,7 +56,12 @@ class PredictGetData(object):
             # 排除部分周会有更多的列
             # print 'header:list:\t', header_list
             header_length = len(header_list)
-            header_list = header_list[:4]
+            header_list = header_list[:5]
+            build_exist_flag = False
+            header_list = [ ele for ele in header_list if 'build' not in ele ]
+            if len(header_list) == 4:
+                build_exist_flag = True
+
             url_list = []
 
             for t in tr_list[1:]:
@@ -92,6 +97,13 @@ class PredictGetData(object):
 
                 # 获取cell_data_list数据
                 temp_string_list = remove_non_alphanumeric_characters(temp_string_list)
+                # TODO Changed(last build)和Changed(last release)同时存在取后者
+                if build_exist_flag:
+                    temp_temp_list = temp_string_list[:2]
+                    temp_temp_list.extend([temp_string_list[3], temp_string_list[4]])
+                    temp_string_list = temp_temp_list
+                else:
+                    pass
 
                 if (len(temp_string_list) >= header_length + 1):
                     temp_string_list = [ele for ele in temp_string_list if len(ele) != 0]
@@ -104,7 +116,7 @@ class PredictGetData(object):
                         for nu in range(4 - len(temp_string_list)):
                             temp_string_list.append('')
                     cell_data_list.append(temp_string_list)
-                # print 'temp_string_list:\t', temp_string_list, len(temp_string_list)
+
                 for td in actual_td_list:
                     # 正则取匹配url链接
                     obj_list = re.findall('<a href="(.*?)">', str(td), re.M | re.S)
@@ -117,9 +129,9 @@ class PredictGetData(object):
                 if temp_url_list:
                     url_list.append(temp_url_list)
 
-            for k in range(len(cell_data_list)):
-                if header_length > 4 and len(cell_data_list[k]) > 4:
-                    cell_data_list[k] = cell_data_list[k][:4 - header_length]
+            # for k in range(len(cell_data_list)):
+            #     if header_length > 4 and len(cell_data_list[k]) > 4:
+            #         cell_data_list[k] = cell_data_list[k][:4 - header_length]
 
             header_length = len(header_list)
 
@@ -174,6 +186,6 @@ class PredictGetData(object):
 if __name__ == '__main__':
     # https://dcg-oss.intel.com/test_report/test_report/6446/0/
     # https://oss-sh.ccr.corp.intel.com/test_report/test_report/6421/0/
-    obj = PredictGetData('', 'https://dcg-oss.intel.com/test_report/test_report/6495/0/')
-    # obj.predict_get_sw_data()
-    obj.predict_get_ifwi_data()
+    obj = PredictGetData('', 'https://dcg-oss.intel.com/test_report/test_report/6547/0/')
+    obj.predict_get_sw_data()
+    # obj.predict_get_ifwi_data()
