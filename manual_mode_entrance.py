@@ -11,8 +11,6 @@ from __future__ import absolute_import
 import os
 import time
 from logging import ERROR
-# TODO 执行之前安装所需模块
-from machine_scripts.install_module import install_module;install_module()
 from machine_scripts.create_email_html import create_save_miss_html
 from machine_scripts.custom_log import WorkLogger
 from machine_scripts.get_all_html import GetUrlFromHtml
@@ -84,7 +82,7 @@ def manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list):
 def manual_machine_model_entrance():
     try:
         # TODO 界面参数配置
-        manual_machine_config_gui_main()
+        manual_machine_config_gui_main(_logger)
         conf = MachineConfig(MANUAL_CONFIG_FILE_PATH)
         excel_file = conf.get_node_info('manual_machine_info', 'template_info')
         win_book = easyExcel(excel_file)

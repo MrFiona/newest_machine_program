@@ -14,7 +14,6 @@
 
 from __future__ import absolute_import
 
-import collections
 import copy
 import os
 import re
@@ -24,6 +23,7 @@ import urllib2
 
 import openpyxl
 import xlsxwriter
+import collections
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -92,6 +92,7 @@ class InsertDataIntoExcel(object):
         self.worksheet_save_miss = self.workbook.add_worksheet('Save-Miss')
         self.worksheet_mapping = self.workbook.add_worksheet('Mapping')
         self.worksheet_caseresult = self.workbook.add_worksheet('CaseResult')
+        self.worksheet_test_time = self.workbook.add_worksheet('TestTime')
         self.worksheet_trend = self.workbook.add_worksheet('Trend')
         self.worksheet_newsi = self.workbook.add_worksheet('NewSi')
         self.worksheet_existing = self.workbook.add_worksheet('ExistingSi')
@@ -107,7 +108,6 @@ class InsertDataIntoExcel(object):
         self.worksheet_hw_info = self.workbook.add_worksheet('HWInfo')
         self.worksheet_sw_info = self.workbook.add_worksheet('SWInfo')
         self.worksheet_ifwi_info = self.workbook.add_worksheet('IFWIInfo')
-        self.worksheet_test_time = self.workbook.add_worksheet('TestTime')
         self.worksheet_change = self.workbook.add_worksheet('Change History')
 
         # TODO 为excel对象设定显示格式
@@ -985,8 +985,8 @@ class InsertDataIntoExcel(object):
         # 获取公式并插入指定位置
         self.get_formula_data('Mapping', self.worksheet_mapping)
         # 标记True为红色
-        self.worksheet_mapping.conditional_format(self.__WEEK_NUM + 7, 5, 200, self.__WEEK_NUM + 6, {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
-        self.worksheet_mapping.conditional_format(self.__WEEK_NUM + 7, self.__WEEK_NUM + 7, 200, self.__WEEK_NUM + 41, {'type': 'cell', 'criteria': '>', 'value': 0, 'format': self.format1})
+        self.worksheet_mapping.conditional_format(self.__WEEK_NUM + 7, 5, 250, self.__WEEK_NUM + 6, {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
+        self.worksheet_mapping.conditional_format(self.__WEEK_NUM + 7, self.__WEEK_NUM + 7, 250, self.__WEEK_NUM + 41, {'type': 'cell', 'criteria': '>', 'value': 0, 'format': self.format1})
         # TODO 解析url
         insert_date_list = analysis_url_address_string(Silver_url_list)
         # TODO 处理日期对齐
@@ -1000,7 +1000,7 @@ class InsertDataIntoExcel(object):
 
     def insert_CaseResult(self):
         self.logger.print_message('Start inserting [ CaseResult ] data.........', self.__file_name)
-        self.worksheet_caseresult.set_column(firstcol=10, lastcol=41 * (self.__WEEK_NUM - len(self.Silver_url_list) - 1) + 10, options={'hidden': True})
+        self.worksheet_caseresult.set_column(firstcol=11, lastcol=41 * (self.__WEEK_NUM - len(self.Silver_url_list) - 1) + 10, options={'hidden': True})
 
         # 获取公式并插入指定位置
         self.get_formula_data('CaseResult', self.worksheet_caseresult)

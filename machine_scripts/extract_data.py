@@ -713,6 +713,8 @@ class GetAnalysisData(object):
                 header_list[i] = header_list[i].replace('\n', '')
             #排除部分周会有更多的列
             header_length = len(header_list)
+            # todo remove special characters \xc2\xa0
+            header_list = [ ele for ele in header_list if u'\xc2\xa0' not in ele ]
             header_list = header_list[:4]
             url_list = []
 
@@ -776,7 +778,10 @@ class GetAnalysisData(object):
                     url_list.append(temp_url_list)
             for k in range(len(cell_data_list)):
                 if header_length > 4 and len(cell_data_list[k]) > 4:
-                    cell_data_list[k] = cell_data_list[k][:4 - header_length]
+                    if cell_data_list[k][1] == u'VMWare':
+                        cell_data_list[k] = cell_data_list[k][ 1: ]
+                    else:
+                        cell_data_list[k] = cell_data_list[k][:4 - header_length]
 
             header_length = len(header_list)
             if header_length < 4:
@@ -851,8 +856,8 @@ class GetAnalysisData(object):
                     if td_string_list:
                         td_string_list[0] = td_string_list[0].lstrip(' ')
                     cell_data_list.append(td_string_list)
-            print '\033[31mheader_list:\t\033[0m', header_list
-            print '\033[36mcell_data_list:\t\033[0m', cell_data_list
+            # print '\033[31mheader_list:\t\033[0m', header_list
+            # print '\033[36mcell_data_list:\t\033[0m', cell_data_list
             return Silver_Gold_BKC_string, self.date_string, header_list, cell_data_list
         except:
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name,
@@ -1267,13 +1272,14 @@ if __name__ == '__main__':
     #     if 'NFVi' in line and 'Silver' in line:
     #         key_url_list.append(line.strip('\n'))
 
-    cache = DiskCache('Purley-FPGA')
-    key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/BKC/2017%20WW31/6464_BKC.html',]
+    cache = DiskCache('Bakerville')
+    key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW33/6528_Silver.html',
+                    'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW31/6446_Silver.html']
                     # 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW25/6211_BKC.html']
     for url in key_url_list:
-        obj = GetAnalysisData(url, 'Purley-FPGA', get_info_not_save_flag=True, insert_flag=True, cache=cache)
+        obj = GetAnalysisData(url, 'Bakerville', get_info_not_save_flag=True, insert_flag=True, cache=cache)
         # obj.get_caseresult_data('Platform Integration Validation Result', True)
-        obj.get_sw_data_1('SW Configuration', True)
+        obj.get_sw_data('SW Configuration', True)
     print time.time() - start
     # import pstats
     # p = pstats.Stats('mkm_run.prof')

@@ -12,8 +12,6 @@ import re
 import sys
 import time
 from logging import CRITICAL
-# TODO 执行之前安装所需模块
-from machine_scripts.install_module import install_module;install_module()
 from machine_scripts.custom_log import WorkLogger
 log_time = time.strftime('%Y_%m_%d_%H_%M_%S', time.localtime(time.time()))
 _logger = WorkLogger(log_filename='machine_log', log_time=log_time)
@@ -178,7 +176,8 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
             # TODO 发送email
             _logger.print_message('>>>>>>>>>> Please Wait .... The program starts sending Email <<<<<<<<<<', file_name)
             SendEmail(purl_bak_string=purl_bak_string, logger=_logger, predict_newest_insert_bkc_string=predict_newest_insert_bkc_string,
-                      section_Silver_url_list=section_Silver_url_list, keep_continuous=keep_continuous)
+                      section_Silver_url_list=section_Silver_url_list, keep_continuous=keep_continuous,
+                      newest_week_type_string_list=newest_week_type_string_list)
             _logger.print_message('>>>>>>>>>> Send the Email Finished <<<<<<<<<<', file_name)
         except:
             traceback_print_info(logger=_logger)

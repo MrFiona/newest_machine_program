@@ -139,9 +139,9 @@ def manual_current_config_save_as_default():
     conf.modify_node_value('manual_chart_config', 'display_existing', current_display_existing)
     conf.modify_node_value('manual_chart_config', 'display_closed', current_display_closed)
     conf.modify_node_value('manual_chart_config', 'display_total', current_display_total)
-    conf.modify_node_value('manual_chart_config', 'display_total', current_display_save_test)
-    conf.modify_node_value('manual_chart_config', 'display_total', current_display_save_effort)
-    conf.modify_node_value('manual_chart_config', 'display_total', current_display_miss)
+    conf.modify_node_value('manual_chart_config', 'display_save_test', current_display_save_test)
+    conf.modify_node_value('manual_chart_config', 'display_save_effort', current_display_save_effort)
+    conf.modify_node_value('manual_chart_config', 'display_miss', current_display_miss)
 
 
 # TODO 加载图表配置参数值
@@ -251,8 +251,19 @@ def manual_machine_chart_gui():
     mainloop()
 
 
+# TODO 显示所有选择的配置参数值
+def display_all_choose_parameters(logger):
+    with open(MANUAL_CONFIG_FILE_PATH, 'r') as f:
+        manual_config_info = f.readlines()
+
+    manual_config_info = [ info.replace('\n', '') for info in manual_config_info if len(info) != 1 ]
+    for info in manual_config_info:
+        # print '%d:\t%s' % (manual_config_info.index(info), info),
+        logger.print_message('%d:\t%s' % (manual_config_info.index(info), info), os.path.split(__file__)[1])
+
+
 # TODO 手动配置界面主程序
-def manual_machine_config_gui_main():
+def manual_machine_config_gui_main(logger):
     manual_tk = Tk()
     manual_tk.title('manual machine gui')
     week_label = Label(manual_tk, text='week choose', font=("Calibri", 12),background='turquoise')
@@ -299,8 +310,15 @@ def manual_machine_config_gui_main():
 
     # TODO 图表配置界面
     manual_machine_chart_gui()
+    # TODO 显示配置参数值
+    display_all_choose_parameters(logger)
 
 
 
 if __name__ == '__main__':
-    manual_machine_config_gui_main()
+    import time
+    from machine_scripts.custom_log import WorkLogger
+    log_time = time.strftime('%Y_%m_%d_%H_%M_%S', time.localtime(time.time()))
+    _logger = WorkLogger(log_filename='manual_machine_log', log_time=log_time)
+    # manual_machine_config_gui_main()
+    display_all_choose_parameters(_logger)
