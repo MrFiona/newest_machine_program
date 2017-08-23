@@ -4,8 +4,8 @@
 	<meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="./6495_Silver_files/bootstrap.css">
-	<script src="./6495_Silver_files/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./6528_Silver_files/bootstrap.css">
+	<script src="./6528_Silver_files/jquery.min.js"></script>
     <link href="/templates/css/showLoading.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/templates/js/jquery.showLoading.min.js"></script>
     <script>
@@ -16,12 +16,12 @@
 	<div id="content">
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Test Report</title>
-<link rel="stylesheet" type="text/css" href="./6495_Silver_files/report_frame.css">
+<link rel="stylesheet" type="text/css" href="./6528_Silver_files/report_frame.css">
 <link href="/templates/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<script src="./6495_Silver_files/jquery.min.js"></script>
-<script src="./6495_Silver_files/highcharts.js"></script>
-<script src="./6495_Silver_files/table.js"></script>
-<script src="./6495_Silver_files/bootstrap.min.js"></script>
+<script src="./6528_Silver_files/jquery.min.js"></script>
+<script src="./6528_Silver_files/highcharts.js"></script>
+<script src="./6528_Silver_files/table.js"></script>
+<script src="./6528_Silver_files/bootstrap.min.js"></script>
 <style type="text/css">
     .stable,.sh1,.sh2,.sh3 {font-family:'Intel Clear',Arial,sans-serif;}
     .sh2{font-size: 15px;font-weight:bold;overflow: hidden;color: #000000;}
@@ -47,7 +47,7 @@
 </style>
     <script>
         function reload_ifwi_data() {
-            $('#ifwi_info_reference').load('/test_report/reload_ifwi_data/6495/');
+            $('#ifwi_info_reference').load('/test_report/reload_ifwi_data/6528/');
         }
     </script>
 
@@ -265,8 +265,8 @@
             function init_cases_pass_rate_history(div_id){
 
                 if(div_id == 'cases_history_chart'){
-                    var ww_names = '2016 WW47,2016 WW49,2016 WW50,2016 WW51,2016 WW52,2016 WW53,2017 WW01,2017 WW02,2017 WW03,2017 WW04,2017 WW06,2017 WW07,2017 WW08,2017 WW09,2017 WW10,2017 WW11,2017 WW12,2017 WW13,2017 WW15,2017 WW16,2017 WW17,2017 WW18,2017 WW20,2017 WW21,2017 WW22,2017 WW23,2017 WW24,2017 WW25,2017 WW28,2017 WW29,2017 WW31,2017 WW32';
-                    var history_passrate = '75.00%,100.00%,88.89%,66.67%,90.91%,90.91%,100.00%,100.00%,100.00%,73.33%,73.33%,66.67%,90.91%,86.67%,96.67%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%';
+                    var ww_names = '2016 WW47,2016 WW49,2016 WW50,2016 WW51,2016 WW52,2016 WW53,2017 WW01,2017 WW02,2017 WW03,2017 WW04,2017 WW06,2017 WW07,2017 WW08,2017 WW09,2017 WW10,2017 WW11,2017 WW12,2017 WW13,2017 WW15,2017 WW16,2017 WW17,2017 WW18,2017 WW20,2017 WW21,2017 WW22,2017 WW23,2017 WW24,2017 WW25,2017 WW28,2017 WW29,2017 WW31,2017 WW32,2017 WW33';
+                    var history_passrate = '75.00%,100.00%,88.89%,66.67%,90.91%,90.91%,100.00%,100.00%,100.00%,73.33%,73.33%,66.67%,90.91%,86.67%,96.67%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%,100.00%';
                 }else{
                      var ww_names = '';
                     var history_passrate = '';
@@ -431,8 +431,8 @@
                 
                 
                     
-                    <p style="text-align:left;margin-bottom:0px">2017 WW32 Bakerville/SKX-D Silver Release Announcement (
-                        BKC #27)</p>
+                    <p style="text-align:left;margin-bottom:0px">2017 WW33 Bakerville/SKX-D Silver Release Announcement (
+                        BKC #28)</p>
                     
                 
                 <p style="color:black;font-size:13px;text-align:left">DEG Platform Integration Team</p>
@@ -440,7 +440,7 @@
                 </td>
             </tr>
         </tbody></table>
-        <p class="sh3" style="width:100%">The DEG platform Integration team announces the release of <font style="font-weight:bold">2017 WW32 Bakerville/SKX-D Silver release package</font> for Intel internal use. The release is based on OS of
+        <p class="sh3" style="width:100%">The DEG platform Integration team announces the release of <font style="font-weight:bold">2017 WW33 Bakerville/SKX-D Silver release package</font> for Intel internal use. The release is based on OS of
             
                 ESXi6.5/
             
@@ -457,11 +457,11 @@
             
             <tr>
                 <td width="20%">ESXi6.5</td>
-                <td width="40%"><p>SW Package:&nbsp;<a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/Bakerville/2017WW32/WithoutOS_BKC-Bakerville_BkcVMW_138.127524-2017WW32.zip" style="color:#0071c5">WithoutOS_BKC-Bakerville_BkcVMW_138.127524-2017WW32.zip</a></p>
+                <td width="40%"><p>SW Package:&nbsp;<a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/Bakerville/2017WW33/WithoutOS_BKC-Bakerville_BkcVMW_148.128155-2017WW33.zip" style="color:#0071c5">WithoutOS_BKC-Bakerville_BkcVMW_148.128155-2017WW33.zip</a></p>
                
                                 <p>OS Part:&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/OS/VMWare/VMware-VMvisor-Installer-With-Test-Certs-6.5.0-4564106.zip" style="color:#0071c5">VMware-VMvisor-Installer-With-Test-Certs-6.5.0-4564106.zip</a></p>
                                 </td>
-                <td width="40%"><p>SW Package:&nbsp;<a href="https://ubit-artifactory-or.intel.com/artifactory/DEG-Purley-sh-cache/Release/Bakerville/2017WW32/WithoutOS_BKC-Bakerville_BkcVMW_138.127524-2017WW32.zip" style="color:#0071c5">WithoutOS_BKC-Bakerville_BkcVMW_138.127524-2017WW32.zip</a></p>
+                <td width="40%"><p>SW Package:&nbsp;<a href="https://ubit-artifactory-or.intel.com/artifactory/DEG-Purley-sh-cache/Release/Bakerville/2017WW33/WithoutOS_BKC-Bakerville_BkcVMW_148.128155-2017WW33.zip" style="color:#0071c5">WithoutOS_BKC-Bakerville_BkcVMW_148.128155-2017WW33.zip</a></p>
                    
                                 <p>OS Part:&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://ubit-artifactory-or.intel.com/artifactory/DEG-Purley-sh-cache/Release/OS/VMWare/VMware-VMvisor-Installer-With-Test-Certs-6.5.0-4564106.zip" style="color:#0071c5">VMware-VMvisor-Installer-With-Test-Certs-6.5.0-4564106.zip</a></p>
                                 </td>
@@ -469,11 +469,11 @@
             
             <tr>
                 <td width="20%">RHEL7.3</td>
-                <td width="40%"><p>SW Package:&nbsp;<a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/Bakerville/2017WW32/WithoutOS_BKC-Bakerville_BkcLinux_155.127524-2017WW32.zip" style="color:#0071c5">WithoutOS_BKC-Bakerville_BkcLinux_155.127524-2017WW32.zip</a></p>
+                <td width="40%"><p>SW Package:&nbsp;<a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/Bakerville/2017WW33/WithoutOS_BKC-Bakerville_BkcLinux_165.128155-2017WW33.zip" style="color:#0071c5">WithoutOS_BKC-Bakerville_BkcLinux_165.128155-2017WW33.zip</a></p>
                
                                 <p>OS Part:&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/OS/RHEL/RHEL7.3Serverx86_64.zip" style="color:#0071c5">RHEL7.3Serverx86_64.zip</a></p>
                                 </td>
-                <td width="40%"><p>SW Package:&nbsp;<a href="https://ubit-artifactory-or.intel.com/artifactory/DEG-Purley-sh-cache/Release/Bakerville/2017WW32/WithoutOS_BKC-Bakerville_BkcLinux_155.127524-2017WW32.zip" style="color:#0071c5">WithoutOS_BKC-Bakerville_BkcLinux_155.127524-2017WW32.zip</a></p>
+                <td width="40%"><p>SW Package:&nbsp;<a href="https://ubit-artifactory-or.intel.com/artifactory/DEG-Purley-sh-cache/Release/Bakerville/2017WW33/WithoutOS_BKC-Bakerville_BkcLinux_165.128155-2017WW33.zip" style="color:#0071c5">WithoutOS_BKC-Bakerville_BkcLinux_165.128155-2017WW33.zip</a></p>
                    
                                 <p>OS Part:&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://ubit-artifactory-or.intel.com/artifactory/DEG-Purley-sh-cache/Release/OS/RHEL/RHEL7.3Serverx86_64.zip" style="color:#0071c5">RHEL7.3Serverx86_64.zip</a></p>
                                 </td>
@@ -481,11 +481,11 @@
             
             <tr>
                 <td width="20%">WS2016</td>
-                <td width="40%"><p>SW Package:&nbsp;<a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/Bakerville/2017WW32/WithoutOS_BKC-Bakerville_BkcWin_153.127524-2017WW32.zip" style="color:#0071c5">WithoutOS_BKC-Bakerville_BkcWin_153.127524-2017WW32.zip</a></p>
+                <td width="40%"><p>SW Package:&nbsp;<a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/Bakerville/2017WW33/WithoutOS_BKC-Bakerville_BkcWin_163.128155-2017WW33.zip" style="color:#0071c5">WithoutOS_BKC-Bakerville_BkcWin_163.128155-2017WW33.zip</a></p>
                
                                 <p>OS Part:&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/OS/win2016/win2016_RS1_14393.zip" style="color:#0071c5">win2016_RS1_14393.zip</a></p>
                                 </td>
-                <td width="40%"><p>SW Package:&nbsp;<a href="https://ubit-artifactory-or.intel.com/artifactory/DEG-Purley-sh-cache/Release/Bakerville/2017WW32/WithoutOS_BKC-Bakerville_BkcWin_153.127524-2017WW32.zip" style="color:#0071c5">WithoutOS_BKC-Bakerville_BkcWin_153.127524-2017WW32.zip</a></p>
+                <td width="40%"><p>SW Package:&nbsp;<a href="https://ubit-artifactory-or.intel.com/artifactory/DEG-Purley-sh-cache/Release/Bakerville/2017WW33/WithoutOS_BKC-Bakerville_BkcWin_163.128155-2017WW33.zip" style="color:#0071c5">WithoutOS_BKC-Bakerville_BkcWin_163.128155-2017WW33.zip</a></p>
                    
                                 <p>OS Part:&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://ubit-artifactory-or.intel.com/artifactory/DEG-Purley-sh-cache/Release/OS/win2016/win2016_RS1_14393.zip" style="color:#0071c5">win2016_RS1_14393.zip</a></p>
                                 </td>
@@ -593,13 +593,59 @@ P1 and P2 test cases and</span><span style="font-size: 11pt; font-family: &quot;
 
                                 <tr>
                                 
-                                    <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5346227">5346227</a></td>
+                                    <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5346384">5346384</a></td>
                                 
-                                <td style="text-align:left;">[2017_WW22][BIOS:03D80][Bakerville_SKXD] ConfiguredBudget value shows 0 and cannot set  new OSPM power limit after system warm boot.</td>
+                                <td style="text-align:left;">[2017_WW32][BIOS:04D08][Bakerville_SKXD] System cannot enter TXT Environment</td>
+                                <td>P1</td>
+                                <td>2 High</td>
+                                <td>slim48</td>
+                                <td>Pending</td>
+                                <td>ACM TXT</td>
+                                <td>
+                                    
+                                        
+                                            
+                                                <p>N/A</p>
+                                            
+                                        
+                                    
+                                </td>
+                                </tr>
+
+                        
+
+                                <tr>
+                                
+                                    <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5346389">5346389</a></td>
+                                
+                                <td style="text-align:left;">[2017_WW32][BIOS:04D08][Bakerville_SKXD] fTPM cannot be detected in TPM.msc</td>
                                 <td>P2</td>
                                 <td>3 Medium</td>
                                 <td>prosinsk</td>
-                                <td>Pending</td>
+                                <td>Assigned</td>
+                                <td>SPS FW</td>
+                                <td>
+                                    
+                                        
+                                            
+                                                <p>N/A</p>
+                                            
+                                        
+                                    
+                                </td>
+                                </tr>
+
+                        
+
+                                <tr>
+                                
+                                    <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5346401">5346401</a></td>
+                                
+                                <td style="text-align:left;">[2017_WW32][BIOS:04D08][Bakerville_SKXD] windows auto warmreboot cycling became very slow</td>
+                                <td>P2</td>
+                                <td>3 Medium</td>
+                                <td>czwolak</td>
+                                <td>Assigned</td>
                                 <td>SPS FW</td>
                                 <td>
                                     
@@ -870,10 +916,10 @@ Mapping:&nbsp;</span></p><span lang="EN-US" style="color: rgb(31, 78, 121); font
                                 
                             </td>
                             <td>IFWI</td>
-                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/IFWI/2017.31.3.03_QS.zip" style="color:#0071c5">2017.31.3.03_QS</a></td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/IFWI/2017.32.3.03.zip" style="color:#0071c5">2017.32.3.03</a></td>
                             <td>
                                 
-                                <span style="color:#FF0000">(2017.30.3.03-&gt;2017.31.3.03_QS)</span>
+                                <span style="color:#FF0000">(2017.31.3.03_QS-&gt;2017.32.3.03)</span>
                                 
                             </td>
                             <td>
@@ -962,37 +1008,6 @@ Mapping:&nbsp;</span></p><span lang="EN-US" style="color: rgb(31, 78, 121); font
                                         APPs
                                 
                             </td>
-                            <td>RSTe_App</td>
-                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Windows/Utilities/RSTe_App/RSTe_5.2.0.1215_KIT.zip" style="color:#0071c5">5.2.0.1215</a></td>
-                            <td>
-                                
-                                   N
-                                
-                            </td>
-                            <td>
-                                 
-                                        <a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Bakerville/Documents/ReleaseNotes/RSTe_App/RSTe_App_5.2.0.1215_Intel(R)_RSTe_5_2_ReleaseNotes.docx" style="color:#0071c5">Release Notes</a>
-                                
-                            </td>
-                            <td>
-                                 
-                                        N/A
-                                
-                            </td>
-                            <td>
-                                 
-                                        N/A
-                                
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td>WS2016</td>
-                            <td>
-                                
-                                        APPs
-                                
-                            </td>
                             <td>SST</td>
                             <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Windows/Utilities/SST/Intel_R_SystemScopeInstallerWin.zip" style="color:#0071c5">3.0.1044</a></td>
                             <td>
@@ -1052,73 +1067,42 @@ Mapping:&nbsp;</span></p><span lang="EN-US" style="color: rgb(31, 78, 121); font
                             <td>WS2016</td>
                             <td>
                                 
+                                        APPs
+                                
+                            </td>
+                            <td>RSTe_App</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Windows/Utilities/RSTe_App/RSTe_5.2.0.1215_KIT.zip" style="color:#0071c5">5.2.0.1215</a></td>
+                            <td>
+                                
+                                   N
+                                
+                            </td>
+                            <td>
+                                 
+                                        <a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Bakerville/Documents/ReleaseNotes/RSTe_App/RSTe_App_5.2.0.1215_Intel(R)_RSTe_5_2_ReleaseNotes.docx" style="color:#0071c5">Release Notes</a>
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>WS2016</td>
+                            <td>
+                                
                                         Configs
                                 
                             </td>
                             <td>auto_install_script</td>
                             <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Windows/script/Win2016_auto_install_script_v0.6.zip" style="color:#0071c5">win2016_v0.6</a></td>
-                            <td>
-                                
-                                   N
-                                
-                            </td>
-                            <td>
-                                 
-                                        N/A
-                                
-                            </td>
-                            <td>
-                                 
-                                        N/A
-                                
-                            </td>
-                            <td>
-                                 
-                                        N/A
-                                
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td>WS2016</td>
-                            <td>
-                                
-                                        Drivers
-                                
-                            </td>
-                            <td>RSTe</td>
-                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Windows/Drivers/RSTe/RSTe_5.2.0.1215_F6-drivers.zip" style="color:#0071c5">5.2.0.1215</a></td>
-                            <td>
-                                
-                                   N
-                                
-                            </td>
-                            <td>
-                                 
-                                        N/A
-                                
-                            </td>
-                            <td>
-                                 
-                                        N/A
-                                
-                            </td>
-                            <td>
-                                 
-                                        N/A
-                                
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td>WS2016</td>
-                            <td>
-                                
-                                        Drivers
-                                
-                            </td>
-                            <td>RSTe_PreInject</td>
-                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Windows/Drivers/Storage/RSTe_5.0.0.1820_BETA_F6-drivers.zip" style="color:#0071c5">5.0.0.1820</a></td>
                             <td>
                                 
                                    N
@@ -1212,6 +1196,68 @@ Mapping:&nbsp;</span></p><span lang="EN-US" style="color: rgb(31, 78, 121); font
                             </td>
                             <td>Chipset</td>
                             <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Windows/Drivers/Chipset/Chipset_10.1.2.85.zip" style="color:#0071c5">10.1.2.85</a></td>
+                            <td>
+                                
+                                   N
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>WS2016</td>
+                            <td>
+                                
+                                        Drivers
+                                
+                            </td>
+                            <td>RSTe</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Windows/Drivers/RSTe/RSTe_5.2.0.1215_F6-drivers.zip" style="color:#0071c5">5.2.0.1215</a></td>
+                            <td>
+                                
+                                   N
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>WS2016</td>
+                            <td>
+                                
+                                        Drivers
+                                
+                            </td>
+                            <td>RSTe_PreInject</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Windows/Drivers/Storage/RSTe_5.0.0.1820_BETA_F6-drivers.zip" style="color:#0071c5">5.0.0.1820</a></td>
                             <td>
                                 
                                    N
@@ -1458,6 +1504,37 @@ Mapping:&nbsp;</span></p><span lang="EN-US" style="color: rgb(31, 78, 121); font
                                         Drivers
                                 
                             </td>
+                            <td>QAT</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Bakerville/Linux/drivers/QAT/QAT1.7.Upstream.L.1.0.3-42.tar.gz" style="color:#0071c5">1.0.3-42</a></td>
+                            <td>
+                                
+                                   N
+                                
+                            </td>
+                            <td>
+                                 
+                                        <a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Bakerville/Documents/ReleaseNotes/QAT/QAT_1.0.3-42_336211qatrelnotespublicrev001.pdf" style="color:#0071c5">Release Notes</a>
+                                
+                            </td>
+                            <td>
+                                 
+                                        <a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Bakerville/Documents/ipscan/QAT/QAT_1.0.3-42_ProtexReport.xlsx" style="color:#0071c5">IP Scan</a>
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>RHEL7.3</td>
+                            <td>
+                                
+                                        Drivers
+                                
+                            </td>
                             <td>lan-driver-RHEL7.3_3.10.0</td>
                             <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Bakerville/Linux/drivers/lan-driver-RHEL7.3_3.10.0/intel-lan_linux_RH7.3_3.10.0-514_Purley_bkc_rev0.7.tgz" style="color:#0071c5">RH7.3_3.10.0-514_rev0.7</a></td>
                             <td>
@@ -1610,37 +1687,6 @@ Mapping:&nbsp;</span></p><span lang="EN-US" style="color: rgb(31, 78, 121); font
                             <td>RHEL7.3</td>
                             <td>
                                 
-                                        Drivers
-                                
-                            </td>
-                            <td>QAT</td>
-                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Bakerville/Linux/drivers/QAT/QAT1.7.Upstream.L.1.0.3-42.tar.gz" style="color:#0071c5">1.0.3-42</a></td>
-                            <td>
-                                
-                                   N
-                                
-                            </td>
-                            <td>
-                                 
-                                        <a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Bakerville/Documents/ReleaseNotes/QAT/QAT_1.0.3-42_336211qatrelnotespublicrev001.pdf" style="color:#0071c5">Release Notes</a>
-                                
-                            </td>
-                            <td>
-                                 
-                                        <a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Bakerville/Documents/ipscan/QAT/QAT_1.0.3-42_ProtexReport.xlsx" style="color:#0071c5">IP Scan</a>
-                                
-                            </td>
-                            <td>
-                                 
-                                        N/A
-                                
-                            </td>
-                        </tr>
-                    
-                        <tr>
-                            <td>RHEL7.3</td>
-                            <td>
-                                
                                         OSes
                                 
                             </td>
@@ -1729,18 +1775,18 @@ Mapping:&nbsp;</span></p><span lang="EN-US" style="color: rgb(31, 78, 121); font
                                 <tr>
                                     <td> IFWI File</td>
 
-                                    <td>BKVDCRB.86B.WR.64.2017.31.3.03.0311_0004.D08_P00029_LBG_SPS_QS_FPK2Port.bin</td>
+                                    <td>BKVDCRB.86B.WR.64.2017.32.3.03.0634_0004.D13_P00029_LBG_SPS_FPK2Port.bin</td>
                                     
-                                        <td style="color:#FF0000" class="td-center">BKVDCRB.86B.WR.64.2017.30.3.03.0302_0004.D03_P00026_LBG_SPS_FPK2Port.bin-&gt;BKVDCRB.86B.WR.64.2017.31.3.03.0311_0004.D08_P00029_LBG_SPS_QS_FPK2Port.bin</td>
+                                        <td style="color:#FF0000" class="td-center">BKVDCRB.86B.WR.64.2017.31.3.03.0311_0004.D08_P00029_LBG_SPS_QS_FPK2Port.bin-&gt;BKVDCRB.86B.WR.64.2017.32.3.03.0634_0004.D13_P00029_LBG_SPS_FPK2Port.bin</td>
                                     
                                 </tr>
                             
                                 <tr>
                                     <td> BiosID</td>
 
-                                    <td>BKVDCRB1.86B.0004.D08.1708020311</td>
+                                    <td>BKVDCRB1.86B.0004.D13.1708090634</td>
                                     
-                                        <td style="color:#FF0000" class="td-center">BKVDCRB1.86B.0004.D03.1707260302-&gt;BKVDCRB1.86B.0004.D08.1708020311</td>
+                                        <td style="color:#FF0000" class="td-center">BKVDCRB1.86B.0004.D08.1708020311-&gt;BKVDCRB1.86B.0004.D13.1708090634</td>
                                     
                                 </tr>
                             
@@ -1783,9 +1829,9 @@ Mapping:&nbsp;</span></p><span lang="EN-US" style="color: rgb(31, 78, 121); font
                                 <tr>
                                     <td> BIOSACM</td>
 
-                                    <td>Debug_NT,v1.3.1_LBG_BKRV_2</td>
+                                    <td>Unknown</td>
                                     
-                                        <td class="td-center">N</td>
+                                        <td style="color:#FF0000" class="td-center">Debug_NT,v1.3.1_LBG_BKRV_2-&gt;Unknown</td>
                                     
                                 </tr>
                             
@@ -1866,7 +1912,7 @@ Mapping:&nbsp;</span></p><span lang="EN-US" style="color: rgb(31, 78, 121); font
 
                                     <td>SPS/4.0.1.101</td>
                                     
-                                        <td style="color:#FF0000" class="td-center">SPS/4.0.1.72-&gt;SPS/4.0.1.101</td>
+                                        <td class="td-center">N</td>
                                     
                                 </tr>
                             
@@ -1911,7 +1957,7 @@ Mapping:&nbsp;</span></p><span lang="EN-US" style="color: rgb(31, 78, 121); font
 
                                     <td>M9750653_0100013A.inc</td>
                                     
-                                        <td style="color:#FF0000" class="td-center">M9750653_01000138.inc-&gt;M9750653_0100013A.inc</td>
+                                        <td class="td-center">N</td>
                                     
                                 </tr>
                             
@@ -1920,7 +1966,7 @@ Mapping:&nbsp;</span></p><span lang="EN-US" style="color: rgb(31, 78, 121); font
 
                                     <td>M9750654_02000029.inc</td>
                                     
-                                        <td style="color:#FF0000" class="td-center">M9750654_02000026.inc-&gt;M9750654_02000029.inc</td>
+                                        <td class="td-center">N</td>
                                     
                                 </tr>
                             
@@ -2008,9 +2054,9 @@ Mapping:&nbsp;</span></p><span lang="EN-US" style="color: rgb(31, 78, 121); font
                                 <tr>
                                     <td> SINIT</td>
 
-                                    <td>Debug_NT,v1.3.1_LBG_BKRV_2</td>
+                                    <td>Unknown</td>
                                     
-                                        <td class="td-center">N</td>
+                                        <td style="color:#FF0000" class="td-center">Debug_NT,v1.3.1_LBG_BKRV_2-&gt;Unknown</td>
                                     
                                 </tr>
                             
@@ -2180,7 +2226,7 @@ Mapping:&nbsp;</span></p><span lang="EN-US" style="color: rgb(31, 78, 121); font
                         
                         
                     </tbody></table><br>
-                    <div class="stable">Detail case result could be found in this <a href="./6495_Silver_files/detailed_case_Bakerville.html" target="_blank" style="text-decoration: underline;">page</a></div>
+                    <div class="stable">Detail case result could be found in this <a href="./6528_Silver_files/detailed_case_Bakerville.html" target="_blank" style="text-decoration: underline;">page</a></div>
                     <div style="border:1px solid #000000">
                         <div id="cases_domain_chart" style="width:70%;float:left;"></div>
                         <div id="cases_pie_chart" style="width:28%;float:right;border-left:1px solid #000000"></div>
@@ -2219,7 +2265,7 @@ Mapping:&nbsp;</span></p><span lang="EN-US" style="color: rgb(31, 78, 121); font
                     <div id="whql_table_content" style="width:40%;float:left">
                     
                         
-                        <div class="stable">Detail case result could be found in this <a href="./6495_Silver_files/whql_result.html" target="_blank" style="text-decoration: underline;">page</a></div>
+                        <div class="stable">Detail case result could be found in this <a href="./6528_Silver_files/whql_result.html" target="_blank" style="text-decoration: underline;">page</a></div>
 
                     </div>
                     
