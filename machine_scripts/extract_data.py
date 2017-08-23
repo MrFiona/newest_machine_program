@@ -758,8 +758,9 @@ class GetAnalysisData(object):
 
                 # todo 括号分离合并处理
                 temp_string_list = extract_sw_data_deal_bracket(temp_string_list)
-
                 if temp_string_list:
+                    if u'APPs' == temp_string_list[0]:
+                        temp_string_list = temp_string_list[1:]
                     if len(temp_string_list) < 4:
                         for nu in range(4 - len(temp_string_list)):
                             temp_string_list.append('')
@@ -888,13 +889,14 @@ class GetAnalysisData(object):
                 if td_list:
                     # 获取url链接
                     temp_url_list = soup.findAll(name='a', attrs={'href': re.compile(r'[https|http]:(.*?)')})
+                    # print 'temp_url_list:\t', temp_url_list
                     if temp_url_list:
                         for ele in temp_url_list:
                             soup_href = BeautifulSoup(str(ele), 'html.parser')
                             if soup_href:
                                 string_url = soup_href.a['href']
                                 url_list.append(string_url)
-                            effective_url_list.append(url_list)
+                        effective_url_list.append(url_list)
                     else:
                         effective_url_list.append([])
                     #需要循环处理，防止丢失无内容的项
@@ -1272,14 +1274,15 @@ if __name__ == '__main__':
     #     if 'NFVi' in line and 'Silver' in line:
     #         key_url_list.append(line.strip('\n'))
 
-    cache = DiskCache('Bakerville')
-    key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW33/6528_Silver.html',
-                    'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW31/6446_Silver.html']
+    cache = DiskCache('NFVi')
+    key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html',
+                    ]
                     # 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW25/6211_BKC.html']
     for url in key_url_list:
-        obj = GetAnalysisData(url, 'Bakerville', get_info_not_save_flag=True, insert_flag=True, cache=cache)
+        obj = GetAnalysisData(url, 'NFVi', get_info_not_save_flag=True, insert_flag=True, cache=cache)
         # obj.get_caseresult_data('Platform Integration Validation Result', True)
-        obj.get_sw_data('SW Configuration', True)
+        # obj.get_sw_data('SW Configuration', True)
+        obj.get_platform_data('Platform Integration Validation Result', True)
     print time.time() - start
     # import pstats
     # p = pstats.Stats('mkm_run.prof')

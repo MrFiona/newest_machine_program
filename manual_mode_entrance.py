@@ -11,6 +11,7 @@ from __future__ import absolute_import
 import os
 import time
 from logging import ERROR
+from collections import defaultdict as as_dict
 from machine_scripts.create_email_html import create_save_miss_html
 from machine_scripts.custom_log import WorkLogger
 from machine_scripts.get_all_html import GetUrlFromHtml
@@ -32,29 +33,32 @@ LOGGER_CLOSE_FLAG = False
 
 
 # TODO 生成html文件
-def manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list):
+def manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list, choose_week_string):
     start = time.time()
     Silver_url_list = []
+    week_index_dict = as_dict()
     for j in range(1, 104):
-        data = win_book.getCell(sheet='Save-Miss', row=3, col=j)
-        if data is not None and data != 'Average':
-            Silver_url_list.append(data)
+        data_week = win_book.getCell(sheet='Save-Miss', row=3, col=j)
+        if data_week is not None and data_week != 'Average':
+            Silver_url_list.append(data_week)
+
+        data_type = win_book.getCell(sheet='Save-Miss', row=9, col=j)
+        week_index_dict[data_week] = data_type
+
+    _logger.print_message('week_index_dict:\t%s\t%d' % (week_index_dict, len(week_index_dict)), _file_name)
+    # todo 获取图表日期数据类型字符串 默认从Save-Miss表中获取
+    week_bkc_gold_silver_string = week_index_dict.get(choose_week_string, 'default_week_type_string')
 
     _logger.print_message('Silver_url_list:\t%s\t%d' % (Silver_url_list, len(Silver_url_list)), _file_name)
-    conf = MachineConfig(MANUAL_CONFIG_FILE_PATH)
-    week_info = conf.get_node_info('manual_machine_info', 'week_info')
-    if week_info not in Silver_url_list:
+    if choose_week_string not in Silver_url_list:
         raise UserWarning('The selected week does not exist!!!')
     # TODO 手动场景
-    newest_week_index = 0
     if Silver_url_list:
-        if week_info in all_Silver_url_list:
-            newest_week_index = all_Silver_url_list.index(week_info)
+        if choose_week_string in all_Silver_url_list:
+            newest_week_index = all_Silver_url_list.index(choose_week_string)
             _logger.print_message('newest_week_index:\t%s' % newest_week_index, _file_name)
             Silver_url_list = all_Silver_url_list[newest_week_index:]
 
-    # todo 获取图表日期数据类型字符串 默认从NewSi表中获取
-    week_bkc_gold_silver_string = win_book.getCell(sheet='NewSi', row=3, col=(100 - len(all_Silver_url_list) + newest_week_index)*13 + 1 + 1)
     _logger.print_message('week_bkc_gold_silver_string:\t%s' % week_bkc_gold_silver_string, _file_name)
     _logger.print_message('Silver_url_list:\t%s\t%d' % (Silver_url_list, len(Silver_url_list)), _file_name)
     _logger.print_message('get week info time:\t%d' % (time.time() - start), _file_name)
@@ -85,6 +89,7 @@ def manual_machine_model_entrance():
         manual_machine_config_gui_main(_logger)
         conf = MachineConfig(MANUAL_CONFIG_FILE_PATH)
         excel_file = conf.get_node_info('manual_machine_info', 'template_info')
+        choose_week_string = conf.get_node_info('manual_machine_info', 'week_info')
         win_book = easyExcel(excel_file)
         pur_string_info = win_book.getCell(sheet='Save-Miss', row=1, col=1)
         purl_bak_string = pur_string_info.split()[-1]
@@ -103,9 +108,9 @@ def manual_machine_model_entrance():
         _logger.print_message('all_Silver_url_list:\t%s\t%d' % (all_Silver_url_list, len(all_Silver_url_list)), _file_name)
 
         # TODO 生成html文件
-        week_bkc_gold_silver_string = manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list)
+        week_bkc_gold_silver_string = manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list, choose_week_string)
         # TODO 发送邮件
-        SendEmail(purl_bak_string=purl_bak_string, logger=_logger, type_string='manual_')
+        SendEmail(purl_bak_string=purl_bak_string, logger=_logger, type_string='manual_', manual_week_bkc_gold_silver_string=week_bkc_gold_silver_string)
         # TODO 生成图表
         generate_chart(purl_bak_string=purl_bak_string, log_time=log_time, logger=_logger, type_string='manual_',
                        week_type_string=week_bkc_gold_silver_string)

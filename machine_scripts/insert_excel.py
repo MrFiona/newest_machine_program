@@ -953,7 +953,6 @@ class InsertDataIntoExcel(object):
                         for m in range(length_merge):
                             self.worksheet_platform.write_url(nu+m, self.calculate_head_num(12, j, 11), url_list[line][m], self.url_format, str(temp_list[10+m]))
                         nu += line_num_list[line]
-
             except:
                 self.logger.print_message('The data crawling failed for the %dth url [ %s ]' % (j + 1, self.Silver_url_list[j]), self.__file_name)
 

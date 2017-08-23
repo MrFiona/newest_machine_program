@@ -9,9 +9,9 @@
 import os
 import glob
 
-pwd_file_list = glob.glob(os.getcwd() + os.sep + '*.py*')
-parent_file_list = glob.glob(os.path.split(os.getcwd())[0] + os.sep + '*.py*')
+pwd_file_list = glob.glob(os.getcwd() + os.sep + '*.pyc')
+parent_path = os.path.split(os.getcwd())[0]
+parent_file_list = glob.glob(parent_path + os.sep + '*.pyc')
 pwd_file_list.extend(parent_file_list)
 for name in pwd_file_list:
-    if name.endswith('.pyc'):
-        os.remove(name)
+    os.remove(name)
