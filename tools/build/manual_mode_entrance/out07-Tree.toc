@@ -1,0 +1,5 @@
+('C:\\Users\\pengzh5x\\Desktop\\machine_scripts\\tools\\build\\manual_mode_entrance\\idna-2.6-py2.7.egg',
+ None,
+ set(['*.py', '*.pyc', '*.pyd', '*.pyo', '*.so', 'EGG-INFO']),
+ 'DATA',
+ [])

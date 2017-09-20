@@ -295,6 +295,7 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
     if object_excel_file:
         sht.pictures.add(fig_sighting, name='Trend_chart 2', update=True, left=500, top=1100, width=1500, height=800)
         obj_book.save()
+        obj_book.close()
         os.system('taskkill /F /IM excel.exe')
 
     plt.tight_layout()

@@ -9,9 +9,15 @@
 import os
 import glob
 
-pwd_file_list = glob.glob(os.getcwd() + os.sep + '*.pyc')
+
 parent_path = os.path.split(os.getcwd())[0]
-parent_file_list = glob.glob(parent_path + os.sep + '*.pyc')
-pwd_file_list.extend(parent_file_list)
-for name in pwd_file_list:
+print 'parent_path:\t', parent_path
+parent_pyc_file_list = glob.glob(parent_path + os.sep + '*.pyc')
+print 'parent_pyc_file_list:\t', parent_pyc_file_list
+pwd_pyc_file_list = glob.glob(parent_path + os.sep + 'machine_scripts' + os.sep + '*.pyc')
+print 'pwd_pyc_file_list:\t', pwd_pyc_file_list
+pwd_pyc_file_list.extend(parent_pyc_file_list)
+for name in pwd_pyc_file_list:
     os.remove(name)
+
+

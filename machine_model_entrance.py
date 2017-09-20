@@ -69,6 +69,7 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
 
     cache = DiskCache(purl_bak_string)
     Silver_url_list = get_url_list_by_keyword(purl_bak_string, 'Silver')
+    # print '\033[31Silver_url_list:\t\033[0m', Silver_url_list
 
     # TODO 默认以实际最新周开始
     link_WW_week_string = 'Default'

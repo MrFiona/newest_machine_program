@@ -19,8 +19,8 @@ class DiskCache(object):
         self.cache_dir = cache_dir + os.sep + purl_bak_string
         self.expires = expires
 
-    def has_expired(self, timestamp):
-        return datetime.utcnow() > timestamp + self.expires
+    # def has_expired(self, timestamp):
+    #     return datetime.utcnow() > timestamp + self.expires
 
     def url_to_path(self, url):
         components = urlparse.urlsplit(url)

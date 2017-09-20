@@ -59,12 +59,13 @@ shutil.copy2(os.getcwd() + os.sep + 'requirements.txt', os.getcwd() + os.sep + '
 #todo ********************** 将相关文件移动到 pyinstall_normal以及pyinstall_manual目录 **********************
 #
 # todo ********************** 清除pyc文件 **********************
-if os.path.exists(parent_dir + os.sep + 'machine_scripts'):
-    for file_ele in glob.glob(parent_dir + os.sep + 'machine_scripts' + os.sep + '*.pyc'):
-        os.remove(file_ele)
-
-for file_ele in glob.glob(parent_dir + os.sep + '*.pyc'):
-    os.remove(file_ele)
+# todo 调用清理文件脚本，路径切换到原来路径
+os.chdir('./tools')
+cmd_status = os.system('python ../machine_scripts/auto_clear_junk_file.py')
+if 0 == cmd_status:
+    print '\033[32mremove pyc file successfully!!!\033[0m'
+# todo 目录路径还原
+os.chdir('..')
 # todo ********************** 清除pyc文件 **********************
 
 try:
@@ -110,5 +111,6 @@ try:
 except:
     traceback_print_info()
     print '\033[31mcompress the target file failed!!!\033[0m'
+
 
 print time.time() - start

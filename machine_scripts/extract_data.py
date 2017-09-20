@@ -250,10 +250,11 @@ class GetAnalysisData(object):
                     temp_string = re.sub('[()]', '', temp_string)
                     judge_string_list = re.findall('\d+~\d+', temp_string)
                     #说明是 (1,2~7)这样的情况 ~左右数字齐全
-                    # print 'judge_string_list:\t',judge_string_list
+                    print 'judge_string_list:\t',judge_string_list
                     if judge_string_list:
                         temp_list = []
                         split_string_list = [ele for ele in re.split(',', temp_string) if len(ele) != 0]
+                        print 'split_string_list:\t', split_string_list
                         for deal_num in split_string_list:
                             #2~6
                             if '~' in deal_num:
@@ -261,8 +262,9 @@ class GetAnalysisData(object):
                                 temp_list = [nu for nu in range(int(range_num_list[0]), int(range_num_list[1]) + 1)]
                             #单个数字 2
                             else:
-                                temp_list.append(deal_num)
-                        temp_num_list.extend(temp_list)
+                                temp_list.append(int(deal_num))
+                            temp_num_list.extend(temp_list)
+                        print temp_num_list
                     #说明是 (1,~5)这种情况
                     else:
                         range_num_list = re.findall('\d+', temp_string)
@@ -351,9 +353,11 @@ class GetAnalysisData(object):
                 for j in range(len(cell_data_list)):
                     temp_cell_data_list.append(cell_data_list[j][ele])
                 cell_data_direction_dict[k] = temp_cell_data_list
+                # print k, cell_data_direction_dict
         cell_data_direction_dict = sorted(cell_data_direction_dict.iteritems())
         x, effective_cell_data_list = zip(*cell_data_direction_dict)
         effective_cell_data_list = [[ele[i] for ele in effective_cell_data_list] for i in range(len(cell_data_list))]
+        # print 'effective_cell_data_list:\t', effective_cell_data_list
         # 重复拷贝信息的次数
         repeat_append_num = 12 - len(effective_cell_data_list[0])
         # 不管是否含有SKX_DE，只要小于12列后面的列就用最后一列信息补充
@@ -448,10 +452,13 @@ class GetAnalysisData(object):
                 return 'Error', 'Error', [], [], []
 
             search_td_container_list = []
-            effective_header_list = []
+            temp_header_list = []
             effective_search_td_container_list = []
             effective_cell_data_td_list = []
 
+            # print 'tr_list:\t', tr_list
+
+            #todo 按行将信息加入列表 按列存储
             for tr in tr_list:
                 soup_tr = BeautifulSoup(str(tr), 'html.parser')
                 judge_th_exist = soup_tr.find_all('th')
@@ -468,25 +475,38 @@ class GetAnalysisData(object):
                         for index in range(len(search_td_container_list)):
                             search_td_container_list[index].append(judge_th_exist[index])
 
+            # TODO 根据Item位置进行确定
+            separate_item_index_list = []
+            for i in range(len(search_td_container_list[0])):
+                if re.match('.*Item.*', str(search_td_container_list[0][i])):
+                    separate_item_index_list.append(i)
+            item_index = max(separate_item_index_list)
+
             # TODO 提取表左列值列表
             for header_ele in search_td_container_list[0]:
                 header_soup = BeautifulSoup(str(header_ele), 'html.parser')
                 temp = list(header_soup.strings)
                 if temp:
-                    effective_header_list.append(temp[0])
-            header_list = effective_header_list[1:5]
-
+                    temp_header_list.append(temp[0])
+            # print 'effective_header_list:\t', temp_header_list, item_index
+            if item_index:
+                header_list = temp_header_list[1:item_index]
+            else:
+                header_list = temp_header_list[1:]
             # print 'search_td_container_list:\t', search_td_container_list
 
-            # TODO 目前四个特性 分离两个table组合成一个table
+            #todo 两个table组合成一个table  虽然是24周以后但是却没有出现两个table而只是一个table，item_index为0则一个table
             for ele_list in search_td_container_list[1:]:
-                effective_search_td_container_list.append(ele_list[0:5])
-                effective_search_td_container_list.append(ele_list[5:])
-
+                if item_index:
+                    effective_search_td_container_list.append(ele_list[0:item_index])
+                    effective_search_td_container_list.append(ele_list[item_index:])
+                else:
+                    effective_search_td_container_list.append(ele_list)
             # print '\neffective_search_td_container_list:\t', effective_search_td_container_list
 
             # TODO 按列标号排序 数据对齐
             for ele in range(len(effective_search_td_container_list)):
+                # print 'ttt:\t', effective_search_td_container_list[ele]
                 soup_ele = BeautifulSoup(str(effective_search_td_container_list[ele][0]), 'html.parser')
                 if list(soup_ele.strings):
                     effective_search_td_container_list[ele][0] = list(soup_ele.strings)[0]
@@ -502,17 +522,26 @@ class GetAnalysisData(object):
             # TODO 提取单元格数据
             for location in range(len(effective_cell_data_td_list)):
                 child_element = effective_cell_data_td_list[location]
+                # print 'child_element:\t', child_element
                 for ele in range(len(child_element)):
+                    # print child_element[ele], ele
                     ele_soup = BeautifulSoup(str(child_element[ele]), 'html.parser')
                     ele_string_list = list(ele_soup.strings)
                     if ele_string_list:
                         child_element[ele] = ele_string_list[0]
-                    else:
-                        child_element.pop(-1)
+                # child_element.pop(-1)
             # print '\neffective_cell_data_td_list:\t\n', effective_cell_data_td_list, len(effective_cell_data_td_list)
 
-            effective_header_list = effective_cell_data_td_list[0]
+            #todo 去除多余的标签元素 由于空白产生的垃圾数据
+            effective_header_list = [ header for header in effective_cell_data_td_list[0] if not re.search('width', str(header)) ]
             cell_data_list = effective_cell_data_td_list[1:]
+            #todo 循环处理垃圾元素
+            for cell in range(len(cell_data_list)):
+                cell_data_list[cell] = [ header for header in cell_data_list[cell] if not re.search('style', str(header)) ]
+                cell_data_list[cell] = remove_non_alphanumeric_characters(cell_data_list[cell])
+
+            effective_header_list, effective_num_list = self._get_hw_bak_effective_header_list(effective_header_list)
+            cell_data_list = self._insert_bak_numers_to_cell_data_list(effective_num_list, cell_data_list)
 
             # print '\033[31mSilver_Gold_BKC_string222:\t\033[0m', Silver_Gold_BKC_string
             # print '\033[32meffective_header_list:\t\033[0m', effective_header_list, len(effective_header_list)
@@ -680,9 +709,11 @@ class GetAnalysisData(object):
                     temp.append(cell_string_list[0])
                 cell_data_list.append(temp)
 
-            # print effective_header_list
+            # print '1:\t', effective_header_list
             # 提取有效的表头列数
             effective_header_list, effective_num_list = self._get_hw_bak_effective_header_list(effective_header_list)
+            # print cell_data_list
+            # print '2:\t', effective_header_list, effective_num_list
             cell_data_list = self._insert_bak_numers_to_cell_data_list(effective_num_list, cell_data_list)
             # print 'Silver_Gold_BKC_string:\t', Silver_Gold_BKC_string
 
@@ -790,6 +821,7 @@ class GetAnalysisData(object):
             # print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
             # print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
             # print '\033[31murl_list:\t\033[0m', url_list, len(url_list)
+            # print '\033[31Silver_Gold_BKC_string:\t\033[0m', Silver_Gold_BKC_string
             return Silver_Gold_BKC_string, header_length, self.date_string, url_list, header_list, cell_data_list
         except:
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name,
@@ -859,6 +891,7 @@ class GetAnalysisData(object):
                     cell_data_list.append(td_string_list)
             # print '\033[31mheader_list:\t\033[0m', header_list
             # print '\033[36mcell_data_list:\t\033[0m', cell_data_list
+            # print '\033[31Silver_Gold_BKC_string:\t\033[0m', Silver_Gold_BKC_string
             return Silver_Gold_BKC_string, self.date_string, header_list, cell_data_list
         except:
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name,
@@ -1269,20 +1302,28 @@ if __name__ == '__main__':
     import time
     start = time.time()
     key_url_list = []
-    # f = open(os.getcwd() + os.sep + 'report_html' + os.sep + 'url_info.txt')
+    # f = open(os.getcwd() + os.sep + 'report_html' + os.sep + 'Bakerville_url_info.txt')
     # for line in f:
-    #     if 'NFVi' in line and 'Silver' in line:
+    #     if 'Bakerville' in line and 'Silver' in line:
     #         key_url_list.append(line.strip('\n'))
 
-    cache = DiskCache('NFVi')
-    key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW15/5843_Silver.html',
-                    ]
-                    # 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW25/6211_BKC.html']
+    cache = DiskCache('Bakerville')
+    # key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW24/6170_Silver.html',
+    #                 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW34/6565_Silver.html',
+    #                 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW38/6706_Silver.html',
+    #                 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW37/6668_Silver.html']
+    #                 # 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW25/6211_BKC.html']
+    key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW34/6565_Silver.html',
+                    'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW38/6706_Silver.html',
+                    'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW24/6170_Silver.html',
+                    'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW37/6668_Silver.html']
     for url in key_url_list:
-        obj = GetAnalysisData(url, 'NFVi', get_info_not_save_flag=True, insert_flag=True, cache=cache)
+        obj = GetAnalysisData(url, 'Bakerville', get_info_not_save_flag=True, insert_flag=True, cache=cache)
         # obj.get_caseresult_data('Platform Integration Validation Result', True)
         # obj.get_sw_data('SW Configuration', True)
-        obj.get_platform_data('Platform Integration Validation Result', True)
+        # obj.get_platform_data('Platform Integration Validation Result', True)
+        # obj.get_bak_hw_data('HW Configuration', True)
+        obj.get_lastest_bak_hw_data('HW Configuration', True)
     print time.time() - start
     # import pstats
     # p = pstats.Stats('mkm_run.prof')

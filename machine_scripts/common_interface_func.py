@@ -642,7 +642,9 @@ class FilterTag(object):
 
 
 if __name__ == '__main__':
-    pass
+    test = [u'Intel\xc2\xae Ethernet Controller X710-AM2', u'Intel\xc2\xae Ethernet Controller X710-AM2', u'N/A', u'N/A', u'N/A', u'N/A', u'N/A', u'N/A', u'N/A', u'N/A', u'N/A', u'N/A']
+    test = remove_non_alphanumeric_characters(test)
+    print test
 
 
 

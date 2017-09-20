@@ -1,5 +1,13 @@
-('C:\\Users\\pengzh5x\\Desktop\\machine_scripts\\tools\\build\\manual_mode_entrance\\chardet-3.0.4-py2.7.egg',
+('c:\\python27\\lib\\site-packages\\certifi-2017.7.27.1-py2.7.egg',
  None,
  set(['*.py', '*.pyc', '*.pyd', '*.pyo', '*.so', 'EGG-INFO']),
  'DATA',
- [])
+ [('certifi\\cacert.pem',
+   'c:\\python27\\lib\\site-packages\\certifi-2017.7.27.1-py2.7.egg\\certifi\\cacert.pem',
+   'DATA'),
+  ('certifi\\old_root.pem',
+   'c:\\python27\\lib\\site-packages\\certifi-2017.7.27.1-py2.7.egg\\certifi\\old_root.pem',
+   'DATA'),
+  ('certifi\\weak.pem',
+   'c:\\python27\\lib\\site-packages\\certifi-2017.7.27.1-py2.7.egg\\certifi\\weak.pem',
+   'DATA')])
