@@ -1,3 +1,5 @@
+https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW38/6706_Silver.html
+https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW37/6668_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW34/6565_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW33/6528_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW32/6495_Silver.html
@@ -32,6 +34,8 @@ https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2016%20WW51/4924_Silv
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2016%20WW50/4853_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2016%20WW49/4773_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2016%20WW47/4690_Silver.html
+https://dcg-oss.intel.com/ossreport/auto/Bakerville/Gold/2017%20WW37/6668_Gold.html
+https://dcg-oss.intel.com/ossreport/auto/Bakerville/Gold/2017%20WW34/6565_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Gold/2017%20WW33/6528_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Gold/2017%20WW32/6495_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Gold/2017%20WW31/6446_Gold.html
@@ -65,6 +69,8 @@ https://dcg-oss.intel.com/ossreport/auto/Bakerville/Gold/2016%20WW51/4924_Gold.h
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Gold/2016%20WW50/4853_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Gold/2016%20WW49/4773_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Gold/2016%20WW47/4690_Gold.html
+https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW37/6668_BKC.html
+https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW34/6565_BKC.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW33/6528_BKC.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW32/6495_BKC.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW31/6446_BKC.html
