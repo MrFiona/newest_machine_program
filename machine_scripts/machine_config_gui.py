@@ -159,8 +159,8 @@ def file_config(name, tab2, logger):
     file_reacquire_numberChosen1.grid(column=1, row=1, columnspan=2, padx=10, sticky='W')
     file_check_numberChosen2.grid(column=1, row=2, columnspan=2, padx=10, sticky='W')
 
-    file_reacquire_numberChosen1.set('YES' if current_reacquire_data_flag != '' else 'NO')
-    file_check_numberChosen2.set('YES' if current_verify_file_flag != '' else 'NO')
+    file_reacquire_numberChosen1.set('YES' if current_reacquire_data_flag == 'YES' else 'NO')
+    file_check_numberChosen2.set('YES' if current_verify_file_flag == 'YES' else 'NO')
     file_max_time.insert(0, current_max_waiting_time if current_max_waiting_time != '' else '30')
 
     # GUI Callback function
