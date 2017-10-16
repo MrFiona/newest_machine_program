@@ -57,6 +57,8 @@ def obtain_prefix_project_name(project_name):
         project_string_sep = 'FPGA'
     elif project_name == 'Bakerville':
         project_string_sep = 'Bak'
+    elif project_name == 'Crystal-Ridge':
+        project_string_sep = 'Crystal-Ridge'
     else:
         project_string_sep = 'NFV'
 
