@@ -250,7 +250,7 @@ class GetAnalysisData(object):
                     temp_string = re.sub('[()]', '', temp_string)
                     judge_string_list = re.findall('\d+~\d+', temp_string)
                     #说明是 (1,2~7)这样的情况 ~左右数字齐全
-                    print 'judge_string_list:\t',judge_string_list
+                    # print 'judge_string_list:\t',judge_string_list
                     if judge_string_list:
                         temp_list = []
                         split_string_list = [ele for ele in re.split(',', temp_string) if len(ele) != 0]
@@ -419,7 +419,8 @@ class GetAnalysisData(object):
                         for word in th_list:
                             string_soup = BeautifulSoup(str(word), 'html.parser')
                             th_strings_list = list(string_soup.strings)
-                            th_strings_list = [ effective_string for effective_string in th_strings_list if len(effective_string) > 1 ]
+                            # todo 去除换行符
+                            remove_line_break(th_strings_list, line_break=True, second_method=True)
                             effective_header_list.append(th_strings_list[0])
                             cell_data_list.insert(0, effective_header_list)
                     effective_header_list, effective_num_list = self._get_hw_effective_header_list(effective_header_list)

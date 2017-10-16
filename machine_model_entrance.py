@@ -125,6 +125,7 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
     INTERRUPTED_CLEAR_FILE_CONDITION_FLAG = False
 
     # TODO 是否验证excel  开启:YES   关闭:NO
+    start = time.time()
     verify_file_flag = judge_get_config('verify_file_flag', purl_bak_string)
     if verify_file_flag == 'YES':
         # TODO 完成excel操作后，打开结果excel文件确认
@@ -134,6 +135,8 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
         _logger.print_message('>>>>>>>>>> Comfirm the Excel File Finished <<<<<<<<<<', file_name)
     else:
         os.system('taskkill /F /IM excel.exe')
+
+    confirm_excel_time = time.time() - start
 
     # TODO 生成html
     _logger.print_message('>>>>>>>>>> Please Wait .... the program is generating Html File <<<<<<<<<<', file_name)
@@ -170,8 +173,8 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
     _logger.print_message('failed_sheet_name_list:%s\t' % failed_sheet_name_list, file_name)
 
     # TODO 是否发送邮件标记  开启:YES   关闭:NO
-    send_email_flag = judge_get_config('send_email_flag', purl_bak_string)
     start = time.time()
+    send_email_flag = judge_get_config('send_email_flag', purl_bak_string)
     if send_email_flag == 'YES':
         try:
             # TODO 发送email
@@ -188,8 +191,8 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
     backup_excel_file(logger=_logger, log_time=log_time, link_WW_week_string=link_WW_week_string, Silver_url_list=Silver_url_list,
                       auto_iteration_flag=auto_run_flag, predict_execute_flag=predict_execute_flag)
     _logger.print_message('>>>>>>>>>> Backing up Excel File Finished <<<<<<<<<<', file_name)
-    confirm_time = time.time() - start
-    return  confirm_time, newest_week_type_string_list, link_WW_week_string, Silver_url_list, predict_execute_flag, predict_newest_insert_bkc_string
+    send_backup_time = time.time() - start
+    return  confirm_excel_time, send_backup_time, newest_week_type_string_list, link_WW_week_string, Silver_url_list, predict_execute_flag, predict_newest_insert_bkc_string
 
 
 @performance_analysis_decorator('mkm_run.prof')
@@ -240,7 +243,7 @@ def machine_main():
         start_time = time.time()
         # TODO 是否离线标记获取
         on_off_line_save_flag = judge_get_config('on_off_line_save_flag', purl_bak_string)
-        confirm_time, newest_week_type_string_list, link_WW_week_string, Silver_url_list, predict_execute_flag,\
+        confirm_excel_time, send_backup_time, newest_week_type_string_list, link_WW_week_string, Silver_url_list, predict_execute_flag,\
         predict_newest_insert_bkc_string = machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save_flag, AUTO_RUN_FLAG)
 
         # TODO 生成趋势图
@@ -262,9 +265,10 @@ def machine_main():
                              predict_execute_flag=predict_execute_flag)
         _logger.print_message('>>>>>>>>>> Renaming the Excel File Finished <<<<<<<<<<', file_name)
         end_time = time.time()
-        _logger.print_message('Confirm Excel and Send Email Time:\t%.5f' % confirm_time, file_name)
+        _logger.print_message('Send Excel and Backup Excel Time:\t%.5f' % send_backup_time, file_name)
+        _logger.print_message('Confirm Excel Time:\t%.5f' % confirm_excel_time, file_name)
         _logger.print_message('Image shows waiting Time:\t%.5f' % chart_time, file_name)
-        _logger.print_message('Program Run Total Time:\t%.5f' % (end_time - start_time - chart_time), file_name)
+        _logger.print_message('Program Run Total Time:\t%.5f' % (end_time - start_time - chart_time - confirm_excel_time), file_name)
 
         global LOGGER_CLOSE_FLAG
         LOGGER_CLOSE_FLAG = True

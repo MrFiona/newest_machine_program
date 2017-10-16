@@ -132,13 +132,15 @@ class GetUrlFromHtml(object):
                     department_info_list.append('Bakerville')
                 if 'NFVi/' in li.encode('utf-8'):
                     department_info_list.append('NFVi')
+                if 'Purley-Crystal-Ridge/' in li.encode('utf-8'):
+                    department_info_list.append('Purley-Crystal-Ridge')
             department_info_list.sort(reverse=True)
 
         else:
             for li in li_list:
                 if purl_bak_string in li.encode('utf-8'):
                     department_info_list.append(purl_bak_string)
-
+        print department_info_list
         return department_info_list
 
     # TODO 获取部门html中的阶段信息列表
@@ -324,12 +326,12 @@ if __name__ == '__main__':
     _logger = WorkLogger('get_all_html_log', create_log_flag=False)
 
     # purl_bak_string = get_interface_config('default_purl_bak_string', 'PURL_BAK_STRING')
-    purl_bak_string = 'Purley-FPGA'
+    purl_bak_string = 'Purley-Crystal-Ridge'
     object = GetUrlFromHtml(html_url_pre='https://dcg-oss.intel.com/ossreport/auto/', logger=_logger)
-    # object.get_all_type_data(purl_bak_string, get_only_department=True, remove_week_cache_flag=True, remove_week_list=None)
+    object.get_all_type_data(purl_bak_string, get_only_department=True)
     #多线程写文件
-    object.update_week_cache(purl_bak_string)
-    # object.write_html_by_multi_thread(purl_bak_string)
+    # object.update_week_cache(purl_bak_string)
+    object.write_all_html_by_multi_thread(purl_bak_string)
     # object.get_department_stage_date_list()
     print '用时: [ %d ]' %(time.time() - start)
     # hw = object.get_hw_configuration_info('BasinFalls', 'Gold111', '')

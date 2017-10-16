@@ -27,9 +27,9 @@ class PredictGetData(object):
         soup_string = BeautifulSoup(str(object_string), 'html.parser')
         candidate_string = soup_string.find_all('p')[1]
         result_dict = re.search('<p\s+.*\s+--\s+(?P<name>(.*))</p>', str(candidate_string))
-        if result_dict:
-            self.logger.print_message('result_dict:\t%s' % result_dict.group('name'), self._file_name)
-            self.date_string = result_dict.group('name')
+        # if result_dict:
+        #     self.logger.print_message('result_dict:\t%s' % result_dict.group('name'), self._file_name)
+        #     self.date_string = result_dict.group('name')
 
     def return_save_miss_bkc_string(self):
         save_miss_insert_bkc_string = self.date_string
@@ -138,9 +138,9 @@ class PredictGetData(object):
             if header_length < 4:
                 header_length = 4
 
-            # print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
-            # print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
-            # print '\033[31murl_list:\t\033[0m', url_list, len(url_list)
+            print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
+            print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
+            print '\033[31murl_list:\t\033[0m', url_list, len(url_list)
             return 'Candidate', header_length, url_list, header_list, cell_data_list
         except:
             return 'Error', 0, [], [], []
@@ -186,6 +186,6 @@ class PredictGetData(object):
 if __name__ == '__main__':
     # https://dcg-oss.intel.com/test_report/test_report/6446/0/
     # https://oss-sh.ccr.corp.intel.com/test_report/test_report/6421/0/
-    obj = PredictGetData('', 'https://dcg-oss.intel.com/test_report/test_report/6547/0/')
+    obj = PredictGetData('', 'https://dcg-oss.intel.com/test_report/test_report/6885/0/')
     obj.predict_get_sw_data()
     # obj.predict_get_ifwi_data()
