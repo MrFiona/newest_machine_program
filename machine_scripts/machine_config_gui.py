@@ -38,7 +38,7 @@ week_input_string_list = []
 
 close_windows_update_config_flag = False
 _file_name = os.path.split(__file__)[1]
-type_color_dict = {'Purley-FPGA': 'green', 'Bakerville': 'yellow', 'NFVi': 'peru'}
+type_color_dict = {'Purley-FPGA': 'green', 'Bakerville': 'yellow', 'NFVi': 'peru', 'Crystal-Ridge':'green'}
 # TODO Global Variable end
 
 
@@ -108,9 +108,9 @@ def rewrite_config_file(purl_bak_string, default_save_flag=False, current_save_f
     conf.modify_node_value(project_name_sep + '_other_config', 'display_existing', chart_exist_var.get())
     conf.modify_node_value(project_name_sep + '_other_config', 'display_closed', chart_closed_var.get())
     conf.modify_node_value(project_name_sep + '_other_config', 'display_total', chart_total_var.get())
-    conf.modify_node_value(project_name_sep + '_other_config', 'display_total', chart_save_test_var.get())
-    conf.modify_node_value(project_name_sep + '_other_config', 'display_total', chart_save_effort_var.get())
-    conf.modify_node_value(project_name_sep + '_other_config', 'display_total', chart_miss_var.get())
+    conf.modify_node_value(project_name_sep + '_other_config', 'display_save_test', chart_save_test_var.get())
+    conf.modify_node_value(project_name_sep + '_other_config', 'display_save_effort', chart_save_effort_var.get())
+    conf.modify_node_value(project_name_sep + '_other_config', 'display_miss', chart_miss_var.get())
 
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_get_default_flag', load_default_var)
 
@@ -748,16 +748,17 @@ def main(logger):
     top.title('Configuration GUI')
 
     button_color_1 = type_color_dict['NFVi']; button_color_2 = type_color_dict['Bakerville']
-    button_color_3 = type_color_dict['Purley-FPGA']
-    var_50_100 = IntVar(); var_50_100.set(5)
+    button_color_3 = type_color_dict['Purley-FPGA']; button_color_4 = type_color_dict['Crystal-Ridge']
 
     e1 = Button(top, text="NFVi", font=("Calibri", 16), command=lambda x=top, y=logger: sub_main('NFVi', top, logger), background=button_color_1, width=20, activeforeground='blue', activebackground='turquoise')
     e2 = Button(top, text="Bakerville", font=("Calibri", 16), command=lambda x=top, y=logger: sub_main('Bakerville', top, logger), background=button_color_2, width=20, activeforeground='blue', activebackground='palegreen')
     e3 = Button(top, text="Purley-FPGA", font=("Calibri", 16), command=lambda x=top, y=logger: sub_main('Purley-FPGA', top, logger), background=button_color_3, width=20, activeforeground='blue', activebackground='palevioletred')
+    e4 = Button(top, text="Crystal-Ridge", font=("Calibri", 16), command=lambda x=top, y=logger: sub_main('Crystal-Ridge', top, logger), background=button_color_4, width=20, activeforeground='blue', activebackground='green')
 
     e1.grid(row=1, columnspan=2, column=1, padx=25, pady=20, sticky=Tkinter.W + Tkinter.E + Tkinter.N + Tkinter.S)
     e2.grid(row=2, columnspan=2, column=1, padx=25, pady=20, sticky=Tkinter.W + Tkinter.E + Tkinter.N + Tkinter.S)
     e3.grid(row=3, columnspan=2, column=1, padx=25, pady=20, sticky=Tkinter.W + Tkinter.E + Tkinter.N + Tkinter.S)
+    e4.grid(row=4, columnspan=2, column=1, padx=25, pady=20, sticky=Tkinter.W + Tkinter.E + Tkinter.N + Tkinter.S)
 
     top.mainloop()
     # TODO 类型: Bakerville or Purley-FPGA
@@ -1008,7 +1009,7 @@ if __name__ == '__main__':
     # beige, khaki, palegreen, palevioletred, turquoise, plum, sandybrown,   seashell, skyblue, yellowgreen, yellow, green, peru
     # color_list = ['beige', 'khaki', 'palegreen', 'palevioletred', 'turquoise', 'plum', 'sandybrown', 'seashell',
     #               'skyblue',
-    #               'yellowgreen', 'yellow', 'green', 'peru', 'pink', 'grey', 'orange', ]
+        #               'yellowgreen', 'yellow', 'green', 'peru', 'pink', 'grey', 'orange', ]
 
 
 
