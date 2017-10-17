@@ -33,8 +33,8 @@ def get_interface_config(para_name, purl_bak_string):
         string_sep = 'FPGA'
     elif purl_bak_string == 'Bakerville':
         string_sep = 'Bak'
-    elif purl_bak_string == 'Crystal-Ridge':
-        string_sep = 'Crystal-Ridge'
+    elif purl_bak_string == 'Purley-Crystal-Ridge':
+        string_sep = 'Purley-Crystal-Ridge'
     else:
         string_sep = 'NFV'
 
