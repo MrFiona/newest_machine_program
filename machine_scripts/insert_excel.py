@@ -27,7 +27,7 @@ import collections
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
-from machine_scripts import extract_NFV_data, extract_data
+from machine_scripts import extract_NFV_data, extract_data, Crystal_Ridge_extract_data
 from machine_scripts.cache_mechanism import DiskCache
 from machine_scripts.machine_config import MachineConfig
 from setting_global_variable import SRC_EXCEL_DIR, PROGRAM_NAME_ID_DICT
@@ -163,7 +163,7 @@ class InsertDataIntoExcel(object):
                     self.save_miss_insert_bkc_string = self.predict_extract_object.return_save_miss_bkc_string()
                     return return_result_url
             except:
-                # traceback_print_info(self.logger)
+                traceback_print_info(self.logger)
                 self.logger.print_message('The Candidate date is not exists:\t%s' % program_id, self.__file_name, 50)
 
     def return_predict_execute_flag(self):
@@ -239,51 +239,53 @@ class InsertDataIntoExcel(object):
                 is_validity = verify_validity_url(self.Silver_url_list[j], self.logger)
                 if not is_validity:
                     continue
+            try:
+                self.logger.print_message('Start inserting the corresponding data for url [ %s ]' % self.Silver_url_list[j], self.__file_name)
+                if self.purl_bak_string == 'Purley-Crystal-Ridge':
+                    obj = Crystal_Ridge_extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+                else:
+                    obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
 
-            self.logger.print_message('Start inserting the corresponding data for url [ %s ]' % self.Silver_url_list[j], self.__file_name)
-            obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+                if j == 0:
+                    Silver_BkC_string, date_string, effective_url_list, header_list, cell_data_list = obj.get_new_sightings_data('New Sightings', self.verify_flag)
+                    if self.keep_continuous != 'YES':
+                        self.newest_week_type_string_list.append(Silver_BkC_string)
+                    elif self.keep_continuous == 'YES' and self.equal_silver_list_flag:
+                        self.newest_week_type_string_list.append(Silver_BkC_string)
+                else:
+                    Silver_BkC_string, date_string, effective_url_list, header_list, cell_data_list = obj.get_new_sightings_data('New Sightings', True)
+                    if self.keep_continuous == 'YES' and j == self.actual_newest_week_position:
+                        self.newest_week_type_string_list.append(Silver_BkC_string)
 
-            if j == 0:
-                Silver_BkC_string, date_string, effective_url_list, header_list, cell_data_list = obj.get_new_sightings_data('New Sightings', self.verify_flag)
-                if self.keep_continuous != 'YES':
-                    self.newest_week_type_string_list.append(Silver_BkC_string)
-                elif self.keep_continuous == 'YES' and self.equal_silver_list_flag:
-                    self.newest_week_type_string_list.append(Silver_BkC_string)
-            else:
-                Silver_BkC_string, date_string, effective_url_list, header_list, cell_data_list = obj.get_new_sightings_data('New Sightings', True)
-                if self.keep_continuous == 'YES' and j == self.actual_newest_week_position:
-                    self.newest_week_type_string_list.append(Silver_BkC_string)
+                self.date_string_list.append(date_string)
+                self.worksheet_newsi.conditional_format(4, self.calculate_head_num(13, j, 2), 250, self.calculate_head_num(13, j, 3),
+                                                        {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
+                self.worksheet_newsi.write(2, self.calculate_head_num(13, j, 1), Silver_BkC_string, self.format1)
+                self.worksheet_newsi.write(2, self.calculate_head_num(13, j), date_string, self.format1)
 
-            self.date_string_list.append(date_string)
+                if not effective_url_list and not header_list and not cell_data_list:
+                    continue
 
-            self.worksheet_newsi.conditional_format(4, self.calculate_head_num(13, j, 2), 250, self.calculate_head_num(13, j, 3),
-                                                    {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
-            self.worksheet_newsi.write(2, self.calculate_head_num(13, j, 1), Silver_BkC_string, self.format1)
-            self.worksheet_newsi.write(2, self.calculate_head_num(13, j), date_string, self.format1)
-            # self.worksheet_newsi.write(2, self.calculate_head_num(13, j, 12), 'Comments')
+                header_list.append('comments')
+                self.worksheet_newsi.write_row(2, self.calculate_head_num(13, j, 4), header_list, self.header_format)
 
-            if not effective_url_list and not header_list and not cell_data_list:
-                continue
+                num_url_list = []
+                for ele in effective_url_list:
+                    num_url_list.append(len(ele))
 
-            header_list.append('comments')
-            self.worksheet_newsi.write_row(2, self.calculate_head_num(13, j, 4), header_list, self.header_format)
-
-            num_url_list = []
-            for ele in effective_url_list:
-                num_url_list.append(len(ele))
-
-            for i in range(len(cell_data_list)):
-                #插入非url部分数据
-                self.worksheet_newsi.write_row(4 + i, self.calculate_head_num(13, j, 5), cell_data_list[i][1:-1])
-                #插入url数据部分
-                self.worksheet_newsi.write_url(4 + i, self.calculate_head_num(13, j, 4), effective_url_list[i][0], self.url_format, cell_data_list[i][0])
-                if num_url_list[i] > 1:
-                    self.worksheet_newsi.write_url(4 + i, self.calculate_head_num(13, j, 11), effective_url_list[i][1], self.url_format, cell_data_list[i][-1])
-                elif num_url_list[i] == 1:
-                    self.worksheet_newsi.write(4 + i, self.calculate_head_num(13, j, 11), cell_data_list[i][-1])
+                for i in range(len(cell_data_list)):
+                    #插入非url部分数据
+                    self.worksheet_newsi.write_row(4 + i, self.calculate_head_num(13, j, 5), cell_data_list[i][1:-1])
+                    #插入url数据部分
+                    self.worksheet_newsi.write_url(4 + i, self.calculate_head_num(13, j, 4), effective_url_list[i][0], self.url_format, cell_data_list[i][0])
+                    if num_url_list[i] > 1:
+                        self.worksheet_newsi.write_url(4 + i, self.calculate_head_num(13, j, 11), effective_url_list[i][1], self.url_format, cell_data_list[i][-1])
+                    elif num_url_list[i] == 1:
+                        self.worksheet_newsi.write(4 + i, self.calculate_head_num(13, j, 11), cell_data_list[i][-1])
+            except:
+                self.logger.print_message('The data crawling failed for the %dth url [ %s ]' % (j + 1, self.Silver_url_list[j]), self.__file_name)
 
     def insert_ExistingSi_data(self):
-        fail_url_list = []
         self.logger.print_message('Start inserting [ Existing Sightings ] data.........', self.__file_name)
         hidden_data_by_column(self.worksheet_existing, self.Silver_url_list, 13, 1)
         # 获取公式并插入指定位置
@@ -297,34 +299,35 @@ class InsertDataIntoExcel(object):
                 is_validity = verify_validity_url(self.Silver_url_list[j], self.logger)
                 if not is_validity:
                     continue
-
-            self.logger.print_message('Start inserting the corresponding data for url [ %s ]' % self.Silver_url_list[j], self.__file_name)
-            obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
-
-            if j == 0:
-                Silver_BkC_string, date_string, url_list, header_list, cell_data_list = obj.get_existing_sighting_data('Existing Sightings', self.verify_flag)
-                if self.keep_continuous != 'YES':
-                    self.newest_week_type_string_list.append(Silver_BkC_string)
-                elif self.keep_continuous == 'YES' and self.equal_silver_list_flag:
-                    self.newest_week_type_string_list.append(Silver_BkC_string)
-            else:
-                Silver_BkC_string, date_string, url_list, header_list, cell_data_list = obj.get_existing_sighting_data('Existing Sightings', True)
-                if self.keep_continuous == 'YES' and j == self.actual_newest_week_position:
-                    self.newest_week_type_string_list.append(Silver_BkC_string)
-
-            #增加一列comments
-            header_list.append('comments')
             try:
+                self.logger.print_message('Start inserting the corresponding data for url [ %s ]' % self.Silver_url_list[j], self.__file_name)
+                if self.purl_bak_string == 'Purley-Crystal-Ridge':
+                    obj = Crystal_Ridge_extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+                else:
+                    obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+
+                if j == 0:
+                    Silver_BkC_string, date_string, url_list, header_list, cell_data_list = obj.get_existing_sighting_data('Existing Sightings', self.verify_flag)
+                    if self.keep_continuous != 'YES':
+                        self.newest_week_type_string_list.append(Silver_BkC_string)
+                    elif self.keep_continuous == 'YES' and self.equal_silver_list_flag:
+                        self.newest_week_type_string_list.append(Silver_BkC_string)
+                else:
+                    Silver_BkC_string, date_string, url_list, header_list, cell_data_list = obj.get_existing_sighting_data('Existing Sightings', True)
+                    if self.keep_continuous == 'YES' and j == self.actual_newest_week_position:
+                        self.newest_week_type_string_list.append(Silver_BkC_string)
+
                 #标记True为红色
                 self.worksheet_existing.conditional_format(4, self.calculate_head_num(13, j, 2), 250, self.calculate_head_num(13, j, 3),
                                                            {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
                 self.worksheet_existing.write(2, self.calculate_head_num(13, j, 1), Silver_BkC_string, self.format1)
                 self.worksheet_existing.write(2, self.calculate_head_num(13, j), date_string, self.format1)
-                # self.worksheet_existing.write(2, self.calculate_head_num(13, j, 12), 'comment')
 
                 if not url_list and not header_list and not cell_data_list:
                     continue
 
+                # 增加一列comments
+                header_list.append('comments')
                 # 写入表头行
                 self.worksheet_existing.write_row(2, self.calculate_head_num(13, j, 4), header_list, self.header_format)
 
@@ -358,12 +361,10 @@ class InsertDataIntoExcel(object):
                         nu += line_num_list[line]
             except:
                 self.logger.print_message('The data crawling failed for the %dth url [ %s ]' % (j + 1, self.Silver_url_list[j]), self.__file_name)
-                fail_url_list.append(self.Silver_url_list[j])
 
     def insert_ClosedSi_data(self):
         self.logger.print_message('Start inserting [ Closed Sightings ] data.........', self.__file_name)
         # 获取公式并插入指定位置
-        fail_url_list = []
         self.get_formula_data('ClosedSi', self.worksheet_closesi)
         hidden_data_by_column(self.worksheet_closesi, self.Silver_url_list, 13, 1)
         for j in range(len(self.Silver_url_list)):
@@ -377,7 +378,10 @@ class InsertDataIntoExcel(object):
                     continue
             try:
                 self.logger.print_message('Start inserting the corresponding data for url [ %s ]' % self.Silver_url_list[j], self.__file_name)
-                obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+                if self.purl_bak_string == 'Purley-Crystal-Ridge':
+                    obj = Crystal_Ridge_extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+                else:
+                    obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
 
                 if j == 0:
                     Silver_BkC_string, date_string, effective_url_list, header_list, cell_data_list = obj.get_closed_sightings_data('Closed Sightings', self.verify_flag)
@@ -399,11 +403,9 @@ class InsertDataIntoExcel(object):
                     continue
 
                 self.worksheet_closesi.write_row(2, self.calculate_head_num(13, j, 4), header_list, self.header_format)
-
                 num_url_list = []
                 for ele in effective_url_list:
                     num_url_list.append(len(ele))
-
                 for i in range(len(cell_data_list)):
                     #插入非url部分数据
                     self.worksheet_closesi.write_row(4 + i, self.calculate_head_num(13, j, 5), cell_data_list[i][1:-1])
@@ -415,7 +417,6 @@ class InsertDataIntoExcel(object):
                         self.worksheet_closesi.write(4 + i, self.calculate_head_num(13, j, 11), cell_data_list[i][-1])
             except:
                 self.logger.print_message('The data crawling failed for the %dth url [ %s ]' % (j + 1, self.Silver_url_list[j]), self.__file_name)
-                fail_url_list.append(self.Silver_url_list[j])
 
     def insert_Rework_data(self):
         self.logger.print_message('Start inserting [ HW Rework ] data.........', self.__file_name)
@@ -433,10 +434,13 @@ class InsertDataIntoExcel(object):
                     continue
             try:
                 self.logger.print_message('Start inserting the corresponding data for url [ %s ]' % self.Silver_url_list[j], self.__file_name)
-                obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+                if self.purl_bak_string == 'Purley-Crystal-Ridge':
+                    obj = Crystal_Ridge_extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+                else:
+                    obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
                 #最新的一周在验证标志未开启的情况下取Silver数据,否则取BKC数据
                 if j == 0:
-                    if self.purl_bak_string == 'Purley-FPGA' or self.purl_bak_string == 'NFVi':
+                    if self.purl_bak_string == 'Purley-FPGA' or self.purl_bak_string == 'NFVi' or self.purl_bak_string == 'Purley-Crystal-Ridge':
                         Silver_BkC_string, object_string_list, date_string = obj.get_rework_data('HW Rework', self.verify_flag)
                     else:
                         Silver_BkC_string, object_string_list, date_string = obj.get_bak_rework_data('HW Rework', self.verify_flag)
@@ -446,7 +450,7 @@ class InsertDataIntoExcel(object):
                     elif self.keep_continuous == 'YES' and self.equal_silver_list_flag:
                         self.newest_week_type_string_list.append(Silver_BkC_string)
                 else:
-                    if self.purl_bak_string == 'Purley-FPGA' or self.purl_bak_string == 'NFVi':
+                    if self.purl_bak_string == 'Purley-FPGA' or self.purl_bak_string == 'NFVi' or self.purl_bak_string == 'Purley-Crystal-Ridge':
                         Silver_BkC_string, object_string_list, date_string = obj.get_rework_data('HW Rework', True)
                     else:
                         Silver_BkC_string, object_string_list, date_string = obj.get_bak_rework_data('HW Rework', True)
@@ -510,6 +514,8 @@ class InsertDataIntoExcel(object):
             # TODO 分项目获取数据 2017-06-09
             if self.purl_bak_string == 'NFVi':
                 obj = extract_NFV_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+            elif self.purl_bak_string == 'Purley-Crystal-Ridge':
+                obj = Crystal_Ridge_extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
             else:
                 obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
 
@@ -519,6 +525,8 @@ class InsertDataIntoExcel(object):
                         Silver_BkC_string, date_string, row_coordinates_list, column_coordinates_list, cell_data_list = obj.get_lastest_FPGA_hw_data('HW Configuration', self.verify_flag)
                     else:
                         Silver_BkC_string, date_string, row_coordinates_list, column_coordinates_list, cell_data_list = obj.get_hw_data('HW Configuration', self.verify_flag)
+                elif self.purl_bak_string == 'Purley-Crystal-Ridge':
+                    Silver_BkC_string, date_string, row_coordinates_list, column_coordinates_list, cell_data_list = obj.get_hw_data('HW Configuration', self.verify_flag)
                 else:
                     if DE_border_position >= j:
                         Silver_BkC_string, date_string, row_coordinates_list, column_coordinates_list, cell_data_list = obj.get_lastest_bak_hw_data('HW Configuration', self.verify_flag)
@@ -538,6 +546,8 @@ class InsertDataIntoExcel(object):
                         Silver_BkC_string, date_string, row_coordinates_list, column_coordinates_list, cell_data_list = obj.get_lastest_FPGA_hw_data('HW Configuration', True)
                     else:
                         Silver_BkC_string, date_string, row_coordinates_list, column_coordinates_list, cell_data_list = obj.get_hw_data('HW Configuration', True)
+                elif self.purl_bak_string == 'Purley-Crystal-Ridge':
+                    Silver_BkC_string, date_string, row_coordinates_list, column_coordinates_list, cell_data_list = obj.get_hw_data('HW Configuration', True)
                 # TODO DE
                 else:
                     if DE_border_position >= j:
@@ -594,7 +604,10 @@ class InsertDataIntoExcel(object):
                     continue
             try:
                 self.logger.print_message('Start inserting the corresponding data for url [ %s ]' % self.Silver_url_list[j], self.__file_name)
-                obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+                if self.purl_bak_string == 'Purley-Crystal-Ridge':
+                    obj = Crystal_Ridge_extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+                else:
+                    obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
 
                 if j == 0:
                     if 'Purley-FPGA/Silver/2017%20WW31' in self.Silver_url_list[j]:
@@ -678,7 +691,10 @@ class InsertDataIntoExcel(object):
                     continue
             try:
                 self.logger.print_message('Start inserting the corresponding data for url [ %s ]' % self.Silver_url_list[j], self.__file_name)
-                obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+                if self.purl_bak_string == 'Purley-Crystal-Ridge':
+                    obj = Crystal_Ridge_extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+                else:
+                    obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
 
                 if j == 0:
                     if 'Purley-FPGA/Silver/2017%20WW31' in self.Silver_url_list[j]:
@@ -781,7 +797,10 @@ class InsertDataIntoExcel(object):
                     continue
             try:
                 self.logger.print_message('Start inserting the corresponding data for url [ %s ]' % self.Silver_url_list[j], self.__file_name)
-                obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+                if self.purl_bak_string == 'Purley-Crystal-Ridge':
+                    obj = Crystal_Ridge_extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+                else:
+                    obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
                 if j == 0:
                     Silver_BkC_string, date_string, header_list, cell_data_list = obj.get_ifwi_data('IFWI Configuration', self.verify_flag)
                     if self.keep_continuous != 'YES':
@@ -834,7 +853,10 @@ class InsertDataIntoExcel(object):
                     continue
             try:
                 self.logger.print_message('Start inserting the corresponding data for url [ %s ]' % self.Silver_url_list[j], self.__file_name)
-                obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+                if self.purl_bak_string == 'Purley-Crystal-Ridge':
+                    obj = Crystal_Ridge_extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+                else:
+                    obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
                 if j == 0:
                     Silver_BkC_string, date_string, header_list, cell_data_list = obj.get_ifwi_data('IFWI Configuration',self.verify_flag)
                     if self.keep_continuous != 'YES':
@@ -894,7 +916,10 @@ class InsertDataIntoExcel(object):
                     continue
             try:
                 self.logger.print_message('Start inserting the corresponding data for url [ %s ]' % self.Silver_url_list[j], self.__file_name)
-                obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+                if self.purl_bak_string == 'Purley-Crystal-Ridge':
+                    obj = Crystal_Ridge_extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+                else:
+                    obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
 
                 if j == 0:
                     Silver_BkC_string, date_string, url_list, header_list, cell_data_list = obj.get_platform_data('Platform Integration Validation Result', self.verify_flag)
@@ -1040,7 +1065,10 @@ class InsertDataIntoExcel(object):
                     continue
             try:
                 self.logger.print_message('Start inserting the corresponding data for url [ %s ]' % self.Silver_url_list[j], self.__file_name)
-                obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+                if self.purl_bak_string == 'Purley-Crystal-Ridge':
+                    obj = Crystal_Ridge_extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
+                else:
+                    obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
 
                 if j == 0:
                     date_string, Silver_Gold_BKC_string, tip_string, header_list, cell_data_list = obj.get_caseresult_data('Platform Integration Validation Result', self.verify_flag)
