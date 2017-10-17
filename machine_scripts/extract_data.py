@@ -1293,7 +1293,7 @@ class GetAnalysisData(object):
             else:
                 return self.date_string, '', '', [], []
 
-        except ImportError:
+        except:
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
             return self.date_string, 'Error', 'Error', [], []
 
