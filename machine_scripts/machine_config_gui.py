@@ -516,7 +516,7 @@ def display_config_info(logger, purl_bak_string):
         if len(verify_file_flag.strip()) == 0:
             conf.modify_node_value(project_name_sep + '_other_config', 'verify_file_flag', 'NO')
         if len(max_waiting_time.strip()) == 0:
-            conf.modify_node_value(project_name_sep + '_other_config', 'max_waiting_time', '30min')
+            conf.modify_node_value(project_name_sep + '_other_config', 'max_waiting_time', '30')
         if len(on_off_line_save_flag.strip()) == 0:
             conf.modify_node_value(project_name_sep + '_other_config', 'on_off_line_save_flag', 'online')
         if len(send_email_flag.strip()) == 0:
@@ -546,7 +546,7 @@ def display_config_info(logger, purl_bak_string):
     if len(verify_file_flag.strip()) == 0:
         conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_verify_file_flag', 'NO')
     if len(max_waiting_time.strip()) == 0:
-        conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_max_waiting_time', '30min')
+        conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_max_waiting_time', '30')
     if len(on_off_line_save_flag.strip()) == 0:
         conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_on_off_line_save_flag', 'online')
     if len(send_email_flag.strip()) == 0:
@@ -753,7 +753,7 @@ def main(logger):
     e1 = Button(top, text="NFVi", font=("Calibri", 16), command=lambda x=top, y=logger: sub_main('NFVi', top, logger), background=button_color_1, width=20, activeforeground='blue', activebackground='turquoise')
     e2 = Button(top, text="Bakerville", font=("Calibri", 16), command=lambda x=top, y=logger: sub_main('Bakerville', top, logger), background=button_color_2, width=20, activeforeground='blue', activebackground='palegreen')
     e3 = Button(top, text="Purley-FPGA", font=("Calibri", 16), command=lambda x=top, y=logger: sub_main('Purley-FPGA', top, logger), background=button_color_3, width=20, activeforeground='blue', activebackground='palevioletred')
-    e4 = Button(top, text="Crystal-Ridge", font=("Calibri", 16), command=lambda x=top, y=logger: sub_main('Crystal-Ridge', top, logger), background=button_color_4, width=20, activeforeground='blue', activebackground='green')
+    e4 = Button(top, text="Crystal-Ridge", font=("Calibri", 16), command=lambda x=top, y=logger: sub_main('Purley-Crystal-Ridge', top, logger), background=button_color_4, width=20, activeforeground='blue', activebackground='green')
 
     e1.grid(row=1, columnspan=2, column=1, padx=25, pady=20, sticky=Tkinter.W + Tkinter.E + Tkinter.N + Tkinter.S)
     e2.grid(row=2, columnspan=2, column=1, padx=25, pady=20, sticky=Tkinter.W + Tkinter.E + Tkinter.N + Tkinter.S)
@@ -849,7 +849,7 @@ class MainFrame(Frame):
 
     def show_info(self):
        display_text_info(self.text, self.entry, self.week_info_list, self.step_length)
-    
+
     def return_text_variable(self):
         return self.text
 
@@ -1009,7 +1009,7 @@ if __name__ == '__main__':
     # beige, khaki, palegreen, palevioletred, turquoise, plum, sandybrown,   seashell, skyblue, yellowgreen, yellow, green, peru
     # color_list = ['beige', 'khaki', 'palegreen', 'palevioletred', 'turquoise', 'plum', 'sandybrown', 'seashell',
     #               'skyblue',
-        #               'yellowgreen', 'yellow', 'green', 'peru', 'pink', 'grey', 'orange', ]
+    #               'yellowgreen', 'yellow', 'green', 'peru', 'pink', 'grey', 'orange', ]
 
 
 
