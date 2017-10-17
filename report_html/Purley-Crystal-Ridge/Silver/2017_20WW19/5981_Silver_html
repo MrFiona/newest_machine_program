@@ -1,0 +1,2550 @@
+<!DOCTYPE html><html lang="en"><head>
+	<title>One Stop Shop Reports</title>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./5981_Silver_files/bootstrap.css">
+	<script src="./5981_Silver_files/jquery.min.js"></script>
+    <link href="/templates/css/showLoading.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/templates/js/jquery.showLoading.min.js"></script>
+    <script>
+        
+    </script>
+</head>
+<body>
+	<div id="content">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Test Report</title>
+<link rel="stylesheet" type="text/css" href="./5981_Silver_files/report_frame.css">
+<script src="./5981_Silver_files/jquery.min.js"></script>
+<script src="./5981_Silver_files/highcharts.js"></script>
+<script src="./5981_Silver_files/table.js"></script>
+<script src="./5981_Silver_files/bootstrap.min.js"></script>
+<style type="text/css">
+    .stable,.sh1,.sh2,.sh3 {font-family:'Intel Clear',Arial,sans-serif;}
+    .sh2{font-size: 15px;font-weight:bold;overflow: hidden;color: #000000;}
+    .sh3{font-size: 13px;overflow: hidden;color: #000000;}
+    .MsoNormalTable .sh2{font-size: 15px;font-weight:bold;overflow: hidden;text-align: left;margin: 4px 0;color: #000000}
+    .DetailHeardTable .sh2{font-size: 15px;font-weight:bold;overflow: hidden;text-align: left;margin: 4px 0;color: #000000}
+    .ReportHead{font-size: 22px;font-weight: bold;background: #ffffff;color: #0071c5;margin: 12px 0;overflow: hidden; text-align:center;}
+    .MsoNormalTable{font-size:10.0pt;border-width: 1px;border-color:Black;border-style:solid;border-collapse: collapse;width:100%;}
+    .MsoNormalTable td{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:9.5pt;padding-left:5px;padding-right:5px;text-align:center;padding-bottom:5px;padding-top:5px;}
+    .MsoNormalTable th{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:9.5pt;padding-left:5px;padding-right:5px;background-color:#A3CBFF;color:#000000;font-weight:bold;text-align:center;padding-bottom:5px;padding-top:5px;}
+    .DetailTable{font-size:10.0pt;border-width: 1px;border-color:Black;border-style:solid;border-collapse: collapse;width:100%;}
+    .DetailTable td{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:10.0pt;padding-left:10px;padding-right: 10px;text-align: left;padding-bottom:5px;padding-top:5px;}
+    .DetailTable th{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:10.0pt;padding-left:10px;background-color:#A3CBFF;color:#000000;font-weight:bold;padding-right: 10px;text-align: left;padding-bottom:5px;padding-top:5px;}
+    .NormalTable td{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:10.0pt;}
+    .DetailHeardTable{font-size:10.0pt;border-width: 1px;border-collapse: collapse;}
+    .DetailHeardTable td{ border-width: 1px;border-color:Black;border-style:solid;border-collapse:collapse;text-align:center;font-size:10.0pt;}
+    .td-center {text-align:center;}
+    table a:link,table a:focus,table a:visited ,table a:active,table a:hover {text-decoration:underline;}
+    a{color: #0071c5}
+    table{background-color: #FFFFFF;font-family:'Intel Clear',Arial,sans-serif;}
+    td{padding-bottom: 5px;padding-top: 5px}
+    .ReportHead{background-color: transparent}
+</style>
+
+
+    <div class="panel-group" id="main-panel-group">
+        <script>
+            $(function () {
+                if('True' == 'True' && '1' == '1' ){
+                uniteTable(sw_table, 2);
+                autoRowSpan(sw_table, 0);
+                }
+            });
+
+            $('.CollapseBtn').click(function(){
+                var btn = $(this),
+                on = 'not-collapsed',
+                off = 'collapsed';
+                console.log("CollapseBtn!")
+                //这里通过切换按钮中图标的类来控制出现不同的按钮图标，每次点击来回切换声音开关图标
+                if(btn.hasClass('not-collapsed')) {
+                    btn.removeClass('not-collapsed');
+                    btn.addClass('collapsed');
+                }else if(btn.hasClass('collapsed')) {
+                    btn.removeClass('collapsed');
+                    btn.addClass('not-collapsed');
+                }else {
+                    btn.addClass('not-collapsed');
+                }
+            });
+            function init_cases_domain_bars(div_id){
+                if(div_id == 'cases_domain_chart'){
+                    var domains = '';
+                    var pass_data = '';
+                    var fail_data = '';
+                    var block_data = '';
+                    var norun_data = '';}
+                else{
+                    var domains = '';
+                    var pass_data = '';
+                    var fail_data = '';
+                    var block_data = '';
+                    var norun_data = '';
+                }
+                domains = domains.split(',');
+                pass_data = pass_data.split(',');
+                fail_data = fail_data.split(',');
+                block_data = block_data.split(',');
+                norun_data = norun_data.split(',');
+
+                for(var j=0; j<pass_data.length; j++){
+                    pass_data[j] = parseInt(pass_data[j]);
+                }
+
+                for(var j=0; j<fail_data.length; j++){
+                    fail_data[j] = parseInt(fail_data[j]);
+                }
+
+                for(var j=0; j<block_data.length; j++){
+                    block_data[j] = parseInt(block_data[j]);
+                }
+
+                for(var j=0; j<norun_data.length; j++){
+                    norun_data[j] = parseInt(norun_data[j]);
+                }
+
+                series = [
+                             {name:'NoRun',data:norun_data,color:'#717171'},
+                             {name:'Block',data:block_data,color:'#ffae00'},
+                             {name:'Fail',data:fail_data,color:'#fd4f02'},
+                             {name:'Pass',data:pass_data,color:'#6fd007'}
+                         ];
+                if (1 == 2){
+                    if(div_id == 'cases_domain_chart'){
+                        var title_name = 'Purley AEP_2s Silver Validation Result'
+                    }else{
+                        var title_name = ' Silver Validation Result'
+                    }
+                }else{
+                    var title_name = 'Purley Crystal Ridge Silver Validation Result'
+                }
+                $('#'+div_id).highcharts({
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: title_name
+                    },
+                    credits:{enabled: false},
+                    xAxis: {
+                        categories: domains
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Pass Rate'
+                        }
+                    },
+                    tooltip: {
+                        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                        shared: true
+                    },
+                    plotOptions: {
+                        column: {
+                            stacking: 'percent'
+                        }
+                    },
+                    series: series
+                });
+            }
+
+            function init_cases_pie(div_id){
+                if(div_id == 'cases_pie_chart'){
+                    var pie_data = [
+                                    {name:'Pass',y:parseInt('0'),selected:true,sliced:true,color:'#6fd007'},
+                                    {name:'Fail',y:parseInt('0'),color:'#fd4f02'},
+                                    {name:'Block',y:parseInt('0'),color:'#ffae00'},
+                                    {name:'NoRun',y:parseInt('0'),color:'#717171'}
+                               ];
+                }
+                else{
+                    var pie_data = [
+                                    {name:'Pass',y:parseInt(''),selected:true,sliced:true,color:'#6fd007'},
+                                    {name:'Fail',y:parseInt(''),color:'#fd4f02'},
+                                    {name:'Block',y:parseInt(''),color:'#ffae00'},
+                                    {name:'NoRun',y:parseInt(''),color:'#717171'}
+                               ];
+                }
+                if (1 == 2){
+                    if(div_id == 'cases_pie_chart'){
+                        var title_name = 'Purley AEP_2s Silver Validation Result'
+                    }else{
+                        var title_name = ' Silver Validation Result'
+                    }
+                }else{
+                    var title_name = 'Purley Crystal Ridge Silver Validation Status'
+                }
+                $('#'+div_id).highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: title_name
+                    },
+                    credits:{enabled: false},
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        name: 'Cases',
+                        colorByPoint: true,
+                        data: pie_data
+                    }]
+                });
+            }
+
+            function init_whql_cases_pie(name,div_id,pass,fail,block,norun){
+                var pie_data = [
+                                    {name:'Pass',y:pass,selected:true,sliced:true,color:'#6fd007'},
+                                    {name:'Fail',y:fail,color:'#fd4f02'},
+                                    {name:'Block',y:block,color:'#ffae00'},
+                                    {name:'NoRun',y:norun,color:'#717171'}
+                               ];
+                title_name = name;
+                $('#'+div_id).highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie',
+                        height: 300
+                    },
+                    title: {
+                        text: title_name
+                    },
+                    legend: {
+                        align: "right",
+                        verticalAlign: "middle",
+                        layout:"vertical"
+                    },
+                    credits:{enabled: false},
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        name: 'Cases',
+                        colorByPoint: true,
+                        data: pie_data
+                    }]
+                });
+            }
+
+            function init_cases_pass_rate_history(div_id){
+
+                if(div_id == 'cases_history_chart'){
+                    var ww_names = '2016 WW49,2017 WW11,2017 WW12,2017 WW13,2017 WW14,2017 WW15,2017 WW17,2017 WW19';
+                    var history_passrate = 'null,null,null,null,null,null,null,null';
+                }else{
+                     var ww_names = '';
+                    var history_passrate = '';
+                }
+                ww_names = ww_names.split(',');
+                history_passrate = history_passrate.split(',');
+                for(var j=0; j<history_passrate.length; j++){
+                    if(history_passrate[j]=='null'){
+                        history_passrate[j] = null;
+                    }else{
+                        history_passrate[j] = parseFloat(history_passrate[j]);
+                    }
+                }
+                if (1 == 2){
+                    if(div_id == 'cases_history_chart'){
+                        var title_name = 'Purley AEP_2s Silver Analysis PASS%'
+                    }else{
+                        var title_name = ' Silver Analysis PASS%'
+                    }
+                }else{
+                    var title_name = 'Purley Crystal Ridge Silver Analysis PASS%'
+                }
+                $('#'+div_id).highcharts({
+                    chart: {
+                        type: 'line'
+                    },
+                    title: {
+                        text: title_name
+                    },
+                    credits:{enabled: false},
+                    xAxis: {
+                        categories: ww_names
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Pass Rate'
+                        },
+                        min:0,
+                        max:100,
+                        labels: {formatter:function(){return this.value + " %";}},
+                    },
+                    plotOptions: {
+                        line: {
+                            dataLabels: {
+                            enabled: true
+                            },
+                        enableMouseTracking: false,
+                        },
+                        series: { connectNulls: true}
+                    },
+                    tooltip: {valueSuffix: '%'},
+                    series: [{
+                        name: 'Silver',
+                        data: history_passrate
+                    }]
+                });
+            }
+
+            $(function () {
+                init_cases_domain_bars('cases_domain_chart');
+                init_cases_pie('cases_pie_chart');
+                init_cases_pass_rate_history('cases_history_chart');
+                if('0' == '1'){
+                    
+                }
+                if (1 == 2)
+                {
+                    init_cases_domain_bars('cases_domain_chart_2');
+                    init_cases_pie('cases_pie_chart_2');
+                    init_cases_pass_rate_history('cases_history_chart_2');
+                }
+                if(0 == 1)
+                {
+                    var pnp_result = {"Performance": {}, "Power": {}}
+                    for (var cpu in pnp_result){
+                        for (var object  in pnp_result[cpu])
+                        {
+                            var ratio = pnp_result[cpu][object].ratio;
+                            var case_name =  pnp_result[cpu][object].case_name;
+
+                            var categories_data = pnp_result[cpu][object].categories
+                            var series_data = new Array();
+                            if(ratio==null){break;}
+                            for(var i=0; i<ratio.length; i++)
+                            {
+                                var is_null = 1
+                                dict = {};
+
+                                dict['name'] = case_name[i];
+                                for(var k=0; k < ratio[i].length; k++)
+                                {
+                                    if(ratio[i][k] == -1)
+                                    {
+                                        ratio[i][k] = null;
+                                    }else{
+                                        is_null = 0
+                                    }
+                                }
+                                dict['data'] = ratio[i];
+                                if(is_null == 0){
+                                    series_data.push(dict)}
+                            }
+                            var chart1;
+                            var xAxis_list = new Array();
+                            if(pnp_result[cpu][object].target_ww == 'WW00'){
+                                title_content = object + ' Trend-- WWn to Target Ratio'
+                            }else{
+                                title_content = object + ' Trend-- WWn to ' + pnp_result[cpu][object].target_ww + ' ' +  pnp_result[cpu][object].target_cpu +' Ratio'
+                            }
+                            $('#'+cpu+'_'+ object + '_highcharts').highcharts({
+                                title:  {text: title_content},
+                                xAxis: {categories: categories_data ,
+                                        labels: {rotation:30,y:45}
+                                },
+                                yAxis: {title: {text: object},
+
+                                                        labels: {formatter:function(){return this.value + " %";}},
+                                                        plotLines: [{value: 0, width: 1, color: '#808080'}]
+                                                        },
+                                tooltip: {valueSuffix: '%'},
+                                credits:{enabled: false},
+                                plotOptions: {series: { connectNulls: true}, spline : {dataLabels: {enabled: true},enableMouseTracking: true}},
+                                series: series_data
+                            });
+                        }
+                    }
+                }
+            });
+            $(document).ready(function () {
+                
+                    $("#title_banner").load('/test_report/title_banner/Purley-Crystal-Ridge/Silver/');
+                
+            });
+
+        </script>
+        <div id="title_banner" style="margin-left:-4px">
+            <!--<img src="cid:Purley-Crystal-Ridge_Silver.png">-->
+        </div>
+        <div style="width:600px">
+        
+        <table class="DetailTable">
+            <tbody><tr>
+                
+                <td width="200px" style="background-color:#DBDBDB;">Silver: Basic Test Coverage</td>
+                <td width="200px">Gold: Medium Test Coverage</td>
+                <td width="200px">BKC: Full Test Coverage</td>
+                
+                
+                
+            </tr>
+        </tbody></table>
+        
+        </div>
+        <table width="100%" class="ReportHead">
+            <tbody><tr>
+                
+                    <td>
+
+                
+                
+                    
+                    <p style="text-align:left;margin-bottom:0px">2017 WW19 Purley Crystal Ridge Silver Release Announcement (
+                        BKC #7)</p>
+                    
+                
+                <p style="color:black;font-size:13px;text-align:left">DEG Platform Integration Team</p>
+                
+                </td>
+            </tr>
+        </tbody></table>
+        <p class="sh3" style="width:100%">The DEG platform Integration team announces the release of <font style="font-weight:bold">2017 WW19 Purley Crystal Ridge Silver release package</font> for Intel internal use. The release is based on OS of
+            
+                Fedora25/
+            
+                WS2016
+             server. The auto-installer packages are available in the Artifactory server (both SH site and OR site). Any questions please contact <a href="mailto:ling.bei@intel.com">Bei, Ling</a>.</p>
+        <table class="DetailTable" width="100%">
+            <tbody><tr>
+                <th width="20%">Auto Installer</th>
+                <th width="40%">SH Artifactory Server</th>
+                <th width="40%">OR Artifactory Server</th>
+            </tr>
+            
+            <tr>
+                <td width="20%">Fedora25</td>
+                <td width="40%"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/Purley/2017WW19/WithoutOS_BKC-CrystalRidge_FC25_100.119784.119823-2017WW19.zip" style="color:#0071c5">WithoutOS_BKC-CrystalRidge_FC25_100.119784.119823-2017WW19.zip</a>
+               
+                                <br><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/OS/Fedora/FC25x86_64.zip" style="color:#0071c5">FC25x86_64.zip</a>
+                                </td>
+                <td width="40%"><a href="https://ubit-artifactory-or.intel.com/artifactory/DEG-Purley-sh-cache/Release/Purley/2017WW19/WithoutOS_BKC-CrystalRidge_FC25_100.119784.119823-2017WW19.zip" style="color:#0071c5">WithoutOS_BKC-CrystalRidge_FC25_100.119784.119823-2017WW19.zip</a>
+                   
+                                <br><a href="https://ubit-artifactory-or.intel.com/artifactory/DEG-Purley-sh-cache/Release/OS/Fedora/FC25x86_64.zip" style="color:#0071c5">FC25x86_64.zip</a>
+                                </td>
+            </tr>
+            
+            <tr>
+                <td width="20%">WS2016</td>
+                <td width="40%"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/Purley/2017WW19/WithoutOS_BKC-CrystalRidge_Win2016_67.119851.119805-2017WW19.zip" style="color:#0071c5">WithoutOS_BKC-CrystalRidge_Win2016_67.119851.119805-2017WW19.zip</a>
+               
+                                <br><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/OS/win2016/win2016_RS1_14393.zip" style="color:#0071c5">win2016_RS1_14393.zip</a>
+                                </td>
+                <td width="40%"><a href="https://ubit-artifactory-or.intel.com/artifactory/DEG-Purley-sh-cache/Release/Purley/2017WW19/WithoutOS_BKC-CrystalRidge_Win2016_67.119851.119805-2017WW19.zip" style="color:#0071c5">WithoutOS_BKC-CrystalRidge_Win2016_67.119851.119805-2017WW19.zip</a>
+                   
+                                <br><a href="https://ubit-artifactory-or.intel.com/artifactory/DEG-Purley-sh-cache/Release/OS/win2016/win2016_RS1_14393.zip" style="color:#0071c5">win2016_RS1_14393.zip</a>
+                                </td>
+            </tr>
+            
+            
+        </tbody></table>
+        <div><p class="sh3" style="width:100%">*Note: Please select the server which is closer to your region to get the better data accessing/downloading performance</p></div>
+        <br>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Summary </span>
+                <div class="FoldIcon" style="display: none">
+                    <div class="CollapseBtn not-collapsed" data-toggle="collapse" href="#collapseSummary"></div>
+                </div>
+            </div>
+            <div id="collapseSummary" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <table class="DetailTable" width="100%">
+                        
+                        <tbody><tr>
+                            <td>
+                                <p class="MsoNormal" style="mso-margin-top-alt:auto;margin-bottom:7.5pt"><b><u><span style="font-size:10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif;color:black">&nbsp;Test
+Result:<o:p></o:p></span></u></b></p><h4 style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in;line-height:15.55pt;background-image:
+initial;background-position:initial;background-size: initial;background-repeat:
+initial;background-attachment:initial;background-origin: initial;background-clip: initial"><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: black;">Finish
+AEP test execution on Fedora25</span><span class="apple-converted-space"><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: rgb(31, 73, 125);">&nbsp;</span></span><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: black;">(</span><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif;">kernel is
+upgraded to&nbsp;4.10.5-200&nbsp;) with 2-2-2, 2-1-1 and 1-1-1 config.<o:p></o:p></span></h4><h4 style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in;line-height:15.55pt;background-image:
+initial;background-position:initial;background-size: initial;background-repeat:
+initial;background-attachment:initial;background-origin: initial;background-clip: initial"><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: black;">Refer
+to the</span><span class="apple-converted-space"><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: rgb(51, 51, 51);">&nbsp;</span></span><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><a href="http://targetmailer.intel.com/TMService/Redir.aspx?ID=2771189" target="_blank">installation guide</a><span class="apple-converted-space"><span style="color:black">&nbsp;</span></span><span style="color:black">BKC package installation</span><o:p></o:p></span></h4><h4 style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:28.2pt;
+margin-bottom:.0001pt;text-indent:-9.0pt;line-height:15.55pt"><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif;">Total test case 35; Passed test case
+is:&nbsp;34 and pass rate is 97%&nbsp;</span><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></h4><h4 style="margin:0in;margin-bottom:.0001pt;line-height:15.55pt"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span></h4><p class="MsoNormal" style="mso-margin-top-alt:auto;margin-bottom:7.5pt;
+line-height:15.0pt"><b><u><span style="font-size:10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+color:black">ES1 AEP DIMM Setup BKM</span></u></b><b><u><span style="font-size:
+10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;</span></u></b><o:p></o:p></p><p class="MsoListParagraph" style="margin-top:0in;margin-right:0in;margin-bottom:
+0in;margin-left:.25in;margin-bottom:.0001pt;text-indent:-.25in;line-height:
+15.0pt;background-image:initial;background-position:initial;background-size: initial;
+background-repeat:initial;background-attachment:initial;background-origin: initial;
+background-clip: initial"><span class="apple-converted-space"><span style="font-size:10.5pt;font-family:Symbol">·</span></span><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><b><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif">Update CR FW</span></b><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin-top:0in;margin-right:0in;margin-bottom:
+0in;margin-left:.25in;margin-bottom:.0001pt;line-height:115%;background-image:
+initial;background-position:initial;background-size: initial;background-repeat:
+initial;background-attachment:initial;background-origin: initial;background-clip: initial"><span class="apple-converted-space"><b><span style="font-size:10.5pt;line-height:115%;
+font-family:&quot;Intel Clear&quot;,sans-serif;color:black">If AEP DIMM is not
+healthy,&nbsp;</span></b></span><span class="apple-converted-space"><b><span style="font-size:10.5pt;line-height:115%;font-family:&quot;Intel Clear&quot;,sans-serif">we
+have two alternatives:</span></b></span><span style="font-size:10.0pt;
+line-height:115%;font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin-top:0in;margin-right:0in;margin-bottom:
+0in;margin-left:38.4pt;margin-bottom:.0001pt;text-indent:-.25in;line-height:
+115%;background-image:initial;background-position:initial;background-size: initial;
+background-repeat:initial;background-attachment:initial;background-origin: initial;
+background-clip: initial"><span class="apple-converted-space"><span style="font-size:10.0pt;line-height:115%;font-family:&quot;Intel Clear&quot;,sans-serif">a.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Do
+AEP format</span></span><span style="font-size:10.0pt;line-height:115%;
+font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoNormal" style="line-height:115%;background-image:initial;background-position:
+initial;background-size: initial;background-repeat:initial;background-attachment:
+initial;background-origin: initial;background-clip: initial"><span class="apple-converted-space"><span style="font-size:10.0pt;line-height:115%;
+font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1. Attach ITP to the SKX XDP port</span></span><span style="font-size:10.0pt;
+line-height:115%;font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoNormal" style="line-height:115%;background-image:initial;background-position:
+initial;background-size: initial;background-repeat:initial;background-attachment:
+initial;background-origin: initial;background-clip: initial"><span class="apple-converted-space"><span style="font-size:10.0pt;line-height:115%;
+font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2. On the ElkValley pythonSV console, type below commands for DIMM formatting</span></span><span style="font-size:10.0pt;line-height:115%;font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoNormal" style="line-height:115%;background-image:initial;background-position:
+initial;background-size: initial;background-repeat:initial;background-attachment:
+initial;background-origin: initial;background-clip: initial"><span class="apple-converted-space"><span style="font-size:10.0pt;line-height:115%;
+font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&gt;&gt;&gt;itp.cv.resetbreak=1</span></span><span style="font-size:10.0pt;
+line-height:115%;font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoNormal" style="line-height:115%;background-image:initial;background-position:
+initial;background-size: initial;background-repeat:initial;background-attachment:
+initial;background-origin: initial;background-clip: initial"><span class="apple-converted-space"><span style="font-size:10.0pt;line-height:115%;
+font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&gt;&gt;&gt; sv.refresh()</span></span><span style="font-size:10.0pt;
+line-height:115%;font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoNormal" style="line-height:115%;background-image:initial;background-position:
+initial;background-size: initial;background-repeat:initial;background-attachment:
+initial;background-origin: initial;background-clip: initial"><span class="apple-converted-space"><span style="font-size:10.0pt;line-height:115%;
+font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&gt;&gt;&gt; fw.showBSR()</span></span><span style="font-size:10.0pt;
+line-height:115%;font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoNormal" style="line-height:115%;background-image:initial;background-position:
+initial;background-size: initial;background-repeat:initial;background-attachment:
+initial;background-origin: initial;background-clip: initial"><span class="apple-converted-space"><span style="font-size:10.0pt;line-height:115%;
+font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;import falconvalley.fw.fnvFwFunctions
+as fw</span></span><span style="font-size:10.0pt;line-height:115%;font-family:
+&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoNormal" style="line-height:115%;background-image:initial;background-position:
+initial;background-size: initial;background-repeat:initial;background-attachment:
+initial;background-origin: initial;background-clip: initial"><span class="apple-converted-space"><span style="font-size:10.0pt;line-height:115%;
+font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&gt;&gt;&gt;fw.dfxFormat(unlockDimm=False)</span></span><span style="font-size:
+10.0pt;line-height:115%;font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoNormal" style="line-height:115%;background-image:initial;background-position:
+initial;background-size: initial;background-repeat:initial;background-attachment:
+initial;background-origin: initial;background-clip: initial"><span class="apple-converted-space"><span style="font-size:10.0pt;line-height:115%;
+font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&gt;&gt;&gt;itp.cv.resetbreak=0</span></span><span style="font-size:10.0pt;
+line-height:115%;font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoNormal" style="line-height:115%;background-image:initial;background-position:
+initial;background-size: initial;background-repeat:initial;background-attachment:
+initial;background-origin: initial;background-clip: initial"><span class="apple-converted-space"><span style="font-size:10.0pt;line-height:115%;
+font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+3. Power cycle the system</span></span><span style="font-size:10.0pt;
+line-height:115%;font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoNormal" style="line-height:115%;background-image:initial;background-position:
+initial;background-size: initial;background-repeat:initial;background-attachment:
+initial;background-origin: initial;background-clip: initial"><span class="apple-converted-space"><span style="font-size:10.0pt;line-height:115%;
+font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4. Boot to UEFI shell and update CR</span></span><span style="font-size:10.0pt;
+line-height:115%;font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoNormal" style="line-height:115%;background-image:initial;background-position:
+initial;background-size: initial;background-repeat:initial;background-attachment:
+initial;background-origin: initial;background-clip: initial"><span class="apple-converted-space"><span style="font-size:10.0pt;line-height:115%;
+font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ApachePassCli.efi load -f –source &nbsp;.\&lt; _strip.bin fw file&gt; -dimm</span></span><span style="font-size:10.0pt;line-height:115%;font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin-top:0in;margin-right:0in;margin-bottom:
+0in;margin-left:38.4pt;margin-bottom:.0001pt;text-indent:-.25in;line-height:
+115%"><span style="font-size:10.0pt;line-height:115%;font-family:&quot;Intel Clear&quot;,sans-serif">b.&nbsp;&nbsp;&nbsp;&nbsp;<span class="apple-converted-space">&nbsp;If step a is not working,&nbsp;<span style="color:black">use ITP/Jtag to update AEP FW and Syn SPD one by one,
+follow the BKM&nbsp;</span></span><a href="http://targetmailer.intel.com/TMService/Redir.aspx?ID=2767143">Setup_TAB_AEP_BKM_v1.1.docx</a><o:p></o:p></span></p><p class="MsoListParagraph" style="margin:0in;margin-bottom:.0001pt;line-height:
+15.0pt;background-image:initial;background-position:initial;background-size: initial;
+background-repeat:initial;background-attachment:initial;background-origin: initial;
+background-clip: initial"><span style="font-size:10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;</span><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin-top:0in;margin-right:0in;margin-bottom:
+0in;margin-left:.25in;margin-bottom:.0001pt;line-height:15.0pt;background-image:
+initial;background-position:initial;background-size: initial;background-repeat:
+initial;background-attachment:initial;background-origin: initial;background-clip: initial"><b><span style="font-size:11.0pt;font-family:&quot;Intel Clear&quot;,sans-serif">If AEP DIMM is
+health, use UEFI shell to update all AEP FW</span></b><span style="font-size:
+10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:7.5pt;line-height:15.0pt;background-image:
+initial;background-position:initial;background-size: initial;background-repeat:
+initial;background-attachment:initial;background-origin: initial;background-clip: initial"><b><span style="font-size:10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="apple-converted-space">&nbsp;</span></span></b><span style="font-size:
+10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif">ApachePassCli.efi load –f -source
+&lt;path_to_strip.bin&gt; - dimm</span><o:p></o:p></p><p class="MsoNormal" style="mso-margin-top-alt:auto;margin-bottom:7.5pt;
+line-height:15.0pt;background-image:initial;background-position:initial;
+background-size: initial;background-repeat:initial;background-attachment:initial;
+background-origin: initial;background-clip: initial"><span style="font-size:
+10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;</span><span style="font-size:10.5pt;font-family:Symbol">·</span><span style="font-size:
+10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;<span class="apple-converted-space">&nbsp;</span></span><b>Goal/namespace can be
+created under UEFI or Linux</b><o:p></o:p></p><p class="MsoListParagraph" style="margin:0in;margin-bottom:.0001pt;text-indent:
+-.25in;line-height:15.0pt;background-image:initial;background-position:initial;
+background-size: initial;background-repeat:initial;background-attachment:initial;
+background-origin: initial;background-clip: initial"><span style="font-size:
+11.0pt;font-family:&quot;Intel Clear&quot;,sans-serif">a.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="apple-converted-space"><span style="font-size:10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;<span style="color:#1F497D">&nbsp;&nbsp;&nbsp;&nbsp;</span></span></span><span style="font-size:11.0pt;font-family:&quot;Intel Clear&quot;,sans-serif">UEFI:
+ApachePassCli.efi create -f -goal PersistentMemoryType=AppDirect</span><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin:0in;margin-bottom:.0001pt;line-height:
+15.0pt;background-image:initial;background-position:initial;background-size: initial;
+background-repeat:initial;background-attachment:initial;background-origin: initial;
+background-clip: initial"><span style="font-size:11.0pt;font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="apple-converted-space"><span style="font-size:10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;<span style="color:#1F497D">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></span><span style="font-size:11.0pt;font-family:&quot;Intel Clear&quot;,sans-serif">ApachePassCli.efi
+show -a –pool</span><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin:0in;margin-bottom:.0001pt;line-height:
+15.0pt;background-image:initial;background-position:initial;background-size: initial;
+background-repeat:initial;background-attachment:initial;background-origin: initial;
+background-clip: initial"><span style="font-size:11.0pt;font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;<span style="color:#1F497D">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="apple-converted-space"><span style="font-size:10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+color:#1F497D">&nbsp;</span></span><span style="font-size:11.0pt;font-family:
+&quot;Intel Clear&quot;,sans-serif">ApachePassCli.efi create –namespace –pool
+&lt;pool_Id&gt; Type=AppDirect</span><span style="font-size:10.0pt;font-family:
+&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin:0in;margin-bottom:.0001pt;text-indent:
+-.25in;line-height:15.0pt;background-image:initial;background-position:initial;
+background-size: initial;background-repeat:initial;background-attachment:initial;
+background-origin: initial;background-clip: initial"><span style="font-size:
+11.0pt;font-family:&quot;Intel Clear&quot;,sans-serif">b.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#1F497D">&nbsp;&nbsp;&nbsp; &nbsp;</span>Linux: ixpdimm-cli create
+–f –goal persistentmemorytype=appdirect</span><span style="font-size:10.0pt;
+font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin:0in;margin-bottom:.0001pt;line-height:
+15.0pt;background-image:initial;background-position:initial;background-size: initial;
+background-repeat:initial;background-attachment:initial;background-origin: initial;
+background-clip: initial"><span style="font-size:11.0pt;font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="apple-converted-space"><span style="font-size:10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;<span style="color:#1F497D">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></span><span style="font-size:11.0pt;font-family:&quot;Intel Clear&quot;,sans-serif">ixpdimm- cli show
+-a –pool</span><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 7.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoListParagraph" style="margin:0in;margin-bottom:.0001pt;line-height:
+15.0pt;background-image:initial;background-position:initial;background-size: initial;
+background-repeat:initial;background-attachment:initial;background-origin: initial;
+background-clip: initial"><span style="font-size:11.0pt;font-family:&quot;Intel Clear&quot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="font-size:11.0pt">&nbsp;</span><span style="font-size:11.0pt;font-family:
+&quot;Intel Clear&quot;,sans-serif">&nbsp;&nbsp;&nbsp;ixpdimm-cli create –namespace –pool
+&lt;pool_Id&gt; Type=AppDirect<o:p></o:p></span></p><p class="MsoListParagraph" style="margin:0in;margin-bottom:.0001pt;line-height:
+15.0pt;background-image:initial;background-position:initial;background-size: initial;
+background-repeat:initial;background-attachment:initial;background-origin: initial;
+background-clip: initial"><span style="font-size:11.0pt;font-family:
+&quot;Intel Clear&quot;,sans-serif"><br></span></p><p class="MsoListParagraph" style="margin:0in;margin-bottom:.0001pt;line-height:
+15.0pt;background-image:initial;background-position:initial;background-size: initial;
+background-repeat:initial;background-attachment:initial;background-origin: initial;
+background-clip: initial"><span style="font-size:11.0pt;font-family:
+&quot;Intel Clear&quot;,sans-serif"><br></span></p><p class="wordsection1CxSpFirst" style="margin-left:.25in;mso-add-space:auto;
+text-align:justify;text-indent:-.25in;line-height:115%;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><span style="font-size:11.0pt;line-height:115%;font-family:Symbol;mso-fareast-font-family:
+Symbol;mso-bidi-font-family:Symbol;color:black;mso-fareast-language:EN-US;
+mso-bidi-font-weight:bold">·<span style="font-variant-numeric: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]--><b><span style="font-size:11.0pt;line-height:
+115%;font-family:&quot;Calibri&quot;,sans-serif;color:black;mso-fareast-language:EN-US">Setting
+the following knobs is required to boot CR System:<o:p></o:p></span></b></p><p class="wordsection1" style="margin:0in;margin-bottom:.0001pt">
+
+</p><table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="932" style="width: 558.9pt;">
+ <tbody><tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;height:14.7pt">
+  <td width="184" valign="top" style="width: 110.3pt; border-width: 1pt; border-color: windowtext; border-image: initial; background: rgb(127, 127, 127); padding: 0in 5.4pt; height: 14.7pt;">
+  <p class="wordsection1" align="center" style="line-height: 115%;"><b><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif;
+  color:white">Knob Name</span></b><span style="font-size:11.0pt;line-height:
+  115%;font-family:&quot;Calibri&quot;,sans-serif;color:white"><o:p></o:p></span></p>
+  </td>
+  <td width="105" valign="top" style="width: 62.7pt; border-top-width: 1pt; border-right-width: 1pt; border-bottom-width: 1pt; border-top-color: windowtext; border-right-color: windowtext; border-bottom-color: windowtext; border-image: initial; border-left: none; background: rgb(127, 127, 127); padding: 0in 5.4pt; height: 14.7pt;">
+  <p class="wordsection1" align="center" style="line-height: 115%;"><b><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif;
+  color:white">HEX Value<o:p></o:p></span></b></p>
+  </td>
+  <td width="93" valign="top" style="width: 55.95pt; border-top-width: 1pt; border-right-width: 1pt; border-bottom-width: 1pt; border-top-color: windowtext; border-right-color: windowtext; border-bottom-color: windowtext; border-image: initial; border-left: none; background: rgb(127, 127, 127); padding: 0in 5.4pt; height: 14.7pt;">
+  <p class="wordsection1" align="center" style="line-height: 115%;"><b><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif;
+  color:white">Value<o:p></o:p></span></b></p>
+  </td>
+  <td width="550" valign="top" style="width: 329.95pt; border-top-width: 1pt; border-right-width: 1pt; border-bottom-width: 1pt; border-top-color: windowtext; border-right-color: windowtext; border-bottom-color: windowtext; border-image: initial; border-left: none; background: rgb(127, 127, 127); padding: 0in 5.4pt; height: 14.7pt;">
+  <p class="wordsection1" align="center" style="line-height: 115%;"><b><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif;
+  color:white">Menu Path<o:p></o:p></span></b></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:1;height:14.9pt">
+  <td width="184" valign="top" style="width: 110.3pt; border-right-width: 1pt; border-bottom-width: 1pt; border-left-width: 1pt; border-right-color: windowtext; border-bottom-color: windowtext; border-left-color: windowtext; border-image: initial; border-top: none; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="text-align:justify;line-height:115%"><b><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif;
+  mso-fareast-language:EN-US">AttemptFastBoot</span></b><b><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif"><o:p></o:p></span></b></p>
+  </td>
+  <td width="105" valign="top" style="width: 62.7pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" align="center" style="line-height: 115%;"><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">0x0
+  <o:p></o:p></span></p>
+  </td>
+  <td width="93" valign="top" style="width: 55.95pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="text-align:justify;line-height:115%"><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">Disable<o:p></o:p></span></p>
+  </td>
+  <td width="550" valign="top" style="width: 329.95pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="text-align:justify;line-height:115%"><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">Socket
+  Configuration/Memory Configuration/Attempt Fast Boot<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:2;height:14.9pt">
+  <td width="184" valign="top" style="width: 110.3pt; border-right-width: 1pt; border-bottom-width: 1pt; border-left-width: 1pt; border-right-color: windowtext; border-bottom-color: windowtext; border-left-color: windowtext; border-image: initial; border-top: none; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="text-align:justify;line-height:115%"><b><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif;
+  mso-fareast-language:EN-US">PackageCState<o:p></o:p></span></b></p>
+  </td>
+  <td width="105" valign="top" style="width: 62.7pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" align="center" style="line-height: 115%;"><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">0x0<o:p></o:p></span></p>
+  </td>
+  <td width="93" valign="top" style="width: 55.95pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="text-align:justify;line-height:115%"><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">C0/C1
+  state<o:p></o:p></span></p>
+  </td>
+  <td width="550" valign="top" style="width: 329.95pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="line-height:115%"><span style="font-size:11.0pt;
+  line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">Socket
+  Configuration/Advanced Power Management Configuration/Package C State
+  Control/Package C State<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:3;height:14.9pt">
+  <td width="184" valign="top" style="width: 110.3pt; border-right-width: 1pt; border-bottom-width: 1pt; border-left-width: 1pt; border-right-color: windowtext; border-bottom-color: windowtext; border-left-color: windowtext; border-image: initial; border-top: none; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="text-align:justify;line-height:115%"><b><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif;
+  mso-fareast-language:EN-US">CkeProgramming<o:p></o:p></span></b></p>
+  </td>
+  <td width="105" valign="top" style="width: 62.7pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" align="center" style="line-height: 115%;"><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">0x1<o:p></o:p></span></p>
+  </td>
+  <td width="93" valign="top" style="width: 55.95pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="text-align:justify;line-height:115%"><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">Manual<o:p></o:p></span></p>
+  </td>
+  <td width="550" valign="top" style="width: 329.95pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="line-height:115%"><span style="font-size:11.0pt;
+  line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">Thermal
+  Configuration/Memory Power Savings Advanced Options/CKE Throttling<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:4;height:14.9pt">
+  <td width="184" valign="top" style="width: 110.3pt; border-right-width: 1pt; border-bottom-width: 1pt; border-left-width: 1pt; border-right-color: windowtext; border-bottom-color: windowtext; border-left-color: windowtext; border-image: initial; border-top: none; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="text-align:justify;line-height:115%"><b><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif;
+  mso-fareast-language:EN-US">PpdEn<o:p></o:p></span></b></p>
+  </td>
+  <td width="105" valign="top" style="width: 62.7pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" align="center" style="line-height: 115%;"><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">0x0<o:p></o:p></span></p>
+  </td>
+  <td width="93" valign="top" style="width: 55.95pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="text-align:justify;line-height:115%"><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">Disable<o:p></o:p></span></p>
+  </td>
+  <td width="550" valign="top" style="width: 329.95pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="line-height:115%"><span style="font-size:11.0pt;
+  line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">Thermal
+  Configuration/Memory Power Savings Advanced Options/CKE Feature/PPD<b><o:p></o:p></b></span></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:5;height:14.9pt">
+  <td width="184" valign="top" style="width: 110.3pt; border-right-width: 1pt; border-bottom-width: 1pt; border-left-width: 1pt; border-right-color: windowtext; border-bottom-color: windowtext; border-left-color: windowtext; border-image: initial; border-top: none; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="text-align:justify;line-height:115%"><b><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif;
+  mso-fareast-language:EN-US">DdrtCkeEn<o:p></o:p></span></b></p>
+  </td>
+  <td width="105" valign="top" style="width: 62.7pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" align="center" style="line-height: 115%;"><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">0x0<o:p></o:p></span></p>
+  </td>
+  <td width="93" valign="top" style="width: 55.95pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="text-align:justify;line-height:115%"><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">Disable<o:p></o:p></span></p>
+  </td>
+  <td width="550" valign="top" style="width: 329.95pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="line-height:115%"><span style="font-size:11.0pt;
+  line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">Memory Power&nbsp;
+  &amp;amp;&nbsp; Thermal Configuration/Memory Power Savings Advanced
+  Options/CKE Feature/NVMDIMM CKE<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:6;height:14.9pt">
+  <td width="184" valign="top" style="width: 110.3pt; border-right-width: 1pt; border-bottom-width: 1pt; border-left-width: 1pt; border-right-color: windowtext; border-bottom-color: windowtext; border-left-color: windowtext; border-image: initial; border-top: none; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="text-align:justify;line-height:115%"><b><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif;
+  mso-fareast-language:EN-US">DirectoryModeEn<o:p></o:p></span></b></p>
+  </td>
+  <td width="105" valign="top" style="width: 62.7pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" align="center" style="line-height: 115%;"><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">0x0<o:p></o:p></span></p>
+  </td>
+  <td width="93" valign="top" style="width: 55.95pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="text-align:justify;line-height:115%"><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">Disable<o:p></o:p></span></p>
+  </td>
+  <td width="550" valign="top" style="width: 329.95pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="line-height:115%"><span style="font-size:11.0pt;
+  line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">Socket Configuration/UPI
+  Configuration/UPI General Configuration/Directory Mode Enable<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:7;height:14.9pt">
+  <td width="184" valign="top" style="width: 110.3pt; border-right-width: 1pt; border-bottom-width: 1pt; border-left-width: 1pt; border-right-color: windowtext; border-bottom-color: windowtext; border-left-color: windowtext; border-image: initial; border-top: none; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="text-align:justify;line-height:115%"><b><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif;
+  mso-fareast-language:EN-US">DdrFreqLimit<o:p></o:p></span></b></p>
+  </td>
+  <td width="105" valign="top" style="width: 62.7pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" align="center" style="line-height: 115%;"><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">0xD<o:p></o:p></span></p>
+  </td>
+  <td width="93" valign="top" style="width: 55.95pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="text-align:justify;line-height:115%"><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">2400<o:p></o:p></span></p>
+  </td>
+  <td width="550" valign="top" style="width: 329.95pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="text-align:justify;line-height:115%"><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">Socket
+  Configuration/Memory Configuration/Memory Frequency<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:8;mso-yfti-lastrow:yes;height:14.9pt">
+  <td width="184" valign="top" style="width: 110.3pt; border-right-width: 1pt; border-bottom-width: 1pt; border-left-width: 1pt; border-right-color: windowtext; border-bottom-color: windowtext; border-left-color: windowtext; border-image: initial; border-top: none; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="text-align:justify;line-height:115%"><b><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif;
+  mso-fareast-language:EN-US">ViralEn<o:p></o:p></span></b></p>
+  </td>
+  <td width="105" valign="top" style="width: 62.7pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" align="center" style="line-height: 115%;"><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">0x0<o:p></o:p></span></p>
+  </td>
+  <td width="93" valign="top" style="width: 55.95pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="text-align:justify;line-height:115%"><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">Disable<o:p></o:p></span></p>
+  </td>
+  <td width="550" valign="top" style="width: 329.95pt; border-top: none; border-left: none; border-bottom-width: 1pt; border-bottom-color: windowtext; border-right-width: 1pt; border-right-color: windowtext; padding: 0in 5.4pt; height: 14.9pt;">
+  <p class="wordsection1" style="text-align:justify;line-height:115%"><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif">Platform
+  Configuration/System Event Log/Viral Status<o:p></o:p></span></p>
+  </td>
+ </tr>
+</tbody></table>
+                                </td>
+                        </tr>
+                        
+                     </tbody></table>
+                </div>
+            </div>
+        </div>
+        <br>
+    <!--     <span class="sh2">&nbsp Key Sightings: </span>
+             <table class="MsoNormalTable">
+                 <tr>
+                    <th width="7%">ID</th>
+                    <th width="93%">Title</th>
+                 </tr>
+                 
+                 <tr >
+                     
+                        <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5346022">5346022</a></td>
+                     
+                     <td style="text-align:left;">[2017_WW11][BIOS:1002.D12][CR FW: 1.0.0.3578][Neon city][AEP ES1] System can&#39;t enter hibernate under 1LM + 100% Appdirect mode</td>
+                 </tr>
+                 
+                 
+             </table><br/> -->
+        
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Key Sightings </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseKeySightings"></div>
+                </div>
+            </div>
+            <div id="collapseKeySightings" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    
+                    <table class="MsoNormalTable">
+                        <tbody><tr>
+                            <th width="5%">ID</th>
+                            <th width="25%">Title</th>
+                            <th width="7%">Priority</th>
+                            <th width="7%">Severity</th>
+                            <th width="7%">Owner</th>
+                            <th width="20%">Note</th>
+                            <th width="7%">Status</th>
+                            <th width="10%">Subsystem</th>
+                            <th width="12%">Promoted ID</th>
+                        </tr>
+                        
+                            
+                                <tr style="background-color:#eb9316">
+                                
+                                    <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5346022">5346022</a></td>
+                                
+                                <td style="text-align:left;">[2017_WW11][BIOS:1002.D12][CR FW: 1.0.0.3578][Neon city][AEP ES1] System can't enter hibernate under 1LM + 100% Appdirect mode</td>
+                                <td>P2</td>
+                                <td>2 High</td>
+                                <td>chenyu5</td>
+                                <td></td>
+                                <td>Assigned</td>
+                                <td>OS/Driver</td>
+                                <td>
+                                    
+                                        
+                                            
+                                                    <p>N/A</p>
+                                                
+                                        
+                                    
+                                </td>
+                                </tr>
+                            
+                        
+                    </tbody></table><br>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; New Sightings </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseNewSightings"></div>
+                </div>
+            </div>
+            <div id="collapseNewSightings" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    
+                    <table class="MsoNormalTable">
+                        <tbody><tr>
+                            <th width="5%">ID</th>
+                            <th width="45%">Title</th>
+                            <th width="7%">Priority</th>
+                            <th width="7%">Severity</th>
+                            <th width="7%">Owner</th>
+                            <th width="7%">Status</th>
+                            <th width="10%">Subsystem</th>
+                            <th width="12%">Promoted ID</th>
+                        </tr>
+                        
+
+                                <tr>
+                                
+                                    <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5346183">5346183</a></td>
+                                
+                                <td style="text-align:left;">[2017_WW19][BIOS:1003_D08][CR FW: 1.0.0.3769][Neon city][AEP ES1] AEP HealthState show "non-recoverable error" after flash CR FW 3769</td>
+                                <td>P2</td>
+                                <td>3 Medium</td>
+                                <td></td>
+                                <td>New Sighting</td>
+                                <td></td>
+                                <td>
+                                    
+                                        
+                                            
+                                                <p>N/A</p>
+                                            
+                                        
+                                    
+                                </td>
+                                </tr>
+
+                        
+                    </tbody></table><br>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Existing Sightings </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseExistingSightings"></div>
+                </div>
+            </div>
+            <div id="collapseExistingSightings" class="panel-collapse collapse ">
+                <div class="panel-body">
+                
+                <table class="MsoNormalTable" width="100%">
+                    <tbody><tr>
+                        <th width="5%">ID</th>
+                        <th width="45%">Title</th>
+                        <th width="7%">Priority</th>
+                        <th width="7%">Severity</th>
+                        <th width="7%">Owner</th>
+                        <th width="7%">Status</th>
+                        <th width="10%">Subsystem</th>
+                        <th width="12%">Promoted ID</th>
+                    </tr>
+                        
+
+                                <tr>
+                                
+                                    <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5346022">5346022</a></td>
+                                
+                                <td style="text-align:left;">[2017_WW11][BIOS:1002.D12][CR FW: 1.0.0.3578][Neon city][AEP ES1] System can't enter hibernate under 1LM + 100% Appdirect mode</td>
+                                <td>P2</td>
+                                <td>2 High</td>
+                                <td>chenyu5</td>
+                                <td>Assigned</td>
+                                <td>OS/Driver</td>
+                                <td>
+                                    
+                                        
+                                            
+                                                <p>N/A</p>
+                                            
+                                        
+                                    
+                                </td>
+                                </tr>
+
+                        
+
+                                <tr>
+                                
+                                    <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5346019">5346019</a></td>
+                                
+                                <td style="text-align:left;">[2017_WW11][BIOS:1002.D12][CR FW: 1.0.0.3578][Neon city][AEP ES1] "ixpdimm-cli start –diagnostic fw" reports errors under 1LM+Appdirect mode</td>
+                                <td>P2</td>
+                                <td>3 Medium</td>
+                                <td>xiangli3</td>
+                                <td>Pending</td>
+                                <td>AEP</td>
+                                <td>
+                                    
+                                        
+                                            
+                                                <p>N/A</p>
+                                            
+                                        
+                                    
+                                </td>
+                                </tr>
+
+                        
+
+                                <tr>
+                                
+                                    <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5346021">5346021</a></td>
+                                
+                                <td style="text-align:left;">[2017_WW11][BIOS:1002.D12][CR FW: 1.0.0.3578][Neon city][AEP ES1] "ixpdimm-cli start –diagnostic quick" reports media error under 1LM+Appdirect mode</td>
+                                <td>P2</td>
+                                <td>3 Medium</td>
+                                <td>xiangli3</td>
+                                <td>Pending</td>
+                                <td>AEP</td>
+                                <td>
+                                    
+                                        
+                                            
+                                                <p>N/A</p>
+                                            
+                                        
+                                    
+                                </td>
+                                </tr>
+
+                        
+
+                                <tr>
+                                
+                                    <td><a href="https://vthsd.png.intel.com/hsd/bkc/sighting/default.aspx?sighting_id=5346023">5346023</a></td>
+                                
+                                <td style="text-align:left;">[2017_WW11][BIOS:1002.D12][CR FW: 1.0.0.3578][Neon city][AEP ES1] "ixpdimm-cli start –diagnostic security" shows security is disabled under 1LM+Appdirect mode</td>
+                                <td>P2</td>
+                                <td>3 Medium</td>
+                                <td>xiangli3</td>
+                                <td>Pending</td>
+                                <td>AEP</td>
+                                <td>
+                                    
+                                        
+                                            
+                                                <p>N/A</p>
+                                            
+                                        
+                                    
+                                </td>
+                                </tr>
+
+                        
+                </tbody></table><br>
+                 
+                </div>
+            </div>
+        </div>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Closed Sightings </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseClosedSightings"></div>
+                </div>
+            </div>
+            <div id="collapseClosedSightings" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    
+                    <p>&nbsp; N/A</p>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <br>
+        
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; HW Rework </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseHWRework"></div>
+                </div>
+            </div>
+            <div id="collapseHWRework" class="panel-collapse collapse ">
+                <div class="panel-body">
+                <table class="DetailTable" width="100%">
+                    <tbody><tr>
+                        <td> 
+                                <h4 style="margin: 0in 0in 0pt; color: rgb(0, 0, 0); line-height: 15.55pt; font-family: &quot;Times New Roman&quot;, serif; font-size: medium; font-weight: bold;"><u><span lang="EN-GB" style="font-family: Calibri, sans-serif; font-size: 11pt;">Pedigree and Board Jumper Settings:<span class="apple-converted-space">&nbsp;</span></span></u><a style="color: rgb(149, 79, 114); text-decoration: underline;" href="http://targetmailer.intel.com/TMService/Redir.aspx?ID=2630621"><span style="color: rgb(0, 113, 197); font-family: Calibri, sans-serif; font-size: 11pt;">2S Guide</span></a><o:p></o:p></h4><p class="MsoNormal" style="margin: 0in 0in 0pt; color: rgb(0, 0, 0); line-height: 12.1pt; font-family: &quot;Times New Roman&quot;, serif; font-size: medium;"><i><span style="font-family: Calibri, sans-serif; font-size: 11pt;">Note: Only mandatory and necessary optional rework is implemented by BKC team</span></i></p><p class="default" style="margin: 0in 0in 0pt 34.8pt; color: rgb(0, 0, 0); line-height: 12.1pt; text-indent: -13.5pt; font-family: &quot;Times New Roman&quot;, serif; font-size: medium;"><span style="font-family: Symbol; font-size: 11pt;">·</span><span style="font-size: 7pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="font-family: Calibri, sans-serif; font-size: 11pt;">2s</span></p><p class="default" style="margin: 0in 0in 0pt 1in; color: rgb(0, 0, 0); line-height: 12.1pt; text-indent: -0.25in; font-family: &quot;Times New Roman&quot;, serif; font-size: medium;"><span style="font-family: Calibri, sans-serif; font-size: 11pt;">o&nbsp;NC_RWK_I (Mandatory): Update BMC FW</span></p><p class="default" style="margin: 0in 0in 0pt 1in; color: rgb(0, 0, 0); line-height: 12.1pt; text-indent: -0.25in; font-family: &quot;Times New Roman&quot;, serif; font-size: medium;"><span style="font-family: Calibri, sans-serif; font-size: 11pt;">o&nbsp;NC_RWK_K (Mandatory): Avoiding false LAN Wake Activations</span></p><p class="default" style="margin: 0in 0in 0pt 1in; color: rgb(0, 0, 0); line-height: 12.1pt; text-indent: -0.25in; font-family: &quot;Times New Roman&quot;, serif; font-size: medium;"><span style="font-family: Calibri, sans-serif; font-size: 11pt;">o&nbsp;NC_RWK_L (Mandatory): Update CPLD FW</span></p><p class="default" style="margin: 0in 0in 0pt 1in; color: rgb(0, 0, 0); line-height: 12.1pt; text-indent: -0.25in; font-family: &quot;Times New Roman&quot;, serif; font-size: medium;"><span style="font-family: Calibri, sans-serif; font-size: 11pt;">o&nbsp;NC_RWK_M (Mandatory): No-Boot without ITP issue fix</span></p><p class="default" style="margin: 0in 0in 0pt 1in; color: rgb(0, 0, 0); line-height: 12.1pt; text-indent: -0.25in; font-family: &quot;Times New Roman&quot;, serif; font-size: medium;"><span style="font-family: Calibri, sans-serif; font-size: 11pt;">o&nbsp;Note:&nbsp;In case you have implemented Optional rework 20, you should move switch S4E2.4&nbsp;to OFF position, otherwise the default position is ON.<span style="color: red;">&nbsp;</span></span></p>
+                            
+                        </td>
+                    </tr>
+                </tbody></table><br>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; HW Configuration </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseHWConfiguration"></div>
+                </div>
+            </div>
+            <div id="collapseHWConfiguration" class="panel-collapse collapse ">
+                <div class="panel-body">
+                
+                    
+                        <p><font color="#000000" face="Times New Roman" size="3">
+</font></p><table border="0" cellpadding="0" cellspacing="0" class="DetailTable">
+<tbody><tr>
+<th>
+<div align="center" class="MsoNormal"><b><span lang="ZH-CN" style="">　</span></b><o:p></o:p></div>
+</th>
+<th>
+<div align="center" class="MsoNormal"><b><i><span style="">System
+  1</span></i></b><b><i><span style="">-2</span></i></b><o:p></o:p></div>
+</th>
+</tr>
+<tr>
+<td>
+<div class="MsoNormal"><b><i><span style="color:black">Ingredient</span></i></b><o:p></o:p></div>
+</td>
+<td>
+<div class="MsoNormal"><b><i><span style="color:black">HW/SW Version Details</span></i></b><o:p></o:p></div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="MsoNormal"><span style="color:black">CPU 0/1</span><o:p></o:p></div>
+</td>
+<td>
+QM7R <span style="mso-fareast-font-family:宋体;mso-fareast-theme-font:
+minor-fareast;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black;mso-ansi-language:
+EN-US;mso-fareast-language:ZH-CN;mso-bidi-language:AR-SA">(SKX H0 QS)</span><br></td>
+</tr>
+<tr>
+<td>
+<div class="MsoNormal"><span style="color:black">PCH</span><o:p></o:p></div>
+</td>
+<td>
+QM1S&nbsp;<span style="mso-fareast-font-family:宋体;mso-fareast-theme-font:
+minor-fareast;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black;mso-ansi-language:
+EN-US;mso-fareast-language:ZH-CN;mso-bidi-language:AR-SA">(LBG B1 QS)</span><br></td>
+</tr>
+<tr>
+<td>
+<div class="MsoNormal"><span style="color:black">DDR4 memory</span><o:p></o:p></div>
+</td>
+<td>
+<div class="MsoNormal"><span style="color:black">MAT18ASF2G72PZ-2G3A1|G 16GB 1R*4
+  PC4-2400T-RCB-10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><o:p></o:p></div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="MsoNormal"><span style="color:black">AEP memory</span><o:p></o:p></div>
+</td>
+<td>
+<div class="MsoNormal"><span style="color:black">AEP PBA:J26184-239 128GB KVAQ 7024 064D TAB 11 FAB2 ES1
+  SDP(DD),EKV 3DXP ES1<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="MsoNormal"><span style="color:black">Base Board</span><o:p></o:p></div>
+</td>
+<td>
+<div class="MsoNormal"><span style="color:black">&nbsp;Neon City PBA H47994-202</span><o:p></o:p></div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="MsoNormal"><span style="color:black">Chassis</span><o:p></o:p></div>
+</td>
+<td>
+<div class="MsoNormal"><span style="color:black">ASSEMBLY NO. H48593-002</span><o:p></o:p></div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="MsoNormal"><span style="color:black">PCIe riser card</span><o:p></o:p></div>
+</td>
+<td>
+<div class="MsoNormal"><span style="color:black">NVDIA GEFORCE 210 (Suggest&nbsp;PCIe slot 1)</span><o:p></o:p></div>
+</td>
+</tr>
+</tbody></table>
+<p class="wordsection1"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;
+color:#1F497D;mso-fareast-language:ZH-CN">&nbsp;</span></p>
+<p class="wordsection1" style="margin-bottom: 7.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><u><span style="font-family:&quot;Intel Clear&quot;,sans-serif;color:black">Memory Population</span></u></b><b><u><span style="font-size:11.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;color:black;
+mso-fareast-language:ZH-CN"><o:p></o:p></span></u></b></p>
+<table border="0" cellpadding="0" cellspacing="0" class="DetailTable">
+<tbody><tr>
+<td>
+<div class="MsoNormal"><span style="">&nbsp;<o:p></o:p></span></div>
+</td>
+<td colspan="6" valign="bottom">
+<div class="MsoNormal"><span style="color:black">Per iMC</span><span style=""><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td rowspan="2">
+<div class="MsoNormal"><span style="color:black">Config#</span><span style=""><o:p></o:p></span></div>
+</td>
+<td colspan="2">
+<div class="MsoNormal"><span style="color:black">Chnl2</span><span style=""><o:p></o:p></span></div>
+</td>
+<td colspan="2">
+<div class="MsoNormal"><span style="color:black">Chnl1</span><span style=""><o:p></o:p></span></div>
+</td>
+<td colspan="2">
+<div class="MsoNormal"><span style="color:black">Chnl0</span><span style=""><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td valign="bottom">
+<div class="MsoNormal"><span style="color:black">Slot1</span><span style=""><o:p></o:p></span></div>
+</td>
+<td valign="bottom">
+<div class="MsoNormal"><span style="color:black">Slot0</span><span style=""><o:p></o:p></span></div>
+</td>
+<td valign="bottom">
+<div class="MsoNormal"><span style="color:black">Slot1</span><span style=""><o:p></o:p></span></div>
+</td>
+<td valign="bottom">
+<div class="MsoNormal"><span style="color:black">Slot0</span><span style=""><o:p></o:p></span></div>
+</td>
+<td valign="bottom">
+<div class="MsoNormal"><span style="color:black">Slot1</span><span style=""><o:p></o:p></span></div>
+</td>
+<td valign="bottom">
+<div class="MsoNormal"><span style="color:black">Slot0</span><span style=""><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td valign="bottom">
+<div class="MsoNormal"><span style="">2-2-2<o:p></o:p></span></div>
+</td>
+<th valign="bottom">
+<div class="MsoNormal"><b><span style="">&nbsp;DDRT<o:p></o:p></span></b></div>
+</th>
+<th valign="bottom">
+<div class="MsoNormal"><b><span style="">&nbsp;DDR4<o:p></o:p></span></b></div>
+</th>
+<th valign="bottom">
+<div class="MsoNormal"><b><span style="">&nbsp;DDRT<o:p></o:p></span></b></div>
+</th>
+<th valign="bottom">
+<div class="MsoNormal"><b><span style="">&nbsp;DDR4<o:p></o:p></span></b></div>
+</th>
+<th valign="bottom">
+<div class="MsoNormal"><b><span style="">&nbsp;DDRT<o:p></o:p></span></b></div>
+</th>
+<th valign="bottom">
+<div class="MsoNormal"><b><span style="">&nbsp;DDR4<o:p></o:p></span></b></div>
+</th>
+</tr>
+<tr>
+<td valign="bottom">
+<div class="MsoNormal" style="background-image:initial;background-position:initial;
+  background-size: initial;background-repeat:initial;background-attachment:
+  initial;background-origin: initial;background-clip: initial"><span style="">2-1-1<o:p></o:p></span></div>
+</td>
+<th valign="bottom">
+<div class="MsoNormal"><b><span style=""><o:p>&nbsp;</o:p></span></b></div>
+</th>
+<th valign="bottom">
+<div class="MsoNormal"><b><span style="">DDR4<o:p></o:p></span></b></div>
+</th>
+<th valign="bottom">
+<div class="MsoNormal"><b><span style=""><o:p>&nbsp;</o:p></span></b></div>
+</th>
+<th valign="bottom">
+<div class="MsoNormal"><b><span style="">DDR4<o:p></o:p></span></b></div>
+</th>
+<th valign="bottom">
+<div class="MsoNormal"><b><span style="">&nbsp;DDRT<o:p></o:p></span></b></div>
+</th>
+<th valign="bottom">
+<div class="MsoNormal"><b><span style="">&nbsp;DDR4<o:p></o:p></span></b></div>
+</th>
+</tr>
+<tr>
+<td valign="bottom">
+<div class="MsoNormal"><span style="">1-1-1<o:p></o:p></span></div>
+</td>
+<th valign="bottom">
+<div class="MsoNormal"><b><span style=""><o:p>&nbsp;</o:p></span></b></div>
+</th>
+<th valign="bottom">
+<div class="MsoNormal"><b><span style="">DDRT<o:p></o:p></span></b></div>
+</th>
+<th valign="bottom">
+<div class="MsoNormal"><b><span style=""><o:p>&nbsp;</o:p></span></b></div>
+</th>
+<th valign="bottom">
+<div class="MsoNormal"><b><span style="">DDR4<o:p></o:p></span></b></div>
+</th>
+<th valign="bottom">
+<div class="MsoNormal"><b><span style=""><o:p>&nbsp;</o:p></span></b></div>
+</th>
+<th valign="bottom">
+<div class="MsoNormal"><b><span style="">DDR4<o:p></o:p></span></b></div>
+</th>
+</tr>
+</tbody></table>
+<p class="wordsection1" style="margin:0in;margin-bottom:.0001pt"><span style="font-size:11.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;color:black">DDR4
+- RDIMM, 2400 16GB</span><span style="font-size:11.0pt;font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p>
+<p class="wordsection1" style="margin:0in;margin-bottom:.0001pt;background-image:
+initial;background-position:initial;background-size: initial;background-repeat:
+initial;background-attachment:initial;background-origin: initial;background-clip: initial"><span style="font-size:11.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;color:black">DDR-T
+- ES1 AEP 128GB</span><span style="font-size:11.0pt;font-family:&quot;Intel Clear&quot;,sans-serif"><o:p></o:p></span></p>
+                    
+                
+                </div>
+            </div>
+        </div>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; SW Configuration </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseSWConfiguration"></div>
+                </div>
+            </div>
+            <div id="collapseSWConfiguration" class="panel-collapse collapse ">
+                <div class="panel-body">
+                
+                    
+                    <div id="sw_info_reference">
+                     <table class="MsoNormalTable" width="100%" id="sw_table">
+                    <tbody><tr>
+                        <th width="13%"></th>
+                        <th width="13%"></th>
+                        <th width="13%">Ingredient</th>
+                        <th width="15%">SW Version Details</th>
+                        <th width="20%">Changed</th>
+                        <th width="10%">Release Notes</th>
+                        <th width="8%">IP Scan</th>
+                        <th width="8%">Klocwork</th>
+                    </tr>
+                     
+                        <tr>
+                            <td>Firmwares</td>
+                            <td>
+                                
+                                        Firmwares
+                                
+                            </td>
+                            <td>IFWI</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/IFWI/2017.18.3.07-CR_QS.zip" style="color:#0071c5">2017.18.3.07</a></td>
+                            <td>
+                                
+                                <span style="color:#FF0000">(2017.16.1.01-CR_ACM_DISABLED-&gt;2017.18.3.07)</span>
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>Firmwares</td>
+                            <td>
+                                
+                                        Firmwares
+                                
+                            </td>
+                            <td>BMC</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/BMC/NC_BMC_PO_79_20_r10373.zip" style="color:#0071c5">79.20.r10373</a></td>
+                            <td>
+                                
+                                   N
+                                
+                            </td>
+                            <td>
+                                 
+                                        <a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley Crystal Ridge/Documents/ReleaseNotes/BMC/BMC_79.20.r10373_ReleaseNotes.txt" style="color:#0071c5">Release Notes</a>
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>Firmwares</td>
+                            <td>
+                                
+                                        Firmwares
+                                
+                            </td>
+                            <td>CR_FW</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/CR_FW/FW_WW19_1_BKC.zip" style="color:#0071c5">fw.1.0.0.3769</a></td>
+                            <td>
+                                
+                                <span style="color:#FF0000">(1.0.0.3726-&gt;fw.1.0.0.3769)</span>
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>Firmwares</td>
+                            <td>
+                                
+                                        Firmwares
+                                
+                            </td>
+                            <td>CR_UEFI</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/CR_UEFI/CR_UEFI_01.00.01.1853.zip" style="color:#0071c5">01.00.01.1853</a></td>
+                            <td>
+                                
+                                <span style="color:#FF0000">(1.0.0.1842-&gt;01.00.01.1853)</span>
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>Firmwares</td>
+                            <td>
+                                
+                                        Firmwares
+                                
+                            </td>
+                            <td>CPLD</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/CPLD/NC_CPLD_0x5D_0x22.zip" style="color:#0071c5">0x5D_0x22</a></td>
+                            <td>
+                                
+                                   N
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>WS2016</td>
+                            <td>
+                                
+                                        APPs
+                                
+                            </td>
+                            <td>CR_App</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Windows/Utilities/CR_App/CR_WindowsInstaller_1354.1439.2244.zip" style="color:#0071c5">1354.1439.2244</a></td>
+                            <td>
+                                
+                                   N
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>WS2016</td>
+                            <td>
+                                
+                                        APPs
+                                
+                            </td>
+                            <td>CR_Doc</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Windows/Utilities/CR_Doc/CR_Doc_2017WW18.5.zip" style="color:#0071c5">2017WW18.5</a></td>
+                            <td>
+                                
+                                <span style="color:#FF0000">(WW16.3-&gt;2017WW18.5)</span>
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>WS2016</td>
+                            <td>
+                                
+                                        APPs
+                                
+                            </td>
+                            <td>SST</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Windows/Utilities/SST/Intel_R_SystemScopeInstallerWin.zip" style="color:#0071c5">3.0.1044</a></td>
+                            <td>
+                                
+                                   N
+                                
+                            </td>
+                            <td>
+                                 
+                                        <a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Documents/ReleaseNotes/SST/SST_3.0.1044_Readme.txt" style="color:#0071c5">Release Notes</a>
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>WS2016</td>
+                            <td>
+                                
+                                        Configs
+                                
+                            </td>
+                            <td>auto_install_script</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Windows/script/Win2016_auto_install_script_v0.6.zip" style="color:#0071c5">win2016_v0.6</a></td>
+                            <td>
+                                
+                                <span style="color:#FF0000">(None-&gt;win2016_v0.6)</span>
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>WS2016</td>
+                            <td>
+                                
+                                        Drivers
+                                
+                            </td>
+                            <td>CR_Driver</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Windows/Drivers/CR_Driver/CR_DriverWin_1.0.0.1439.zip" style="color:#0071c5">1.0.0.1439</a></td>
+                            <td>
+                                
+                                   N
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>WS2016</td>
+                            <td>
+                                
+                                        Drivers
+                                
+                            </td>
+                            <td>LOM_FortPark</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Windows/Drivers/LOM_FortPark/2017_WW14_LBG_B1_LEK_PKG.zip" style="color:#0071c5">2017.WW14</a></td>
+                            <td>
+                                
+                                   N
+                                
+                            </td>
+                            <td>
+                                 
+                                        <a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Documents/ReleaseNotes/LOM_FortPark/LOM_FortPark_2017.WW14_2017_WW14_LBG_B1_BKC_Release_Notes_LEK_PKG.pdf" style="color:#0071c5">Release Notes</a>
+                                
+                            </td>
+                            <td>
+                                 
+                                        <a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Documents/ipscan/LOM_FortPark/LOM_FortPark_2017.WW14_Release_22.2_OEM_Generic_455626_ipplans.zip" style="color:#0071c5">IP Scan</a>
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>WS2016</td>
+                            <td>
+                                
+                                        Drivers
+                                
+                            </td>
+                            <td>Chipset</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Windows/Drivers/Chipset/Chipset_10.1.2.85.zip" style="color:#0071c5">10.1.2.85</a></td>
+                            <td>
+                                
+                                   N
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>WS2016</td>
+                            <td>
+                                
+                                        OSes
+                                
+                            </td>
+                            <td>Win2016</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/OS/win2016/win2016_RS1_14393.zip" style="color:#0071c5">RS1-14393</a></td>
+                            <td>
+                                
+                                   N
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>Fedora25</td>
+                            <td>
+                                
+                                        APPs
+                                
+                            </td>
+                            <td>CR_ManagementTool</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/app/CR_ManagementTool/CR-MGMT-01.00.00.2249-fedora.zip" style="color:#0071c5">cr-mgmt-1.00.00.2249</a></td>
+                            <td>
+                                
+                                <span style="color:#FF0000">(1.00.00.2244-&gt;cr-mgmt-1.00.00.2249)</span>
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>Fedora25</td>
+                            <td>
+                                
+                                        APPs
+                                
+                            </td>
+                            <td>CR_Doc</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/app/CR_Doc/CR_Doc_2017WW18.5.zip" style="color:#0071c5">2017WW18.5</a></td>
+                            <td>
+                                
+                                <span style="color:#FF0000">(WW16.3-&gt;2017WW18.5)</span>
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>Fedora25</td>
+                            <td>
+                                
+                                        APPs
+                                
+                            </td>
+                            <td>SST</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/app/SST/SystemScopeLinux3.0.1044.zip" style="color:#0071c5">3.0.1044</a></td>
+                            <td>
+                                
+                                   N
+                                
+                            </td>
+                            <td>
+                                 
+                                        <a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Documents/ReleaseNotes/SST/SST_3.0.1044_ReadMe_Linux.html" style="color:#0071c5">Release Notes</a>
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>Fedora25</td>
+                            <td>
+                                
+                                        Configs
+                                
+                            </td>
+                            <td>menu</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/OS/Fedora25/Fedora25_Config_0_0_1.zip" style="color:#0071c5">0.0.1</a></td>
+                            <td>
+                                
+                                   N
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>Fedora25</td>
+                            <td>
+                                
+                                        Configs
+                                
+                            </td>
+                            <td>FC_kernel_update</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/config/FC_kernel_update/kernelupdate_to_FC25-4.10.9-200.tgz" style="color:#0071c5">FC25-4.10.9-200</a></td>
+                            <td>
+                                
+                                <span style="color:#FF0000">(FC25-4.10.5-200-&gt;FC25-4.10.9-200)</span>
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>Fedora25</td>
+                            <td>
+                                
+                                        Configs
+                                
+                            </td>
+                            <td>cr_patch</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/config/cr_patch/cr_patch_PMEM7x-v03.tgz" style="color:#0071c5">PMEM7x-v0.3</a></td>
+                            <td>
+                                
+                                <span style="color:#FF0000">(cr_patch_PMEM71-v03-&gt;PMEM7x-v0.3)</span>
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>Fedora25</td>
+                            <td>
+                                
+                                        Configs
+                                
+                            </td>
+                            <td>auto_install_script</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/config/auto_install_script/FC25_PostInstall_Script_v0.6.zip" style="color:#0071c5">v0.6</a></td>
+                            <td>
+                                
+                                <span style="color:#FF0000">(0.5-&gt;v0.6)</span>
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>Fedora25</td>
+                            <td>
+                                
+                                        Configs
+                                
+                            </td>
+                            <td>pnp_dependency</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/script/PnPToolDependency_FC24_2017WW03.tgz" style="color:#0071c5">2017WW03</a></td>
+                            <td>
+                                
+                                   N
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>Fedora25</td>
+                            <td>
+                                
+                                        OSes
+                                
+                            </td>
+                            <td>Fedora</td>
+                            <td><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/OS/Fedora/FC25x86_64.zip" style="color:#0071c5">FC25</a></td>
+                            <td>
+                                
+                                   N
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                            <td>
+                                 
+                                        N/A
+                                
+                            </td>
+                        </tr>
+                    
+                     
+                </tbody></table><br>
+                    </div>
+                    
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; IFWI Configuration </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseIFWIConfiguration"></div>
+                </div>
+            </div>
+            <div id="collapseIFWIConfiguration" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    <table class="MsoNormalTable" width="100%">
+                        <tbody><tr>
+                            <th width="40%">Ingredient</th>
+                            <th width="30%">Version Details</th>
+                            <th width="30%">Changed</th>
+                        </tr>
+                         
+                            <tr>
+                                <td> IFWI File</td>
+
+                                <td>PLYXCRB.86B.OR.64.2017.18.3.07.2058_LBG_SPS_CR_QS_CRKNOBS.bin</td>
+                                
+                                <td style="color:#FF0000" class="td-center">PLYXCRB.86B.OR.64.2017.16.1.01.2114_LBG_SPS_CR_QS_CRKNOBS_ACM_DISABLED_IN_FIT.bin-&gt;PLYXCRB.86B.OR.64.2017.18.3.07.2058_LBG_SPS_CR_QS_CRKNOBS.bin</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> BiosID</td>
+
+                                <td>PLYXCRB1.86B.1003.D08.1705032058</td>
+                                
+                                <td style="color:#FF0000" class="td-center">PLYXCRB1.86B.1002.D70.1704172114-&gt;PLYXCRB1.86B.1003.D08.1705032058</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> 10GNicEFI</td>
+
+                                <td>NA</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> 1GNicEFI</td>
+
+                                <td>v00.00.11</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> ASTVBIOS</td>
+
+                                <td>v1.01_800800</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> AspeedVideo</td>
+
+                                <td>PrePO</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> BIOSACM</td>
+
+                                <td>Production,v1.2.0_LBG</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> BiosGuard</td>
+
+                                <td>PC_v0_9Beta</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> FabricBoot</td>
+
+                                <td>NA</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> FpkSi</td>
+
+                                <td>v3.37_800009E0</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> GBE</td>
+
+                                <td>_I219_Nahum7_Purley_LM_No-LAN-Switch_Rev0.2</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> HfiPcieGen3</td>
+
+                                <td>v1.3.1.0.0</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> IccOverClocking</td>
+
+                                <td>PrePO</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> JacksonvillePxe</td>
+
+                                <td>v1.07</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> LBGNSPcieGen3</td>
+
+                                <td>PrePO</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> ME</td>
+
+                                <td>SPS/4.0.3.202</td>
+                                
+                                <td style="color:#FF0000" class="td-center">SPS/4.0.3.195-&gt;SPS/4.0.3.202</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> Mebx</td>
+
+                                <td>v11.0.0.0005</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> MebxSetupBrowser</td>
+
+                                <td>PrePo</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> Microcode1</td>
+
+                                <td>M9750654_8284F016.inc</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> NvmDimmDriver</td>
+
+                                <td>Unknown</td>
+                                
+                                <td style="color:#FF0000" class="td-center">v01.00.00.1842-&gt;Unknown</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> NvmDimmHii</td>
+
+                                <td>Unknown</td>
+                                
+                                <td style="color:#FF0000" class="td-center">v01.00.00.1842-&gt;Unknown</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> PDR</td>
+
+                                <td>PrePO</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> RSTSataEfi</td>
+
+                                <td>PrePO</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> RSTeSataEfi</td>
+
+                                <td>v5.0.0.1217</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> RSTeSataLegacy</td>
+
+                                <td>v5.0.0.1217</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> RSTeSataRaidEfi</td>
+
+                                <td>v5.0.0.1217</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> RSTesSataEfi</td>
+
+                                <td>v5.0.0.1217</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> RSTesSataLegacy</td>
+
+                                <td>v5.0.0.1217</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> SINIT</td>
+
+                                <td>Production,v1.2.1_LBG</td>
+                                
+                                <td style="color:#FF0000" class="td-center">Production,v1.2.0_LBG-&gt;Production,v1.2.1_LBG</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> SataAHCI</td>
+
+                                <td>v2.00i</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> TwinvillePxe</td>
+
+                                <td>NA</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> VMDDxeEfi</td>
+
+                                <td>v1.0.0.1026</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> iBMCVideo</td>
+
+                                <td>v3.8SQ</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                            <tr>
+                                <td> iBMCVideoGop</td>
+
+                                <td>v26</td>
+                                
+                                <td class="td-center">N</td>
+                                
+                            </tr>
+                        
+                        
+
+                    </tbody></table><br>
+                </div>
+            </div>
+        </div>
+        
+
+        
+        
+        <br>
+
+        
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Platform Integration Validation Result </span>
+                <div class="FoldIcon">
+                    <div id="PlatformIntegrationValidationResultBtn" class="CollapseBtn not-collapsed" data-toggle="collapse" href="#collapsePlatformIntegrationValidationResult">
+</div>
+                </div>
+            </div>
+
+            <div id="collapsePlatformIntegrationValidationResult" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <table class="MsoNormalTable" width="100%">
+                        <tbody><tr>
+                            <th rowspan="3" width="9%">Purley AEP_2s Test Execution Status</th>
+                            <th width="9%">Domains</th>
+                            <th width="8%">Attempted</th>
+                            <th width="8%">Blocked</th>
+                            <th width="8%">No Run</th>
+                            <th width="8%">Failed</th>
+                            <th width="8%">Passed</th>
+                            <th width="8%">Total</th>
+                            <th width="8%">% Attempted</th>
+                            <th width="8%">Passed% (per attempted)</th>
+                            <th width="8%">Pass%</th>
+                            <th width="10%">Key Sightings</th>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Summary</td>
+                            
+                             <td>0</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>0</td>
+                             <td>0</td>
+                             <td></td>
+                             <td>0/0</td>
+                             <td></td>
+                             <td>
+                                 
+
+
+
+                             </td>
+                        </tr>
+                        
+                        
+                    </tbody></table><br>
+                    <div class="stable">Detail case result could be found in this <a href="http://dcg-oss.intel.com/test_report/report_case/5981/Silver/Purley AEP_2s" target="_blank" style="text-decoration: underline;">page</a></div>
+                    <div style="border:1px solid #000000">
+                        <div id="cases_domain_chart" style="width:70%;float:left;"></div>
+                        <div id="cases_pie_chart" style="width:28%;float:right;border-left:1px solid #000000"></div>
+                        <div style="clear:both;"></div>
+                        <div style="border-top:1px solid #000000" id="cases_history_chart"></div>
+                    </div>
+
+                <br>
+                
+
+                </div>
+            </div>
+            
+            <script>
+                document.getElementById("PlatformIntegrationValidationResultBtn").setAttribute("class","CollapseBtn not-collapsed collapsed")
+                document.getElementById("collapsePlatformIntegrationValidationResult").setAttribute("class","panel-collapse collapse ")
+            </script>
+            
+        </div>
+
+    
+    
+
+    
+    
+
+    
+    
+        <br>
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; BKC Useful Info </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed" data-toggle="collapse" href="#collapseBKCUsefulInfo"></div>
+                </div>
+            </div>
+            <div id="collapseBKCUsefulInfo" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <p style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;">Notes: To subscribe or unsubscribe to the mailing list please click&nbsp;<a href="http://targetmailer.intel.com/Subscriptions/?GroupID=30#/30?cat=109" style="text-decoration: underline;">here</a>&nbsp;and select "Purley CrystalRidge Subscription".</p><table class="NormalTable" border="0" cellspacing="0" cellpadding="0" style="width: 100%; color: rgb(51, 51, 51);"><tbody><tr style="color: rgb(0, 0, 0); font-weight: bold; background-color: rgb(163, 203, 255);"><td width="10%" align="center">Information</td><td width="40%" align="center">Quick Guide</td></tr><tr><td style="padding: 10px; text-align: center; font-weight: bold;">BKC Artifactory Access</td><td style="padding: 10px;"><p>Link (SH server):&nbsp;<a href="https://ubit-artifactory-sh.intel.com/artifactory/webapp/#/home">https://ubit-artifactory-sh.intel.com</a></p><p>Link (OR server):&nbsp;<a href="https://ubit-artifactory-or.intel.com/artifactory/webapp/#/home">https://ubit-artifactory-or.intel.com</a></p><p>Steps for applying the permission:</p><p></p><ul><li>Go to EAM website:&nbsp;<a href="https://eam.intel.com/EAMWeb/RequestAccess/DisplayTree.aspx?TopNode=757719"><span lang="X-NONE">https://eam.intel.com/EAMWeb/RequestAccess/DisplayTree.aspx?TopNode=757719</span></a></li><li>Apply for the "Project viewer" role<br></li><li>Use your windows credentials for authentication</li></ul><p></p></td></tr><tr><td style="padding: 10px; text-align: center; font-weight: bold;">BKC One Stop Shop</td><td style="padding: 10px;"><p>Link:&nbsp;<a href="https://dcg-oss.intel.com/">https://dcg-oss.intel.com/homepage_view/24/</a></p><p>Steps for applying the permission:</p><p></p><ul><li>Go to EAM website:&nbsp;<a href="https://eam.intel.com/EAMWeb/RequestAccess/DisplayTree.aspx?TopNode=829001" target="_blank">https://eam.intel.com/EAMWeb/RequestAccess/DisplayTree.aspx?TopNode=829001</a></li><li>Navigate to:"BKC -- Purley"</li><li>Apply for the "User" or "Ingredient Owner" role</li><li>Use your windows credentials for authentication</li></ul><p></p><p>Contact Person:&nbsp;<a href="mailto:ling.bei@intel.com">Bei, Ling</a></p></td></tr></tbody></table><p style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;"><br></p>
+                    <br>
+                </div>
+            </div>
+        </div>
+    
+        <br>
+        <br>
+    </div>
+
+</div>
+
+</body></html>

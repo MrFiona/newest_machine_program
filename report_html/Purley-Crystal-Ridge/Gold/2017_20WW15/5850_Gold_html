@@ -1,0 +1,1438 @@
+<!DOCTYPE html><html lang="en"><head>
+	<title>One Stop Shop Reports</title>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./5850_Gold_files/bootstrap.css">
+	<script src="./5850_Gold_files/jquery.min.js"></script>
+    <script src="./5850_Gold_files/highcharts.js"></script>
+    <link href="/templates/css/showLoading.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/templates/js/jquery.showLoading.min.js"></script>
+    <script>
+        
+    </script>
+</head>
+<body>
+	<div id="content">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Test Report</title>
+<link rel="stylesheet" type="text/css" href="./5850_Gold_files/report_frame.css">
+<script src="./5850_Gold_files/highcharts.js"></script>
+<script src="./5850_Gold_files/table.js"></script>
+<script src="./5850_Gold_files/bootstrap.min.js"></script>
+<style type="text/css">
+    .stable,.sh1,.sh2,.sh3 {font-family:'Intel Clear',Arial,sans-serif;}
+    .sh2{font-size: 15px;font-weight:bold;overflow: hidden;color: #000000;}
+    .sh3{font-size: 13px;overflow: hidden;color: #000000;}
+    .MsoNormalTable .sh2{font-size: 15px;font-weight:bold;overflow: hidden;text-align: left;margin: 4px 0;color: #000000}
+    .DetailHeardTable .sh2{font-size: 15px;font-weight:bold;overflow: hidden;text-align: left;margin: 4px 0;color: #000000}
+    .ReportHead{font-size: 22px;font-weight: bold;background: #ffffff;color: #0071c5;margin: 12px 0;overflow: hidden; text-align:center;}
+    .MsoNormalTable{font-size:10.0pt;border-width: 1px;border-color:Black;border-style:solid;border-collapse: collapse;width:100%;}
+    .MsoNormalTable td{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:9.5pt;padding-left:5px;padding-right:5px;text-align:center;padding-bottom:5px;padding-top:5px;}
+    .MsoNormalTable th{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:9.5pt;padding-left:5px;padding-right:5px;background-color:#A3CBFF;color:#000000;font-weight:bold;text-align:center;padding-bottom:5px;padding-top:5px;}
+    .DetailTable{font-size:10.0pt;border-width: 1px;border-color:Black;border-style:solid;border-collapse: collapse;width:100%;}
+    .DetailTable td{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:10.0pt;padding-left:10px;padding-right: 10px;text-align: left;padding-bottom:5px;padding-top:5px;}
+    .DetailTable th{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:10.0pt;padding-left:10px;background-color:#A3CBFF;color:#000000;font-weight:bold;padding-right: 10px;text-align: left;padding-bottom:5px;padding-top:5px;}
+    .NormalTable td{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:10.0pt;}
+    .DetailHeardTable{font-size:10.0pt;border-width: 1px;border-collapse: collapse;}
+    .DetailHeardTable td{ border-width: 1px;border-color:Black;border-style:solid;border-collapse:collapse;text-align:center;font-size:10.0pt;}
+    .td-center {text-align:center;}
+    table a:link,table a:focus,table a:visited ,table a:active,table a:hover {text-decoration:underline;}
+    a{color: #0071c5}
+    table{background-color: #FFFFFF;font-family:'Intel Clear',Arial,sans-serif;}
+    td{padding-bottom: 5px;padding-top: 5px}
+    .ReportHead{background-color: transparent}
+</style>
+
+
+    <div class="panel-group" id="main-panel-group">
+        <script>
+            jQuery(document).ready(function ($) {
+                if('False' == 'True' && '0' == '1' ){
+                uniteTable(sw_table, 2);
+                autoRowSpan(sw_table, 0);
+                }
+            });
+
+            $('.CollapseBtn').click(function(){
+                var btn = $(this),
+                on = 'not-collapsed',
+                off = 'collapsed';
+                console.log("CollapseBtn!")
+                //这里通过切换按钮中图标的类来控制出现不同的按钮图标，每次点击来回切换声音开关图标
+                if(btn.hasClass('not-collapsed')) {
+                    btn.removeClass('not-collapsed');
+                    btn.addClass('collapsed');
+                }else if(btn.hasClass('collapsed')) {
+                    btn.removeClass('collapsed');
+                    btn.addClass('not-collapsed');
+                }else {
+                    btn.addClass('not-collapsed');
+                }
+            });
+            function init_cases_domain_bars(div_id){
+                if(div_id == 'cases_domain_chart'){
+                    var domains = '';
+                    var pass_data = '';
+                    var fail_data = '';
+                    var block_data = '';
+                    var norun_data = '';}
+                else{
+                    var domains = '';
+                    var pass_data = '';
+                    var fail_data = '';
+                    var block_data = '';
+                    var norun_data = '';
+                }
+                domains = domains.split(',');
+                pass_data = pass_data.split(',');
+                fail_data = fail_data.split(',');
+                block_data = block_data.split(',');
+                norun_data = norun_data.split(',');
+
+                for(var j=0; j<pass_data.length; j++){
+                    pass_data[j] = parseInt(pass_data[j]);
+                }
+
+                for(var j=0; j<fail_data.length; j++){
+                    fail_data[j] = parseInt(fail_data[j]);
+                }
+
+                for(var j=0; j<block_data.length; j++){
+                    block_data[j] = parseInt(block_data[j]);
+                }
+
+                for(var j=0; j<norun_data.length; j++){
+                    norun_data[j] = parseInt(norun_data[j]);
+                }
+
+                series = [
+                             {name:'NoRun',data:norun_data,color:'#717171'},
+                             {name:'Block',data:block_data,color:'#ffae00'},
+                             {name:'Fail',data:fail_data,color:'#fd4f02'},
+                             {name:'Pass',data:pass_data,color:'#6fd007'}
+                         ];
+                if (1 == 2){
+                    if(div_id == 'cases_domain_chart'){
+                        var title_name = 'Purley AEP_2s Gold Validation Result'
+                    }else{
+                        var title_name = ' Gold Validation Result'
+                    }
+                }else{
+                    var title_name = 'Purley Crystal Ridge Gold Validation Result'
+                }
+                $('#'+div_id).highcharts({
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: title_name
+                    },
+                    credits:{enabled: false},
+                    xAxis: {
+                        categories: domains
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Pass Rate'
+                        }
+                    },
+                    tooltip: {
+                        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                        shared: true
+                    },
+                    plotOptions: {
+                        column: {
+                            stacking: 'percent'
+                        }
+                    },
+                    series: series
+                });
+            }
+
+            function init_cases_pie(div_id){
+                if(div_id == 'cases_pie_chart'){
+                    var pie_data = [
+                                    {name:'Pass',y:parseInt('0'),selected:true,sliced:true,color:'#6fd007'},
+                                    {name:'Fail',y:parseInt('0'),color:'#fd4f02'},
+                                    {name:'Block',y:parseInt('0'),color:'#ffae00'},
+                                    {name:'NoRun',y:parseInt('0'),color:'#717171'}
+                               ];
+                }
+                else{
+                    var pie_data = [
+                                    {name:'Pass',y:parseInt(''),selected:true,sliced:true,color:'#6fd007'},
+                                    {name:'Fail',y:parseInt(''),color:'#fd4f02'},
+                                    {name:'Block',y:parseInt(''),color:'#ffae00'},
+                                    {name:'NoRun',y:parseInt(''),color:'#717171'}
+                               ];
+                }
+                if (1 == 2){
+                    if(div_id == 'cases_pie_chart'){
+                        var title_name = 'Purley AEP_2s Gold Validation Result'
+                    }else{
+                        var title_name = ' Gold Validation Result'
+                    }
+                }else{
+                    var title_name = 'Purley Crystal Ridge Gold Validation Status'
+                }
+                $('#'+div_id).highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: title_name
+                    },
+                    credits:{enabled: false},
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        name: 'Cases',
+                        colorByPoint: true,
+                        data: pie_data
+                    }]
+                });
+            }
+
+            function init_whql_cases_pie(div_id){
+                var pie_data = [
+                                    {name:'Pass',y:parseInt(''),selected:true,sliced:true,color:'#6fd007'},
+                                    {name:'Fail',y:parseInt(''),color:'#fd4f02'},
+                                    {name:'Block',y:parseInt(''),color:'#ffae00'},
+                                    {name:'NoRun',y:parseInt(''),color:'#717171'}
+                               ];
+                title_name = 'Purley-Crystal-Ridge WHQL Validation Status'
+
+                $('#'+div_id).highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie',
+                        height: 300
+                    },
+                    title: {
+                        text: title_name
+                    },
+                    legend: {
+                        align: "right",
+                        verticalAlign: "middle",
+                        layout:"vertical"
+                    },
+                    credits:{enabled: false},
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        name: 'Cases',
+                        colorByPoint: true,
+                        data: pie_data
+                    }]
+                });
+            }
+
+            function init_cases_pass_rate_history(div_id){
+
+                if(div_id == 'cases_history_chart'){
+                    var ww_names = '2016 WW49,2017 WW11,2017 WW12,2017 WW13,2017 WW14,2017 WW15';
+                    var history_passrate = 'null,null,null,null,null,null';
+                }else{
+                     var ww_names = '';
+                    var history_passrate = '';
+                }
+                ww_names = ww_names.split(',');
+                history_passrate = history_passrate.split(',');
+                for(var j=0; j<history_passrate.length; j++){
+                    if(history_passrate[j]=='null'){
+                        history_passrate[j] = null;
+                    }else{
+                        history_passrate[j] = parseFloat(history_passrate[j]);
+                    }
+                }
+                if (1 == 2){
+                    if(div_id == 'cases_history_chart'){
+                        var title_name = 'Purley AEP_2s Gold Analysis PASS%'
+                    }else{
+                        var title_name = ' Gold Analysis PASS%'
+                    }
+                }else{
+                    var title_name = 'Purley Crystal Ridge Gold Analysis PASS%'
+                }
+                $('#'+div_id).highcharts({
+                    chart: {
+                        type: 'line'
+                    },
+                    title: {
+                        text: title_name
+                    },
+                    credits:{enabled: false},
+                    xAxis: {
+                        categories: ww_names
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Pass Rate'
+                        },
+                        min:0,
+                        max:100,
+                        labels: {formatter:function(){return this.value + " %";}},
+                    },
+                    plotOptions: {
+                        line: {
+                            dataLabels: {
+                            enabled: true
+                            },
+                        enableMouseTracking: false,
+                        },
+                        series: { connectNulls: true}
+                    },
+                    tooltip: {valueSuffix: '%'},
+                    series: [{
+                        name: 'Gold',
+                        data: history_passrate
+                    }]
+                });
+            }
+
+            $(function () {
+                init_cases_domain_bars('cases_domain_chart');
+                init_cases_pie('cases_pie_chart');
+                init_cases_pass_rate_history('cases_history_chart');
+                if(0 == 1){
+                    init_whql_cases_pie('whql_pie_chart')
+                }
+                if (1 == 2)
+                {
+                    init_cases_domain_bars('cases_domain_chart_2');
+                    init_cases_pie('cases_pie_chart_2');
+                    init_cases_pass_rate_history('cases_history_chart_2');
+                }
+                if(0 == 1)
+                {
+                    var pnp_result = {"Performance": {}, "Power": {}}
+
+                    for (var object  in pnp_result)
+                    {
+                        var ratio = pnp_result[object].ratio;
+                        var case_name =  pnp_result[object].case_name;
+
+                        var categories_data = pnp_result[object].categories
+                        var series_data = new Array();
+                        for(var i=0; i<ratio.length; i++)
+                        {
+                            var is_null = 1
+                            dict = {};
+
+                            dict['name'] = case_name[i];
+                            for(var k=0; k < ratio[i].length; k++)
+                            {
+                                if(ratio[i][k] == -1)
+                                {
+                                    ratio[i][k] = null;
+                                }else{
+                                    is_null = 0
+                                }
+                            }
+                            dict['data'] = ratio[i];
+                            if(is_null == 0){
+                                series_data.push(dict)}
+                        }
+                        var chart1;
+                        var xAxis_list = new Array();
+                        if(pnp_result[object].target_ww == 'WW00'){
+                            title_content = object + ' Trend-- WWn to Target Ratio'
+                        }else{
+                            title_content = object + ' Trend-- WWn to ' + pnp_result[object].target_ww + ' ' +  pnp_result[object].target_cpu +' Ratio'
+                        }
+                        $('#'+object + '_highcharts').highcharts({
+                            title:  {text: title_content},
+                            xAxis: {categories: categories_data ,
+                                    labels: {rotation:30,y:45}
+                            },
+                            yAxis: {title: {text: object},
+
+                                                    labels: {formatter:function(){return this.value + " %";}},
+                                                    plotLines: [{value: 0, width: 1, color: '#808080'}]
+                                                    },
+                            tooltip: {valueSuffix: '%'},
+                            credits:{enabled: false},
+                            plotOptions: {series: { connectNulls: true}, spline : {dataLabels: {enabled: true},enableMouseTracking: true}},
+                            series: series_data
+                        });
+                    }
+                }
+            });
+            $(document).ready(function () {
+                
+                    $("#title_banner").load('/test_report/title_banner/Purley-Crystal-Ridge/Gold/');
+                
+            });
+
+        </script>
+        <div id="title_banner" style="margin-left:-4px">
+
+
+    <style>
+    .banner-title {font-family: Calibri;background-repeat:no-repeat ;}
+    .banner-title h1,.banner-title p{text-align:center;font-weight:bold;color:white;}
+    </style>
+
+
+<div class="banner-title" style="border:0;margin:0 0 0 -4px;width:950px;background-image: url('/templates/images/Gold.png')">
+            <p></p>
+            
+                <h1 style="padding:20px 150px 0 0; font-size: 24px;;">Purley Crystal Ridge Gold Release Announcement</h1>
+            
+                <p style="padding:0 150px 20px 0;margin-bottom: 0; font-size: 14px;;">[ Intel Use Only – Intel Confidential ]</p>
+</div>
+
+</div>
+        <div style="width:600px">
+        
+        <table class="DetailTable">
+            <tbody><tr>
+                
+                
+                <td width="200px">Silver: Basic Test Coverage</td>
+                <td width="200px" style="background-color:#FFCC00;">Gold: Medium Test Coverage</td>
+                <td width="200px">BKC: Full Test Coverage</td>
+                
+                
+            </tr>
+        </tbody></table>
+        
+        </div>
+        <table width="100%" class="ReportHead">
+            <tbody><tr>
+                
+                    <td>
+
+                
+                
+                    
+                     <!--<p style="text-align:left;margin-bottom:0px">Purley Crystal Ridge Gold Release Announcement - 2017 WW15 (BKC #6)</p>-->
+                    <p style="text-align:left;margin-bottom:0px">2017 WW15 Purley Crystal Ridge Gold Release Announcement (BKC #6)</p>
+                    
+                
+                <p style="color:black;font-size:13px;text-align:left">DEG Platform Integration Team</p>
+                
+                </td>
+            </tr>
+        </tbody></table>
+        <p class="sh3" style="width:100%">The DEG platform Integration team announces the release of <font style="font-weight:bold">2017 WW15 Purley Crystal Ridge Gold release package</font> for Intel internal use. The release is based on OS of
+            
+                Fedora25
+             server. The auto-installer packages are available in the Artifactory server (both SH site and OR site). Any questions please contact <a href="mailto:ling.bei@intel.com">Bei, Ling</a>.</p>
+        <table class="DetailTable" width="100%">
+            <tbody><tr>
+                <th width="20%">Auto Installer</th>
+                <th width="40%">SH Artifactory Server</th>
+                <th width="40%">OR Artifactory Server</th>
+            </tr>
+            
+            <tr>
+                <td width="20%">Fedora25</td>
+                <td width="40%"><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Release/Purley/2017WW15/WithoutOS_BKC-CrystalRidge_FC24_71.117444.117378-2017WW15.zip" style="color:#0071c5">WithoutOS_BKC-CrystalRidge_FC24_71.117444.117378-2017WW15.zip</a>
+               
+                                <br><a href="\\bkcfileserver.ccr.corp.intel.com\pi_Internal\Purley_BKC\BKC_Package\OS\FC25.zip" style="color:#0071c5">\\bkcfileserver.ccr.corp.intel.com\pi_Internal\Purley_BKC\BKC_Package\OS\FC25.zip</a>
+                                </td>
+                <td width="40%"><a href="https://ubit-artifactory-or.intel.com/artifactory/DEG-Purley-sh-cache/Release/Purley/2017WW15/WithoutOS_BKC-CrystalRidge_FC24_71.117444.117378-2017WW15.zip" style="color:#0071c5">WithoutOS_BKC-CrystalRidge_FC24_71.117444.117378-2017WW15.zip</a>
+                   
+                                <br><a href="\\bkcfileserver.ccr.corp.intel.com\pi_Internal\Purley_BKC\BKC_Package\OS\FC25.zip" style="color:#0071c5">\\bkcfileserver.ccr.corp.intel.com\pi_Internal\Purley_BKC\BKC_Package\OS\FC25.zip</a>
+                                </td>
+            </tr>
+            
+            
+        </tbody></table>
+        <div><p class="sh3" style="width:100%">*Note: Please select the server which is closer to your region to get the better data accessing/downloading performance</p></div>
+        <br>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Summary </span>
+                <div class="FoldIcon" style="display: none">
+                    <div class="CollapseBtn not-collapsed" data-toggle="collapse" href="#collapseSummary"></div>
+                </div>
+            </div>
+            <div id="collapseSummary" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <table class="DetailTable" width="100%">
+                        
+                        <tbody><tr>
+                            <td>
+                                <p class="MsoNormal" style="margin-bottom: 7.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;</span><u><span lang="EN-GB" style="font-size: 13.5pt;">Test Result:</span></u><u2:p></u2:p><u3:p></u3:p><u4:p></u4:p><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><h4 style="margin: 0cm 0cm 0.0001pt 36pt; text-indent: -18pt; line-height: 15.55pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-size: 11pt; font-family: Symbol;">·</span><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;&nbsp;</span><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: black;">Finish
+AEP test execution on Fedora25</span><span class="apple-converted-space"><span style="font-size: 13.5pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: rgb(31, 73, 125);">&nbsp;</span></span><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: black;">(</span><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif;">kernel is upgraded to&nbsp;</span>4.10.5-200&nbsp;) on 2-2-2 config
+(1LM/AppDirect and 2LM/Memory mode). Please visit<span class="apple-converted-space"><span style="font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;</span></span><span style="font-size: 13.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><a href="http://targetmailer.intel.com/TMService/Redir.aspx?ID=2771188"><span style="font-size: 11pt;">HPQC</span></a></span><span class="apple-converted-space"><span style="font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;</span></span><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: black;">for
+test detail</span><u1:p></u1:p><span style="font-size: 13.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></h4><h4 style="margin: 0cm 0cm 0.0001pt 36pt; text-indent: -18pt; line-height: 15.55pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-size: 11pt; font-family: Symbol; color: black;">·</span><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: black;">&nbsp;</span><span class="apple-converted-space"><span style="font-family: &quot;Intel Clear&quot;, sans-serif; color: black;">&nbsp;</span></span><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: black;">Refer
+to the</span><span class="apple-converted-space"><span style="font-size: 13.5pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: rgb(51, 51, 51);">&nbsp;</span></span><span style="font-size: 13.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><a href="http://targetmailer.intel.com/TMService/Redir.aspx?ID=2771189" target="_blank"><span style="font-size: 11pt;">installation guide</span></a></span><span class="apple-converted-space"><span style="font-size: 13.5pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: black;">&nbsp;</span></span><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif; color: black;">BKC
+package installation</span></h4><div><h4 style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:28.2pt;
+margin-bottom:.0001pt;text-indent:-9.0pt;line-height:15.55pt"><span style="font-size: 11pt; font-family: Symbol;">·</span><span style="font-size: 7pt;">&nbsp;&nbsp; </span><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif;">Test is WIP</span><o:p></o:p></h4></div><p class="MsoNormal" style="margin-bottom: 7.5pt; line-height: 15pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;</span><o:p></o:p></p><p class="MsoNormal" style="margin-bottom: 12pt; line-height: 15pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;<u3:p></u3:p></span><u1:p></u1:p><u4:p></u4:p><u2:p></u2:p><b><u><span style="font-size:10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif;color:black">Mandatory
+BIOS settings:</span></u></b><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin: 0cm 0cm 0.0001pt 18pt; text-indent: -18pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><u1:p></u1:p><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:Symbol;mso-fareast-font-family:宋体;
+mso-fareast-theme-font:minor-fareast;mso-bidi-font-family:&quot;Intel Clear&quot;;
+color:black">·</span></span><span class="apple-converted-space"><span style="font-size:7.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;mso-fareast-font-family:
+宋体;mso-fareast-theme-font:minor-fareast;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="apple-converted-space"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;">EDKII menu -&gt; Socket
+Configuration -&gt; Memory Configuration-&gt;</span><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;mso-fareast-font-family:
+宋体;mso-fareast-theme-font:minor-fareast;color:black">&nbsp;Attempt Fast Boot</span></span></span><span class="apple-converted-space"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;&lt;disable&gt;</span></span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin: 0cm 0cm 0.0001pt 18pt; text-indent: -18pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:Symbol;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;mso-bidi-font-family:
+&quot;Intel Clear&quot;;color:black">·</span></span><span class="apple-converted-space"><span style="font-size:7.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="apple-converted-space"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;">EDKII menu -&gt; Socket
+Configuration -&gt; Memory Configuration-&gt;</span><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;mso-fareast-font-family:
+宋体;mso-fareast-theme-font:minor-fareast;color:black">&nbsp;Attempt Fast Boot</span></span></span><span class="apple-converted-space"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;</span><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;color:black">Attempt
+Fast Cold Boot</span></span></span><span class="apple-converted-space"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;&lt;disable&gt;</span></span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin: 0cm 0cm 0.0001pt 18pt; text-indent: -18pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:Symbol;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;mso-bidi-font-family:
+&quot;Intel Clear&quot;;color:black">·</span></span><span class="apple-converted-space"><span style="font-size:7.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="apple-converted-space"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;">EDKII menu -&gt;&nbsp;</span><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;color:black">Socket
+Configuration&nbsp;</span></span></span><span class="apple-converted-space"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;">-&gt;&nbsp;</span><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;color:black">Advanced
+Power Management Configuration&nbsp;</span></span></span><span class="apple-converted-space"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;">-&gt;&nbsp;</span><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;color:black">Package
+C State Control/Package C State &lt; C0/C1 state&gt;</span></span></span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin: 0cm 0cm 0.0001pt 18pt; text-indent: -18pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:Symbol;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;mso-bidi-font-family:
+&quot;Intel Clear&quot;;color:black">·</span></span><span class="apple-converted-space"><span style="font-size:7.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="apple-converted-space"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;">EDKII menu -&gt;&nbsp;</span><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;color:black">Socket
+Configuration&nbsp;</span></span></span><span class="apple-converted-space"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;">-&gt;&nbsp;</span><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;color:black">UPI
+Configuration&nbsp;</span></span></span><span class="apple-converted-space"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;">-&gt;&nbsp;</span><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;color:black">UPI
+General Configuration&nbsp;</span></span></span><span class="apple-converted-space"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;">-&gt;&nbsp;</span><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;color:black">Directory
+Mode Enable &lt;Disable&gt;</span></span></span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin: 0cm 0cm 0.0001pt 18pt; text-indent: -18pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:Symbol;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;mso-bidi-font-family:
+&quot;Intel Clear&quot;;color:black">·</span></span><span class="apple-converted-space"><span style="font-size:7.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="apple-converted-space"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;">EDKII menu -&gt;&nbsp;</span><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;color:black">Socket
+Configuration&nbsp;</span></span></span><span class="apple-converted-space"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;">-&gt;&nbsp;</span><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;color:black">Memory
+Configuration&nbsp;</span></span></span><span class="apple-converted-space"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;">-&gt;&nbsp;</span><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;color:black">Memory
+Frequency &lt;2400&gt;</span></span></span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 12pt; line-height: 15pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:Symbol;
+mso-bidi-font-family:&quot;Intel Clear&quot;;color:black">·</span></span><span class="apple-converted-space"><span style="font-size:7.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="apple-converted-space"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;">EDKII
+menu -&gt;&nbsp;</span><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+color:black">Socket Configuration&nbsp;</span></span></span><span class="apple-converted-space"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;">-&gt;&nbsp;</span><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+color:black">Memory Configuration&nbsp;</span></span></span><span class="apple-converted-space"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;">-&gt;</span></span><span class="apple-converted-space"><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;</span></span><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;">NGN Configuration -&gt; Publish ARS
+capability<span class="apple-converted-space">&nbsp;</span></span><span class="apple-converted-space"><span style="font-size:10.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;color:black">&lt;Disable&gt;</span></span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 7.5pt; line-height: 15pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><u><span style="font-size:10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+color:black">ES1 AEP DIMM Setup BKM</span></u></b><b><u><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;</span></u></b><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin: 0cm 0cm 0.0001pt 18pt; text-indent: -18pt; line-height: 15pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span class="apple-converted-space"><span style="font-size: 10.5pt; font-family: Symbol;">·</span></span><span class="apple-converted-space"><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><b><span style="font-size: 10pt; font-family: &quot;Intel Clear&quot;, sans-serif;">Update CR FW</span></b><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin: 0cm 0cm 0.0001pt 18pt; line-height: 15pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span class="apple-converted-space"><b><span style="font-size:
+10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif;mso-fareast-font-family:宋体;
+mso-fareast-theme-font:minor-fareast;color:black">If AEP DIMM is not healthy,&nbsp;</span></b></span><span class="apple-converted-space"><b><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;">we have two alternatives:</span></b></span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin: 0cm 0cm 0.0001pt 38.4pt; text-indent: -18pt; line-height: 15pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span class="apple-converted-space"><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;">a.</span></span><span class="apple-converted-space"><span style="font-size: 7pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="apple-converted-space"><span style="font-family: Calibri, sans-serif;">Do AEP format</span></span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 7.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span class="apple-converted-space">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1. Attach ITP to the SKX XDP port</span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 7.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span class="apple-converted-space">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2. On the ElkValley pythonSV console, type below commands for DIMM formatting</span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 7.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span class="apple-converted-space">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&gt;&gt;&gt;itp.cv.resetbreak=1</span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 7.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span class="apple-converted-space">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&gt;&gt;&gt; sv.refresh()</span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 7.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span class="apple-converted-space">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&gt;&gt;&gt; fw.showBSR()</span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 7.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span class="apple-converted-space">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;import falconvalley.fw.fnvFwFunctions
+as fw</span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 7.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span class="apple-converted-space">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&gt;&gt;&gt;fw.dfxFormat(unlockDimm=False)</span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 7.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span class="apple-converted-space">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&gt;&gt;&gt;itp.cv.resetbreak=0</span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 7.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span class="apple-converted-space">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+3. Power cycle the system</span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 7.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span class="apple-converted-space">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4. Boot to UEFI shell and update CR</span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 7.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span class="apple-converted-space">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ApachePassCli.efi load -f –source &nbsp;.\&lt; _strip.bin fw file&gt; -dimm</span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal"><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><br>
+<!--[if !supportLineBreakNewLine]--><br>
+<!--[endif]--></span><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin: 0cm 0cm 0.0001pt 38.4pt; text-indent: -18pt; line-height: 15pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;">b.</span><span style="font-size: 7pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="apple-converted-space"><span style="font-size: 7pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;</span></span><span class="apple-converted-space"><span style="font-family: Calibri, sans-serif;">If step a is
+not working,&nbsp;</span><span class="apple-converted-space"><span style="font-family:&quot;Calibri&quot;,sans-serif;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;mso-bidi-font-family:
+&quot;Intel Clear&quot;;color:black">use ITP/Jtag to update AEP FW and Syn SPD one by
+one, follow the BKM</span></span></span><span class="apple-converted-space"><span style="font-size:
+10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif;mso-fareast-font-family:宋体;
+mso-fareast-theme-font:minor-fareast;color:black">&nbsp;</span></span><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><a href="http://targetmailer.intel.com/TMService/Redir.aspx?ID=2767143"><span style="font-size: 11pt;">Setup_TAB_AEP_BKM_v1.1.docx</span></a><o:p></o:p></span><u1:p></u1:p></p><p class="MsoListParagraph" style="margin: 0cm 0cm 0.0001pt; line-height: 15pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;<o:p></o:p></span><u1:p></u1:p></p><p class="MsoListParagraph" style="margin: 0cm 0cm 0.0001pt 18pt; line-height: 15pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif;">If AEP DIMM is
+health, use UEFI shell to update all AEP FW</span></b><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 7.5pt; line-height: 15pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><span style="font-size:
+10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="apple-converted-space">&nbsp;</span></span></b><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;">ApachePassCli.efi
+load –f -source &lt;path_to_strip.bin&gt; - dimm</span><o:p></o:p><u1:p></u1:p></p><p class="MsoNormal" style="margin-bottom: 7.5pt; line-height: 15pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;</span><span style="font-size: 10.5pt; font-family: Symbol;">·</span><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;&nbsp;&nbsp;&nbsp;<span class="apple-converted-space">&nbsp;</span></span><b>Goal/namespace
+can be created under UEFI or Linux</b><o:p></o:p><u1:p></u1:p></p><p class="MsoListParagraph" style="margin: 0cm 0cm 0.0001pt; text-indent: -18pt; line-height: 15pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif;">a.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="apple-converted-space"><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;</span><span class="apple-converted-space"><span style="font-size:10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;color:#1F497D">&nbsp;&nbsp;&nbsp;&nbsp;</span></span></span><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif;">UEFI:
+ApachePassCli.efi create -f -goal PersistentMemoryType=AppDirect</span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin: 0cm 0cm 0.0001pt; line-height: 15pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="apple-converted-space"><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;</span><span class="apple-converted-space"><span style="font-size:10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;color:#1F497D">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></span><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif;">ApachePassCli.efi
+show -a –pool</span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin: 0cm 0cm 0.0001pt; line-height: 15pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<span style="font-size: 11pt; color: rgb(31, 73, 125);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="apple-converted-space"><span style="font-size:10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif;mso-fareast-font-family:
+宋体;mso-fareast-theme-font:minor-fareast;color:#1F497D">&nbsp;</span></span><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif;">ApachePassCli.efi
+create –namespace –pool &lt;pool_Id&gt; Type=AppDirect</span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin: 0cm 0cm 0.0001pt; text-indent: -18pt; line-height: 15pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif;">b.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 11pt; color: rgb(31, 73, 125);">&nbsp;&nbsp;&nbsp; &nbsp;</span></span><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif;">Linux:
+ixpdimm-cli create –f –goal persistentmemorytype=appdirect</span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoListParagraph" style="margin: 0cm 0cm 0.0001pt; line-height: 15pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="apple-converted-space"><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;</span><span class="apple-converted-space"><span style="font-size:10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif;
+mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;color:#1F497D">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></span><span style="font-size: 11pt; font-family: &quot;Intel Clear&quot;, sans-serif;">ixpdimm- cli show -a
+–pool</span><u1:p></u1:p><span style="font-size: 10.5pt; font-family: &quot;Intel Clear&quot;, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 7.5pt; line-height: 15pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(31, 73, 125);">&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="apple-converted-space"><span style="font-size:10.5pt;font-family:&quot;Intel Clear&quot;,sans-serif;color:#1F497D">&nbsp;</span></span><span style="font-family: &quot;Intel Clear&quot;, sans-serif;">&nbsp;<span style="color: rgb(31, 73, 125);">&nbsp;&nbsp;</span></span><span style="font-family: &quot;Intel Clear&quot;, sans-serif;">ixpdimm-cli create –namespace –pool &lt;pool_Id&gt;
+Type=AppDirect</span></p><p class="wordsection1" style="margin:0in;margin-bottom:.0001pt"><br></p>
+                                </td>
+                        </tr>
+                        
+                     </tbody></table>
+                </div>
+            </div>
+        </div>
+        <br>
+    <!--     <span class="sh2">&nbsp Key Sightings: </span>
+             <table class="MsoNormalTable">
+                 <tr>
+                    <th width="7%">ID</th>
+                    <th width="93%">Title</th>
+                 </tr>
+                 
+                 
+                 <tr>
+                     <td>NA</td>
+                     <td style="text-align:left;">NA</td>
+                 </tr>
+                 
+             </table><br/> -->
+        
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Key Sightings </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseKeySightings"></div>
+                </div>
+            </div>
+            <div id="collapseKeySightings" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    
+                    <p>&nbsp; N/A</p>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; New Sightings </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseNewSightings"></div>
+                </div>
+            </div>
+            <div id="collapseNewSightings" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    
+                    <p>&nbsp; N/A</p>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Existing Sightings </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseExistingSightings"></div>
+                </div>
+            </div>
+            <div id="collapseExistingSightings" class="panel-collapse collapse ">
+                <div class="panel-body">
+                
+                <p>&nbsp; N/A</p>
+                
+                </div>
+            </div>
+        </div>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Closed Sightings </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseClosedSightings"></div>
+                </div>
+            </div>
+            <div id="collapseClosedSightings" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    
+                    <p>&nbsp; N/A</p>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <br>
+        
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; HW Rework </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseHWRework"></div>
+                </div>
+            </div>
+            <div id="collapseHWRework" class="panel-collapse collapse ">
+                <div class="panel-body">
+                <table class="DetailTable" width="100%">
+                    <tbody><tr>
+                        <td> 
+                                <h4 style="margin: 0in 0in 0pt; color: rgb(0, 0, 0); line-height: 15.55pt; font-family: &quot;Times New Roman&quot;, serif; font-size: medium; font-weight: bold;"><u><span lang="EN-GB" style="font-family: Calibri, sans-serif; font-size: 11pt;">Pedigree and Board Jumper Settings:<span class="apple-converted-space">&nbsp;</span></span></u><a style="color: rgb(149, 79, 114); text-decoration: underline;" href="http://targetmailer.intel.com/TMService/Redir.aspx?ID=2630621"><span style="color: rgb(0, 113, 197); font-family: Calibri, sans-serif; font-size: 11pt;">2S Guide</span></a><o:p></o:p></h4><p class="MsoNormal" style="margin: 0in 0in 0pt; color: rgb(0, 0, 0); line-height: 12.1pt; font-family: &quot;Times New Roman&quot;, serif; font-size: medium;"><i><span style="font-family: Calibri, sans-serif; font-size: 11pt;">Note: Only mandatory and necessary optional rework is implemented by BKC team</span></i></p><p class="default" style="margin: 0in 0in 0pt 34.8pt; color: rgb(0, 0, 0); line-height: 12.1pt; text-indent: -13.5pt; font-family: &quot;Times New Roman&quot;, serif; font-size: medium;"><span style="font-family: Symbol; font-size: 11pt;">·</span><span style="font-size: 7pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="font-family: Calibri, sans-serif; font-size: 11pt;">2s</span></p><p class="default" style="margin: 0in 0in 0pt 1in; color: rgb(0, 0, 0); line-height: 12.1pt; text-indent: -0.25in; font-family: &quot;Times New Roman&quot;, serif; font-size: medium;"><span style="font-family: Calibri, sans-serif; font-size: 11pt;">o&nbsp;NC_RWK_I (Mandatory): Update BMC FW</span></p><p class="default" style="margin: 0in 0in 0pt 1in; color: rgb(0, 0, 0); line-height: 12.1pt; text-indent: -0.25in; font-family: &quot;Times New Roman&quot;, serif; font-size: medium;"><span style="font-family: Calibri, sans-serif; font-size: 11pt;">o&nbsp;NC_RWK_K (Mandatory): Avoiding false LAN Wake Activations</span></p><p class="default" style="margin: 0in 0in 0pt 1in; color: rgb(0, 0, 0); line-height: 12.1pt; text-indent: -0.25in; font-family: &quot;Times New Roman&quot;, serif; font-size: medium;"><span style="font-family: Calibri, sans-serif; font-size: 11pt;">o&nbsp;NC_RWK_L (Mandatory): Update CPLD FW</span></p><p class="default" style="margin: 0in 0in 0pt 1in; color: rgb(0, 0, 0); line-height: 12.1pt; text-indent: -0.25in; font-family: &quot;Times New Roman&quot;, serif; font-size: medium;"><span style="font-family: Calibri, sans-serif; font-size: 11pt;">o&nbsp;NC_RWK_M (Mandatory): No-Boot without ITP issue fix</span></p><p class="default" style="margin: 0in 0in 0pt 1in; color: rgb(0, 0, 0); line-height: 12.1pt; text-indent: -0.25in; font-family: &quot;Times New Roman&quot;, serif; font-size: medium;"><span style="font-family: Calibri, sans-serif; font-size: 11pt;">o&nbsp;Note:&nbsp;In case you have implemented Optional rework 20, you should move switch S4E2.4&nbsp;to OFF position, otherwise the default position is ON.<span style="color: red;">&nbsp;</span></span></p>
+                            
+                        </td>
+                    </tr>
+                </tbody></table><br>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; HW Configuration </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseHWConfiguration"></div>
+                </div>
+            </div>
+            <div id="collapseHWConfiguration" class="panel-collapse collapse ">
+                <div class="panel-body">
+                
+                    
+                        <p><font color="#000000" face="Times New Roman" size="3">
+</font></p><table border="0" cellpadding="0" cellspacing="0" class="DetailTable">
+<tbody><tr>
+<th>
+<div align="center" class="MsoNormal"><b><span lang="ZH-CN" style="">　</span></b><o:p></o:p></div>
+</th>
+<th>
+<div align="center" class="MsoNormal"><b><i><span style="">System
+  1</span></i></b><b><i><span style="">-2</span></i></b><o:p></o:p></div>
+</th>
+</tr>
+<tr>
+<td>
+<div class="MsoNormal"><b><i><span style="color:black">Ingredient</span></i></b><o:p></o:p></div>
+</td>
+<td>
+<div class="MsoNormal"><b><i><span style="color:black">HW/SW Version Details</span></i></b><o:p></o:p></div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="MsoNormal"><span style="color:black">CPU 0/1</span><o:p></o:p></div>
+</td>
+<td>
+QM7R <span style="mso-fareast-font-family:宋体;mso-fareast-theme-font:
+minor-fareast;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black;mso-ansi-language:
+EN-US;mso-fareast-language:ZH-CN;mso-bidi-language:AR-SA">(SKX H0 QS)</span><br></td>
+</tr>
+<tr>
+<td>
+<div class="MsoNormal"><span style="color:black">PCH</span><o:p></o:p></div>
+</td>
+<td>
+QM1S&nbsp;<span style="mso-fareast-font-family:宋体;mso-fareast-theme-font:
+minor-fareast;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black;mso-ansi-language:
+EN-US;mso-fareast-language:ZH-CN;mso-bidi-language:AR-SA">(LBG B1 QS)</span><br></td>
+</tr>
+<tr>
+<td>
+<div class="MsoNormal"><span style="color:black">DDR4 memory</span><o:p></o:p></div>
+</td>
+<td>
+<div class="MsoNormal"><span style="color:black">MAT18ASF2G72PZ-2G3A1|G 16GB 1R*4
+  PC4-2400T-RCB-10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><o:p></o:p></div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="MsoNormal"><span style="color:black">AEP memory</span><o:p></o:p></div>
+</td>
+<td>
+<div class="MsoNormal"><span style="color:black">AEP PBA:J26184-239 128GB KVAQ 7024 064D TAB 11 FAB2 ES1
+  SDP(DD),EKV 3DXP ES1<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="MsoNormal"><span style="color:black">Base Board</span><o:p></o:p></div>
+</td>
+<td>
+<div class="MsoNormal"><span style="color:black">&nbsp;Neon City PBA H47994-202</span><o:p></o:p></div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="MsoNormal"><span style="color:black">Chassis</span><o:p></o:p></div>
+</td>
+<td>
+<div class="MsoNormal"><span style="color:black">ASSEMBLY NO. H48593-002</span><o:p></o:p></div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="MsoNormal"><span style="color:black">PCIe riser card</span><o:p></o:p></div>
+</td>
+<td>
+<div class="MsoNormal"><span style="color:black">NVDIA GEFORCE 210 (Suggest&nbsp;PCIe slot 1)</span><o:p></o:p></div>
+</td>
+</tr>
+</tbody></table>
+<p class="wordsection1"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;
+color:#1F497D;mso-fareast-language:ZH-CN">&nbsp;</span></p>
+<p class="wordsection1" style="margin-bottom: 7.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><u><span style="font-family:&quot;Intel Clear&quot;,sans-serif;color:black">Memory Population</span></u></b><b><u><span style="font-size:11.0pt;font-family:&quot;Intel Clear&quot;,sans-serif;color:black;
+mso-fareast-language:ZH-CN"><o:p></o:p></span></u></b></p>
+<table border="0" cellpadding="0" cellspacing="0" class="DetailTable">
+<tbody><tr>
+<td>
+<div class="MsoNormal">&nbsp;<o:p></o:p></div>
+</td>
+<td colspan="6" valign="bottom">
+<div class="MsoNormal"><span style="color:black">Per iMC</span><o:p></o:p></div>
+</td>
+</tr>
+<tr>
+<td rowspan="2">
+<div class="MsoNormal"><span style="color:black">Config#</span><o:p></o:p></div>
+</td>
+<td colspan="2">
+<div class="MsoNormal"><span style="color:black">Chnl2</span><o:p></o:p></div>
+</td>
+<td colspan="2">
+<div class="MsoNormal"><span style="color:black">Chnl1</span><o:p></o:p></div>
+</td>
+<td colspan="2">
+<div class="MsoNormal"><span style="color:black">Chnl0</span><o:p></o:p></div>
+</td>
+</tr>
+<tr>
+<td valign="bottom">
+<div class="MsoNormal"><span style="color:black">Slot1</span><o:p></o:p></div>
+</td>
+<td valign="bottom">
+<div class="MsoNormal"><span style="color:black">Slot0</span><o:p></o:p></div>
+</td>
+<td valign="bottom">
+<div class="MsoNormal"><span style="color:black">Slot1</span><o:p></o:p></div>
+</td>
+<td valign="bottom">
+<div class="MsoNormal"><span style="color:black">Slot0</span><o:p></o:p></div>
+</td>
+<td valign="bottom">
+<div class="MsoNormal"><span style="color:black">Slot1</span><o:p></o:p></div>
+</td>
+<td valign="bottom">
+<div class="MsoNormal"><span style="color:black">Slot0</span><o:p></o:p></div>
+</td>
+</tr>
+<tr>
+<td valign="bottom">
+<div class="MsoNormal">2-2-2<o:p></o:p></div>
+</td>
+<th valign="bottom">
+<div class="MsoNormal">&nbsp;<span style="">DDRT</span><o:p></o:p></div>
+</th>
+<th valign="bottom">
+<div class="MsoNormal">&nbsp;<span style="">DDR4</span><o:p></o:p></div>
+</th>
+<th valign="bottom">
+<div class="MsoNormal">&nbsp;<span style="">DDRT</span><o:p></o:p></div>
+</th>
+<th valign="bottom">
+<div class="MsoNormal">&nbsp;<span style="">DDR4</span><o:p></o:p></div>
+</th>
+<th valign="bottom">
+<div class="MsoNormal">&nbsp;<span style="">DDRT</span><o:p></o:p></div>
+</th>
+<th valign="bottom">
+<div class="MsoNormal">&nbsp;<span style="">DDR4</span><o:p></o:p></div>
+</th>
+</tr>
+</tbody></table>
+<p class="wordsection1" style="margin-bottom: 7.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="color:black">DDR4 - RDIMM, 2400 16GB</span><span style="font-size:11.0pt;
+font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:ZH-CN"><o:p></o:p></span></p>
+<p class="wordsection1" style="margin-bottom: 7.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="color:black">DDR-T - ES1 AEP 128GB</span><span style="font-size:11.0pt;
+font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:ZH-CN"><o:p></o:p></span></p>
+                    
+                
+                </div>
+            </div>
+        </div>
+
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; SW Configuration </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseSWConfiguration"></div>
+                </div>
+            </div>
+            <div id="collapseSWConfiguration" class="panel-collapse collapse ">
+                <div class="panel-body">
+                
+                    
+                        <table border="0" cellpadding="0" cellspacing="0" class="DetailTable">
+<tbody><tr>
+<th colspan="2"></th>
+<th>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><b><span style="">Ingredient<o:p></o:p></span></b></div>
+</th>
+<th>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><b><span style="">SW
+  Version Details<o:p></o:p></span></b></div>
+</th>
+<th>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><b><span style="">Changed(last
+  release)<o:p></o:p></span></b></div>
+</th>
+<th>
+<div align="center" class="MsoNormal" style="word-break: break-all;"><b><span style="">Release
+  Notes<o:p></o:p></span></b></div>
+</th>
+</tr>
+<tr>
+<td colspan="2" id="1_0" rowspan="5">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Firmwares<o:p></o:p></span></div>
+</td>
+<td id="1_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">IFWI<o:p></o:p></span></div>
+</td>
+<td id="1_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/IFWI/2017.14.2.03-CR.zip"><span style="">2017.14.2.03</span></a><o:p></o:p></span></div>
+</td>
+<td id="1_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="color:red">(2017.13.3.05-&gt;2017.14.2.03)</span><span style=""><o:p></o:p></span></div>
+</td>
+<td id="1_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley%20Crystal%20Ridge/Documents/ReleaseNotes/IFWI/IFWI_2017.14.2.03_IFWIingredientTable_LBG_SKX.html"><span style="">Release Notes</span></a><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="2_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">CR_FW<o:p></o:p></span></div>
+</td>
+<td id="2_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/CR_FW/CR-FW_3699.zip"><span style="">1.0.0.3699</span></a><o:p></o:p></span></div>
+</td>
+<td id="2_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="color:red">(1.0.0.3684-&gt;1.0.0.3699)</span><span style=""><o:p></o:p></span></div>
+</td>
+<td id="2_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="3_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">CR_UEFI<o:p></o:p></span></div>
+</td>
+<td id="3_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/CR_UEFI/CR-UEFI_1837.zip"><span style="">1.0.0.1837</span></a><o:p></o:p></span></div>
+</td>
+<td id="3_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="color:red">(01.00.00.1833-&gt;1.0.0.1837)</span><span style=""><o:p></o:p></span></div>
+</td>
+<td id="3_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="4_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">BMC<o:p></o:p></span></div>
+</td>
+<td id="4_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/BMC/NC_BMC_PO_79_20_r10373.zip"><span style="">79.20.r10373</span></a><o:p></o:p></span></div>
+</td>
+<td id="4_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="4_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Documents/ReleaseNotes/BMC/BMC_79.20.r10373_ReleaseNotes.txt"><span style="">Release Notes</span></a><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="5_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">CPLD<o:p></o:p></span></div>
+</td>
+<td id="5_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/FW/CPLD/NC_CPLD_0x5D_0x22.zip"><span style="">0x5D_0x22</span></a><o:p></o:p></span></div>
+</td>
+<td id="5_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="5_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="6_0" rowspan="8">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Fedora25<o:p></o:p></span></div>
+</td>
+<td id="6_1" rowspan="3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">APPs<o:p></o:p></span></div>
+</td>
+<td id="6_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">CR_ManagementTool<o:p></o:p></span></div>
+</td>
+<td id="6_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/app/CR_ManagementTool/CR-MGMT-01.00.00.2239-fedora.zip"><span style="">01.00.00.2239</span></a><o:p></o:p></span></div>
+</td>
+<td id="6_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="color:red">(1.0.0.2229-&gt;01.00.00.2239)</span><span style=""><o:p></o:p></span></div>
+</td>
+<td id="6_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="7_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">CR_Doc<o:p></o:p></span></div>
+</td>
+<td id="7_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/app/CR_Doc/CR_Doc_2017WW14.4.zip"><span style="">2017WW14.4</span></a><o:p></o:p></span></div>
+</td>
+<td id="7_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="color:red">(2017WW13.4-&gt;2017WW14.4)</span><span style=""><o:p></o:p></span></div>
+</td>
+<td id="7_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="8_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">SST<o:p></o:p></span></div>
+</td>
+<td id="8_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/app/SST/SystemScopeLinux3.0.1044.zip"><span style="">3.0.1044</span></a><o:p></o:p></span></div>
+</td>
+<td id="8_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="8_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Documents/ReleaseNotes/SST/SST_3.0.1044_ReadMe_Linux.html"><span style="">Release Notes</span></a><o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="9_1" rowspan="4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Configs<o:p></o:p></span></div>
+</td>
+<td id="9_2" rowspan="2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">PMEM72
+  (FC_kernel_update + cr_patch)<o:p></o:p></span></div>
+</td>
+<td id="9_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/config/FC_kernel_update/kernelupdate_to_FC25-4.10.5-200_v1.tgz"><span style="">FC25-4.10.5-200</span></a><o:p></o:p></span></div>
+</td>
+<td id="9_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="9_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="10_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/config/cr_patch/cr_patch_PMEM71-v03.tgz"><span style="">cr_patch</span></a><o:p></o:p></span></div>
+</td>
+<td id="10_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="10_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N/A<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="11_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">auto_install_script<o:p></o:p></span></div>
+</td>
+<td id="11_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/config/auto_install_script/FC24_PostInstall_Script_v0.5.zip"><span style="">0.5</span></a><o:p></o:p></span></div>
+</td>
+<td id="11_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="11_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Internal Use
+  Only (for auto-installer script)<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="12_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">pnp_dependency<o:p></o:p></span></div>
+</td>
+<td id="12_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="https://ubit-artifactory-sh.intel.com/artifactory/DEG-Purley-local/Purley/Linux/script/PnPToolDependency_FC24_2017WW03.tgz"><span style="">2017WW03</span></a><o:p></o:p></span></div>
+</td>
+<td id="12_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="12_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Internal Use
+  Only (for auto-installer script)<o:p></o:p></span></div>
+</td>
+</tr>
+<tr>
+<td id="13_1">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">OSes<o:p></o:p></span></div>
+</td>
+<td id="13_2">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Fedora<o:p></o:p></span></div>
+</td>
+<td id="13_3">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style=""><a href="file:///\\bkcfileserver.ccr.corp.intel.com\pi_Internal\Purley_BKC\BKC_Package\OS\FC25.zip"><span style="">FC25</span></a><o:p></o:p></span></div>
+</td>
+<td id="13_4">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">N<o:p></o:p></span></div>
+</td>
+<td id="13_6">
+<div align="center" class="MsoNormal" style="word-break: break-all;"><span style="">Internal Use
+  Only <o:p></o:p></span></div>
+</td>
+</tr>
+</tbody></table>
+<p class="wordsection1" style="text-indent:4.8pt"><span style="font-size:11.0pt;
+font-family:&quot;Intel Clear&quot;,sans-serif;mso-bidi-font-family:宋体;mso-fareast-language:
+ZH-CN"><o:p>&nbsp;</o:p></span></p>
+                    
+                    <br>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; IFWI Configuration </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapseIFWIConfiguration"></div>
+                </div>
+            </div>
+            <div id="collapseIFWIConfiguration" class="panel-collapse collapse ">
+                <div class="panel-body">
+                
+                    <table class="DetailTable" width="100%">
+                        <tbody><tr>
+                            <th width="40%">Ingredient</th>
+                            <th width="30%">Version</th>
+                            <th width="30%">Changed (VS 2017 WW14)</th>
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">INT BIOS</td>
+                            <td width="35%">1002.D46</td>
+                            
+                                <td style="color:red">Y (1002.D38-&gt;1002.D46)</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">CRB BIOS</td>
+                            <td width="35%">1002.D46</td>
+                            
+                                <td style="color:red">Y (1002.D38-&gt;1002.D46)</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">SKX A2</td>
+                            <td width="35%">m1350651_8000002b</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">SKX B0</td>
+                            <td width="35%">m9750652_80000036</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">SKX B1</td>
+                            <td width="35%">m9750653_01000131</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">SKX H0</td>
+                            <td width="35%">m9750654_0200000f</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">SataAHCI</td>
+                            <td width="35%">v2.00i</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">HfiPcieGen3</td>
+                            <td width="35%">v1.3.1.0.0</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">RSTeSataLegacy</td>
+                            <td width="35%">v5.0.0.1217</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">RSTesSataLegacy</td>
+                            <td width="35%">v5.0.0.1217</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">RSTeSataEfi</td>
+                            <td width="35%">v5.0.0.1217</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">RSTesSataEfi</td>
+                            <td width="35%">v5.0.0.1217</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">VMDVROC_1.efi</td>
+                            <td width="35%">v5.0.0.1217</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">VMDVROC_2.efi</td>
+                            <td width="35%">v1.0.0.1026</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">ME AMT FW version</td>
+                            <td width="35%">ME11-LBG,ME11.6.0.1200,spt_lbg_fit_Corporate.xml</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">ME SPS FW version (LBG)</td>
+                            <td width="35%">SPS,E5_04_00_03_185_0,Lbg_NeonCity_BKC.xml</td>
+                            
+                                <td style="color:red">Y (SPS,E5_04_00_03_180_0,Lbg_NeonCity_BKC.xml-&gt;SPS,E5_04_00_03_185_0,Lbg_NeonCity_BKC.xml)</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">FpkSi</td>
+                            <td width="35%">v3.35_8000091A</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">BIOSACM</td>
+                            <td width="35%">Production,v1.2.0_LBG</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">SINIT</td>
+                            <td width="35%">Production,v1.2.0_LBG</td>
+                            
+                                <td style="color:red">Y (Production,v1.1.0_LBG-&gt;Production,v1.2.0_LBG)</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">iBMCVideo</td>
+                            <td width="35%">v3.8SQ</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">NvmDimmDriver</td>
+                            <td width="35%">v01.00.00.1837</td>
+                            
+                                <td style="color:red">Y (v01.00.00.1833-&gt;v01.00.00.1837)</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">NvmDimmHii</td>
+                            <td width="35%">v01.00.00.1837</td>
+                            
+                                <td style="color:red">Y (v01.00.00.1833-&gt;v01.00.00.1837)</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">BiosGuard</td>
+                            <td width="35%">PC_v0_9</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td width="40%">GBE</td>
+                            <td width="35%">_I219_Nahum7_Purley_LM_No-LAN-Switch_Rev0.2</td>
+                            
+                                <td>N</td>
+                            
+                        </tr>
+                        
+                    </tbody></table><br>
+                
+                </div>
+            </div>
+        </div>
+        <br>
+        
+        
+
+        
+        
+        <br>
+
+        
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; Platform Integration Validation Result </span>
+                <div class="FoldIcon">
+                    <div id="PlatformIntegrationValidationResultBtn" class="CollapseBtn not-collapsed collapsed" data-toggle="collapse" href="#collapsePlatformIntegrationValidationResult">
+</div>
+                </div>
+            </div>
+
+            <div id="collapsePlatformIntegrationValidationResult" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    <table class="MsoNormalTable" width="100%">
+                        <tbody><tr>
+                            <th rowspan="3" width="9%">Purley AEP_2s Test Execution Status</th>
+                            <th width="9%">Domains</th>
+                            <th width="8%">Attempted</th>
+                            <th width="8%">Blocked</th>
+                            <th width="8%">No Run</th>
+                            <th width="8%">Failed</th>
+                            <th width="8%">Passed</th>
+                            <th width="8%">Total</th>
+                            <th width="8%">% Attempted</th>
+                            <th width="8%">Passed% (per attempted)</th>
+                            <th width="8%">Pass%</th>
+                            <th width="10%">Key Sightings</th>
+                        </tr>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <tr>
+                            
+                             <td>Summary</td>
+                            
+                             <td>0</td>
+                             <td>0</td>
+                             <td>0</td>
+                            
+                             <td>0</td>
+                            
+                             <td>0</td>
+                             <td>0</td>
+                             <td></td>
+                             <td>0/0</td>
+                             <td></td>
+                             <td>
+                                 
+
+
+
+                             </td>
+                        </tr>
+                        
+                        
+                    </tbody></table><br>
+                    <div class="stable">Detail case result could be found in this <a href="http://dcg-oss.intel.com/test_report/report_case/5850/Gold/Purley AEP_2s" target="_blank" style="text-decoration: underline;">page</a></div>
+                    <div style="border:1px solid #000000">
+                        <div id="cases_domain_chart" style="width:70%;float:left;" data-highcharts-chart="0"><div class="highcharts-container" id="highcharts-0" style="position: relative; overflow-x: hidden; overflow-y: hidden; width: 427px; height: 400px; text-align: left; line-height: normal; z-index: 0; "><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="427" height="400"><desc>Created with Highcharts 4.1.7</desc><defs><clipPath id="highcharts-1"><rect x="0" y="0" width="362" height="301"></rect></clipPath></defs><rect x="0" y="0" width="427" height="400" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect><g class="highcharts-grid" zIndex="1"></g><g class="highcharts-grid" zIndex="1"><path fill="none" d="M 55 198.5 L 417 198.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path></g><g class="highcharts-axis" zIndex="2"><path fill="none" d="M 417.5 348 L 417.5 358" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 54.5 348 L 54.5 358" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 55 348.5 L 417 348.5" stroke="#C0D0E0" stroke-width="1" zIndex="7" visibility="visible"></path></g><g class="highcharts-axis" zIndex="2"><text x="24" zIndex="7" text-anchor="middle" transform="translate(0,0) rotate(270 24 197.5)" class=" highcharts-yaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="197.5"><tspan>Pass Rate</tspan></text></g><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(55,176.453254122815) scale(1 0.14070564206849048)" style="" clip-path="url(#highcharts-1)"><rect x="93.5" y="151.5" width="174" height="0" stroke="#FFFFFF" stroke-width="1" fill="#717171" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(55,47) scale(1 1)"></g><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(55,176.453254122815) scale(1 0.14070564206849048)" style="" clip-path="url(#highcharts-1)"><rect x="93.5" y="151.5" width="174" height="0" stroke="#FFFFFF" stroke-width="1" fill="#ffae00" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(55,47) scale(1 1)"></g><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(55,176.453254122815) scale(1 0.14070564206849048)" style="" clip-path="url(#highcharts-1)"><rect x="93.5" y="151.5" width="174" height="0" stroke="#FFFFFF" stroke-width="1" fill="#fd4f02" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(55,47) scale(1 1)"></g><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(55,176.453254122815) scale(1 0.14070564206849048)" style="" clip-path="url(#highcharts-1)"><rect x="93.5" y="151.5" width="174" height="0" stroke="#FFFFFF" stroke-width="1" fill="#6fd007" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(55,47) scale(1 1)"></g></g><text x="214" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:363px;" y="24"><tspan>Purley Crystal Ridge Gold Validation Result</tspan></text><g class="highcharts-legend" zIndex="7" transform="translate(74,360)"><g zIndex="1"><g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)"><text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2" y="15">NoRun</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#717171"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(90,3)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">Block</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#ffae00"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(163,3)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">Fail</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#fd4f02"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(223,3)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">Pass</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#6fd007"></rect></g></g></g></g><g class="highcharts-axis-labels highcharts-xaxis-labels" zIndex="7"><text x="236" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:352px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="367" opacity="1"></text></g><g class="highcharts-axis-labels highcharts-yaxis-labels" zIndex="7"><text x="40" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:131px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="202" opacity="1">0</text></g><g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(0,-9999)"><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"></path><path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5"></path><text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="20"></text></g></svg></div></div>
+                        <div id="cases_pie_chart" style="width:28%;float:right;border-left:1px solid #000000" data-highcharts-chart="1"><div class="highcharts-container" id="highcharts-2" style="position: relative; overflow-x: hidden; overflow-y: hidden; width: 170px; height: 400px; text-align: left; line-height: normal; z-index: 0; "><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="170" height="400"><desc>Created with Highcharts 4.1.7</desc><defs><clipPath id="highcharts-3"><rect x="0" y="0" width="150" height="189"></rect></clipPath></defs><rect x="0" y="0" width="170" height="400" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(10,131) scale(1 1)" style="cursor:pointer;"><path fill="#6fd007" d="M 74.99974109277548 85.41004331254418 A 9.089956691143025 9.089956691143025 0 0 1 74.99065113773247 85.41004811642932 L 75 94.5 A 0 0 0 0 0 75 94.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,-10)"></path><path fill="#fd4f02" d="M 74.99974109277548 85.41004331254418 A 9.089956691143025 9.089956691143025 0 0 1 74.99065113773247 85.41004811642932 L 75 94.5 A 0 0 0 0 0 75 94.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path><path fill="#ffae00" d="M 74.99974109277548 85.41004331254418 A 9.089956691143025 9.089956691143025 0 0 1 74.99065113773247 85.41004811642932 L 75 94.5 A 0 0 0 0 0 75 94.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path><path fill="#717171" d="M 74.99974109277548 85.41004331254418 A 9.089956691143025 9.089956691143025 0 0 1 74.99065113773247 85.41004811642932 L 75 94.5 A 0 0 0 0 0 75 94.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(10,131) scale(1 1)"></g></g><text x="85" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:106px;" y="24"><tspan>Purley</tspan><tspan dy="21" x="85">Crystal Ridge</tspan><tspan dy="21" x="85">Gold</tspan><tspan dy="21" x="85">Validation</tspan><tspan dy="21" x="85">Status</tspan><title>Purley Crystal Ridge Gold Validation Status</title></text><g class="highcharts-legend" zIndex="7" transform="translate(23,332)"><g zIndex="1"><g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)"><text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2" y="15">Pass</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#6fd007"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(76,3)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">Fail</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#fd4f02"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,17)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">Block</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#ffae00"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,31)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">NoRun</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#717171"></rect></g></g></g></g><g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(0,-9999)"><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"></path><path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5"></path><text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="20"></text></g></svg></div></div>
+                        <div style="clear:both;"></div>
+                        <div style="border-top:1px solid #000000" id="cases_history_chart" data-highcharts-chart="2"><div class="highcharts-container" id="highcharts-4" style="position: relative; overflow-x: hidden; overflow-y: hidden; width: 611px; height: 400px; text-align: left; line-height: normal; z-index: 0; "><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="611" height="400"><desc>Created with Highcharts 4.1.7</desc><defs><clipPath id="highcharts-5"><rect x="0" y="0" width="520" height="280"></rect></clipPath><clipPath id="highcharts-6"><rect x="-99" y="-47" width="171.71965352914418" height="400"></rect></clipPath><clipPath id="highcharts-7"><rect x="0" y="0" width="72.7196535291442" height="280"></rect></clipPath></defs><rect x="0" y="0" width="611" height="400" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect><g class="highcharts-grid" zIndex="1"></g><g class="highcharts-grid" zIndex="1"><path fill="none" d="M 81 327.5 L 601 327.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 81 257.5 L 601 257.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 81 187.5 L 601 187.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 81 117.5 L 601 117.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 81 46.5 L 601 46.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path></g><g class="highcharts-axis" zIndex="2"><path fill="none" d="M 167.5 327 L 167.5 337" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 253.5 327 L 253.5 337" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 340.5 327 L 340.5 337" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 427.5 327 L 427.5 337" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 513.5 327 L 513.5 337" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 601.5 327 L 601.5 337" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 80.5 327 L 80.5 337" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 81 327.5 L 601 327.5" stroke="#C0D0E0" stroke-width="1" zIndex="7" visibility="visible"></path></g><g class="highcharts-axis" zIndex="2"><text x="24" zIndex="7" text-anchor="middle" transform="translate(0,0) rotate(270 24 187)" class=" highcharts-yaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="187"><tspan>Pass Rate</tspan></text></g><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series" visibility="visible" zIndex="0.1" transform="translate(81,47) scale(1 1)" clip-path="url(#highcharts-7)"></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(81,47) scale(1 1)" clip-path="url(#highcharts-6)"></g></g><text x="306" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:547px;" y="24"><tspan>Purley Crystal Ridge Gold Analysis PASS%</tspan></text><g class="highcharts-data-labels" visibility="visible" zIndex="6" transform="translate(81,47) scale(1 1)" opacity="0"></g><g class="highcharts-legend" zIndex="7" transform="translate(274,360)"><g zIndex="1"><g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)"><path fill="none" d="M 0 11 L 16 11" stroke="#7cb5ec" stroke-width="2"></path><path fill="#7cb5ec" d="M 8 7 C 13.328 7 13.328 15 8 15 C 2.6719999999999997 15 2.6719999999999997 7 8 7 Z"></path><text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2" y="15">Gold</text></g></g></g></g><g class="highcharts-axis-labels highcharts-xaxis-labels" zIndex="7"><text x="124.33333333333334" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:77px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1"><tspan>2016 WW49</tspan></text><text x="211" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:77px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1"><tspan>2017 WW11</tspan></text><text x="297.6666666666667" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:77px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1"><tspan>2017 WW12</tspan></text><text x="384.33333333333337" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:77px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1"><tspan>2017 WW13</tspan></text><text x="470.99999999999994" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:77px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1"><tspan>2017 WW14</tspan></text><text x="557.6666666666666" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:77px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="346" opacity="1"><tspan>2017 WW15</tspan></text></g><g class="highcharts-axis-labels highcharts-yaxis-labels" zIndex="7"><text x="66" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:192px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="332" opacity="1"><tspan>0 %</tspan></text><text x="66" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:192px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="262" opacity="1"><tspan>25 %</tspan></text><text x="66" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:192px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="192" opacity="1"><tspan>50 %</tspan></text><text x="66" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:192px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="122" opacity="1"><tspan>75 %</tspan></text><text x="66" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:192px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="52" opacity="1"><tspan>100 %</tspan></text></g><g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(0,-9999)"><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"></path><path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5"></path><text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="20"></text></g></svg></div></div>
+                    </div>
+
+                <br>
+                
+
+                </div>
+            </div>
+            
+            <script>
+                document.getElementById("PlatformIntegrationValidationResultBtn").setAttribute("class","CollapseBtn not-collapsed collapsed")
+                document.getElementById("collapsePlatformIntegrationValidationResult").setAttribute("class","panel-collapse collapse ")
+            </script>
+            
+        </div>
+
+    
+    
+
+    
+    
+
+    
+    
+        <br>
+        <div class="panel collapse-report-panel">
+            <div class="panel-heading">
+                <span class="sh2">&nbsp; BKC Useful Info </span>
+                <div class="FoldIcon">
+                    <div class="CollapseBtn not-collapsed" data-toggle="collapse" href="#collapseBKCUsefulInfo"></div>
+                </div>
+            </div>
+            <div id="collapseBKCUsefulInfo" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <p style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;">Notes: To subscribe or unsubscribe to the mailing list please click&nbsp;<a href="http://targetmailer.intel.com/Subscriptions/?GroupID=30#/30?cat=109" style="text-decoration: underline;">here</a>&nbsp;and select "Purley CrystalRidge Subscription".</p><table class="NormalTable" border="0" cellspacing="0" cellpadding="0" style="width: 100%; color: rgb(51, 51, 51);"><tbody><tr style="color: rgb(0, 0, 0); font-weight: bold; background-color: rgb(163, 203, 255);"><td width="10%" align="center">Information</td><td width="40%" align="center">Quick Guide</td></tr><tr><td style="padding: 10px; text-align: center; font-weight: bold;">BKC Artifactory Access</td><td style="padding: 10px;"><p>Link (SH server):&nbsp;<a href="https://ubit-artifactory-sh.intel.com/artifactory/webapp/#/home">https://ubit-artifactory-sh.intel.com</a></p><p>Link (OR server):&nbsp;<a href="https://ubit-artifactory-or.intel.com/artifactory/webapp/#/home">https://ubit-artifactory-or.intel.com</a></p><p>Steps for applying the permission:</p><p></p><ul><li>Go to EAM website:&nbsp;<a href="https://eam.intel.com/EAMWeb/RequestAccess/DisplayTree.aspx?TopNode=757719"><span lang="X-NONE">https://eam.intel.com/EAMWeb/RequestAccess/DisplayTree.aspx?TopNode=757719</span></a></li><li>Apply for the "Project viewer" role<br></li><li>Use your windows credentials for authentication</li></ul><p></p></td></tr><tr><td style="padding: 10px; text-align: center; font-weight: bold;">BKC One Stop Shop</td><td style="padding: 10px;"><p>Link:&nbsp;<a href="https://dcg-oss.intel.com/">https://dcg-oss.intel.com/homepage_view/24/</a></p><p>Steps for applying the permission:</p><p></p><ul><li>Go to EAM website:&nbsp;<a href="https://eam.intel.com/EAMWeb/RequestAccess/DisplayTree.aspx?TopNode=829001" target="_blank">https://eam.intel.com/EAMWeb/RequestAccess/DisplayTree.aspx?TopNode=829001</a></li><li>Navigate to:"BKC -- Purley"</li><li>Apply for the "User" or "Ingredient Owner" role</li><li>Use your windows credentials for authentication</li></ul><p></p><p>Contact Person:&nbsp;<a href="mailto:ling.bei@intel.com">Bei, Ling</a></p></td></tr></tbody></table><p style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;"><br></p>
+                    <br>
+                </div>
+            </div>
+        </div>
+    
+        <br>
+        <br>
+    </div>
+
+</div>
+
+</body></html>
