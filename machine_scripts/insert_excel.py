@@ -653,11 +653,14 @@ class InsertDataIntoExcel(object):
                         self.worksheet_sw_original.write(nu, self.calculate_head_num(9, j, 5), first_insert_data[line])
                         self.worksheet_sw_original.write_url(nu, self.calculate_head_num(9, j, 6), url_list[line][0], self.url_format, cell_data_list[line][1])
                         self.worksheet_sw_original.write(nu, self.calculate_head_num(9, j, 7), second_insert_data[line])
-
-                        if (len(url_list[line]) >= 2) and cell_data_list[line][3]:
-                            self.worksheet_sw_original.write_url(nu, self.calculate_head_num(9, j, 8), url_list[line][1], self.url_format, cell_data_list[line][3])
-                        else:
-                            self.worksheet_sw_original.write(nu, self.calculate_head_num(9, j, 8), cell_data_list[line][3])
+                        # todo 捕获异常 适配Purley-Crystal-Ridge项目 header_list可能只有三列
+                        try:
+                            if (len(url_list[line]) >= 2) and cell_data_list[line][3]:
+                                self.worksheet_sw_original.write_url(nu, self.calculate_head_num(9, j, 8), url_list[line][1], self.url_format, cell_data_list[line][3])
+                            else:
+                                self.worksheet_sw_original.write(nu, self.calculate_head_num(9, j, 8), cell_data_list[line][3])
+                        except IndexError:
+                            pass
                         nu += 1
 
                     elif line_num_list[line] > 1:
@@ -666,11 +669,14 @@ class InsertDataIntoExcel(object):
                         self.worksheet_sw_original.merge_range(nu, self.calculate_head_num(9, j, 6), nu + line_num_list[line] - 1, self.calculate_head_num(9, j, 6), '')
                         self.worksheet_sw_original.write_url(nu, self.calculate_head_num(9, j, 6), url_list[line][0], self.url_format, cell_data_list[line][1])
                         self.worksheet_sw_original.merge_range(nu, self.calculate_head_num(9, j, 7), nu + line_num_list[line] -1, self.calculate_head_num(9, j, 7), second_insert_data[line], self.title_format)
-
-                        for i in range(nu, length_merge + nu):
-                            self.worksheet_sw_original.write_url(i, self.calculate_head_num(9, j, 8), url_list[line][1 + i - nu], self.url_format, cell_data_list[line][3:][i - nu])
-                        self.worksheet_sw_original.write(line_num_list[line] + nu - 1, self.calculate_head_num(9, j, 8), cell_data_list[line][3:][-1])
-                        nu += line_num_list[line]
+                        #todo 捕获异常 适配Purley-Crystal-Ridge项目 header_list可能只有三列
+                        try:
+                            for i in range(nu, length_merge + nu):
+                                self.worksheet_sw_original.write_url(i, self.calculate_head_num(9, j, 8), url_list[line][1 + i - nu], self.url_format, cell_data_list[line][3:][i - nu])
+                            self.worksheet_sw_original.write(line_num_list[line] + nu - 1, self.calculate_head_num(9, j, 8), cell_data_list[line][3:][-1])
+                            nu += line_num_list[line]
+                        except IndexError:
+                            pass
 
             except:
                 self.logger.print_message('The data crawling failed for the %dth url [ %s ]' % (j + 1, self.Silver_url_list[j]), self.__file_name)
@@ -701,10 +707,12 @@ class InsertDataIntoExcel(object):
                         Silver_BkC_string, header_length, date_string, url_list, header_list, cell_data_list = obj.get_sw_data_1('SW Configuration', self.verify_flag)
                     else:
                         Silver_BkC_string, header_length, date_string, url_list, header_list, cell_data_list = obj.get_sw_data('SW Configuration', self.verify_flag)
+
                     if self.keep_continuous != 'YES':
                         self.newest_week_type_string_list.append(Silver_BkC_string)
                     elif self.keep_continuous == 'YES' and self.equal_silver_list_flag:
                         self.newest_week_type_string_list.append(Silver_BkC_string)
+
                 else:
                     if 'Purley-FPGA/Silver/2017%20WW31' in self.Silver_url_list[j]:
                         Silver_BkC_string, header_length, date_string, url_list, header_list, cell_data_list = obj.get_sw_data_1('SW Configuration', True)
@@ -731,9 +739,7 @@ class InsertDataIntoExcel(object):
                 for ele in cell_data_list:
                     num = len(ele[header_length - 1:])
                     line_num_list.append(num)
-
                 # print 'line_num_list:\t', line_num_list, len(line_num_list)
-
                 #处理并插入数据
                 insert_data = zip( cell_data_list, url_list, line_num_list )
                 insert_data.sort(key=lambda x: x[0][0].upper())
@@ -751,10 +757,14 @@ class InsertDataIntoExcel(object):
                         self.worksheet_sw.write_url(nu, self.calculate_head_num(9, j, 6), url_list[line][0], self.url_format, cell_data_list[line][1])
                         self.worksheet_sw.write(nu, self.calculate_head_num(9, j, 7), second_insert_data[line])
 
-                        if (len(url_list[line]) >= 2) and cell_data_list[line][3]:
-                            self.worksheet_sw.write_url(nu, self.calculate_head_num(9, j, 8), url_list[line][1], self.url_format, cell_data_list[line][3])
-                        else:
-                            self.worksheet_sw.write(nu, self.calculate_head_num(9, j, 8), cell_data_list[line][3])
+                        #todo 捕获异常 适配Purley-Crystal-Ridge项目 header_list可能只有三列
+                        try:
+                            if (len(url_list[line]) >= 2) and cell_data_list[line][3]:
+                                self.worksheet_sw.write_url(nu, self.calculate_head_num(9, j, 8), url_list[line][1], self.url_format, cell_data_list[line][3])
+                            else:
+                                self.worksheet_sw.write(nu, self.calculate_head_num(9, j, 8), cell_data_list[line][3])
+                        except IndexError:
+                            pass
                         nu += 1
 
                     elif line_num_list[line] > 1:
@@ -767,11 +777,15 @@ class InsertDataIntoExcel(object):
                                                     url_list[line][0], self.url_format, cell_data_list[line][1])
                         self.worksheet_sw.merge_range(nu, self.calculate_head_num(9, j, 7),
                                                       nu + line_num_list[line] - 1, self.calculate_head_num(9, j, 7), second_insert_data[line], self.title_format)
-                        for i in range(nu, length_merge + nu):
-                            self.worksheet_sw.write_url(i, self.calculate_head_num(9, j, 8),
-                                                        url_list[line][1 + i - nu], self.url_format, cell_data_list[line][3:][i - nu])
-                        self.worksheet_sw.write(line_num_list[line] + nu - 1, self.calculate_head_num(9, j, 8), cell_data_list[line][3:][-1])
-                        nu += line_num_list[line]
+                        #todo 捕获异常 适配Purley-Crystal-Ridge项目 header_list可能只有三列
+                        try:
+                            for i in range(nu, length_merge + nu):
+                                self.worksheet_sw.write_url(i, self.calculate_head_num(9, j, 8),
+                                                            url_list[line][1 + i - nu], self.url_format, cell_data_list[line][3:][i - nu])
+                            self.worksheet_sw.write(line_num_list[line] + nu - 1, self.calculate_head_num(9, j, 8), cell_data_list[line][3:][-1])
+                            nu += line_num_list[line]
+                        except IndexError:
+                            pass
 
             except:
                 self.logger.print_message('The data crawling failed for the %dth url [ %s ]' % (j + 1, self.Silver_url_list[j]), self.__file_name)

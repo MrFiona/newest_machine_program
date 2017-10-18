@@ -28,7 +28,7 @@ from setting_global_variable import SRC_WEEK_DIR, REPORT_HTML_DIR, SRC_CACHE_DIR
 
 _file_name = os.path.split(__file__)[1]
 
-# 强制ssl使用TLSv2
+#todo 强制ssl使用TLSv2
 def sslwrap(func):
     @wraps(func)
     def bar(*args, **kw):
@@ -64,7 +64,7 @@ class GetUrlFromHtml(object):
     def _recursive_create_dir(self, purl_bak_string, create_html_name, dir_path=None):
         if not dir_path:
             raise UserWarning('The directory path to be created is None!!!')
-        #检测目录是否存在
+        #todo 检测目录是否存在
         if not os.path.exists(dir_path):
             if purl_bak_string in dir_path or create_html_name == 'auto':
                 os.makedirs(dir_path)
@@ -74,12 +74,12 @@ class GetUrlFromHtml(object):
         try:
             if not file_path:
                 raise UserWarning('The directory path to be created is None!!!')
-            #当输入的是目录而不是文件路径时则报错
+            #todo 当输入的是目录而不是文件路径时则报错
             if os.path.isdir(file_path) and not os.path.isfile(file_path):
                 raise UserWarning("The function's file argument is a file instead of a directory!!!")
             with codecs.open(file_path, 'w', encoding='utf-8') as f:
                 f.writelines(write_message.decode( chardet.detect(write_message)['encoding']))
-        #当上一级以及以上目录不存在时则会报错
+        #todo 当上一级以及以上目录不存在时则会报错
         except IOError:
             pass
 
@@ -87,35 +87,35 @@ class GetUrlFromHtml(object):
     def _get_html_tag(self, html, tag_name):
         soup = BeautifulSoup(html, 'html.parser')
         tag = soup.find_all(re.compile(tag_name))
-        # 去除Parent Directory这个无效选项
+        #todo 去除Parent Directory这个无效选项
         tag.pop(0)
-        # 按时间倒序输出
+        #todo 按时间倒序输出
         tag.sort(reverse=True)
         return tag
 
     # TODO 将当前html写入对应路径的文件，返回含有li吧标签的信息列表
     def _common_get_info(self, url, create_html_name, purl_bak_string):
         try:
-            # 写入html,需考虑多级路径的情况下处理，将路径分隔符替换为下划线,在连接日期的时候会出现%也要替换为下划线
+            #todo 写入html,需考虑多级路径的情况下处理，将路径分隔符替换为下划线,在连接日期的时候会出现%也要替换为下划线
             create_html_name = re.sub('[%_]', '_', create_html_name)
             response_html = urllib2.urlopen(url, timeout=6, context=context).read()
-            # 递归创建存储信息的目录
+            #todo 递归创建存储信息的目录
             if create_html_name == 'auto':
                 file_path = self.file_path
             else:
                 file_path = self.file_path + os.sep + create_html_name
             self._recursive_create_dir(purl_bak_string, create_html_name, file_path)
             self._write_info(file_path + os.sep +  '_'.join(create_html_name.split(os.sep)) + '.html', response_html)
-            # 提取html信息
+            #todo 提取html信息
             li_list = self._get_html_tag(response_html, 'li')
         except urllib2.HTTPError as e:
             print e
             print 'Access error, please check whether address [ %s ] is valid!!!' % url
-            return
+            return []
         except urllib2.URLError as e:
             print e
             print 'timeout'
-            return
+            return []
         return li_list
 
     # TODO 获取主页面html中的部门信息列表
@@ -140,7 +140,6 @@ class GetUrlFromHtml(object):
             for li in li_list:
                 if purl_bak_string in li.encode('utf-8'):
                     department_info_list.append(purl_bak_string)
-        print department_info_list
         return department_info_list
 
     # TODO 获取部门html中的阶段信息列表
@@ -164,7 +163,7 @@ class GetUrlFromHtml(object):
         li_list = self._common_get_info(self.html_url_pre + department_name + '/' + stage_type_name, department_name + os.sep + stage_type_name, purl_bak_string)
         if not li_list:
             return []
-        # 循环提取后续url前缀和文件名前缀
+        #todo 循环提取后续url前缀和文件名前缀
         url_pre_list = []
         file_pre_list = []
         li_list = list(li_list)
@@ -220,12 +219,12 @@ class GetUrlFromHtml(object):
 
     # TODO 获取所有的类型的数据
     def get_all_type_data(self, purl_bak_string, get_only_department=True):
-        #获取部门列表
+        #todo 获取部门列表
         self.department_list = self.get_department_html_info(purl_bak_string, get_only_department=get_only_department)
         if not self.department_list:
             return
         for department in self.department_list:
-            #获取部门中的测试类型列表
+            #todo 获取部门中的测试类型列表
             self.stage_type_list = self.get_stage_type_html_info(department, purl_bak_string)
             if not self.stage_type_list:
                 self.logger.print_message('Reacquire the url corresponding to the file', self.logger_file_name)
@@ -259,11 +258,11 @@ class GetUrlFromHtml(object):
                                 self.logger.print_message('The total reacquire file time:\t%s' % (time.time() - start_time), self.logger_file_name)
                                 break
                     html_suffix = '/'.join([str(department), str(stage), str(date.replace('/', '')), str(file_name)])
-                    #将url添加到url列表
+                    #todo 将url添加到url列表
                     self.url_info_list.append(self.html_url_pre + html_suffix)
                     if purl_bak_string in self.html_url_pre + html_suffix:
                         self.logger.print_message(self.html_url_pre + html_suffix, self.logger_file_name)
-        #将url列表信息写进文件
+        #todo 将url列表信息写进文件
         self.save_url_info(purl_bak_string)
 
     # TODO 获取部门, 测试类型, 日期列表
