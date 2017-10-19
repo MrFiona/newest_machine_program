@@ -222,7 +222,7 @@ def email_config(name, tab1, logger):
             email_send.configure(state='normal')
             email_receive.configure(state='normal')
 
-    send_email_check_numberChosen2 = ttk.Combobox(monty, width=33, textvariable=email_send_email_flag, state='readonly')
+    send_email_check_numberChosen2 = ttk.Combobox(monty, width=28, textvariable=email_send_email_flag, state='readonly')
     send_email_check_numberChosen2['values'] = ('YES', 'NO')
     send_email_check_numberChosen2.grid(column=5, row=4, columnspan=5, padx=20, pady=15, sticky='W')
     send_email_check_numberChosen2.set('YES' if current_send_email_flag == 'YES' else 'NO')
