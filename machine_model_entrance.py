@@ -177,7 +177,7 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
     send_email_flag = judge_get_config('send_email_flag', purl_bak_string)
     if send_email_flag == 'YES':
         try:
-            # TODO 发送email
+            #TODO 发送email
             _logger.print_message('>>>>>>>>>> Please Wait .... The program starts sending Email <<<<<<<<<<', file_name)
             SendEmail(purl_bak_string=purl_bak_string, logger=_logger, predict_newest_insert_bkc_string=predict_newest_insert_bkc_string,
                       section_Silver_url_list=section_Silver_url_list, keep_continuous=keep_continuous,
@@ -220,6 +220,7 @@ def machine_main():
             _logger.print_message('>>>>>>>>>> Memory detection Finished <<<<<<<<<<', file_name)
             # TODO 界面控制
             purl_bak_string = main(logger=_logger)
+
         else:
             purl_bak_string = PURL_BAK_STRING
             _logger.print_message('purl_bak_string:\t%s' % purl_bak_string, file_name)

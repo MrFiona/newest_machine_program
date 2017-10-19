@@ -38,7 +38,7 @@ week_input_string_list = []
 
 close_windows_update_config_flag = False
 _file_name = os.path.split(__file__)[1]
-type_color_dict = {'Purley-FPGA': 'green', 'Bakerville': 'yellow', 'NFVi': 'peru', 'Crystal-Ridge':'green'}
+type_color_dict = {'Purley-FPGA': 'green', 'Bakerville': 'yellow', 'NFVi': 'peru', 'Crystal-Ridge':'turquoise'}
 # TODO Global Variable end
 
 
@@ -695,8 +695,8 @@ def callback(win, purl_bak_string, logger):
 
 
 # TODO 项目类型配置界面
-def sub_main(name, top, logger):
-    top.destroy()
+def sub_main(name, logger):
+    # top.destroy()
     # TODO 检测是否有空值，有则添加默认值 2017-06-09
     conf = MachineConfig(CONFIG_FILE_PATH)
     conf.modify_node_value('real-time_control_parameter_value', 'default_purl_bak_string', name)
@@ -742,34 +742,65 @@ def sub_main(name, top, logger):
 
 # TODO 主程序
 def main(logger):
-    top = Tk()
-    top.rowconfigure(1, weight=1)
-    top.columnconfigure(1, weight=1)
-    top.title('Configuration GUI')
+    import wx
 
-    button_color_1 = type_color_dict['NFVi']; button_color_2 = type_color_dict['Bakerville']
-    button_color_3 = type_color_dict['Purley-FPGA']; button_color_4 = type_color_dict['Crystal-Ridge']
+    app = wx.App()
+    frame = wx.Frame(parent=None, id=wx.ID_ANY, title='Configuration GUI', size=(540, 370), style=wx.DEFAULT_FRAME_STYLE)
+    button = wx.Button(frame, wx.ID_APPLY, 'NFVi', pos=(50, 50), size=(170, 80))
+    button1 = wx.Button(frame, wx.ID_ANY, 'Bakerville', pos=(50, 200), size=(170, 80))
+    button2 = wx.Button(frame, wx.ID_ANY, 'Purley-FPGA', pos=(300, 50), size=(170, 80))
+    button3 = wx.Button(frame, wx.ID_ANY, 'Crystal-Ridge', pos=(300, 200), size=(170, 80))
 
-    e1 = Button(top, text="NFVi", font=("Calibri", 16), command=lambda x=top, y=logger: sub_main('NFVi', top, logger), background=button_color_1, width=20, activeforeground='blue', activebackground='turquoise')
-    e2 = Button(top, text="Bakerville", font=("Calibri", 16), command=lambda x=top, y=logger: sub_main('Bakerville', top, logger), background=button_color_2, width=20, activeforeground='blue', activebackground='palegreen')
-    e3 = Button(top, text="Purley-FPGA", font=("Calibri", 16), command=lambda x=top, y=logger: sub_main('Purley-FPGA', top, logger), background=button_color_3, width=20, activeforeground='blue', activebackground='palevioletred')
-    e4 = Button(top, text="Crystal-Ridge", font=("Calibri", 16), command=lambda x=top, y=logger: sub_main('Purley-Crystal-Ridge', top, logger), background=button_color_4, width=20, activeforeground='blue', activebackground='green')
+    # todo 设置字体大小格式
+    # wx_font = wx.Font(14, wx.MODERN, wx.ITALIC, wx.BOLD, True)
+    wx_font = wx.Font(14, wx.MODERN, wx.ITALIC, wx.BOLD)
+    button1.SetFont(wx_font)
+    button2.SetFont(wx_font)
+    button3.SetFont(wx_font)
+    button.SetFont(wx_font)
 
-    e1.grid(row=1, columnspan=2, column=1, padx=25, pady=20, sticky=Tkinter.W + Tkinter.E + Tkinter.N + Tkinter.S)
-    e2.grid(row=2, columnspan=2, column=1, padx=25, pady=20, sticky=Tkinter.W + Tkinter.E + Tkinter.N + Tkinter.S)
-    e3.grid(row=3, columnspan=2, column=1, padx=25, pady=20, sticky=Tkinter.W + Tkinter.E + Tkinter.N + Tkinter.S)
-    e4.grid(row=4, columnspan=2, column=1, padx=25, pady=20, sticky=Tkinter.W + Tkinter.E + Tkinter.N + Tkinter.S)
+    # todo 设置字体颜色
+    button.SetForegroundColour('red')
+    button1.SetForegroundColour('blue')
+    button2.SetForegroundColour('orange')
+    button3.SetForegroundColour('khaki')
 
-    top.mainloop()
-    # TODO 类型: Bakerville or Purley-FPGA
+    def call_back(event):
+        if event.Id == button.Id:
+            purl_bak_string = 'NFVi'
+        elif event.Id == button1.Id:
+            purl_bak_string = 'Bakerville'
+        elif event.Id == button2.Id:
+            purl_bak_string = 'Purley-FPGA'
+        else:
+            purl_bak_string = 'Crystal-Ridge'
+
+        logger.print_message('The program you selected is: [ %s ], please close the window to continue the main program!!!'
+                             'If you want to change the choice of project name, please continue to select!!!' % purl_bak_string, _file_name, 20)
+        #todo 修改配置文件项目名称信息
+        conf = MachineConfig(CONFIG_FILE_PATH)
+        conf.modify_node_value('real-time_control_parameter_value', 'default_purl_bak_string', purl_bak_string)
+
+    # todo 绑定回调函数
+    button.Bind(wx.EVT_BUTTON, call_back)
+    button1.Bind(wx.EVT_BUTTON, call_back)
+    button2.Bind(wx.EVT_BUTTON, call_back)
+    button3.Bind(wx.EVT_BUTTON, call_back)
+
+    frame.Show()
+    app.MainLoop()
+
+    # todo 加载最新的项目名称信息
     conf = MachineConfig(CONFIG_FILE_PATH)
     purl_bak_string = conf.get_node_info('real-time_control_parameter_value', 'default_purl_bak_string')
+    #todo 加载项目主菜单界面
+    sub_main(name=purl_bak_string, logger=logger)
+    #todo 显示用户的项目配置信息
+    display_config_info(logger=logger, purl_bak_string=purl_bak_string)
 
     # TODO choose_weeks_var如果为YES则弹出配置周数界面
     if choose_weeks_var.get() == 'YES':
         week_gui_config(purl_bak_string=purl_bak_string, logger=logger)
-
-    display_config_info(logger=logger, purl_bak_string=purl_bak_string)
 
     return purl_bak_string
 
