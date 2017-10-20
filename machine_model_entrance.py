@@ -28,7 +28,8 @@ try:
     from machine_scripts.cache_mechanism import DiskCache
     from machine_scripts.send_email import SendEmail
     from machine_scripts.create_email_html import create_save_miss_html
-    from machine_scripts.machine_config_gui import main, display_config_info
+    # from machine_scripts.machine_config_gui import main, display_config_info
+    from machine_scripts.wxpython_gui import main,display_config_info
     from machine_scripts.generate_chart import generate_chart
     from setting_global_variable import SRC_WEEK_DIR
 except ImportError:
