@@ -254,10 +254,10 @@ class DemoFrame(wx.Frame):
         self.sender_email_text = wx.TextCtrl(self, pos=(180, 80), size=(200, -1))
         self.sender_email_text.SetBackgroundColour('turquoise')
 
-        self.receieve_email_label = wx.StaticText(self, label='Recipient Email', pos=(30, 130))
-        self.receieve_email_label.SetFont(wx_font)
-        self.receieve_email_text = wx.TextCtrl(self, pos=(180, 130), size=(200, -1))
-        self.receieve_email_text.SetBackgroundColour('turquoise')
+        self.receive_email_label = wx.StaticText(self, label='Recipient Email', pos=(30, 130))
+        self.receive_email_label.SetFont(wx_font)
+        self.receive_email_text = wx.TextCtrl(self, pos=(180, 130), size=(200, -1))
+        self.receive_email_text.SetBackgroundColour('turquoise')
 
         self.send_email_flag_label = wx.StaticText(self, label='Send Email', pos=(30, 180))
         self.send_email_flag_label.SetFont(wx_font)
@@ -416,11 +416,11 @@ class DemoFrame(wx.Frame):
         if self.send_email_flag_text.GetValue().strip() == 'NO':
             self.mail_server_text.Disable()
             self.sender_email_text.Disable()
-            self.receieve_email_text.Disable()
+            self.receive_email_text.Disable()
         else:
             self.mail_server_text.Enable(True)
             self.sender_email_text.Enable(True)
-            self.receieve_email_text.Enable(True)
+            self.receive_email_text.Enable(True)
 
     #todo 检查界面参数的合法性
     def check_gui_parameter_validity(self):
@@ -436,7 +436,7 @@ class DemoFrame(wx.Frame):
                 self.logger.print_message('email sender address is illegal!!!', _file_name, 30)
                 raise UserWarning('The email sender address is illegal!!!')
 
-            for receive_address in self.receieve_email_text.GetValue().strip().split(','):
+            for receive_address in self.receive_email_text.GetValue().strip().split(','):
                 if not re.search(email_compile, receive_address.strip()) or not receive_address.endswith('intel.com'):
                     self.logger.print_message('email recipient address is illegal!!!', _file_name, 30)
                     raise UserWarning('The email recipient address is illegal!!!')
@@ -525,7 +525,7 @@ class DemoFrame(wx.Frame):
         #todo 加载邮件配置信息
         self.mail_server_text.SetValue(self.server_deal_config_value(self.current_server_address))
         self.sender_email_text.SetValue(self.current_send_address)
-        self.receieve_email_text.SetValue(self.current_receive_address)
+        self.receive_email_text.SetValue(self.current_receive_address)
         self.send_email_flag_text.SetValue(self.deal_config_value(self.current_send_email_flag))
         #todo 加载文件配置信息
         self.reacquire_data_choose.SetValue(self.deal_config_value(self.current_reacquire_data_flag))
@@ -550,7 +550,7 @@ class DemoFrame(wx.Frame):
         if self.deal_config_value(self.current_send_email_flag) == 'NO':
             self.mail_server_text.Disable()
             self.sender_email_text.Disable()
-            self.receieve_email_text.Disable()
+            self.receive_email_text.Disable()
 
     #todo 空值设置 对'YES'和'NO'的两值变量处理
     def deal_config_value(self, value):
@@ -587,7 +587,7 @@ class DemoFrame(wx.Frame):
         #todo 邮件部分
         conf.modify_node_value(project_name_sep + '_server', 'server_address', self.mail_server_text.GetValue())
         conf.modify_node_value(project_name_sep + '_from_address', 'from_address', self.sender_email_text.GetValue())
-        conf.modify_node_value(project_name_sep + '_receive_address', 'receive_address', self.receieve_email_text.GetValue())
+        conf.modify_node_value(project_name_sep + '_receive_address', 'receive_address', self.receive_email_text.GetValue())
         conf.modify_node_value(project_name_sep + '_other_config', 'send_email_flag', self.send_email_flag_text.GetValue())
         #todo 文件部分
         conf.modify_node_value(project_name_sep + '_other_config', 'reacquire_data_flag', self.reacquire_data_choose.GetValue())
@@ -618,7 +618,7 @@ class DemoFrame(wx.Frame):
         #todo 邮件部分
         conf.modify_node_value(self.name + '_real-time_control_parameter_value', 'default_server_address', self.mail_server_text.GetValue())
         conf.modify_node_value(self.name + '_real-time_control_parameter_value', 'default_send_address', self.sender_email_text.GetValue())
-        conf.modify_node_value(self.name + '_real-time_control_parameter_value', 'default_receive_address', self.receieve_email_text.GetValue())
+        conf.modify_node_value(self.name + '_real-time_control_parameter_value', 'default_receive_address', self.receive_email_text.GetValue())
         conf.modify_node_value(self.name + '_real-time_control_parameter_value', 'default_send_email_flag', self.send_email_flag_text.GetValue())
         #todo 文件部分
         conf.modify_node_value(self.name + '_real-time_control_parameter_value', 'default_reacquire_data_flag', self.reacquire_data_choose.GetValue())
