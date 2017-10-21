@@ -347,12 +347,14 @@ class DemoFrame(wx.Frame):
         box_template.SetFont(wx_font1)
         box_template.SetForegroundColour('orange')
 
-        self.excel_template_label = wx.StaticText(self, label='Excel Template File', pos=(450, 270))
-        self.excel_template_label.SetFont(wx_font)
-        self.excel_template_text = wx.TextCtrl(self, pos=(610, 270), size=(270, -1))
+        self.excel_template_button = wx.Button(self, -1, label='Template File', pos=(450, 270), size=(125, 40))
+        self.excel_template_button.SetForegroundColour('grey')
+        self.excel_template_button.SetFont(wx.Font(12, wx.SWISS, wx.NORMAL, wx.BOLD, False))
+        self.excel_template_button.SetToolTip("设置Excel模板")
+        self.excel_template_text = wx.TextCtrl(self, pos=(610, 278), size=(270, -1))
         self.excel_template_text.SetBackgroundColour('turquoise')
 
-        #todo　其他配置
+        #todo 其他配置
         box_other = wx.StaticBox(self, -1, label='Other Config', pos=(430, 340), size=(470, 125))
         box_other.SetFont(wx_font1)
         box_other.SetForegroundColour('orange')
@@ -390,6 +392,14 @@ class DemoFrame(wx.Frame):
         self.save_button.Bind(wx.EVT_BUTTON, self.save_default)
         self.Bind(wx.EVT_CLOSE, self.window_close_callback)
         self.send_email_flag_text.Bind(wx.EVT_TEXT, self.send_email_text_frame_event)
+        self.excel_template_button.Bind(wx.EVT_BUTTON, self.choose_excel_file_frame_event)
+
+    #todo 选择Excel模板文件按钮组件事件响应函数
+    def choose_excel_file_frame_event(self, event):
+        dialog = wx.FileDialog(self, message='%s项目选择Excel模板文件' % self.name, defaultDir=os.getcwd(), style=wx.ID_OPEN, wildcard=("*.xlsx;*.xls;*.csv"))
+        #todo 选择了文件则dialog.ShowModal()为wx.ID_OK否则为 wx.ID_CANCEL
+        if dialog.ShowModal() == wx.ID_OK:
+            self.excel_template_text.SetValue(dialog.GetPath())
 
     #todo 检测用户是否自定义周并做出相应动作
     def check_user_redefinition_week(self):
@@ -412,13 +422,58 @@ class DemoFrame(wx.Frame):
             self.sender_email_text.Enable(True)
             self.receieve_email_text.Enable(True)
 
-    #todo 主窗口关闭时自动将最终的配置信息保存为配置文件的当前配置
+    #todo 检查界面参数的合法性
+    def check_gui_parameter_validity(self):
+        #todo 1、检查邮件合法性
+        email_compile = re.compile(pattern='\w+.@intel.com')
+        # TODO 不发送邮件时不做检查
+        if self.send_email_flag_text.GetValue().strip() == 'YES':
+            if len(self.mail_server_text.GetValue().strip()) == 0 or not self.mail_server_text.GetValue().endswith('intel.com'):
+                self.logger.print_message('The email server address is illegal!!!', _file_name, 30)
+                raise UserWarning('The email server address is illegal!!!')
+
+            if not re.search(email_compile, self.sender_email_text.GetValue().strip()) or not self.sender_email_text.GetValue().endswith('intel.com'):
+                self.logger.print_message('email sender address is illegal!!!', _file_name, 30)
+                raise UserWarning('The email sender address is illegal!!!')
+
+            for receive_address in self.receieve_email_text.GetValue().strip().split(','):
+                if not re.search(email_compile, receive_address.strip()) or not receive_address.endswith('intel.com'):
+                    self.logger.print_message('email recipient address is illegal!!!', _file_name, 30)
+                    raise UserWarning('The email recipient address is illegal!!!')
+
+        #todo 2、检查模板文件路径的合法性
+        if not os.path.exists(self.excel_template_text.GetValue().strip()):
+            self.logger.print_message('The template file path does not exist', _file_name, 30)
+            self.excel_template_text.Clear()
+            raise UserWarning('The template file path does not exist')
+        else:
+            # TODO 判断是否是个文件
+            if os.path.isfile(self.excel_template_text.GetValue().strip()):
+                # TODO 当前目录下则填充全路径
+                if self.excel_template_text.GetValue().strip() in os.listdir(os.getcwd()):
+                    self.excel_template_text.Clear()
+                    self.excel_template_text.SetValue(os.getcwd() + os.sep + self.excel_template_text.GetValue().strip())
+            else:
+                self.logger.print_message('The path of the file you entered is a directory, not a file', _file_name, 30)
+                self.excel_template_text.Clear()
+                raise UserWarning('The path of the file you entered is a directory, not a file')
+
+        #todo 3、检查验证excel的等待时间
+        if not len(self.max_time_text.GetValue().strip()) or not self.max_time_text.GetValue().strip().isalnum():
+            self.logger.print_message("Verify the file's time setting is invalid! The default value is set to 120", _file_name, 30)
+            self.max_time_text.Clear()
+            self.max_time_text.SetValue('120')
+
+    #todo 主窗口关闭时绑定的事件
     def window_close_callback(self, event):
+        #todo 窗口关闭前检测参数的有效性
+        self.check_gui_parameter_validity()
+        #todo 自动将最终的配置信息保存为配置文件的当前配置
         self.current_gui_config_as_current_file_config()
-        #todo 当关闭窗口时会检测是否用户自定义选择周
         self.Destroy()
         # todo 显示用户的项目配置信息
         display_config_info(logger=self.logger, purl_bak_string=self.name)
+        #todo 当关闭窗口时会检测是否用户自定义选择周
         self.check_user_redefinition_week()
 
     #todo 获取初始化界面配置参数
