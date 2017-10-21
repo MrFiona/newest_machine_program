@@ -689,6 +689,7 @@ def main(logger):
         #todo 修改配置文件项目名称信息
         conf = MachineConfig(CONFIG_FILE_PATH)
         conf.modify_node_value('real-time_control_parameter_value', 'default_purl_bak_string', purl_bak_string)
+        frame.Destroy()
 
     # todo 绑定回调函数
     button.Bind(wx.EVT_BUTTON, call_back)
