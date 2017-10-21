@@ -418,9 +418,9 @@ class DemoFrame(wx.Frame):
             self.sender_email_text.Disable()
             self.receive_email_text.Disable()
         else:
-            self.mail_server_text.Enable(True)
-            self.sender_email_text.Enable(True)
-            self.receive_email_text.Enable(True)
+            self.mail_server_text.Enable()
+            self.sender_email_text.Enable()
+            self.receive_email_text.Enable()
 
     #todo 检查界面参数的合法性
     def check_gui_parameter_validity(self):
