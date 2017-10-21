@@ -21,7 +21,7 @@ week_input_string_list = []
 
 
 
-# TODO 滚动条Scrollbar与文本框Text组合
+#TODO 滚动条Scrollbar与文本框Text组合
 class MainFrame(Frame):
     def __init__(self, master=None, week_info_list=None, step_length=5, entry=None):
         Frame.__init__(self, master)
@@ -70,7 +70,7 @@ class MainFrame(Frame):
     def return_text_variable(self):
         return self.text
 
-# TODO 实时显示相关组件数据
+#TODO 实时显示相关组件数据
 def display_text_info(text, entry, week_info_list, step_length):
     text.delete(0.0, END)
     for index in range(len(week_info_list) / step_length + 2):
@@ -94,7 +94,7 @@ def display_text_info(text, entry, week_info_list, step_length):
                 text.insert(END, '\n' + ' '.join(
                     entry_input_string_list[index * step_length:(index + 1) * step_length]))
 
-# TODO  检测所填入的数据的有效性 格式检查以及值有效检查
+#TODO  检测所填入的数据的有效性 格式检查以及值有效检查
 def check_week_valid(week_info_list, url_info_list, logger):
     # TODO 如果选择的周不在所有的周里面说明是不合法的周数据  无效值url信息集合judge_set
     judge_set = set(week_info_list) - set(url_info_list)
@@ -114,7 +114,7 @@ def check_week_valid(week_info_list, url_info_list, logger):
     else:
         return [week for week in week_info_list if re.search(week_compile, week) and len(week) == 8]
 
-# TODO 检测日期周配置窗口是否关闭 关闭则保存当前日期周配置
+#TODO 检测日期周配置窗口是否关闭 关闭则保存当前日期周配置
 def week_callback(win, entry_input_string_list, logger):
     logger.print_message('entry_input_string_list:\t%s' % entry_input_string_list, _file_name)
     # TODO 保存日期值
@@ -131,7 +131,7 @@ def week_callback(win, entry_input_string_list, logger):
     logger.print_message('The week windows of configuration is closed!', _file_name)
 
 
-# TODO 配置周数据界面 choose_weeks_var为YES时触发
+#TODO 配置周数据界面 choose_weeks_var为YES时触发
 def week_gui_config(purl_bak_string, logger):
     # TODO 获取对应周url信息时需要更新url列表
     logger.print_message('>>>>>>>>>> Generates the latest selectable week list info for the [ %s ] Start <<<<<<<<<<' % purl_bak_string, _file_name)
@@ -389,6 +389,7 @@ class DemoFrame(wx.Frame):
         self.load_button.Bind(wx.EVT_BUTTON, self.load_default)
         self.save_button.Bind(wx.EVT_BUTTON, self.save_default)
         self.Bind(wx.EVT_CLOSE, self.window_close_callback)
+        self.send_email_flag_text.Bind(wx.EVT_TEXT, self.send_email_text_frame_event)
 
     #todo 检测用户是否自定义周并做出相应动作
     def check_user_redefinition_week(self):
@@ -398,6 +399,18 @@ class DemoFrame(wx.Frame):
             #todo 隐藏主窗口界面
             self.Show(False)
             week_gui_config(self.name, self.logger)
+
+    #todo 是否发送邮件文本框组件事件响应函数
+    def send_email_text_frame_event(self, event):
+        # todo 根据是否发送邮件标记 来控制邮件相关组件的状态
+        if self.send_email_flag_text.GetValue().strip() == 'NO':
+            self.mail_server_text.Disable()
+            self.sender_email_text.Disable()
+            self.receieve_email_text.Disable()
+        else:
+            self.mail_server_text.Enable(True)
+            self.sender_email_text.Enable(True)
+            self.receieve_email_text.Enable(True)
 
     #todo 主窗口关闭时自动将最终的配置信息保存为配置文件的当前配置
     def window_close_callback(self, event):
@@ -477,6 +490,12 @@ class DemoFrame(wx.Frame):
         #todo 其他配置
         self.mode_setting_choose.SetValue(self.mode_deal_config_value(self.current_on_off_line_save_flag))
         self.select_week_choose.SetValue(self.deal_config_value(self.current_keep_continuous))
+
+        #todo 根据是否发送邮件标记 来控制邮件相关组件的初始状态
+        if self.deal_config_value(self.current_send_email_flag) == 'NO':
+            self.mail_server_text.Disable()
+            self.sender_email_text.Disable()
+            self.receieve_email_text.Disable()
 
     #todo 空值设置 对'YES'和'NO'的两值变量处理
     def deal_config_value(self, value):
@@ -573,7 +592,7 @@ class DemoFrame(wx.Frame):
         self.load_init_config_info()
 
 
-# TODO 主程序
+#TODO 主程序
 def main(logger):
     import wx
 
