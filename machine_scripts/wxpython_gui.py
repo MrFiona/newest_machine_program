@@ -653,7 +653,7 @@ def main(logger):
 
     app = wx.App()
     frame = wx.Frame(parent=None, id=wx.ID_ANY, title='Configuration GUI', size=(540, 370), style=wx.DEFAULT_FRAME_STYLE)
-    button = wx.Button(frame, wx.ID_APPLY, 'NFVi', pos=(50, 50), size=(170, 80))
+    button = wx.Button(frame, wx.ID_ANY, 'NFVi', pos=(50, 50), size=(170, 80))
     button1 = wx.Button(frame, wx.ID_ANY, 'Bakerville', pos=(50, 200), size=(170, 80))
     button2 = wx.Button(frame, wx.ID_ANY, 'Purley-FPGA', pos=(300, 50), size=(170, 80))
     button3 = wx.Button(frame, wx.ID_ANY, 'Crystal-Ridge', pos=(300, 200), size=(170, 80))
@@ -675,11 +675,11 @@ def main(logger):
     button3.SetForegroundColour('khaki')
 
     def call_back(event):
-        if event.Id == button.Id:
+        if event.Id == button.GetId():
             purl_bak_string = 'NFVi'
-        elif event.Id == button1.Id:
+        elif event.Id == button1.GetId():
             purl_bak_string = 'Bakerville'
-        elif event.Id == button2.Id:
+        elif event.Id == button2.GetId():
             purl_bak_string = 'Purley-FPGA'
         else:
             purl_bak_string = 'Purley-Crystal-Ridge'
@@ -698,6 +698,7 @@ def main(logger):
     button3.Bind(wx.EVT_BUTTON, call_back)
 
     frame.Show()
+    frame.Center()
     app.MainLoop()
 
     # todo 加载最新的项目名称信息
