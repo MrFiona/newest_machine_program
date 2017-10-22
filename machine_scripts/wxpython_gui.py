@@ -376,7 +376,7 @@ class DemoFrame(wx.Frame):
         box_default.SetFont(wx_font1)
         box_default.SetForegroundColour('orange')
 
-        self.load_button = wx.Button(self, wx.ID_APPLY, label='Load Default', pos=(450, 520), size=(120, 40))
+        self.load_button = wx.Button(self, wx.ID_ANY, label='Load Default', pos=(450, 520), size=(120, 40))
         self.save_button = wx.Button(self, wx.ID_ANY, label='Save Default', pos=(760, 520), size=(120, 40))
 
         self.load_button.SetForegroundColour('red')
