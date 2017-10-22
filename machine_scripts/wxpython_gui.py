@@ -88,6 +88,7 @@ class UserWeekSelectGui(wx.Frame):
         self.select_week_text.SetBackgroundColour('turquoise')
 
         self.Contents = wx.TextCtrl(panel, pos=(10, 40), size=(865, 410), style=wx.TE_MULTILINE | wx.HSCROLL)
+        #todo 绑定鼠标离开事件 另外，wx.EVT_ENTER_WINDOW为绑定鼠标位于其上事件
         self.Contents.Bind(wx.EVT_LEAVE_WINDOW, self.sort_input_week_string_event)
 
         self.display_button = wx.Button(panel, wx.ID_ANY, label='Display', pos=(9, 460), size=(70, 30))
