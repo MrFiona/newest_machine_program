@@ -359,6 +359,19 @@ class ProjectConfigParameterGui(wx.Frame):
         self.send_email_flag_text.Bind(wx.EVT_TEXT, self.send_email_text_frame_event)
         self.excel_template_button.Bind(wx.EVT_BUTTON, self.choose_excel_file_frame_event)
 
+        def onSelect(event):
+            print("onSelect")
+
+        menuBar = wx.MenuBar()
+        menu = wx.Menu()
+
+        menu.Append(-1, u'撤消(U)')
+        menu.AppendSeparator()
+        self.menu_select = menu.Append(-1, u'全选(N)\tCtrl+A')  # 快捷键
+        self.Bind(wx.EVT_MENU, onSelect, self.menu_select)
+        menuBar.Append(menu, u'编辑(F)')
+        self.SetMenuBar(menuBar)
+
     #todo 选择Excel模板文件按钮组件事件响应函数
     def choose_excel_file_frame_event(self, event):
         dialog = wx.FileDialog(self, message='%s项目选择Excel模板文件' % self.name, defaultDir=os.getcwd(), style=wx.ID_OPEN, wildcard=("*.xlsx;*.xls;*.csv"))
