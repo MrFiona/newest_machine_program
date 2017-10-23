@@ -86,10 +86,14 @@ class UserWeekSelectGui(wx.Frame):
 
         self.select_week_text = wx.TextCtrl(panel, pos=(203, 7), size=(671, -1))
         self.select_week_text.SetBackgroundColour('turquoise')
+        #todo 文本框绑定粘贴事件
+        self.select_week_text.Bind(wx.EVT_TEXT_PASTE, self.text_past_event)
 
-        self.Contents = wx.TextCtrl(panel, pos=(10, 40), size=(865, 410), style=wx.TE_MULTILINE )
-        self.Contents.Bind(wx.EVT_LEAVE_WINDOW, self.sort_input_week_string_event)
+        self.Contents = wx.TextCtrl(panel, pos=(10, 40), size=(865, 410), style=wx.TE_MULTILINE)
+        self.select_week_text.Bind(wx.EVT_LEAVE_WINDOW, self.sort_input_week_string_event)
         self.Contents.SetFont(wx.Font(11, wx.SWISS, wx.NORMAL, wx.NORMAL, False))
+        #todo 文本框组件绑定复制事件
+        self.Contents.Bind(wx.EVT_TEXT_COPY, self.text_copy_event)
 
         self.display_button = wx.Button(panel, wx.ID_ANY, label='Display', pos=(9, 460), size=(70, 30))
         self.clear_button = wx.Button(panel, wx.ID_ANY, label='Clear', pos=(806, 460), size=(70, 30))
@@ -110,6 +114,28 @@ class UserWeekSelectGui(wx.Frame):
         self.Centre()
         self.Layout()
         self.Show()
+
+    #todo 复制事件响应函数
+    def text_copy_event(self, event):
+        #todo 当前选择的文本字符串
+        # print 'self.Contents.GetStringSelection():\t', self.Contents.GetStringSelection()
+        text_obj = wx.TextDataObject()
+        text_obj.SetText(self.Contents.GetStringSelection())
+        if wx.TheClipboard.IsOpened() or wx.TheClipboard.Open():
+            wx.TheClipboard.SetData(text_obj)
+            wx.TheClipboard.Close()
+
+    #todo 粘贴事件响应函数
+    def text_past_event(self, event):
+        text_obj = wx.TextDataObject()
+        if wx.TheClipboard.IsOpened() or wx.TheClipboard.Open():
+            if wx.TheClipboard.GetData(text_obj):
+                #todo 需要保存之前选择，因为用户可能会多次选择粘贴
+                old_select_week_string = self.select_week_text.GetValue().replace(',', ' ')
+                final_select_week_string = ' '.join([old_select_week_string, text_obj.GetText()])
+                # print 'final_select_week_string:\t', final_select_week_string
+                self.select_week_text.SetValue(final_select_week_string)
+            wx.TheClipboard.Close()
 
     def clear_info(self, event):
         self.Contents.Clear()
