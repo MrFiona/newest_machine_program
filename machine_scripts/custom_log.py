@@ -23,7 +23,7 @@ from setting_global_variable import MACHINE_LOG_DIR
 
 
 class WorkLogger(object):
-    # TODO 新增日志输出标记 create_log_flag  True: 输出 False: 不输出 default: True
+    #TODO 新增日志输出标记 create_log_flag  True: 输出 False: 不输出 default: True
     def __init__(self, log_filename=None, log_level=INFO, log_time=None, create_log_flag=True):
         self.log_filename = log_filename
         self.log_level = log_level

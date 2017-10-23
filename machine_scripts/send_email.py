@@ -42,7 +42,7 @@ class SendEmail:
             addr.encode('utf-8') if isinstance(addr, unicode) else addr))
 
     def send(self):
-        # TODO 正常流程
+        #TODO 正常流程
         if self.type_string == '':
             from_addr = judge_get_config('from_address', self.purl_bak_string)
             to_addr = judge_get_config('receive_address', self.purl_bak_string)
@@ -55,7 +55,7 @@ class SendEmail:
             else:
                 lastest_week_string = self.section_Silver_url_list[0]
                 lastest_week_string = 'WW' + lastest_week_string.split('/')[-2].split('%')[-1].split('WW')[-1]
-        # TODO 自动发邮件
+        #TODO 自动发邮件
         else:
             conf = MachineConfig(MANUAL_CONFIG_FILE_PATH)
             from_addr = conf.get_node_info('from_address', 'from_address')
@@ -69,7 +69,7 @@ class SendEmail:
         else:
             candidate_string = ''
 
-        # todo 周数据阶段字符串
+        #TODO 周数据阶段字符串
         if self.newest_week_type_string_list:
             order_num_dict = {'BKC': self.newest_week_type_string_list.count('BKC'),
                               'Gold': self.newest_week_type_string_list.count('Gold'),
@@ -95,6 +95,7 @@ class SendEmail:
         if os.path.exists(os.getcwd() + os.sep + self.type_string + 'html_result'):
             for file_name in glob.glob(os.getcwd() + os.sep + self.type_string + 'html_result' + os.sep + '*.html'):
                 if self.purl_bak_string in file_name:
+                    self.logger.print_message('Begin to read html file [%s], the project is [%s]' % (file_name, self.purl_bak_string), self.file_logger_name)
                     with open(file_name, 'r') as f:
                         html_data = f.readlines()
                     for i in range(len(html_data)):

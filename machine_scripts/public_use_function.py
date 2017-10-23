@@ -26,9 +26,9 @@ from setting_global_variable import (CONFIG_FILE_PATH, MANUAL_SRC_SAVE_MISS_WEEK
 _file_name = os.path.split(__file__)[1]
 
 
-# TODO 获取配置参数信息
+#TODO 获取配置参数信息
 def get_interface_config(para_name, purl_bak_string):
-    # TODO classify 项目配置前缀
+    #TODO classify 项目配置前缀
     if purl_bak_string == 'Purley-FPGA':
         string_sep = 'FPGA'
     elif purl_bak_string == 'Bakerville':
@@ -38,7 +38,7 @@ def get_interface_config(para_name, purl_bak_string):
     else:
         string_sep = 'NFV'
 
-    # TODO 读取配置参数值
+    #TODO 读取配置参数值
     conf = MachineConfig(CONFIG_FILE_PATH)
     if para_name == 'default_server_address':
         SERVER_ADDRESS = conf.get_node_info(purl_bak_string + '_real-time_control_parameter_value',
@@ -152,11 +152,11 @@ def get_interface_config(para_name, purl_bak_string):
         raise UserWarning('Can not get the value corresponding to parameter [ %s ]' % para_name)
 
 
-# TODO 根据是否加载默认配置----获取配置参数信息
+#TODO 根据是否加载默认配置----获取配置参数信息
 def judge_get_config(name, purl_bak_string):
     get_default_flag = get_interface_config('default_get_default_flag', purl_bak_string)
     if name == 'week_num':
-        # TODO 周数控制参数
+        #TODO 周数控制参数
         if get_default_flag == 'YES':
             week_num = get_interface_config('week_num', purl_bak_string)
         else:
@@ -164,7 +164,7 @@ def judge_get_config(name, purl_bak_string):
         return week_num
 
     elif name == 'reacquire_data_flag':
-        # TODO 是否重新获取数据标记  开启:YES   关闭:NO
+        #TODO 是否重新获取数据标记  开启:YES   关闭:NO
         if get_default_flag == 'YES':
             reacquire_data_flag = get_interface_config('reacquire_data_flag', purl_bak_string)
         else:
@@ -172,7 +172,7 @@ def judge_get_config(name, purl_bak_string):
         return reacquire_data_flag
 
     elif name == 'verify_file_flag':
-        # TODO 是否验证excel  开启:YES   关闭:NO
+        #TODO 是否验证excel  开启:YES   关闭:NO
         if get_default_flag == 'YES':
             verify_file_flag = get_interface_config('verify_file_flag', purl_bak_string)
         else:
@@ -180,7 +180,7 @@ def judge_get_config(name, purl_bak_string):
         return verify_file_flag
 
     elif name == 'max_waiting_time':
-        # TODO 打开execl文件的最长等待时间   单位: min
+        #TODO 打开execl文件的最长等待时间   单位: min
         if get_default_flag == 'YES':
             max_waiting_time = get_interface_config('max_waiting_time', purl_bak_string)
         else:
@@ -190,7 +190,7 @@ def judge_get_config(name, purl_bak_string):
         return max_time
 
     elif name == 'on_off_line_save_flag':
-        # TODO 是否验证excel  开启:YES   关闭:NO
+        #TODO 是否验证excel  开启:YES   关闭:NO
         if get_default_flag == 'YES':
             on_off_line_save_flag = get_interface_config('on_off_line_save_flag', purl_bak_string)
         else:
@@ -198,7 +198,7 @@ def judge_get_config(name, purl_bak_string):
         return on_off_line_save_flag
 
     elif name == 'send_email_flag':
-        # TODO 是否发送邮件  开启:YES   关闭:NO
+        #TODO 是否发送邮件  开启:YES   关闭:NO
         if get_default_flag == 'YES':
             send_email_flag = get_interface_config('send_email_flag', purl_bak_string)
         else:
@@ -206,7 +206,7 @@ def judge_get_config(name, purl_bak_string):
         return send_email_flag
 
     elif name == 'keep_continuous':
-        # TODO 是否配置周数  开启:YES   关闭:NO
+        #TODO 是否配置周数  开启:YES   关闭:NO
         if get_default_flag == 'YES':
             keep_continuous = get_interface_config('keep_continuous', purl_bak_string)
         else:
@@ -214,7 +214,7 @@ def judge_get_config(name, purl_bak_string):
         return keep_continuous
 
     elif name == 'server_address':
-        # TODO 服务器地址
+        #TODO 服务器地址
         if get_default_flag == 'YES':
             server_address = get_interface_config('server_address', purl_bak_string)
         else:
@@ -222,7 +222,7 @@ def judge_get_config(name, purl_bak_string):
         return server_address
 
     elif name == 'from_address':
-        # TODO 发件人地址
+        #TODO 发件人地址
         if get_default_flag == 'YES':
             from_address = get_interface_config('from_address', purl_bak_string)
         else:
@@ -230,7 +230,7 @@ def judge_get_config(name, purl_bak_string):
         return from_address
 
     elif name == 'receive_address':
-        # TODO 收件人地址
+        #TODO 收件人地址
         if get_default_flag == 'YES':
             receive_address = get_interface_config('receive_address', purl_bak_string)
         else:
@@ -238,7 +238,7 @@ def judge_get_config(name, purl_bak_string):
         return receive_address
 
 
-# TODO 根据关键词获取url链接
+#TODO 根据关键词获取url链接
 def get_url_list_by_keyword(purl_bak_string, back_keyword, key_url_list=None, reserve_url_num=100, pre_url_list=None):
     if not key_url_list:
         key_url_list = []
@@ -252,13 +252,13 @@ def get_url_list_by_keyword(purl_bak_string, back_keyword, key_url_list=None, re
                 compare_url_string = line.strip('\n').split('/')[-2]
                 if purl_bak_string in line and back_keyword in line and compare_url_string + '/' in pre_url_list:
                     key_url_list.append(line.strip('\n'))
-        # todo 在选择周的时候返回的包含三种类型的url 此时reserve_url_num失效
+        #TODO 在选择周的时候返回的包含三种类型的url 此时reserve_url_num失效
         if not pre_url_list:
             key_url_list = key_url_list[:reserve_url_num]
     return key_url_list
 
 
-# TODO 移除特定字符串
+#TODO 移除特定字符串
 def remove_line_break(object_string_list, line_break=False, empty_string=False, blank_string=False,
                       first_method=True, second_method=False):
     if first_method:
@@ -283,9 +283,9 @@ def remove_line_break(object_string_list, line_break=False, empty_string=False, 
             except ValueError:
                 pass
 
-    # TODO 第二种处理方法
+    #TODO 第二种处理方法
     elif second_method:
-        # TODO 改成元祖表达式又会比列表表达式快两倍
+        #TODO 改成元祖表达式又会比列表表达式快两倍
         if line_break:
             object_string_list = (ele for ele in object_string_list if ele != '\n')
         if empty_string:
@@ -296,10 +296,10 @@ def remove_line_break(object_string_list, line_break=False, empty_string=False, 
     return object_string_list
 
 
-# TODO 封装win32com.client的某些功能
+#TODO 封装win32com.client的某些功能
 class easyExcel(object):
     def __init__(self, filename=None):  # 打开文件或者新建文件（如果不存在的话）
-        # TODO 开启新的进程打开Excel
+        #TODO 开启新的进程打开Excel
         self.xlApp = win32com.client.DispatchEx('Excel.Application')
         self.xlApp.Visible = 0
 
@@ -367,7 +367,7 @@ class easyExcel(object):
         sht.Rows(row).Insert(1)
 
 
-# TODO 读取Excel表数据----用于发邮件
+#TODO 读取Excel表数据----用于发邮件
 def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK_NUM, logger, cell_data_list=None,
                     type_string='', predict_execute_flag=False, keep_continuous='NO'):
     '''
@@ -385,7 +385,7 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
     '''
     choose_week_newest_index = 0
     if sheet_name in ('NewSi', 'ExistingSi', 'CaseResult'):
-        # TODO 在keep_continuous = YES选择周的情况下处理
+        #TODO 在keep_continuous = YES选择周的情况下处理
         if keep_continuous == 'YES':
             with open(SRC_WEEK_DIR + os.sep + 'week_info.txt', 'r') as f:
                 choose_week_string = f.readline()
@@ -414,7 +414,7 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
     if cell_data_list is None:
         cell_data_list = []
 
-    # TODO 新增对周数进行统计 方便定位最新周的位置 最新周从后往前算
+    #TODO 新增对周数进行统计 方便定位最新周的位置 最新周从后往前算
     if sheet_name == 'Save-Miss':
         if predict_execute_flag:
             save_miss_left_location = WEEK_NUM + 3 - len(Silver_url_list) - 1
@@ -449,7 +449,7 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
                 temp_cell_list.append(data)
             cell_data_list.append(temp_cell_list)
 
-        # TODO 统计实际周数存放指定文件 已与用户约定原始数据删除需要删除save-miss对应标记
+        #TODO 统计实际周数存放指定文件 已与用户约定原始数据删除需要删除save-miss对应标记
         week_info_list = []
         for col in range(save_miss_left_location, WEEK_NUM + 3):
             week_data = win_book.getCell(sheet=sheet_name, row=3, col=col)
@@ -465,10 +465,10 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
 
     elif sheet_name in ('NewSi', 'ExistingSi'):
         stop_flag = False
-        # TODO 有candidate的情况下以candidate为准
+        #TODO 有candidate的情况下以candidate为准
         if predict_execute_flag:
             new_exist_left_location = (WEEK_NUM - len(Silver_url_list) + 1 - 1) * 13
-        # TODO 无candidate而自定义选择了周则按照选择周为准
+        #TODO 无candidate而自定义选择了周则按照选择周为准
         elif not predict_execute_flag and keep_continuous == 'YES':
             new_exist_left_location = (WEEK_NUM - len(Silver_url_list) + 1 + choose_week_newest_index) * 13
         else:
@@ -500,7 +500,7 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
                 continue
             cell_data_list.append(temp_cell_list)
 
-    # TODO 为后续作图提供数据  修复bug 在选择部分周时出现无法提取数据 2017-07-03
+    #TODO 为后续作图提供数据  修复bug 在选择部分周时出现无法提取数据 2017-07-03
     elif sheet_name == 'Trend':
         if predict_execute_flag:
             trend_right_location = len(Silver_url_list) + 2 + 1
@@ -542,7 +542,7 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
         fstop_flag = False
         if predict_execute_flag:
             case_result_left_location = (WEEK_NUM - len(Silver_url_list) - 1) * 41 + 35 + 10 + 2
-        # TODO 无candidate而自定义选择了周则按照选择周为准
+        #TODO 无candidate而自定义选择了周则按照选择周为准
         elif not predict_execute_flag and keep_continuous == 'YES':
             case_result_left_location = (WEEK_NUM - len(Silver_url_list) + choose_week_newest_index) * 41 + 35 + 10 + 2
         else:
@@ -570,7 +570,7 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
     return cell_data_list
 
 
-# TODO 对html文件处理，增加表格样式
+#TODO 对html文件处理，增加表格样式
 def deal_html_data(type_string):
     if type_string == '':
         original_html_result_dir = ORIGINAL_HTML_RESULT
@@ -603,7 +603,7 @@ def deal_html_data(type_string):
         os.remove(original_html_result_dir + os.sep + 'temp.html')
 
 
-# TODO 构造栈装饰器 2017-06-14
+#TODO 构造栈装饰器 2017-06-14
 def error_tracking_decorator(logger, module_name, log_time):
     """
     错误信息的详细定位

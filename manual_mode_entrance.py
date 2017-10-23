@@ -32,7 +32,7 @@ _file_name = os.path.split(__file__)[1]
 LOGGER_CLOSE_FLAG = False
 
 
-# TODO 生成html文件
+#TODO 生成html文件
 def manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list, choose_week_string):
     start = time.time()
     Silver_url_list = []
@@ -52,7 +52,7 @@ def manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list, cho
     _logger.print_message('Silver_url_list:\t%s\t%d' % (Silver_url_list, len(Silver_url_list)), _file_name)
     if choose_week_string not in Silver_url_list:
         raise UserWarning('The selected week does not exist!!!')
-    # TODO 手动场景
+    #TODO 手动场景
     if Silver_url_list:
         if choose_week_string in all_Silver_url_list:
             newest_week_index = all_Silver_url_list.index(choose_week_string)
@@ -80,12 +80,12 @@ def manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list, cho
     return week_bkc_gold_silver_string
 
 
-# TODO 手动执行模型主程序
+#TODO 手动执行模型主程序
 @performance_analysis_decorator('manual_mkm_run.prof')
 @error_tracking_decorator(_logger, _file_name, log_time)
 def manual_machine_model_entrance():
     try:
-        # TODO 界面参数配置
+        #TODO 界面参数配置
         manual_machine_config_gui_main(_logger)
         conf = MachineConfig(MANUAL_CONFIG_FILE_PATH)
         excel_file = conf.get_node_info('manual_machine_info', 'template_info')
@@ -107,11 +107,11 @@ def manual_machine_model_entrance():
 
         _logger.print_message('all_Silver_url_list:\t%s\t%d' % (all_Silver_url_list, len(all_Silver_url_list)), _file_name)
 
-        # TODO 生成html文件
+        #TODO 生成html文件
         week_bkc_gold_silver_string = manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list, choose_week_string)
-        # TODO 发送邮件
+        #TODO 发送邮件
         SendEmail(purl_bak_string=purl_bak_string, logger=_logger, type_string='manual_', manual_week_bkc_gold_silver_string=week_bkc_gold_silver_string)
-        # TODO 生成图表
+        #TODO 生成图表
         generate_chart(purl_bak_string=purl_bak_string, log_time=log_time, logger=_logger, type_string='manual_',
                        week_type_string=week_bkc_gold_silver_string)
     except:

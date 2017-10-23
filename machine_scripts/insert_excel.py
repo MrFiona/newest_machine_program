@@ -5,12 +5,12 @@
 # File    : insert_excel.py
 # Software: PyCharm Community Edition
 
-# TODO 2016-06-26 update: Add the keep_continuous parameters for the function that inserts the excel data
-# TODO Description: keep_continuous：False --- Normal insertion of data  True --- Insert data from the specified location
-# TODO 2016-06-27 update: 插入数据：目前采用位置标记法，根据位置变量控制而不是excel标记字符串位置定位
-# TODO          1、有最新的周出现且需要覆盖  后续周位置向后移动n, n表示出现的新周数
-# TODO          2、无最新的周出现且需要覆盖  保持既定位置不变
-# TODO          3、正常情况不需要覆盖       保持既定位置不变
+#TODO 2016-06-26 update: Add the keep_continuous parameters for the function that inserts the excel data
+#TODO Description: keep_continuous：False --- Normal insertion of data  True --- Insert data from the specified location
+#TODO 2016-06-27 update: 插入数据：目前采用位置标记法，根据位置变量控制而不是excel标记字符串位置定位
+#TODO          1、有最新的周出现且需要覆盖  后续周位置向后移动n, n表示出现的新周数
+#TODO          2、无最新的周出现且需要覆盖  保持既定位置不变
+#TODO          3、正常情况不需要覆盖       保持既定位置不变
 
 from __future__ import absolute_import
 
@@ -47,34 +47,34 @@ class InsertDataIntoExcel(object):
         self.log_time = log_time
         self.Silver_url_list = silver_url_list
         self.section_Silver_url_list = section_Silver_url_list
-        # TODO 验证标志,默认不开启,即预测
+        #TODO 验证标志,默认不开启,即预测
         self.verify_flag = verify_flag
         self.purl_bak_string = purl_bak_string
         self.link_WW_week_string = link_WW_week_string
-        # TODO 支持只覆盖某些周
+        #TODO 支持只覆盖某些周
         self.keep_continuous = keep_continuous
         self.date_string_list = []
         self.__file_name = os.path.split(__file__)[1]
         self.newest_week_type_string_list = []
-        # TODO 控制预测周数据的获取渠道 True: 从接口渠道获取 False: 正常渠道获取
+        #TODO 控制预测周数据的获取渠道 True: 从接口渠道获取 False: 正常渠道获取
         self.predict_insert_flag = False
 
-        # TODO 模板周数获取
+        #TODO 模板周数获取
         self.__WEEK_NUM = int(judge_get_config('week_num', self.purl_bak_string))
 
-        # TODO 是否离线标记获取
+        #TODO 是否离线标记获取
         self.on_off_line_save_flag = judge_get_config('on_off_line_save_flag', self.purl_bak_string)
 
-        # TODO 模板文件获取
+        #TODO 模板文件获取
         template_file = get_interface_config('template_file', self.purl_bak_string)
         self.logger.print_message('template_file:%s\t' % template_file, self.__file_name)
 
-        # TODO 自定义选取周数 则判断此时实际最新周在全局周对应位置
+        #TODO 自定义选取周数 则判断此时实际最新周在全局周对应位置
         self.equal_silver_list_flag = False
         if self.keep_continuous == 'YES':
-            # TODO 在选择是空模板的情况下
+            #TODO 在选择是空模板的情况下
             self.actual_newest_week_position = self.Silver_url_list.index(self.section_Silver_url_list[0])
-        # TODO 正常情况下取所有的最新周
+        #TODO 正常情况下取所有的最新周
         else:
             self.actual_newest_week_position = self.Silver_url_list.index(self.Silver_url_list[0])
 
@@ -88,7 +88,7 @@ class InsertDataIntoExcel(object):
                 % (self.__WEEK_NUM, link_WW_week_string, len(self.Silver_url_list), self.log_time), options={'strings_to_urls': False})
         self.rb = openpyxl.load_workbook(template_file, data_only=False)
 
-        # TODO 在excel工作簿中增加工作表单
+        #TODO 在excel工作簿中增加工作表单
         self.worksheet_save_miss = self.workbook.add_worksheet('Save-Miss')
         self.worksheet_mapping = self.workbook.add_worksheet('Mapping')
         self.worksheet_caseresult = self.workbook.add_worksheet('CaseResult')
@@ -110,15 +110,15 @@ class InsertDataIntoExcel(object):
         self.worksheet_ifwi_info = self.workbook.add_worksheet('IFWIInfo')
         self.worksheet_change = self.workbook.add_worksheet('Change History')
 
-        # TODO 为excel对象设定显示格式
+        #TODO 为excel对象设定显示格式
         self.yellow_data_format = self.workbook.add_format({'bg_color': '#FFFF66'})
         self.title_format = self.workbook.add_format({'align': 'center', 'valign': 'vcenter', 'font_size': 12})
         self.format1 = self.workbook.add_format({'bg_color': '#FFC7CE', 'font_color': '#9C0006'})
         self.url_format = self.workbook.add_format({'font_color': 'blue', 'underline': 1, 'align':'center', 'valign':'vcenter'})
-        # TODO Add a format for the header cells.
+        #TODO Add a format for the header cells.
         self.header_format = self.workbook.add_format({'border': 1, 'bg_color': '#C6EFCE', 'bold': True})
         self.red = self.workbook.add_format({'color': 'red'})
-        # TODO 设置小数点格式部分
+        #TODO 设置小数点格式部分
         self.reserve_two_decimal_format = self.workbook.add_format()
         self.reserve_zero_decimal_format = self.workbook.add_format()
         self.reserve_int_two_decimal_format = self.workbook.add_format()
@@ -128,7 +128,7 @@ class InsertDataIntoExcel(object):
         self.reserve_zero_decimal_format.set_num_format( 0x09 )      #0%
         self.reserve_two_decimal_format.set_num_format( 0x0a )       #0.00%
 
-        # TODO 统一管理对象
+        #TODO 统一管理对象
         self.predict_extract_object = None
         self.save_miss_insert_bkc_string = 'default_bkc_string'
         self.predict_execute_flag = False
@@ -151,15 +151,15 @@ class InsertDataIntoExcel(object):
             try:
                 return_result_url = urllib2.urlopen(predict_url).read()
                 # return_result_url = 'https://dcg-oss.intel.com/test_report/test_report/6495/0/'
-                # TODO 返回字符串不为0则未生成静态页面，数据从指定渠道获取
+                #TODO 返回字符串不为0则未生成静态页面，数据从指定渠道获取
                 if len(return_result_url) != 0:
                     self.predict_execute_flag = True
                     self.predict_insert_flag = True
                     self.logger.print_message('predict_insert_flag:\t%s' % self.predict_insert_flag, self.__file_name)
                     self.logger.print_message('return_result_url:\t%s' % return_result_url, self.__file_name)
-                    # TODO 统一管理对象
+                    #TODO 统一管理对象
                     self.predict_extract_object = PredictGetData(self.logger, return_result_url)
-                    # TODO 插入save-miss表的bkc数据
+                    #TODO 插入save-miss表的bkc数据
                     self.save_miss_insert_bkc_string = self.predict_extract_object.return_save_miss_bkc_string()
                     return return_result_url
             except:
@@ -231,7 +231,7 @@ class InsertDataIntoExcel(object):
         # 获取公式并插入指定位置
         self.get_formula_data(u'NewSi', self.worksheet_newsi)
         for j in range(len(self.Silver_url_list)):
-            # TODO 不在url列表范围则跳过不覆盖
+            #TODO 不在url列表范围则跳过不覆盖
             if self.keep_continuous == 'YES' and  self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
@@ -291,7 +291,7 @@ class InsertDataIntoExcel(object):
         # 获取公式并插入指定位置
         self.get_formula_data('ExistingSi', self.worksheet_existing)
         for j in range(len(self.Silver_url_list)):
-            # TODO 不在url列表范围则跳过不覆盖
+            #TODO 不在url列表范围则跳过不覆盖
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
@@ -368,7 +368,7 @@ class InsertDataIntoExcel(object):
         self.get_formula_data('ClosedSi', self.worksheet_closesi)
         hidden_data_by_column(self.worksheet_closesi, self.Silver_url_list, 13, 1)
         for j in range(len(self.Silver_url_list)):
-            # TODO 不在url列表范围则跳过不覆盖
+            #TODO 不在url列表范围则跳过不覆盖
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
@@ -424,7 +424,7 @@ class InsertDataIntoExcel(object):
         self.get_formula_data('Rework', self.worksheet_rework)
         hidden_data_by_column(self.worksheet_rework, self.Silver_url_list, 3, 1)
         for j in range(len(self.Silver_url_list)):
-            # TODO 不在url列表范围则跳过不覆盖
+            #TODO 不在url列表范围则跳过不覆盖
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
@@ -487,7 +487,7 @@ class InsertDataIntoExcel(object):
     def insert_HW_data(self):
         self.logger.print_message('Start inserting [ HW Configuration ] data.........', self.__file_name)
 
-        # TODO FPGA 23周  DE 24周  最新格式适配边界位置
+        #TODO FPGA 23周  DE 24周  最新格式适配边界位置
         if self.purl_bak_string == 'Purley-FPGA':
             FPGA_border_position = self.Silver_url_list.index('https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW23/6131_Silver.html')
             self.logger.print_message('FPGA_border_position:\t%s' % FPGA_border_position, self.__file_name)
@@ -500,7 +500,7 @@ class InsertDataIntoExcel(object):
         hidden_data_by_column(self.worksheet_hw, self.Silver_url_list, 18, 1)
 
         for j in range(len(self.Silver_url_list)):
-            # TODO 不在url列表范围则跳过不覆盖
+            #TODO 不在url列表范围则跳过不覆盖
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
@@ -511,7 +511,7 @@ class InsertDataIntoExcel(object):
 
             self.logger.print_message('Start inserting the corresponding data for url [ %s ]' % self.Silver_url_list[j], self.__file_name)
 
-            # TODO 分项目获取数据 2017-06-09
+            #TODO 分项目获取数据 2017-06-09
             if self.purl_bak_string == 'NFVi':
                 obj = extract_NFV_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
             elif self.purl_bak_string == 'Purley-Crystal-Ridge':
@@ -548,7 +548,7 @@ class InsertDataIntoExcel(object):
                         Silver_BkC_string, date_string, row_coordinates_list, column_coordinates_list, cell_data_list = obj.get_hw_data('HW Configuration', True)
                 elif self.purl_bak_string == 'Purley-Crystal-Ridge':
                     Silver_BkC_string, date_string, row_coordinates_list, column_coordinates_list, cell_data_list = obj.get_hw_data('HW Configuration', True)
-                # TODO DE
+                #TODO DE
                 else:
                     if DE_border_position >= j:
                         Silver_BkC_string, date_string, row_coordinates_list, column_coordinates_list, cell_data_list = obj.get_lastest_bak_hw_data('HW Configuration', True)
@@ -594,7 +594,7 @@ class InsertDataIntoExcel(object):
         hidden_data_by_column(self.worksheet_sw_original, self.Silver_url_list, 9, 1)
         self.get_formula_data('SW_Original', self.worksheet_sw_original)
         for j in range(len(self.Silver_url_list)):
-            # TODO 不在url列表范围则跳过不覆盖
+            #TODO 不在url列表范围则跳过不覆盖
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
@@ -653,7 +653,7 @@ class InsertDataIntoExcel(object):
                         self.worksheet_sw_original.write(nu, self.calculate_head_num(9, j, 5), first_insert_data[line])
                         self.worksheet_sw_original.write_url(nu, self.calculate_head_num(9, j, 6), url_list[line][0], self.url_format, cell_data_list[line][1])
                         self.worksheet_sw_original.write(nu, self.calculate_head_num(9, j, 7), second_insert_data[line])
-                        # todo 捕获异常 适配Purley-Crystal-Ridge项目 header_list可能只有三列
+                        #TODO 捕获异常 适配Purley-Crystal-Ridge项目 header_list可能只有三列
                         try:
                             if (len(url_list[line]) >= 2) and cell_data_list[line][3]:
                                 self.worksheet_sw_original.write_url(nu, self.calculate_head_num(9, j, 8), url_list[line][1], self.url_format, cell_data_list[line][3])
@@ -687,7 +687,7 @@ class InsertDataIntoExcel(object):
         hidden_data_by_column(self.worksheet_sw, self.Silver_url_list, 9, 1)
         self.get_formula_data('SW', self.worksheet_sw)
         for j in range(len(self.Silver_url_list)):
-            # TODO 不在url列表范围则跳过不覆盖
+            #TODO 不在url列表范围则跳过不覆盖
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
@@ -801,7 +801,7 @@ class InsertDataIntoExcel(object):
         hidden_data_by_column(self.worksheet_ifwi_original, self.Silver_url_list, 6, 1)
         self.get_formula_data('IFWI_Original', self.worksheet_ifwi_original)
         for j in range(len(self.Silver_url_list)):
-            # TODO 不在url列表范围则跳过不覆盖
+            #TODO 不在url列表范围则跳过不覆盖
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
@@ -857,7 +857,7 @@ class InsertDataIntoExcel(object):
         hidden_data_by_column(self.worksheet_ifwi, self.Silver_url_list, 6, 1)
         self.get_formula_data('IFWI', self.worksheet_ifwi)
         for j in range(len(self.Silver_url_list)):
-            # TODO 不在url列表范围则跳过不覆盖
+            #TODO 不在url列表范围则跳过不覆盖
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
@@ -920,7 +920,7 @@ class InsertDataIntoExcel(object):
         hidden_data_by_column(self.worksheet_platform, self.Silver_url_list, 12, 1)
         self.get_formula_data('ValidationResult', self.worksheet_platform)
         for j in range(len(self.Silver_url_list)):
-            # TODO 不在url列表范围则跳过不覆盖
+            #TODO 不在url列表范围则跳过不覆盖
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
@@ -997,7 +997,7 @@ class InsertDataIntoExcel(object):
 
     def insert_Mapping(self):
         Silver_url_list = self.Silver_url_list
-        # TODO 当自定义覆盖相应周数据时 需要处理日期对齐 start
+        #TODO 当自定义覆盖相应周数据时 需要处理日期对齐 start
         if self.keep_continuous == 'YES':
             Silver_url_list = self.section_Silver_url_list
 
@@ -1012,7 +1012,7 @@ class InsertDataIntoExcel(object):
                 week_info = url_sep_list[-2]
                 effective_week_info = week_info.replace('%20', '')
                 temp_insert_index_dict[effective_week_info] = all_insert_index_dict[value]
-        # TODO 当自定义覆盖相应周数据时 需要处理日期对齐 end
+        #TODO 当自定义覆盖相应周数据时 需要处理日期对齐 end
 
         height = self.__WEEK_NUM - len(self.Silver_url_list) + 5
         for row in range(height - 5 - 1):
@@ -1025,9 +1025,9 @@ class InsertDataIntoExcel(object):
         # 标记True为红色
         self.worksheet_mapping.conditional_format(self.__WEEK_NUM + 7, 5, 250, self.__WEEK_NUM + 6, {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
         self.worksheet_mapping.conditional_format(self.__WEEK_NUM + 7, self.__WEEK_NUM + 7, 250, self.__WEEK_NUM + 41, {'type': 'cell', 'criteria': '>', 'value': 0, 'format': self.format1})
-        # TODO 解析url
+        #TODO 解析url
         insert_date_list = analysis_url_address_string(Silver_url_list)
-        # TODO 处理日期对齐
+        #TODO 处理日期对齐
         if self.keep_continuous == 'YES':
             for value in temp_insert_index_dict:
                 self.worksheet_mapping.write(self.__WEEK_NUM + 6, temp_insert_index_dict[value], value, self.header_format)
@@ -1069,7 +1069,7 @@ class InsertDataIntoExcel(object):
         last_header_list = ['Domain', 'Category', 'Case', 'New Added Test Case Comparing to Previous Test Case Pool',
                             'New Added Test Case Comparing to Entire Test Case Pool']
         for j in range(len(self.Silver_url_list)):
-            # TODO 不在url列表范围则跳过不覆盖
+            #TODO 不在url列表范围则跳过不覆盖
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
@@ -1134,7 +1134,7 @@ class InsertDataIntoExcel(object):
 
     def insert_save_miss_data(self):
         Silver_url_list = self.Silver_url_list
-        # TODO 当自定义覆盖相应周数据时 需要处理日期对齐 start
+        #TODO 当自定义覆盖相应周数据时 需要处理日期对齐 start
         if self.keep_continuous == 'YES':
             Silver_url_list = self.section_Silver_url_list
 
@@ -1150,16 +1150,16 @@ class InsertDataIntoExcel(object):
                 effective_week_info = week_info.replace('%20', '')
                 temp_insert_index_dict[effective_week_info] = all_insert_index_dict[value]
         # print 'temp_insert_index_dict:\t', temp_insert_index_dict
-        # TODO 当自定义覆盖相应周数据时 需要处理日期对齐 end
+        #TODO 当自定义覆盖相应周数据时 需要处理日期对齐 end
         self.worksheet_save_miss.set_column(firstcol=2, lastcol=self.__WEEK_NUM - len(self.Silver_url_list) -1 + 1, options={'hidden': True})
         # 获取公式并插入指定位置
         yellow_header_format = self.workbook.add_format({'bg_color': '#FFFF66'})
         first_string_list = ["Save Test Case based on this week's Test case pool", "Miss Sightings in test plan comparing to test result (%)?",
                              "Miss Sightings in test plan comparing to test result?", "Total Sighting", "Save Effort"]
         self.get_formula_data('Save-Miss', self.worksheet_save_miss)
-        # TODO 解析url
+        #TODO 解析url
         insert_date_list = analysis_url_address_string(Silver_url_list)
-        # TODO 处理日期对齐
+        #TODO 处理日期对齐
         if self.keep_continuous == 'YES':
             for value in temp_insert_index_dict:
                 self.worksheet_save_miss.write(2, temp_insert_index_dict[value], value, self.format1)
@@ -1460,11 +1460,11 @@ class InsertDataIntoExcel(object):
 
     def predict_insert_save_miss_data(self):
         Silver_url_list = self.Silver_url_list
-        # TODO 当自定义覆盖相应周数据时 需要处理日期对齐 start
+        #TODO 当自定义覆盖相应周数据时 需要处理日期对齐 start
         if self.keep_continuous == 'YES':
             Silver_url_list = self.section_Silver_url_list
 
-        # TODO 新插入一个bkc字符串
+        #TODO 新插入一个bkc字符串
         self.worksheet_save_miss.write(2, self.__WEEK_NUM + 2 - len(Silver_url_list) - 1, self.save_miss_insert_bkc_string, self.format1)
 
     def predict_insert_trend_data(self):

@@ -84,12 +84,12 @@ class UserWeekSelectGui(wx.Frame):
         self.select_week_label = wx.StaticText(panel, wx.ID_ANY, label='select the number of week', pos=(10, 10))
         self.select_week_label.SetFont(self.wx_font)
 
-        self.select_week_text = wx.TextCtrl(panel, pos=(230, 7), size=(645, -1))
+        self.select_week_text = wx.TextCtrl(panel, pos=(203, 7), size=(671, -1))
         self.select_week_text.SetBackgroundColour('turquoise')
 
-        self.Contents = wx.TextCtrl(panel, pos=(10, 40), size=(865, 410), style=wx.TE_MULTILINE | wx.HSCROLL)
-        #todo 绑定鼠标离开事件 另外，wx.EVT_ENTER_WINDOW为绑定鼠标位于其上事件
+        self.Contents = wx.TextCtrl(panel, pos=(10, 40), size=(865, 410), style=wx.TE_MULTILINE )
         self.Contents.Bind(wx.EVT_LEAVE_WINDOW, self.sort_input_week_string_event)
+        self.Contents.SetFont(wx.Font(11, wx.SWISS, wx.NORMAL, wx.NORMAL, False))
 
         self.display_button = wx.Button(panel, wx.ID_ANY, label='Display', pos=(9, 460), size=(70, 30))
         self.clear_button = wx.Button(panel, wx.ID_ANY, label='Clear', pos=(806, 460), size=(70, 30))
@@ -99,8 +99,8 @@ class UserWeekSelectGui(wx.Frame):
 
         self.display_button.SetFont(wx.Font(10, wx.SWISS, wx.NORMAL, wx.BOLD, False))
         self.clear_button.SetFont(wx.Font(10, wx.SWISS, wx.NORMAL, wx.BOLD, False))
-        self.display_button.SetToolTip("显示最新的项目周数")
-        self.clear_button.SetToolTip("清除界面项目周数")
+        self.display_button.SetToolTip(u"显示最新的项目周数")
+        self.clear_button.SetToolTip(u"清除界面项目周数")
         self.display_button.Bind(wx.EVT_BUTTON, self.show_info)
         self.clear_button.Bind(wx.EVT_BUTTON, self.clear_info)
 
@@ -190,7 +190,7 @@ def week_gui_config(main_window, purl_bak_string, logger):
 #todo 项目配置主界面
 class ProjectConfigParameterGui(wx.Frame):
     def __init__(self, name, logger):
-        wx.Frame.__init__(self, None, wx.ID_ANY,"%s User Configuration Gui Interface" % name, size=(930,700))
+        wx.Frame.__init__(self, None, wx.ID_ANY,"%s User Configuration Gui Interface" % name, size=(930,715))
         self.name = name
         self.logger = logger
 
@@ -211,7 +211,7 @@ class ProjectConfigParameterGui(wx.Frame):
         self.sampleList = ['YES', 'NO']
         self.mode_value_list = ['online', 'offline']
         wx_font = wx.Font(12, wx.DECORATIVE, wx.NORMAL, wx.NORMAL)
-        wx_font1 = wx.Font(12, wx.DECORATIVE, wx.NORMAL, wx.BOLD)
+        wx_font1 = wx.Font(10, wx.DECORATIVE, wx.NORMAL, wx.BOLD)
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.SetSizer(self.sizer)
@@ -318,7 +318,7 @@ class ProjectConfigParameterGui(wx.Frame):
         self.excel_template_button = wx.Button(self, -1, label='Template File', pos=(450, 270), size=(125, 40))
         self.excel_template_button.SetForegroundColour('grey')
         self.excel_template_button.SetFont(wx.Font(12, wx.SWISS, wx.NORMAL, wx.BOLD, False))
-        self.excel_template_button.SetToolTip("设置Excel模板")
+        self.excel_template_button.SetToolTip(u"设置Excel模板")
         self.excel_template_text = wx.TextCtrl(self, pos=(610, 278), size=(270, -1))
         self.excel_template_text.SetBackgroundColour('turquoise')
 
@@ -350,8 +350,8 @@ class ProjectConfigParameterGui(wx.Frame):
 
         self.load_button.SetFont(wx.Font(12, wx.SWISS, wx.NORMAL, wx.BOLD, False))
         self.save_button.SetFont(wx.Font(12, wx.SWISS, wx.NORMAL, wx.BOLD, False))
-        self.load_button.SetToolTip("加载默认配置")
-        self.save_button.SetToolTip("保存当前配置为默认配置")
+        self.load_button.SetToolTip(u"加载默认配置")
+        self.save_button.SetToolTip(u"保存当前配置为默认配置")
 
         #todo 绑定按钮事件
         self.load_button.Bind(wx.EVT_BUTTON, self.load_default_event)
@@ -373,9 +373,10 @@ class ProjectConfigParameterGui(wx.Frame):
         menuBar.Append(menu, u'编辑(F)')
         self.SetMenuBar(menuBar)
 
+
     #todo 选择Excel模板文件按钮组件事件响应函数
     def choose_excel_file_frame_event(self, event):
-        dialog = wx.FileDialog(self, message='%s项目选择Excel模板文件' % self.name, defaultDir=os.getcwd(), style=wx.ID_OPEN, wildcard=("*.xlsx;*.xls;*.csv"))
+        dialog = wx.FileDialog(self, message=u'%s项目选择Excel模板文件' % self.name, defaultDir=os.getcwd(), style=wx.ID_OPEN, wildcard=("*.xlsx;*.xls;*.csv"))
         #todo 选择了文件则dialog.ShowModal()为wx.ID_OK否则为 wx.ID_CANCEL
         if dialog.ShowModal() == wx.ID_OK:
             self.excel_template_text.SetValue(dialog.GetPath())
@@ -418,27 +419,31 @@ class ProjectConfigParameterGui(wx.Frame):
         email_compile = re.compile(pattern='\w+.@intel.com')
         #TODO 不发送邮件时不做检查
         if self.send_email_flag_text.GetValue().strip() == 'YES':
-            if len(self.mail_server_text.GetValue().strip()) == 0 or not self.mail_server_text.GetValue().endswith(
-                    'intel.com'):
+            if len(self.mail_server_text.GetValue().strip()) == 0 or not self.mail_server_text.GetValue().endswith('intel.com'):
                 self.logger.print_message('The email server address is illegal!!!', _file_name, 30)
+                dlg_1 = wx.MessageDialog(self, u"The email server address is illegal!!!", u"check parameter validity gui", wx.ICON_ERROR | wx.ICON_QUESTION)
+                print dlg_1.ShowModal()
                 raise UserWarning('The email server address is illegal!!!')
 
-            if not re.search(email_compile,
-                             self.sender_email_text.GetValue().strip()) or not self.sender_email_text.GetValue().endswith(
-                    'intel.com'):
+            if not re.search(email_compile,self.sender_email_text.GetValue().strip()) or not self.sender_email_text.GetValue().endswith('intel.com'):
                 self.logger.print_message('email sender address is illegal!!!', _file_name, 30)
+                dlg_2 = wx.MessageDialog(self, u"The email sender address is illegal!!!", u"check parameter validity gui", wx.ICON_ERROR | wx.ICON_QUESTION)
+                print dlg_2.ShowModal()
                 raise UserWarning('The email sender address is illegal!!!')
 
             for receive_address in self.receive_email_text.GetValue().strip().split(','):
-                if not re.search(email_compile, receive_address.strip()) or not receive_address.endswith(
-                        'intel.com'):
+                if not re.search(email_compile, receive_address.strip()) or not receive_address.endswith('intel.com'):
                     self.logger.print_message('email recipient address is illegal!!!', _file_name, 30)
+                    dlg_3 = wx.MessageDialog(self, u"The email recipient address is illegal!!!", u"check parameter validity gui", wx.ICON_ERROR | wx.ICON_QUESTION)
+                    print dlg_3.ShowModal()
                     raise UserWarning('The email recipient address is illegal!!!')
+            #todo 2、检查模板文件路径的合法性
 
-        #todo 2、检查模板文件路径的合法性
         if not os.path.exists(self.excel_template_text.GetValue().strip()):
             self.logger.print_message('The template file path does not exist', _file_name, 30)
             self.excel_template_text.Clear()
+            dlg_4 = wx.MessageDialog(self, u"The template file path does not exist!!!", u"check parameter validity gui", wx.ICON_ERROR | wx.ICON_QUESTION)
+            print dlg_4.ShowModal()
             raise UserWarning('The template file path does not exist')
         else:
             #TODO 判断是否是个文件
@@ -446,18 +451,17 @@ class ProjectConfigParameterGui(wx.Frame):
                 #TODO 当前目录下则填充全路径
                 if self.excel_template_text.GetValue().strip() in os.listdir(os.getcwd()):
                     self.excel_template_text.Clear()
-                    self.excel_template_text.SetValue(
-                        os.getcwd() + os.sep + self.excel_template_text.GetValue().strip())
+                    self.excel_template_text.SetValue(os.getcwd() + os.sep + self.excel_template_text.GetValue().strip())
             else:
-                self.logger.print_message('The path of the file you entered is a directory, not a file', _file_name,
-                                          30)
+                self.logger.print_message('The path of the file you entered is a directory, not a file', _file_name,30)
                 self.excel_template_text.Clear()
+                dlg_5 = wx.MessageDialog(self, u"The path of the file you entered is a directory, not a file!!!", u"check parameter validity gui", wx.ICON_ERROR | wx.ICON_QUESTION)
+                print dlg_5.ShowModal()
                 raise UserWarning('The path of the file you entered is a directory, not a file')
 
         #todo 3、检查验证excel的等待时间
         if not len(self.max_time_text.GetValue().strip()) or not self.max_time_text.GetValue().strip().isalnum():
-            self.logger.print_message("Verify the file's time setting is invalid! The default value is set to 120",
-                                      _file_name, 30)
+            self.logger.print_message("Verify the file's time setting is invalid! The default value is set to 120",_file_name, 30)
             self.max_time_text.Clear()
             self.max_time_text.SetValue('120')
 
@@ -477,7 +481,7 @@ class ProjectConfigParameterGui(wx.Frame):
             self.current_verify_file_flag = conf.get_node_info(self.name + '_real-time_control_parameter_value', 'default_verify_file_flag')
             self.current_max_waiting_time = conf.get_node_info(self.name + '_real-time_control_parameter_value', 'default_max_waiting_time')
             #todo 其他配置信息(离线在线模式以及是否自定义选择周)
-            self.current_on_off_line_save_flag = conf.get_node_info(self.name + '_real-time_control_parameter_value', 'default_on_off_line_save_flag', )
+            self.current_on_off_line_save_flag = conf.get_node_info(self.name + '_real-time_control_parameter_value', 'default_on_off_line_save_flag')
             self.current_keep_continuous = conf.get_node_info(self.name + '_real-time_control_parameter_value', 'default_keep_continuous')
         elif status == 'default':
             #todo 加载邮件配置信息
@@ -670,7 +674,7 @@ class ProjectSelectGui(wx.Frame):
             self.purl_bak_string = 'Purley-Crystal-Ridge'
 
         self.logger.print_message('The program you selected is: [ %s ], please close the window to continue the main program!!!'
-                                    'If you want to change the choice of project name, please continue to select!!!' % self.purl_bak_string, _file_name, 20)
+                        'If you want to change the choice of project name, please continue to select!!!' % self.purl_bak_string, _file_name, 20)
         # todo 修改配置文件项目名称信息
         conf = MachineConfig(CONFIG_FILE_PATH)
         conf.modify_node_value('real-time_control_parameter_value', 'default_purl_bak_string', self.purl_bak_string)
@@ -687,7 +691,7 @@ def check_user_redefinition_week(purl_bak_string, logger):
 
 
 #TODO 主程序
-def main(logger):
+def gui_main(logger):
     #todo 项目选择主界面
     app = wx.App()
     ProjectSelectGui(logger)

@@ -25,13 +25,13 @@ _file_name = os.path.split(__file__)[1]
 
 
 
-# TODO 验证url的有效性
+#TODO 验证url的有效性
 def verify_validity_url(url, logger):
     import urllib2
     logger.print_message('Verifying url %s Start' % (url), _file_name)
     try:
         response = urllib2.urlopen(url)
-    # TODO HTTPError是URLError的子类，在产生URLError时也会触发产生HTTPError。因此需注意应该先处理HTTPError
+    #TODO HTTPError是URLError的子类，在产生URLError时也会触发产生HTTPError。因此需注意应该先处理HTTPError
     except urllib2.URLError, e:
         if hasattr(e, 'code'):  # stands for HTTPError
             logger.print_message(msg="find http error, writing... [ %s ]" % e.code, logger_name=_file_name,
@@ -53,7 +53,7 @@ def verify_validity_url(url, logger):
         logger.print_message('Verifying url %s End' % (url), _file_name)
 
 
-# TODO 隐藏表列  sub_signal_width新增少隐藏多少周
+#TODO 隐藏表列  sub_signal_width新增少隐藏多少周
 def hidden_data_by_column(sheet_name, url_list, multiple, sub_signal_width):
     conf = MachineConfig(CONFIG_FILE_PATH)
     purl_bak_string = conf.get_node_info('real-time_control_parameter_value', 'default_purl_bak_string')
@@ -61,7 +61,7 @@ def hidden_data_by_column(sheet_name, url_list, multiple, sub_signal_width):
     sheet_name.set_column(0, multiple * hidden_length - 1, options={'hidden': True})
 
 
-# TODO 返回新产生的excel表里实际周数据
+#TODO 返回新产生的excel表里实际周数据
 def return_actual_week_list(logger, rename_log):
     if not rename_log:
         logger.print_message("SRC_SAVE_MISS_WEEK_DIR:\t%s" % SRC_SAVE_MISS_WEEK_DIR, _file_name)
@@ -74,7 +74,7 @@ def return_actual_week_list(logger, rename_log):
     return week_actual_info_list
 
 
-# TODO 更改excel名称并且修改日志名与excel同名  更改名称以excel save-miss周为准
+#TODO 更改excel名称并且修改日志名与excel同名  更改名称以excel save-miss周为准
 def rename_log_file_name(logger, purl_bak_string, Silver_url_list, newest_week_type_string_list, log_time,
                          rename_log=False, predict_execute_flag=False):
     week_actual_list = return_actual_week_list(logger, rename_log)
@@ -100,7 +100,7 @@ def rename_log_file_name(logger, purl_bak_string, Silver_url_list, newest_week_t
     else:
         file_candidate_string = ''
 
-    # TODO 修改excel文件名
+    #TODO 修改excel文件名
     if not rename_log:
         try:
             os.rename(actual_excel_file, SRC_EXCEL_DIR + os.sep + purl_bak_string + '_' + str(week_num) + '_' + link_WW_week_string + '_' +
@@ -108,7 +108,7 @@ def rename_log_file_name(logger, purl_bak_string, Silver_url_list, newest_week_t
             logger.print_message("Changing the excel file [ %s ]  name successfully!!!" % actual_excel_file, _file_name)
         except EOFError:
             logger.print_message("Changing the excel file [ %s ]  name failed!!!" % actual_excel_file, _file_name, ERROR)
-    # TODO 修改log日志名
+    #TODO 修改log日志名
     else:
         actual_log_file = ''
         for ele_name in glob.glob(MACHINE_LOG_DIR + os.sep + 'machine_log*.txt'):
@@ -122,7 +122,7 @@ def rename_log_file_name(logger, purl_bak_string, Silver_url_list, newest_week_t
             print "The log file [ %s ] was modified to excel's file name failed!!!" % actual_log_file
 
 
-# TODO 获取对应项目最近日期的文件
+#TODO 获取对应项目最近日期的文件
 def get_project_newest_file(purl_bak_string, logger):
     file_list = [ele for ele in glob.glob(SRC_EXCEL_DIR + os.sep + '*.xlsx') if purl_bak_string in ele]
     file_list.sort(reverse=True)
@@ -142,18 +142,18 @@ def get_project_newest_file(purl_bak_string, logger):
     return template_file
 
 
-# TODO 内存检测继续执行程序回调函数
+#TODO 内存检测继续执行程序回调函数
 def response_button_continue_func(tk):
     tk.destroy()
 
 
-# TODO 内存检测终止程序回调函数
+#TODO 内存检测终止程序回调函数
 def response_button_stop_func(tk):
     tk.destroy()
     sys.exit(1)
 
 
-# TODO 内存不足时弹出的提示窗口
+#TODO 内存不足时弹出的提示窗口
 def response_detect_memory_gui(available_memory_size):
     from Tkinter import Tk, Button, Label, mainloop
     tk = Tk()
@@ -172,7 +172,7 @@ def response_detect_memory_gui(available_memory_size):
     mainloop()
 
 
-# TODO 性能分析装饰器
+#TODO 性能分析装饰器
 def performance_analysis_decorator(filename):
     """
     Decorator for function profiling.
@@ -200,7 +200,7 @@ def performance_analysis_decorator(filename):
     return wrapper
 
 
-# TODO 检测内存使用情况，防止发生内存错误
+#TODO 检测内存使用情况，防止发生内存错误
 def detect_memory_usage(logger, cycle_times=1):
     import psutil
 
@@ -259,19 +259,19 @@ def detect_memory_usage(logger, cycle_times=1):
     #     str(int(phy_total / 1024 / 1024)) + "M"
     # )
 
-    # TODO 需达到预留2000M内存空间
+    #TODO 需达到预留2000M内存空间
     available_memory_size = int(phy_total / 1024 / 1024) - int(used / 1024 / 1024)
     # logger.print_message(
     #     'Average:%s\t' % (' ' * (len('The %d time') - len('Average'))) + time.asctime() + " | " + " CPU: " +
     #     '%.1f' % cpu_percent + "%" + " | " + line, _file_name)
-    # TODO 低于2000M则弹出提示窗口
+    #TODO 低于2000M则弹出提示窗口
     if available_memory_size < 2000:
         response_detect_memory_gui(available_memory_size)
 
 
-# TODO 去除特殊字符策略函数
+#TODO 去除特殊字符策略函数
 def remove_non_alphanumeric_characters(object_string_list):
-    # TODO 对提取的字符串列表进行清洗，统一组合格式：空格分隔
+    #TODO 对提取的字符串列表进行清洗，统一组合格式：空格分隔
     for ele in range(len(object_string_list)):
         object_string_list[ele] = re.sub('[\s]', 'MrFiona', object_string_list[ele])
         object_string_list[ele] = re.sub('[^\w\"\'\.\_\-\>\[\]\(\)\@\~\/\*]', '', object_string_list[ele])
@@ -281,7 +281,7 @@ def remove_non_alphanumeric_characters(object_string_list):
     return object_string_list
 
 
-# TODO 去除特殊字符策略函数 NFVi
+#TODO 去除特殊字符策略函数 NFVi
 def NFVi_remove_non_alphanumeric_characters(object_string_list):
     for ele in range(len(object_string_list)):
         object_string_list[ele] = re.sub('[\s]', 'MrFiona', object_string_list[ele])
@@ -292,7 +292,7 @@ def NFVi_remove_non_alphanumeric_characters(object_string_list):
     return object_string_list
 
 
-# TODO 当程序发生中断时强制清理文件
+#TODO 当程序发生中断时强制清理文件
 def interrupt_clear_excel_file(log_time, logger):
     remove_success_flag = False
     # while 1:
@@ -327,13 +327,13 @@ def interrupt_clear_excel_file(log_time, logger):
                 logger.print_message('delete %s file failed!!!' % file_list[0], _file_name, 40)
 
 
-# TODO 中断错误类
+#TODO 中断错误类
 class InterruptError(Exception):
     def __init__(self, msg=''):
         Exception.__init__(self, msg)
 
 
-# TODO 获取windows进程名, 进程Id元组的列表
+#TODO 获取windows进程名, 进程Id元组的列表
 def get_win_process_ids():
     import win32pdh
     # each instance is a process, you can have multiple processes w/same name
@@ -363,7 +363,7 @@ def get_win_process_ids():
     return process_ids, process_name_list
 
 
-# TODO 输出重定向到文件
+#TODO 输出重定向到文件
 class RedirectionOutput(object):
     def __init__(self):
         self.buff = ''
@@ -389,12 +389,12 @@ class RedirectionOutput(object):
         sys.stdout = self.__console__
 
 
-# TODO 自动打开excel确认----可以修改
+#TODO 自动打开excel确认----可以修改
 def confirm_result_excel(purl_bak_string, link_WW_week_string, Silver_url_list, logger, log_time):
     purl_bak_string = get_interface_config('default_purl_bak_string', purl_bak_string)
     file_path = SRC_EXCEL_DIR + os.sep + '{0}_{1}_{2}_{3}_{4}.xlsx'.format(purl_bak_string, judge_get_config('week_num', purl_bak_string),
                                 link_WW_week_string, len(Silver_url_list), log_time)
-    # todo 目标文件不存在
+    #TODO 目标文件不存在
     while (not os.path.exists(file_path)):
         logger.print_message("Please wait until %s is created" % (file_path), _file_name)
         time.sleep(1)
@@ -416,7 +416,7 @@ def confirm_result_excel(purl_bak_string, link_WW_week_string, Silver_url_list, 
     logger.print_message("\n%s is closed.\nLast modified : %s" % (file_path, time.ctime(os.path.getmtime(file_path))), _file_name)
 
 
-# TODO 备份图片目录
+#TODO 备份图片目录
 def backup_chart(purl_bak_string, log_time, predict_execute_flag=False):
     if predict_execute_flag:
         backup_candidate_string = 'Candidate_'
@@ -424,7 +424,7 @@ def backup_chart(purl_bak_string, log_time, predict_execute_flag=False):
         backup_candidate_string = ''
 
     backup_name = BACKUP_PRESERVE_TABLE_CHART_DIR + os.sep + 'backup_' + backup_candidate_string + purl_bak_string + '_' + log_time
-    # TODO 原始备份目录不存在则跳过备份
+    #TODO 原始备份目录不存在则跳过备份
     if not os.path.exists(PRESERVE_TABLE_CHART_DIR):
         return
     original_file_list = glob.glob(PRESERVE_TABLE_CHART_DIR + os.sep + '*.png')
@@ -443,13 +443,13 @@ def backup_chart(purl_bak_string, log_time, predict_execute_flag=False):
             pass
 
 
-# TODO 删除原始缓存文件----默认保留1000个文件
+#TODO 删除原始缓存文件----默认保留1000个文件
 def backup_cache(purl_bak_string, reserve_file_max_num=1000):
-    # TODO 1、原始数据源
+    #TODO 1、原始数据源
     backup_name = BACKUP_CACHE_DIR + os.sep + 'backup_' + purl_bak_string + '_' + time.strftime('%Y_%m_%d_%H_%M_%S',
                     time.localtime(time.time())) + os.sep + purl_bak_string
 
-    # TODO 原始备份目录不存在则跳过备份
+    #TODO 原始备份目录不存在则跳过备份
     if not os.path.exists(SRC_CACHE_DIR):
         return
 
@@ -460,7 +460,7 @@ def backup_cache(purl_bak_string, reserve_file_max_num=1000):
         backup_file_list, file_num = os.listdir(BACKUP_CACHE_DIR), len(os.listdir(BACKUP_CACHE_DIR))
         if file_num >= reserve_file_max_num:
             backup_file_list.sort()
-            # TODO 删除时间最久的目录
+            #TODO 删除时间最久的目录
             shutil.rmtree(BACKUP_CACHE_DIR + os.sep + backup_file_list[0])
 
     list_dir_list_1 = os.listdir(SRC_CACHE_DIR)
@@ -469,8 +469,8 @@ def backup_cache(purl_bak_string, reserve_file_max_num=1000):
         shutil.rmtree(SRC_CACHE_DIR + os.sep + purl_bak_string)
 
 
-# TODO 备份Excel文件----默认保留2000个文件 在自动模式下，要求excel_dir目录下始终保存各个项目
-# TODO 最新的结果文件以完成迭代(执行对应项目的第二次)，否则可能会重新迭代
+#TODO 备份Excel文件----默认保留2000个文件 在自动模式下，要求excel_dir目录下始终保存各个项目
+#TODO 最新的结果文件以完成迭代(执行对应项目的第二次)，否则可能会重新迭代
 def backup_excel_file(logger, reserve_file_max_num=2000, log_time=None, link_WW_week_string=None, Silver_url_list=None,
                       auto_iteration_flag=False, predict_execute_flag=False):
     if predict_execute_flag:
@@ -480,7 +480,7 @@ def backup_excel_file(logger, reserve_file_max_num=2000, log_time=None, link_WW_
 
     backup_name = BACKUP_EXCEL_DIR + os.sep + 'backup_excel_' + backup_candidate_string + time.strftime('%Y_%m_%d_%H_%M_%S',
                                 time.localtime(time.time()))
-    # todo 原始备份目录不存在则跳过备份
+    #TODO 原始备份目录不存在则跳过备份
     if not os.path.exists(SRC_EXCEL_DIR):
         return
 
@@ -493,7 +493,7 @@ def backup_excel_file(logger, reserve_file_max_num=2000, log_time=None, link_WW_
         backup_file_list, file_num = os.listdir(BACKUP_EXCEL_DIR), len(os.listdir(BACKUP_EXCEL_DIR))
         if file_num >= reserve_file_max_num:
             backup_file_list.sort()
-            # todo 删除时间最久的目录以及文件
+            #TODO 删除时间最久的目录以及文件
             for file in os.listdir(BACKUP_EXCEL_DIR + os.sep + backup_file_list[0]):
                 os.remove(BACKUP_EXCEL_DIR + os.sep + backup_file_list[0] + os.sep + file)
             os.rmdir(BACKUP_EXCEL_DIR + os.sep + backup_file_list[0])
@@ -503,7 +503,7 @@ def backup_excel_file(logger, reserve_file_max_num=2000, log_time=None, link_WW_
 
         conf = MachineConfig(CONFIG_FILE_PATH)
         purl_bak_string = conf.get_node_info('real-time_control_parameter_value', 'default_purl_bak_string')
-        # todo 正常模式备份 只保留该项目当前产生的excel
+        #TODO 正常模式备份 只保留该项目当前产生的excel
         if not auto_iteration_flag:
             for file_name in original_file_list:
                 try:
@@ -514,12 +514,12 @@ def backup_excel_file(logger, reserve_file_max_num=2000, log_time=None, link_WW_
                     os.remove(file_name)
                 except (WindowsError, IOError):
                     pass
-        # todo 自动模式备份 保留三个项目最新的excel
+        #TODO 自动模式备份 保留三个项目最新的excel
         else:
             Bak_excel_list = [ name for name in original_file_list if 'Bakerville' in name ]
             NFVi_excel_list = [ name for name in original_file_list if 'NFVi' in name ]
             FPGA_excel_list = [ name for name in original_file_list if 'Purley-FPGA' in name ]
-            # todo 每个项目仅按照时间排序 保留最新的
+            #TODO 每个项目仅按照时间排序 保留最新的
             Bak_excel_list.sort(key=lambda x: x.split('_')[-6:])
             NFVi_excel_list.sort(key=lambda x: x.split('_')[-6:])
             FPGA_excel_list.sort(key=lambda x: x.split('_')[-6:])
@@ -541,7 +541,7 @@ def backup_excel_file(logger, reserve_file_max_num=2000, log_time=None, link_WW_
                 except (WindowsError, IOError):
                     pass
 
-# TODO 处理html
+#TODO 处理html
 class FilterTag(object):
     def filterHtmlTag(self, htmlStr):
         '''

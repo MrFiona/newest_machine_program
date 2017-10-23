@@ -25,10 +25,10 @@ chart_software_numberChosen1, chart_new_numberChosen2, chart_exist_numberChosen3
 chart_save_test_numberChosen6, chart_save_effort_numberChosen7, chart_miss_numberChosen8 = '', '', '', '', '', '', '', ''
 
 
-# TODO 文件选择
+#TODO 文件选择
 def template_choose(template_file_path, week_choose):
     filename = askopenfilename(initialdir=os.getcwd(), filetypes=(("excel file", "*.xlsx;*.xls;*.csv"),))
-    # TODO 此处不需要模板验证
+    #TODO 此处不需要模板验证
     if len(filename) != 0:
         template_file_name = os.path.split(filename)[1]
         newest_week_string_list = template_file_name.split('_')
@@ -43,7 +43,7 @@ def template_choose(template_file_path, week_choose):
             week_choose.insert(0, newest_week_string_list[2])
 
 
-# TODO 检查输入信息的有效性
+#TODO 检查输入信息的有效性
 def check_week_template_info(root, week_choose, template_file_path, email_server, email_send, email_receive):
     email_server_flag, email_send_flag, email_receive_flag, template_file_flag, week_info_flag = True, True, True, True, True
     email_compile = re.compile(pattern='\w+.@intel.com')
@@ -76,9 +76,9 @@ def check_week_template_info(root, week_choose, template_file_path, email_server
         template_file_flag = False
         template_file_path.delete(0, END)
     else:
-        # TODO 判断是否是个文件
+        #TODO 判断是否是个文件
         if os.path.isfile(template_info):
-            # TODO 当前目录下则填充全路径
+            #TODO 当前目录下则填充全路径
             if template_info.strip() in os.listdir(os.path.split(os.getcwd())[0]):
                 template_file_path.delete(0, END)
                 template_file_path.insert(0, os.path.split(os.getcwd())[0] + os.sep + template_info.strip())
@@ -88,7 +88,7 @@ def check_week_template_info(root, week_choose, template_file_path, email_server
             template_file_flag = False
             template_file_path.delete(0, END)
 
-    # TODO 保存到配置文件
+    #TODO 保存到配置文件
     if email_server_flag and email_send_flag and email_receive_flag and template_file_flag and template_file_flag and week_info_flag:
         conf = MachineConfig(MANUAL_CONFIG_FILE_PATH)
         conf.modify_node_value('manual_machine_info', 'week_info', week_choose.get().strip())
@@ -99,7 +99,7 @@ def check_week_template_info(root, week_choose, template_file_path, email_server
         root.destroy()
 
 
-# TODO 加载配置里的图表参数值
+#TODO 加载配置里的图表参数值
 def manual_load_default_chart_config():
     conf = MachineConfig(MANUAL_CONFIG_FILE_PATH)
     default_display_software = conf.get_node_info('manual_chart_config', 'display_software')
@@ -122,7 +122,7 @@ def manual_load_default_chart_config():
     chart_miss_numberChosen8.set('YES' if default_display_miss == 'YES' else 'NO')
 
 
-# TODO 将当前界面的值保存为配置参数值功能函数
+#TODO 将当前界面的值保存为配置参数值功能函数
 def manual_current_config_save_as_default():
     conf = MachineConfig(MANUAL_CONFIG_FILE_PATH)
     current_display_software = chart_software_var.get()
@@ -144,7 +144,7 @@ def manual_current_config_save_as_default():
     conf.modify_node_value('manual_chart_config', 'display_miss', current_display_miss)
 
 
-# TODO 加载图表配置参数值
+#TODO 加载图表配置参数值
 def manual_chart_load_default():
     default_load_flag = askyesno('Load the default chart configuration window',
                                  'Are you sure you need to load the default chart configuration?')
@@ -152,7 +152,7 @@ def manual_chart_load_default():
         manual_load_default_chart_config()
 
 
-# TODO 将当前界面的值保存为配置参数值
+#TODO 将当前界面的值保存为配置参数值
 def manual_chart_save_default():
     default_save_flag = askyesno('Save the default chart configuration window',
                                  'Are you sure you need to save the current chart configuration as the default chart configuration?')
@@ -160,7 +160,7 @@ def manual_chart_save_default():
         manual_current_config_save_as_default()
 
 
-# TODO 图表配置界面
+#TODO 图表配置界面
 def manual_machine_chart_gui():
     chart_tk = Tk()
     chart_tk.title('manual chart config gui')
@@ -251,7 +251,7 @@ def manual_machine_chart_gui():
     mainloop()
 
 
-# TODO 显示所有选择的配置参数值
+#TODO 显示所有选择的配置参数值
 def display_all_choose_parameters(logger):
     with open(MANUAL_CONFIG_FILE_PATH, 'r') as f:
         manual_config_info = f.readlines()
@@ -262,7 +262,7 @@ def display_all_choose_parameters(logger):
         logger.print_message('%d:\t%s' % (manual_config_info.index(info), info), os.path.split(__file__)[1])
 
 
-# TODO 手动配置界面主程序
+#TODO 手动配置界面主程序
 def manual_machine_config_gui_main(logger):
     manual_tk = Tk()
     manual_tk.title('manual machine gui')
@@ -295,7 +295,7 @@ def manual_machine_config_gui_main(logger):
     email_send.grid(row=2, column=5, columnspan=5, padx=20, pady=15)
     email_receive.grid(row=3, column=5, columnspan=5, padx=20, pady=15)
 
-    # TODO 邮件默认加载当前配置信息
+    #TODO 邮件默认加载当前配置信息
     conf = MachineConfig(MANUAL_CONFIG_FILE_PATH)
     default_email_send = conf.get_node_info('from_address', 'from_address')
     default_email_receive = conf.get_node_info('receive_address', 'receive_address')
@@ -308,9 +308,9 @@ def manual_machine_config_gui_main(logger):
                             check_week_template_info(manual_tk, week_choose, template_file_path, email_server, email_send, email_receive))
     mainloop()
 
-    # TODO 图表配置界面
+    #TODO 图表配置界面
     manual_machine_chart_gui()
-    # TODO 显示配置参数值
+    #TODO 显示配置参数值
     display_all_choose_parameters(logger)
 
 

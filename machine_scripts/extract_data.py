@@ -337,7 +337,7 @@ class GetAnalysisData(object):
             page_url = page_url_sep
 
         self.logger.print_message('page_url:\t%s' % page_url, self.__file_name)
-        # TODO 是否离线标记获取
+        #TODO 是否离线标记获取
         on_off_line_save_flag = judge_get_config('on_off_line_save_flag', self.purl_bak_string)
         if on_off_line_save_flag == 'online':
             html = urllib2.urlopen(page_url, context=context).read()
@@ -419,7 +419,7 @@ class GetAnalysisData(object):
                         for word in th_list:
                             string_soup = BeautifulSoup(str(word), 'html.parser')
                             th_strings_list = list(string_soup.strings)
-                            # todo 去除换行符
+                            #TODO 去除换行符
                             remove_line_break(th_strings_list, line_break=True, second_method=True)
                             effective_header_list.append(th_strings_list[0])
                             cell_data_list.insert(0, effective_header_list)
@@ -444,7 +444,7 @@ class GetAnalysisData(object):
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
             return 'Error', 'Error', [], [], []
 
-    # TODO DE和FPGA DE:24周之后 FPGA: 23周之后 hw格式更改
+    #TODO DE和FPGA DE:24周之后 FPGA: 23周之后 hw格式更改
     def get_lastest_bak_hw_data(self, data_type, bkc_flag=True):
         try:
             Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self.judge_silver_bkc_func(data_type, bkc_flag)
@@ -476,14 +476,14 @@ class GetAnalysisData(object):
                         for index in range(len(search_td_container_list)):
                             search_td_container_list[index].append(judge_th_exist[index])
 
-            # TODO 根据Item位置进行确定
+            #TODO 根据Item位置进行确定
             separate_item_index_list = []
             for i in range(len(search_td_container_list[0])):
                 if re.match('.*Item.*', str(search_td_container_list[0][i])):
                     separate_item_index_list.append(i)
             item_index = max(separate_item_index_list)
 
-            # TODO 提取表左列值列表
+            #TODO 提取表左列值列表
             for header_ele in search_td_container_list[0]:
                 header_soup = BeautifulSoup(str(header_ele), 'html.parser')
                 temp = list(header_soup.strings)
@@ -505,7 +505,7 @@ class GetAnalysisData(object):
                     effective_search_td_container_list.append(ele_list)
             # print '\neffective_search_td_container_list:\t', effective_search_td_container_list
 
-            # TODO 按列标号排序 数据对齐
+            #TODO 按列标号排序 数据对齐
             for ele in range(len(effective_search_td_container_list)):
                 # print 'ttt:\t', effective_search_td_container_list[ele]
                 soup_ele = BeautifulSoup(str(effective_search_td_container_list[ele][0]), 'html.parser')
@@ -514,13 +514,13 @@ class GetAnalysisData(object):
             effective_search_td_container_list.sort(key=lambda x: x[0])
             # print '\neffective_search_td_container_list:\t\n', effective_search_td_container_list, len(effective_search_td_container_list)
 
-            # TODO 按列转为按行
+            #TODO 按列转为按行
             for index in range(len(effective_search_td_container_list[0])):
                 temp_list = [ ele[index] for ele in effective_search_td_container_list ]
                 effective_cell_data_td_list.insert(index, temp_list)
             # print '\neffective_cell_data_td_list:\t\n', effective_cell_data_td_list, len(effective_cell_data_td_list)
 
-            # TODO 提取单元格数据
+            #TODO 提取单元格数据
             for location in range(len(effective_cell_data_td_list)):
                 child_element = effective_cell_data_td_list[location]
                 # print 'child_element:\t', child_element
@@ -554,7 +554,7 @@ class GetAnalysisData(object):
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
             return 'Error', 'Error', [], [], []
 
-    # TODO DE和FPGA DE:24周之后 FPGA: 23周之后 hw格式更改
+    #TODO DE和FPGA DE:24周之后 FPGA: 23周之后 hw格式更改
     def get_lastest_FPGA_hw_data(self, data_type, bkc_flag=True):
         try:
             Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self.judge_silver_bkc_func(data_type, bkc_flag)
@@ -583,7 +583,7 @@ class GetAnalysisData(object):
                         for index in range(len(search_td_container_list)):
                             search_td_container_list[index].append(judge_th_exist[index])
 
-            # TODO 提取表左列值列表
+            #TODO 提取表左列值列表
             for header_ele in search_td_container_list[0]:
                 header_soup = BeautifulSoup(str(header_ele), 'html.parser')
                 temp = list(header_soup.strings)
@@ -591,12 +591,12 @@ class GetAnalysisData(object):
                     effective_header_list.append(temp[0])
             header_list = effective_header_list[1:8]
 
-            # TODO 目前四个特性 分离两个table组合成一个table
+            #TODO 目前四个特性 分离两个table组合成一个table
             for ele_list in search_td_container_list[1:]:
                 effective_search_td_container_list.append(ele_list[0:8])
                 effective_search_td_container_list.append(ele_list[8:])
 
-            # TODO 按列标号排序 数据对齐
+            #TODO 按列标号排序 数据对齐
             for ele in range(len(effective_search_td_container_list)):
                 soup_ele = BeautifulSoup(str(effective_search_td_container_list[ele][0]), 'html.parser')
                 if list(soup_ele.strings):
@@ -604,22 +604,25 @@ class GetAnalysisData(object):
             effective_search_td_container_list.sort(key=lambda x: x[0])
             # print '\neffective_search_td_container_list:\t\n', effective_search_td_container_list, len(effective_search_td_container_list)
 
-            # TODO 按列转为按行
+            #TODO 按列转为按行
             for index in range(len(effective_search_td_container_list[0])):
                 temp_list = [ele[index] for ele in effective_search_td_container_list]
                 effective_cell_data_td_list.insert(index, temp_list)
             # print '\neffective_cell_data_td_list:\t\n', effective_cell_data_td_list, len(effective_cell_data_td_list)
 
-            # # TODO 提取单元格数据
+            #TODO 提取单元格数据
             for location in range(len(effective_cell_data_td_list)):
                 child_element = effective_cell_data_td_list[location]
+                temp_flag_dict = {key : 0 for key in xrange(len(child_element))}
                 for ele in range(len(child_element)):
                     ele_soup = BeautifulSoup(str(child_element[ele]), 'html.parser')
                     ele_string_list = list(ele_soup.strings)
                     if ele_string_list:
                         child_element[ele] = ele_string_list[0]
                     else:
-                        child_element.pop(-1)
+                        temp_flag_dict[ele] = 1
+                effective_cell_data_td_list[location] = [child_element[key] for key in xrange(len(child_element)) if not temp_flag_dict[key]]
+
             temp_header_list, effective_num_list = self._get_hw_effective_header_list(effective_cell_data_td_list[0])
             effective_cell_data_td_list = self._insert_numers_to_cell_data_list(effective_cell_data_td_list)
             effective_cell_data_td_list[0] = temp_header_list
@@ -745,7 +748,7 @@ class GetAnalysisData(object):
                 header_list[i] = header_list[i].replace('\n', '')
             #排除部分周会有更多的列
             header_length = len(header_list)
-            # todo remove special characters \xc2\xa0
+            #TODO remove special characters \xc2\xa0
             header_list = [ ele for ele in header_list if u'\xc2\xa0' not in ele ]
             header_list = header_list[:4]
             url_list = []
@@ -788,7 +791,7 @@ class GetAnalysisData(object):
                 elif (len(temp_string_list) >= header_length + 2) and len(temp_string_list[-1]) == 0:
                     temp_string_list = temp_string_list[:-1]
 
-                # todo 括号分离合并处理
+                #TODO 括号分离合并处理
                 temp_string_list = extract_sw_data_deal_bracket(temp_string_list)
                 if temp_string_list:
                     if u'APPs' == temp_string_list[0]:
@@ -1238,7 +1241,7 @@ class GetAnalysisData(object):
             else:
                 page_url = page_url_sep
 
-            # self.logger.print_message(msg='page_url:\t%s' % page_url, logger_name=self.__file_name)
+            self.logger.print_message(msg='page_url:\t%s' % page_url, logger_name=self.__file_name)
             html = self.cache[page_url]
             soup = BeautifulSoup(str(html), 'html.parser')
             #获取数据部分头部的标记字符串  Purley-FPGA WW12
@@ -1308,23 +1311,23 @@ if __name__ == '__main__':
     #     if 'Bakerville' in line and 'Silver' in line:
     #         key_url_list.append(line.strip('\n'))
 
-    cache = DiskCache('Bakerville')
+    cache = DiskCache('Purley-FPGA')
     # key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW24/6170_Silver.html',
     #                 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW34/6565_Silver.html',
     #                 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW38/6706_Silver.html',
     #                 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW37/6668_Silver.html']
     #                 # 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW25/6211_BKC.html']
-    key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW34/6565_Silver.html',
-                    'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW38/6706_Silver.html',
-                    'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW24/6170_Silver.html',
-                    'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW37/6668_Silver.html']
+    key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW31/6464_Silver.html',
+                    'https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW42/6929_Silver.html']
     for url in key_url_list:
         obj = GetAnalysisData(url, 'Bakerville', get_info_not_save_flag=True, insert_flag=True, cache=cache)
         # obj.get_caseresult_data('Platform Integration Validation Result', True)
         # obj.get_sw_data('SW Configuration', True)
         # obj.get_platform_data('Platform Integration Validation Result', True)
+        # obj.get_hw_data('HW Configuration', True)
+        obj.get_lastest_FPGA_hw_data('HW Configuration', True)
         # obj.get_bak_hw_data('HW Configuration', True)
-        obj.get_lastest_bak_hw_data('HW Configuration', True)
+        # obj.get_lastest_bak_hw_data('HW Configuration', True)
     print time.time() - start
     # import pstats
     # p = pstats.Stats('mkm_run.prof')

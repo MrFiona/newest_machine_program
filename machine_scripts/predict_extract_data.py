@@ -97,7 +97,7 @@ class PredictGetData(object):
 
                 # 获取cell_data_list数据
                 temp_string_list = remove_non_alphanumeric_characters(temp_string_list)
-                # TODO Changed(last build)和Changed(last release)同时存在取后者
+                #TODO Changed(last build)和Changed(last release)同时存在取后者
                 if build_exist_flag:
                     temp_temp_list = temp_string_list[:2]
                     temp_temp_list.extend([temp_string_list[3], temp_string_list[4]])

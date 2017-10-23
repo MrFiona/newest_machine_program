@@ -56,7 +56,7 @@ def get_max_num(first_data, second_data, third_data, fourth_data, fifth_data,
         positive_fifth_data = [abs(ele) for ele in fifth_data if ele > 0]
         positive_num_list.extend(positive_fifth_data)
 
-    # TODO 负数和正数可能有一个不存在
+    #TODO 负数和正数可能有一个不存在
     if negative_num_list:
         max_negative_num = max(negative_num_list)
     else:
@@ -114,7 +114,7 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
         chart_link_string = '_' + type_string
 
     if type_string == '':
-        # TODO 获取代表是否显示五个表的参数
+        #TODO 获取代表是否显示五个表的参数
         display_software = get_interface_config('display_software', purl_bak_string)
         display_New = get_interface_config('display_new', purl_bak_string)
         display_Existing = get_interface_config('display_existing', purl_bak_string)
@@ -160,7 +160,7 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
             nine_data.append(int(string_list[9].replace('%', '')))
 
 
-    # todo 时间日期加人年份 定制显示格式 2017-06-26 update
+    #TODO 时间日期加人年份 定制显示格式 2017-06-26 update
     for index in range(len(weeks_list)):
         weeks_list_ele_list = weeks_list[index].split('WW')
         weeks_list[index] = weeks_list_ele_list[0] + '\n' + 'WW' + weeks_list_ele_list[-1]
@@ -239,7 +239,7 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
     plt.legend(header_display_string_list, fontsize=14)
 
 
-    # TODO 存在excel文件则填入图表
+    #TODO 存在excel文件则填入图表
     if object_excel_file:
         import xlwings as xw
         obj_book = xw.Book(object_excel_file)
@@ -254,12 +254,12 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
 
     foo_fig.savefig(PRESERVE_TABLE_CHART_DIR + os.sep + purl_bak_string + chart_link_string + '_table_chart_1_' +
                     candidate_string + log_time + '.png', format='png', dpi=fig.dpi)
-    # TODO 自动运行则不开启
+    #TODO 自动运行则不开启
     if not auto_run_flag:
         plt.show()
     fig.clear()
 
-    # TODO 生成另一张图
+    #TODO 生成另一张图
     fig_sighting = plt.figure()
     fig_sighting.set_size_inches(w=15, h=8)
     ax1_sighting = plt.gca()
@@ -267,7 +267,7 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
 
     # y轴主刻度最小单位设为1
     ax1_sighting.yaxis.set_major_locator(MultipleLocator(5))
-    # todo '%1.1f%%'
+    #TODO '%1.1f%%'
     # ax1_sighting.yaxis.set_major_formatter(FormatStrFormatter())
 
     if display_save_test == 'YES':
@@ -291,7 +291,7 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
 
     plt.legend(header_display_string_list_sighting, fontsize=14)
 
-    # TODO 存在excel文件则填入图表
+    #TODO 存在excel文件则填入图表
     if object_excel_file:
         sht.pictures.add(fig_sighting, name='Trend_chart 2', update=True, left=500, top=1100, width=1500, height=800)
         obj_book.save()
@@ -303,7 +303,7 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
 
     foo_fig_sighting.savefig(PRESERVE_TABLE_CHART_DIR + os.sep + purl_bak_string + chart_link_string + '_table_chart_2_' +
                     candidate_string + log_time + '.png', format='png', dpi=fig.dpi)
-    # TODO 自动运行则不开启
+    #TODO 自动运行则不开启
     if not auto_run_flag:
         plt.show()
     fig_sighting.clear()
@@ -319,7 +319,7 @@ if __name__ == '__main__':
     _logger = WorkLogger('machine_log', create_log_flag=False)
     conf = MachineConfig(CONFIG_FILE_PATH)
     purl_bak_string = conf.get_node_info('real-time_control_parameter_value', 'default_purl_bak_string')
-    # TODO 类型: Bakerville or Purley-FPGA
+    #TODO 类型: Bakerville or Purley-FPGA
     purl_bak_string = get_interface_config('default_purl_bak_string', purl_bak_string)
     object_file = None
     file_list = glob.glob(SRC_EXCEL_DIR + os.sep + '*.xlsx')

@@ -60,7 +60,7 @@ class GetUrlFromHtml(object):
         self.all_date_list = []
         self.url_info_list = []
 
-    # TODO 递归创建目录函数  私有函数
+    #TODO 递归创建目录函数  私有函数
     def _recursive_create_dir(self, purl_bak_string, create_html_name, dir_path=None):
         if not dir_path:
             raise UserWarning('The directory path to be created is None!!!')
@@ -69,7 +69,7 @@ class GetUrlFromHtml(object):
             if purl_bak_string in dir_path or create_html_name == 'auto':
                 os.makedirs(dir_path)
 
-    # TODO 将指定目录中的文件写入数据  私有函数
+    #TODO 将指定目录中的文件写入数据  私有函数
     def _write_info(self, file_path, write_message):
         try:
             if not file_path:
@@ -83,7 +83,7 @@ class GetUrlFromHtml(object):
         except IOError:
             pass
 
-    # TODO 提取Html中指定的tag信息列表
+    #TODO 提取Html中指定的tag信息列表
     def _get_html_tag(self, html, tag_name):
         soup = BeautifulSoup(html, 'html.parser')
         tag = soup.find_all(re.compile(tag_name))
@@ -93,7 +93,7 @@ class GetUrlFromHtml(object):
         tag.sort(reverse=True)
         return tag
 
-    # TODO 将当前html写入对应路径的文件，返回含有li吧标签的信息列表
+    #TODO 将当前html写入对应路径的文件，返回含有li吧标签的信息列表
     def _common_get_info(self, url, create_html_name, purl_bak_string):
         try:
             #todo 写入html,需考虑多级路径的情况下处理，将路径分隔符替换为下划线,在连接日期的时候会出现%也要替换为下划线
@@ -118,7 +118,7 @@ class GetUrlFromHtml(object):
             return []
         return li_list
 
-    # TODO 获取主页面html中的部门信息列表
+    #TODO 获取主页面html中的部门信息列表
     def get_department_html_info(self, purl_bak_string, get_only_department=True):
         li_list = self._common_get_info(self.html_url_pre, 'auto', purl_bak_string)
         if not li_list:
@@ -142,7 +142,7 @@ class GetUrlFromHtml(object):
                     department_info_list.append(purl_bak_string)
         return department_info_list
 
-    # TODO 获取部门html中的阶段信息列表
+    #TODO 获取部门html中的阶段信息列表
     def get_stage_type_html_info(self, department_name, purl_bak_string):
         li_list = self._common_get_info(self.html_url_pre + department_name, department_name, purl_bak_string)
         if not li_list:
@@ -158,7 +158,7 @@ class GetUrlFromHtml(object):
             stage_info_list.sort(reverse=True)
         return stage_info_list
 
-    # TODO 获取阶段html中的日期信息列表
+    #TODO 获取阶段html中的日期信息列表
     def get_date_html_info(self, department_name, stage_type_name, purl_bak_string):
         li_list = self._common_get_info(self.html_url_pre + department_name + '/' + stage_type_name, department_name + os.sep + stage_type_name, purl_bak_string)
         if not li_list:
@@ -174,7 +174,7 @@ class GetUrlFromHtml(object):
         url_pre_list.sort(reverse=True)
         return url_pre_list
 
-    # TODO 获取日期Html中的数据url地址
+    #TODO 获取日期Html中的数据url地址
     def get_result_data_url(self, department_name, stage_type_name, date_name, purl_bak_string):
         li_list = self._common_get_info(self.html_url_pre + department_name + '/' + stage_type_name + '/' + date_name, department_name + os.sep + stage_type_name + os.sep + date_name, purl_bak_string)
         if not li_list:
@@ -186,38 +186,38 @@ class GetUrlFromHtml(object):
                 file_name = file[0]
         return file_name
 
-    # TODO 更新所有周缓存
+    #TODO 更新所有周缓存
     def write_all_html_by_multi_thread(self, purl_bak_string):
         cache = DiskCache(purl_bak_string)
         effective_url_list = []
         for type in ['Silver', 'Gold', 'BKC']:
-            # TODO 获取所有周url列表
+            #TODO 获取所有周url列表
             effective_url_list.extend(get_url_list_by_keyword(purl_bak_string, type))
         for url in effective_url_list:
-            # TODO 更新所有周缓存
+            #TODO 更新所有周缓存
             GetAnalysisData(data_url=url, purl_bak_string=purl_bak_string, get_info_not_save_flag=True, cache=cache, insert_flag=False)
 
-    # TODO 更新相应周缓存
+    #TODO 更新相应周缓存
     def write_section_html_by_multi_thread(self, purl_bak_string):
         cache = DiskCache(purl_bak_string)
         effective_url_list = []
-        # TODO 删除缓存置标记为True 获取对应周信息列表在choose_week_info_dir目录下并且删除相应缓存
+        #TODO 删除缓存置标记为True 获取对应周信息列表在choose_week_info_dir目录下并且删除相应缓存
         effective_week_string_list = self.get_week_info_by_flag(purl_bak_string, delete_cache_flag=True)
         for type in ['Silver', 'Gold', 'BKC']:
-            # TODO 获取对应周url列表
+            #TODO 获取对应周url列表
             temp_list = get_url_list_by_keyword(purl_bak_string, type, pre_url_list=effective_week_string_list)
             effective_url_list.extend(temp_list)
         for url in effective_url_list:
-            # TODO 更新对应周缓存
+            #TODO 更新对应周缓存
             GetAnalysisData(data_url=url, purl_bak_string=purl_bak_string, get_info_not_save_flag=True, cache=cache, insert_flag=False)
         return effective_week_string_list
 
-    # TODO  将url写进文件
+    #TODO  将url写进文件
     def save_url_info(self, purl_bak_string):
         with open(self.file_path + os.sep + purl_bak_string + '_url_info.txt', 'w') as f:
             f.write('\n'.join(self.url_info_list))
 
-    # TODO 获取所有的类型的数据
+    #TODO 获取所有的类型的数据
     def get_all_type_data(self, purl_bak_string, get_only_department=True):
         #todo 获取部门列表
         self.department_list = self.get_department_html_info(purl_bak_string, get_only_department=get_only_department)
@@ -265,18 +265,18 @@ class GetUrlFromHtml(object):
         #todo 将url列表信息写进文件
         self.save_url_info(purl_bak_string)
 
-    # TODO 获取部门, 测试类型, 日期列表
+    #TODO 获取部门, 测试类型, 日期列表
     def get_department_stage_date_list(self):
         return self.department_list, self.stage_type_list, self.date_list
 
-    # TODO 根据周日期标记来获取周数据 delete_cache_flag 防止重复删缓存标记
+    #TODO 根据周日期标记来获取周数据 delete_cache_flag 防止重复删缓存标记
     def get_week_info_by_flag(self, purl_bak_string, delete_cache_flag=False):
         with open(SRC_WEEK_DIR + os.sep + 'week_info.txt', 'r') as f:
             week_string = f.readline()
 
         week_string_list = week_string.strip().split(',')
 
-        # TODO 未配置日期值
+        #TODO 未配置日期值
         if not week_string_list:
             return []
 
@@ -293,7 +293,7 @@ class GetUrlFromHtml(object):
                 if object_dirname.endswith(purl_bak_string):
                     search_num += 1
                     if search_num == 2:
-                        # TODO 删除指定周目录
+                        #TODO 删除指定周目录
                         for pre_dir in ['BKC', 'Gold', 'Silver']:
                             for file in week_string_list:
                                 try:
@@ -303,24 +303,24 @@ class GetUrlFromHtml(object):
                                 except WindowsError:
                                     pass
 
-        # TODO 重新获取数据
+        #TODO 重新获取数据
         effective_week_string_list = [ re.sub('_', '%', week) + '/' for week in week_string_list ]
         # print 'effective_week_string_list:\t', effective_week_string_list
         return effective_week_string_list
 
-    # TODO 当配置周日期标记开启时删除相应周的缓存并且重新更新缓存
+    #TODO 当配置周日期标记开启时删除相应周的缓存并且重新更新缓存
     def update_week_cache(self, purl_bak_string):
-        # TODO 删除对应周缓存
+        #TODO 删除对应周缓存
         self.get_week_info_by_flag(purl_bak_string, delete_cache_flag=True)
         self.get_all_type_data(purl_bak_string)
-        # TODO 更新缓存
+        #TODO 更新缓存
         object.write_section_html_by_multi_thread(purl_bak_string)
 
 
 
 if __name__ == '__main__':
     start = time.time()
-    # TODO 类型: Bakerville or Purley-FPGA
+    #TODO 类型: Bakerville or Purley-FPGA
     from machine_scripts.custom_log import WorkLogger
     _logger = WorkLogger('get_all_html_log', create_log_flag=False)
 

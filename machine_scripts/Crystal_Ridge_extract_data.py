@@ -193,7 +193,7 @@ class GetAnalysisData(object):
                 self._page_url = page_url_sep
             urllib2.urlopen(self._page_url, context=context).read()
         except:
-            # todo 更具self.data_url来计算出page_url
+            #TODO 更具self.data_url来计算出page_url
             page_url = self._parent_caseresult_url[:-5] + '_files/'
             html = urllib2.urlopen(page_url, context=context).read().encode('utf-8')
             soup_html = BeautifulSoup(str(html), 'html.parser')
@@ -363,7 +363,7 @@ class GetAnalysisData(object):
         self._get_common_page_url()
         # print 'page_url:\t%s' % self._page_url
         self.logger.print_message('page_url:\t%s' % self._page_url, self.__file_name)
-        # TODO 是否离线标记获取
+        #TODO 是否离线标记获取
         on_off_line_save_flag = judge_get_config('on_off_line_save_flag', self.purl_bak_string)
         if on_off_line_save_flag == 'online':
             html = urllib2.urlopen(self._page_url, context=context).read()
@@ -901,7 +901,7 @@ class GetAnalysisData(object):
                     Silver_Gold_BKC_string = 'Silver'
                     self._parent_caseresult_url = self._parent_caseresult_url.replace('Gold', 'Silver')
 
-            # todo 获取page_url
+            #TODO 获取page_url
             self._get_common_page_url()
             self.logger.print_message(msg='page_url:\t%s' % self._page_url, logger_name=self.__file_name)
             html = self.cache[self._page_url]
