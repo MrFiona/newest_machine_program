@@ -5,8 +5,6 @@
 # File    : extract_NFV_data.py
 # Software: PyCharm Community Edition
 
-from __future__ import absolute_import
-
 
 import os
 import re
@@ -19,7 +17,7 @@ from bs4 import BeautifulSoup
 
 from machine_scripts.cache_mechanism import DiskCache
 from machine_scripts.public_use_function import remove_line_break
-from machine_scripts.common_interface_func import (NFVi_remove_non_alphanumeric_characters, FilterTag)
+from machine_scripts.common_interface_func import (NFVi_remove_non_alphanumeric_characters)
 from setting_global_variable import REPORT_HTML_DIR
 
 reload(sys)
@@ -28,7 +26,7 @@ sys.setdefaultencoding('utf-8')
 import ssl
 from functools import wraps
 
-# 强制ssl使用TLSv2
+#todo 强制ssl使用TLSv2
 def sslwrap(func):
     @wraps(func)
     def bar(*args, **kw):
@@ -92,30 +90,20 @@ class GetAnalysisData(object):
             self.logger.print_message(e, self.__file_name, CRITICAL)
             return
 
-    # 提取通用的部分,如果bkc_flag=True并且BKC和Gold都没有数据则取Silver数据 优先级：BKC > Gold > Silver
+    #todo 提取通用的部分,如果bkc_flag=True并且BKC和Gold都没有数据则取Silver数据 优先级：BKC > Gold > Silver
     def _common_regex(self, data_type, bkc_flag=False, replace_flag=False):
         Silver_Gold_BKC_string = 'Silver'
-        # # 如果bkc_flag = True并且BKC没有数据则取Silver数据,需将变量恢复原值
-        # if replace_flag and not bkc_flag:
-        #     self.save_file_path = self.save_file_path.replace('BKC', 'Silver')
-        #     self.save_file_path = self.save_file_path.replace('Gold', 'Silver')
-        #     self.data_url = self.data_url.replace('BKC', 'Silver')
-        #     self.data_url = self.data_url.replace('Gold', 'Silver')
-        #     self.save_file_name = self.save_file_name.replace('BKC', 'Silver')
-        #     self.save_file_name = self.save_file_name.replace('Gold', 'Silver')
-        #     Silver_Gold_BKC_string = 'Silver'
-
-        # BKC标记开启，自动更换为文件BKC地址
+        #todo BKC标记开启，自动更换为文件BKC地址
         if bkc_flag:
             self.save_file_path = self.save_file_path.replace('Silver', 'BKC')
             self.data_url = self.data_url.replace('Silver', 'BKC')
             Silver_Gold_BKC_string = 'BKC'
-            # 如果BKC无数据则取Gold数据
+            #todo 如果BKC无数据则取Gold数据
             if not os.path.exists(self.save_file_path):
                 self.save_file_path = self.save_file_path.replace('BKC', 'Gold')
                 self.data_url = self.data_url.replace('BKC', 'Gold')
                 Silver_Gold_BKC_string = 'Gold'
-                # 如果Gold无数据则取Silver数据
+                #todo 如果Gold无数据则取Silver数据
                 if not os.path.exists(self.save_file_path):
                     self.save_file_path = self.save_file_path.replace('Gold', 'Silver')
                     self.data_url = self.data_url.replace('Gold', 'Silver')
@@ -135,21 +123,16 @@ class GetAnalysisData(object):
             self.save_file_name = os.path.split(self.data_url)[-1].split('.')[0] + '_html'
             self.save_file_name = bkc_file_name
 
-        # 读取文本中的html代码
-        # with codecs.open(self.save_file_path + os.sep + self.save_file_name, 'r', encoding='utf-8') as f:
-        #     data = f.readlines()
-        # data = ''.join(data)
         data = self.cache[self.data_url]
-        # 提取HW Configuration部分的代码
-        regex = re.compile(r'<span class="sh2">&nbsp; %s </span>(.*?)<div class="panel-heading">' % data_type,
-                           re.S | re.M)
+        #todo 提取HW Configuration部分的代码
+        regex = re.compile(r'<span class="sh2">&nbsp; %s </span>(.*?)<div class="panel-heading">' % data_type, re.S | re.M)
         header = re.findall(regex, data)
         string_data = ''.join(header)
-        # 提取所有的tr部分
+        #todo 提取所有的tr部分
         soup_tr = BeautifulSoup(string_data, 'html.parser')
         tr_list = soup_tr.find_all(re.compile('tr'))
 
-        # 增加保险措施，通过关键字提取文本html实现
+        #todo 增加保险措施，通过关键字提取文本html实现
         if not tr_list:
             fread = codecs.open(self.save_file_path + os.sep + self.save_file_name, 'r', 'utf-8')
             fwrite = codecs.open(self.save_file_path + os.sep + 'temp.txt', 'wb', 'utf-8')
@@ -177,9 +160,6 @@ class GetAnalysisData(object):
 
     def judge_silver_bkc_func(self, data_type, bkc_flag):
         Silver_Gold_BKC_string, tr_list = self._common_regex(data_type, bkc_flag)
-        # 如果bkc_flag = True并且BKC没有数据则取Silver数据
-        # if not tr_list and bkc_flag:
-        #     Silver_Gold_BKC_string, tr_list= self._common_regex(data_type, bkc_flag=False, replace_flag=True)
         return Silver_Gold_BKC_string, tr_list
 
     def get_hw_data(self, data_type, bkc_flag=True):
@@ -222,7 +202,7 @@ class GetAnalysisData(object):
             # print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
             return Silver_Gold_BKC_string, self.date_string, effective_header_list, header_list, cell_data_list
 
-        except ImportError:
+        except:
             self.logger.print_message(msg='Get [ %s ] Orignal Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
             return 'Error', 'Error', [], [], []
 

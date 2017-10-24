@@ -5,22 +5,17 @@
 # File    : cache_mechanism.py
 # Software: PyCharm Community Edition
 
-from __future__ import absolute_import
 
 import os
 import re
 import pickle
 import urlparse
-from datetime import datetime, timedelta
 from setting_global_variable import SRC_CACHE_DIR
 
-class DiskCache(object):
-    def __init__(self, purl_bak_string, cache_dir=SRC_CACHE_DIR, expires=timedelta(days=30)):
-        self.cache_dir = cache_dir + os.sep + purl_bak_string
-        self.expires = expires
 
-    # def has_expired(self, timestamp):
-    #     return datetime.utcnow() > timestamp + self.expires
+class DiskCache(object):
+    def __init__(self, purl_bak_string, cache_dir=SRC_CACHE_DIR):
+        self.cache_dir = cache_dir + os.sep + purl_bak_string
 
     def url_to_path(self, url):
         components = urlparse.urlsplit(url)
@@ -46,6 +41,8 @@ class DiskCache(object):
             os.makedirs(folder)
         with open(path, 'wb') as fp:
             fp.write(pickle.dumps(result))
+
+
 
 if __name__ == '__main__':
     cache = DiskCache(purl_bak_string='Purley-FPGA')

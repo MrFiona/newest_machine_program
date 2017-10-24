@@ -14,8 +14,8 @@ from setting_global_variable import CONFIG_FILE_PATH, SRC_WEEK_DIR
 from machine_scripts.get_all_html import GetUrlFromHtml
 from machine_scripts.public_use_function import get_interface_config, get_url_list_by_keyword, judge_get_config
 from machine_scripts.common_interface_branch_func import obtain_prefix_project_name
-_file_name = os.path.split(__file__)[1]
 
+_file_name = os.path.split(__file__)[1]
 
 
 #TODO 实时显示相关组件数据
@@ -42,7 +42,7 @@ def display_text_info(text, entry, week_info_list, step_length):
                 text.AppendText('\n' + ' '.join(
                     entry_input_string_list[index * step_length:(index + 1) * step_length]))
 
-#TODO  检测所填入的数据的有效性 格式检查以及值有效检查
+#TODO 检测所填入的数据的有效性 格式检查以及值有效检查
 def check_week_valid(week_info_list, url_info_list, logger):
     #TODO 如果选择的周不在所有的周里面说明是不合法的周数据  无效值url信息集合judge_set
     judge_set = set(week_info_list) - set(url_info_list)
@@ -63,6 +63,7 @@ def check_week_valid(week_info_list, url_info_list, logger):
         return [week for week in week_info_list if re.search(week_compile, week) and len(week) == 8]
 
 
+#todo 用户自定义选择周界面
 class UserWeekSelectGui(wx.Frame):
     def __init__(self, purl_bak_string, logger, week_info_list=None, step_length=5):
         self.week_info_list = week_info_list
@@ -86,13 +87,13 @@ class UserWeekSelectGui(wx.Frame):
 
         self.select_week_text = wx.TextCtrl(panel, pos=(203, 7), size=(671, -1))
         self.select_week_text.SetBackgroundColour('turquoise')
-        #todo 文本框绑定粘贴事件
+        # todo 文本框组件绑定粘贴事件
         self.select_week_text.Bind(wx.EVT_TEXT_PASTE, self.text_past_event)
 
         self.Contents = wx.TextCtrl(panel, pos=(10, 40), size=(865, 410), style=wx.TE_MULTILINE)
         self.select_week_text.Bind(wx.EVT_LEAVE_WINDOW, self.sort_input_week_string_event)
         self.Contents.SetFont(wx.Font(11, wx.SWISS, wx.NORMAL, wx.NORMAL, False))
-        #todo 文本框组件绑定复制事件
+        # todo 文本框组件绑定复制事件
         self.Contents.Bind(wx.EVT_TEXT_COPY, self.text_copy_event)
 
         self.display_button = wx.Button(panel, wx.ID_ANY, label='Display', pos=(9, 460), size=(70, 30))
@@ -137,12 +138,15 @@ class UserWeekSelectGui(wx.Frame):
                 self.select_week_text.SetValue(final_select_week_string)
             wx.TheClipboard.Close()
 
+    #todo 清除信息
     def clear_info(self, event):
         self.Contents.Clear()
 
+    #todo 显示周信息
     def show_info(self, event):
         display_text_info(self.Contents, self.select_week_text, self.week_info_list, self.step_length)
 
+    #todo 绑定周配置信息窗口关闭事件实现信息保存文件
     def window_close_save_week_info_event(self, event):
         self.logger.print_message('week_input_string_list:\t%s' % self.week_input_string_list, _file_name)
         #TODO 保存日期值
@@ -154,8 +158,7 @@ class UserWeekSelectGui(wx.Frame):
             else:
                 f.write('')
 
-        self.Destroy()
-
+    #todo 绑定鼠标离开组件事件实现信息自动排序
     def sort_input_week_string_event(self, event):
         data = self.select_week_text.GetValue()
         if len(data.strip()) != 0:
@@ -166,10 +169,10 @@ class UserWeekSelectGui(wx.Frame):
 
             self.week_input_string_list = data_list
 
-            #TODO  检测所填入的数据的有效性, 并返回有效的周列表
+            #TODO 检测所填入的数据的有效性, 并返回有效的周列表
             week_input_string_list = check_week_valid(data_list, self.url_info_list, self.logger)
             if data_list and cmp(week_input_string_list, data_list) != 0:
-                # TODO 去除无效的数据 显示有效的数据 默认倒序排序
+                #TODO 去除无效的数据 显示有效的数据 默认倒序排序
                 insert_week_string = ','.join(sorted(week_input_string_list, reverse=True))
                 if insert_week_string:
                     self.select_week_text.WriteText(insert_week_string + ',')
@@ -182,17 +185,18 @@ class UserWeekSelectGui(wx.Frame):
         #TODO 捕捉事件实时显示数据
         display_text_info(self.Contents, self.select_week_text, self.url_info_list, self.step_length)
 
+    #todo 返回显示周信息文本框组件对象
     def return_text_variable(self):
         return self.Contents
 
+    #TODO 获取所有的url信息列表
     def get_week_string_list(self):
-        #TODO 获取所有的url信息列表
         all_url_list = get_url_list_by_keyword(purl_bak_string=self.purl_bak_string, back_keyword='Silver')
         self.url_info_list = [re.split('\D+', url.split('/')[-2])[0] + 'WW' + re.split('\D+', url.split('/')[-2])[-1] for url in all_url_list]
 
 
-#TODO 配置周数据界面 choose_weeks_var为YES时触发
-def week_gui_config(main_window, purl_bak_string, logger):
+#TODO 实时抓取周Url信息并配置周数据
+def week_gui_config(purl_bak_string, logger):
     #TODO 获取对应周url信息时需要更新url列表
     logger.print_message('>>>>>>>>>> Generates the latest selectable week list info for the [ %s ] Start <<<<<<<<<<' % purl_bak_string, _file_name)
     get_url_object = GetUrlFromHtml(html_url_pre='https://dcg-oss.intel.com/ossreport/auto/', logger=logger)
@@ -399,7 +403,6 @@ class ProjectConfigParameterGui(wx.Frame):
         menuBar.Append(menu, u'编辑(F)')
         self.SetMenuBar(menuBar)
 
-
     #todo 选择Excel模板文件按钮组件事件响应函数
     def choose_excel_file_frame_event(self, event):
         dialog = wx.FileDialog(self, message=u'%s项目选择Excel模板文件' % self.name, defaultDir=os.getcwd(), style=wx.ID_OPEN, wildcard=("*.xlsx;*.xls;*.csv"))
@@ -409,7 +412,7 @@ class ProjectConfigParameterGui(wx.Frame):
 
     #todo 是否发送邮件文本框组件事件响应函数
     def send_email_text_frame_event(self, event):
-        # todo 根据是否发送邮件标记 来控制邮件相关组件的状态
+        #todo 根据是否发送邮件标记 来控制邮件相关组件的状态
         if self.send_email_flag_text.GetValue().strip() == 'NO':
             self.mail_server_text.Disable()
             self.sender_email_text.Disable()
@@ -463,8 +466,8 @@ class ProjectConfigParameterGui(wx.Frame):
                     dlg_3 = wx.MessageDialog(self, u"The email recipient address is illegal!!!", u"check parameter validity gui", wx.ICON_ERROR | wx.ICON_QUESTION)
                     print dlg_3.ShowModal()
                     raise UserWarning('The email recipient address is illegal!!!')
-            #todo 2、检查模板文件路径的合法性
 
+        #todo 2、检查模板文件路径的合法性
         if not os.path.exists(self.excel_template_text.GetValue().strip()):
             self.logger.print_message('The template file path does not exist', _file_name, 30)
             self.excel_template_text.Clear()
@@ -652,6 +655,7 @@ class ProjectConfigParameterGui(wx.Frame):
         self.load_init_config_info()
 
 
+#todo 项目选择主界面
 class ProjectSelectGui(wx.Frame):
     def __init__(self, logger):
         self.purl_bak_string = None
@@ -713,7 +717,7 @@ def check_user_redefinition_week(purl_bak_string, logger):
     keep_continuous = conf.get_node_info(purl_bak_string + '_real-time_control_parameter_value', 'default_keep_continuous')
     if keep_continuous == 'YES':
         #todo 自定义选择周主界面
-        week_gui_config('', purl_bak_string, logger)
+        week_gui_config(purl_bak_string, logger)
 
 
 #TODO 主程序

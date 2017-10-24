@@ -8,6 +8,7 @@
 
 import os
 import traceback
+
 _file_name = os.path.split(__file__)[1]
 
 
@@ -24,7 +25,7 @@ def analysis_url_address_string(original_url_list):
 
 #todo 括号分离合并处理
 def extract_sw_data_deal_bracket(pending_deal_list):
-    # todo 括号分离合并处理
+    #todo 括号分离合并处理
     separate_temp_list = []
     left_index_exist_flag = False
     right_index_exist_flag = False
@@ -52,7 +53,7 @@ def extract_sw_data_deal_bracket(pending_deal_list):
 
 #todo 获取项目前缀
 def obtain_prefix_project_name(project_name):
-    # TODO classify 项目配置前缀
+    #TODO classify 项目配置前缀
     if project_name == 'Purley-FPGA':
         project_string_sep = 'FPGA'
     elif project_name == 'Bakerville':
@@ -70,6 +71,3 @@ def traceback_print_info(logger):
     logger.print_message('Error#####################################################Error', _file_name, 50)
     logger.print_message('traceback.format_exc():\n%s' % traceback.format_exc(), _file_name, 50)
     logger.print_message('Error#####################################################Error', _file_name, 50)
-
-
-# todo

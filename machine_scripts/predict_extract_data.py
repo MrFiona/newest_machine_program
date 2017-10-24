@@ -41,7 +41,7 @@ class PredictGetData(object):
         regex = re.compile(r'<span class="sh2">&nbsp; SW Configuration: </span>(.*?)<span class="sh2">&nbsp; IFWI Configuration: </span>', re.S|re.M)
         header = re.findall(regex, self.html)
         string_data = ''.join(header)
-        # 提取所有的tr部分
+        #todo 提取所有的tr部分
         soup_tr = BeautifulSoup(string_data, 'html.parser')
         tr_list = soup_tr.find_all(re.compile('tr'))
         url_list, header_list, cell_data_list = [], [], []
@@ -53,7 +53,7 @@ class PredictGetData(object):
             header_list = remove_line_break(header_list, line_break=True)
             for i in range(len(header_list)):
                 header_list[i] = header_list[i].replace('\n', '')
-            # 排除部分周会有更多的列
+            #todo 排除部分周会有更多的列
             # print 'header:list:\t', header_list
             header_length = len(header_list)
             header_list = header_list[:5]
@@ -69,7 +69,7 @@ class PredictGetData(object):
                 temp_string_list = []
                 soup_tr = BeautifulSoup(str(t), 'html.parser')
                 td_list = soup_tr.find_all('td')
-                # 默认情况是正常列数
+                #todo 默认情况是正常列数
                 actual_td_list = td_list
 
                 num = len(td_list)
@@ -95,7 +95,7 @@ class PredictGetData(object):
                     if header_length > 4 and len(temp_string_list) > 4:
                         temp_string_list = temp_string_list[header_length - 4:]
 
-                # 获取cell_data_list数据
+                #todo 获取cell_data_list数据
                 temp_string_list = remove_non_alphanumeric_characters(temp_string_list)
                 #TODO Changed(last build)和Changed(last release)同时存在取后者
                 if build_exist_flag:
@@ -118,20 +118,16 @@ class PredictGetData(object):
                     cell_data_list.append(temp_string_list)
 
                 for td in actual_td_list:
-                    # 正则取匹配url链接
+                    #todo 正则取匹配url链接
                     obj_list = re.findall('<a href="(.*?)">', str(td), re.M | re.S)
                     if obj_list:
-                        # 逐个添加
+                        #todo 逐个添加
                         for url in obj_list:
                             url = url.split()[0].replace("\"", "")
                             temp_url_list.append(url)
 
                 if temp_url_list:
                     url_list.append(temp_url_list)
-
-            # for k in range(len(cell_data_list)):
-            #     if header_length > 4 and len(cell_data_list[k]) > 4:
-            #         cell_data_list[k] = cell_data_list[k][:4 - header_length]
 
             header_length = len(header_list)
 
@@ -149,7 +145,7 @@ class PredictGetData(object):
         regex = re.compile(r'<span class="sh2">&nbsp; IFWI Configuration: </span>(.*?)<span class="sh2">&nbsp; BKC Useful Info: </span>', re.S|re.M)
         header = re.findall(regex, self.html)
         string_data = ''.join(header)
-        # 提取所有的tr部分
+        #todo 提取所有的tr部分
         soup_tr = BeautifulSoup(string_data, 'html.parser')
         tr_list = soup_tr.find_all(re.compile('tr'))
         url_list, header_list, cell_data_list = [], [], []
@@ -170,7 +166,7 @@ class PredictGetData(object):
                     for ele in range(len(td_string_list)):
                         for regex in ['\xe2', u'\u20ac', u'\u201c', u'\s+']:
                             td_string_list[ele] = re.sub(regex, ' ', td_string_list[ele])
-                    #去掉首位字符串开头的空格,排除空格的影响 后续会排序
+                    #todo 去掉首位字符串开头的空格,排除空格的影响 后续会排序
                     if td_string_list:
                         td_string_list[0] = td_string_list[0].lstrip(' ')
                     cell_data_list.append(td_string_list)

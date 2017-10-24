@@ -5,7 +5,6 @@
 # File    : manual_machine_config_gui.py
 # Software: PyCharm Community Edition
 
-from __future__ import absolute_import
 
 
 import os
@@ -69,7 +68,6 @@ def check_week_template_info(root, week_choose, template_file_path, email_server
         week_choose.delete(0, END)
         showwarning(title='week info check gui', message='Please enter the correct week information format')
         week_info_flag = False
-        # week_choose.insert(0, 'Input Format Example : 2017WW12')
 
     if not os.path.exists(template_info):
         showwarning(title='template info check gui', message='The template file path does not exist')

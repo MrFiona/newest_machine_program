@@ -14,7 +14,7 @@ class MachineConfig():
         self.config_file_path = config_file_path
 
     def get_node_info(self, master_node=None, child_node=None):
-        #节点信息和配置文件路径不能为空
+        #todo 节点信息和配置文件路径不能为空
         if not master_node or not child_node:
             raise UserWarning('Please fill in the complete node parameter information!!!')
         if not self.config_file_path:
@@ -22,7 +22,7 @@ class MachineConfig():
 
         conf = RawConfigParser()
         conf_status = conf.read(self.config_file_path)
-        #验证配置文件路径是否正确
+        #todo 验证配置文件路径是否正确
         if conf_status:
             try:
                 child_node_format = conf.get(master_node, child_node)
@@ -38,7 +38,7 @@ class MachineConfig():
         return child_node_format
 
     def modify_node_value(self, master_node=None, child_node=None, value=''):
-        # 节点信息和配置文件路径不能为空
+        #todo 节点信息和配置文件路径不能为空
         if not master_node or not child_node:
             raise UserWarning('Please fill in the complete node parameter information!!!')
         if not self.config_file_path:
@@ -46,7 +46,7 @@ class MachineConfig():
 
         conf = RawConfigParser()
         conf_status = conf.read(self.config_file_path)
-        # 验证配置文件路径是否正确
+        #todo 验证配置文件路径是否正确
         if conf_status:
             try:
                 conf.set(section=master_node, option=child_node, value=value)

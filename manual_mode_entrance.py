@@ -5,7 +5,6 @@
 # File    : manual_mode_entrance.py
 # Software: PyCharm Community Edition
 
-from __future__ import absolute_import
 
 
 import os
@@ -46,7 +45,7 @@ def manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list, cho
         week_index_dict[data_week] = data_type
 
     _logger.print_message('week_index_dict:\t%s\t%d' % (week_index_dict, len(week_index_dict)), _file_name)
-    # todo 获取图表日期数据类型字符串 默认从Save-Miss表中获取
+    #todo 获取图表日期数据类型字符串 默认从Save-Miss表中获取
     week_bkc_gold_silver_string = week_index_dict.get(choose_week_string, 'default_week_type_string')
 
     _logger.print_message('Silver_url_list:\t%s\t%d' % (Silver_url_list, len(Silver_url_list)), _file_name)

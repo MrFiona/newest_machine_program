@@ -13,8 +13,6 @@
         NOTSET = 0
 """
 
-from __future__ import absolute_import
-
 import os
 import os.path
 import logging
@@ -41,22 +39,22 @@ class WorkLogger(object):
 
     def print_message(self, msg='', logger_name=None, definition_log_level=INFO):
         self.log_level = definition_log_level
-        # 创建一个logger以及设置日志级别
+        #todo 创建一个logger以及设置日志级别
         self.work_logger = logging.getLogger(self.log_filename)
         self.work_logger.setLevel(DEBUG)
 
-        # 创建控制端输出handler，用于输出到控制端并设置输出日志级别
+        #todo 创建控制端输出handler，用于输出到控制端并设置输出日志级别
         console_handler = logging.StreamHandler()
         console_handler.setLevel(DEBUG)
 
-        # 定义handler的输出格式并将格式应用到handler
+        #todo 定义handler的输出格式并将格式应用到handler
         formatter = logging.Formatter('%(asctime)s | %(filename)s | %(lineno)d | %(levelname)s | %(message)s')
         console_handler.setFormatter(formatter)
 
-        # 将handler加入到logger
+        #todo 将handler加入到logger
         self.work_logger.addHandler(console_handler)
 
-        #根据日志级别打印信息
+        #todo 根据日志级别打印信息
         if self.log_level == DEBUG or self.log_level == NOTSET:
             self.work_logger.debug(msg)
             level = 'DEBUG'
@@ -78,7 +76,7 @@ class WorkLogger(object):
         if self.create_log_flag:
             self.write_file.write(' | '.join([self.log_time, logger_name, level, msg]) + '\n')
 
-        # 将handler从logger中移除
+        #todo 将handler从logger中移除
         self.work_logger.removeHandler(console_handler)
 
     def file_close(self):

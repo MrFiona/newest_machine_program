@@ -5,7 +5,6 @@
 # File    : extract_data.py
 # Software: PyCharm Community Edition
 
-from __future__ import absolute_import
 
 import os
 import re
@@ -23,10 +22,9 @@ from machine_scripts.cache_mechanism import DiskCache
 from machine_scripts.public_use_function import remove_line_break, judge_get_config
 from setting_global_variable import REPORT_HTML_DIR
 from machine_scripts.common_interface_func import remove_non_alphanumeric_characters
-from machine_scripts.common_interface_branch_func import extract_sw_data_deal_bracket
 
 
-# 强制ssl使用TLSv2
+#todo 强制ssl使用TLSv2
 def sslwrap(func):
     @wraps(func)
     def bar(*args, **kw):
@@ -70,17 +68,17 @@ class GetAnalysisData(object):
                 raise UserWarning('Please check whether the input [ %s ] url is correct!!!' %self.data_url)
 
         self.save_file_name = os.path.split(self.data_url)[-1].split('.')[0] + '_html'
-        temp_path = self.data_url.split('auto')[1].strip('/').split('/')[:-1]  # 去掉最后一个html文件名
-        self.grandfather_path = temp_path[0]  # 部门类型级别
-        self.father_path = temp_path[1]  # 测试类型级别
-        self.son_path = re.sub('[%]', '_', temp_path[-1])  # 日期级别
+        temp_path = self.data_url.split('auto')[1].strip('/').split('/')[:-1]  #todo 去掉最后一个html文件名
+        self.grandfather_path = temp_path[0]  #todo 部门类型级别
+        self.father_path = temp_path[1]  #todo 测试类型级别
+        self.son_path = re.sub('[%]', '_', temp_path[-1])  #todo 日期级别
         self.save_file_path = REPORT_HTML_DIR + os.sep + '%s' % os.sep.join([self.grandfather_path, self.father_path, self.son_path])
         url_split_string = self.data_url.split('/')[-2]
         week_string = url_split_string[-4:]
         year_string = url_split_string.split('%')[0]
         self.date_string = ''.join([year_string, week_string])
 
-        #保存文件标记开启，将html代码保存为文件
+        #todo 保存文件标记开启，将html代码保存为文件
         if get_info_not_save_flag:
             self.save_html()
 
@@ -97,7 +95,7 @@ class GetAnalysisData(object):
             self.logger.print_message(e, self.__file_name, CRITICAL)
             return
 
-    #提取通用的部分,如果bkc_flag=True并且BKC和Gold都没有数据则取Silver数据 优先级：BKC > Gold > Silver
+    #todo 提取通用的部分,如果bkc_flag=True并且BKC和Gold都没有数据则取Silver数据 优先级：BKC > Gold > Silver
     def _common_regex(self, data_type, bkc_flag=False, replace_flag=False, header_list=None, cell_data_list=None):
         Silver_Gold_BKC_string = 'Silver'
         if not header_list:
@@ -105,17 +103,17 @@ class GetAnalysisData(object):
         if not cell_data_list:
             cell_data_list = []
 
-        #BKC标记开启，自动更换为文件BKC地址
+        #todo BKC标记开启，自动更换为文件BKC地址
         if bkc_flag:
             self.save_file_path = self.save_file_path.replace('Silver', 'BKC')
             self.data_url = self.data_url.replace('Silver', 'BKC')
             Silver_Gold_BKC_string = 'BKC'
-            # 如果BKC无数据则取Gold数据
+            #todo 如果BKC无数据则取Gold数据
             if not os.path.exists(self.save_file_path):
                 self.save_file_path = self.save_file_path.replace('BKC', 'Gold')
                 self.data_url = self.data_url.replace('BKC', 'Gold')
                 Silver_Gold_BKC_string = 'Gold'
-                # 如果Gold无数据则取Silver数据
+                #todo 如果Gold无数据则取Silver数据
                 if not os.path.exists(self.save_file_path):
                     self.save_file_path = self.save_file_path.replace('Gold', 'Silver')
                     self.data_url = self.data_url.replace('Gold', 'Silver')
@@ -136,15 +134,15 @@ class GetAnalysisData(object):
             self.save_file_name = bkc_file_name
 
         data = self.cache[self.data_url]
-        # 提取HW Configuration部分的代码
+        #todo 提取HW Configuration部分的代码
         regex = re.compile(r'<span class="sh2">&nbsp; %s </span>(.*?)<div class="panel-heading">' % data_type, re.S | re.M)
         header = re.findall(regex, data)
         string_data = ''.join(header)
-        # 提取所有的tr部分
+        #todo 提取所有的tr部分
         soup_table = BeautifulSoup(string_data, 'html.parser')
         table_list = soup_table.find_all(re.compile('table'))
 
-        #增加保险措施，通过关键字提取文本html实现
+        #todo 增加保险措施，通过关键字提取文本html实现
         if not table_list:
             fread = codecs.open(self.save_file_path + os.sep + self.save_file_name, 'r', 'utf-8')
             fwrite = codecs.open(self.save_file_path + os.sep + 'temp.txt', 'wb', 'utf-8')
@@ -208,9 +206,9 @@ class GetAnalysisData(object):
             page_url = ''.join([page_url, url_string_sep[0].replace(' ', '')])
             self._page_url = page_url
 
-    #获取hw有效的列名列表
+    #todo 获取hw有效的列名列表
     def _get_hw_effective_header_list(self, effective_header_list):
-        # 提取有效的行数
+        #todo 提取有效的行数
         effective_num_list = []
         prefix_suffix_list = []
         for label in range(len(effective_header_list)):
@@ -249,12 +247,12 @@ class GetAnalysisData(object):
 
     def _get_hw_bak_effective_header_list(self, effective_header_list):
         header_list = []
-        # 提取有效的行数
+        #todo 提取有效的行数
         effective_num_list = []
         header_regex = re.compile('[Ss]ystem(?P<name>\(?.*\)?)', re.M | re.S)
         element_regex = re.compile('\d+')
-        range_num_regex = re.compile('\d+?\,?~\d+')
-        #判断周表头列是否含有SKX-DE
+
+        #todo 判断周表头列是否含有SKX-DE
         SKX_DE_FLAG = False
         for label in range(len(effective_header_list)):
             temp_num_list = []
@@ -262,53 +260,53 @@ class GetAnalysisData(object):
             temp_string_list = remove_line_break(temp_string_list, empty_string=True)
             temp_string = re.sub('[()]', '', temp_string_list[0])
             header_list.append(temp_string)
-            #进一步提取表头列数
-            #排除类似这种情况 SKX-DE(001,~004)(Cycling Test)
+            #todo 进一步提取表头列数
+            #todo 排除类似这种情况 SKX-DE(001,~004)(Cycling Test)
             if temp_string_list[0].startswith('SKX-DE'):
                 SKX_DE_FLAG = True
                 continue
-            #1、数字之间逗号相隔且不含有连续数字符号~
+            #todo 1、数字之间逗号相隔且不含有连续数字符号~
             if '~' not in temp_string:
                 signal_num_list = re.findall(element_regex, temp_string)
                 if signal_num_list:
                     signal_num_list = [int(ele) for ele in signal_num_list]
                     temp_num_list.extend(signal_num_list)
                 # print 'temp_num_list:\t', temp_num_list
-            #含有连续数字符号~  (1,~5)  (1~5)  1~5
+            #todo 含有连续数字符号~  (1,~5)  (1~5)  1~5
             else:
                 if ',' not in temp_string:
-                    #不含有逗号只含有~
+                    #todo 不含有逗号只含有~
                     range_num_list = re.findall('\d+', temp_string)
                     if range_num_list:
-                        #转换为离散的数字列
+                        #todo 转换为离散的数字列
                         temp_change_list = [nu for nu in range(int(range_num_list[0]), int(range_num_list[1]) + 1)]
                         temp_num_list.extend(temp_change_list)
-                #既含有逗号又含有~ (1,~5) 1,~5 (1,3~6) 1,2~5
+                #todo 既含有逗号又含有~ (1,~5) 1,~5 (1,3~6) 1,2~5
                 else:
-                    #去括号
+                    #todo 去括号
                     temp_string = re.sub('[()]', '', temp_string)
                     judge_string_list = re.findall('\d+~\d+', temp_string)
-                    #说明是 (1,2~7)这样的情况 ~左右数字齐全
+                    #todo 说明是 (1,2~7)这样的情况 ~左右数字齐全
                     # print 'judge_string_list:\t',judge_string_list
                     if judge_string_list:
                         temp_list = []
                         split_string_list = [ele for ele in re.split(',', temp_string) if len(ele) != 0]
                         print 'split_string_list:\t', split_string_list
                         for deal_num in split_string_list:
-                            #2~6
+                            #todo 2~6
                             if '~' in deal_num:
                                 range_num_list = re.findall('\d+', deal_num)
                                 temp_list = [nu for nu in range(int(range_num_list[0]), int(range_num_list[1]) + 1)]
-                            #单个数字 2
+                            #todo 单个数字 2
                             else:
                                 temp_list.append(int(deal_num))
                             temp_num_list.extend(temp_list)
                         print temp_num_list
-                    #说明是 (1,~5)这种情况
+                    #todo 说明是 (1,~5)这种情况
                     else:
                         range_num_list = re.findall('\d+', temp_string)
                         if range_num_list:
-                            # 转换为离散的数字列
+                            #todo 转换为离散的数字列
                             temp_change_list = [nu for nu in range(int(range_num_list[0]), int(range_num_list[1]) + 1)]
                             temp_num_list.extend(temp_change_list)
             if temp_num_list:
@@ -316,7 +314,7 @@ class GetAnalysisData(object):
 
         effective_header_list = [int(ele) for child_element in effective_num_list for ele in child_element]
         effective_header_list = sorted(effective_header_list, key=lambda x: x)
-        #SKX_DE标记开启,自动填充至12 表示12列数据
+        #todo SKX_DE标记开启,自动填充至12 表示12列数据
         if SKX_DE_FLAG:
             for i in range(len(effective_header_list)+1, 12+1):
                 effective_header_list.append(i)
@@ -326,7 +324,7 @@ class GetAnalysisData(object):
 
         return effective_header_list, effective_num_list
 
-    #判断插入到cell_data_list的次数并插入数据
+    #todo 判断插入到cell_data_list的次数并插入数据
     def _insert_numers_to_cell_data_list(self, cell_data_list):
         try:
             effective_header_list, effective_num_list = self._get_hw_effective_header_list(cell_data_list[0])
@@ -369,8 +367,8 @@ class GetAnalysisData(object):
             html = urllib2.urlopen(self._page_url, context=context).read()
             self.cache[self._page_url] = html
 
-    # 判断插入到cell_data_list的次数并插入数据
-    # 根据表头列数字和cell_data_list进一步处理,生成新的cell_data_list,effective_num_list
+    #todo 判断插入到cell_data_list的次数并插入数据
+    #todo 根据表头列数字和cell_data_list进一步处理,生成新的cell_data_list,effective_num_list
     def _insert_bak_numers_to_cell_data_list(self, effective_num_list, cell_data_list):
         cell_data_direction_dict = collections.OrderedDict()
         for ele in range(len(effective_num_list)):
@@ -384,9 +382,9 @@ class GetAnalysisData(object):
         x, effective_cell_data_list = zip(*cell_data_direction_dict)
         effective_cell_data_list = [[ele[i] for ele in effective_cell_data_list] for i in range(len(cell_data_list))]
         # print 'effective_cell_data_list:\t', effective_cell_data_list
-        # 重复拷贝信息的次数
+        #todo 重复拷贝信息的次数
         repeat_append_num = 12 - len(effective_cell_data_list[0])
-        # 不管是否含有SKX_DE，只要小于12列后面的列就用最后一列信息补充
+        #todo 不管是否含有SKX_DE，只要小于12列后面的列就用最后一列信息补充
         if repeat_append_num > 0:
             for m in range(len(cell_data_list)):
                 for nu in range(repeat_append_num):
@@ -620,7 +618,7 @@ class GetAnalysisData(object):
                 temp = []; url_list = []
                 soup = BeautifulSoup(str(tr), 'html.parser')
                 th_list = soup.find_all('th'); td_list = soup.find_all('td')
-                #获取header_list
+                #todo 获取header_list
                 if th_list:
                     th_strings = soup.strings
                     for th in th_strings:
@@ -629,7 +627,7 @@ class GetAnalysisData(object):
                             continue
                         header_list.append(th)
                 if td_list:
-                    # 获取url链接
+                    #todo 获取url链接
                     temp_url_list = soup.findAll(name='a', attrs={'href': re.compile(r'[https|http]:(.*?)')})
                     # print 'temp_url_list:\t', temp_url_list
                     if temp_url_list:
@@ -641,7 +639,7 @@ class GetAnalysisData(object):
                         effective_url_list.append(url_list)
                     else:
                         effective_url_list.append([])
-                    #需要循环处理，防止丢失无内容的项
+                    #todo 需要循环处理，防止丢失无内容的项
                     for td in td_list:
                         td_soup = BeautifulSoup(str(td), 'html.parser')
                         temp_list = list(td_soup.td.strings)
@@ -692,7 +690,7 @@ class GetAnalysisData(object):
                         object_string_list.append('')
 
                 if len(object_string_list) < 10:
-                    # 得到tr节点下的所有文本
+                    #todo 得到tr节点下的所有文本
                     text = list(soup.td.children)
                     object_string_list = []
                     for child in text:
@@ -704,7 +702,7 @@ class GetAnalysisData(object):
                         if len(object_string_list) == 2:
                             object_string_list.append('')
                         object_string_list.append(temp_string)
-            # 对提取的字符串列表进行清洗，统一组合格式：空格分隔  Mon Apr 10 14:00:27 2017
+            #todo 对提取的字符串列表进行清洗，统一组合格式：空格分隔  Mon Apr 10 14:00:27 2017
             object_string_list = remove_non_alphanumeric_characters(object_string_list)
             object_string_list[0] = re.sub('[()]', '', object_string_list[0]).strip()
             object_string_list = remove_line_break(object_string_list, empty_string=True)
@@ -723,7 +721,7 @@ class GetAnalysisData(object):
 
             tr_list = soup_table_element.find_all('tr')
 
-            #获取链接地址
+            #todo 获取链接地址
             cell_last_data = [] ;effective_url_list = []
             for tr in tr_list:
                 soup = BeautifulSoup(str(tr), 'html.parser')
@@ -735,7 +733,7 @@ class GetAnalysisData(object):
                 td_list = soup.find_all('td')
                 for td in td_list:
                     soup_td = BeautifulSoup(str(td), 'html.parser')
-                    # 获取url链接
+                    #todo 获取url链接
                     temp_url_list = soup_td.find_all('a')
                     if temp_url_list:
                         for ele in temp_url_list:
@@ -747,10 +745,10 @@ class GetAnalysisData(object):
 
                             string_url = soup_href.findAll(name='a', attrs={'href': re.compile(r'[https|http]:(.*?)')})
                             if string_url:
-                                #排除无效的url
+                                #todo 排除无效的url
                                 if re.search('.*id="></a>$', str(string_url[0])):
                                     continue
-                                #提取有效的url链接
+                                #todo 提取有效的url链接
                                 for url in string_url:
                                     url_soup = BeautifulSoup(str(url), 'html.parser')
                                     url = url_soup.a['href']
@@ -763,11 +761,11 @@ class GetAnalysisData(object):
                             if len(td_son_list) != 0 else temp.append('')
 
                 cell_last_data.append(cell_last_string_list)
-                #去除多余的换行符和空格，防止插入excel表格时报 255 characters since it exceeds Excel's limit for URLS 长度超过限定长度
+                #todo 去除多余的换行符和空格，防止插入excel表格时报 255 characters since it exceeds Excel's limit for URLS 长度超过限定长度
                 for k in range(len(url_list)):
                     url_list[k] = re.sub('[\s]', '', url_list[k])
                 effective_url_list.append(url_list)
-                #移除非字母数字字符
+                #todo 移除非字母数字字符
                 temp = remove_non_alphanumeric_characters(temp)
                 cell_data_list.append(temp)
 
@@ -802,19 +800,19 @@ class GetAnalysisData(object):
                     if soup.tr:
                         header_list = remove_line_break(list(soup.tr.strings), line_break=True)
                 if td_list:
-                    # 获取url链接
+                    #todo 获取url链接
                     temp_url_list = soup.findAll(name='a', attrs={'href': re.compile(r'[https|http]:(.*?)')})
                     if temp_url_list:
-                        # 提取有效的url链接
+                        #todo 提取有效的url链接
                         for url in temp_url_list:
                             url_soup = BeautifulSoup(str(url), 'html.parser')
                             url = url_soup.a['href']
-                            # 排除无效的url 无效的url id后不跟数字
+                            #todo 排除无效的url 无效的url id后不跟数字
                             if not re.search('(\d+)$', str(url)):
                                 continue
                             url_list.append(url)
                         effective_url_list.append(url_list)
-                    #需要循环处理，防止丢失无内容的项
+                    #todo 需要循环处理，防止丢失无内容的项
                     for td in td_list:
                         td_soup = BeautifulSoup(str(td), 'html.parser')
                         if td_soup.td:
@@ -852,7 +850,7 @@ class GetAnalysisData(object):
                 if th_list and soup.tr:
                         header_list = remove_line_break(list(soup.tr.strings), line_break=True)
                 if td_list:
-                    # 获取url链接
+                    #todo 获取url链接
                     temp_url_list = soup.findAll(name='a', attrs={'href': re.compile(r'[https|http]:(.*?)')})
                     if temp_url_list:
                         for ele in temp_url_list:
@@ -860,7 +858,7 @@ class GetAnalysisData(object):
                             string_url = soup_href.a['href']
                             url_list.append(string_url)
                         effective_url_list.append(url_list)
-                    #需要循环处理，防止丢失无内容的项
+                    #todo 需要循环处理，防止丢失无内容的项
                     for td in td_list:
                         td_soup = BeautifulSoup(str(td), 'html.parser')
                         if td_soup and td_soup.td:
@@ -906,7 +904,7 @@ class GetAnalysisData(object):
             self.logger.print_message(msg='page_url:\t%s' % self._page_url, logger_name=self.__file_name)
             html = self.cache[self._page_url]
             soup = BeautifulSoup(str(html), 'html.parser')
-            #获取数据部分头部的标记字符串  Purley-FPGA WW12
+            #todo 获取数据部分头部的标记字符串  Purley-FPGA WW12
             table_tip_list = soup.find_all('table')
             if table_tip_list:
                 table_tip = table_tip_list[0]
@@ -918,7 +916,7 @@ class GetAnalysisData(object):
                         temp = tip_string.split(' ')
                         if temp:
                             tip_string = temp[0] + ' ' + temp[-1]
-            #获取有效的待插入数据
+            #todo 获取有效的待插入数据
             table_list = soup.find_all('table')
             if len(table_list) >= 2:
                 table = table_list[1]
@@ -929,16 +927,16 @@ class GetAnalysisData(object):
                 if not tr_list:
                     return self.date_string, '', '', [], []
 
-                #获取表列名
+                #todo 获取表列名
                 for tr in tr_list:
                     temp = []
                     soup = BeautifulSoup(str(tr), 'html.parser')
                     th_list = soup.find_all('th') ;td_list = soup.find_all('td')
                     if th_list and soup.tr:
                             header_list = remove_line_break(list(soup.tr.strings), line_break=True)
-                    #获取表单元格数据
+                    #todo 获取表单元格数据
                     if td_list:
-                        #需要循环处理，防止丢失无内容的项
+                        #todo 需要循环处理，防止丢失无内容的项
                         for td in td_list:
                             td_soup = BeautifulSoup(str(td), 'html.parser')
                             if td_soup and td_soup.td:

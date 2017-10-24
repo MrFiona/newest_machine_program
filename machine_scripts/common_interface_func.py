@@ -5,7 +5,6 @@
 # File    : common_interface_func.py
 # Software: PyCharm Community Edition
 
-from __future__ import absolute_import
 
 import re
 import os
@@ -13,6 +12,11 @@ import sys
 import glob
 import time
 import shutil
+import urllib2
+import pstats
+import psutil
+import cProfile
+import functools
 from logging import ERROR
 from setting_global_variable import (SRC_EXCEL_DIR, SRC_SAVE_MISS_WEEK_DIR, MACHINE_LOG_DIR,
     BACKUP_PRESERVE_TABLE_CHART_DIR, PRESERVE_TABLE_CHART_DIR, BACKUP_CACHE_DIR, SRC_CACHE_DIR,
@@ -24,36 +28,32 @@ from machine_scripts.public_use_function import judge_get_config, get_interface_
 _file_name = os.path.split(__file__)[1]
 
 
-
 #TODO 验证url的有效性
 def verify_validity_url(url, logger):
-    import urllib2
     logger.print_message('Verifying url %s Start' % (url), _file_name)
     try:
         response = urllib2.urlopen(url)
     #TODO HTTPError是URLError的子类，在产生URLError时也会触发产生HTTPError。因此需注意应该先处理HTTPError
     except urllib2.URLError, e:
-        if hasattr(e, 'code'):  # stands for HTTPError
+        if hasattr(e, 'code'):  #stands for HTTPError
             logger.print_message(msg="find http error, writing... [ %s ]" % e.code, logger_name=_file_name,
                                  definition_log_level=ERROR)
             return False
-        elif hasattr(e, 'reason'):  # stands for URLError
+        elif hasattr(e, 'reason'):  #stands for URLError
             logger.print_message(msg="can not reach a server,writing... [ %s ]" % e.reason, logger_name=_file_name,
                                  definition_log_level=ERROR)
             return False
-        else:  # stands for unknown error
+        else:  #stands for unknown error
             logger.print_message(msg="unknown error, writing...", logger_name=_file_name, definition_log_level=ERROR)
             return False
     else:
-        # print "url is reachable!"
-        # else 中不用再判断 response.code 是否等于200,若没有抛出异常，肯定返回200,直接关闭即可
         response.close()
         return True
     finally:
         logger.print_message('Verifying url %s End' % (url), _file_name)
 
 
-#TODO 隐藏表列  sub_signal_width新增少隐藏多少周
+#TODO 隐藏表列 sub_signal_width新增少隐藏多少周
 def hidden_data_by_column(sheet_name, url_list, multiple, sub_signal_width):
     conf = MachineConfig(CONFIG_FILE_PATH)
     purl_bak_string = conf.get_node_info('real-time_control_parameter_value', 'default_purl_bak_string')
@@ -70,7 +70,6 @@ def return_actual_week_list(logger, rename_log):
 
     week_actual_info_list = week_actual_info_strings.split(' ')
     week_actual_info_list.sort(reverse=True)
-    # print week_actual_info_list
     return week_actual_info_list
 
 
@@ -177,10 +176,6 @@ def performance_analysis_decorator(filename):
     """
     Decorator for function profiling.
     """
-    import pstats
-    import cProfile
-    import functools
-
     def wrapper(func):
         @functools.wraps(func)
         def profiled_func(*args, **kwargs):
@@ -202,8 +197,6 @@ def performance_analysis_decorator(filename):
 
 #TODO 检测内存使用情况，防止发生内存错误
 def detect_memory_usage(logger, cycle_times=1):
-    import psutil
-
     cpu_value_list = []
     buffers_value_list = []
     cached_value_list = []
@@ -246,24 +239,12 @@ def detect_memory_usage(logger, cycle_times=1):
 
     buffers = sum(buffers_value_list) / len(buffers_value_list)
     cached = sum(cached_value_list) / len(cached_value_list)
-    # phy_percent = sum(phy_percent_value_list) / len(phy_percent_value_list)
     phy_total = sum(phy_total_value_list) / len(phy_total_value_list)
-    # cpu_percent = sum(cpu_value_list) / len(cpu_value_list)
     phy_free = sum(phy_free_value_list) / len(phy_free_value_list)
-
     used = phy_total - (phy_free + buffers + cached)
-
-    # line = " Memory: %5s%% %6s/%s" % (
-    #     phy_percent,
-    #     str(int(used / 1024 / 1024)) + "M",
-    #     str(int(phy_total / 1024 / 1024)) + "M"
-    # )
 
     #TODO 需达到预留2000M内存空间
     available_memory_size = int(phy_total / 1024 / 1024) - int(used / 1024 / 1024)
-    # logger.print_message(
-    #     'Average:%s\t' % (' ' * (len('The %d time') - len('Average'))) + time.asctime() + " | " + " CPU: " +
-    #     '%.1f' % cpu_percent + "%" + " | " + line, _file_name)
     #TODO 低于2000M则弹出提示窗口
     if available_memory_size < 2000:
         response_detect_memory_gui(available_memory_size)
@@ -295,9 +276,6 @@ def NFVi_remove_non_alphanumeric_characters(object_string_list):
 #TODO 当程序发生中断时强制清理文件
 def interrupt_clear_excel_file(log_time, logger):
     remove_success_flag = False
-    # while 1:
-    #     if remove_success_flag:
-    #         break
     file_list = glob.glob(SRC_EXCEL_DIR + os.sep + '*.xlsx')
     file_list = [ file_ele for file_ele in file_list if log_time in file_ele ]
     logger.print_message('file_list:\t%s' % file_list, _file_name, ERROR)
@@ -413,7 +391,7 @@ def confirm_result_excel(purl_bak_string, link_WW_week_string, Silver_url_list, 
         if total_time == max_waiting_time * 60:
             break
 
-    logger.print_message("\n%s is closed.\nLast modified : %s" % (file_path, time.ctime(os.path.getmtime(file_path))), _file_name)
+    logger.print_message("\n%s is saved.\nLast modified : %s" % (file_path, time.ctime(os.path.getmtime(file_path))), _file_name)
 
 
 #TODO 备份图片目录
@@ -432,7 +410,7 @@ def backup_chart(purl_bak_string, log_time, predict_execute_flag=False):
         os.makedirs(BACKUP_PRESERVE_TABLE_CHART_DIR)
     if not os.path.exists(backup_name):
         os.makedirs(backup_name)
-    # print 'original_file_list:\t', original_file_list
+
     for file_name in original_file_list:
         try:
             shutil.copy2(file_name, backup_name)

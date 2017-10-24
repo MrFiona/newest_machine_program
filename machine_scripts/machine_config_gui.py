@@ -5,9 +5,7 @@
 # File    : temp.py
 # Software: PyCharm Comm|unity Edition
 
-from __future__ import absolute_import
 
-import Tkinter
 import os
 import re
 import ttk
@@ -22,7 +20,7 @@ from machine_scripts.public_use_function import get_interface_config, judge_get_
 from setting_global_variable import CONFIG_FILE_PATH, SRC_WEEK_DIR
 from machine_scripts.common_interface_branch_func import obtain_prefix_project_name
 
-# TODO Global Variable start
+#TODO Global Variable start
 template_file_path, on_off_var, choose_weeks_var, on_off_numberChosen1, choose_weeks_numberChosen1 = '', '', '', '', ''
 chart_software_numberChosen1, chart_new_numberChosen2, chart_exist_numberChosen3, chart_closed_numberChosen4, chart_total_numberChosen5, \
 chart_save_test_numberChosen6, chart_save_effort_numberChosen7, chart_miss_numberChosen8 = '', '', '', '', '', '', '', ''
@@ -31,7 +29,7 @@ email_server, email_send, email_receive, email_send_email_flag = '', '', '', ''
 chart_software_var, chart_new_var, chart_exist_var, chart_closed_var, chart_total_var, chart_save_test_var, chart_save_effort_var, \
 chart_miss_var  = '', '', '', '', '', '', '', ''
 load_default_var, load_default_flag = '', ''
-# todo 是否发送邮件标记   True：不对邮件地址检查  False: 正常流程
+#TODO 是否发送邮件标记   True：不对邮件地址检查  False: 正常流程
 global_check_email_address_vality = True
 
 week_input_string_list = []
@@ -39,10 +37,10 @@ week_input_string_list = []
 close_windows_update_config_flag = False
 _file_name = os.path.split(__file__)[1]
 type_color_dict = {'Purley-FPGA': 'green', 'Bakerville': 'yellow', 'NFVi': 'peru', 'Crystal-Ridge':'turquoise'}
-# TODO Global Variable end
+#TODO Global Variable end
 
 
-# TODO 调整界面大小函数
+#TODO 调整界面大小函数
 def center_window(root, width, height):
     screenwidth = root.winfo_screenwidth()
     screenheight = root.winfo_screenheight()
@@ -50,17 +48,17 @@ def center_window(root, width, height):
     root.geometry(size)
 
 
-# todo 预留函数 为显示参数用
+#TODO 预留函数 为显示参数用
 def print_var(var):
     print var
 
 
-# TODO 将当前的邮件或者文件配置信息保存到文件  新增默认保存标记 default_save_flag: True则当前配置保存为默认配置
+#TODO 将当前的邮件或者文件配置信息保存到文件  新增默认保存标记 default_save_flag: True则当前配置保存为默认配置
 def rewrite_config_file(purl_bak_string, default_save_flag=False, current_save_falg=False):
     conf = MachineConfig(CONFIG_FILE_PATH)
     project_name_sep = obtain_prefix_project_name(purl_bak_string)
 
-    # TODO 接收邮件地址去重
+    #TODO 接收邮件地址去重
     final_receive_list = []; index = 0; receive_address_list = []
     temp_receive_list = email_receive.get().strip().split(',')
 
@@ -73,7 +71,7 @@ def rewrite_config_file(purl_bak_string, default_save_flag=False, current_save_f
         if address not in receive_address_list:
             receive_address_list.append(address)
     receive_address_string = ','.join(receive_address_list)
-    # TODO 将当前的配置更新为默认配置
+    #TODO 将当前的配置更新为默认配置
     if default_save_flag:
         conf.modify_node_value(project_name_sep + '_other_config', 'reacquire_data_flag', file_reacquire_data_var.get())
         conf.modify_node_value(project_name_sep + '_other_config', 'verify_file_flag', check_file_var.get())
@@ -115,7 +113,7 @@ def rewrite_config_file(purl_bak_string, default_save_flag=False, current_save_f
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_get_default_flag', load_default_var)
 
 
-# TODO 刷新界面参数相关子函数
+#TODO 刷新界面参数相关子函数
 def update_parameter_value(node, value):
     node.delete(0, END)
     node.insert(0, value)
@@ -163,7 +161,7 @@ def file_config(name, tab2, logger):
     file_check_numberChosen2.set('YES' if current_verify_file_flag == 'YES' else 'NO')
     file_max_time.insert(0, current_max_waiting_time if current_max_waiting_time != '' else '30')
 
-    # GUI Callback function
+    #todo GUI Callback function
     def checkCallback():
         # only enable one checkbutton
         if check_file_var.get() == 'NO':
@@ -172,7 +170,7 @@ def file_config(name, tab2, logger):
         else:
             file_max_time.configure(state='normal')
 
-    # trace the state of the checkbutton
+    #todo trace the state of the checkbutton
     check_file_var.trace('w', lambda unused0, unused1, unused2: checkCallback())
 
 
@@ -214,7 +212,7 @@ def email_config(name, tab1, logger):
             email_server.configure(state='disabled')
             email_send.configure(state='disabled')
             email_receive.configure(state='disabled')
-            # todo 邮件地址检查标记置为 False
+            #TODO 邮件地址检查标记置为 False
             global global_check_email_address_vality
             global_check_email_address_vality = False
         else:
@@ -233,7 +231,7 @@ def email_config(name, tab1, logger):
     email_receive.insert(0, current_receive_address)
 
 
-# TODO 图表配置界面
+#TODO 图表配置界面
 def chart_config(name, tab4, logger):
     current_display_software = get_interface_config('display_software', name)
     current_display_new = get_interface_config('display_new', name)
@@ -278,7 +276,7 @@ def chart_config(name, tab4, logger):
     chart_save_effort_var = StringVar()
     chart_miss_var = StringVar()
 
-    # todo Add "Saved Test Case (%)", "Saved Efforts (%)", "Missed Sighting (%)" in Trend chart.  For example: if it is 50%, then the value is 50.
+    #TODO Add "Saved Test Case (%)", "Saved Efforts (%)", "Missed Sighting (%)" in Trend chart.  For example: if it is 50%, then the value is 50.
 
     chart_software_numberChosen1 = ttk.Combobox(monty, textvariable=chart_software_var, width=30, state='readonly')
     chart_new_numberChosen2 = ttk.Combobox(monty, width=30, textvariable=chart_new_var, state='readonly')
@@ -317,7 +315,7 @@ def chart_config(name, tab4, logger):
     chart_miss_numberChosen8.current(0 if current_display_miss == 'YES' else 1)
 
 
-# TODO 验证时间参数的有效性
+#TODO 验证时间参数的有效性
 def verify_time_parameter(e_time):
     if len(e_time.get()) == 0 or e_time.get().isdigit() == False:
         askokcancel(title="verify time parameter", message="Please confirm that the data is an integer")
@@ -327,14 +325,14 @@ def verify_time_parameter(e_time):
         return True
 
 
-# TODO 保存默认配置
+#TODO 保存默认配置
 def save_default(purl_bak_string):
     default_save_flag = askyesno('Save the %s default configuration window' % purl_bak_string,
                                  'Are you sure you need to save the current %s configuration as the default configuration?' % purl_bak_string)
     rewrite_config_file(purl_bak_string, default_save_flag=default_save_flag)
 
 
-# TODO 加载默认配置为当前配置
+#TODO 加载默认配置为当前配置
 def load_default_as_current(purl_bak_string):
     conf = MachineConfig(CONFIG_FILE_PATH)
     project_name_sep = obtain_prefix_project_name(purl_bak_string)
@@ -371,27 +369,27 @@ def load_default_as_current(purl_bak_string):
     conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_receive_address', receive_address)
 
 
-# TODO 加载默认配置
+#TODO 加载默认配置
 def load_default(purl_bak_string):
     default_load_flag = askyesno('Load the %s default configuration window' % purl_bak_string,
                                  'Are you sure you need to load the %s default configuration?' % purl_bak_string)
     global load_default_var
     global load_default_flag
-    # global close_windows_update_config_flag
+    #todo global close_windows_update_config_flag
     load_default_flag = True
-    # close_windows_update_config_flag = True
+    #todo close_windows_update_config_flag = True
     load_default_var = 'NO'
     conf = MachineConfig(CONFIG_FILE_PATH)
 
     if default_load_flag:
         load_default_var = 'YES'
-        # TODO 修改加载默认配置参数标记
+        #TODO 修改加载默认配置参数标记
         conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_get_default_flag', load_default_var)
-        # TODO 加载默认配置的时候将默认值配置值更新到当前配置
+        #TODO 加载默认配置的时候将默认值配置值更新到当前配置
         load_default_as_current(purl_bak_string)
 
 
-# TODO 载入默认邮件和文件参数配置  置 get_default_flag标记为 : YES
+#TODO 载入默认邮件和文件参数配置  置 get_default_flag标记为 : YES
 def load_default_configuration_info(name, tab6, logger):
     monty = ttk.LabelFrame(tab6, text='Default config')
     monty.grid()
@@ -401,7 +399,7 @@ def load_default_configuration_info(name, tab6, logger):
     button2 = Button(monty, text='Save Default', font=("Calibri", 12), width=14, background='green',
                 command=lambda x=name: save_default(name), activeforeground='blue', activebackground='palegreen')
 
-    # TODO 刷新配置界面参数 Save Default按钮按下时触发
+    #TODO 刷新配置界面参数 Save Default按钮按下时触发
     def update_config_value(event):
         conf = MachineConfig(CONFIG_FILE_PATH)
         project_name_sep = obtain_prefix_project_name(name)
@@ -428,17 +426,17 @@ def load_default_configuration_info(name, tab6, logger):
         save_effort_flag = conf.get_node_info(project_name_sep + '_other_config', 'display_save_effort')
         miss_flag = conf.get_node_info(project_name_sep + '_other_config', 'display_miss')
 
-        # TODO 关闭窗口需要保存当前配置
+        #TODO 关闭窗口需要保存当前配置
         global close_windows_update_config_flag
 
         close_windows_update_config_flag = False
 
-        # TODO 更新界面参数值 刷新界面
+        #TODO 更新界面参数值 刷新界面
         update_parameter_value(email_server, server_address)
         update_parameter_value(email_send, from_address.strip())
         update_parameter_value(template_file_path, template_file.strip())
 
-        # TODO 接收邮件地址去重
+        #TODO 接收邮件地址去重
         final_receive_list = []; index = 0; receive_address_list = []
         temp_receive_list = receive_address.strip().split(',')
         for receive_add in temp_receive_list:
@@ -471,7 +469,7 @@ def load_default_configuration_info(name, tab6, logger):
         chart_save_effort_numberChosen7.set('YES' if save_effort_flag.strip() == 'YES' else 'NO')
         chart_miss_numberChosen8.set('YES' if miss_flag.strip() == 'YES' else 'NO')
 
-    # TODO 绑定按钮事件实现实时更新界面参数值
+    #TODO 绑定按钮事件实现实时更新界面参数值
     button1.bind('<Button-1>', update_config_value)
     button1.grid(row=6, column=0, padx=20, pady=15, sticky='W')
     button2.grid(row=6, column=6, padx=20, pady=15, sticky='E')
@@ -504,7 +502,7 @@ def display_config_info(logger, purl_bak_string):
     display_save_effort = get_interface_config('display_save_effort', purl_bak_string)
     display_miss = get_interface_config('display_miss', purl_bak_string)
 
-    # TODO 检测是否有空值，有则添加默认值 2017-06-02
+    #TODO 检测是否有空值，有则添加默认值 2017-06-02
     conf = MachineConfig(CONFIG_FILE_PATH)
     if get_default_flag == 'YES' or len(get_default_flag.strip()) == 0:
         project_name_sep = obtain_prefix_project_name(purl_bak_string)
@@ -552,7 +550,7 @@ def display_config_info(logger, purl_bak_string):
     if len(send_email_flag.strip()) == 0:
         conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_send_email_flag', 'YES')
 
-    # TODO 以下参数必须非空
+    #TODO 以下参数必须非空
     if len(from_address.strip()) == 0:
         logger.print_message('The sender email address is null!!!', _file_name, 30)
         raise UserWarning('The sender email address is null!!!')
@@ -615,14 +613,14 @@ def display_config_info(logger, purl_bak_string):
     logger.print_message('week_input_string_list:%s%s' % (' ' * (10 + 19 - len('week_input_string_list')), week_input_string_list),  file_logger_name)
 
 
-# TODO excel模板文件配置回调函数
+#TODO excel模板文件配置回调函数
 def file_choose(e):
     filename = askopenfilename(initialdir=os.getcwd(), filetypes=(("excel file", "*.xlsx;*.xls;*.csv"),))
     e.delete(0, END); e.insert(0, filename)
     return filename
 
 
-# TODO excel模板文件配置界面
+#TODO excel模板文件配置界面
 def template_file_choose(name, tab3):
     current_template_file = get_interface_config('template_file', name)
     monty = ttk.LabelFrame(tab3, text='Template config')
@@ -636,14 +634,14 @@ def template_file_choose(name, tab3):
     button1.grid(row=1, column=0, columnspan=2, padx=20, pady=15)
 
 
-# TODO 检查参数的安全性 配置界面关闭时触发
+#TODO 检查参数的安全性 配置界面关闭时触发
 def check_gui_parameter_validity(logger):
     current_email_server, current_email_send, current_email_receive = email_server.get(), email_send.get(), email_receive.get()
     current_template_file_path = template_file_path.get()
 
     email_compile = re.compile(pattern='\w+.@intel.com')
 
-    # TODO 不发生邮件时不做检查
+    #TODO 不发生邮件时不做检查
     if global_check_email_address_vality:
         if len(current_email_server.strip()) == 0 or not current_email_server.endswith('intel.com'):
             logger.print_message('The email server address is illegal!!!', _file_name, 30)
@@ -663,9 +661,9 @@ def check_gui_parameter_validity(logger):
         template_file_path.delete(0, END)
         raise UserWarning('The template file path does not exist')
     else:
-        # TODO 判断是否是个文件
+        #TODO 判断是否是个文件
         if os.path.isfile(current_template_file_path.strip()):
-            # TODO 当前目录下则填充全路径
+            #TODO 当前目录下则填充全路径
             if current_template_file_path.strip() in os.listdir(os.getcwd()):
                 template_file_path.delete(0, END)
                 template_file_path.insert(0, os.getcwd() + os.sep + current_template_file_path.strip())
@@ -675,17 +673,17 @@ def check_gui_parameter_validity(logger):
             raise UserWarning('The path of the file you entered is a directory, not a file')
 
 
-# TODO 检测窗口是否关闭 关闭则保存当前配置
+#TODO 检测窗口是否关闭 关闭则保存当前配置
 def callback(win, purl_bak_string, logger):
-    # TODO 如果未按任何的按钮直接关闭窗口则重置重载默认配置标记为NO
+    #TODO 如果未按任何的按钮直接关闭窗口则重置重载默认配置标记为NO
     if not load_default_flag:
         conf = MachineConfig(CONFIG_FILE_PATH)
-        # TODO 修改加载默认配置参数标记
+        #TODO 修改加载默认配置参数标记
         conf.modify_node_value(purl_bak_string + '_real-time_control_parameter_value', 'default_get_default_flag', 'NO')
         rewrite_config_file(purl_bak_string, default_save_flag=False, current_save_falg=True)
 
     if not close_windows_update_config_flag:
-        # TODO 检查参数的有效性已经非空性
+        #TODO 检查参数的有效性已经非空性
         check_gui_parameter_validity(logger)
         rewrite_config_file(purl_bak_string)
 
@@ -694,10 +692,10 @@ def callback(win, purl_bak_string, logger):
     logger.print_message('The main windows of configuration is closed!', _file_name, 20)
 
 
-# TODO 项目类型配置界面
+#TODO 项目类型配置界面
 def sub_main(name, logger):
     # top.destroy()
-    # TODO 检测是否有空值，有则添加默认值 2017-06-09
+    #TODO 检测是否有空值，有则添加默认值 2017-06-09
     conf = MachineConfig(CONFIG_FILE_PATH)
     conf.modify_node_value('real-time_control_parameter_value', 'default_purl_bak_string', name)
 
@@ -706,7 +704,7 @@ def sub_main(name, logger):
     screen_height = win.winfo_screenheight()
 
     win.title("%s User configuration interface" % name)
-    tabControl = ttk.Notebook(win)  # Create Tab Control
+    tabControl = ttk.Notebook(win)  #todo Create Tab Control
     center_window(root=win, height=(screen_width - screen_height)/2 - 20 + 50, width=(screen_width - screen_height)/2 + 250)
 
     tab1 = ttk.Frame(tabControl)
@@ -732,15 +730,15 @@ def sub_main(name, logger):
     online_or_offline_interface(name, tab5)
     load_default_configuration_info(name, tab6, logger)
 
-    # make Esc exit the program
+    #todo make Esc exit the program
     win.protocol("WM_DELETE_WINDOW", lambda x=win: callback(win, name, logger))
-    # create a menu bar with an Exit command
+    #todo create a menu bar with an Exit command
     win.bind('<Escape>', lambda e: win.destroy())
 
     win.mainloop()
 
 
-# TODO 主程序
+#TODO 主程序
 def main(logger):
     import wx
 
@@ -753,7 +751,7 @@ def main(logger):
 
     #todo 设置鼠标指针样式
     frame.SetCursor(wx.StockCursor(wx.CURSOR_HAND))
-    # todo 设置字体大小格式
+    #TODO 设置字体大小格式
     # wx_font = wx.Font(14, wx.MODERN, wx.ITALIC, wx.BOLD, True)
     wx_font = wx.Font(14, wx.MODERN, wx.ITALIC, wx.BOLD)
     button1.SetFont(wx_font)
@@ -761,7 +759,7 @@ def main(logger):
     button3.SetFont(wx_font)
     button.SetFont(wx_font)
 
-    # todo 设置字体颜色
+    #TODO 设置字体颜色
     button.SetForegroundColour('red')
     button1.SetForegroundColour('blue')
     button2.SetForegroundColour('orange')
@@ -783,7 +781,7 @@ def main(logger):
         conf = MachineConfig(CONFIG_FILE_PATH)
         conf.modify_node_value('real-time_control_parameter_value', 'default_purl_bak_string', purl_bak_string)
 
-    # todo 绑定回调函数
+    #TODO 绑定回调函数
     button.Bind(wx.EVT_BUTTON, call_back)
     button1.Bind(wx.EVT_BUTTON, call_back)
     button2.Bind(wx.EVT_BUTTON, call_back)
@@ -792,7 +790,7 @@ def main(logger):
     frame.Show()
     app.MainLoop()
 
-    # todo 加载最新的项目名称信息
+    #TODO 加载最新的项目名称信息
     conf = MachineConfig(CONFIG_FILE_PATH)
     purl_bak_string = conf.get_node_info('real-time_control_parameter_value', 'default_purl_bak_string')
     #todo 加载项目主菜单界面
@@ -800,7 +798,7 @@ def main(logger):
     #todo 显示用户的项目配置信息
     display_config_info(logger=logger, purl_bak_string=purl_bak_string)
 
-    # TODO choose_weeks_var如果为YES则弹出配置周数界面
+    #TODO choose_weeks_var如果为YES则弹出配置周数界面
     if choose_weeks_var.get() == 'YES':
         week_gui_config(purl_bak_string=purl_bak_string, logger=logger)
 
@@ -832,12 +830,12 @@ def online_or_offline_interface(purl_bak_string, tab5):
     on_off_numberChosen1.grid(column=6, row=1, padx=10, pady=10)
     choose_weeks_numberChosen1.grid(column=6, row=2, padx=10, pady=10)
 
-    # TODO 数字代表选择: 0代表第一个
+    #TODO 数字代表选择: 0代表第一个
     on_off_numberChosen1.current(0 if current_on_off_line_save_flag == 'online' else 1)
     choose_weeks_numberChosen1.current(0 if current_keep_continuous == 'YES' else 1)
 
 
-# TODO 滚动条Scrollbar与文本框Text组合
+#TODO 滚动条Scrollbar与文本框Text组合
 class MainFrame(Frame):
     def __init__(self, master=None, week_info_list=None, step_length=5, entry=None):
         Frame.__init__(self, master)
@@ -862,14 +860,14 @@ class MainFrame(Frame):
         self.scrollbar_x = Scrollbar(self.label_frame_1, orient=HORIZONTAL)  # 水平滚动条
         self.scrollbar_y = Scrollbar(self.label_frame_1, orient=VERTICAL)  # 竖向滚动条
         self.text = Text(self.label_frame_1, height=20, yscrollcommand=self.scrollbar_y.set, xscrollcommand=self.scrollbar_x.set, wrap=None)  # 文本框
-        # 滚动事件
+        #todo 滚动事件
         self.scrollbar_x.config(command=self.text.xview)
         self.scrollbar_y.config(command=self.text.yview)
-        # 布局
+        #todo 布局
         self.scrollbar_x.pack(fill=X, side=BOTTOM, anchor=N)
         self.scrollbar_y.pack(fill=Y, side=RIGHT, anchor=N)
         self.text.pack(fill=X, expand=1, side=LEFT)
-        # 绑定事件
+        #todo 绑定事件
         self.text.bind('<Control-Key-a>', self.selectText)
         self.text.bind('<Control-Key-A>', self.selectText)
 
@@ -887,7 +885,7 @@ class MainFrame(Frame):
         return self.text
 
 
-# TODO 实时显示相关组件数据
+#TODO 实时显示相关组件数据
 def display_text_info(text, entry, week_info_list, step_length):
     text.delete(0.0, END)
     for index in range(len(week_info_list) / step_length + 2):
@@ -912,9 +910,9 @@ def display_text_info(text, entry, week_info_list, step_length):
                     entry_input_string_list[index * step_length:(index + 1) * step_length]))
 
 
-# TODO  检测所填入的数据的有效性 格式检查以及值有效检查
+#TODO  检测所填入的数据的有效性 格式检查以及值有效检查
 def check_week_valid(week_info_list, url_info_list, logger):
-    # TODO 如果选择的周不在所有的周里面说明是不合法的周数据  无效值url信息集合judge_set
+    #TODO 如果选择的周不在所有的周里面说明是不合法的周数据  无效值url信息集合judge_set
     judge_set = set(week_info_list) - set(url_info_list)
 
     if judge_set:
@@ -925,17 +923,17 @@ def check_week_valid(week_info_list, url_info_list, logger):
     week_compile_object_list = [ re.search(week_compile, week) for  week in week_info_list ]
     week_length_list = [ len(week) for week in week_info_list ]
 
-    # TODO 若数据有效则返回, 否则去除无效的数据，返回有效的数据
+    #TODO 若数据有效则返回, 否则去除无效的数据，返回有效的数据
     if week_compile_object_list and all(week_compile_object_list) and week_length_list.count(week_length_list[0]) == len(week_length_list) and week_length_list[0] == 8:
         return week_info_list
     else:
         return [ week for week in week_info_list if re.search(week_compile, week) and len(week) == 8 ]
 
 
-# TODO 检测日期周配置窗口是否关闭 关闭则保存当前日期周配置
+#TODO 检测日期周配置窗口是否关闭 关闭则保存当前日期周配置
 def week_callback(win, entry_input_string_list, logger):
     logger.print_message('entry_input_string_list:\t%s' % entry_input_string_list, _file_name)
-    # TODO 保存日期值
+    #TODO 保存日期值
     if not os.path.exists(SRC_WEEK_DIR):
         os.makedirs(SRC_WEEK_DIR)
     with open(SRC_WEEK_DIR + os.sep + 'week_info.txt', 'w') as f:
@@ -949,9 +947,9 @@ def week_callback(win, entry_input_string_list, logger):
     logger.print_message('The week windows of configuration is closed!', _file_name)
 
 
-# TODO 配置周数据界面 choose_weeks_var为YES时触发
+#TODO 配置周数据界面 choose_weeks_var为YES时触发
 def week_gui_config(purl_bak_string, logger):
-    # TODO 获取对应周url信息时需要更新url列表
+    #TODO 获取对应周url信息时需要更新url列表
     logger.print_message('>>>>>>>>>> Generates the latest selectable week list info for the [ %s ] Start <<<<<<<<<<' % purl_bak_string, _file_name)
     get_url_object = GetUrlFromHtml(html_url_pre='https://dcg-oss.intel.com/ossreport/auto/', logger=logger)
     get_url_object.get_all_type_data(purl_bak_string, get_only_department=True)
@@ -980,14 +978,14 @@ def week_gui_config(purl_bak_string, logger):
 
     frame = MainFrame(tk, week_info_list=effective_week_info_list, entry=entry)
     frame.grid(row=week_list_length / step_length + 3, column=0, columnspan=step_length, sticky=N + S + E + W)
-    # TODO 返回Text以便实时显示数据
+    #TODO 返回Text以便实时显示数据
     frame_text = frame.return_text_variable()
 
-    # TODO 获取所有的url信息列表
+    #TODO 获取所有的url信息列表
     all_url_list = get_url_list_by_keyword(purl_bak_string=purl_bak_string, back_keyword='Silver')
     url_info_list = [re.split('\D+', url.split('/')[-2])[0] + 'WW' + re.split('\D+', url.split('/')[-2])[-1] for url in all_url_list]
 
-    # TODO 多个数据之间自动填充分隔符
+    #TODO 多个数据之间自动填充分隔符
     def auto_func(event):
         data = entry.get()
         if len(data.strip()) != 0:
@@ -999,10 +997,10 @@ def week_gui_config(purl_bak_string, logger):
             global week_input_string_list
             week_input_string_list = data_list
 
-            # TODO  检测所填入的数据的有效性, 并返回有效的周列表
+            #TODO  检测所填入的数据的有效性, 并返回有效的周列表
             week_input_string_list = check_week_valid(data_list, url_info_list, logger)
             if data_list and cmp(week_input_string_list, data_list) != 0:
-                # TODO 去除无效的数据 显示有效的数据 默认倒序排序
+                #TODO 去除无效的数据 显示有效的数据 默认倒序排序
                 insert_week_string = ','.join(sorted(week_input_string_list, reverse=True))
                 if insert_week_string:
                     entry.insert(0, insert_week_string + ',')
@@ -1013,10 +1011,10 @@ def week_gui_config(purl_bak_string, logger):
             else:
                 entry.insert(0, '')
 
-        # TODO 捕捉事件实时显示数据
+        #TODO 捕捉事件实时显示数据
         display_text_info(frame_text, entry, url_info_list, step_length)
 
-    # TODO 绑定失去鼠标离开焦点事件
+    #TODO 绑定失去鼠标离开焦点事件
     entry.bind("<Leave>", auto_func)
     entry.grid(row=week_list_length / step_length + 2, column=2, columnspan=2)
 
@@ -1027,7 +1025,7 @@ def week_gui_config(purl_bak_string, logger):
 
 
 if __name__ == '__main__':
-    # TODO 类型: Bakerville or Purley-FPGA
+    #TODO 类型: Bakerville or Purley-FPGA
     from machine_scripts.custom_log import WorkLogger
     import time
 
@@ -1046,12 +1044,12 @@ if __name__ == '__main__':
 
 
 
-# TODO      1、周日期配置界面显示问题 上面应该显示全部  Done
-# TODO      2、关掉周日期配置界面自动保存             Done
-# TODO      3、邮件地址出现乱码 增加格式控制          Done
-# TODO      4、配置文件当前配置按项目分开，每次加载当前项目对应的配置 Done
+#TODO      1、周日期配置界面显示问题 上面应该显示全部  Done
+#TODO      2、关掉周日期配置界面自动保存             Done
+#TODO      3、邮件地址出现乱码 增加格式控制          Done
+#TODO      4、配置文件当前配置按项目分开，每次加载当前项目对应的配置 Done
 
-# TODO      5、mapping和save-miss表日期对齐          Done
-# TODO      6、发送邮件时不对邮件地址检查但是会保存邮件地址 Done
-# TODO      7、更改excel文件名 在名称中加入最新日期以及最新日期的index信息 Done
-# TODO      8、在选择周日期时增加选择Silver、Gold以及BKC三种类型的功能 Done
+#TODO      5、mapping和save-miss表日期对齐          Done
+#TODO      6、发送邮件时不对邮件地址检查但是会保存邮件地址 Done
+#TODO      7、更改excel文件名 在名称中加入最新日期以及最新日期的index信息 Done
+#TODO      8、在选择周日期时增加选择Silver、Gold以及BKC三种类型的功能 Done

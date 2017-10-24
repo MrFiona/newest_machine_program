@@ -5,7 +5,6 @@
 # File    : get_all_html.py
 # Software: PyCharm Community Edition
 
-from __future__ import absolute_import
 
 import codecs
 import os

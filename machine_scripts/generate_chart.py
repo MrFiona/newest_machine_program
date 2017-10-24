@@ -5,9 +5,6 @@
 # Author  : MrFiona 一枚程序员
 # Time     : 2017-05-24 13:01
 
-from __future__ import absolute_import, division
-
-
 
 import os
 import re
@@ -202,8 +199,8 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
             i += 1
 
     ax1 = plt.gca()
-    plt.grid(color='peru', linestyle='--', ) #开启网格
-    # y轴主刻度最小单位设为1
+    plt.grid(color='peru', linestyle='--', ) #todo 开启网格
+    #todo y轴主刻度最小单位设为1
     ax1.yaxis.set_major_locator( MultipleLocator(1) )
 
     if display_software == 'YES':
@@ -263,9 +260,9 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
     fig_sighting = plt.figure()
     fig_sighting.set_size_inches(w=15, h=8)
     ax1_sighting = plt.gca()
-    plt.grid(color='peru', linestyle='--', )  # 开启网格
+    plt.grid(color='peru', linestyle='--', )  #todo 开启网格
 
-    # y轴主刻度最小单位设为1
+    #todo y轴主刻度最小单位设为1
     ax1_sighting.yaxis.set_major_locator(MultipleLocator(5))
     #TODO '%1.1f%%'
     # ax1_sighting.yaxis.set_major_formatter(FormatStrFormatter())
@@ -285,7 +282,7 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
     plt.title(u"%s %s %s Trend" % (purl_bak_string, candidate_string.replace('_', ''), week_type_string), fontsize=22, color='red')
 
     plt.xticks(index - 0.2 + 2 * bar_width, weeks_list, fontsize=10, rotation=-45)
-    plt.yticks(fontsize=12)  # change the num axis size
+    plt.yticks(fontsize=12)  #todo change the num axis size
     
     plt.axis([0, n_groups + 1, 0, max_positive_num_sighting + 10])
 
@@ -299,7 +296,7 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
         os.system('taskkill /F /IM excel.exe')
 
     plt.tight_layout()
-    foo_fig_sighting = plt.gcf()  # 'get current figure'
+    foo_fig_sighting = plt.gcf()  #todo 'get current figure'
 
     foo_fig_sighting.savefig(PRESERVE_TABLE_CHART_DIR + os.sep + purl_bak_string + chart_link_string + '_table_chart_2_' +
                     candidate_string + log_time + '.png', format='png', dpi=fig.dpi)

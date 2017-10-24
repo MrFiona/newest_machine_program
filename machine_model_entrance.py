@@ -5,7 +5,6 @@
 # File    : machine_model_entrance.py
 # Software: PyCharm Community Edition
 
-from __future__ import absolute_import
 
 import os
 import re
@@ -26,13 +25,12 @@ try:
         rename_log_file_name, interrupt_clear_excel_file, InterruptError, get_win_process_ids,
         confirm_result_excel, backup_chart, backup_excel_file, backup_cache, performance_analysis_decorator)
     from machine_scripts.common_interface_branch_func import traceback_print_info, obtain_prefix_project_name
-    from setting_global_variable import type_sheet_name_list
     from machine_scripts.cache_mechanism import DiskCache
     from machine_scripts.send_email import SendEmail
     from machine_scripts.create_email_html import create_save_miss_html
     from machine_scripts.wxpython_gui import gui_main,display_config_info
     from machine_scripts.generate_chart import generate_chart
-    from setting_global_variable import SRC_WEEK_DIR
+    from setting_global_variable import SRC_WEEK_DIR, type_sheet_name_list
 except ImportError:
     _logger.print_message('Please check whether the requirements.txt file is in the current directory or no network state '
                           'but the installation module is missing', os.path.split(__file__)[1], CRITICAL)
@@ -113,9 +111,9 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
         raise InterruptError('Interrupt Error occurred!!!')
 
     insert_object.close_workbook()
-    # todo 返回日期类型字符串列表，不包括candidate
+    #todo 返回日期类型字符串列表，不包括candidate
     newest_week_type_string_list = insert_object.return_newest_week_type_string_list()
-    # todo 返回candidate日期字符串，没有candidate则默认：default_bkc_string
+    #todo 返回candidate日期字符串，没有candidate则默认：default_bkc_string
     predict_newest_insert_bkc_string = insert_object.return_predict_bkc_string()
     _logger.print_message('predict_newest_insert_bkc_string:\t%s' % predict_newest_insert_bkc_string, file_name)
     _logger.print_message('newest_week_type_string_list:\t%s' % newest_week_type_string_list, file_name)
@@ -295,7 +293,7 @@ def machine_main():
                                   file_name, 50)
         if INTERRUPTED_CLEAR_FILE_CONDITION_FLAG:
             interrupt_clear_excel_file(log_time, _logger)
-    # todo 内存异常时选择终止程序
+    #todo 内存异常时选择终止程序
     except SystemExit:
         if not LOGGER_CLOSE_FLAG:
             _logger.print_message('Check out insufficient memory to exit', file_name, 50)

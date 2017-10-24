@@ -12,7 +12,6 @@
 #TODO          2、无最新的周出现且需要覆盖  保持既定位置不变
 #TODO          3、正常情况不需要覆盖       保持既定位置不变
 
-from __future__ import absolute_import
 
 import copy
 import os
@@ -226,16 +225,16 @@ class InsertDataIntoExcel(object):
 
     def insert_NewSi_data(self):
         self.logger.print_message('Start inserting [ New Sightings ] data.........', self.__file_name)
-        #隐藏部分数据
+        #todo 隐藏部分数据
         hidden_data_by_column(self.worksheet_newsi, self.Silver_url_list, 13, 1)
-        # 获取公式并插入指定位置
+        #todo 获取公式并插入指定位置
         self.get_formula_data(u'NewSi', self.worksheet_newsi)
         for j in range(len(self.Silver_url_list)):
             #TODO 不在url列表范围则跳过不覆盖
             if self.keep_continuous == 'YES' and  self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
-                #验证url有效性
+                #todo 验证url有效性
                 is_validity = verify_validity_url(self.Silver_url_list[j], self.logger)
                 if not is_validity:
                     continue
@@ -274,9 +273,9 @@ class InsertDataIntoExcel(object):
                     num_url_list.append(len(ele))
 
                 for i in range(len(cell_data_list)):
-                    #插入非url部分数据
+                    #todo 插入非url部分数据
                     self.worksheet_newsi.write_row(4 + i, self.calculate_head_num(13, j, 5), cell_data_list[i][1:-1])
-                    #插入url数据部分
+                    #todo 插入url数据部分
                     self.worksheet_newsi.write_url(4 + i, self.calculate_head_num(13, j, 4), effective_url_list[i][0], self.url_format, cell_data_list[i][0])
                     if num_url_list[i] > 1:
                         self.worksheet_newsi.write_url(4 + i, self.calculate_head_num(13, j, 11), effective_url_list[i][1], self.url_format, cell_data_list[i][-1])
@@ -288,14 +287,14 @@ class InsertDataIntoExcel(object):
     def insert_ExistingSi_data(self):
         self.logger.print_message('Start inserting [ Existing Sightings ] data.........', self.__file_name)
         hidden_data_by_column(self.worksheet_existing, self.Silver_url_list, 13, 1)
-        # 获取公式并插入指定位置
+        #todo 获取公式并插入指定位置
         self.get_formula_data('ExistingSi', self.worksheet_existing)
         for j in range(len(self.Silver_url_list)):
             #TODO 不在url列表范围则跳过不覆盖
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
-                # 验证url有效性
+                #todo 验证url有效性
                 is_validity = verify_validity_url(self.Silver_url_list[j], self.logger)
                 if not is_validity:
                     continue
@@ -317,7 +316,7 @@ class InsertDataIntoExcel(object):
                     if self.keep_continuous == 'YES' and j == self.actual_newest_week_position:
                         self.newest_week_type_string_list.append(Silver_BkC_string)
 
-                #标记True为红色
+                #todo 标记True为红色
                 self.worksheet_existing.conditional_format(4, self.calculate_head_num(13, j, 2), 250, self.calculate_head_num(13, j, 3),
                                                            {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
                 self.worksheet_existing.write(2, self.calculate_head_num(13, j, 1), Silver_BkC_string, self.format1)
@@ -326,19 +325,19 @@ class InsertDataIntoExcel(object):
                 if not url_list and not header_list and not cell_data_list:
                     continue
 
-                # 增加一列comments
+                #todo 增加一列comments
                 header_list.append('comments')
-                # 写入表头行
+                #todo 写入表头行
                 self.worksheet_existing.write_row(2, self.calculate_head_num(13, j, 4), header_list, self.header_format)
 
-                # 最后一列可能会出现多值多行的情况，计算每行数据占有的行数
+                #todo 最后一列可能会出现多值多行的情况，计算每行数据占有的行数
                 line_num_list = []
                 for ele in cell_data_list:
                     num = len(ele[7:])
                     line_num_list.append(num)
 
                 nu = 4
-                # 插入数据第一列到第三列
+                #todo 插入数据第一列到第三列
                 for line in range(len(cell_data_list)):
                     if line_num_list[line] <= 1:
                         self.worksheet_existing.write_row(nu, self.calculate_head_num(13, j, 5), cell_data_list[line][1:7])
@@ -364,7 +363,7 @@ class InsertDataIntoExcel(object):
 
     def insert_ClosedSi_data(self):
         self.logger.print_message('Start inserting [ Closed Sightings ] data.........', self.__file_name)
-        # 获取公式并插入指定位置
+        #todo 获取公式并插入指定位置
         self.get_formula_data('ClosedSi', self.worksheet_closesi)
         hidden_data_by_column(self.worksheet_closesi, self.Silver_url_list, 13, 1)
         for j in range(len(self.Silver_url_list)):
@@ -372,7 +371,7 @@ class InsertDataIntoExcel(object):
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
-                # 验证url有效性
+                #todo 验证url有效性
                 is_validity = verify_validity_url(self.Silver_url_list[j], self.logger)
                 if not is_validity:
                     continue
@@ -407,9 +406,9 @@ class InsertDataIntoExcel(object):
                 for ele in effective_url_list:
                     num_url_list.append(len(ele))
                 for i in range(len(cell_data_list)):
-                    #插入非url部分数据
+                    #todo 插入非url部分数据
                     self.worksheet_closesi.write_row(4 + i, self.calculate_head_num(13, j, 5), cell_data_list[i][1:-1])
-                    #插入url数据部分
+                    #todo 插入url数据部分
                     self.worksheet_closesi.write_url(4 + i, self.calculate_head_num(13, j, 4), effective_url_list[i][0], self.url_format, cell_data_list[i][0])
                     if num_url_list[i] > 1:
                         self.worksheet_closesi.write_url(4 + i, self.calculate_head_num(13, j, 11), effective_url_list[i][1], self.url_format, cell_data_list[i][-1])
@@ -420,7 +419,7 @@ class InsertDataIntoExcel(object):
 
     def insert_Rework_data(self):
         self.logger.print_message('Start inserting [ HW Rework ] data.........', self.__file_name)
-        # 获取公式并插入指定位置
+        #todo 获取公式并插入指定位置
         self.get_formula_data('Rework', self.worksheet_rework)
         hidden_data_by_column(self.worksheet_rework, self.Silver_url_list, 3, 1)
         for j in range(len(self.Silver_url_list)):
@@ -428,7 +427,7 @@ class InsertDataIntoExcel(object):
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
-                # 验证url有效性
+                #todo 验证url有效性
                 is_validity = verify_validity_url(self.Silver_url_list[j], self.logger)
                 if not is_validity:
                     continue
@@ -438,7 +437,7 @@ class InsertDataIntoExcel(object):
                     obj = Crystal_Ridge_extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
                 else:
                     obj = extract_data.GetAnalysisData(self.Silver_url_list[j], get_info_not_save_flag=False, cache=self.cache, insert_flag=True, logger=self.logger, purl_bak_string=self.purl_bak_string)
-                #最新的一周在验证标志未开启的情况下取Silver数据,否则取BKC数据
+                #todo 最新的一周在验证标志未开启的情况下取Silver数据,否则取BKC数据
                 if j == 0:
                     if self.purl_bak_string == 'Purley-FPGA' or self.purl_bak_string == 'NFVi' or self.purl_bak_string == 'Purley-Crystal-Ridge':
                         Silver_BkC_string, object_string_list, date_string = obj.get_rework_data('HW Rework', self.verify_flag)
@@ -458,7 +457,7 @@ class InsertDataIntoExcel(object):
                     if self.keep_continuous == 'YES' and j == self.actual_newest_week_position:
                         self.newest_week_type_string_list.append(Silver_BkC_string)
 
-                # 标记True为红色
+                #todo 标记True为红色
                 self.worksheet_rework.conditional_format(3, self.calculate_head_num(3, j), 300, self.calculate_head_num(3, j),
                                                          {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
                 self.worksheet_rework.write(1, self.calculate_head_num(3, j, 1), date_string, self.format1)
@@ -480,7 +479,7 @@ class InsertDataIntoExcel(object):
                 self.logger.print_message('The data crawling failed for the %dth url [ %s ]' % (j + 1, self.Silver_url_list[j]), self.__file_name)
 
     def insert_ReworkInfo(self):
-        # 获取公式并插入指定位置
+        #todo 获取公式并插入指定位置
         hidden_data_by_column(self.worksheet_rework_info, self.Silver_url_list, 1, 1)
         self.get_formula_data('ReworkInfo', self.worksheet_rework_info)
 
@@ -495,7 +494,7 @@ class InsertDataIntoExcel(object):
             DE_border_position = self.Silver_url_list.index('https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW24/6170_Silver.html')
             self.logger.print_message('DE_border_position:\t%s' % DE_border_position, self.__file_name)
 
-        # 获取公式并插入指定位置
+        #todo 获取公式并插入指定位置
         self.get_formula_data('HW', self.worksheet_hw)
         hidden_data_by_column(self.worksheet_hw, self.Silver_url_list, 18, 1)
 
@@ -504,7 +503,7 @@ class InsertDataIntoExcel(object):
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
-                # 验证url有效性
+                #todo 验证url有效性
                 is_validity = verify_validity_url(self.Silver_url_list[j], self.logger)
                 if not is_validity:
                     continue
@@ -559,23 +558,23 @@ class InsertDataIntoExcel(object):
 
                 if self.keep_continuous == 'YES' and j == self.actual_newest_week_position:
                     self.newest_week_type_string_list.append(Silver_BkC_string)
-            # 合并单元格
+            #todo 合并单元格
             self.worksheet_hw.merge_range(3, self.calculate_head_num(18, j), 9, self.calculate_head_num(18, j), "", self.title_format)
             self.worksheet_hw.write_rich_string(3, self.calculate_head_num(18, j), self.red, date_string, self.title_format)
 
             self.worksheet_hw.write(2, self.calculate_head_num(18, j), Silver_BkC_string, self.format1)
-            # 标记True为红色
+            #todo 标记True为红色
             self.worksheet_hw.conditional_format(2, self.calculate_head_num(18, j, 1), 10, self.calculate_head_num(13, j, 17),
                                                  {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
 
-            #判断这周有无数据， 例如：第40周的数据为空
+            #todo 判断这周有无数据， 例如：第40周的数据为空
             if not row_coordinates_list and not column_coordinates_list and not cell_data_list:
                 continue
 
             try:
-                # 写入工作表的第二行,现在只支持system 1 到HWsystem 15，截取15行数据
+                #todo 写入工作表的第二行,现在只支持system 1 到HWsystem 15，截取15行数据
                 # self.worksheet_hw.write_row(1, self.calculate_head_num(18, j, 2), row_coordinates_list[:15])
-                #按行插入数据
+                #todo 按行插入数据
                 self.worksheet_hw.write_column(3, self.calculate_head_num(18, j, 2), column_coordinates_list)
                 for row_num in range(len(cell_data_list)):
                     #每个元素限制为10列 [:15]
@@ -584,13 +583,13 @@ class InsertDataIntoExcel(object):
                 self.logger.print_message('The data crawling failed for the %dth url [ %s ]' % (j + 1, self.Silver_url_list[j]), self.__file_name)
 
     def insert_HWInfo(self):
-        # 获取公式并插入指定位置
+        #todo 获取公式并插入指定位置
         hidden_data_by_column(self.worksheet_hw_info, self.Silver_url_list, 1, 1)
         self.get_formula_data('HWInfo', self.worksheet_hw_info)
 
     def insert_SW_Original_data(self):
         self.logger.print_message('Start inserting [ SW_Original Configuration ] data.........', self.__file_name)
-        # 获取公式并插入指定位置
+        #todo 获取公式并插入指定位置
         hidden_data_by_column(self.worksheet_sw_original, self.Silver_url_list, 9, 1)
         self.get_formula_data('SW_Original', self.worksheet_sw_original)
         for j in range(len(self.Silver_url_list)):
@@ -598,7 +597,7 @@ class InsertDataIntoExcel(object):
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
-                # 验证url有效性
+                #todo 验证url有效性
                 is_validity = verify_validity_url(self.Silver_url_list[j], self.logger)
                 if not is_validity:
                     continue
@@ -632,14 +631,14 @@ class InsertDataIntoExcel(object):
                 if not header_list and not cell_data_list:
                     continue
 
-                # 标记True为红色
+                #todo 标记True为红色
                 self.worksheet_sw_original.conditional_format(3, self.calculate_head_num(9, j), 40, self.calculate_head_num(9, j, 1),
                                                              {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
-                # 标记0为黄色
+                #todo 标记0为黄色
                 self.worksheet_sw_original.conditional_format(3, self.calculate_head_num(9, j, 2), 40, self.calculate_head_num(9, j, 2),
                                                              {'type': 'cell', 'criteria': '=', 'value': 0, 'format': self.yellow_data_format})
                 self.worksheet_sw_original.write_row(2, self.calculate_head_num(9, j, 5), header_list, self.header_format)
-                #插入数据 最后一列可能会出现多值多行的情况，计算每行数据占有的行数
+                #todo 插入数据 最后一列可能会出现多值多行的情况，计算每行数据占有的行数
                 line_num_list = []
                 for ele in cell_data_list:
                     num = len(ele[header_length - 1:])
@@ -647,7 +646,7 @@ class InsertDataIntoExcel(object):
                 nu = 3
                 first_insert_data = [cell_data_list[k][0] for k in range(len(cell_data_list))]
                 second_insert_data = [cell_data_list[k][2] for k in range(len(cell_data_list))]
-                #插入数据第一列到第三列
+                #todo 插入数据第一列到第三列
                 for line in range(len(cell_data_list)):
                     if line_num_list[line] == 1:
                         self.worksheet_sw_original.write(nu, self.calculate_head_num(9, j, 5), first_insert_data[line])
@@ -683,7 +682,7 @@ class InsertDataIntoExcel(object):
 
     def insert_SW_data(self):
         self.logger.print_message('Start inserting [ SW Configuration ] data.........', self.__file_name)
-        #获取公式并插入指定位置
+        #todo 获取公式并插入指定位置
         hidden_data_by_column(self.worksheet_sw, self.Silver_url_list, 9, 1)
         self.get_formula_data('SW', self.worksheet_sw)
         for j in range(len(self.Silver_url_list)):
@@ -691,7 +690,7 @@ class InsertDataIntoExcel(object):
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
-                # 验证url有效性
+                #todo 验证url有效性
                 is_validity = verify_validity_url(self.Silver_url_list[j], self.logger)
                 if not is_validity:
                     continue
@@ -727,20 +726,20 @@ class InsertDataIntoExcel(object):
                 if not header_list and not cell_data_list:
                     continue
 
-                # Set up some formats to use.
+                #todo Set up some formats to use.
                 self.worksheet_sw.conditional_format(3, self.calculate_head_num(9, j), 40, self.calculate_head_num(9, j, 1),
                                                      {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
-                # 标记0为黄色
+                #todo 标记0为黄色
                 self.worksheet_sw.conditional_format(3, self.calculate_head_num(9, j, 2), 40, self.calculate_head_num(9, j, 2),
                                                      {'type': 'cell', 'criteria': '=', 'value': 0, 'format': self.yellow_data_format})
                 self.worksheet_sw.write_row(2, self.calculate_head_num(9, j, 5), header_list, self.header_format)
-                # 插入数据 最后一列可能会出现多值多行的情况，计算每行数据占有的行数
+                #todo 插入数据 最后一列可能会出现多值多行的情况，计算每行数据占有的行数
                 line_num_list = []
                 for ele in cell_data_list:
                     num = len(ele[header_length - 1:])
                     line_num_list.append(num)
                 # print 'line_num_list:\t', line_num_list, len(line_num_list)
-                #处理并插入数据
+                #todo 处理并插入数据
                 insert_data = zip( cell_data_list, url_list, line_num_list )
                 insert_data.sort(key=lambda x: x[0][0].upper())
 
@@ -749,7 +748,7 @@ class InsertDataIntoExcel(object):
 
                 first_insert_data = [cell_data_list[k][0] for k in range(len(cell_data_list))]
                 second_insert_data = [cell_data_list[k][2] for k in range(len(cell_data_list))]
-                # 插入数据第一列到第三列
+                #todo 插入数据第一列到第三列
                 nu = 3
                 for line in range(len(cell_data_list)):
                     if line_num_list[line] == 1:
@@ -791,13 +790,13 @@ class InsertDataIntoExcel(object):
                 self.logger.print_message('The data crawling failed for the %dth url [ %s ]' % (j + 1, self.Silver_url_list[j]), self.__file_name)
 
     def insert_SWInfo(self):
-        # 获取公式并插入指定位置
+        #todo 获取公式并插入指定位置
         hidden_data_by_column(self.worksheet_sw_info, self.Silver_url_list, 1, 1)
         self.get_formula_data('SWInfo', self.worksheet_sw_info)
 
     def insert_IFWI_Original_data(self):
         self.logger.print_message('Start inserting [ IFWI_Original Configuration ] data.........', self.__file_name)
-        # 获取公式并插入指定位置
+        #todo 获取公式并插入指定位置
         hidden_data_by_column(self.worksheet_ifwi_original, self.Silver_url_list, 6, 1)
         self.get_formula_data('IFWI_Original', self.worksheet_ifwi_original)
         for j in range(len(self.Silver_url_list)):
@@ -805,7 +804,7 @@ class InsertDataIntoExcel(object):
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
-                # 验证url有效性
+                #todo 验证url有效性
                 is_validity = verify_validity_url(self.Silver_url_list[j], self.logger)
                 if not is_validity:
                     continue
@@ -825,10 +824,10 @@ class InsertDataIntoExcel(object):
                     Silver_BkC_string, date_string, header_list, cell_data_list = obj.get_ifwi_data('IFWI Configuration', True)
                     if self.keep_continuous == 'YES' and j == self.actual_newest_week_position:
                         self.newest_week_type_string_list.append(Silver_BkC_string)
-                # Set up some formats to use.
+                #todo Set up some formats to use.
                 self.worksheet_ifwi_original.conditional_format(4, self.calculate_head_num(6, j), 50, self.calculate_head_num(6, j, 1),
                                                              {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
-                # 标记0为黄色
+                #todo 标记0为黄色
                 self.worksheet_ifwi_original.conditional_format(4, self.calculate_head_num(6, j, 2), 49, self.calculate_head_num(6, j, 2),
                                                              {'type': 'cell', 'criteria': '=', 'value': 0, 'format': self.yellow_data_format})
                 self.worksheet_ifwi_original.write_rich_string(1, self.calculate_head_num(6, j, 1), self.red, date_string, self.header_format)
@@ -838,9 +837,9 @@ class InsertDataIntoExcel(object):
                     continue
 
                 self.worksheet_ifwi_original.write_row(3, self.calculate_head_num(6, j, 3), header_list, self.header_format)
-                #插入数据,需要考虑有数字的情况，前面加Nic字母
+                #todo 插入数据,需要考虑有数字的情况，前面加Nic字母
                 for ele in range(len(cell_data_list)):
-                    #以数字开头的元素前面加Nic
+                    #todo 以数字开头的元素前面加Nic
                     match_obj = re.match('\s+\d+', str(cell_data_list[ele][0]))
                     if match_obj:
                         cell_data_list[ele][0] = 'Nic' + cell_data_list[ele][0]
@@ -853,7 +852,7 @@ class InsertDataIntoExcel(object):
 
     def insert_IFWI_data(self):
         self.logger.print_message('Start inserting [ IFWI Configuration ] data.........', self.__file_name)
-        # 获取公式并插入指定位置
+        #todo 获取公式并插入指定位置
         hidden_data_by_column(self.worksheet_ifwi, self.Silver_url_list, 6, 1)
         self.get_formula_data('IFWI', self.worksheet_ifwi)
         for j in range(len(self.Silver_url_list)):
@@ -861,7 +860,7 @@ class InsertDataIntoExcel(object):
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
-                # 验证url有效性
+                #todo 验证url有效性
                 is_validity = verify_validity_url(self.Silver_url_list[j], self.logger)
                 if not is_validity:
                     continue
@@ -888,16 +887,16 @@ class InsertDataIntoExcel(object):
                 if not header_list and not cell_data_list:
                     continue
 
-                # Set up some formats to use.
+                #todo Set up some formats to use.
                 self.worksheet_ifwi.conditional_format(4, self.calculate_head_num(6, j), 50, self.calculate_head_num(6, j, 1),
                                                        {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
-                # 标记0为黄色
+                #todo 标记0为黄色
                 self.worksheet_ifwi.conditional_format(4, self.calculate_head_num(6, j, 2), 49, self.calculate_head_num(6, j, 2),
                                                        {'type': 'cell', 'criteria': '=', 'value': 0, 'format': self.yellow_data_format})
                 self.worksheet_ifwi.write_row(4, self.calculate_head_num(6, j, 3), header_list, self.header_format)
-                #插入数据,需要考虑有数字的情况，前面加Nic字母
+                #todo 插入数据,需要考虑有数字的情况，前面加Nic字母
                 for ele in range(len(cell_data_list)):
-                    #以数字开头的元素前面加Nic
+                    #todo 以数字开头的元素前面加Nic
                     match_obj = re.match('^\d+', str(cell_data_list[ele][0]))
                     if match_obj:
                         cell_data_list[ele][0] = 'Nic' + cell_data_list[ele][0]
@@ -910,13 +909,13 @@ class InsertDataIntoExcel(object):
                 self.logger.print_message('The data crawling failed for the %dth url [ %s ]' % (j + 1, self.Silver_url_list[j]), self.__file_name)
 
     def insert_IFWIInfo(self):
-        # 获取公式并插入指定位置
+        #todo 获取公式并插入指定位置
         hidden_data_by_column(self.worksheet_ifwi_info, self.Silver_url_list, 1, 1)
         self.get_formula_data('IFWIInfo', self.worksheet_ifwi_info)
 
     def insert_Platform_data(self):
         self.logger.print_message('Start inserting [ Platform Integration Validation Result ] data.........', self.__file_name)
-        # 获取公式并插入指定位置
+        #todo 获取公式并插入指定位置
         hidden_data_by_column(self.worksheet_platform, self.Silver_url_list, 12, 1)
         self.get_formula_data('ValidationResult', self.worksheet_platform)
         for j in range(len(self.Silver_url_list)):
@@ -924,7 +923,7 @@ class InsertDataIntoExcel(object):
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
-                # 验证url有效性
+                #todo 验证url有效性
                 is_validity = verify_validity_url(self.Silver_url_list[j], self.logger)
                 if not is_validity:
                     continue
@@ -953,12 +952,12 @@ class InsertDataIntoExcel(object):
                     continue
 
                 self.worksheet_platform.write_row(2, self.calculate_head_num(12, j, 1), header_list, self.header_format)
-                # 最后一列可能会出现多值多行的情况，计算每行数据占有的行数
+                #todo 最后一列可能会出现多值多行的情况，计算每行数据占有的行数
                 line_num_list = []
                 for ele in cell_data_list:
                     num = len(ele[10:])
                     line_num_list.append(num)
-                #有可能出现多个多行的情况，自适应合并列的变化
+                #todo 有可能出现多个多行的情况，自适应合并列的变化
                 merge_width = len(cell_data_list) + 2
                 for k in line_num_list:
                     if k > 1:
@@ -966,13 +965,13 @@ class InsertDataIntoExcel(object):
 
                 self.worksheet_platform.merge_range(2, self.calculate_head_num(12, j), merge_width, self.calculate_head_num(12, j), '', self.title_format)
                 self.worksheet_platform.write_rich_string(2, self.calculate_head_num(12, j), self.red, date_string, self.title_format)
-                # 标记True为红色
+                #todo 标记True为红色
                 self.worksheet_platform.conditional_format(3, self.calculate_head_num(12, j, 5), len(cell_data_list) + 3, self.calculate_head_num(12, j, 5),
                                                            {'type': 'cell', 'criteria': '>', 'value': 0, 'format': self.format1})
                 nu = 3
-                # 插入数据第一列到第三列
+                #todo 插入数据第一列到第三列
                 for line in range(len(cell_data_list)):
-                    #将数字字符转化为数字
+                    #todo 将数字字符转化为数字
                     temp_list = copy.deepcopy(cell_data_list[line])
                     for ele in range(len(temp_list)):
                         if temp_list[ele].isdigit():
@@ -1020,9 +1019,9 @@ class InsertDataIntoExcel(object):
 
         self.worksheet_mapping.set_column(5, height - 1 - 1, options={'hidden': True})
 
-        # 获取公式并插入指定位置
+        #todo 获取公式并插入指定位置
         self.get_formula_data('Mapping', self.worksheet_mapping)
-        # 标记True为红色
+        #todo 标记True为红色
         self.worksheet_mapping.conditional_format(self.__WEEK_NUM + 7, 5, 250, self.__WEEK_NUM + 6, {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
         self.worksheet_mapping.conditional_format(self.__WEEK_NUM + 7, self.__WEEK_NUM + 7, 250, self.__WEEK_NUM + 41, {'type': 'cell', 'criteria': '>', 'value': 0, 'format': self.format1})
         #TODO 解析url
@@ -1040,7 +1039,7 @@ class InsertDataIntoExcel(object):
         self.logger.print_message('Start inserting [ CaseResult ] data.........', self.__file_name)
         self.worksheet_caseresult.set_column(firstcol=11, lastcol=41 * (self.__WEEK_NUM - len(self.Silver_url_list) - 1) + 10, options={'hidden': True})
 
-        # 获取公式并插入指定位置
+        #todo 获取公式并插入指定位置
         self.get_formula_data('CaseResult', self.worksheet_caseresult)
         yellow_header_format = self.workbook.add_format({'bg_color': '#FFFF66'})
         brown_header_format = self.workbook.add_format({'bg_color': '#FF9933'})
@@ -1073,7 +1072,7 @@ class InsertDataIntoExcel(object):
             if self.keep_continuous == 'YES' and self.Silver_url_list[j] not in self.section_Silver_url_list:
                 continue
             if self.on_off_line_save_flag == 'online':
-                # 验证url有效性
+                #todo 验证url有效性
                 is_validity = verify_validity_url(self.Silver_url_list[j], self.logger)
                 if not is_validity:
                     continue
@@ -1095,9 +1094,8 @@ class InsertDataIntoExcel(object):
                     if self.keep_continuous == 'YES' and j == self.actual_newest_week_position:
                         self.newest_week_type_string_list.append(Silver_Gold_BKC_string)
 
-                #按照格式写入一些数据
+                #todo 按照格式写入一些数据
                 self.worksheet_caseresult.write(6, self.calculate_head_num(41, j, 1+11+1), Silver_Gold_BKC_string, self.format1)
-
                 self.worksheet_caseresult.write(2, self.calculate_head_num(41, j, 11), date_string, self.format1)
 
                 if not header_list and not cell_data_list:
@@ -1113,7 +1111,7 @@ class InsertDataIntoExcel(object):
                 self.worksheet_caseresult.write_row(7, self.calculate_head_num(41, j, 11), header_list, caseresult_header_format)
                 self.worksheet_caseresult.write_row(7, self.calculate_head_num(41, j, 36+11), last_header_list, caseresult_last_header_format)
 
-                # 标记True为红色
+                #todo 标记True为红色
                 self.worksheet_caseresult.conditional_format(8, self.calculate_head_num(41, j, 3+11), 250, self.calculate_head_num(41, j, 3+11),
                                                              {'type': 'text', 'criteria': 'containing', 'value': 'FAILED', 'format': dark_red_header_format})
                 self.worksheet_caseresult.conditional_format(8, self.calculate_head_num(41, j, 3+11), 250, self.calculate_head_num(41, j, 3+11),
@@ -1152,7 +1150,7 @@ class InsertDataIntoExcel(object):
         # print 'temp_insert_index_dict:\t', temp_insert_index_dict
         #TODO 当自定义覆盖相应周数据时 需要处理日期对齐 end
         self.worksheet_save_miss.set_column(firstcol=2, lastcol=self.__WEEK_NUM - len(self.Silver_url_list) -1 + 1, options={'hidden': True})
-        # 获取公式并插入指定位置
+        #todo 获取公式并插入指定位置
         yellow_header_format = self.workbook.add_format({'bg_color': '#FFFF66'})
         first_string_list = ["Save Test Case based on this week's Test case pool", "Miss Sightings in test plan comparing to test result (%)?",
                              "Miss Sightings in test plan comparing to test result?", "Total Sighting", "Save Effort"]
@@ -1187,7 +1185,7 @@ class InsertDataIntoExcel(object):
         self.get_formula_data('Trend', self.worksheet_trend)
 
     def insert_test_time_data(self):
-        # 获取公式并插入指定位置
+        #todo 获取公式并插入指定位置
         self.get_formula_data('TestTime', self.worksheet_test_time)
 
     def return_name(self):
@@ -1230,7 +1228,7 @@ class InsertDataIntoExcel(object):
             predict_insert_location = self.calculate_head_num(9, 0, 0, True)
             self.logger.print_message('SW predict_insert_location:\t%s' % predict_insert_location, self.__file_name)
             if self.on_off_line_save_flag == 'online':
-                # 验证url有效性
+                #todo 验证url有效性
                 is_validity = verify_validity_url(self._predict_url, self.logger)
                 if not is_validity:
                     return
@@ -1242,31 +1240,27 @@ class InsertDataIntoExcel(object):
                 if not header_list and not cell_data_list:
                     return
 
-                # Set up some formats to use.
+                #todo Set up some formats to use.
                 self.worksheet_sw.conditional_format(3, predict_insert_location, 40, predict_insert_location + 1,
                                                      {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
-                # 标记0为黄色
+                #todo 标记0为黄色
                 self.worksheet_sw.conditional_format(3, predict_insert_location + 2, 40, predict_insert_location + 2,
                                                      {'type': 'cell', 'criteria': '=', 'value': 0, 'format': self.yellow_data_format})
                 self.worksheet_sw.write_row(2, predict_insert_location + 5, header_list, self.header_format)
-                # 插入数据 最后一列可能会出现多值多行的情况，计算每行数据占有的行数
+                #todo 插入数据 最后一列可能会出现多值多行的情况，计算每行数据占有的行数
                 line_num_list = []
                 for ele in cell_data_list:
                     num = len(ele[header_length - 1:])
                     line_num_list.append(num)
 
-                # print 'line_num_list:\t', line_num_list, len(line_num_list)
-
-                # 处理并插入数据
+                #todo 处理并插入数据
                 insert_data = zip(cell_data_list, url_list, line_num_list)
                 insert_data.sort(key=lambda x: x[0][0].upper())
 
                 cell_data_list, url_list, line_num_list = zip(*insert_data)
-                # print 'line_num_list:\t', line_num_list, len(line_num_list)
-
                 first_insert_data = [cell_data_list[k][0] for k in range(len(cell_data_list))]
                 second_insert_data = [cell_data_list[k][2] for k in range(len(cell_data_list))]
-                # 插入数据第一列到第三列
+                #todo 插入数据第一列到第三列
                 nu = 3
                 for line in range(len(cell_data_list)):
                     if line_num_list[line] == 1:
@@ -1300,7 +1294,7 @@ class InsertDataIntoExcel(object):
             predict_insert_location = self.calculate_head_num(9, 0, 0, True)
             self.logger.print_message('SW Original predict_insert_location:\t%s' % predict_insert_location, self.__file_name)
             if self.on_off_line_save_flag == 'online':
-                # 验证url有效性
+                #todo 验证url有效性
                 is_validity = verify_validity_url(self._predict_url, self.logger)
                 if not is_validity:
                     return
@@ -1312,31 +1306,26 @@ class InsertDataIntoExcel(object):
                 if not header_list and not cell_data_list:
                     return
 
-                # Set up some formats to use.
+                #todo Set up some formats to use.
                 self.worksheet_sw_original.conditional_format(3, predict_insert_location, 40, predict_insert_location + 1,
                                                      {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
-                # 标记0为黄色
+                #todo 标记0为黄色
                 self.worksheet_sw_original.conditional_format(3, predict_insert_location + 2, 40, predict_insert_location + 2,
                                                      {'type': 'cell', 'criteria': '=', 'value': 0, 'format': self.yellow_data_format})
                 self.worksheet_sw_original.write_row(2, predict_insert_location + 5, header_list, self.header_format)
-                # 插入数据 最后一列可能会出现多值多行的情况，计算每行数据占有的行数
+                #todo 插入数据 最后一列可能会出现多值多行的情况，计算每行数据占有的行数
                 line_num_list = []
                 for ele in cell_data_list:
                     num = len(ele[header_length - 1:])
                     line_num_list.append(num)
-
-                # print 'line_num_list:\t', line_num_list, len(line_num_list)
-
-                # 处理并插入数据
+                #todo 处理并插入数据
                 insert_data = zip(cell_data_list, url_list, line_num_list)
                 insert_data.sort(key=lambda x: x[0][0].upper())
 
                 cell_data_list, url_list, line_num_list = zip(*insert_data)
-                # print 'line_num_list:\t', line_num_list, len(line_num_list)
-
                 first_insert_data = [cell_data_list[k][0] for k in range(len(cell_data_list))]
                 second_insert_data = [cell_data_list[k][2] for k in range(len(cell_data_list))]
-                # 插入数据第一列到第三列
+                #todo 插入数据第一列到第三列
                 nu = 3
                 for line in range(len(cell_data_list)):
                     if line_num_list[line] == 1:
@@ -1371,7 +1360,7 @@ class InsertDataIntoExcel(object):
             self.logger.print_message('IFWI_Original predict_insert_location:\t%s' % predict_insert_location, self.__file_name)
 
             if self.on_off_line_save_flag == 'online':
-                # 验证url有效性
+                #todo 验证url有效性
                 is_validity = verify_validity_url(self._predict_url, self.logger)
                 if not is_validity:
                     return
@@ -1379,7 +1368,7 @@ class InsertDataIntoExcel(object):
                 Silver_BkC_string, header_list, cell_data_list = self.predict_extract_object.predict_get_ifwi_data()
                 self.worksheet_ifwi_original.conditional_format(4, predict_insert_location, 50, predict_insert_location + 1,
                                                                {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
-                # 标记0为黄色
+                #todo 标记0为黄色
                 self.worksheet_ifwi_original.conditional_format(4, predict_insert_location + 2, 49, predict_insert_location + 2,
                                                                {'type': 'cell', 'criteria': '=', 'value': 0, 'format': self.yellow_data_format})
                 self.worksheet_ifwi_original.write_rich_string(1, predict_insert_location + 1, self.red, self.save_miss_insert_bkc_string, self.header_format)
@@ -1389,9 +1378,9 @@ class InsertDataIntoExcel(object):
                     return
 
                 self.worksheet_ifwi_original.write_row(3, predict_insert_location + 3, header_list, self.header_format)
-                # 插入数据,需要考虑有数字的情况，前面加Nic字母
+                #todo 插入数据,需要考虑有数字的情况，前面加Nic字母
                 for ele in range(len(cell_data_list)):
-                    # 以数字开头的元素前面加Nic
+                    #todo 以数字开头的元素前面加Nic
                     match_obj = re.match('\s+\d+', str(cell_data_list[ele][0]))
                     match_obj_back = re.match('^\d', str(cell_data_list[ele][0]))
                     if match_obj or match_obj_back:
@@ -1409,7 +1398,7 @@ class InsertDataIntoExcel(object):
             self.logger.print_message('IFWI predict_insert_location:\t%s' % predict_insert_location, self.__file_name)
 
             if self.on_off_line_save_flag == 'online':
-                # 验证url有效性
+                #todo 验证url有效性
                 is_validity = verify_validity_url(self._predict_url, self.logger)
                 if not is_validity:
                     return
@@ -1417,7 +1406,7 @@ class InsertDataIntoExcel(object):
                 Silver_BkC_string, header_list, cell_data_list = self.predict_extract_object.predict_get_ifwi_data()
                 self.worksheet_ifwi.conditional_format(4, predict_insert_location, 50, predict_insert_location + 1,
                                                                {'type': 'cell', 'criteria': '=', 'value': True, 'format': self.format1})
-                # 标记0为黄色
+                #todo 标记0为黄色
                 self.worksheet_ifwi.conditional_format(4, predict_insert_location + 2, 49, predict_insert_location + 2,
                                                                {'type': 'cell', 'criteria': '=', 'value': 0, 'format': self.yellow_data_format})
                 self.worksheet_ifwi.write_rich_string(1, predict_insert_location + 1, self.red, self.save_miss_insert_bkc_string, self.header_format)
@@ -1427,9 +1416,9 @@ class InsertDataIntoExcel(object):
                     return
 
                 self.worksheet_ifwi.write_row(3, predict_insert_location + 3, header_list, self.header_format)
-                # 插入数据,需要考虑有数字的情况，前面加Nic字母
+                #todo 插入数据,需要考虑有数字的情况，前面加Nic字母
                 for ele in range(len(cell_data_list)):
-                    # 以数字开头的元素前面加Nic
+                    #todo 以数字开头的元素前面加Nic
                     match_obj = re.match('\s+\d+', str(cell_data_list[ele][0]))
                     match_obj_back = re.match('^\d', str(cell_data_list[ele][0]))
                     if match_obj or match_obj_back:

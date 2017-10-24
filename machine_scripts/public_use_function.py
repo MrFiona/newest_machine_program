@@ -5,8 +5,6 @@
 # File    : public_use_function.py
 # Software: PyCharm Community Edition
 
-from __future__ import absolute_import
-
 
 import re
 import os
@@ -298,7 +296,7 @@ def remove_line_break(object_string_list, line_break=False, empty_string=False, 
 
 #TODO 封装win32com.client的某些功能
 class easyExcel(object):
-    def __init__(self, filename=None):  # 打开文件或者新建文件（如果不存在的话）
+    def __init__(self, filename=None):  #todo 打开文件或者新建文件（如果不存在的话）
         #TODO 开启新的进程打开Excel
         self.xlApp = win32com.client.DispatchEx('Excel.Application')
         self.xlApp.Visible = 0
@@ -310,7 +308,7 @@ class easyExcel(object):
             self.xlBook = self.xlApp.Workbooks.Add()
             self.filename = ''
 
-    def save(self, newfilename=None):  # 保存文件
+    def save(self, newfilename=None):  #todo 保存文件
         if newfilename:
             self.filename = newfilename
             self.xlBook.SaveAs(newfilename)
@@ -321,43 +319,43 @@ class easyExcel(object):
         self.xlBook.Close(SaveChanges=0)
         del self.xlApp
 
-    def getCell(self, sheet, row, col):  # 获取单元格的数据
+    def getCell(self, sheet, row, col):  #todo 获取单元格的数据
         "Get value of one cell"
         sht = self.xlBook.Worksheets(sheet)
         # range_value = sht.Range('A1:CO10')
         # print range_value
         return sht.Cells(row, col).Value
 
-    def setCell(self, sheet, row, col, value):  # 设置单元格的数据
+    def setCell(self, sheet, row, col, value):  #todo 设置单元格的数据
         "set value of one cell"
         sht = self.xlBook.Worksheets(sheet)
         # sht.Cells(row, col).Value = value
-        # sht.Cells(row, col).Font.Size = 15  # 字体大小
-        # sht.Cells(row, col).Font.Bold = True  # 是否黑体
-        # sht.Cells(row, col).Name = "Arial"  # 字体类型
-        sht.Cells(row, col).Interior.ColorIndex = 2  # 表格背景
+        # sht.Cells(row, col).Font.Size = 15  #todo 字体大小
+        # sht.Cells(row, col).Font.Bold = True  #todo 是否黑体
+        # sht.Cells(row, col).Name = "Arial"  #todo 字体类型
+        sht.Cells(row, col).Interior.ColorIndex = 2  #todo 表格背景
         # sht.Range("A1").Borders.LineStyle = xlDouble
-        sht.Cells(row, col).BorderAround(1, 3)  # 表格边框
-        # sht.Rows(3).RowHeight = 30  # 行高
-        # sht.Cells(row, col).HorizontalAlignment = -4131  # 水平居中xlCenter
+        sht.Cells(row, col).BorderAround(1, 3)  #todo 表格边框
+        # sht.Rows(3).RowHeight = 30  #todo 行高
+        # sht.Cells(row, col).HorizontalAlignment = -4131  #todo 水平居中xlCenter
         # sht.Cells(row, col).VerticalAlignment = -4160  #
 
     def deleteRow(self, sheet, row):
         sht = self.xlBook.Worksheets(sheet)
-        sht.Rows(row).Delete()  # 删除行
-        sht.Columns(row).Delete()  # 删除列
+        sht.Rows(row).Delete()  #todo 删除行
+        sht.Columns(row).Delete()  #todo 删除列
 
-    def getRange(self, sheet, row1, col1, row2, col2):  # 获得一块区域的数据，返回为一个二维元组
+    def getRange(self, sheet, row1, col1, row2, col2):  #todo 获得一块区域的数据，返回为一个二维元组
         "return a 2d array (i.e. tuple of tuples)"
         sht = self.xlBook.Worksheets(sheet)
         return sht.Range(sht.Cells(row1, col1), sht.Cells(row2, col2)).Value
 
-    def addPicture(self, sheet, pictureName, Left, Top, Width, Height):  # 插入图片
+    def addPicture(self, sheet, pictureName, Left, Top, Width, Height):  #todo 插入图片
         "Insert a picture in sheet"
         sht = self.xlBook.Worksheets(sheet)
         sht.Shapes.AddPicture(pictureName, 1, 1, Left, Top, Width, Height)
 
-    def cpSheet(self, before):  # 复制工作表
+    def cpSheet(self, before):  #todo 复制工作表
         "copy sheet"
         shts = self.xlBook.Worksheets
         shts(1).Copy(None, shts(1))
@@ -477,7 +475,7 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
 
         for i in range(3, 200):
             temp_cell_list = []
-            # NewSi和existingSi用上一周的
+            #todo NewSi和existingSi用上一周的
             for j in range(new_exist_left_location + 3, new_exist_left_location + 1 + 13):
                 data = win_book.getCell(sheet=sheet_name, row=i, col=j)
                 if j == (new_exist_left_location + 1 + 1) and not data:
@@ -493,7 +491,7 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
             if stop_flag:
                 break
 
-            # 排除True和False
+            #todo 排除True和False
             # print temp_cell_list
             temp = [cell for cell in temp_cell_list[2:] if isinstance(cell, (unicode, str)) and len(cell) != 0]
             if not temp:

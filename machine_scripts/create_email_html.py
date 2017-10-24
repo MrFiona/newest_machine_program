@@ -5,7 +5,6 @@
 # File    : create_email_html.py
 # Software: PyCharm Community Edition
 
-from __future__ import absolute_import
 
 import os
 import sys
@@ -23,6 +22,7 @@ except ImportError:
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
+
 
 def create_save_miss_html(sheet_name, Silver_url_list, purl_bak_string, win_book, WEEK_NUM, logger,
                           predict_execute_flag=False, type_string='', keep_continuous='NO'):
