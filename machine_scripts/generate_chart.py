@@ -16,7 +16,7 @@ from matplotlib.ticker import MultipleLocator
 
 from machine_scripts.custom_log import WorkLogger
 from machine_scripts.machine_config import MachineConfig
-from machine_scripts.public_use_function import get_interface_config
+from machine_scripts.public_use_function import get_interface_config, easyExcel
 from setting_global_variable import CONFIG_FILE_PATH, SRC_EXCEL_DIR, MANUAL_CONFIG_FILE_PATH, \
     PRESERVE_TABLE_CHART_DIR, IMAGE_ORIGINAL_RESULT, MANUAL_IMAGE_ORIGINAL_RESULT
 
@@ -228,29 +228,25 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
     plt.ylabel(u"Value", fontsize=18,  color='blue')
     plt.title(u"%s %s %s Trend" % (purl_bak_string, candidate_string.replace('_', ''), week_type_string), fontsize=22,  color='red')
 
-    # plt.xticks(np.arange(- 0.2 + 2 * bar_width, len(weeks_list), 2), weeks_list, fontsize = 10, rotation=-45)
     plt.xticks(index - 0.2 + 2 * bar_width, weeks_list, fontsize = 10, rotation=-45)
     plt.yticks(fontsize=12)  # change the num axis size
     plt.axis([0, n_groups + 1, - max_negative_num - 1, max_positive_num + 1])
-
     plt.legend(header_display_string_list, fontsize=14)
-
-
-    #TODO 存在excel文件则填入图表
-    if object_excel_file:
-        import xlwings as xw
-        obj_book = xw.Book(object_excel_file)
-        sht = obj_book.sheets['Trend']
-        sht.pictures.add(fig, name='Trend_chart 1', update=True, left=500, top=150, width=1500, height=800)
-
     plt.tight_layout()
-    foo_fig = plt.gcf()  # 'get current figure'
+    foo_fig = plt.gcf()  #'get current figure'
 
     if not os.path.exists(PRESERVE_TABLE_CHART_DIR):
         os.makedirs(PRESERVE_TABLE_CHART_DIR)
 
     foo_fig.savefig(PRESERVE_TABLE_CHART_DIR + os.sep + purl_bak_string + chart_link_string + '_table_chart_1_' +
                     candidate_string + log_time + '.png', format='png', dpi=fig.dpi)
+
+    # TODO 存在excel文件则填入图表
+    if object_excel_file:
+        excel_obj = easyExcel(filename=object_excel_file)
+        excel_obj.addPicture('Trend', pictureName=PRESERVE_TABLE_CHART_DIR + os.sep + purl_bak_string + chart_link_string + '_table_chart_1_' +
+                    candidate_string + log_time + '.png', Left=500, Top=150, Width=1500, Height=800)
+
     #TODO 自动运行则不开启
     if not auto_run_flag:
         plt.show()
@@ -288,18 +284,19 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
 
     plt.legend(header_display_string_list_sighting, fontsize=14)
 
-    #TODO 存在excel文件则填入图表
-    if object_excel_file:
-        sht.pictures.add(fig_sighting, name='Trend_chart 2', update=True, left=500, top=1100, width=1500, height=800)
-        obj_book.save()
-        obj_book.close()
-        os.system('taskkill /F /IM excel.exe')
-
     plt.tight_layout()
     foo_fig_sighting = plt.gcf()  #todo 'get current figure'
-
     foo_fig_sighting.savefig(PRESERVE_TABLE_CHART_DIR + os.sep + purl_bak_string + chart_link_string + '_table_chart_2_' +
                     candidate_string + log_time + '.png', format='png', dpi=fig.dpi)
+
+    # TODO 存在excel文件则填入图表
+    if object_excel_file:
+        excel_obj.addPicture('Trend', pictureName=PRESERVE_TABLE_CHART_DIR + os.sep + purl_bak_string + chart_link_string + '_table_chart_2_' +
+                    candidate_string + log_time + '.png', Left=500, Top=1100, Width=1500, Height=800)
+        excel_obj.save()
+        excel_obj.close()
+        os.system('taskkill /F /IM excel.exe')
+
     #TODO 自动运行则不开启
     if not auto_run_flag:
         plt.show()
