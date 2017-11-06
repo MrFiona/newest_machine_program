@@ -76,7 +76,8 @@ class UserWeekSelectGui(wx.Frame):
         if len(self.week_info_list) >= 40:
             self.step_length = 6
 
-        wx.Frame.__init__(self, None, wx.ID_ANY, "%s User Configuration Gui Interface" % self.purl_bak_string, size=(900, 535))
+        wx.Frame.__init__(self, None, wx.ID_ANY, "%s User Configuration Gui Interface" % self.purl_bak_string,
+                          size=(900, 535))
         panel = wx.Panel(self, wx.ID_ANY)
 
         self.get_week_string_list()
@@ -398,7 +399,7 @@ class ProjectConfigParameterGui(wx.Frame):
 
         menu.Append(-1, u'撤消(U)')
         menu.AppendSeparator()
-        self.menu_select = menu.Append(-1, u'全选(N)\tCtrl+A')  # 快捷键
+        self.menu_select = menu.Append(-1, u'全选(N)\tCtrl+A')
         self.Bind(wx.EVT_MENU, onSelect, self.menu_select)
         menuBar.Append(menu, u'编辑(F)')
         self.SetMenuBar(menuBar)

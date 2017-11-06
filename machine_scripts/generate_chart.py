@@ -228,10 +228,10 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
     plt.ylabel(u"Value", fontsize=18,  color='blue')
     plt.title(u"%s %s %s Trend" % (purl_bak_string, candidate_string.replace('_', ''), week_type_string), fontsize=22,  color='red')
 
-    plt.xticks(index - 0.2 + 2 * bar_width, weeks_list, fontsize = 10, rotation=-45)
+    plt.xticks(index - 0.2 + 2 * bar_width, weeks_list, fontsize=10, rotation=-45)
     plt.yticks(fontsize=12)  # change the num axis size
     plt.axis([0, n_groups + 1, - max_negative_num - 1, max_positive_num + 1])
-    plt.legend(header_display_string_list, fontsize=14)
+    plt.legend(header_display_string_list, fontsize=14, shadow=True)
     plt.tight_layout()
     foo_fig = plt.gcf()  #'get current figure'
 
@@ -282,7 +282,7 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
     
     plt.axis([0, n_groups + 1, 0, max_positive_num_sighting + 10])
 
-    plt.legend(header_display_string_list_sighting, fontsize=14)
+    plt.legend(header_display_string_list_sighting, fontsize=14, shadow=True)
 
     plt.tight_layout()
     foo_fig_sighting = plt.gcf()  #todo 'get current figure'
