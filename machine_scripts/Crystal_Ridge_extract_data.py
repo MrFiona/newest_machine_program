@@ -359,7 +359,7 @@ class GetAnalysisData(object):
 
         #todo 获取page_url
         self._get_common_page_url()
-        # print 'page_url:\t%s' % self._page_url
+
         self.logger.print_message('page_url:\t%s' % self._page_url, self.__file_name)
         #TODO 是否离线标记获取
         on_off_line_save_flag = judge_get_config('on_off_line_save_flag', self.purl_bak_string)
@@ -403,46 +403,35 @@ class GetAnalysisData(object):
             #todo 循环处理tr中的代码，提取出excel表头信息，存放在表头列表header_list
             effective_header_list = []
 
-            for tr in tr_list[1:]:
-                soup_td = BeautifulSoup(str(tr), 'html.parser')
+            for soup_tr in tr_list[1:]:
                 #todo 排除其他非td杂项
-                if soup_td.td != None:
+                if soup_tr.td != None:
                     #todo 排除td中无字符串的情况
-                    if soup_td.td.strings != None:
-                        left_string_list = list(soup_td.td.strings)
-                        #todo 适配，去除字符串列表中的多余字符   最终列表长度为1
-                        left_string_list = remove_line_break(left_string_list, line_break=True)
+                    if soup_tr.td.strings != None:
+                        left_string_list = list(soup_tr.td.stripped_strings)
                         if left_string_list:
-                            data = left_string_list[0].encode('utf-8')
+                            data = left_string_list[0]
                             data = data.replace('\n', '')
                             header_list.append(data)
-                td_data_list = soup_td.find_all('td')
+                td_data_list = soup_tr.find_all('td')
                 #todo 获取td中的字符串即待插入excel表中单元格中的数据部分
                 temp = []
-                for td in td_data_list:
-                    get_td_data = BeautifulSoup(str(td), 'html.parser')
-                    td_string_list = list(get_td_data.td.strings)
-                    td_string_list = remove_line_break(td_string_list, line_break=True)
+                for td_soup in td_data_list:
+                    td_string_list = list(td_soup.stripped_strings)
                     #todo 去掉可能出现的html注释
                     td_string_list = [ element for element in td_string_list if '<!--' not in element ]
                     if td_string_list:
-                        td_data = ''.join(td_string_list).encode('utf-8')
-                        #todo 去除cell_data_list元素中的非字母编码部分
-                        td_data = re.sub('[\xc2\xa0\xc3\x82]', '', td_data)
+                        td_data = ''.join(td_string_list)
                         temp.append(td_data)
                 if temp:
                     temp = remove_non_alphanumeric_characters(temp)
                     cell_data_list.append(temp[1:])
             #todo 适配html表列名对应行中含有标签不含有td标签
-            th_soup = BeautifulSoup(str(tr_list[0]), 'html.parser')
-            th_list = th_soup.find_all('th')
+            th_list = tr_list[0].find_all('th')
             #todo 去除首行第一个无效
             th_list = th_list[1:]
-            for word in th_list:
-                string_soup = BeautifulSoup(str(word), 'html.parser')
-                th_strings_list = list(string_soup.strings)
-                #todo 去除换行符
-                remove_line_break(th_strings_list, line_break=True, second_method=True)
+            for string_soup in th_list:
+                th_strings_list = list(string_soup.stripped_strings)
                 #todo 信息可能会在多个标签
                 th_strings_list = [re.sub('[\r\n\xc2\xa0 ]', '', element) for element in th_strings_list]
                 multiple_th_string = ''.join(th_strings_list)
@@ -464,6 +453,8 @@ class GetAnalysisData(object):
                 pass
             cell_data_list = cell_data_list[ -(len(header_list)): ]
             # print '\033[32meffective_header_list:\t\033[0m', effective_header_list, len(effective_header_list)
+            # effective_header_list = [UnicodeDammit(ele).original_encoding for ele in effective_header_list]
+            # print '\033[33meffective_header_list:\t\033[0m', effective_header_list, len(effective_header_list)
             # print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
             # print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
             return Silver_Gold_BKC_string, self.date_string, effective_header_list, header_list, cell_data_list
@@ -484,63 +475,52 @@ class GetAnalysisData(object):
 
             tr_list = soup_table_element.find_all('tr')
 
-            soup_header = BeautifulSoup(str(tr_list[0]), 'html.parser')
-            header_list = list(soup_header.strings)
-            header_list = remove_line_break(header_list, line_break=True)
+            header_list = list(tr_list[0].stripped_strings)
             for i in range(len(header_list)):
-                header_list[i] = header_list[i].replace('\n', '')
-            #todo remove special characters \xc2\xa0
-            header_list = [ele.replace('\r', '') for ele in header_list if ele != u'\xc2\xa0']
+                header_list[i] = re.sub('[\r\n]', '', header_list[i])
             header_length = len(header_list)
             # print 'header_length:\t', header_length
             header_list = header_list[:4]
             url_list = []
 
-            for tr in tr_list[1:]:
+            for soup_tr in tr_list[1:]:
                 temp_url_list = []; temp_string_list = []
-                soup_tr = BeautifulSoup(str(tr), 'html.parser')
                 td_list = soup_tr.find_all('td')
                 #todo 默认情况是正常列数
                 actual_td_list = td_list
                 num = len(td_list)
                 if num == header_length + 1:
                     string_5_list = []
-                    for td in tr:
+                    for td in soup_tr:
                         soup_td = BeautifulSoup(str(td), 'html.parser')
-                        soup_td_list = list(soup_td.strings)
-                        soup_td_list = remove_line_break(soup_td_list, line_break=True, second_method=True)
+                        soup_td_list = list(soup_td.stripped_strings)
                         if soup_td_list:
                             string_5_list.append(''.join(soup_td_list))
-                    string_5_list = remove_non_alphanumeric_characters(string_5_list)
                     temp_string_list = string_5_list[1:]
                     actual_td_list = td_list[1:]
                 elif num == header_length + 2:
                     actual_td_list = td_list[2:]
                     string_6_list = []
-                    for td in tr:
+                    for td in soup_tr:
                         soup_td = BeautifulSoup(str(td), 'html.parser')
-                        soup_td_list = list(soup_td.strings)
-                        soup_td_list = remove_line_break(soup_td_list, line_break=True, second_method=True)
+                        soup_td_list = list(soup_td.stripped_strings)
                         if soup_td_list:
                             string_6_list.append(''.join(soup_td_list))
-                    string_6_list = remove_non_alphanumeric_characters(string_6_list)
                     temp_string_list = string_6_list[2:]
                 elif num <= header_length:
                     string_4_list = []
-                    for td in tr:
+                    for td in soup_tr:
                         soup_td = BeautifulSoup(str(td), 'html.parser')
-                        soup_td_list = list(soup_td.strings)
-                        soup_td_list = remove_line_break(soup_td_list, line_break=True, second_method=True)
+                        soup_td_list = list(soup_td.stripped_strings)
                         if soup_td_list:
                             string_4_list.append(''.join(soup_td_list))
-                    string_4_list = remove_non_alphanumeric_characters(string_4_list)
                     temp_string_list = string_4_list
 
                 #todo 获取cell_data_list数据
                 temp_string_list = remove_non_alphanumeric_characters(temp_string_list)
+                # print '\033[33mtemp_string_list:\t\033[0m', temp_string_list, len(temp_string_list)
                 if len(temp_string_list) > 4:
                     temp_string_list = temp_string_list[:4]
-                # print 'temp_string_list:\t', temp_string_list, len(temp_string_list)
                 if temp_string_list:
                     cell_data_list.append(temp_string_list)
 
@@ -562,7 +542,7 @@ class GetAnalysisData(object):
             # print '\033[31murl_list:\t\033[0m', url_list, len(url_list)
             # print '\033[31mSilver_Gold_BKC_string:\t\033[0m', Silver_Gold_BKC_string
             return Silver_Gold_BKC_string, header_length, self.date_string, url_list, header_list, cell_data_list
-        except:
+        except TabError:
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name,
                                       definition_log_level=ERROR)
             return 'Error', 0, self.date_string, [], [], []
@@ -576,20 +556,15 @@ class GetAnalysisData(object):
 
             tr_list = soup_table_element.find_all('tr')
 
-            for tr in tr_list:
-                soup = BeautifulSoup(str(tr), 'html.parser')
-                th_list = soup.find_all('th')
-                if tr == tr_list[0]:
+            for soup_tr in tr_list:
+                th_list = soup_tr.find_all('th')
+                if soup_tr == tr_list[0]:
                     for th in th_list:
                         th_string = re.findall('>(.*?)<', str(th))
                         if th_string:
                             header_list.append(th_string[0])
                 if not th_list:
-                    td_string_list = list(soup.strings)
-                    td_string_list = remove_line_break(td_string_list, line_break=True)
-                    for ele in range(len(td_string_list)):
-                        for regex in ['\xe2', u'\u20ac', u'\u201c', u'\s+']:
-                            td_string_list[ele] = re.sub(regex, ' ', td_string_list[ele])
+                    td_string_list = list(soup_tr.stripped_strings)
                     #todo 去掉首位字符串开头的空格,排除空格的影响 后续会排序
                     if td_string_list:
                         td_string_list[0] = td_string_list[0].lstrip(' ')
@@ -614,21 +589,16 @@ class GetAnalysisData(object):
             tr_list = soup_table_element.find_all('tr')
 
             effective_url_list = []
-            for tr in tr_list:
+            for soup_tr in tr_list:
                 temp = []; url_list = []
-                soup = BeautifulSoup(str(tr), 'html.parser')
-                th_list = soup.find_all('th'); td_list = soup.find_all('td')
+                th_list = soup_tr.find_all('th'); td_list = soup_tr.find_all('td')
                 #todo 获取header_list
                 if th_list:
-                    th_strings = soup.strings
-                    for th in th_strings:
-                        str_th = th.replace('\n', '')
-                        if len(str_th) == 0:
-                            continue
+                    for th in soup_tr.stripped_strings:
                         header_list.append(th)
                 if td_list:
                     #todo 获取url链接
-                    temp_url_list = soup.findAll(name='a', attrs={'href': re.compile(r'[https|http]:(.*?)')})
+                    temp_url_list = soup_tr.findAll(name='a', attrs={'href': re.compile(r'[https|http]:(.*?)')})
                     # print 'temp_url_list:\t', temp_url_list
                     if temp_url_list:
                         for ele in temp_url_list:
@@ -640,10 +610,8 @@ class GetAnalysisData(object):
                     else:
                         effective_url_list.append([])
                     #todo 需要循环处理，防止丢失无内容的项
-                    for td in td_list:
-                        td_soup = BeautifulSoup(str(td), 'html.parser')
-                        temp_list = list(td_soup.td.strings)
-                        temp_list = remove_line_break(temp_list, line_break=True, blank_string=True)
+                    for td_soup in td_list:
+                        temp_list = list(td_soup.stripped_strings)
                         if not temp_list:
                             temp.append('')
                             continue
@@ -670,42 +638,29 @@ class GetAnalysisData(object):
             tr_list = soup_table_element.find_all('tr')
 
             object_string_list = []
-            for tr in tr_list:
-                soup = BeautifulSoup(str(tr), 'html.parser')
-                h4_list = soup.find_all('h4')
-                for h4 in h4_list:
-                    h4_string = BeautifulSoup(str(h4), 'html.parser')
-                    temp_string = list(h4_string.strings)
-                    temp_string = remove_line_break(temp_string, line_break=True, blank_string=True)
-                    if h4 != h4_list[-1]:
-                        if len(temp_string) == 1 and temp_string[0] == u'\xc2\xa0':
-                            continue
-                        object_string_list.append(' '.join(temp_string).strip(u'\xb7'))
-                    else:
-                        for i in range(len(temp_string)):
-                            if temp_string[i] == u'l' or temp_string[i] == u'\xa0' or temp_string[i] == u'\xb7' or temp_string[i] == u'\xc2\xa0':
-                                continue
-                            object_string_list.append(temp_string[i])
+            for soup_tr in tr_list:
+                h4_list = soup_tr.find_all('h4')
+                for h4_soup in h4_list:
+                    temp_string = list(h4_soup.stripped_strings)
+                    # print 'temp_string:\t', temp_string
+                    for i in range(len(temp_string)):
+                        object_string_list.append(temp_string[i])
                     if len(object_string_list) == 2:
                         object_string_list.append('')
 
                 if len(object_string_list) < 10:
                     #todo 得到tr节点下的所有文本
-                    text = list(soup.td.children)
+                    text = list(soup_tr.td.children)
                     object_string_list = []
                     for child in text:
                         soup_son = BeautifulSoup(str(child), 'html.parser')
-                        child_tag_string_list = list(soup_son.strings)
-                        if child_tag_string_list[0] == u'\n' or child_tag_string_list[0] == u'\xc2\xa0':
+                        child_tag_string_list = list(soup_son.stripped_strings)
+                        if not child_tag_string_list:
                             continue
                         temp_string = ''.join(child_tag_string_list).strip(' ')
-                        if len(object_string_list) == 2:
-                            object_string_list.append('')
                         object_string_list.append(temp_string)
             #todo 对提取的字符串列表进行清洗，统一组合格式：空格分隔  Mon Apr 10 14:00:27 2017
             object_string_list = remove_non_alphanumeric_characters(object_string_list)
-            object_string_list[0] = re.sub('[()]', '', object_string_list[0]).strip()
-            object_string_list = remove_line_break(object_string_list, empty_string=True)
             # print object_string_list, len(object_string_list); print Silver_Gold_BKC_string
             return Silver_Gold_BKC_string, object_string_list, self.date_string
         except:
@@ -723,22 +678,20 @@ class GetAnalysisData(object):
 
             #todo 获取链接地址
             cell_last_data = [] ;effective_url_list = []
-            for tr in tr_list:
-                soup = BeautifulSoup(str(tr), 'html.parser')
-                if tr == tr_list[0]:
-                    header_list = list(soup.strings)[1::2]
+            for soup_tr in tr_list:
+                if soup_tr == tr_list[0]:
+                    header_list = list(soup_tr.stripped_strings)
                     continue
 
                 temp = [] ;cell_last_string_list = [] ;url_list = []
-                td_list = soup.find_all('td')
-                for td in td_list:
-                    soup_td = BeautifulSoup(str(td), 'html.parser')
+                td_list = soup_tr.find_all('td')
+                for soup_td in td_list:
                     #todo 获取url链接
                     temp_url_list = soup_td.find_all('a')
                     if temp_url_list:
                         for ele in temp_url_list:
                             soup_href = BeautifulSoup(str(ele), 'html.parser')
-                            string_list = list(soup_href.a.strings)
+                            string_list = list(soup_href.a.stripped_strings)
 
                             if string_list:
                                 cell_last_string_list.append(string_list[0])
@@ -755,8 +708,7 @@ class GetAnalysisData(object):
                                     url_list.append(url)
 
                     if soup_td.strings:
-                        td_son_list = list(soup_td.strings)
-                        td_son_list = remove_line_break(td_son_list, line_break=True, blank_string=True)
+                        td_son_list = list(soup_td.stripped_strings)
                         ( temp.append(td_son_list[0]) if len(td_son_list) == 1 else temp.append(td_son_list[-1]) ) \
                             if len(td_son_list) != 0 else temp.append('')
 
@@ -792,16 +744,14 @@ class GetAnalysisData(object):
             tr_list = soup_table_element.find_all('tr')
 
             effective_url_list = []
-            for tr in tr_list:
+            for soup_tr in tr_list:
                 url_list = []; temp = []
-                soup = BeautifulSoup(str(tr), 'html.parser')
-                th_list = soup.find_all('th'); td_list = soup.find_all('td')
+                th_list = soup_tr.find_all('th'); td_list = soup_tr.find_all('td')
                 if th_list:
-                    if soup.tr:
-                        header_list = remove_line_break(list(soup.tr.strings), line_break=True)
+                    header_list = list(soup_tr.stripped_strings)
                 if td_list:
                     #todo 获取url链接
-                    temp_url_list = soup.findAll(name='a', attrs={'href': re.compile(r'[https|http]:(.*?)')})
+                    temp_url_list = soup_tr.findAll(name='a', attrs={'href': re.compile(r'[https|http]:(.*?)')})
                     if temp_url_list:
                         #todo 提取有效的url链接
                         for url in temp_url_list:
@@ -816,7 +766,7 @@ class GetAnalysisData(object):
                     for td in td_list:
                         td_soup = BeautifulSoup(str(td), 'html.parser')
                         if td_soup.td:
-                            temp_list = remove_line_break(list(td_soup.td.strings), line_break=True, blank_string=True)
+                            temp_list = list(td_soup.td.stripped_strings)
                             if not temp_list:
                                 temp.append('')
                                 continue
@@ -843,15 +793,14 @@ class GetAnalysisData(object):
             tr_list = soup_table_element.find_all('tr')
 
             effective_url_list = []
-            for tr in tr_list:
+            for soup_tr in tr_list:
                 url_list = [] ;temp = []
-                soup = BeautifulSoup(str(tr), 'html.parser')
-                th_list = soup.find_all('th') ;td_list = soup.find_all('td')
-                if th_list and soup.tr:
-                        header_list = remove_line_break(list(soup.tr.strings), line_break=True)
+                th_list = soup_tr.find_all('th') ;td_list = soup_tr.find_all('td')
+                if th_list:
+                        header_list = list(soup_tr.stripped_strings)
                 if td_list:
                     #todo 获取url链接
-                    temp_url_list = soup.findAll(name='a', attrs={'href': re.compile(r'[https|http]:(.*?)')})
+                    temp_url_list = soup_tr.findAll(name='a', attrs={'href': re.compile(r'[https|http]:(.*?)')})
                     if temp_url_list:
                         for ele in temp_url_list:
                             soup_href = BeautifulSoup(str(ele), 'html.parser')
@@ -862,7 +811,7 @@ class GetAnalysisData(object):
                     for td in td_list:
                         td_soup = BeautifulSoup(str(td), 'html.parser')
                         if td_soup and td_soup.td:
-                            temp_list = remove_line_break(list(td_soup.td.strings), line_break=True, blank_string=True)
+                            temp_list = list(td_soup.td.stripped_strings)
                             if not temp_list:
                                 temp.append('')
                                 continue
@@ -908,9 +857,8 @@ class GetAnalysisData(object):
             table_tip_list = soup.find_all('table')
             if table_tip_list:
                 table_tip = table_tip_list[0]
-                tip_soup = BeautifulSoup(str(table_tip), 'html.parser')
-                if tip_soup:
-                    tip_string_list = remove_line_break(list(tip_soup.strings), line_break=True)
+                if table_tip:
+                    tip_string_list = list(table_tip.stripped_strings)
                     if tip_string_list:
                         tip_string = tip_string_list[0].strip(' ')
                         temp = tip_string.split(' ')
@@ -919,28 +867,24 @@ class GetAnalysisData(object):
             #todo 获取有效的待插入数据
             table_list = soup.find_all('table')
             if len(table_list) >= 2:
-                table = table_list[1]
-                soup_tr = BeautifulSoup(str(table), 'html.parser')
-                tr_list = soup_tr.find_all('tr')
+                tr_list = table_list[1].find_all('tr')
                 header_list = [] ;cell_data_list = []
 
                 if not tr_list:
                     return self.date_string, '', '', [], []
 
                 #todo 获取表列名
-                for tr in tr_list:
+                for soup_tr in tr_list:
                     temp = []
-                    soup = BeautifulSoup(str(tr), 'html.parser')
-                    th_list = soup.find_all('th') ;td_list = soup.find_all('td')
-                    if th_list and soup.tr:
-                            header_list = remove_line_break(list(soup.tr.strings), line_break=True)
+                    th_list = soup_tr.find_all('th') ;td_list = soup_tr.find_all('td')
+                    if th_list:
+                        header_list = list(soup.tr.stripped_strings)
                     #todo 获取表单元格数据
                     if td_list:
                         #todo 需要循环处理，防止丢失无内容的项
-                        for td in td_list:
-                            td_soup = BeautifulSoup(str(td), 'html.parser')
-                            if td_soup and td_soup.td:
-                                temp_list = remove_line_break(list(td_soup.td.strings), line_break=True, blank_string=True)
+                        for td_soup in td_list:
+                            if td_soup:
+                                temp_list = list(td_soup.stripped_strings)
                                 if not temp_list:
                                     temp.append('')
                                     continue
@@ -976,13 +920,14 @@ if __name__ == '__main__':
     # key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Silver/2017%20WW26/6283_Silver.html']
     for url in key_url_list:
         obj = GetAnalysisData(url, 'Purley-Crystal-Ridge', get_info_not_save_flag=True, insert_flag=True, cache=cache)
+        # obj.get_closed_sightings_data('Closed Sightings', True)
         # obj.get_new_sightings_data('New Sightings', True)
-        # obj.get_existing_sighting_data('Existing Sightings', True)
+        obj.get_existing_sighting_data('Existing Sightings', True)
         #print 'data_url:\t', self.data_url
         # obj.get_closed_sightings_data('Closed Sightings', True)
         # obj.get_rework_data('HW Rework')
         # obj.get_hw_data('HW Configuration', True)
-        obj.get_sw_data('SW Configuration', True)
+        # obj.get_sw_data('SW Configuration', True)
         # obj.get_ifwi_data('IFWI Configuration', True)
         # obj.get_platform_data('Platform Integration Validation Result', True)
         # obj.get_caseresult_data('Platform Integration Validation Result', True)

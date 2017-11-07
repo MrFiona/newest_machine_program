@@ -10,7 +10,6 @@ import os
 import re
 import urllib2
 from bs4 import BeautifulSoup
-from machine_scripts.public_use_function import remove_line_break
 from machine_scripts.common_interface_func import remove_non_alphanumeric_characters
 
 
@@ -48,9 +47,7 @@ class PredictGetData(object):
         try:
             if not tr_list:
                 return 'null', 0, [], [], []
-            soup_header = BeautifulSoup(str(tr_list[0]), 'html.parser')
-            header_list = list(soup_header.strings)
-            header_list = remove_line_break(header_list, line_break=True)
+            header_list = list(tr_list[0].stripped_strings)
             for i in range(len(header_list)):
                 header_list[i] = header_list[i].replace('\n', '')
             #todo 排除部分周会有更多的列
@@ -64,33 +61,26 @@ class PredictGetData(object):
 
             url_list = []
 
-            for t in tr_list[1:]:
+            for soup_tr in tr_list[1:]:
                 temp_url_list = []
                 temp_string_list = []
-                soup_tr = BeautifulSoup(str(t), 'html.parser')
                 td_list = soup_tr.find_all('td')
                 #todo 默认情况是正常列数
                 actual_td_list = td_list
 
                 num = len(td_list)
                 if num == header_length + 1:
-                    soup_5 = BeautifulSoup(str(t), 'html.parser')
-                    string_5_list = list(soup_5.strings)
-                    string_5_list = remove_line_break(string_5_list, line_break=True)
+                    string_5_list = list(soup_tr.stripped_strings)
                     temp_string_list = string_5_list[1:]
                     actual_td_list = td_list[1:]
 
                 elif num == header_length + 2:
                     actual_td_list = td_list[2:]
-                    soup_6 = BeautifulSoup(str(t), 'html.parser')
-                    string_6_list = list(soup_6.strings)
-                    string_6_list = remove_line_break(string_6_list, line_break=True)
+                    string_6_list = list(soup_tr.stripped_strings)
                     temp_string_list = string_6_list[2:]
 
                 elif num <= header_length:
-                    soup_4 = BeautifulSoup(str(t), 'html.parser')
-                    string_4_list = list(soup_4.strings)
-                    string_4_list = remove_line_break(string_4_list, line_break=True)
+                    string_4_list = list(soup_tr.stripped_strings)
                     temp_string_list = string_4_list
                     if header_length > 4 and len(temp_string_list) > 4:
                         temp_string_list = temp_string_list[header_length - 4:]
@@ -152,20 +142,15 @@ class PredictGetData(object):
         try:
             if not tr_list:
                 return '', [], []
-            for tr in tr_list:
-                soup = BeautifulSoup(str(tr), 'html.parser')
-                th_list = soup.find_all('th')
-                if tr == tr_list[0]:
+            for soup_tr in tr_list:
+                th_list = soup_tr.find_all('th')
+                if soup_tr == tr_list[0]:
                     for th in th_list:
                         th_string = re.findall('>(.*?)<', str(th))
                         if th_string:
                             header_list.append(th_string[0])
                 if not th_list:
-                    td_string_list = list(soup.strings)
-                    td_string_list = remove_line_break(td_string_list, line_break=True)
-                    for ele in range(len(td_string_list)):
-                        for regex in ['\xe2', u'\u20ac', u'\u201c', u'\s+']:
-                            td_string_list[ele] = re.sub(regex, ' ', td_string_list[ele])
+                    td_string_list = list(soup_tr.stripped_strings)
                     #todo 去掉首位字符串开头的空格,排除空格的影响 后续会排序
                     if td_string_list:
                         td_string_list[0] = td_string_list[0].lstrip(' ')
@@ -183,6 +168,6 @@ if __name__ == '__main__':
     # https://dcg-oss.intel.com/test_report/test_report/6446/0/
     # https://oss-sh.ccr.corp.intel.com/test_report/test_report/6421/0/
     # obj = PredictGetData('', 'https://dcg-oss.intel.com/test_report/test_report/6885/0/')
-    obj = PredictGetData('', 'https://dcg-oss.intel.com/test_report/test_report/6899/0/')
-    obj.predict_get_sw_data()
-    # obj.predict_get_ifwi_data()
+    obj = PredictGetData('', 'https://dcg-oss.intel.com/test_report/test_report/7078/0/ ')
+    # obj.predict_get_sw_data()
+    obj.predict_get_ifwi_data()

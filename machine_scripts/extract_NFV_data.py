@@ -170,23 +170,18 @@ class GetAnalysisData(object):
             if not tr_list:
                 return Silver_Gold_BKC_string, self.date_string, [], []
 
-            th_soup = BeautifulSoup(str(tr_list[0]), 'html.parser')
-            th_list = th_soup.find_all('th')
-            for th in th_list:
-                string_soup = BeautifulSoup(str(th), 'html.parser')
-                th_strings_list = list(string_soup.strings)
+            th_list = tr_list[0].find_all('th')
+            for string_soup in th_list:
+                th_strings_list = list(string_soup.stripped_strings)
                 effective_header_list.extend([effective_string for effective_string in th_strings_list if len(effective_string) > 1])
 
-            for tr in tr_list[1:]:
+            for soup_tr in tr_list[1:]:
                 temp_td_string_list = []
-                soup_tr = BeautifulSoup(str(tr), 'html.parser')
                 td_list = soup_tr.find_all('td')
-                for td in td_list:
-                    soup_td = BeautifulSoup(str(td), 'html.parser')
+                for soup_td in td_list:
                     if soup_td:
-                        td_string_list = list(soup_td.strings)
+                        td_string_list = list(soup_td.stripped_strings)
                         if td_string_list:
-                            td_string_list = remove_line_break(td_string_list, line_break=True, empty_string=True, blank_string=True)
                             td_string_list = NFVi_remove_non_alphanumeric_characters(td_string_list)
                             temp_td_string_list.append('\n'.join(td_string_list))
                 header_list.append(temp_td_string_list[0])
@@ -212,20 +207,15 @@ if __name__ == '__main__':
     import time
     start = time.time()
     from machine_scripts.public_use_function import get_url_list_by_keyword
+    key_url_list = []
+    f = open(r'C:\Users\pengzh5x\Desktop\machine_scripts\report_html\NFVi_url_info.txt', 'r')
+    for line in f:
+        if 'NFVi' in line and 'Silver' in line:
+            key_url_list.append(line.strip('\n'))
     cache = DiskCache('NFVi')
-    key_url_list = get_url_list_by_keyword('NFVi', 'Silver')
-    key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html']
+    # key_url_list = get_url_list_by_keyword('NFVi', 'Silver')
+    # key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html']
     for url in key_url_list:
         obj = GetAnalysisData(url, 'NFVi', get_info_not_save_flag=True, cache=cache)
-        # obj.get_platform_data('Platform Integration Validation Result', True)
-        # obj.get_caseresult_data('Platform Integration Validation Result', True)
-        # obj.get_bak_rework_data('HW Rework', True)
-        # obj.get_rework_data('HW Rework', True)
-        # obj.get_sw_data('SW Configuration', True)
-        # obj.get_bak_hw_data('HW Configuration', True)
         obj.get_hw_data('HW Configuration', True)
-        # obj.get_ifwi_data('IFWI Configuration')
-    #     obj.get_existing_sighting_data('Existing Sightings', True)
-    #     obj.get_new_sightings_data('New Sightings')
-    #     obj.get_closed_sightings_data('Closed Sightings')
     print time.time() - start
