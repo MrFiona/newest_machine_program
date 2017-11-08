@@ -450,8 +450,7 @@ class GetAnalysisData(object):
             effective_cell_data_td_list = []
 
             #todo 按行将信息加入列表 按列存储
-            for tr in tr_list:
-                soup_tr = BeautifulSoup(str(tr), 'html.parser')
+            for soup_tr in tr_list:
                 judge_th_exist = soup_tr.find_all('th')
                 td_list = soup_tr.find_all('td')
 
@@ -474,9 +473,8 @@ class GetAnalysisData(object):
             item_index = max(separate_item_index_list)
 
             #TODO 提取表左列值列表
-            for header_ele in search_td_container_list[0]:
-                header_soup = BeautifulSoup(str(header_ele), 'html.parser')
-                temp = list(header_soup.strings)
+            for header_soup in search_td_container_list[0]:
+                temp = list(header_soup.stripped_strings)
                 if temp:
                     temp_header_list.append(temp[0])
             # print 'effective_header_list:\t', temp_header_list, item_index
@@ -495,10 +493,8 @@ class GetAnalysisData(object):
             # print '\neffective_search_td_container_list:\t', effective_search_td_container_list
             #TODO 按列标号排序 数据对齐
             for ele in range(len(effective_search_td_container_list)):
-                # print 'ttt:\t', effective_search_td_container_list[ele]
-                soup_ele = BeautifulSoup(str(effective_search_td_container_list[ele][0]), 'html.parser')
-                if list(soup_ele.strings):
-                    effective_search_td_container_list[ele][0] = list(soup_ele.strings)[0]
+                if list(effective_search_td_container_list[ele][0].strings):
+                    effective_search_td_container_list[ele][0] = list(effective_search_td_container_list[ele][0].stripped_strings)[0]
             effective_search_td_container_list.sort(key=lambda x: x[0])
             # print '\neffective_search_td_container_list:\t\n', effective_search_td_container_list, len(effective_search_td_container_list)
             #TODO 按列转为按行
@@ -509,11 +505,9 @@ class GetAnalysisData(object):
             #TODO 提取单元格数据
             for location in range(len(effective_cell_data_td_list)):
                 child_element = effective_cell_data_td_list[location]
-                # print 'child_element:\t', child_element
                 for ele in range(len(child_element)):
-                    # print child_element[ele], ele
                     ele_soup = BeautifulSoup(str(child_element[ele]), 'html.parser')
-                    ele_string_list = list(ele_soup.strings)
+                    ele_string_list = list(ele_soup.stripped_strings)
                     if ele_string_list:
                         child_element[ele] = ele_string_list[0]
             # print '\neffective_cell_data_td_list:\t\n', effective_cell_data_td_list, len(effective_cell_data_td_list)
@@ -551,8 +545,7 @@ class GetAnalysisData(object):
             effective_cell_data_td_list = []
             effective_search_td_container_list = []
 
-            for tr in tr_list:
-                soup_tr = BeautifulSoup(str(tr), 'html.parser')
+            for soup_tr in tr_list:
                 judge_th_exist = soup_tr.find_all('th')
                 td_list = soup_tr.find_all('td')
 
@@ -568,9 +561,8 @@ class GetAnalysisData(object):
                             search_td_container_list[index].append(judge_th_exist[index])
 
             #TODO 提取表左列值列表
-            for header_ele in search_td_container_list[0]:
-                header_soup = BeautifulSoup(str(header_ele), 'html.parser')
-                temp = list(header_soup.strings)
+            for header_soup in search_td_container_list[0]:
+                temp = list(header_soup.stripped_strings)
                 if temp:
                     effective_header_list.append(temp[0])
             header_list = effective_header_list[1:8]
@@ -582,9 +574,8 @@ class GetAnalysisData(object):
 
             #TODO 按列标号排序 数据对齐
             for ele in range(len(effective_search_td_container_list)):
-                soup_ele = BeautifulSoup(str(effective_search_td_container_list[ele][0]), 'html.parser')
-                if list(soup_ele.strings):
-                    effective_search_td_container_list[ele][0] = list(soup_ele.strings)[0]
+                if list(effective_search_td_container_list[ele][0].stripped_strings):
+                    effective_search_td_container_list[ele][0] = list(effective_search_td_container_list[ele][0].stripped_strings)[0]
             effective_search_td_container_list.sort(key=lambda x: x[0])
             # print '\neffective_search_td_container_list:\t\n', effective_search_td_container_list, len(effective_search_td_container_list)
             #TODO 按列转为按行
@@ -628,24 +619,20 @@ class GetAnalysisData(object):
             #todo 循环处理tr中的代码，提取出excel表头信息，存放在表头列表header_list
             Index_Error_flag = False
             effective_header_list = []
-            soup_tr = BeautifulSoup(str(tr_list[0]), 'html.parser')
-            th_list = soup_tr.find_all('th')
-            td_list = soup_tr.find_all('td')
+            th_list = tr_list[0].find_all('th')
+            td_list = tr_list[0].find_all('td')
             effective_th_or_td_list = th_list if th_list else td_list
 
             try:
-                for th in effective_th_or_td_list[1:]:
-                    soup_th = BeautifulSoup(str(th), 'html.parser')
+                for soup_th in effective_th_or_td_list[1:]:
                     th_string_list = list(soup_th.stripped_strings)
                     effective_header_list.append(th_string_list[0])
             except IndexError:
                 Index_Error_flag = True
-                soup_tr = BeautifulSoup(str(tr_list[1]), 'html.parser')
-                th_list = soup_tr.find_all('th')
-                td_list = soup_tr.find_all('td')
+                th_list = tr_list[1].find_all('th')
+                td_list = tr_list[1].find_all('td')
                 effective_th_or_td_list = th_list if th_list else td_list
-                for th in effective_th_or_td_list[1:]:
-                    soup_th = BeautifulSoup(str(th), 'html.parser')
+                for soup_th in effective_th_or_td_list[1:]:
                     th_string_list = list(soup_th.stripped_strings)
                     effective_header_list.append(th_string_list[0])
 
@@ -656,11 +643,10 @@ class GetAnalysisData(object):
             else:
                 tr_list_for = tr_list[1:]
 
-            for tr in tr_list_for:
+            for soup_tr in tr_list_for:
                 temp = []
                 add_header_flag = False
                 #todo tr中可能是th也可能是td标签,最后两个tr是合并项
-                soup_tr = BeautifulSoup(str(tr), 'html.parser')
                 #todo 有可能出现tr出即出现td又出现th的情况
                 th_list = soup_tr.find_all('th')
                 td_list = soup_tr.find_all('td')
@@ -669,8 +655,7 @@ class GetAnalysisData(object):
                 if compare_length < max_length and not (td_list and th_list):
                     add_header_flag = True
                 if not add_header_flag:
-                    soup_string = BeautifulSoup(str(effective_th_or_td_list[0]), 'html.parser')
-                    string_list = list(soup_string.stripped_strings)
+                    string_list = list(effective_th_or_td_list[0].stripped_strings)
                     string_list = remove_non_alphanumeric_characters(string_list)
                     header_list.append(string_list[0])
 
@@ -681,10 +666,8 @@ class GetAnalysisData(object):
                         for_list = effective_th_or_td_list[1:]
                 else:
                     for_list = td_list
-                for ele in for_list:
-                    cell_soup = BeautifulSoup(str(ele), 'html.parser')
+                for cell_soup in for_list:
                     cell_string_list = list(cell_soup.stripped_strings)
-                    # print 'th_string_list_4:\t', cell_string_list
                     cell_string_list = remove_non_alphanumeric_characters(cell_string_list)
                     temp.append(cell_string_list[0])
                 cell_data_list.append(temp)
@@ -692,7 +675,6 @@ class GetAnalysisData(object):
             #todo 提取有效的表头列数
             effective_header_list, effective_num_list = self._get_hw_bak_effective_header_list(effective_header_list)
             cell_data_list = self._insert_bak_numers_to_cell_data_list(effective_num_list, cell_data_list)
-            # print 'Silver_Gold_BKC_string:\t', Silver_Gold_BKC_string
             # print '\033[31mSilver_Gold_BKC_string111:\t\033[0m', Silver_Gold_BKC_string
             # print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
             # print '\033[32meffective_header_list:\t\033[0m', effective_header_list, len(effective_header_list)
@@ -762,14 +744,12 @@ class GetAnalysisData(object):
                     cell_data_list.append(temp_string_list)
                 # print 'temp_string_list:\t', temp_string_list, len(temp_string_list)
                 for td in actual_td_list:
-                    #todo 正则取匹配url链接
-                    obj_list = re.findall('<a href="(.*?)">', str(td), re.M|re.S)
-                    if obj_list:
-                        #todo 逐个添加
-                        for url in obj_list:
-                            url = url.split()[0].replace("\"", "")
-                            temp_url_list.append(url)
-
+                    #todo 提取url链接
+                    try:
+                        attribute_list = td.a.attrs
+                        temp_url_list.append(attribute_list['href'])
+                    except AttributeError:
+                        pass
                 if temp_url_list:
                     url_list.append(temp_url_list)
             for k in range(len(cell_data_list)):
@@ -868,8 +848,7 @@ class GetAnalysisData(object):
                 th_list = tr.find_all('th'); td_list = tr.find_all('td')
                 #todo 获取header_list
                 if th_list:
-                    th_strings = tr.strings
-                    for th in th_strings:
+                    for th in tr.strings:
                         str_th = th.replace('\n', '')
                         if len(str_th) == 0:
                             continue
@@ -879,18 +858,16 @@ class GetAnalysisData(object):
                     temp_url_list = tr.findAll(name='a', attrs={'href': re.compile(r'[https|http]:(.*?)')})
                     # print 'temp_url_list:\t', temp_url_list
                     if temp_url_list:
-                        for ele in temp_url_list:
-                            soup_href = BeautifulSoup(str(ele), 'html.parser')
+                        for soup_href in temp_url_list:
                             if soup_href:
-                                string_url = soup_href.a['href']
-                                url_list.append(string_url)
+                                string_url = soup_href.attrs
+                                url_list.append(string_url['href'])
                         effective_url_list.append(url_list)
                     else:
                         effective_url_list.append([])
                     #todo 需要循环处理，防止丢失无内容的项
-                    for td in td_list:
-                        td_soup = BeautifulSoup(str(td), 'html.parser')
-                        temp_list = list(td_soup.td.stripped_strings)
+                    for td_soup in td_list:
+                        temp_list = list(td_soup.stripped_strings)
                         if not temp_list:
                             temp.append('')
                             continue
@@ -1084,10 +1061,9 @@ class GetAnalysisData(object):
                             url_list.append(url)
                         effective_url_list.append(url_list)
                     #todo 需要循环处理，防止丢失无内容的项
-                    for td in td_list:
-                        td_soup = BeautifulSoup(str(td), 'html.parser')
-                        if td_soup.td:
-                            temp_list = list(td_soup.td.stripped_strings)
+                    for td_soup in td_list:
+                        if td_soup:
+                            temp_list = list(td_soup.stripped_strings)
                             if not temp_list:
                                 temp.append('')
                                 continue
@@ -1126,10 +1102,9 @@ class GetAnalysisData(object):
                             url_list.append(string_url)
                         effective_url_list.append(url_list)
                     #todo 需要循环处理，防止丢失无内容的项
-                    for td in td_list:
-                        td_soup = BeautifulSoup(str(td), 'html.parser')
-                        if td_soup and td_soup.td:
-                            temp_list = list(td_soup.td.stripped_strings)
+                    for td_soup in td_list:
+                        if td_soup:
+                            temp_list = list(td_soup.stripped_strings)
                             if not temp_list:
                                 temp.append('')
                                 continue
@@ -1137,9 +1112,9 @@ class GetAnalysisData(object):
                                 temp.append(temp_list[0])
                     temp = remove_non_alphanumeric_characters(temp)
                     cell_data_list.append(temp)
-            print '\033[31mheader_list:\t\033[0m', header_list
-            print '\033[36mcell_data_list:\t\033[0m', cell_data_list
-            print '\033[32meffective_url_list:\t\033[0m', effective_url_list
+            # print '\033[31mheader_list:\t\033[0m', header_list
+            # print '\033[36mcell_data_list:\t\033[0m', cell_data_list
+            # print '\033[32meffective_url_list:\t\033[0m', effective_url_list
             return Silver_Gold_BKC_string, self.date_string, effective_url_list, header_list, cell_data_list
         except:
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
@@ -1206,18 +1181,17 @@ class GetAnalysisData(object):
                     return self.date_string, '', '', [], []
 
                 #todo 获取表列名
-                for soup in tr_list:
+                for soup_tr in tr_list:
                     temp = []
-                    th_list = soup.find_all('th') ;td_list = soup.find_all('td')
-                    if th_list and soup.tr:
-                            header_list = list(soup.tr.stripped_strings)
+                    th_list = soup_tr.find_all('th');td_list = soup_tr.find_all('td')
+                    if th_list:
+                        header_list = list(soup_tr.stripped_strings)
                     #todo 获取表单元格数据
                     if td_list:
                         #todo 需要循环处理，防止丢失无内容的项
-                        for td in td_list:
-                            td_soup = BeautifulSoup(str(td), 'html.parser')
-                            if td_soup and td_soup.td:
-                                temp_list = list(td_soup.td.stripped_strings)
+                        for td_soup in td_list:
+                            if td_soup:
+                                temp_list = list(td_soup.stripped_strings)
                                 if not temp_list:
                                     temp.append('')
                                     continue
@@ -1249,19 +1223,18 @@ if __name__ == '__main__':
             key_url_list.append(line.strip('\n'))
 
     cache = DiskCache('Bakerville')
-    # key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW24/6170_Silver.html',
-    #                 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW34/6565_Silver.html',
-    #                 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW38/6706_Silver.html',
-    #                 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW37/6668_Silver.html']
-    #                 # 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW25/6211_BKC.html']
+    key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW34/6565_Silver.html',]
+                    # 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW34/6565_Silver.html',
+                    # 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW38/6706_Silver.html',
+                    # 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW37/6668_Silver.html']
     # key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW31/6464_Silver.html',]
     for url in key_url_list:
         obj = GetAnalysisData(url, 'Bakerville', get_info_not_save_flag=True, insert_flag=True, cache=cache)
-        # obj.get_caseresult_data('Platform Integration Validation Result', True)
+        obj.get_platform_data('Platform Integration Validation Result', True)
+        obj.get_caseresult_data('Platform Integration Validation Result', True)
         # obj.get_sw_data('SW Configuration', True)
         # obj.get_sw_data_1('SW Configuration', True)
         # obj.get_ifwi_data('IFWI Configuration', True)
-        # obj.get_platform_data('Platform Integration Validation Result', True)
         # obj.get_hw_data('HW Configuration', True)
         # obj.get_lastest_FPGA_hw_data('HW Configuration', True)
         # obj.get_bak_hw_data('HW Configuration', True)
@@ -1269,7 +1242,7 @@ if __name__ == '__main__':
         # obj.get_existing_sighting_data('Existing Sightings', True)
         # obj.get_new_sightings_data('New Sightings', True)
         # obj.get_bak_rework_data('HW Rework', True)
-        obj.get_closed_sightings_data('Closed Sightings', True)
+        # obj.get_closed_sightings_data('Closed Sightings', True)
         # obj.get_rework_data('HW Rework', True)
     print time.time() - start
     # import pstats

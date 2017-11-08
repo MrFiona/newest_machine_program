@@ -199,8 +199,10 @@ class GetAnalysisData(object):
 
             target_url_string = ''
             for ele in li_list:
+                #todo 在Purley-Crystal-Ridge项目WW44周的时候 BKC有两个满足条件的file，更新以第一个找到的文件为准
                 if 'detailed_case' in str(ele):
                     target_url_string = ele
+                    break
 
             url_string_sep = re.findall('<a href="(.*?)">', str(target_url_string), re.M | re.S)
             page_url = ''.join([page_url, url_string_sep[0].replace(' ', '')])
@@ -850,6 +852,7 @@ class GetAnalysisData(object):
 
             #TODO 获取page_url
             self._get_common_page_url()
+
             self.logger.print_message(msg='page_url:\t%s' % self._page_url, logger_name=self.__file_name)
             html = self.cache[self._page_url]
             soup = BeautifulSoup(str(html), 'html.parser')
@@ -876,9 +879,9 @@ class GetAnalysisData(object):
                 #todo 获取表列名
                 for soup_tr in tr_list:
                     temp = []
-                    th_list = soup_tr.find_all('th') ;td_list = soup_tr.find_all('td')
+                    th_list = soup_tr.find_all('th');td_list = soup_tr.find_all('td')
                     if th_list:
-                        header_list = list(soup.tr.stripped_strings)
+                        header_list = list(soup_tr.stripped_strings)
                     #todo 获取表单元格数据
                     if td_list:
                         #todo 需要循环处理，防止丢失无内容的项
@@ -912,25 +915,25 @@ if __name__ == '__main__':
     start = time.time()
     key_url_list = []
     f = open(r'C:\Users\pengzh5x\Desktop\machine_scripts\report_html\Purley-Crystal-Ridge_url_info.txt', 'r')
-    for line in f:
-        if 'Purley-Crystal-Ridge' in line and 'Silver' in line:
-            key_url_list.append(line.strip('\n'))
+    # for line in f:
+    #     if 'Purley-Crystal-Ridge' in line and 'Silver' in line:
+    #         key_url_list.append(line.strip('\n'))
 
     cache = DiskCache('Purley-Crystal-Ridge')
-    # key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Silver/2017%20WW26/6283_Silver.html']
+    key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Silver/2017%20WW44/7020_Silver.html']
     for url in key_url_list:
         obj = GetAnalysisData(url, 'Purley-Crystal-Ridge', get_info_not_save_flag=True, insert_flag=True, cache=cache)
         # obj.get_closed_sightings_data('Closed Sightings', True)
         # obj.get_new_sightings_data('New Sightings', True)
-        obj.get_existing_sighting_data('Existing Sightings', True)
+        # obj.get_existing_sighting_data('Existing Sightings', True)
         #print 'data_url:\t', self.data_url
         # obj.get_closed_sightings_data('Closed Sightings', True)
         # obj.get_rework_data('HW Rework')
         # obj.get_hw_data('HW Configuration', True)
         # obj.get_sw_data('SW Configuration', True)
         # obj.get_ifwi_data('IFWI Configuration', True)
-        # obj.get_platform_data('Platform Integration Validation Result', True)
-        # obj.get_caseresult_data('Platform Integration Validation Result', True)
+        obj.get_platform_data('Platform Integration Validation Result', True)
+        obj.get_caseresult_data('Platform Integration Validation Result', True)
     print time.time() - start
     # import pstats
     # p = pstats.Stats('mkm_run.prof')
