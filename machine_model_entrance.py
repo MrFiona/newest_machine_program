@@ -30,7 +30,7 @@ try:
     from machine_scripts.create_email_html import create_save_miss_html
     from machine_scripts.wxpython_gui import gui_main,display_config_info
     from machine_scripts.generate_chart import generate_chart
-    from setting_global_variable import SRC_WEEK_DIR, type_sheet_name_list
+    from setting_global_variable import SRC_WEEK_DIR, type_sheet_name_list, SRC_EXCEL_DIR
 except ImportError:
     _logger.print_message('Please check whether the requirements.txt file is in the current directory or no network state '
                           'but the installation module is missing', os.path.split(__file__)[1], CRITICAL)
@@ -142,7 +142,8 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
     failed_sheet_name_list = []
     WEEK_NUM = judge_get_config('week_num', purl_bak_string)
     _logger.print_message(log_time, file_name)
-    win_book = easyExcel(os.getcwd() + os.sep + 'excel_dir' + os.sep + purl_bak_string + '_%s_%s_%d_%s.xlsx'
+    _logger.print_message(os.getcwd(), file_name)
+    win_book = easyExcel(SRC_EXCEL_DIR + os.sep + purl_bak_string + '_%s_%s_%d_%s.xlsx'
                          % (WEEK_NUM, link_WW_week_string, len(Silver_url_list), log_time))
 
     type_sheet_name_list.remove('Trend')

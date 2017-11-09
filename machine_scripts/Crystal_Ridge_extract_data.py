@@ -478,8 +478,6 @@ class GetAnalysisData(object):
             tr_list = soup_table_element.find_all('tr')
 
             header_list = list(tr_list[0].stripped_strings)
-            for i in range(len(header_list)):
-                header_list[i] = re.sub('[\r\n]', '', header_list[i])
             header_length = len(header_list)
             # print 'header_length:\t', header_length
             header_list = header_list[:4]
@@ -527,13 +525,10 @@ class GetAnalysisData(object):
                     cell_data_list.append(temp_string_list)
 
                 for td in actual_td_list:
-                    #todo 正则取匹配url链接
-                    obj_list = re.findall('<a href="(.*?)">', str(td), re.M|re.S)
-                    if obj_list:
-                        #todo 逐个添加
-                        for url in obj_list:
-                            url = url.split()[0].replace("\"", "")
-                            temp_url_list.append(url)
+                    #todo 匹配url链接
+                    if td.a:
+                        #todo 去除链接里的垃圾
+                        temp_url_list.append(td.a['href'].split()[0])
 
                 if temp_url_list:
                     url_list.append(temp_url_list)
@@ -544,7 +539,7 @@ class GetAnalysisData(object):
             # print '\033[31murl_list:\t\033[0m', url_list, len(url_list)
             # print '\033[31mSilver_Gold_BKC_string:\t\033[0m', Silver_Gold_BKC_string
             return Silver_Gold_BKC_string, header_length, self.date_string, url_list, header_list, cell_data_list
-        except TabError:
+        except:
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name,
                                       definition_log_level=ERROR)
             return 'Error', 0, self.date_string, [], [], []
@@ -930,10 +925,10 @@ if __name__ == '__main__':
         # obj.get_closed_sightings_data('Closed Sightings', True)
         # obj.get_rework_data('HW Rework')
         # obj.get_hw_data('HW Configuration', True)
-        # obj.get_sw_data('SW Configuration', True)
+        obj.get_sw_data('SW Configuration', True)
         # obj.get_ifwi_data('IFWI Configuration', True)
-        obj.get_platform_data('Platform Integration Validation Result', True)
-        obj.get_caseresult_data('Platform Integration Validation Result', True)
+        # obj.get_platform_data('Platform Integration Validation Result', True)
+        # obj.get_caseresult_data('Platform Integration Validation Result', True)
     print time.time() - start
     # import pstats
     # p = pstats.Stats('mkm_run.prof')
