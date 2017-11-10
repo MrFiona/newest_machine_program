@@ -1,3 +1,5 @@
+https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Silver/2017%20WW44/7020_Silver.html
+https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Silver/2017%20WW43/6981_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Silver/2017%20WW41/6911_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Silver/2017%20WW39/6771_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Silver/2017%20WW37/6684_Silver.html
@@ -22,6 +24,8 @@ https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Silver/2017%20WW14
 https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Silver/2017%20WW13/5775_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Silver/2017%20WW12/5767_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Silver/2017%20WW11/5702_Silver.html
+https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Gold/2017%20WW44/7020_Gold.html
+https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Gold/2017%20WW43/6981_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Gold/2017%20WW41/6911_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Gold/2017%20WW39/6771_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Gold/2017%20WW37/6684_Gold.html
@@ -45,6 +49,8 @@ https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Gold/2017%20WW14/5
 https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Gold/2017%20WW13/5775_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Gold/2017%20WW12/5767_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/Gold/2017%20WW11/5702_Gold.html
+https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/BKC/2017%20WW44/7020_BKC.html
+https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/BKC/2017%20WW43/6981_BKC.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/BKC/2017%20WW41/6911_BKC.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/BKC/2017%20WW39/6771_BKC.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-Crystal-Ridge/BKC/2017%20WW37/6684_BKC.html

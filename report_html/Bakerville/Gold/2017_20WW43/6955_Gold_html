@@ -1,0 +1,2923 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Test Report</title>
+<script src="./6955_Gold_files/jquery.min.js"></script>
+<script src="./6955_Gold_files/table.js"></script>
+<link rel="stylesheet" type="text/css" href="./6955_Gold_files/report_frame.css">
+<link rel="stylesheet" type="text/css" href="./6955_Gold_files/bootstrap.css">
+
+<style type="text/css">
+    .stable,.sh1,.sh2,.sh3 {font-family:'Intel Clear',Arial,sans-serif;}
+    .sh2{font-size: 15px;font-weight:bold;overflow: hidden;color: #000000;}
+    .sh3{font-size: 13px;overflow: hidden;color: #000000;}
+    .MsoNormalTable .sh2{font-size: 15px;font-weight:bold;overflow: hidden;text-align: left;margin: 4px 0;color: #000000}
+    .DetailHeardTable .sh2{font-size: 15px;font-weight:bold;overflow: hidden;text-align: left;margin: 4px 0;color: #000000}
+    .ReportHead{font-size: 22px;font-weight: bold;background: #ffffff;color: #0071c5;margin: 12px 0;overflow: hidden; text-align:center;}
+    .MsoNormalTable{font-size:10.0pt;border-width: 1px;border-color:Black;border-style:solid;border-collapse: collapse;width:100%;}
+    .MsoNormalTable td{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:10.0pt;padding-left:10px;padding-right:10px;text-align:center;padding-bottom:5px;padding-top:5px;}
+    .MsoNormalTable th{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:10.0pt;padding-left:10px;padding-right:10px;background-color:#A3CBFF;color:#000000;font-weight:bold;text-align:center;padding-bottom:5px;padding-top:5px;}
+    .DetailTable{font-size:10.0pt;border-width: 1px;border-color:Black;border-style:solid;border-collapse: collapse;width:100%;}
+    .DetailTable td{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:10.0pt;padding-left:10px;padding-right: 10px;text-align: left;padding-bottom:5px;padding-top:5px;}
+    .DetailTable th{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:10.0pt;padding-left:10px;background-color:#A3CBFF;color:#000000;font-weight:bold;padding-right: 10px;text-align: left;padding-bottom:5px;padding-top:5px;}
+    .ChangelistTable td{border: none;padding: 0 10px;margin: 0;}
+    .NormalTable td{border-width:1px;border-color:Black;border-style:solid;border-collapse:collapse;font-size:10.0pt;}
+    .DetailHeardTable{font-size:10.0pt;border-width: 1px;border-collapse: collapse;}
+    .DetailHeardTable td{ border-width: 1px;border-color:Black;border-style:solid;border-collapse:collapse;text-align:center;font-size:10.0pt;}
+    .td-center {text-align:center;}
+    table a:link,table a:focus,table a:visited ,table a:active,table a:hover {text-decoration:underline;}
+    a{color: #0071c5}
+    table{background-color: #FFFFFF;font-family:'Intel Clear',Arial,sans-serif;}
+    td{padding-bottom: 5px;padding-top: 5px}
+    .ReportHead{background-color: transparent}
+    .report_section{font-size: 22px;font-weight: bold;margin-top: 35px;margin-bottom: 20px;}
+    .info_table td{padding: 0 1px;}
+    .info_table th{font-weight:bold;white-space: nowrap;text-align: left;}
+</style>
+</head>
+<body>
+    <br>
+	<table width="100%" class="ReportHead" style="background-color: transparent">
+	    <tbody><tr>
+			<td>
+            <p style="color:#FF0000;font-size:11px;margin:0 0 5px;text-align:left">Intel confidential - Internal use only</p>
+            <p style="color:#FF0000;font-size:11px;margin:0 0 18px;text-align:left">D-label is the internal IFWI with internal ingredients, please ensure all of current BKC will not go out of intel</p>
+            <p style="text-align:left;margin-bottom:0px">10nm preflight Test Report - 2017 WW43.5 (35 Build/35 pass; 37 Test/37 pass)</p>
+			<div style="color:black;font-size:13px;text-align:left">DEG Continuous Integration Team</div>
+			<div style="color:black;font-size:13px;text-align:left">SSC-CAF v0.7</div>
+			</td>
+		</tr>
+	</tbody></table>
+    <div class="report_section">Summary:</div>
+    <table class="info_table" style="background-color: transparent;font-size: 15px;">
+	    <tbody><tr>
+            <th>Initiator:</th>
+			<td>chaox.ye@intel.com</td>
+		</tr>
+        
+            <tr>
+                <th style="vertical-align: top;">Description:</th>
+                <td>1504566894: Build Scripts to be python based as described in UEFI Specification</td>
+            </tr>
+        
+        
+            <tr>
+                <th>Review Link:</th>
+                <td><a href="https://git-amr-3.devtools.intel.com/gerrit#/q/Ia46d481886d130e7b419a3c775f583b73031d120" target="_blank">https://git-amr-3.devtools.intel.com/gerrit#/q/Ia46d481886d130e7b419a3c775f583b73031d120</a></td>
+            </tr>
+        
+        <tr>
+            <th style="padding-right: 50px;">preflight Hash:</th>
+            <td>#13a3f216ee8b572c44c483f1de374b6fc2d60a25</td>
+        </tr>
+        <tr>
+            <th>Stream:</th>
+            <td>10nmServerTrunk</td>
+        </tr>
+	</tbody></table>
+    
+        <br>
+        <table class="MsoNormalTable">
+            <tbody><tr>
+                <th></th>
+                <th>Passed</th>
+                <th>Failed</th>
+                <th>Blocked</th>
+                <th>Unknown</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">Build</td>
+                <td style="background-color:#66CC00;color: white;">35</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>35</td>
+            </tr>
+            
+                <tr>
+                    <td style="font-weight: bold;">Test</td>
+                    <td style="background-color:#66CC00;color: white;">37</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>37</td>
+                </tr>
+            
+        </tbody></table>
+
+        
+
+        
+
+        
+    
+
+    <div class="report_section">Details:</div>
+
+    
+        <span class="sh2">Simics Configuration:</span>
+        <br>
+        <br>
+        
+            
+                <span>Idaville</span>
+                
+                    <table class="DetailTable" width="100%" style="max-width: 100%;">
+                        <tbody><tr>
+                            <th width="15%">Package</th>
+                            <th width="15%">Number</th>
+                            <th width="15%">Dependence (Number)</th>
+                            <th width="15%">Version</th>
+                            <th width="15%">Changes vs Last Submit</th>
+                            <th width="25%">Release Link</th>
+                        </tr>
+                        
+                            <tr>
+                                <td>base</td>
+                                <td>1000</td>
+                                <td>No</td>
+                                <td>5.0.113</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\c$\SIMICS\Icelake\simics-pkg-1000-5.0.113-win64.exe">simics-pkg-1000-5.0.113-win64.exe</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Eclipse</td>
+                                <td>1001</td>
+                                <td>1000</td>
+                                <td>5.0.46</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\c$\SIMICS\Icelake\simics-pkg-1001-5.0.46-win64.exe">simics-pkg-1001-5.0.46-win64.exe</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td>eclipseuefi</td>
+                                <td>7031</td>
+                                <td>1000</td>
+                                <td>5.0.46</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\c$\SIMICS\Icelake\simics-pkg-7031-5.0.46-win64.exe">simics-pkg-7031-5.0.46-win64.exe</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Idaville</td>
+                                <td>7120</td>
+                                <td>1000</td>
+                                <td>5.0.pre117</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\c$\SIMICS\Icelake\simics-pkg-7120-5.0.pre117-win64.exe">simics-pkg-7120-5.0.pre117-win64.exe</a></td>
+                            </tr>
+                        
+                    </tbody></table>
+                
+            
+            <br>
+        
+            
+                <span>Whitley-Skaylake</span>
+                
+                    <table class="DetailTable" width="100%" style="max-width: 100%;">
+                        <tbody><tr>
+                            <th width="15%">Package</th>
+                            <th width="15%">Number</th>
+                            <th width="15%">Dependence (Number)</th>
+                            <th width="15%">Version</th>
+                            <th width="15%">Changes vs Last Submit</th>
+                            <th width="25%">Release Link</th>
+                        </tr>
+                        
+                            <tr>
+                                <td>base</td>
+                                <td>1000</td>
+                                <td>No</td>
+                                <td>5.0.108</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\c$\SIMICS\Icelake\simics-pkg-1000-5.0.108-win64.exe">simics-pkg-1000-5.0.108-win64.exe</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Eclipse</td>
+                                <td>1001</td>
+                                <td>1000</td>
+                                <td>5.0.44</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\c$\SIMICS\Icelake\simics-pkg-1001-5.0.44-win64.exe">simics-pkg-1001-5.0.44-win64.exe</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td>eclipseuefi</td>
+                                <td>7031</td>
+                                <td>1000</td>
+                                <td>5.0.41</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\c$\SIMICS\Icelake\simics-pkg-7031-5.0.41-win64.exe">simics-pkg-7031-5.0.41-win64.exe</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Lewisburg WB PMC</td>
+                                <td>7071</td>
+                                <td>1000</td>
+                                <td>5.0.pre52</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\c$\SIMICS\Icelake\simics-pkg-7071-5.0.pre52-win64.exe">simics-pkg-7071-5.0.pre52-win64.exe</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Purley</td>
+                                <td>7110</td>
+                                <td>1000</td>
+                                <td>5.0.pre106</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\c$\SIMICS\Icelake\simics-pkg-7110-5.0.pre106-win64.exe">simics-pkg-7110-5.0.pre106-win64.exe</a></td>
+                            </tr>
+                        
+                    </tbody></table>
+                
+            
+            <br>
+        
+            
+                <span>Whitley</span>
+                
+                    <table class="DetailTable" width="100%" style="max-width: 100%;">
+                        <tbody><tr>
+                            <th width="15%">Package</th>
+                            <th width="15%">Number</th>
+                            <th width="15%">Dependence (Number)</th>
+                            <th width="15%">Version</th>
+                            <th width="15%">Changes vs Last Submit</th>
+                            <th width="25%">Release Link</th>
+                        </tr>
+                        
+                            <tr>
+                                <td>base</td>
+                                <td>1000</td>
+                                <td>No</td>
+                                <td>5.0.113</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\SIMICS\Icelake\ww38\simics-pkg-1000-5.0.113-win64.exe">simics-pkg-1000-5.0.113-win64.exe</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Eclipse</td>
+                                <td>1001</td>
+                                <td>1000</td>
+                                <td>5.0.46</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\SIMICS\Icelake\ww38\simics-pkg-1001-5.0.46-win64.exe">simics-pkg-1001-5.0.46-win64.exe</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td>eclipseuefi</td>
+                                <td>7031</td>
+                                <td>1000</td>
+                                <td>5.0.47</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\SIMICS\Icelake\ww38\simics-pkg-7031-5.0.47-win64.exe">simics-pkg-7031-5.0.47-win64.exe</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Lewisburg WB PMC</td>
+                                <td>7071</td>
+                                <td>1000</td>
+                                <td>5.0.pre59</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\SIMICS\Icelake\ww38\simics-pkg-7071-5.0.pre59-win64.exe">simics-pkg-7071-5.0.pre59-win64.exe</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Whitley</td>
+                                <td>7126</td>
+                                <td>1000</td>
+                                <td>5.0.pre193</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\SIMICS\Icelake\ww38\simics-pkg-7126-5.0.pre193-win64.exe">simics-pkg-7126-5.0.pre193-win64.exe</a></td>
+                            </tr>
+                        
+                    </tbody></table>
+                
+            
+            <br>
+        
+            
+                <span>Whitley-ICXR</span>
+                
+                    <table class="DetailTable" width="100%" style="max-width: 100%;">
+                        <tbody><tr>
+                            <th width="15%">Package</th>
+                            <th width="15%">Number</th>
+                            <th width="15%">Dependence (Number)</th>
+                            <th width="15%">Version</th>
+                            <th width="15%">Changes vs Last Submit</th>
+                            <th width="25%">Release Link</th>
+                        </tr>
+                        
+                            <tr>
+                                <td>base</td>
+                                <td>1000</td>
+                                <td>No</td>
+                                <td>5.0.117</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\SIMICS\Icelake\simics-pkg-1000-5.0.117-win64.exe">simics-pkg-1000-5.0.117-win64.exe</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Eclipse</td>
+                                <td>1001</td>
+                                <td>1000</td>
+                                <td>5.0.46</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\SIMICS\Icelake\ww38\simics-pkg-1001-5.0.46-win64.exe">simics-pkg-1001-5.0.46-win64.exe</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td>eclipseuefi</td>
+                                <td>7031</td>
+                                <td>1000</td>
+                                <td>5.0.47</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\SIMICS\Icelake\ww38\simics-pkg-7031-5.0.47-win64.exe">simics-pkg-7031-5.0.47-win64.exe</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Lewisburg WB PMC</td>
+                                <td>7071</td>
+                                <td>1000</td>
+                                <td>5.0.pre59</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\SIMICS\Icelake\ww38\simics-pkg-7071-5.0.pre59-win64.exe">simics-pkg-7071-5.0.pre59-win64.exe</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Whitley-ICXR</td>
+                                <td>7127</td>
+                                <td>1000</td>
+                                <td>5.0.pre7</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\SIMICS\Icelake\simics-pkg-7127-5.0.pre7-win64.exe">simics-pkg-7127-5.0.pre7-win64.exe</a></td>
+                            </tr>
+                        
+                    </tbody></table>
+                
+            
+            <br>
+        
+            
+                <span>Jacobsville</span>
+                
+                    <table class="DetailTable" width="100%" style="max-width: 100%;">
+                        <tbody><tr>
+                            <th width="15%">Package</th>
+                            <th width="15%">Number</th>
+                            <th width="15%">Dependence (Number)</th>
+                            <th width="15%">Version</th>
+                            <th width="15%">Changes vs Last Submit</th>
+                            <th width="25%">Release Link</th>
+                        </tr>
+                        
+                            <tr>
+                                <td>base</td>
+                                <td>1000</td>
+                                <td>No</td>
+                                <td>5.0.114</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\c$\SIMICS\Icelake\simics-pkg-1000-5.0.114-win64.exe">simics-pkg-1000-5.0.114-win64.exe</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Eclipse</td>
+                                <td>1001</td>
+                                <td>1000</td>
+                                <td>5.0.47</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\c$\SIMICS\Icelake\simics-pkg-1001-5.0.47-win64.exe">simics-pkg-1001-5.0.47-win64.exe</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td>eclipseuefi</td>
+                                <td>7031</td>
+                                <td>1000</td>
+                                <td>5.0.48</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\c$\SIMICS\Icelake\simics-pkg-7031-5.0.48-win64.exe">simics-pkg-7031-5.0.48-win64.exe</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td>Jacobsville</td>
+                                <td>7088</td>
+                                <td>1000</td>
+                                <td>5.0.pre75</td>
+                                <td>N</td>
+                                <td><a href="\\Orss2600cp005\c$\SIMICS\Icelake\simics-pkg-7088-5.0.pre75-win64.exe">simics-pkg-7088-5.0.pre75-win64.exe</a></td>
+                            </tr>
+                        
+                    </tbody></table>
+                
+            
+            <br>
+        
+    
+
+    
+        <span class="sh2">Changelist:</span>
+        <table class="DetailTable" width="100%" style="max-width: 100%;">
+            <tbody><tr>
+                <th>Summary</th>
+            </tr>
+            <tr>
+                <td style="padding: 0;"><div style="padding: 5px 10px 5px 30px;">
+    Change-Id: Ia46d481886d130e7b419a3c775f583b73031d120
+    <br><br>
+    Affected files:
+    <br>
+    <table class="ChangelistTable">
+        
+            <tbody><tr>
+                <td>
+                    ServerPlatformPkg/BuildScript/Source/BuildStep/BinGen.py
+                </td>
+                <td style="padding-left: 30px;">
+                    edited
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    ServerPlatformPkg/BuildScript/Source/BuildStep/BiosIdGen.py
+                </td>
+                <td style="padding-left: 30px;">
+                    edited
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    ServerPlatformPkg/BuildScript/Source/BuildStep/Restricted/FTool.py
+                </td>
+                <td style="padding-left: 30px;">
+                    edited
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    ServerPlatformPkg/BuildScript/Source/BuildStep/Restricted/IFWIExtGen.py
+                </td>
+                <td style="padding-left: 30px;">
+                    edited
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    ServerSocRpPkg/BuildConfig.ini
+                </td>
+                <td style="padding-left: 30px;">
+                    edited
+                </td>
+            </tr>
+        
+            <tr>
+                <td>
+                    WhitleyRpPkg/BuildConfig.ini
+                </td>
+                <td style="padding-left: 30px;">
+                    edited
+                </td>
+            </tr>
+        
+    </tbody></table>
+</div></td>
+            </tr>
+         </tbody></table>
+        <br>
+    
+
+    <span class="sh2">Build Configuration <a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690660" style="font-weight:normal;color:#0071c5" target="_blank">1690660</a>: </span>
+	<table class="DetailTable" width="100%">
+		<tbody><tr>
+			<th style="text-align:center" width="15%">Build</th>
+			<th style="text-align:center" width="20%" colspan="">SH Artifactory Server</th>
+            <th style="text-align:center" width="14%">Previous Submit Hash</th>
+            <th style="text-align:center;word-break: normal;" width="8%">Previous Result</th>
+            <th style="text-align:center;word-break: normal;" width="8%">Build Result</th>
+            <th style="text-align:center" width="15%">Start time</th>
+            <th style="text-align:center" width="10%">Total Build time</th>
+            <th style="text-align:center" width="10%">Task ID</th>
+		</tr>
+		
+        
+		<tr>
+			<td style="text-align:center">BRS_Debug</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/brs/BRS_Debug/1690646_BRS_Debug_BuildPkg.7z" style="color:#0071c5" target="_blank">1690646_BRS_Debug_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690579" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690646" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:54:52</td>
+            <td style="text-align:center">0:15:55</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">BRS_Release</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/brs/BRS_Release/1690647_BRS_Release_BuildPkg.7z" style="color:#0071c5" target="_blank">1690647_BRS_Release_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690580" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690647" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:55:51</td>
+            <td style="text-align:center">0:15:28</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">FSP_D32</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/fsp/FSP_D32/1690651_FSP_D32_BuildPkg.7z" style="color:#0071c5" target="_blank">1690651_FSP_D32_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690584" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690651" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:54:22</td>
+            <td style="text-align:center">0:04:10</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">FSP_R32</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/fsp/FSP_R32/1690652_FSP_R32_BuildPkg.7z" style="color:#0071c5" target="_blank">1690652_FSP_R32_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690585" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690652" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:54:55</td>
+            <td style="text-align:center">0:03:54</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Idaville_Debug</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/idaville/Idaville_Debug/1690619_Idaville_Debug_BuildPkg.7z" style="color:#0071c5" target="_blank">1690619_Idaville_Debug_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690550" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690619" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:54:52</td>
+            <td style="text-align:center">0:06:08</td>
+            <td style="text-align:center">
+                
+                    242305 <br>
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Idaville_FCCRB</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/idaville/Idaville_FCCRB/1690629_Idaville_FCCRB_BuildPkg.7z" style="color:#0071c5" target="_blank">1690629_Idaville_FCCRB_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690562" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690629" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:55:11</td>
+            <td style="text-align:center">0:09:24</td>
+            <td style="text-align:center">
+                
+                    242311 <br>
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Idaville_Release</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/idaville/Idaville_Release/1690620_Idaville_Release_BuildPkg.7z" style="color:#0071c5" target="_blank">1690620_Idaville_Release_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690551" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690620" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:55:02</td>
+            <td style="text-align:center">0:09:29</td>
+            <td style="text-align:center">
+                
+                    242313 <br>
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Jacobsville_Debug</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/jacobsville/Jacobsville_Debug/1690621_Jacobsville_Debug_BuildPkg.7z" style="color:#0071c5" target="_blank">1690621_Jacobsville_Debug_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690552" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690621" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:54:57</td>
+            <td style="text-align:center">0:06:02</td>
+            <td style="text-align:center">
+                
+                    242312 <br>
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Jacobsville_FCCRB</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/jacobsville/Jacobsville_FCCRB/1690630_Jacobsville_FCCRB_BuildPkg.7z" style="color:#0071c5" target="_blank">1690630_Jacobsville_FCCRB_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690563" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690630" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:55:50</td>
+            <td style="text-align:center">0:08:49</td>
+            <td style="text-align:center">
+                
+                    242316 <br>
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Jacobsville_Release</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/jacobsville/Jacobsville_Release/1690622_Jacobsville_Release_BuildPkg.7z" style="color:#0071c5" target="_blank">1690622_Jacobsville_Release_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690553" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690622" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:54:20</td>
+            <td style="text-align:center">0:09:35</td>
+            <td style="text-align:center">
+                
+                    242306 <br>
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">NT32_Headless</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/nt32/NT32_Headless/1690623_NT32_Headless_BuildPkg.7z" style="color:#0071c5" target="_blank">1690623_NT32_Headless_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690554" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690623" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:54:55</td>
+            <td style="text-align:center">0:01:57</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">NT32_KtiSim</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/nt32/NT32_KtiSim/1690624_NT32_KtiSim_BuildPkg.7z" style="color:#0071c5" target="_blank">1690624_NT32_KtiSim_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690555" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690624" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:55:05</td>
+            <td style="text-align:center">0:02:59</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">NT32_KtiSimEightSocket</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/nt32/NT32_KtiSimEightSocket/1690641_NT32_KtiSimEightSocket_BuildPkg.7z" style="color:#0071c5" target="_blank">1690641_NT32_KtiSimEightSocket_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690574" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690641" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:54:36</td>
+            <td style="text-align:center">0:02:59</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">NT32_KtiSimSingleSocket</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/nt32/NT32_KtiSimSingleSocket/1690642_NT32_KtiSimSingleSocket_BuildPkg.7z" style="color:#0071c5" target="_blank">1690642_NT32_KtiSimSingleSocket_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690575" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690642" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:55:08</td>
+            <td style="text-align:center">0:03:00</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">NT32_KtiSimSkx</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/nt32/NT32_KtiSimSkx/1690643_NT32_KtiSimSkx_BuildPkg.7z" style="color:#0071c5" target="_blank">1690643_NT32_KtiSimSkx_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690576" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690643" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:54:41</td>
+            <td style="text-align:center">0:02:38</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">NT32_RcSim_ICX-SP</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/nt32/NT32_RcSim_ICX-SP/1690617_NT32_RcSim_ICX-SP_BuildPkg.7z" style="color:#0071c5" target="_blank">1690617_NT32_RcSim_ICX-SP_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690556" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690617" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:55:01</td>
+            <td style="text-align:center">0:06:15</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">NT32_RcSim_SKX</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/nt32/NT32_RcSim_SKX/1690618_NT32_RcSim_SKX_BuildPkg.7z" style="color:#0071c5" target="_blank">1690618_NT32_RcSim_SKX_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690557" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690618" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:53:45</td>
+            <td style="text-align:center">0:02:47</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">NT32_RunKtiSimAllConfig</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/nt32/NT32_RunKtiSimAllConfig/1690644_NT32_RunKtiSimAllConfig_BuildPkg.7z" style="color:#0071c5" target="_blank">1690644_NT32_RunKtiSimAllConfig_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690577" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690644" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:53:46</td>
+            <td style="text-align:center">0:15:04</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Whitley_Debug</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_Debug/1690625_Whitley_Debug_BuildPkg.7z" style="color:#0071c5" target="_blank">1690625_Whitley_Debug_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690558" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690625" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:55:10</td>
+            <td style="text-align:center">0:14:48</td>
+            <td style="text-align:center">
+                
+                    242314 <br>
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Whitley_Debug_1S</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_Debug_1S/1690639_Whitley_Debug_1S_BuildPkg.7z" style="color:#0071c5" target="_blank">1690639_Whitley_Debug_1S_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690572" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690639" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:54:20</td>
+            <td style="text-align:center">0:12:50</td>
+            <td style="text-align:center">
+                
+                    242304 <br>
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Whitley_Debug_8S</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_Debug_8S/1690640_Whitley_Debug_8S_BuildPkg.7z" style="color:#0071c5" target="_blank">1690640_Whitley_Debug_8S_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690573" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690640" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:53:48</td>
+            <td style="text-align:center">0:13:58</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Whitley_Debug_VS2013</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_Debug_VS2013/1690631_Whitley_Debug_VS2013_BuildPkg.7z" style="color:#0071c5" target="_blank">1690631_Whitley_Debug_VS2013_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690578" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690631" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:54:21</td>
+            <td style="text-align:center">0:14:08</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Whitley_FCCRB</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_FCCRB/1690626_Whitley_FCCRB_BuildPkg.7z" style="color:#0071c5" target="_blank">1690626_Whitley_FCCRB_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690559" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690626" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:54:23</td>
+            <td style="text-align:center">0:13:56</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Whitley_Hybrid</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_Hybrid/1690627_Whitley_Hybrid_BuildPkg.7z" style="color:#0071c5" target="_blank">1690627_Whitley_Hybrid_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690560" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690627" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:55:08</td>
+            <td style="text-align:center">0:09:20</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Whitley_ICXR_FCCRB</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_ICXR_FCCRB/1690649_Whitley_ICXR_FCCRB_BuildPkg.7z" style="color:#0071c5" target="_blank">1690649_Whitley_ICXR_FCCRB_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690582" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690649" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:55:28</td>
+            <td style="text-align:center">0:13:38</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Whitley_ICXR_Release</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_ICXR_Release/1690650_Whitley_ICXR_Release_BuildPkg.7z" style="color:#0071c5" target="_blank">1690650_Whitley_ICXR_Release_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690583" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690650" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:55:07</td>
+            <td style="text-align:center">0:15:07</td>
+            <td style="text-align:center">
+                
+                    242307 <br>
+                
+                    242308 <br>
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Whitley_PC_Debug</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_PC_Debug/1690645_Whitley_PC_Debug_BuildPkg.7z" style="color:#0071c5" target="_blank">1690645_Whitley_PC_Debug_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690567" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690645" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:55:54</td>
+            <td style="text-align:center">0:13:44</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Whitley_PC_Debug_VS2013</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_PC_Debug_VS2013/1690635_Whitley_PC_Debug_VS2013_BuildPkg.7z" style="color:#0071c5" target="_blank">1690635_Whitley_PC_Debug_VS2013_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690568" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690635" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:55:15</td>
+            <td style="text-align:center">0:11:48</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Whitley_PC_Release</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_PC_Release/1690636_Whitley_PC_Release_BuildPkg.7z" style="color:#0071c5" target="_blank">1690636_Whitley_PC_Release_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690569" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690636" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:55:10</td>
+            <td style="text-align:center">0:14:51</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Whitley_PC_SKX_Debug</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_PC_SKX_Debug/1690637_Whitley_PC_SKX_Debug_BuildPkg.7z" style="color:#0071c5" target="_blank">1690637_Whitley_PC_SKX_Debug_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690570" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690637" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:54:06</td>
+            <td style="text-align:center">0:12:46</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Whitley_PC_SKX_Release</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_PC_SKX_Release/1690638_Whitley_PC_SKX_Release_BuildPkg.7z" style="color:#0071c5" target="_blank">1690638_Whitley_PC_SKX_Release_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690571" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690638" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:55:56</td>
+            <td style="text-align:center">0:14:20</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Whitley_Release</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_Release/1690628_Whitley_Release_BuildPkg.7z" style="color:#0071c5" target="_blank">1690628_Whitley_Release_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690561" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690628" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:55:14</td>
+            <td style="text-align:center">0:13:42</td>
+            <td style="text-align:center">
+                
+                    242309 <br>
+                
+                    242310 <br>
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Whitley_Release_IPC</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_Release_IPC/1690634_Whitley_Release_IPC_BuildPkg.7z" style="color:#0071c5" target="_blank">1690634_Whitley_Release_IPC_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690566" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690634" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:59:34</td>
+            <td style="text-align:center">0:09:24</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Whitley_SKX_Debug</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_SKX_Debug/1690632_Whitley_SKX_Debug_BuildPkg.7z" style="color:#0071c5" target="_blank">1690632_Whitley_SKX_Debug_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690564" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690632" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:55:02</td>
+            <td style="text-align:center">0:14:23</td>
+            <td style="text-align:center">
+                
+            </td>
+		</tr>
+        
+		
+        
+		<tr>
+			<td style="text-align:center">Whitley_SKX_Release</td>
+            
+            <td style="text-align:center"><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_SKX_Release/1690633_Whitley_SKX_Release_BuildPkg.7z" style="color:#0071c5" target="_blank">1690633_Whitley_SKX_Release_BuildPkg.7z</a>
+                 
+            </td>
+            
+
+            <td style="text-align:center">6c0b2c59ff10decda7162dc844c1b5785099fa4d</td>
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690565" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            
+            <td style="text-align:center;background-color: #66CC00;"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690633" style="color:white;" target="_blank">PASS</a></td>
+            
+
+            <td style="text-align:center">2017-10-26 18:55:21</td>
+            <td style="text-align:center">0:11:34</td>
+            <td style="text-align:center">
+                
+                    242315 <br>
+                
+            </td>
+		</tr>
+        
+		
+        
+		
+	</tbody></table>
+    
+    <div><p class="sh3" style="width:100%">*Note: The following builds are not supported:
+    
+    <a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690658" style="color:#ff0000" target="_blank">1690658</a>,
+    
+    <a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690659" style="color:#ff0000" target="_blank">1690659</a>,
+    
+    <a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690655" style="color:#ff0000" target="_blank">1690655</a>,
+    
+    <a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690656" style="color:#ff0000" target="_blank">1690656</a>,
+    
+    <a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690648" style="color:#ff0000" target="_blank">1690648</a>,
+    
+    <a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690654" style="color:#ff0000" target="_blank">1690654</a>,
+    
+    <a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690653" style="color:#ff0000" target="_blank">1690653</a>,
+    
+    <a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690657" style="color:#ff0000" target="_blank">1690657</a>,
+    </p></div>
+    
+    <br>
+
+    
+
+    
+    <span class="sh2">&nbsp; Task Summary:</span>
+	<table class="MsoNormalTable" width="100%">
+		<tbody><tr>
+			<th width="14%">Task ID</th>
+			<th width="14%">Test Plan ID</th>
+			<th width="19%">Test Plan Name</th>
+			<th width="19%">Schedule Strategy </th>
+            <th width="19%">Build Package</th>
+            <th width="15%">Task Result</th>
+		</tr>
+		 
+		<tr>
+			<td>242304</td>
+			<td>890</td>
+            <td>___[Preflight ]__Debug_1S</td>
+            <td>DISTRIBUTED</td>
+			<td><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_Debug_1S/1690639_Whitley_Debug_1S_BuildPkg.7z" style="color:#0071c5">Whitley_Debug_1S</a> </td>
+            
+            
+            
+                <td><span style="color:#66CC00">COMPLETED</span></td>
+            
+            
+            
+		</tr>
+		
+		<tr>
+			<td>242305</td>
+			<td>929</td>
+            <td>__[Submit Debug]</td>
+            <td>DISTRIBUTED</td>
+			<td><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/idaville/Idaville_Debug/1690619_Idaville_Debug_BuildPkg.7z" style="color:#0071c5">Idaville_Debug</a> </td>
+            
+            
+            
+                <td><span style="color:#66CC00">COMPLETED</span></td>
+            
+            
+            
+		</tr>
+		
+		<tr>
+			<td>242306</td>
+			<td>926</td>
+            <td>__[Submit Release]</td>
+            <td>DISTRIBUTED</td>
+			<td><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/jacobsville/Jacobsville_Release/1690622_Jacobsville_Release_BuildPkg.7z" style="color:#0071c5">Jacobsville_Release</a> </td>
+            
+            
+            
+                <td><span style="color:#66CC00">COMPLETED</span></td>
+            
+            
+            
+		</tr>
+		
+		<tr>
+			<td>242307</td>
+			<td>1050</td>
+            <td>ICXR_TEST_Release</td>
+            <td>DISTRIBUTED</td>
+			<td><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_ICXR_Release/1690650_Whitley_ICXR_Release_BuildPkg.7z" style="color:#0071c5">Whitley_ICXR_Release</a> </td>
+            
+            
+            
+                <td><span style="color:#66CC00">COMPLETED</span></td>
+            
+            
+            
+		</tr>
+		
+		<tr>
+			<td>242308</td>
+			<td>1051</td>
+            <td>ICXR_TEST_uBIOS</td>
+            <td>DISTRIBUTED</td>
+			<td><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_ICXR_Release/1690650_Whitley_ICXR_Release_BuildPkg.7z" style="color:#0071c5">Whitley_ICXR_Release</a> </td>
+            
+            
+            
+                <td><span style="color:#66CC00">COMPLETED</span></td>
+            
+            
+            
+		</tr>
+		
+		<tr>
+			<td>242309</td>
+			<td>625</td>
+            <td>___[Preflight Release]</td>
+            <td>DISTRIBUTED</td>
+			<td><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_Release/1690628_Whitley_Release_BuildPkg.7z" style="color:#0071c5">Whitley_Release</a> </td>
+            
+            
+            
+                <td><span style="color:#66CC00">COMPLETED</span></td>
+            
+            
+            
+		</tr>
+		
+		<tr>
+			<td>242310</td>
+			<td>626</td>
+            <td>___[Preflight uBIOS]</td>
+            <td>DISTRIBUTED</td>
+			<td><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_Release/1690628_Whitley_Release_BuildPkg.7z" style="color:#0071c5">Whitley_Release</a> </td>
+            
+            
+            
+                <td><span style="color:#66CC00">COMPLETED</span></td>
+            
+            
+            
+		</tr>
+		
+		<tr>
+			<td>242311</td>
+			<td>927</td>
+            <td>__[Submit FCCRB]</td>
+            <td>DISTRIBUTED</td>
+			<td><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/idaville/Idaville_FCCRB/1690629_Idaville_FCCRB_BuildPkg.7z" style="color:#0071c5">Idaville_FCCRB</a> </td>
+            
+            
+            
+                <td><span style="color:#66CC00">COMPLETED</span></td>
+            
+            
+            
+		</tr>
+		
+		<tr>
+			<td>242312</td>
+			<td>930</td>
+            <td>__[Submit Debug]</td>
+            <td>DISTRIBUTED</td>
+			<td><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/jacobsville/Jacobsville_Debug/1690621_Jacobsville_Debug_BuildPkg.7z" style="color:#0071c5">Jacobsville_Debug</a> </td>
+            
+            
+            
+                <td><span style="color:#66CC00">COMPLETED</span></td>
+            
+            
+            
+		</tr>
+		
+		<tr>
+			<td>242313</td>
+			<td>925</td>
+            <td>__[Submit Release]</td>
+            <td>DISTRIBUTED</td>
+			<td><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/idaville/Idaville_Release/1690620_Idaville_Release_BuildPkg.7z" style="color:#0071c5">Idaville_Release</a> </td>
+            
+            
+            
+                <td><span style="color:#66CC00">COMPLETED</span></td>
+            
+            
+            
+		</tr>
+		
+		<tr>
+			<td>242314</td>
+			<td>645</td>
+            <td>___[Preflight Debug]</td>
+            <td>DISTRIBUTED</td>
+			<td><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_Debug/1690625_Whitley_Debug_BuildPkg.7z" style="color:#0071c5">Whitley_Debug</a> </td>
+            
+            
+            
+                <td><span style="color:#66CC00">COMPLETED</span></td>
+            
+            
+            
+		</tr>
+		
+		<tr>
+			<td>242315</td>
+			<td>983</td>
+            <td>SKX_TEST_Preflight</td>
+            <td>DISTRIBUTED</td>
+			<td><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/whitley/Whitley_SKX_Release/1690633_Whitley_SKX_Release_BuildPkg.7z" style="color:#0071c5">Whitley_SKX_Release</a> </td>
+            
+            
+            
+                <td><span style="color:#66CC00">COMPLETED</span></td>
+            
+            
+            
+		</tr>
+		
+		<tr>
+			<td>242316</td>
+			<td>928</td>
+            <td>__[Submit FCCRB]</td>
+            <td>DISTRIBUTED</td>
+			<td><a href="https://ubit-artifactory-or.intel.com/artifactory/server-bios-staging-local/preflight/chaox.ye/13a3f216ee8b572c44c483f1de374b6fc2d60a25/jacobsville/Jacobsville_FCCRB/1690630_Jacobsville_FCCRB_BuildPkg.7z" style="color:#0071c5">Jacobsville_FCCRB</a> </td>
+            
+            
+            
+                <td><span style="color:#66CC00">COMPLETED</span></td>
+            
+            
+            
+		</tr>
+		
+
+	</tbody></table><br>
+    
+    
+    <span class="sh2">Case Details:</span>
+	<table class="MsoNormalTable" width="100%">
+			<tbody><tr>
+				<th width="9%">Build</th>
+				<th width="7%">Plan ID</th>
+                <th width="13%">Category</th>
+				<th width="22%">Case Name</th>
+                <th width="8%">Previous</th>
+				<th width="8%">Result</th>
+				<th width="18%">SUT</th>
+				<th width="15%">Comments</th>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690619" style="text-decoration:none;" target="_blank">Idaville_Debug</a></td>
+				<td align="center">929</td>
+                <td style="text-align:left">Nightly_debug</td>
+                <td style="text-align:left">[Default-DDR4][INT] Boot to Setup Menu</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMIDAVILLE\2017-10-26\2017-10-26-19-00-42_XNSWC23-VM16_507939\949111\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMIDAVILLE\2017-10-26\2017-10-26-19-19-42_XNSWC23-VM11_507949\949126\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC23-VM11.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690619" style="text-decoration:none;" target="_blank">Idaville_Debug</a></td>
+				<td align="center">929</td>
+                <td style="text-align:left">Nightly_debug</td>
+                <td style="text-align:left">[Default-DDR4][INT] Boot to UEFI Shell</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMIDAVILLE\2017-10-26\2017-10-26-18-59-42_XNSWC23-VM15_507938\949110\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMIDAVILLE\2017-10-26\2017-10-26-19-19-12_XNSWC23-VM10_507948\949125\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC23-VM10.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690629" style="text-decoration:none;" target="_blank">Idaville_FCCRB</a></td>
+				<td align="center">927</td>
+                <td style="text-align:left">Nightly_FCCRB</td>
+                <td style="text-align:left">[Default-DDR4][FCCRB] Boot to Setup Menu</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMIDAVILLE\2017-10-26\2017-10-26-18-54-42_XNSWC23-VM11_507896\949078\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMIDAVILLE\2017-10-26\2017-10-26-19-29-13_XNSWC23-VM12_507980\949151\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC23-VM12.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690629" style="text-decoration:none;" target="_blank">Idaville_FCCRB</a></td>
+				<td align="center">927</td>
+                <td style="text-align:left">Nightly_FCCRB</td>
+                <td style="text-align:left">[Default-DDR4][FCCRB] Boot to UEFI Shell</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMIDAVILLE\2017-10-26\2017-10-26-18-54-42_XNSWC23-VM10_507895\949077\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMIDAVILLE\2017-10-26\2017-10-26-19-29-13_XNSWC23-VM11_507979\949150\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC23-VM11.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690620" style="text-decoration:none;" target="_blank">Idaville_Release</a></td>
+				<td align="center">925</td>
+                <td style="text-align:left">Nightly_release</td>
+                <td style="text-align:left">[Default-DDR4] Boot to Setup Menu</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMIDAVILLE\2017-10-26\2017-10-26-18-59-12_XNSWC23-VM14_507936\949109\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMIDAVILLE\2017-10-26\2017-10-26-19-33-12_XNSWC23-VM14_507987\949156\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC23-VM14.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690620" style="text-decoration:none;" target="_blank">Idaville_Release</a></td>
+				<td align="center">925</td>
+                <td style="text-align:left">Nightly_release</td>
+                <td style="text-align:left">[Default-DDR4] Boot to UEFI Shell</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMIDAVILLE\2017-10-26\2017-10-26-18-59-12_XNSWC23-VM13_507935\949108\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMIDAVILLE\2017-10-26\2017-10-26-19-32-43_XNSWC23-VM13_507986\949155\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC23-VM13.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690620" style="text-decoration:none;" target="_blank">Idaville_Release</a></td>
+				<td align="center">925</td>
+                <td style="text-align:left">Preflight/Submit Release</td>
+                <td style="text-align:left">[Default-DDR4] UEFI-Shell-Reset</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMIDAVILLE\2017-10-26\2017-10-26-18-58-12_XNSWC23-VM12_507934\949107\Boot2UEFIandSendCommand" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMIDAVILLE\2017-10-26\2017-10-26-19-31-43_XNSWC23-VM10_507985\949154\Boot2UEFIandSendCommand" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC23-VM10.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690621" style="text-decoration:none;" target="_blank">Jacobsville_Debug</a></td>
+				<td align="center">930</td>
+                <td style="text-align:left">Nightly_debug</td>
+                <td style="text-align:left">[Default-DDR4][INT] Boot to Setup Menu</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMJACOBSVILLE\2017-10-26\2017-10-26-18-57-42_XNSWC23-VM08_507932\949106\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMJACOBSVILLE\2017-10-26\2017-10-26-19-31-12_XNSWC23-VM05_507983\949153\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC23-VM05.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690621" style="text-decoration:none;" target="_blank">Jacobsville_Debug</a></td>
+				<td align="center">930</td>
+                <td style="text-align:left">Nightly_debug</td>
+                <td style="text-align:left">[Default-DDR4][INT] Boot to UEFI Shell</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMJACOBSVILLE\2017-10-26\2017-10-26-18-57-42_XNSWC23-VM07_507931\949105\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMJACOBSVILLE\2017-10-26\2017-10-26-19-30-13_XNSWC23-VM04_507982\949152\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC23-VM04.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690630" style="text-decoration:none;" target="_blank">Jacobsville_FCCRB</a></td>
+				<td align="center">928</td>
+                <td style="text-align:left">Nightly_FCCRB</td>
+                <td style="text-align:left">[Default-DDR4][FCCRB] Boot to Setup Menu</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMJACOBSVILLE\2017-10-26\2017-10-26-18-55-12_XNSWC23-VM03_507899\949080\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMJACOBSVILLE\2017-10-26\2017-10-26-19-36-13_XNSWC23-VM03_507994\949160\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC23-VM03.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690630" style="text-decoration:none;" target="_blank">Jacobsville_FCCRB</a></td>
+				<td align="center">928</td>
+                <td style="text-align:left">Nightly_FCCRB</td>
+                <td style="text-align:left">[Default-DDR4][FCCRB] Boot to UEFI Shell</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMJACOBSVILLE\2017-10-26\2017-10-26-18-55-12_XNSWC23-VM02_507898\949079\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMJACOBSVILLE\2017-10-26\2017-10-26-19-35-43_XNSWC23-VM02_507993\949159\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC23-VM02.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690622" style="text-decoration:none;" target="_blank">Jacobsville_Release</a></td>
+				<td align="center">926</td>
+                <td style="text-align:left">Nightly_release</td>
+                <td style="text-align:left">[Default-DDR4] Boot to Setup Menu</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMJACOBSVILLE\2017-10-26\2017-10-26-18-57-12_XNSWC23-VM06_507929\949104\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMJACOBSVILLE\2017-10-26\2017-10-26-19-20-43_XNSWC23-VM04_507953\949129\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC23-VM04.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690622" style="text-decoration:none;" target="_blank">Jacobsville_Release</a></td>
+				<td align="center">926</td>
+                <td style="text-align:left">Nightly_release</td>
+                <td style="text-align:left">[Default-DDR4] Boot to UEFI Shell</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMJACOBSVILLE\2017-10-26\2017-10-26-18-56-41_XNSWC23-VM05_507928\949103\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMJACOBSVILLE\2017-10-26\2017-10-26-19-20-43_XNSWC23-VM03_507952\949128\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC23-VM03.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690622" style="text-decoration:none;" target="_blank">Jacobsville_Release</a></td>
+				<td align="center">926</td>
+                <td style="text-align:left">Preflight/Submit Release</td>
+                <td style="text-align:left">[Default-DDR4] UEFI-Shell-Reset</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMJACOBSVILLE\2017-10-26\2017-10-26-18-56-42_XNSWC23-VM04_507927\949102\Boot2UEFIandSendCommand" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSSH10\10NMJACOBSVILLE\2017-10-26\2017-10-26-19-20-12_XNSWC23-VM02_507951\949127\Boot2UEFIandSendCommand" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC23-VM02.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690625" style="text-decoration:none;" target="_blank">Whitley_Debug</a></td>
+				<td align="center">645</td>
+                <td style="text-align:left">Preflight_Debug</td>
+                <td style="text-align:left">[EP_DDR4_LBG_MID][INT] Boot UEFI Shell</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-19-00-42_XNSWC28-VM11_507941\949112\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-19-33-43_XNSWC27-VM15_507989\949157\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC27-VM15.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690639" style="text-decoration:none;" target="_blank">Whitley_Debug_1S</a></td>
+				<td align="center">890</td>
+                <td style="text-align:left">Preflight_Debug</td>
+                <td style="text-align:left">[EP_DDR4_LBG_MIN][INT] Boot UEFI Shell</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-19-01-12_XNSWC28-VM12_507943\949113\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-19-18-43_XNSWC27-VM15_507946\949124\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC27-VM15.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690650" style="text-decoration:none;" target="_blank">Whitley_ICXR_Release</a></td>
+				<td align="center">1050</td>
+                <td style="text-align:left">Preflight_Release</td>
+                <td style="text-align:left">[EP_DDR4_LBG_MID][ICXR][Release] Boot UEFI Shell</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\Whitley_ICXR\2017-10-26\2017-10-26-18-56-12_XNSWC27-VM05_507922\949099\Boot2UEFIMID" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\Whitley_ICXR\2017-10-26\2017-10-26-19-22-42_XNSWC27-VM05_507956\949131\Boot2UEFIMID" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC27-VM05.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690650" style="text-decoration:none;" target="_blank">Whitley_ICXR_Release</a></td>
+				<td align="center">1050</td>
+                <td style="text-align:left">Preflight_Release</td>
+                <td style="text-align:left">[EP_DDR4_LBG_MIN][ICXR][Release] Boot UEFI Shell</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\Whitley_ICXR\2017-10-26\2017-10-26-18-56-12_XNSWC27-VM04_507921\949098\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\Whitley_ICXR\2017-10-26\2017-10-26-19-21-12_XNSWC27-VM04_507955\949130\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC27-VM04.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690650" style="text-decoration:none;" target="_blank">Whitley_ICXR_Release</a></td>
+				<td align="center">1051</td>
+                <td style="text-align:left">Preflight_uBIOS</td>
+                <td style="text-align:left">[EP_DDR4_LBG_MID][ICXR][uBIOS] Boot UEFI Shell</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\Whitley_ICXR\2017-10-26\2017-10-26-18-56-11_XNSWC31-VM06_507925\949101\Boot2UEFIMID" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\Whitley_ICXR\2017-10-26\2017-10-26-19-23-12_XNSWC31-VM06_507959\949133\Boot2UEFIMID" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC31-VM06.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690650" style="text-decoration:none;" target="_blank">Whitley_ICXR_Release</a></td>
+				<td align="center">1051</td>
+                <td style="text-align:left">Preflight_uBIOS</td>
+                <td style="text-align:left">[EP_DDR4_LBG_MIN][ICXR][uBIOS] Boot UEFI Shell</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\Whitley_ICXR\2017-10-26\2017-10-26-18-56-12_XNSWC31-VM05_507924\949100\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\Whitley_ICXR\2017-10-26\2017-10-26-19-22-43_XNSWC31-VM05_507958\949132\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC31-VM05.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690628" style="text-decoration:none;" target="_blank">Whitley_Release</a></td>
+				<td align="center">625</td>
+                <td style="text-align:left">Preflight_Release</td>
+                <td style="text-align:left">[EP_DDR4_LBG_MID] Boot UEFI Shell</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-18-54-12_XNSWC29-VM02_507905\949085\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-19-27-12_XNSWC29-VM03_507965\949138\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC29-VM03.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690628" style="text-decoration:none;" target="_blank">Whitley_Release</a></td>
+				<td align="center">625</td>
+                <td style="text-align:left">Preflight_Release</td>
+                <td style="text-align:left">[EP_DDR4_LBG_MIN] Boot Setup Menu</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-18-54-15_XNSWC27-VM15_507901\949081\Boot2SetupMenu" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-19-24-12_XNSWC27-VM16_507961\949134\Boot2SetupMenu" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC27-VM16.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690628" style="text-decoration:none;" target="_blank">Whitley_Release</a></td>
+				<td align="center">625</td>
+                <td style="text-align:left">Preflight_Release</td>
+                <td style="text-align:left">[EP_DDR4_LBG_MIN] Boot UEFI Shell</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-18-54-13_XNSWC29-VM01_507904\949084\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-19-26-43_XNSWC29-VM02_507964\949137\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC29-VM02.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690628" style="text-decoration:none;" target="_blank">Whitley_Release</a></td>
+				<td align="center">625</td>
+                <td style="text-align:left">Preflight_Release</td>
+                <td style="text-align:left">[EP_DDR4_LBG_MIN] Boot-SVOS-UEFI</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-18-54-16_XNSWC27-VM17_507903\949083\Boot2SVOS" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-19-26-13_XNSWC29-VM01_507963\949136\Boot2SVOS" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC29-VM01.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690628" style="text-decoration:none;" target="_blank">Whitley_Release</a></td>
+				<td align="center">625</td>
+                <td style="text-align:left">Preflight</td>
+                <td style="text-align:left">[EP_DDR4_LBG_MIN] Boot-SVOS-UEFI_s3</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-18-54-15_XNSWC28-VM03_507910\949090\Boot2SVOS" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-19-28-46_XNSWC28-VM03_507970\949143\Boot2SVOS" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC28-VM03.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690628" style="text-decoration:none;" target="_blank">Whitley_Release</a></td>
+				<td align="center">625</td>
+                <td style="text-align:left">Preflight_Release</td>
+                <td style="text-align:left">[EP_DDRT_LBG_MIN] Boot Setup Menu</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-18-54-13_XNSWC27-VM16_507902\949082\Boot2SetupMenu" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-19-25-42_XNSWC27-VM17_507962\949135\Boot2SetupMenu" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC27-VM17.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690628" style="text-decoration:none;" target="_blank">Whitley_Release</a></td>
+				<td align="center">625</td>
+                <td style="text-align:left">Preflight_Release</td>
+                <td style="text-align:left">[EP_DDRT_LBG_MIN] Boot UEFI Shell</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-18-54-12_XNSWC28-VM01_507908\949088\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-19-28-53_XNSWC28-VM01_507968\949141\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC28-VM01.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690628" style="text-decoration:none;" target="_blank">Whitley_Release</a></td>
+				<td align="center">625</td>
+                <td style="text-align:left">Preflight</td>
+                <td style="text-align:left">[EP_DDRT_LBG_MIN] Boot-SVOS-UEFI_s3</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-18-54-12_XNSWC28-VM02_507909\949089\Boot2SVOS" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-19-28-54_XNSWC28-VM02_507969\949142\Boot2SVOS" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC28-VM02.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690628" style="text-decoration:none;" target="_blank">Whitley_Release</a></td>
+				<td align="center">625</td>
+                <td style="text-align:left">Preflight_Release</td>
+                <td style="text-align:left">[EX_DDR4_LBG_MID] Boot UEFI Shell</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-18-54-15_XNSWC29-VM04_507907\949087\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-19-28-53_XNSWC29-VM04_507967\949140\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC29-VM04.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690628" style="text-decoration:none;" target="_blank">Whitley_Release</a></td>
+				<td align="center">625</td>
+                <td style="text-align:left">Preflight_Release</td>
+                <td style="text-align:left">[EX_DDR4_LBG_MIN] Boot UEFI Shell</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-18-54-13_XNSWC29-VM03_507906\949086\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-19-38-13_XNSWC27-VM16_507966\949139\Boot2UEFI" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC27-VM16.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690628" style="text-decoration:none;" target="_blank">Whitley_Release</a></td>
+				<td align="center">626</td>
+                <td style="text-align:left">Preflight_uBIOS</td>
+                <td style="text-align:left">[EP_DDR4_LBG_MAX][uBIOS] Boot End of MRC</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-18-54-13_XNSWC28-VM06_507914\949093\Boot2end-of-mrc" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-19-28-53_XNSWC28-VM06_507974\949146\Boot2end-of-mrc" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC28-VM06.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690628" style="text-decoration:none;" target="_blank">Whitley_Release</a></td>
+				<td align="center">626</td>
+                <td style="text-align:left">Preflight_uBIOS</td>
+                <td style="text-align:left">[EP_DDR4_LBG_MID][uBIOS] Boot End of MRC</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-18-54-14_XNSWC28-VM05_507913\949092\Boot2end-of-mrc" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-19-28-49_XNSWC28-VM05_507973\949145\Boot2end-of-mrc" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC28-VM05.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690628" style="text-decoration:none;" target="_blank">Whitley_Release</a></td>
+				<td align="center">626</td>
+                <td style="text-align:left">Preflight_uBIOS</td>
+                <td style="text-align:left">[EP_DDR4_LBG_MIN][uBIOS] Boot End of MRC</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-18-54-14_XNSWC28-VM04_507912\949091\Boot2end-of-mrc" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-19-28-53_XNSWC28-VM04_507972\949144\Boot2end-of-mrc" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC28-VM04.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690628" style="text-decoration:none;" target="_blank">Whitley_Release</a></td>
+				<td align="center">626</td>
+                <td style="text-align:left">Preflight_uBIOS</td>
+                <td style="text-align:left">[EP_DDRT_LBG_MAX][uBIOS] Boot End of MRC</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-18-54-14_XNSWC28-VM09_507917\949096\Boot2end-of-mrc" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-19-28-52_XNSWC28-VM09_507977\949149\Boot2end-of-mrc" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC28-VM09.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690628" style="text-decoration:none;" target="_blank">Whitley_Release</a></td>
+				<td align="center">626</td>
+                <td style="text-align:left">Preflight_uBIOS</td>
+                <td style="text-align:left">[EP_DDRT_LBG_MID][uBIOS] Boot End of MRC</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-18-54-14_XNSWC28-VM10_507916\949095\Boot2end-of-mrc" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-19-28-42_XNSWC28-VM10_507976\949148\Boot2end-of-mrc" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC28-VM10.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690628" style="text-decoration:none;" target="_blank">Whitley_Release</a></td>
+				<td align="center">626</td>
+                <td style="text-align:left">Preflight_uBIOS</td>
+                <td style="text-align:left">[EP_DDRT_LBG_MIN][uBIOS] Boot End of MRC</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-18-54-16_XNSWC28-VM08_507915\949094\Boot2end-of-mrc" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\SSC_CAF_LOG\2017-10-26\2017-10-26-19-28-54_XNSWC28-VM08_507975\949147\Boot2end-of-mrc" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC28-VM08.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+			<tr>
+				<td align="center"><a href="https://teamcity01-or.intel.com/viewLog.html?buildId=1690633" style="text-decoration:none;" target="_blank">Whitley_SKX_Release</a></td>
+				<td align="center">983</td>
+                <td style="text-align:left">Preflight_SKX</td>
+                <td style="text-align:left">[EP_DDR4_LBG_MIN]  Boot-SVOS-UEFI SKX</td>
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\Whitley_SKX\2017-10-26\2017-10-26-18-55-42_XNSWC27-VM06_507919\949097\Boot2SVOS" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+
+                
+				    <td align="center" style="background-color:#66CC00"><a href="\\VMSPFSFSEG14\DcgSscWhitley\Whitley_SKX\2017-10-26\2017-10-26-19-34-43_XNSWC27-VM06_507991\949158\Boot2SVOS" style="color:#FFFFFF">PASS</a></td>
+                
+                
+                
+				
+                
+                
+                
+                
+                 <td style="text-align:left">XNSWC27-VM06.amr.corp.intel.com</td>
+                 <td style="text-align:left">
+                     
+                         
+                     
+                 </td>
+			</tr>
+            
+        </tbody></table><br>
+    
+
+    
+    <br>
+    <input type="hidden" name="auto_task_id" value="9421">
+    <p>To apply for the access right to log, please following this guide: <a href="http://it.intel.com/#/topic/154" target="_blank">http://it.intel.com/#/topic/154</a></p>
+    <p>To subscribe or unsubscribe to this mailing list please click <a href="http://dcg-oss.intel.com:8000/homepage/26/" target="_blank">here</a> and then click the subscribe button on the project homepage.</p>
+
+</body></html>

@@ -1,4 +1,5 @@
-https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW35/6615_Silver.html
+https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW45/7030_Silver.html
+https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW42/6929_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW31/6464_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW30/6421_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW27/6353_Silver.html
@@ -35,7 +36,8 @@ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW44/4432_Sil
 https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW43/4146_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW42/4112_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2016%20WW40/4064_Silver.html
-https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Gold/2017%20WW35/6615_Gold.html
+https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Gold/2017%20WW45/7030_Gold.html
+https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Gold/2017%20WW42/6929_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Gold/2017%20WW31/6464_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Gold/2017%20WW30/6421_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Gold/2017%20WW27/6353_Gold.html
@@ -72,7 +74,6 @@ https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Gold/2016%20WW44/4432_Gold.
 https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Gold/2016%20WW43/4146_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Gold/2016%20WW42/4112_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Gold/2016%20WW40/4064_Gold.html
-https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/BKC/2017%20WW35/6615_BKC.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/BKC/2017%20WW31/6464_BKC.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/BKC/2017%20WW30/6421_BKC.html
 https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/BKC/2017%20WW27/6353_BKC.html
