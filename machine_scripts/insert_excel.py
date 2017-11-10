@@ -29,7 +29,7 @@ sys.setdefaultencoding('utf-8')
 from machine_scripts import extract_NFV_data, extract_data, Crystal_Ridge_extract_data
 from machine_scripts.cache_mechanism import DiskCache
 from machine_scripts.machine_config import MachineConfig
-from setting_global_variable import SRC_EXCEL_DIR, PROGRAM_NAME_ID_DICT
+from setting_global_variable import SRC_EXCEL_DIR, PROGRAM_NAME_ID_DICT, SRC_WEEK_DIR
 from machine_scripts.public_use_function import (get_interface_config, judge_get_config)
 from machine_scripts.common_interface_func import (verify_validity_url, hidden_data_by_column)
 from machine_scripts.predict_extract_data import PredictGetData
@@ -68,11 +68,31 @@ class InsertDataIntoExcel(object):
         template_file = get_interface_config('template_file', self.purl_bak_string)
         self.logger.print_message('template_file:%s\t' % template_file, self.__file_name)
 
+        with open(SRC_WEEK_DIR + os.sep + 'week_info.txt', 'r') as f:
+            actually_week_select_list = f.readline().strip().split(',')
+
+        #TODO 统一管理对象
+        self.predict_extract_object = None
+        self.save_miss_insert_bkc_string = 'default_bkc_string'
+        self.predict_execute_flag = False
+        self._predict_url = self.predict_week_insert()
+        self.logger.print_message('_predict_url:\t%s' % self._predict_url, self.__file_name)
+
+        self.contain_candidate_week = False
+        #todo 自定义选周模式下，必须用户选择了candidate周才插入数据
+        if keep_continuous == 'YES' and self.save_miss_insert_bkc_string in actually_week_select_list:
+            self.contain_candidate_week = True
+
         #TODO 自定义选取周数 则判断此时实际最新周在全局周对应位置
         self.equal_silver_list_flag = False
-        if self.keep_continuous == 'YES':
+        #todo 自定义周但是在未选择candidate的情况下取周标记位置
+        if self.keep_continuous == 'YES' and not self.contain_candidate_week:
             #TODO 在选择是空模板的情况下
             self.actual_newest_week_position = self.Silver_url_list.index(self.section_Silver_url_list[0])
+        #todo 自定义周但是在选择candidate的情况下直接插入silver到用来标记文件的列表
+        elif self.keep_continuous == 'YES' and self.contain_candidate_week:
+            self.newest_week_type_string_list.append('silver')
+            self.actual_newest_week_position = self.Silver_url_list.index(self.Silver_url_list[0])
         #TODO 正常情况下取所有的最新周
         else:
             self.actual_newest_week_position = self.Silver_url_list.index(self.Silver_url_list[0])
@@ -127,17 +147,13 @@ class InsertDataIntoExcel(object):
         self.reserve_zero_decimal_format.set_num_format( 0x09 )      #0%
         self.reserve_two_decimal_format.set_num_format( 0x0a )       #0.00%
 
-        #TODO 统一管理对象
-        self.predict_extract_object = None
-        self.save_miss_insert_bkc_string = 'default_bkc_string'
-        self.predict_execute_flag = False
-        self._predict_url = self.predict_week_insert()
-        self.logger.print_message('_predict_url:\t%s' % self._predict_url, self.__file_name)
-
         self.logger.print_message('>>>>>>>>>> Excel Initialization End <<<<<<<<<<', self.__file_name)
 
     def return_predict_bkc_string(self):
         return self.save_miss_insert_bkc_string
+
+    def return_contain_candidate_week(self):
+        return self.contain_candidate_week
 
     def predict_week_insert(self):
         program_id = PROGRAM_NAME_ID_DICT.get(self.purl_bak_string)
@@ -150,12 +166,12 @@ class InsertDataIntoExcel(object):
             try:
                 return_result_url = urllib2.urlopen(predict_url).read()
                 # return_result_url = 'https://dcg-oss.intel.com/test_report/test_report/6495/0/'
+                # return_result_url = 'https://dcg-oss.intel.com/test_report/test_report/6760/0/'
                 #TODO 返回字符串不为0则未生成静态页面，数据从指定渠道获取
                 if len(return_result_url) != 0:
                     self.predict_execute_flag = True
                     self.predict_insert_flag = True
                     self.logger.print_message('predict_insert_flag:\t%s' % self.predict_insert_flag, self.__file_name)
-                    self.logger.print_message('return_result_url:\t%s' % return_result_url, self.__file_name)
                     #TODO 统一管理对象
                     self.predict_extract_object = PredictGetData(self.logger, return_result_url)
                     #TODO 插入save-miss表的bkc数据
@@ -1149,7 +1165,10 @@ class InsertDataIntoExcel(object):
                 temp_insert_index_dict[effective_week_info] = all_insert_index_dict[value]
         # print 'temp_insert_index_dict:\t', temp_insert_index_dict
         #TODO 当自定义覆盖相应周数据时 需要处理日期对齐 end
-        self.worksheet_save_miss.set_column(firstcol=2, lastcol=self.__WEEK_NUM - len(self.Silver_url_list) -1 + 1, options={'hidden': True})
+        if not self.contain_candidate_week:
+            self.worksheet_save_miss.set_column(firstcol=2, lastcol=self.__WEEK_NUM - len(self.Silver_url_list) -1 + 2, options={'hidden': True})
+        else:
+            self.worksheet_save_miss.set_column(firstcol=2, lastcol=self.__WEEK_NUM - len(self.Silver_url_list) -1 + 1, options={'hidden': True})
         #todo 获取公式并插入指定位置
         yellow_header_format = self.workbook.add_format({'bg_color': '#FFFF66'})
         first_string_list = ["Save Test Case based on this week's Test case pool", "Miss Sightings in test plan comparing to test result (%)?",
@@ -1158,7 +1177,15 @@ class InsertDataIntoExcel(object):
         #TODO 解析url
         insert_date_list = analysis_url_address_string(Silver_url_list)
         #TODO 处理日期对齐
-        if self.keep_continuous == 'YES':
+        #todo 自定义周但是在未选择candidate的情况下
+        if self.keep_continuous == 'YES' and not self.contain_candidate_week:
+            for value in temp_insert_index_dict:
+                self.worksheet_save_miss.write(2, temp_insert_index_dict[value], value, self.format1)
+        #todo 自定义周且在选择candidate的情况下
+        elif self.keep_continuous == 'YES' and self.contain_candidate_week:
+            #todo 将candidate周字符串填充进列表
+            temp_insert_index_dict.setdefault(self.save_miss_insert_bkc_string, min(all_insert_index_dict.values()) - 1)
+            self.logger.print_message('temp_insert_index_dict:\t%s' % temp_insert_index_dict, self.__file_name)
             for value in temp_insert_index_dict:
                 self.worksheet_save_miss.write(2, temp_insert_index_dict[value], value, self.format1)
         else:

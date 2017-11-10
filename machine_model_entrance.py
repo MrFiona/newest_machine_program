@@ -85,10 +85,13 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
                                                           pre_url_list=effective_week_string_list)
     #TODO verify_flag_flag改为了True，兼容新加的功能 提取最新周的类型 : Silver、Gold、BKC
     insert_object = InsertDataIntoExcel(verify_flag=True, purl_bak_string=purl_bak_string, link_WW_week_string=link_WW_week_string, cache=cache,
-                                        silver_url_list=Silver_url_list, section_Silver_url_list=section_Silver_url_list, logger=_logger, log_time=log_time,
-                                        keep_continuous=keep_continuous)
+                                        silver_url_list=Silver_url_list, section_Silver_url_list=section_Silver_url_list,
+                                        logger=_logger, log_time=log_time, keep_continuous=keep_continuous)
     predict_execute_flag = insert_object.return_predict_execute_flag()
     _logger.print_message('predict_execute_flag:\t%s' % predict_execute_flag, file_name)
+    #todo 返回candidate日期字符串，没有candidate则默认：default_bkc_string
+    predict_newest_insert_bkc_string = insert_object.return_predict_bkc_string()
+    _logger.print_message('predict_newest_insert_bkc_string:\t%s' % predict_newest_insert_bkc_string, file_name)
     func_name_list = insert_object.return_name().keys()
     call_func_list = [ func for func in func_name_list if func.startswith('insert') ]
     if 'insert_CaseResult' in call_func_list:
@@ -101,7 +104,10 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
     try:
         for func in call_func_list:
             getattr(insert_object, func)()
-        if predict_execute_flag:
+        contain_candidate_week = insert_object.return_contain_candidate_week()
+        _logger.print_message('contain_candidate_week:\t%s' % contain_candidate_week, file_name)
+        #todo 存在candidate则插入candidate数据  正常模式下：有candidate则插入数据；自定义选周模式下，必须用户选择了candidate周才执行
+        if (predict_execute_flag and keep_continuous != 'YES') or contain_candidate_week:
             predict_call_func_list = [func for func in func_name_list if func.startswith('predict_insert')]
             for func in predict_call_func_list:
                 getattr(insert_object, func)()
@@ -110,12 +116,9 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
         insert_object.close_workbook()
         raise InterruptError('Interrupt Error occurred!!!')
 
-    insert_object.close_workbook()
     #todo 返回日期类型字符串列表，不包括candidate
     newest_week_type_string_list = insert_object.return_newest_week_type_string_list()
-    #todo 返回candidate日期字符串，没有candidate则默认：default_bkc_string
-    predict_newest_insert_bkc_string = insert_object.return_predict_bkc_string()
-    _logger.print_message('predict_newest_insert_bkc_string:\t%s' % predict_newest_insert_bkc_string, file_name)
+    insert_object.close_workbook()
     _logger.print_message('newest_week_type_string_list:\t%s' % newest_week_type_string_list, file_name)
     _logger.print_message('>>>>>>>>>> Inserting Excel Data Finished <<<<<<<<<<', file_name)
 
@@ -128,8 +131,7 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
     verify_file_flag = judge_get_config('verify_file_flag', purl_bak_string)
     if verify_file_flag == 'YES':
         #TODO 完成excel操作后，打开结果excel文件确认
-        _logger.print_message(
-            '>>>>>>>>>> Please Wait .... The program begins to confirm the generated Excel File <<<<<<<<<<', file_name)
+        _logger.print_message('>>>>>>>>>> Please Wait .... The program begins to confirm the generated Excel File <<<<<<<<<<', file_name)
         confirm_result_excel(purl_bak_string, link_WW_week_string, Silver_url_list, _logger, log_time)
         _logger.print_message('>>>>>>>>>> Comfirm the Excel File Finished <<<<<<<<<<', file_name)
     else:

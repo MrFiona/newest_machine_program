@@ -10,10 +10,10 @@ import os
 import re
 import wx
 from machine_scripts.machine_config import MachineConfig
-from setting_global_variable import CONFIG_FILE_PATH, SRC_WEEK_DIR
+from setting_global_variable import CONFIG_FILE_PATH, SRC_WEEK_DIR, PROGRAM_NAME_ID_DICT
 from machine_scripts.get_all_html import GetUrlFromHtml
 from machine_scripts.public_use_function import get_interface_config, get_url_list_by_keyword, judge_get_config
-from machine_scripts.common_interface_branch_func import obtain_prefix_project_name
+from machine_scripts.common_interface_branch_func import obtain_prefix_project_name, traceback_print_info
 
 _file_name = os.path.split(__file__)[1]
 
@@ -193,7 +193,37 @@ class UserWeekSelectGui(wx.Frame):
     #TODO 获取所有的url信息列表
     def get_week_string_list(self):
         all_url_list = get_url_list_by_keyword(purl_bak_string=self.purl_bak_string, back_keyword='Silver')
+        #todo 包含自定义周
         self.url_info_list = [re.split('\D+', url.split('/')[-2])[0] + 'WW' + re.split('\D+', url.split('/')[-2])[-1] for url in all_url_list]
+        self.predict_week_insert()
+
+    def predict_week_insert(self):
+        import urllib2
+        from machine_scripts.predict_extract_data import PredictGetData
+        program_id = PROGRAM_NAME_ID_DICT.get(self.purl_bak_string)
+        if program_id is None:
+            self.logger.print_message('The project [%s] id does not exist' % self.purl_bak_string, _file_name, 50)
+        else:
+            self.logger.print_message('The project [%s] id exists:\t%s' %(self.purl_bak_string, program_id), _file_name)
+            predict_url = 'https://dcg-oss.intel.com/get_last_candidate_link/' + program_id
+            try:
+                return_result_url = urllib2.urlopen(predict_url).read()
+                # return_result_url = 'https://dcg-oss.intel.com/test_report/test_report/6495/0/'
+                # return_result_url = 'https://dcg-oss.intel.com/test_report/test_report/6760/0/'
+                # TODO 返回字符串不为0则未生成静态页面，数据从指定渠道获取
+                if len(return_result_url) != 0:
+                    self.logger.print_message('return_result_url:\t%s' % return_result_url, _file_name)
+                    # TODO 统一管理对象
+                    self.predict_extract_object = PredictGetData(self.logger, return_result_url)
+                    # TODO 插入save-miss表的bkc数据
+                    candidate_week_bkc_string = self.predict_extract_object.return_save_miss_bkc_string()
+                    self.logger.print_message('candidate_week_bkc_string:\t%s' % candidate_week_bkc_string, _file_name)
+                    #todo candidate周存在则自动加载到自定义周列表
+                    self.url_info_list.insert(0, candidate_week_bkc_string)
+            except:
+                traceback_print_info(self.logger)
+                self.logger.print_message('The Candidate date is not exists:\t%s' % program_id, _file_name, 50)
+
 
 
 #TODO 实时抓取周Url信息并配置周数据
