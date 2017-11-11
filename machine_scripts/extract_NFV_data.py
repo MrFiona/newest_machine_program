@@ -168,7 +168,7 @@ class GetAnalysisData(object):
             effective_header_list, header_list, cell_data_list = [], [], []
 
             if not tr_list:
-                return Silver_Gold_BKC_string, self.date_string, [], []
+                return Silver_Gold_BKC_string, self.date_string, [], [], []
 
             th_list = tr_list[0].find_all('th')
             for string_soup in th_list:
