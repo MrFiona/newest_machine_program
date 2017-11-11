@@ -68,9 +68,6 @@ class InsertDataIntoExcel(object):
         template_file = get_interface_config('template_file', self.purl_bak_string)
         self.logger.print_message('template_file:%s\t' % template_file, self.__file_name)
 
-        with open(SRC_WEEK_DIR + os.sep + 'week_info.txt', 'r') as f:
-            actually_week_select_list = f.readline().strip().split(',')
-
         #TODO 统一管理对象
         self.predict_extract_object = None
         self.save_miss_insert_bkc_string = 'default_bkc_string'
@@ -80,8 +77,11 @@ class InsertDataIntoExcel(object):
 
         self.contain_candidate_week = False
         #todo 自定义选周模式下，必须用户选择了candidate周才插入数据
-        if keep_continuous == 'YES' and self.save_miss_insert_bkc_string in actually_week_select_list:
-            self.contain_candidate_week = True
+        if keep_continuous == 'YES':
+            with open(SRC_WEEK_DIR + os.sep + 'week_info.txt', 'r') as f:
+                actually_week_select_list = f.readline().strip().split(',')
+            if self.save_miss_insert_bkc_string in actually_week_select_list:
+                self.contain_candidate_week = True
 
         #TODO 自定义选取周数 则判断此时实际最新周在全局周对应位置
         self.equal_silver_list_flag = False
