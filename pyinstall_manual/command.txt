@@ -1,0 +1,1 @@
+gprof2dot -f pstats mkm_run.prof | dot -Tpng -o test.png
