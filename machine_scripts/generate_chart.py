@@ -87,7 +87,8 @@ def get_sighting_num(seven_data, eight_data, nine_data, display_save_test, displ
 
 
 
-def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_flag=False, predict_execute_flag=False, week_type_string='default'):
+def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_flag=False, predict_execute_flag=False,
+                   week_type_string='default', keep_continuous='', contain_candidate_week=False):
     file_list = glob.glob(SRC_EXCEL_DIR + os.sep + '*.xlsx')
     object_excel_file = None
     if type_string == '':
@@ -219,7 +220,8 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
         plt.plot(range(1,max_length + 1), fifth_data, 'o--c', linewidth=2)
         autolabel(fifth_data)
 
-    if predict_execute_flag:
+    #todo candidate存在并且自定义模式并且选择了candidate周或者candidate存在并且正常模式
+    if predict_execute_flag and ((keep_continuous == 'YES' and contain_candidate_week) or keep_continuous != 'YES'):
         candidate_string = 'Candidate_'
     else:
         candidate_string = ''

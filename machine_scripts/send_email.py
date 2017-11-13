@@ -20,7 +20,7 @@ from setting_global_variable import DEBUG_FLAG, MANUAL_CONFIG_FILE_PATH
 
 class SendEmail:
     def __init__(self, purl_bak_string, logger, type_string='', predict_newest_insert_bkc_string='', section_Silver_url_list=None,
-                 keep_continuous='NO', newest_week_type_string_list=None, manual_week_bkc_gold_silver_string=None):
+                 keep_continuous='NO', newest_week_type_string_list=None, manual_week_bkc_gold_silver_string=None, contain_candidate_week=False):
         self.logger = logger
         self.file_logger_name = os.path.split(__file__)[1]
         self.purl_bak_string = purl_bak_string
@@ -30,6 +30,7 @@ class SendEmail:
         self.keep_continuous = keep_continuous
         self.newest_week_type_string_list = newest_week_type_string_list
         self.manual_week_bkc_gold_silver_string = manual_week_bkc_gold_silver_string
+        self.contain_candidate_week = contain_candidate_week
         deal_html_data(type_string)
         self.send()
 
@@ -61,7 +62,9 @@ class SendEmail:
             smtp_server = conf.get_node_info('server_address', 'server_address')
             lastest_week_string = conf.get_node_info('manual_machine_info', 'week_info')
 
-        if self.predict_newest_insert_bkc_string not in ('', 'default_bkc_string'):
+        #todo candidate存在并且自定义模式并且选择了candidate周或者candidate存在并且正常模式
+        if (self.predict_newest_insert_bkc_string not in ('', 'default_bkc_string')) and \
+                (self.keep_continuous != 'YES' or (self.keep_continuous == 'YES' and self.contain_candidate_week)):
             lastest_week_string = self.predict_newest_insert_bkc_string
             candidate_string = 'Candidate'
         else:

@@ -75,7 +75,7 @@ def return_actual_week_list(logger, rename_log):
 
 #TODO 更改excel名称并且修改日志名与excel同名  更改名称以excel save-miss周为准
 def rename_log_file_name(logger, purl_bak_string, Silver_url_list, newest_week_type_string_list, log_time,
-                         rename_log=False, predict_execute_flag=False):
+                         rename_log=False, predict_execute_flag=False, keep_continuous='', contain_candidate_week=False):
     week_actual_list = return_actual_week_list(logger, rename_log)
     link_WW_week_string = week_actual_list[0]
     file_week_length = len(week_actual_list)
@@ -94,7 +94,8 @@ def rename_log_file_name(logger, purl_bak_string, Silver_url_list, newest_week_t
     num_result_list = sorted(order_num_dict.iteritems(), key=lambda x:x[1], reverse=True)
     week_type_string = num_result_list[0][0]
 
-    if predict_execute_flag:
+    #todo candidate存在并且自定义模式并且选择了candidate周或者candidate存在并且正常模式
+    if predict_execute_flag and ((keep_continuous == 'YES' and contain_candidate_week) or keep_continuous != 'YES'):
         file_candidate_string = 'Candidate_'
     else:
         file_candidate_string = ''
@@ -395,8 +396,9 @@ def confirm_result_excel(purl_bak_string, link_WW_week_string, Silver_url_list, 
 
 
 #TODO 备份图片目录
-def backup_chart(purl_bak_string, log_time, predict_execute_flag=False):
-    if predict_execute_flag:
+def backup_chart(purl_bak_string, log_time, predict_execute_flag=False, keep_continuous='', contain_candidate_week=False):
+    #todo candidate存在并且自定义模式并且选择了candidate周或者candidate存在并且正常模式
+    if predict_execute_flag and ((keep_continuous == 'YES' and contain_candidate_week) or keep_continuous != 'YES'):
         backup_candidate_string = 'Candidate_'
     else:
         backup_candidate_string = ''
@@ -450,8 +452,9 @@ def backup_cache(purl_bak_string, reserve_file_max_num=1000):
 #TODO 备份Excel文件----默认保留2000个文件 在自动模式下，要求excel_dir目录下始终保存各个项目
 #TODO 最新的结果文件以完成迭代(执行对应项目的第二次)，否则可能会重新迭代
 def backup_excel_file(logger, reserve_file_max_num=2000, log_time=None, link_WW_week_string=None, Silver_url_list=None,
-                      auto_iteration_flag=False, predict_execute_flag=False):
-    if predict_execute_flag:
+                      auto_iteration_flag=False, predict_execute_flag=False, keep_continuous='', contain_candidate_week=False):
+    # todo candidate存在并且自定义模式并且选择了candidate周或者candidate存在并且正常模式
+    if predict_execute_flag and ((keep_continuous == 'YES' and contain_candidate_week) or keep_continuous != 'YES'):
         backup_candidate_string = 'Candidate_'
     else:
         backup_candidate_string = ''

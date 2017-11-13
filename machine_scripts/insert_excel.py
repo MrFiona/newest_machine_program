@@ -72,6 +72,7 @@ class InsertDataIntoExcel(object):
         self.predict_extract_object = None
         self.save_miss_insert_bkc_string = 'default_bkc_string'
         self.predict_execute_flag = False
+        #todo 在自定义模式下并且选择了candidate周执行
         self._predict_url = self.predict_week_insert()
         self.logger.print_message('_predict_url:\t%s' % self._predict_url, self.__file_name)
 
@@ -1165,10 +1166,7 @@ class InsertDataIntoExcel(object):
                 temp_insert_index_dict[effective_week_info] = all_insert_index_dict[value]
         # print 'temp_insert_index_dict:\t', temp_insert_index_dict
         #TODO 当自定义覆盖相应周数据时 需要处理日期对齐 end
-        if not self.contain_candidate_week:
-            self.worksheet_save_miss.set_column(firstcol=2, lastcol=self.__WEEK_NUM - len(self.Silver_url_list) -1 + 2, options={'hidden': True})
-        else:
-            self.worksheet_save_miss.set_column(firstcol=2, lastcol=self.__WEEK_NUM - len(self.Silver_url_list) -1 + 1, options={'hidden': True})
+        self.worksheet_save_miss.set_column(firstcol=2, lastcol=self.__WEEK_NUM - len(self.Silver_url_list) -1 + 1, options={'hidden': True})
         #todo 获取公式并插入指定位置
         yellow_header_format = self.workbook.add_format({'bg_color': '#FFFF66'})
         first_string_list = ["Save Test Case based on this week's Test case pool", "Miss Sightings in test plan comparing to test result (%)?",
