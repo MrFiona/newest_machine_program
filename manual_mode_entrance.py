@@ -22,7 +22,7 @@ from machine_scripts.common_interface_func import performance_analysis_decorator
 from machine_scripts.common_interface_branch_func import traceback_print_info
 from machine_scripts.send_email import SendEmail
 from machine_scripts.generate_chart import generate_chart
-from setting_global_variable import type_sheet_name_list, MANUAL_CONFIG_FILE_PATH
+from setting_global_variable import type_sheet_name_list, MANUAL_CONFIG_FILE_PATH, REPORT_HTML_DIR
 
 log_time = time.strftime('%Y_%m_%d_%H_%M_%S', time.localtime(time.time()))
 _logger = WorkLogger(log_filename='manual_machine_log', log_time=log_time)
@@ -37,11 +37,11 @@ def manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list, cho
     Silver_url_list = []
     week_index_dict = as_dict()
     for j in range(1, 104):
-        data_week = win_book.getCell(sheet='Save-Miss', row=3, col=j)
+        data_week = win_book.getCell('Save-Miss', 3, j)
         if data_week is not None and data_week != 'Average':
             Silver_url_list.append(data_week)
 
-        data_type = win_book.getCell(sheet='Save-Miss', row=9, col=j)
+        data_type = win_book.getCell('Save-Miss', 9, j)
         week_index_dict[data_week] = data_type
 
     _logger.print_message('week_index_dict:\t%s\t%d' % (week_index_dict, len(week_index_dict)), _file_name)
@@ -64,10 +64,9 @@ def manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list, cho
 
     try:
         for type_name in type_sheet_name_list:
-            create_save_miss_html(sheet_name=type_name, purl_bak_string=purl_bak_string, Silver_url_list=Silver_url_list,
-                                win_book=win_book, WEEK_NUM=100, type_string='manual_', logger=_logger)
+            create_save_miss_html(type_name, Silver_url_list, purl_bak_string, win_book, 100, _logger, False, 'manual_', 'NO')
     except:
-        traceback_print_info(logger=_logger)
+        traceback_print_info(_logger)
         global WIN_BOOK_CLOSE_FLAG
         WIN_BOOK_CLOSE_FLAG = True
         win_book.close()
@@ -90,12 +89,12 @@ def manual_machine_model_entrance():
         excel_file = conf.get_node_info('manual_machine_info', 'template_info')
         choose_week_string = conf.get_node_info('manual_machine_info', 'week_info')
         win_book = easyExcel(excel_file)
-        pur_string_info = win_book.getCell(sheet='Save-Miss', row=1, col=1)
+        pur_string_info = win_book.getCell('Save-Miss', 1, 1)
         purl_bak_string = pur_string_info.split()[-1]
         _logger.print_message('purl_bak_string:\t%s' % purl_bak_string, _file_name)
 
-        object_get_html = GetUrlFromHtml(html_url_pre='https://dcg-oss.intel.com/ossreport/auto/', logger=_logger)
-        object_get_html.get_all_type_data(purl_bak_string, get_only_department=True)
+        object_get_html = GetUrlFromHtml('https://dcg-oss.intel.com/ossreport/auto/', REPORT_HTML_DIR, _logger)
+        object_get_html.get_all_type_data(purl_bak_string, True)
         all_Silver_url_list = get_url_list_by_keyword(purl_bak_string, 'Silver')
         for ele in range(len(all_Silver_url_list)):
             url_split_string = all_Silver_url_list[ele].split('/')[-2]
@@ -109,10 +108,9 @@ def manual_machine_model_entrance():
         #TODO 生成html文件
         week_bkc_gold_silver_string = manual_create_email_html(win_book, purl_bak_string, all_Silver_url_list, choose_week_string)
         #TODO 发送邮件
-        SendEmail(purl_bak_string=purl_bak_string, logger=_logger, type_string='manual_', manual_week_bkc_gold_silver_string=week_bkc_gold_silver_string)
+        SendEmail(purl_bak_string, _logger, 'manual_', '', None, 'NO', None, week_bkc_gold_silver_string, False)
         #TODO 生成图表
-        generate_chart(purl_bak_string=purl_bak_string, log_time=log_time, logger=_logger, type_string='manual_',
-                       week_type_string=week_bkc_gold_silver_string)
+        generate_chart(purl_bak_string, log_time, _logger, 'manual_', False, False, week_bkc_gold_silver_string, '', False)
     except:
         traceback_print_info(logger=_logger)
         _logger.print_message('occurred error', _file_name, ERROR)
