@@ -132,7 +132,12 @@ class GetAnalysisData(object):
             self.save_file_name = os.path.split(self.data_url)[-1].split('.')[0] + '_html'
             self.save_file_name = bkc_file_name
 
-        data = self.cache[self.data_url]
+        try:
+            data = self.cache[self.data_url]
+        except KeyError:
+            pass
+        #todo 待处理
+
         #todo 提取HW Configuration部分的代码
         regex = re.compile(r'<span class="sh2">&nbsp; %s </span>(.*?)<div class="panel-heading">' % data_type, re.S | re.M)
         header = re.findall(regex, data)
