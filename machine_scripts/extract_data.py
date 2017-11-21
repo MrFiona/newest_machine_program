@@ -20,7 +20,7 @@ from bs4 import BeautifulSoup
 
 from machine_scripts.cache_mechanism import DiskCache
 from machine_scripts.public_use_function import remove_line_break, judge_get_config
-from setting_global_variable import REPORT_HTML_DIR
+from setting_global_variable import REPORT_HTML_DIR, SRC_CACHE_DIR
 from machine_scripts.common_interface_func import remove_non_alphanumeric_characters
 from machine_scripts.common_interface_branch_func import extract_sw_data_deal_bracket
 
@@ -132,12 +132,24 @@ class GetAnalysisData(object):
             self.save_file_name = os.path.split(self.data_url)[-1].split('.')[0] + '_html'
             self.save_file_name = bkc_file_name
 
-        try:
-            data = self.cache[self.data_url]
-        except KeyError:
-            pass
-        #todo 待处理
+        # #todo BKC,Gold,Silver链接分别以num_BKC，num_Gold，num_Silver结尾，NFVi在2017_20WW45的时候BKC结尾与Gold以及Silver不一致导致获取数据Error 2017.11.20
+        #todo NFVi第45周BKC数据结构明显出现了异常
+        # try:
+        #     data = self.cache[self.data_url]
+        # except KeyError:
+        #     split_string = self.data_url.split('/')[2:-1]
+        #     split_string.insert(0, self.purl_bak_string)
+        #     dir_sep_path = '/'.join(split_string)
+        #     dir_sep_path = re.sub('[%]', '_', dir_sep_path)
+        #     html_path = os.path.abspath('/'.join([SRC_CACHE_DIR, dir_sep_path]))
+        #
+        #     if os.path.exists(html_path):
+        #         html_file = os.listdir(html_path)[0]
+        #         html_path = os.path.join(html_path, html_file)
+        #     html_object = codecs.open(html_path, 'r', encoding='utf-8')
+        #     data = ''.join(html_object.readlines())
 
+        data = self.cache[self.data_url]
         #todo 提取HW Configuration部分的代码
         regex = re.compile(r'<span class="sh2">&nbsp; %s </span>(.*?)<div class="panel-heading">' % data_type, re.S | re.M)
         header = re.findall(regex, data)
@@ -1224,17 +1236,17 @@ if __name__ == '__main__':
     key_url_list = []
     f = open(r'C:\Users\pengzh5x\Desktop\machine_scripts\report_html\Bakerville_url_info.txt', 'r')
     for line in f:
-        if 'Bakerville' in line and 'Silver' in line:
+        if 'NFVi' in line and 'Silver' in line:
             key_url_list.append(line.strip('\n'))
 
     cache = DiskCache('Bakerville')
-    key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW34/6565_Silver.html',]
+    key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW45/7135_Silver.html',]
                     # 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW34/6565_Silver.html',
                     # 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW38/6706_Silver.html',
                     # 'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW37/6668_Silver.html']
     # key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW31/6464_Silver.html',]
     for url in key_url_list:
-        obj = GetAnalysisData(url, 'Bakerville', get_info_not_save_flag=True, insert_flag=True, cache=cache)
+        obj = GetAnalysisData(url, 'NFVi', get_info_not_save_flag=True, insert_flag=True, cache=cache)
         obj.get_platform_data('Platform Integration Validation Result', True)
         obj.get_caseresult_data('Platform Integration Validation Result', True)
         # obj.get_sw_data('SW Configuration', True)
