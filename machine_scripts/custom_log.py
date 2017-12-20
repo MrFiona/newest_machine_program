@@ -80,7 +80,8 @@ class WorkLogger(object):
         self.work_logger.removeHandler(console_handler)
 
     def file_close(self):
-        self.write_file.close()
+        if self.create_log_flag:
+            self.write_file.close()
 
     def return_log_file(self):
         return self.log_name

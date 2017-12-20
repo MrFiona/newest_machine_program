@@ -81,6 +81,7 @@ class GetAnalysisData(object):
         if get_info_not_save_flag:
             self.save_html()
 
+    #todo 将html保存到report_html目录
     def save_html(self):
         try:
             html = urllib2.urlopen(self.data_url, context=context).read().decode('utf-8')
@@ -224,6 +225,7 @@ class GetAnalysisData(object):
                 print e
         return effective_header_list, effective_num_list
 
+    #todo 适配Bakerville  获取hw有效的列名列表
     def _get_hw_bak_effective_header_list(self, effective_header_list):
         header_list = []
         #todo 提取有效的行数
@@ -323,6 +325,7 @@ class GetAnalysisData(object):
             self.logger.print_message(e, self.__file_name, definition_log_level=40)
         return cell_data_list
 
+    #todo 获取case result测试报告数据链接地址并将数据缓存到缓存目录 以方便通过缓存方式从get_caseresult_data接口获取测试报告数据
     def save_caseresult_url(self, bkc_flag):
         parent_caseresult_url = self.data_url
         if bkc_flag:
@@ -359,8 +362,7 @@ class GetAnalysisData(object):
             html = urllib2.urlopen(page_url, context=context).read()
             self.cache[page_url] = html
 
-    #todo 判断插入到cell_data_list的次数并插入数据
-    #todo 根据表头列数字和cell_data_list进一步处理,生成新的cell_data_list,effective_num_list
+    #todo 判断插入到cell_data_list的次数并插入数据 todo 根据表头列数字和cell_data_list进一步处理,生成新的cell_data_list,effective_num_list
     def _insert_bak_numers_to_cell_data_list(self, effective_num_list, cell_data_list):
         cell_data_direction_dict = collections.OrderedDict()
         for ele in range(len(effective_num_list)):
@@ -384,6 +386,7 @@ class GetAnalysisData(object):
 
         return effective_cell_data_list
 
+    #todo 获取HW Configuration信息
     def get_hw_data(self, data_type, bkc_flag=True):
         try:
             Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self.judge_silver_bkc_func(data_type, bkc_flag)
@@ -628,6 +631,7 @@ class GetAnalysisData(object):
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
             return 'Error', 'Error', [], [], []
 
+    #todo Bakerville HW Configuration部分周信息适配
     def get_bak_hw_data(self, data_type, bkc_flag=True):
         try:
             Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self.judge_silver_bkc_func(data_type, bkc_flag)
@@ -702,10 +706,12 @@ class GetAnalysisData(object):
                                       definition_log_level=ERROR)
             return 'Error', 'Error', [], [], []
 
+    #todo 提取对应项数据
     def judge_silver_bkc_func(self, data_type, bkc_flag):
         Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self._common_regex(data_type, bkc_flag)
         return  Silver_Gold_BKC_string, tr_list, header_list, cell_data_list
 
+    #todo 获取SW Configuration数据 1  存在两种获取方式，只用一种无法适配
     def get_sw_data(self, data_type, bkc_flag=True):
         try:
             Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self.judge_silver_bkc_func(data_type, bkc_flag)
@@ -789,6 +795,7 @@ class GetAnalysisData(object):
                                       definition_log_level=ERROR)
             return 'Error', 0, self.date_string, [], [], []
 
+    #todo 获取SW Configuration数据 2
     def get_sw_data_1(self, data_type, bkc_flag=True):
         try:
             Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self.judge_silver_bkc_func(data_type, bkc_flag)
@@ -820,6 +827,7 @@ class GetAnalysisData(object):
                                       definition_log_level=ERROR)
             return 'Error', 0, self.date_string, [], [], []
 
+    #todo 获取IFWI Configuration数据
     def get_ifwi_data(self, data_type, bkc_flag=True):
         try:
             Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self.judge_silver_bkc_func(data_type, bkc_flag)
@@ -851,6 +859,7 @@ class GetAnalysisData(object):
                                       definition_log_level=ERROR)
             return 'Error', self.date_string, [], []
 
+    #todo 获取Platform Integration Validation Result数据
     def get_platform_data(self, data_type, bkc_flag=True):
         try:
             Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self.judge_silver_bkc_func(data_type, bkc_flag)
@@ -901,6 +910,7 @@ class GetAnalysisData(object):
                                       definition_log_level=ERROR)
             return 'Error', self.date_string, [], [], []
 
+    #todo 获取HW Rework数据
     def get_rework_data(self, data_type, bkc_flag=True):
         try:
             Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self.judge_silver_bkc_func(data_type, bkc_flag)
@@ -946,6 +956,7 @@ class GetAnalysisData(object):
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
             return 'Error', [], self.date_string
 
+    #todo  Bakerville HW Rework数据适配
     def get_bak_rework_data(self, data_type, bkc_flag=True):
         try:
             Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self.judge_silver_bkc_func(data_type, bkc_flag)
@@ -979,6 +990,7 @@ class GetAnalysisData(object):
                                       definition_log_level=ERROR)
             return 'Error', [], self.date_string
 
+    #todo 获取Existing Sightings数据
     def get_existing_sighting_data(self, data_type, bkc_flag=True):
         try:
             Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self.judge_silver_bkc_func(data_type, bkc_flag)
@@ -1051,6 +1063,7 @@ class GetAnalysisData(object):
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
             return 'Error', self.date_string, [], [], []
 
+    #todo 获取New Sightings数据
     def get_new_sightings_data(self, data_type, bkc_flag=True):
         try:
             Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self.judge_silver_bkc_func(data_type, bkc_flag)
@@ -1096,6 +1109,7 @@ class GetAnalysisData(object):
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
             return 'Error', self.date_string, [], [], []
 
+    #todo 获取Closed Sightings数据
     def get_closed_sightings_data(self, data_type, bkc_flag=True):
         try:
             Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self.judge_silver_bkc_func(data_type, bkc_flag)
@@ -1137,6 +1151,7 @@ class GetAnalysisData(object):
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
             return 'Error', self.date_string, [], [], []
 
+    #todo 获取case result最终测试报告
     def get_caseresult_data(self, data_type, bkc_flag=True):
         try:
             parent_caseresult_url = self.data_url

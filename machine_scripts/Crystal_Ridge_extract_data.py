@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Time    : 2017-03-21 09:40
 # Author  : MrFiona
-# File    : extract_data.py
+# File    : Crystal_Ridge_extract_data.py
 # Software: PyCharm Community Edition
 
 

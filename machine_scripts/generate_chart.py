@@ -23,6 +23,7 @@ from setting_global_variable import CONFIG_FILE_PATH, SRC_EXCEL_DIR, MANUAL_CONF
 _file_name = os.path.split(__file__)[1]
 
 
+#todo 根据多个数组的数据，返回绝对值最大的正数和负数 用于定义第一张图表横纵坐标
 def get_max_num(first_data, second_data, third_data, fourth_data, fifth_data,
                 display_software, display_New, display_Existing, display_Closed, display_Total):
     negative_num_list, positive_num_list = [], []
@@ -66,7 +67,7 @@ def get_max_num(first_data, second_data, third_data, fourth_data, fifth_data,
     return max_negative_num, max_positive_num
 
 
-
+#todo 根据多个数组的数据，返回绝对值最大的正数和负数 用于定义第二张图表横纵坐标
 def get_sighting_num(seven_data, eight_data, nine_data, display_save_test, display_save_effort, display_miss):
     positive_num_sighting_list = []
     if display_save_test == 'YES':
@@ -86,7 +87,7 @@ def get_sighting_num(seven_data, eight_data, nine_data, display_save_test, displ
     return max_positive_num
 
 
-
+#todo 生成图表并将图表插入结果excel文件以及备份图表
 def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_flag=False, predict_execute_flag=False,
                    week_type_string='default', keep_continuous='', contain_candidate_week=False):
     file_list = glob.glob(SRC_EXCEL_DIR + os.sep + '*.xlsx')
@@ -157,6 +158,7 @@ def generate_chart(purl_bak_string, log_time, logger, type_string='', auto_run_f
             eight_data.append(int(string_list[8].replace('%', '')))
             nine_data.append(int(string_list[9].replace('%', '')))
 
+    read_file.close()
 
     #TODO 时间日期加人年份 定制显示格式 2017-06-26 update
     for index in range(len(weeks_list)):

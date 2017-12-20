@@ -623,9 +623,11 @@ class FilterTag(object):
 
 
 if __name__ == '__main__':
-    test = [u'Intel\xc2\xae Ethernet Controller X710-AM2', u'Intel\xc2\xae Ethernet Controller X710-AM2', u'N/A', u'N/A', u'N/A', u'N/A', u'N/A', u'N/A', u'N/A', u'N/A', u'N/A', u'N/A']
-    test = remove_non_alphanumeric_characters(test)
-    print test
+    # test = [u'Intel\xc2\xae Ethernet Controller X710-AM2', u'Intel\xc2\xae Ethernet Controller X710-AM2', u'N/A', u'N/A', u'N/A', u'N/A', u'N/A', u'N/A', u'N/A', u'N/A', u'N/A', u'N/A']
+    # test = remove_non_alphanumeric_characters(test)
+    # print test
+    process_info_list, process_name_list = get_win_process_ids()
+    print process_name_list
 
 
 
