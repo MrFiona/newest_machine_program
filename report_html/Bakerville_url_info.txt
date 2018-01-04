@@ -1,3 +1,7 @@
+https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW52/17139_Silver.html
+https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW50/16051_Silver.html
+https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW47/7220_Silver.html
+https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW46/7159_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW43/6955_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW39/6760_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW37/6668_Silver.html
@@ -35,6 +39,10 @@ https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2016%20WW51/4924_Silv
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2016%20WW50/4853_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2016%20WW49/4773_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2016%20WW47/4690_Silver.html
+https://dcg-oss.intel.com/ossreport/auto/Bakerville/Gold/2017%20WW52/17139_Gold.html
+https://dcg-oss.intel.com/ossreport/auto/Bakerville/Gold/2017%20WW50/16051_Gold.html
+https://dcg-oss.intel.com/ossreport/auto/Bakerville/Gold/2017%20WW47/7220_Gold.html
+https://dcg-oss.intel.com/ossreport/auto/Bakerville/Gold/2017%20WW46/7159_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Gold/2017%20WW43/6955_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Gold/2017%20WW39/6760_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Gold/2017%20WW37/6668_Gold.html
@@ -72,6 +80,10 @@ https://dcg-oss.intel.com/ossreport/auto/Bakerville/Gold/2016%20WW51/4924_Gold.h
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Gold/2016%20WW50/4853_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Gold/2016%20WW49/4773_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/Gold/2016%20WW47/4690_Gold.html
+https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW52/17139_BKC.html
+https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW50/16051_BKC.html
+https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW47/7220_BKC.html
+https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW46/7159_BKC.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW43/6955_BKC.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW39/6760_BKC.html
 https://dcg-oss.intel.com/ossreport/auto/Bakerville/BKC/2017%20WW37/6668_BKC.html

@@ -71,3 +71,6 @@ def traceback_print_info(logger):
     logger.print_message('Error#####################################################Error', _file_name, 50)
     logger.print_message('traceback.format_exc():\n%s' % traceback.format_exc(), _file_name, 50)
     logger.print_message('Error#####################################################Error', _file_name, 50)
+
+
+#todo excel表CaseResult Sheet的操作

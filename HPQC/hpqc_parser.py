@@ -153,6 +153,7 @@ class HPQCCyclingParser:
             return None
 
 
+#todo 解析test-set里的test-casexin
 class HPQCWHQLParser:
     def ParseTestInstance(self,jsonobj):
         if jsonobj is None:
@@ -212,11 +213,13 @@ class HPQCWHQLParser:
             pass
 
 
-import json
-with open(r'C:\Users\pengzh5x\Desktop\machine_scripts\HPQC\Bakerville_test_plan_test_set_info\test_set_Assurance AQ_19828_json_data.json', 'rb') as f:
-    data = json.load(f)
+# import json
+# with open(r'C:\Users\pengzh5x\Desktop\machine_scripts\HPQC\Bakerville_test_plan_test_set_info\test_set_Assurance AQ_19828_json_data.json', 'rb') as f:
+#     data = json.load(f)
 
-from _hpqc_parser_tool import HPQC_info_parser_tool
+# from _hpqc_parser_tool import HPQC_info_parser_tool
 
-test = HPQC_info_parser_tool(data)
-print test
+# test = HPQC_info_parser_tool(data)
+# print test
+
+

@@ -12,6 +12,7 @@ import sys
 import glob
 import time
 import shutil
+import pickle
 import traceback
 import functools
 import win32com.client
@@ -536,6 +537,7 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
         write_file.close()
         logger.print_message('Trend cell_data_list:\t%s' % cell_data_list, _file_name)
 
+    #todo CaseResult表
     else:
         fstop_flag = False
         if predict_execute_flag:
@@ -560,11 +562,13 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
 
             if fstop_flag:
                 break
-            # print temp_cell_list
+
             cell_data_list.append(temp_cell_list)
 
-    # print 'sheet_name:\t', sheet_name
-    # print cell_data_list
+    logger.print_message('cell_data_list:\t%s' % cell_data_list, _file_name)
+    #todo 保存提取的CaseResult表相关test-case数据
+    with open('cell_data_list.dump', 'wb') as fp:
+        pickle.dump(cell_data_list, fp)
     return cell_data_list
 
 

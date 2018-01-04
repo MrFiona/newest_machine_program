@@ -11,9 +11,11 @@ import re
 import json
 import time
 import urllib2
+from _hpqc_parser_tool import HPQC_info_parser_tool
 from hpqc_parser import HPQCParser, HPQCCyclingParser, HPQCWHQLParser
 from hpqc_common_func import url_access_error_decorator
 from _hpqc_parser_tool import HPQC_info_parser_tool
+from setting_global_variable import HPQC_PARENT_PATH
 
 
 
@@ -151,30 +153,25 @@ class HPQCQuery:
             return None
 
     #todo 获取test-lab指定test-set下的所有的test-case id以及名称  parent_folder为目录的id
-    # @url_access_error_decorator('enumerate_test_instance_private')
-    def enumerate_test_instance_private(self, parent_folder, session, program_name='default', test_set_name='default'):
-        try:
-            url = r'%s/qcbin/rest/domains/dcg/projects/bkc/test-instances?fields=test.name&query={cycle-id[%d]}' % (
-                session.host, parent_folder)
-            cookiestring = r'LWSSO_COOKIE_KEY=%s;QCSession=%s;XSRF-TOKEN=%s;Path=/' % \
-                           (session.token, session.cookies[r'QCSession'], session.cookies[r'XSRF-TOKEN'])
-            req_headers = {r'Cookie': cookiestring, r'Accept': r'application/json'}
-            req = urllib2.Request(url, data=None, headers=req_headers)
-            response = urllib2.urlopen(req)
-            data = json.load(response)
-            print 'instances:\t', data
+    @url_access_error_decorator('enumerate_test_instance_private')
+    def enumerate_test_instance_private(self, bkc_type_name, parent_folder, session, program_name='default', test_set_name='default'):
+        url = r'%s/qcbin/rest/domains/dcg/projects/bkc/test-instances?fields=test.name&query={cycle-id[%d]}' % (
+            session.host, parent_folder)
+        cookiestring = r'LWSSO_COOKIE_KEY=%s;QCSession=%s;XSRF-TOKEN=%s;Path=/' % \
+                       (session.token, session.cookies[r'QCSession'], session.cookies[r'XSRF-TOKEN'])
+        req_headers = {r'Cookie': cookiestring, r'Accept': r'application/json'}
+        req = urllib2.Request(url, data=None, headers=req_headers)
+        response = urllib2.urlopen(req)
+        data = json.load(response)
+        print 'instances:\t', data
 
-            if program_name != 'default' and test_set_name != 'default':
-                if not os.path.exists('create_test_case_' + program_name):
-                    os.makedirs('create_test_case_' + program_name)
+        if program_name != 'default' and test_set_name != 'default':
+            if not os.path.exists(HPQC_PARENT_PATH + os.sep + 'create_test_case_' + program_name):
+                os.makedirs(HPQC_PARENT_PATH + os.sep + 'create_test_case_' + program_name)
 
-                with open('create_test_case_' + program_name + os.sep + '%s_test_case_json_data.json' % test_set_name, 'w') as f:
-                    json.dump(data, f, sort_keys=True, indent=4)
-            return data
-        except IOError:
-            return None
-        except Exception:
-            return None
+            with open(HPQC_PARENT_PATH + os.sep + 'create_test_case_' + program_name + os.sep + '%s_%s_test_case_json_data.json' % (bkc_type_name, test_set_name), 'w') as f:
+                json.dump(data, f, sort_keys=True, indent=4)
+        return data
 
     #todo flag: 1--test-plan；0--test-lab 获取指定目录中的所有test-set id以及名称  parent_folder为目录的id
     @url_access_error_decorator('enumerate_test_set_private')
@@ -202,8 +199,8 @@ class HPQCQuery:
 
         #todo 兼容功能 json格式保存数据
         if save_data and program_name != 'default':
-            if not os.path.exists(program_name + '_%s_test_set_info' % label_string):
-                os.makedirs(program_name + '_%s_test_set_info' % label_string)
+            if not os.path.exists(HPQC_PARENT_PATH + os.sep + program_name + '_%s_test_case_info' % label_string):
+                os.makedirs(HPQC_PARENT_PATH + os.sep + program_name + '_%s_test_case_info' % label_string)
 
         sets = []
         for entity in jsonobj[r'entities']:
@@ -218,8 +215,8 @@ class HPQCQuery:
 
             #todo 兼容功能 json格式保存数据
             if save_data and program_name != 'default':
-                with open(program_name + '_%s_test_set_info' % label_string + os.sep +
-                        'test_set_%s_%s_json_data.json' %(name, str(id_num)), 'wb') as p:
+                with open(HPQC_PARENT_PATH + os.sep + program_name + '_%s_test_case_info' % label_string + os.sep +
+                        'test_case_%s_%s_json_data.json' %(name, str(id_num)), 'wb') as p:
                     json.dump(jsonobj, p, sort_keys=True, indent=4)
 
         return sets
@@ -227,35 +224,30 @@ class HPQCQuery:
     #todo flag: 1--test-plan；0--test-lab 获取项目中的目录id以及名称信息 parent为id
     @url_access_error_decorator('enumerate_folder_private')
     def enumerate_folder_private(self, parent, session, flag, print_error=True):
-        # try:
-            if flag == 0:
-                url = r'%s/qcbin/rest/domains/dcg/projects/bkc/test-set-folders?query={parent-id[%d]}' % (
-                    session.host, parent)
-            else:
-                 url = r'%s/qcbin/rest/domains/dcg/projects/bkc/test-folders?query={parent-id[%d]}' % (
-                    session.host, parent)
-            cookiestring = r'LWSSO_COOKIE_KEY=%s;QCSession=%s;XSRF-TOKEN=%s;Path=/' % \
-                           (session.token, session.cookies[r'QCSession'], session.cookies[r'XSRF-TOKEN'])
-            req_headers = {r'Cookie': cookiestring, r'Accept': r'application/json'}
-            req = urllib2.Request(url, data=None, headers=req_headers)
-            response = urllib2.urlopen(req)
-            jsonobj = json.load(response)
-            # print 'jsonobj:\t', jsonobj
-            folders = []
-            for entity in jsonobj[r'entities']:
-                name = ''
-                id = 0
-                for field in entity['Fields']:
-                    if field['Name'] == 'id':
-                        id = int(field['values'][0]['value'])
-                    if field['Name'] == 'name':
-                        name = field['values'][0]['value']
-                folders.append((id, name))
-            return folders
-        # except IOError:
-        #     return None
-        # except Exception:
-        #     return None
+        if flag == 0:
+            url = r'%s/qcbin/rest/domains/dcg/projects/bkc/test-set-folders?query={parent-id[%d]}' % (
+                session.host, parent)
+        else:
+             url = r'%s/qcbin/rest/domains/dcg/projects/bkc/test-folders?query={parent-id[%d]}' % (
+                session.host, parent)
+        cookiestring = r'LWSSO_COOKIE_KEY=%s;QCSession=%s;XSRF-TOKEN=%s;Path=/' % \
+                       (session.token, session.cookies[r'QCSession'], session.cookies[r'XSRF-TOKEN'])
+        req_headers = {r'Cookie': cookiestring, r'Accept': r'application/json'}
+        req = urllib2.Request(url, data=None, headers=req_headers)
+        response = urllib2.urlopen(req)
+        jsonobj = json.load(response)
+        # print 'jsonobj:\t', jsonobj
+        folders = []
+        for entity in jsonobj[r'entities']:
+            name = ''
+            id = 0
+            for field in entity['Fields']:
+                if field['Name'] == 'id':
+                    id = int(field['values'][0]['value'])
+                if field['Name'] == 'name':
+                    name = field['values'][0]['value']
+            folders.append((id, name))
+        return folders
 
     #todo 从test-plan里获取到的test-case信息建立缓存，并将test-case关键信息记录在test_case_info_dict字典
     @url_access_error_decorator('enumerate_plan_private')
@@ -268,21 +260,18 @@ class HPQCQuery:
                 pass
 
         if result is None:
-            # try:
-                url = r'%s/qcbin/rest/domains/dcg/projects/bkc/tests?query={id[%d]}' % (
-                   session.host, plan_id)
-                cookiestring = r'LWSSO_COOKIE_KEY=%s;QCSession=%s;XSRF-TOKEN=%s;Path=/' % \
-                               (session.token, session.cookies[r'QCSession'],session.cookies[r'XSRF-TOKEN'])
-                req_headers = {r'Cookie': cookiestring, r'Accept': r'application/json'}
-                req = urllib2.Request(url, data=None, headers=req_headers)
-                response = urllib2.urlopen(req)
-                json_obj = json.load(response)
-                if cache:
-                    cache[test_case_file_path + '/' + str(plan_id) + '.json'] = json_obj
-            # except IOError:
-            #     return None
-            # except Exception:
-            #     return None
+            url = r'%s/qcbin/rest/domains/dcg/projects/bkc/tests?query={id[%d]}' % (
+               session.host, plan_id)
+            cookiestring = r'LWSSO_COOKIE_KEY=%s;QCSession=%s;XSRF-TOKEN=%s;Path=/' % \
+                           (session.token, session.cookies[r'QCSession'],session.cookies[r'XSRF-TOKEN'])
+            req_headers = {r'Cookie': cookiestring, r'Accept': r'application/json'}
+            req = urllib2.Request(url, data=None, headers=req_headers)
+            response = urllib2.urlopen(req)
+            result = json.load(response)
+            if cache:
+                cache[test_case_file_path + '/' + str(plan_id) + '.json'] = result
+        return result
+
 
     # @url_access_error_decorator('enumerate_plan_private_1')
     def enumerate_plan_private_1(self, planid, session):
@@ -403,7 +392,7 @@ if __name__ == '__main__':
     import os
     import time
     from create_session import Session
-    from hpqc_parser import HPQCWHQLParser
+    # from hpqc_parser import HPQCWHQLParser
     from hpqc_common_func import recursive_get_program_test_case_or_test_sets
 
     start = time.time()
@@ -413,15 +402,45 @@ if __name__ == '__main__':
     # query.enumerate_plan_folder('Subject/Purley_FPGA/TCD_Candidate', session)
     # query.enumerate_folder('Purley AEP_2s/2017WW44', session)
     # query.enumerate_test_set_private(5003, session, 0)
-    # json_obj = query.enumerate_test_instance_private(17169, session)
+    # json_obj = query.enumerate_test_instance_private(11615, session)
+    from test_case_cache import Test_Case_Cache
+    cache = Test_Case_Cache()
+    # result = cache[r'Subject/Bakerville/TCD_Candidate_ww51/Linux/P1/Networking/PI_Networking_FortPark_DriverInstallUninstall_L/11641.json']
+    # print result
+    tes_case_domain_dict = {}
+    import json
+    query.enumerate_plan_private(session, cache, 11731, '')
+    for path, dirs, files in os.walk(r'C:\Users\pengzh5x\Desktop\machine_scripts\HPQC\test_case_cache'):
+        for name in files:
+            if '11731' in name:
+                # print os.path.join(path, name)
+                tes_case_domain_dict[name] = os.path.join(path, name)
+                with open(os.path.join(path, name), 'rb') as fp:
+                    data = json.load(fp)
+                    print data
+                    HPQC_info_parser_tool(data)
+    # print tes_case_domain_dict
+    import pandas as pd
+
     # parser = HPQCWHQLParser()
     # result = parser.ParseTestInstance(json_obj)
     # print 'result:\t', result
 
-    f_case = open(os.getcwd() + os.sep + 'test_lab' + os.sep + 'result_test_case_info_test_NFVi_2017WW38-WW39.txt', 'w')
-    f_case_combine = open(os.getcwd() + os.sep + 'test_lab' + os.sep + 'test_case_combine_test_NFVi_2017WW38-WW39.txt', 'w')
-    query.enumerate_pnp_case_plan(f_case, f_case_combine, 'Bakerville/2016WW47/BKC', session, flag=0)
-    query.enumerate_pnp_case_plan(f_case, f_case_combine, 'Subject/Purley_FPGA/TCD_Candidate/Linux(Outofdate)/P1/Stress', session, flag=1)
+
+    # import csv
+    #
+    # header_list = [u'project', u'work_week', u'test_set_name', u'test_case_name', u'test_case_id',
+    #                u'attended', u'create_data', u'designer', u'domain', u'priority', u'setup_time',
+    #                u'status', u'type', u'unattended', u'test_exec_date']
+    # csv_file = open('132.csv', 'wb')
+    # writer1 = csv.writer(csv_file, delimiter=',')
+    # writer1.writerow(header_list)
+    # csv_file.close()
+    # time.sleep(10)
+    # f_case = open(os.getcwd() + os.sep + 'test_lab' + os.sep + 'result_test_case_info_test_NFVi_2017WW38-WW39.txt', 'w')
+    # f_case_combine = open(os.getcwd() + os.sep + 'test_lab' + os.sep + 'test_case_combine_test_NFVi_2017WW38-WW39.txt', 'w')
+    # query.enumerate_pnp_case_plan(f_case, f_case_combine, 'Bakerville/2016WW47/BKC', session, flag=0)
+    # query.enumerate_pnp_case_plan(f_case, f_case_combine, 'Subject/Purley_FPGA/TCD_Candidate/Linux(Outofdate)/P1/Stress', session, flag=1)
 
     # recursive_get_program_test_case_or_test_sets(query, f_case, f_case_combine, 'NFVi', session)
     # f_case.close()
@@ -438,7 +457,7 @@ if __name__ == '__main__':
     #         print 'week_folders_id_list:\t', week_folders_id_list
 
     #todo 获取test-lab顶级目录信息
-    parent_id = 0
-    ret_folders = query.enumerate_folder_private(parent_id, session, 0)
-    print 'ret_folders:\t', ret_folders
+    # parent_id = 0
+    # ret_folders = query.enumerate_folder_private(parent_id, session, 0)
+    # print 'ret_folders:\t', ret_folders
     print time.time() - start

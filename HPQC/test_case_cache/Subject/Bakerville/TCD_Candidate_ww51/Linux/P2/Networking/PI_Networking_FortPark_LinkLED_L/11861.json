@@ -25,7 +25,7 @@
                     "Name": "ver-stamp", 
                     "values": [
                         {
-                            "value": "98"
+                            "value": "100"
                         }
                     ]
                 }, 
@@ -267,7 +267,7 @@
                     "Name": "last-modified", 
                     "values": [
                         {
-                            "value": "2017-11-30 22:58:13"
+                            "value": "2017-12-27 21:57:24"
                         }
                     ]
                 }, 

@@ -11,6 +11,7 @@ import time
 import json
 import urllib2
 from hpqc_common_func import url_access_error_decorator
+from setting_global_variable import HPQC_PARENT_PATH
 
 import socket
 
@@ -40,10 +41,10 @@ def create_test_set_folders(session, test_set_folders_name, project_id, json_nam
     response = urllib2.urlopen(req)
     json_data = json.load(response)
 
-    if not os.path.exists('create_test_folders_' + program_name):
-        os.makedirs('create_test_folders_' + program_name)
+    if not os.path.exists(HPQC_PARENT_PATH + os.sep + 'create_test_folders_' + program_name):
+        os.makedirs(HPQC_PARENT_PATH + os.sep + 'create_test_folders_' + program_name)
 
-    with open('create_test_folders_' + program_name + os.sep + json_name + '_json_data.json', 'wb') as p:
+    with open(HPQC_PARENT_PATH + os.sep + 'create_test_folders_' + program_name + os.sep + json_name + '_json_data.json', 'wb') as p:
         json.dump(json_data, p, sort_keys=True, indent=4)
 
 
@@ -69,10 +70,10 @@ def create_test_set(session, test_set_name, project_id, json_name, program_name,
     response = urllib2.urlopen(req)
     json_data = json.load(response)
 
-    if not os.path.exists('create_test_set_' + program_name):
-        os.makedirs('create_test_set_' + program_name)
+    if not os.path.exists(HPQC_PARENT_PATH + os.sep + 'create_test_set_' + program_name):
+        os.makedirs(HPQC_PARENT_PATH + os.sep + 'create_test_set_' + program_name)
 
-    with open('create_test_set_' + program_name + os.sep + json_name + '_' + str(project_id) + '_json_data.json', 'wb') as p:
+    with open(HPQC_PARENT_PATH + os.sep + 'create_test_set_' + program_name + os.sep + json_name + '_' + str(project_id) + '_json_data.json', 'wb') as p:
         json.dump(json_data, p, sort_keys=True, indent=4)
 
 

@@ -31,6 +31,10 @@ try:
     from machine_scripts.wxpython_gui import gui_main,display_config_info
     from machine_scripts.generate_chart import generate_chart
     from setting_global_variable import SRC_WEEK_DIR, type_sheet_name_list, SRC_EXCEL_DIR
+    from HPQC.create_session import Session
+    from HPQC.hpqc_query import HPQCQuery
+    from HPQC.hpqc_main_entrance import HPQC_main_entrance
+
 except ImportError:
     _logger.print_message('Please check whether the requirements.txt file is in the current directory or no network state '
                           'but the installation module is missing', os.path.split(__file__)[1], CRITICAL)
@@ -44,7 +48,7 @@ LOGGER_CLOSE_FLAG = False
 
 
 #TODO 模型执行入口函数
-def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save_flag, auto_run_flag):
+def machine_model_entrance(session, query, purl_bak_string, _logger, file_name, on_off_line_save_flag, auto_run_flag):
     if on_off_line_save_flag == 'offline':
         _logger.print_message('Program Offline Run Mode Switch is on', file_name)
     #TODO 是否重新获取数据标记  开启:YES   关闭:NO
@@ -62,13 +66,15 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
         _logger.print_message('>>>>>>>>>> Please Wait .... The program is getting Html Data <<<<<<<<<<', file_name)
         #TODO 获取html并保存到文件
         get_url_object.get_all_type_data(purl_bak_string, get_only_department=True)
-        #TODO keep_continuous='NO':重新获取整周项目数据  keep_continuous:YES 只更新相应周缓存
+        #TODO keep_continuous='NO':重新获取整周项目数据  keep_continuous:YES 只更新相应周数据文件
         get_url_object.write_all_html_by_multi_thread(purl_bak_string)
         _logger.print_message('>>>>>>>>>> Get Html Data Finished <<<<<<<<<<', file_name)
 
+    # Silver_url_list = get_url_list_by_keyword(purl_bak_string, 'Silver')
+    Silver_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW52/17139_Silver.html',
+                       'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW50/16051_Silver.html']
+    print '\033[31mSilver_url_list:\t\033[0m', Silver_url_list
     cache = DiskCache(purl_bak_string)
-    Silver_url_list = get_url_list_by_keyword(purl_bak_string, 'Silver')
-    # print '\033[31Silver_url_list:\t\033[0m', Silver_url_list
 
     #TODO 默认以实际最新周开始
     link_WW_week_string = 'Default'
@@ -83,8 +89,8 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
         #TODO 获取对应周url列表
         section_Silver_url_list = get_url_list_by_keyword(purl_bak_string, 'Silver', None, 100, effective_week_string_list)
     #TODO verify_flag_flag改为了True，兼容新加的功能 提取最新周的类型 : Silver、Gold、BKC
-    insert_object = InsertDataIntoExcel(Silver_url_list, section_Silver_url_list, link_WW_week_string, True, purl_bak_string,
-                                        cache, _logger, log_time, keep_continuous)
+    insert_object = InsertDataIntoExcel(session, query, Silver_url_list, section_Silver_url_list, link_WW_week_string,
+                                        True, purl_bak_string, cache, _logger, log_time, keep_continuous)
     predict_execute_flag = insert_object.return_predict_execute_flag()
     _logger.print_message('predict_execute_flag:\t%s' % predict_execute_flag, file_name)
     #todo 返回candidate日期字符串，没有candidate则默认：default_bkc_string
@@ -109,6 +115,8 @@ def machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save
             predict_call_func_list = [func for func in func_name_list if func.startswith('predict_insert')]
             for func in predict_call_func_list:
                 getattr(insert_object, func)()
+        #todo 在CaseResult表里插入HPQC test-plan对应项目的test-case信息
+        insert_object._insert_test_case_info_into_excel()
     except:
         traceback_print_info(logger=_logger)
         insert_object.close_workbook()
@@ -241,11 +249,15 @@ def machine_main():
             display_config_info(_logger, purl_bak_string)
 
         start_time = time.time()
+        #todo HPQC变量初始化
+        host = r'https://hpalm.intel.com'
+        session = Session(host, 'pengzh5x', 'QQ@08061635')
+        query = HPQCQuery('DCG', 'BKC')
         #TODO 是否离线标记获取
         on_off_line_save_flag = judge_get_config('on_off_line_save_flag', purl_bak_string)
         confirm_excel_time, send_backup_time, newest_week_type_string_list, link_WW_week_string, Silver_url_list, predict_execute_flag,\
         predict_newest_insert_bkc_string, contain_candidate_week, keep_continuous = \
-            machine_model_entrance(purl_bak_string, _logger, file_name, on_off_line_save_flag, AUTO_RUN_FLAG)
+            machine_model_entrance(session, query, purl_bak_string, _logger, file_name, on_off_line_save_flag, AUTO_RUN_FLAG)
 
         #TODO 生成趋势图
         chart_start = time.time()
@@ -264,19 +276,27 @@ def machine_main():
         rename_log_file_name(_logger, purl_bak_string, Silver_url_list, newest_week_type_string_list, log_time, False,
                              predict_execute_flag, keep_continuous, contain_candidate_week)
         _logger.print_message('>>>>>>>>>> Renaming the Excel File Finished <<<<<<<<<<', file_name)
+
+        global LOGGER_CLOSE_FLAG
+        LOGGER_CLOSE_FLAG = True
+
+        #todo 上传test_case到项目指定目录下
+        _logger.print_message('开始上传test-case', file_name)
+        HPQC_main_entrance(query, session, purl_bak_string)
+        _logger.print_message('结束上传test-case', file_name)
+
         end_time = time.time()
         _logger.print_message('Send Excel and Backup Excel Time:\t%.5f' % send_backup_time, file_name)
         _logger.print_message('Confirm Excel Time:\t%.5f' % confirm_excel_time, file_name)
         _logger.print_message('Image shows waiting Time:\t%.5f' % chart_time, file_name)
         _logger.print_message('Program Run Total Time:\t%.5f' % (end_time - start_time - chart_time - confirm_excel_time), file_name)
 
-        global LOGGER_CLOSE_FLAG
-        LOGGER_CLOSE_FLAG = True
         _logger.file_close()
 
         #TODO 修改日志名与excel同名
         rename_log_file_name(None, purl_bak_string, Silver_url_list, newest_week_type_string_list, log_time,
                              True, predict_execute_flag, keep_continuous, contain_candidate_week)
+
     except InterruptError:
         _logger.print_message('Insert the data exception caused by the exit', file_name, 50)
         #TODO 程序中断清理文件

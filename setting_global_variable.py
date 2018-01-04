@@ -24,6 +24,11 @@ IMAGE_ORIGINAL_RESULT = os.getcwd() + os.sep + 'image_original_result'
 MANUAL_SRC_SAVE_MISS_WEEK_DIR = os.getcwd() + os.sep + 'manual_actually_week_info_dir'
 MANUAL_IMAGE_ORIGINAL_RESULT = os.getcwd() + os.sep + 'manual_image_original_result'
 
+HPQC_CACHE_DIR = os.getcwd() + os.sep + 'HPQC' + os.sep + 'test_case_cache'
+HPQC_PARENT_PATH = os.getcwd() + os.sep + 'HPQC'
+EXCEL_TEST_CASE_RESULT = os.getcwd() + os.sep + 'cell_data_list.dump'
+
+
 DEBUG_FLAG=True
 
 CONFIG_FILE_PATH = os.getcwd() + os.sep + 'machineConfig' + os.sep + 'machine.conf'

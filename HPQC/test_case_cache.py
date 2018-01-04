@@ -8,6 +8,7 @@
 
 import os
 import cPickle
+from setting_global_variable import HPQC_CACHE_DIR
 import json
 
 
@@ -19,7 +20,8 @@ class Test_Case_Cache:
         pass
 
     def __getitem__(self, path_string):
-        path = 'test_case_cache' + '/' + path_string
+        # path = 'test_case_cache' + '/' + path_string
+        path = HPQC_CACHE_DIR + os.sep + path_string
         if os.path.exists(path):
             with open(path, 'r') as fp:
                 json.load(fp)
@@ -28,10 +30,12 @@ class Test_Case_Cache:
         path_string_list = path_string.split('/')
         file_path = path_string_list[-1]
         path_string = '/'.join(path_string_list[:-1])
-        path = 'test_case_cache' + '/' + path_string
+        # path = 'test_case_cache' + '/' + path_string
+        path = HPQC_CACHE_DIR + os.sep + path_string
         if not os.path.exists(path):
             print 'create the cache directory:\t', path
             os.makedirs(path)
+        print path + os.sep + file_path
         with open(path + os.sep + file_path, 'wb') as fp:
             print 'the cache directory is exist:\t', path
             json.dump(value, fp, sort_keys=True, indent=4)

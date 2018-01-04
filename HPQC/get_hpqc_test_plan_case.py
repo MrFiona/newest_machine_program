@@ -7,14 +7,16 @@
 
 
 import os
+import json
 try:
     import cPickle as pickle
 except:
     import pickle
 import time
-from threading import Thread, Lock
-from collections import OrderedDict as _dict
-from test_case_cache import Test_Case_Cache
+from threading import Thread
+from HPQC.test_case_cache import Test_Case_Cache
+from HPQC._hpqc_parser_tool import HPQC_info_parser_tool
+from setting_global_variable import HPQC_PARENT_PATH, HPQC_CACHE_DIR
 
 
 
@@ -31,7 +33,7 @@ class GetHPQCTestPlanCase:
         self.project_path = 'Subject/' + program_name
 
         #todo 抓取program_name项目test_plan中的test_case信息 存放在在HPQC_test_plan目录下
-        self.test_plan_dir = os.getcwd() + os.sep + 'HPQC_test_plan' + os.sep + program_name
+        self.test_plan_dir = HPQC_PARENT_PATH + os.sep + 'HPQC_test_plan' + os.sep + program_name
         if not os.path.exists(self.test_plan_dir):
             os.makedirs(self.test_plan_dir)
 
@@ -49,6 +51,7 @@ class GetHPQCTestPlanCase:
         self.f_case_combine.close()
 
     def recursive_program_test_plan_case(self, dir_case_plan_string, session):
+        print dir_case_plan_string
         session.extend_session()
         folders = dir_case_plan_string.split(r'/')
         parent_id = 0
@@ -126,9 +129,9 @@ class GetHPQCTestPlanCase:
 
         print 'test_case_id_list:\t', test_case_id_list, len(test_case_id_list)
         print 'test_case_name_list:\t', test_case_name_list, len(test_case_name_list)
-        # print test_case_name_path_list, len(test_case_name_path_list)
+        print test_case_name_path_list, len(test_case_name_path_list)
         test_case_name_id_dict = dict(zip(test_case_name_list, test_case_id_list))
-        print 'test_case_name_id_dict:\t', test_case_name_id_dict, len(test_case_name_id_dict)
+        # print 'test_case_name_id_dict:\t', test_case_name_id_dict, len(test_case_name_id_dict)
 
         #todo 保存test_case name,id组合字典对象
         with open(self.test_plan_dir + os.sep + 'test_case_name_id_dict.dump', 'wb') as f:
@@ -136,10 +139,10 @@ class GetHPQCTestPlanCase:
             print 'pickle successfully!!!'
 
         thread_list = []
-        for case in range(len(test_case_id_list)):
-            #self.query.enumerate_plan_private(self.session, cache, test_case_id_list[case], test_case_name_pah_list[case])
+        for nu in range(len(test_case_id_list)):
+            #self.query.enumerate_plan_private(self.session, cache, test_case_id_list[nu], test_case_name_pah_list[nu])
             t = Thread(target=self.query.enumerate_plan_private,
-                       args=(self.session, cache, test_case_id_list[case], test_case_name_path_list[case]))
+                       args=(self.session, cache, test_case_id_list[nu], test_case_name_path_list[nu]))
             thread_list.append(t)
 
         for t in thread_list:
@@ -149,10 +152,22 @@ class GetHPQCTestPlanCase:
             t.join()
 
     #todo 在从test_plan中获取test-case时将test-case信息记录在excel中
-    def insert_test_case_info_into_excel(self):
-        pass
+    def preserve_test_case_info(self):
+        all_test_plan_case_info = {}
+        for path, dirs, files in os.walk(HPQC_CACHE_DIR + os.sep + self.project_path):
+            for name in files:
+                print os.path.join(path, name)
+                with open(os.path.join(path, name), 'rb') as fp:
+                    json_data = json.load(fp)
+                case_key_info = HPQC_info_parser_tool(json_data)
+                all_test_plan_case_info[case_key_info[u'_test_name']] = case_key_info
+        print 'all_test_plan_case_info:\t', all_test_plan_case_info
 
+        #todo 保存test_case name,id组合字典对象
+        with open(self.test_plan_dir + os.sep + 'test_plan_case_detail_info.dump', 'wb') as f:
+            f.write(pickle.dumps(all_test_plan_case_info))
 
+        return all_test_plan_case_info
 
 
 if __name__ == '__main__':
@@ -164,6 +179,7 @@ if __name__ == '__main__':
     session = Session(host, 'pengzh5x', 'QQ@08061635')
     query = HPQCQuery('DCG', 'BKC')
     test_case = GetHPQCTestPlanCase(session, query, 'Bakerville')
+    test_case.preserve_test_case_info()
     # test_case.get_plan_case_info()
     # test_case.return_close()
     # test_case.establish_test_plan_case_cache_dir()

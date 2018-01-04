@@ -1,3 +1,6 @@
+https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW51/16562_Silver.html
+https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW49/15368_Silver.html
+https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW47/13499_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW45/7135_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW43/7001_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW41/6862_Silver.html
@@ -19,6 +22,10 @@ https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW09/5645_Silver.htm
 https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW07/5536_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW04/5301_Silver.html
 https://dcg-oss.intel.com/ossreport/auto/NFVi/Silver/2017%20WW02/5245_Silver.html
+https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW51/16562_Gold.html
+https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW49/15368_Gold.html
+https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW47/13499_Gold.html
+https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW45/7135_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW43/7001_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW41/6862_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW38/6738_Gold.html
@@ -39,6 +46,9 @@ https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW09/5645_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW07/5536_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW04/5301_Gold.html
 https://dcg-oss.intel.com/ossreport/auto/NFVi/Gold/2017%20WW02/5245_Gold.html
+https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW49/15368_BKC.html
+https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW47/13499_BKC.html
+https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW45/11969_BKC.html
 https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW43/7001_BKC.html
 https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW41/6862_BKC.html
 https://dcg-oss.intel.com/ossreport/auto/NFVi/BKC/2017%20WW38/6738_BKC.html

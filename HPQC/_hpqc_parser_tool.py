@@ -76,13 +76,13 @@ def HPQC_info_parser_tool(data):
                 _test_id = element[u'values'][0].get(u'value', None)
                 global_info_dict.setdefault('_test_id', _test_id)
 
-    # print global_info_dict
+    print global_info_dict
     return global_info_dict
 
 
 
 if __name__ == '__main__':
     import json
-    with open(r'C:\Users\pengzh5x\Desktop\machine_scripts\HPQC\test_case_cache\Subject\Purley_FPGA\TCD_Candidate\Linux(Outofdate)\P1\AAL\PI_FPGA_AAL_SDK_Installation_L\7349.json', 'r') as p:
+    with open(r'C:\Users\pengzh5x\Desktop\machine_scripts\HPQC\test_case_cache\Subject\Bakerville\TCD_Candidate_ww51\Linux\P1\Memory\DDR4\PI_Memory_DDR4_DIMMMaximumMemory_L\11614.json', 'r') as p:
         data = json.load(p)
         HPQC_info_parser_tool(data)
