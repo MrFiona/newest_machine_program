@@ -18,7 +18,7 @@ _logger = WorkLogger(log_filename='machine_log', log_time=log_time)
 
 try:
     from machine_scripts.get_all_html import GetUrlFromHtml
-    from machine_scripts.insert_excel import InsertDataIntoExcel
+    from machine_scripts.insert_excel_old import InsertDataIntoExcel
     from machine_scripts.public_use_function import (get_url_list_by_keyword, judge_get_config,
         easyExcel, error_tracking_decorator)
     from machine_scripts.common_interface_func import (get_project_newest_file, detect_memory_usage,
@@ -70,9 +70,9 @@ def machine_model_entrance(session, query, purl_bak_string, _logger, file_name, 
         get_url_object.write_all_html_by_multi_thread(purl_bak_string)
         _logger.print_message('>>>>>>>>>> Get Html Data Finished <<<<<<<<<<', file_name)
 
-    # Silver_url_list = get_url_list_by_keyword(purl_bak_string, 'Silver')
-    Silver_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW52/17139_Silver.html',
-                       'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW50/16051_Silver.html']
+    Silver_url_list = get_url_list_by_keyword(purl_bak_string, 'Silver')
+    # Silver_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW52/17139_Silver.html',
+    #                    'https://dcg-oss.intel.com/ossreport/auto/Bakerville/Silver/2017%20WW50/16051_Silver.html']
     print '\033[31mSilver_url_list:\t\033[0m', Silver_url_list
     cache = DiskCache(purl_bak_string)
 
@@ -282,7 +282,7 @@ def machine_main():
 
         #todo 上传test_case到项目指定目录下
         _logger.print_message('开始上传test-case', file_name)
-        HPQC_main_entrance(query, session, purl_bak_string)
+        HPQC_main_entrance(_logger, query, session, purl_bak_string)
         _logger.print_message('结束上传test-case', file_name)
 
         end_time = time.time()
@@ -318,6 +318,7 @@ def machine_main():
             _logger.print_message('Check out insufficient memory to exit', file_name, 50)
         else:
             pass
+
 
 
 if __name__ == '__main__':

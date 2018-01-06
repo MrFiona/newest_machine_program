@@ -617,6 +617,11 @@ class GetAnalysisData(object):
                 temp = list(tr.stripped_strings)
                 cell_data_list.append(temp)
 
+            #todo OSS2提取数据会忽略最后一列数据为空的情况，加上
+            for nu in xrange(len(cell_data_list)):
+                if len(cell_data_list[nu]) < len(header_list):
+                    cell_data_list[nu].append('')
+
             print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
             print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
             print '\033[32meffective_url_list:\t\033[0m', effective_url_list, len(effective_url_list)

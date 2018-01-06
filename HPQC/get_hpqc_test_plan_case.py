@@ -21,16 +21,18 @@ from setting_global_variable import HPQC_PARENT_PATH, HPQC_CACHE_DIR
 
 
 class GetHPQCTestPlanCase:
-    def __init__(self, session, query, program_name):
+    def __init__(self, logger, session, query, program_name):
         """
         :param session:
         :param query:
         :param program_name:
         """
+        self.logger = logger
         self.session = session
         self.query = query
         self.program_name = program_name
         self.project_path = 'Subject/' + program_name
+        self.__file_name = os.path.split(__file__)[1]
 
         #todo 抓取program_name项目test_plan中的test_case信息 存放在在HPQC_test_plan目录下
         self.test_plan_dir = HPQC_PARENT_PATH + os.sep + 'HPQC_test_plan' + os.sep + program_name
@@ -58,13 +60,13 @@ class GetHPQCTestPlanCase:
         #todo 过滤历史目录
         if 'OutofDate' in dir_case_plan_string or 'Outofdate' in dir_case_plan_string:
             return
-        print 'ret_folders:\t', dir_case_plan_string
+        self.logger.print_message('ret_folders:\t%s' % dir_case_plan_string, self.__file_name)
         for folder in folders:
             if folder:
                 ret_folders = self.query.enumerate_folder_private(parent_id, session, flag=1)
                 if ret_folders == None:
                     ret_folders = []
-                    print 'ret_folders:\t', dir_case_plan_string
+                    self.logger.print_message('ret_folders:\t%s' % dir_case_plan_string, self.__file_name)
                 folder_compare = [ele for ele in ret_folders if ele[1] == folder]
                 if folder_compare:
                     parent_id = folder_compare[0][0]
@@ -73,10 +75,10 @@ class GetHPQCTestPlanCase:
         #todo 返回信息并将数据保存到json文件  参数：save_data=True, program_name=self.program_name
         testsets = self.query.enumerate_test_set_private(parent_id, session, flag=1, save_data=True, program_name=self.program_name)
         if testsets:
-            print 'original_preview_string path:\t%s\ttestsets:\t%s' % (dir_case_plan_string, testsets)
+            self.logger.print_message('original_preview_string path:\t%s\ttestsets:\t%s' %(dir_case_plan_string, testsets), self.__file_name)
             test_case_num_list, test_case_name_list = zip(*testsets)
-            print 'test_case_num_list:\t', test_case_num_list
-            print 'test_case_name_list:\t', test_case_name_list
+            self.logger.print_message('test_case_num_list:\t%s' % (test_case_num_list,), self.__file_name)
+            self.logger.print_message('test_case_name_list:\t%s' % (test_case_name_list,), self.__file_name)
             self.f_case.write('\n' + dir_case_plan_string + '\n')
             self.f_case.write(' ' * 10 + '1 => ' + str(test_case_num_list[0]) + '\t' + test_case_name_list[0] + '\n')
             for line_num in xrange(1, len(test_case_num_list)):
@@ -107,7 +109,7 @@ class GetHPQCTestPlanCase:
         try:
             self.recursive_program_test_plan_case(self.project_path, self.session)
         except Exception, e:
-            print 'get_program_test_plan_case error: %s' % e
+            self.logger.print_message('get_program_test_plan_case error: %s' % e, self.__file_name)
 
     # todo 从get_plan_case_info接口获取到的test-case信信息，建立其缓存目录
     def establish_test_plan_case_cache_dir(self):
@@ -127,20 +129,19 @@ class GetHPQCTestPlanCase:
                 pre_case_string_list.append(test_case_string_list[-1])
                 test_case_name_path_list.append('/'.join(pre_case_string_list))
 
-        print 'test_case_id_list:\t', test_case_id_list, len(test_case_id_list)
-        print 'test_case_name_list:\t', test_case_name_list, len(test_case_name_list)
-        print test_case_name_path_list, len(test_case_name_path_list)
+        self.logger.print_message('test_case_id_list:\t%s%d' %(test_case_id_list, len(test_case_id_list)), self.__file_name)
+        self.logger.print_message('test_case_name_list:\t%s%d' %(test_case_name_list, len(test_case_name_list)), self.__file_name)
+        self.logger.print_message('test_case_name_path_list:\t%s%d' %(test_case_name_path_list, len(test_case_name_path_list)), self.__file_name)
         test_case_name_id_dict = dict(zip(test_case_name_list, test_case_id_list))
-        # print 'test_case_name_id_dict:\t', test_case_name_id_dict, len(test_case_name_id_dict)
 
         #todo 保存test_case name,id组合字典对象
         with open(self.test_plan_dir + os.sep + 'test_case_name_id_dict.dump', 'wb') as f:
             f.write(pickle.dumps(test_case_name_id_dict))
             print 'pickle successfully!!!'
+            self.logger.print_message('pickle successfully!!!', self.__file_name)
 
         thread_list = []
         for nu in range(len(test_case_id_list)):
-            #self.query.enumerate_plan_private(self.session, cache, test_case_id_list[nu], test_case_name_pah_list[nu])
             t = Thread(target=self.query.enumerate_plan_private,
                        args=(self.session, cache, test_case_id_list[nu], test_case_name_path_list[nu]))
             thread_list.append(t)
@@ -161,8 +162,7 @@ class GetHPQCTestPlanCase:
                     json_data = json.load(fp)
                 case_key_info = HPQC_info_parser_tool(json_data)
                 all_test_plan_case_info[case_key_info[u'_test_name']] = case_key_info
-        print 'all_test_plan_case_info:\t', all_test_plan_case_info
-
+        self.logger.print_message('all_test_plan_case_info:\t%s' % all_test_plan_case_info, self.__file_name)
         #todo 保存test_case name,id组合字典对象
         with open(self.test_plan_dir + os.sep + 'test_plan_case_detail_info.dump', 'wb') as f:
             f.write(pickle.dumps(all_test_plan_case_info))

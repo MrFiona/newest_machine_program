@@ -104,13 +104,13 @@ class HPQCQuery:
         try:
             session.extend_session()
             folders = path.split(r'/')
-            print 'folders:\t', folders
+            # print 'folders:\t', folders
             parent_id = 0
 
             for folder in folders:
                 if folder:
                     ret_folders = self.enumerate_folder_private(parent_id, session,0)
-                    print 'ret_folders:\t', ret_folders
+                    # print 'ret_folders:\t', ret_folders
                     if ret_folders == None:
                         return None
 
@@ -120,7 +120,7 @@ class HPQCQuery:
                             parent_id = ret_folder[0]
                             print 'parent_id:\t', parent_id
             testsets = self.enumerate_folder_private(parent_id, session,0)
-            print 'path:\t%s\ttestsets:\t%s' % (path, testsets)
+            # print 'path:\t%s\ttestsets:\t%s' % (path, testsets)
             if testsets == None:
                 return  None
             return testsets

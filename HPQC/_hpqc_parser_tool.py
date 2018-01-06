@@ -76,7 +76,7 @@ def HPQC_info_parser_tool(data):
                 _test_id = element[u'values'][0].get(u'value', None)
                 global_info_dict.setdefault('_test_id', _test_id)
 
-    print global_info_dict
+    # print global_info_dict
     return global_info_dict
 
 
