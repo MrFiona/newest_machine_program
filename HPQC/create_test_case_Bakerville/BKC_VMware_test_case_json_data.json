@@ -85,7 +85,7 @@
                     "Name": "id", 
                     "values": [
                         {
-                            "value": "201640"
+                            "value": "215528"
                         }
                     ]
                 }, 
@@ -93,7 +93,7 @@
                     "Name": "ver-stamp", 
                     "values": [
                         {
-                            "value": "2"
+                            "value": "1"
                         }
                     ]
                 }, 
@@ -131,17 +131,13 @@
                 }, 
                 {
                     "Name": "exec-date", 
-                    "values": [
-                        {
-                            "value": "2017-12-13"
-                        }
-                    ]
+                    "values": []
                 }, 
                 {
                     "Name": "cycle-id", 
                     "values": [
                         {
-                            "value": "19213"
+                            "value": "19840"
                         }
                     ]
                 }, 
@@ -155,16 +151,14 @@
                     "Name": "last-modified", 
                     "values": [
                         {
-                            "value": "2017-12-13 00:07:10"
+                            "value": "2018-01-08 21:10:55"
                         }
                     ]
                 }, 
                 {
                     "Name": "exec-time", 
                     "values": [
-                        {
-                            "value": "00:07:09"
-                        }
+                        {}
                     ]
                 }, 
                 {
@@ -181,7 +175,7 @@
                     "Name": "status", 
                     "values": [
                         {
-                            "value": "Passed"
+                            "value": "No Run"
                         }
                     ]
                 }, 
@@ -204,9 +198,7 @@
                 {
                     "Name": "actual-tester", 
                     "values": [
-                        {
-                            "value": "jiejielx"
-                        }
+                        {}
                     ]
                 }, 
                 {
@@ -368,7 +360,7 @@
                     "Name": "id", 
                     "values": [
                         {
-                            "value": "201641"
+                            "value": "215529"
                         }
                     ]
                 }, 
@@ -376,7 +368,7 @@
                     "Name": "ver-stamp", 
                     "values": [
                         {
-                            "value": "2"
+                            "value": "1"
                         }
                     ]
                 }, 
@@ -414,17 +406,13 @@
                 }, 
                 {
                     "Name": "exec-date", 
-                    "values": [
-                        {
-                            "value": "2017-12-13"
-                        }
-                    ]
+                    "values": []
                 }, 
                 {
                     "Name": "cycle-id", 
                     "values": [
                         {
-                            "value": "19213"
+                            "value": "19840"
                         }
                     ]
                 }, 
@@ -438,16 +426,14 @@
                     "Name": "last-modified", 
                     "values": [
                         {
-                            "value": "2017-12-13 00:07:49"
+                            "value": "2018-01-08 21:10:55"
                         }
                     ]
                 }, 
                 {
                     "Name": "exec-time", 
                     "values": [
-                        {
-                            "value": "00:07:49"
-                        }
+                        {}
                     ]
                 }, 
                 {
@@ -464,7 +450,7 @@
                     "Name": "status", 
                     "values": [
                         {
-                            "value": "Passed"
+                            "value": "No Run"
                         }
                     ]
                 }, 
@@ -487,9 +473,7 @@
                 {
                     "Name": "actual-tester", 
                     "values": [
-                        {
-                            "value": "jiejielx"
-                        }
+                        {}
                     ]
                 }, 
                 {
@@ -651,7 +635,7 @@
                     "Name": "id", 
                     "values": [
                         {
-                            "value": "201642"
+                            "value": "215530"
                         }
                     ]
                 }, 
@@ -659,7 +643,7 @@
                     "Name": "ver-stamp", 
                     "values": [
                         {
-                            "value": "2"
+                            "value": "1"
                         }
                     ]
                 }, 
@@ -697,17 +681,13 @@
                 }, 
                 {
                     "Name": "exec-date", 
-                    "values": [
-                        {
-                            "value": "2017-12-13"
-                        }
-                    ]
+                    "values": []
                 }, 
                 {
                     "Name": "cycle-id", 
                     "values": [
                         {
-                            "value": "19213"
+                            "value": "19840"
                         }
                     ]
                 }, 
@@ -721,16 +701,14 @@
                     "Name": "last-modified", 
                     "values": [
                         {
-                            "value": "2017-12-13 00:08:05"
+                            "value": "2018-01-08 21:10:55"
                         }
                     ]
                 }, 
                 {
                     "Name": "exec-time", 
                     "values": [
-                        {
-                            "value": "00:08:05"
-                        }
+                        {}
                     ]
                 }, 
                 {
@@ -747,7 +725,7 @@
                     "Name": "status", 
                     "values": [
                         {
-                            "value": "Passed"
+                            "value": "No Run"
                         }
                     ]
                 }, 
@@ -770,9 +748,7 @@
                 {
                     "Name": "actual-tester", 
                     "values": [
-                        {
-                            "value": "jiejielx"
-                        }
+                        {}
                     ]
                 }, 
                 {
@@ -934,7 +910,7 @@
                     "Name": "id", 
                     "values": [
                         {
-                            "value": "201643"
+                            "value": "215531"
                         }
                     ]
                 }, 
@@ -942,7 +918,7 @@
                     "Name": "ver-stamp", 
                     "values": [
                         {
-                            "value": "2"
+                            "value": "1"
                         }
                     ]
                 }, 
@@ -980,17 +956,13 @@
                 }, 
                 {
                     "Name": "exec-date", 
-                    "values": [
-                        {
-                            "value": "2017-12-13"
-                        }
-                    ]
+                    "values": []
                 }, 
                 {
                     "Name": "cycle-id", 
                     "values": [
                         {
-                            "value": "19213"
+                            "value": "19840"
                         }
                     ]
                 }, 
@@ -1004,16 +976,14 @@
                     "Name": "last-modified", 
                     "values": [
                         {
-                            "value": "2017-12-13 00:08:21"
+                            "value": "2018-01-08 21:10:55"
                         }
                     ]
                 }, 
                 {
                     "Name": "exec-time", 
                     "values": [
-                        {
-                            "value": "00:08:21"
-                        }
+                        {}
                     ]
                 }, 
                 {
@@ -1030,7 +1000,7 @@
                     "Name": "status", 
                     "values": [
                         {
-                            "value": "Passed"
+                            "value": "No Run"
                         }
                     ]
                 }, 
@@ -1053,9 +1023,7 @@
                 {
                     "Name": "actual-tester", 
                     "values": [
-                        {
-                            "value": "jiejielx"
-                        }
+                        {}
                     ]
                 }, 
                 {

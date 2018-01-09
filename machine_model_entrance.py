@@ -24,7 +24,8 @@ try:
     from machine_scripts.common_interface_func import (get_project_newest_file, detect_memory_usage,
         rename_log_file_name, interrupt_clear_excel_file, InterruptError, get_win_process_ids,
         confirm_result_excel, backup_chart, backup_excel_file, backup_cache, performance_analysis_decorator)
-    from machine_scripts.common_interface_branch_func import traceback_print_info, obtain_prefix_project_name
+    from machine_scripts.common_interface_branch_func import (traceback_print_info, obtain_prefix_project_name,
+                                                              HPQC_function)
     from machine_scripts.cache_mechanism import DiskCache
     from machine_scripts.send_email import SendEmail
     from machine_scripts.create_email_html import create_save_miss_html
@@ -253,49 +254,60 @@ def machine_main():
         host = r'https://hpalm.intel.com'
         session = Session(host, 'pengzh5x', 'QQ@08061635')
         query = HPQCQuery('DCG', 'BKC')
-        #TODO 是否离线标记获取
-        on_off_line_save_flag = judge_get_config('on_off_line_save_flag', purl_bak_string)
-        confirm_excel_time, send_backup_time, newest_week_type_string_list, link_WW_week_string, Silver_url_list, predict_execute_flag,\
-        predict_newest_insert_bkc_string, contain_candidate_week, keep_continuous = \
-            machine_model_entrance(session, query, purl_bak_string, _logger, file_name, on_off_line_save_flag, AUTO_RUN_FLAG)
 
-        #TODO 生成趋势图
-        chart_start = time.time()
-        _logger.print_message('>>>>>>>>>> Please Wait .... The program is generating the Image File <<<<<<<<<<', file_name)
-        generate_chart(purl_bak_string, log_time, _logger, '', AUTO_RUN_FLAG, predict_execute_flag,
-                       newest_week_type_string_list[0] if newest_week_type_string_list else 'default',
-                       keep_continuous, contain_candidate_week)
-        _logger.print_message('>>>>>>>>>> generating the Image File Finished <<<<<<<<<<', file_name)
-        chart_time = time.time() - chart_start
-        #TODO 备份图片
-        _logger.print_message('>>>>>>>>>> Please Wait .... The program is backing up the Image File <<<<<<<<<<', file_name)
-        backup_chart(purl_bak_string, log_time, predict_execute_flag, keep_continuous, contain_candidate_week)
-        _logger.print_message('>>>>>>>>>> Backing up Image File Finished <<<<<<<<<<', file_name)
-        #TODO 更改excel名称
-        _logger.print_message('>>>>>>>>>> Please Wait .... The program is Renaming the Excel File <<<<<<<<<<', file_name)
-        rename_log_file_name(_logger, purl_bak_string, Silver_url_list, newest_week_type_string_list, log_time, False,
-                             predict_execute_flag, keep_continuous, contain_candidate_week)
-        _logger.print_message('>>>>>>>>>> Renaming the Excel File Finished <<<<<<<<<<', file_name)
+        #todo 如果检测到HPQC模式被打开则跳过后续部分
+        HPQC_mode = judge_get_config('hpqc_mode', purl_bak_string)
+        _logger.print_message('HPQC Mode [ %s ] is opened!!!!' % HPQC_mode, file_name)
 
-        global LOGGER_CLOSE_FLAG
-        LOGGER_CLOSE_FLAG = True
+        #todo 开启HPQC模式，系统仅执行HOQC功能
+        if HPQC_mode == 'YES':
+            HPQC_function(_logger, query, session, purl_bak_string)
+            end_time = time.time()
+            _logger.print_message('Program Run Total Time:\t%.5f' % (end_time - start_time), file_name)
+        else:
+            #TODO 是否离线标记获取
+            on_off_line_save_flag = judge_get_config('on_off_line_save_flag', purl_bak_string)
+            confirm_excel_time, send_backup_time, newest_week_type_string_list, link_WW_week_string, Silver_url_list, predict_execute_flag,\
+            predict_newest_insert_bkc_string, contain_candidate_week, keep_continuous = \
+                machine_model_entrance(session, query, purl_bak_string, _logger, file_name, on_off_line_save_flag, AUTO_RUN_FLAG)
 
-        #todo 上传test_case到项目指定目录下
-        _logger.print_message('开始上传test-case', file_name)
-        HPQC_main_entrance(_logger, query, session, purl_bak_string)
-        _logger.print_message('结束上传test-case', file_name)
+            #TODO 生成趋势图
+            chart_start = time.time()
+            _logger.print_message('>>>>>>>>>> Please Wait .... The program is generating the Image File <<<<<<<<<<', file_name)
+            generate_chart(purl_bak_string, log_time, _logger, '', AUTO_RUN_FLAG, predict_execute_flag,
+                           newest_week_type_string_list[0] if newest_week_type_string_list else 'default',
+                           keep_continuous, contain_candidate_week)
+            _logger.print_message('>>>>>>>>>> generating the Image File Finished <<<<<<<<<<', file_name)
+            chart_time = time.time() - chart_start
+            #TODO 备份图片
+            _logger.print_message('>>>>>>>>>> Please Wait .... The program is backing up the Image File <<<<<<<<<<', file_name)
+            backup_chart(purl_bak_string, log_time, predict_execute_flag, keep_continuous, contain_candidate_week)
+            _logger.print_message('>>>>>>>>>> Backing up Image File Finished <<<<<<<<<<', file_name)
+            #TODO 更改excel名称
+            _logger.print_message('>>>>>>>>>> Please Wait .... The program is Renaming the Excel File <<<<<<<<<<', file_name)
+            rename_log_file_name(_logger, purl_bak_string, Silver_url_list, newest_week_type_string_list, log_time, False,
+                                 predict_execute_flag, keep_continuous, contain_candidate_week)
+            _logger.print_message('>>>>>>>>>> Renaming the Excel File Finished <<<<<<<<<<', file_name)
 
-        end_time = time.time()
-        _logger.print_message('Send Excel and Backup Excel Time:\t%.5f' % send_backup_time, file_name)
-        _logger.print_message('Confirm Excel Time:\t%.5f' % confirm_excel_time, file_name)
-        _logger.print_message('Image shows waiting Time:\t%.5f' % chart_time, file_name)
-        _logger.print_message('Program Run Total Time:\t%.5f' % (end_time - start_time - chart_time - confirm_excel_time), file_name)
+            global LOGGER_CLOSE_FLAG
+            LOGGER_CLOSE_FLAG = True
 
-        _logger.file_close()
+            #todo 上传test_case到项目指定目录下
+            _logger.print_message('开始上传test-case', file_name)
+            HPQC_main_entrance(_logger, query, session, purl_bak_string)
+            _logger.print_message('结束上传test-case', file_name)
 
-        #TODO 修改日志名与excel同名
-        rename_log_file_name(None, purl_bak_string, Silver_url_list, newest_week_type_string_list, log_time,
-                             True, predict_execute_flag, keep_continuous, contain_candidate_week)
+            end_time = time.time()
+            _logger.print_message('Send Excel and Backup Excel Time:\t%.5f' % send_backup_time, file_name)
+            _logger.print_message('Confirm Excel Time:\t%.5f' % confirm_excel_time, file_name)
+            _logger.print_message('Image shows waiting Time:\t%.5f' % chart_time, file_name)
+            _logger.print_message('Program Run Total Time:\t%.5f' % (end_time - start_time - chart_time - confirm_excel_time), file_name)
+
+            _logger.file_close()
+
+            #TODO 修改日志名与excel同名
+            rename_log_file_name(None, purl_bak_string, Silver_url_list, newest_week_type_string_list, log_time,
+                                 True, predict_execute_flag, keep_continuous, contain_candidate_week)
 
     except InterruptError:
         _logger.print_message('Insert the data exception caused by the exit', file_name, 50)

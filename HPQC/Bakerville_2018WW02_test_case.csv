@@ -1,0 +1,194 @@
+project,work_week,test_set_name,test_case_name,test_case_id,attended,create_data,designer,domain,priority,setup_time,status,type,unattended,test_exec_date
+Bakerville,BKC,Linux,GFX_resolution_checkout_L,11628,0.2,2016-12-11,lmwang8,Video,P2,0.2,Design,MANUAL,0,2018-01-09
+Bakerville,BKC,Linux,PI_PCIe_GPGPUAPModelPowerManagement_L,11862,0.5,2016-12-15,pwang8,PCIe,P2,0.2,Design,MANUAL,1,2018-01-09
+Bakerville,BKC,Linux,PI_PCIe_PCIModelAvailability_L,11690,1.2,2016-12-11,pwang8,PCIe,P1,0.3,Design,MANUAL,0.2,2018-01-09
+Bakerville,BKC,Linux,PI_Processor_CPUInfo_L,11615,0.25,2016-12-11,fqin1,Processor,P1,0.25,Design,MANUAL,0,2018-01-09
+Bakerville,BKC,Linux,PI_Processor_Prime95_Stress_L,11703,0.25,2016-12-11,qiaojuns,Processor,P1,0.25,Design,MANUAL,8,2018-01-09
+Bakerville,BKC,Linux,PI_Stability_ColdBootG3_UEFI,11665,70,2016-12-11,lchen60,Stress & Stability,P1,0.5,Design,MANUAL,0.5,2018-01-09
+Bakerville,BKC,Linux,PI_Stability_ColdBootS5_UEFI,11660,70,2016-12-11,LDENG5,Stress & Stability,P1,0.5,,MANUAL,0.5,2018-01-09
+Bakerville,BKC,Linux,PI_Stability_Idle_L,11666,0.2,2016-12-11,lchen60,Stress & Stability,P1,0,Design,MANUAL,12,2018-01-09
+Bakerville,BKC,Linux,PI_Stability_WarmBootCycling_L,11661,0,2016-12-11,ldeng5,Stress & Stability,P1,0.5,Design,MANUAL,70,2018-01-09
+Bakerville,BKC,Linux,PI_Storage_BootingToVMD_RHEL_L,11655,0.25,2016-12-11,jli61,Storage,P2,0.1,Design,MANUAL,0,2018-01-09
+Bakerville,BKC,Linux,PI_Storage_RAID_VMD_L,11656,0.25,2016-12-11,jli61,Storage,P2,0.1,Design,MANUAL,0,2018-01-09
+Bakerville,BKC,Linux,PI_Storage_RAID_sSATA_L,11652,0.6,2016-12-11,ldeng5,Storage,P2,0.5,Design,MANUAL,0.2,2018-01-09
+Bakerville,BKC,Linux,PI_Storage_SATAAHCIConfigCheck_L,11653,0.4,2016-12-11,LDENG5,Storage,P2,0.3,,MANUAL,0,2018-01-09
+Bakerville,BKC,Linux,PI_Storage_SATAAHCILinkSpeedCheck_L,11654,0.2,2016-12-11,LDENG5,Storage,P2,0.1,,MANUAL,0,2018-01-09
+Bakerville,BKC,Linux,PI_Stress_BurnInTestAllCfg_L,11662,0.2,2016-12-11,ldeng5,Stress & Stability,P1,2,Design,MANUAL,48,2018-01-09
+Bakerville,BKC,Linux,PI_Stress_CPUGPU_L,11664,0.1,2016-12-11,ldeng5,Stress & Stability,P1,2,Design,MANUAL,12,2018-01-09
+Bakerville,BKC,Linux,PI_Stress_IOMemCPULOM_L,11663,0.1,2016-12-11,ldeng5,Stress & Stability,P1,0.5,Design,MANUAL,12,2018-01-09
+Bakerville,BKC,Linux,PI_USB_DetectionAndHotPlugUSB20_L,11658,0.2,2016-12-11,pwang8,USB,P2,0.05,Design,MANUAL,0.05,2018-01-09
+Bakerville,BKC,Linux,PI_USB_RearPanel_L,11657,1,2016-12-11,pwang8,USB,P2,0.2,Design,MANUAL,0.5,2018-01-09
+Bakerville,BKC,Linux,PI_USB_USBHub_L,11659,0.5,2016-12-11,pwang8,USB,P2,0.05,Design,MANUAL,0.5,2018-01-09
+Bakerville,BKC,Linux,PI_Virtualization_KVMBasicFunctionality_L,11896,1.5,2016-12-15,leiren,Virtualization,P1,1,Design,MANUAL,0,2018-01-09
+Bakerville,BKC,Linux,PI_Virtualization_KVMStress_L,11624,1,2016-12-11,leiren,Virtualization,P2,0.5,,MANUAL,2,2018-01-09
+Bakerville,BKC,Linux,PI_Virtualization_PassThroughNetwork_L,11627,1,2016-12-11,leiren,Virtualization,P2,0.5,Design,MANUAL,0,2018-01-09
+Bakerville,BKC,Linux,PI_Virtualization_PassThroughUSB_L,11626,1,2016-12-11,leiren,Virtualization,P2,0.5,Design,MANUAL,0,2018-01-09
+Bakerville,BKC,VMware,PI_VirtualizationDevicesDriverUpdate_V,11645,0.3,2016-12-11,LDENG5,Virtualization,P2,0.1,,MANUAL,1,2018-01-09
+Bakerville,BKC,VMware,PI_VirtualizationEnableIntelNetworkingdriverForVMDQ_V,11646,0.3,2016-12-11,LDENG5,Virtualization,P2,0.1,,MANUAL,0,2018-01-09
+Bakerville,BKC,VMware,PI_VirtualizationLOMPass-through_V,11644,0.3,2016-12-11,LDENG5,Virtualization,P2,0.2,,MANUAL,0,2018-01-09
+Bakerville,BKC,VMware,PI_VirtualizationStoragePass-through_V,11647,0.3,2016-12-11,LDENG5,Virtualization,P2,0.2,,MANUAL,0,2018-01-09
+Bakerville,BKC,Windows,GFX_resolution_checkout_W,11629,0.2,2016-12-11,lmwang8,Video,P2,0.2,Design,MANUAL,0,2018-01-09
+Bakerville,BKC,Windows,PI_Manageability_SPS_NM_ACPI40_OSPM_W,11677,1,2016-12-11,xiaobing,Manageability,P2,0.1,Design,MANUAL,0,2018-01-09
+Bakerville,BKC,Windows,PI_Manageability_SPS_NM_CUPS_O,11670,0.7,2016-12-11,ldeng5,Manageability,P2,0.1,Design,MANUAL,0.1,2018-01-09
+Bakerville,BKC,Windows,PI_Manageability_SPS_NM_PTStates_O,11836,1,2016-12-15,ldeng5,Manageability,P1,0.1,Design,MANUAL,0.1,2018-01-09
+Bakerville,BKC,Windows,PI_Manageability_SPS_NM_PolicyPowerLimit_O,11668,1.5,2016-12-11,ldeng5,Manageability,P2,0.1,Design,MANUAL,0.2,2018-01-09
+Bakerville,BKC,Windows,PI_Manageability_SPS_NM_PowerStatistics_O,11667,0.6,2016-12-11,ldeng5,Manageability,P2,0.1,Design,MANUAL,0.1,2018-01-09
+Bakerville,BKC,Windows,PI_Manageability_SPS_SiEn_PowerFlows_G3Moff_S0M0_O,11843,1,2016-12-15,xiaobing,Manageability,P1,0.1,Design,MANUAL,0,2018-01-09
+Bakerville,BKC,Windows,PI_Manageability_SPS_Tools_FPTandFIT_W,11671,0.8,2016-12-11,feitingw,Manageability,P2,0.1,Design,MANUAL,0.1,2018-01-09
+Bakerville,BKC,Windows,PI_Manageability_SPS_Tools_MESDC_W,11839,0.4,2016-12-15,feitingw,Manageability,P1,0.1,Design,MANUAL,0.1,2018-01-09
+Bakerville,BKC,Windows,PI_Manageability_SPS_Tools_SPSInfo_O,11673,0.2,2016-12-11,feitingw,Manageability,P2,0.1,Design,MANUAL,0,2018-01-09
+Bakerville,BKC,Windows,PI_Manageability_SPS_Tools_SPSManuf_O,11674,0.6,2016-12-11,feitingw,Manageability,P2,0.1,Design,MANUAL,0.1,2018-01-09
+Bakerville,BKC,Windows,PI_PCIe_GPGPUAPModelDriverInstallUninstall_W,11866,0.4,2016-12-15,pwang8,PCIe,P2,0.1,Ready,MANUAL,0,2018-01-09
+Bakerville,BKC,Windows,PI_PCIe_GPGPUAPModelPowerManagement_W,11865,0.5,2016-12-15,pwang8,PCIe,P2,0.2,Ready,MANUAL,1,2018-01-09
+Bakerville,BKC,Windows,PI_PCIe_PCIModelAvailability_W,11691,1.2,2016-12-11,pwang8,PCIe,P1,0.3,Ready,MANUAL,0.2,2018-01-09
+Bakerville,BKC,Windows,PI_Processor_CPUInfo_W,11616,0.25,2016-12-11,fqin1,Processor,P1,0.25,Design,MANUAL,0,2018-01-09
+Bakerville,BKC,Windows,PI_Processor_IntelBurnTest_Stress_W,11705,0.25,2016-12-11,lchen60,Processor,P1,0.25,Design,MANUAL,8,2018-01-09
+Bakerville,BKC,Windows,PI_Processor_LinPack_Stress_W,11704,0.25,2016-12-11,lchen60,Processor,P1,0.25,Design,MANUAL,8,2018-01-09
+Bakerville,BKC,Windows,PI_RAS_Command and Address Parity Error Injection_W_R_MEM06,11707,0.1,2016-12-11,ldeng5,RAS,P2,0.25,Design,MANUAL,0,2018-01-09
+Bakerville,BKC,Windows,PI_RAS_Error reporting_AER_PCIe_S_CPU10,11708,0.1,2016-12-11,jli61,RAS,P2,0.3,Design,MANUAL,0.1,2018-01-09
+Bakerville,BKC,Windows,PI_RAS_Error reporting_Memory Correctable Error_W,11709,0.3,2016-12-11,jli61,RAS,P2,0.3,Design,MANUAL,0.2,2018-01-09
+Bakerville,BKC,Windows,PI_RAS_Faulty DIMM Isolation with legacy MCA mode_W_S_SYS01,11706,0.1,2016-12-11,ldeng5,RAS,P2,0.25,Design,MANUAL,0,2018-01-09
+Bakerville,BKC,Windows,PI_RAS_Memory Demand Scrubbing_W_R_MEM08,15836,0.2,2017-06-12,jli61,RAS,P2,0.3,Design,MANUAL,0.3,2018-01-09
+Bakerville,BKC,Windows,PI_RAS_Memory Patrol Scrubbing_W_R_MEM08,11711,0.2,2016-12-11,jli61,RAS,P2,0.3,Design,MANUAL,0.3,2018-01-09
+Bakerville,BKC,Windows,PI_RAS_Memory SDDC_W_R_MEM01,11710,0.4,2016-12-11,jli61,RAS,P2,0.1,Design,MANUAL,0.2,2018-01-09
+Bakerville,BKC,Windows,PI_Stability_Idle_W,11745,0.3,2016-12-11,lchen60,Stress & Stability,P1,0.3,Design,MANUAL,12,2018-01-09
+Bakerville,BKC,Windows,PI_Stability_WarmBootCycling_W,11740,0.3,2016-12-11,LDENG5,Stress & Stability,P1,0.3,,MANUAL,4,2018-01-09
+Bakerville,BKC,Windows,PI_Storage_BootingToNVMe_VMD_W,11737,0.25,2016-12-11,jli61,Storage,P2,0.1,Design,MANUAL,0,2018-01-09
+Bakerville,BKC,Windows,PI_Storage_BootingToNVMe_W,11734,0.7,2016-12-11,feitingw,Storage,P2,0.5,,MANUAL,0.3,2018-01-09
+Bakerville,BKC,Windows,PI_Storage_EfiRAID_sSATA_W,11735,0.6,2016-12-11,feitingw,Storage,P2,0.4,Design,MANUAL,0.1,2018-01-09
+Bakerville,BKC,Windows,PI_Storage_LegacyRAID_RAIDConfiguration_W,11736,1,2016-12-11,feitingw,Storage,P2,0.5,Design,MANUAL,0.2,2018-01-09
+Bakerville,BKC,Windows,PI_Storage_OSInstallationOnSATARAID_W,11731,0.6,2016-12-11,ldeng5,Storage,P2,0.5,Design,MANUAL,0.2,2018-01-09
+Bakerville,BKC,Windows,PI_Storage_RSTeEfiRAID_VMD_W,11738,0.25,2016-12-11,jli61,Storage,P2,0.1,Design,MANUAL,0,2018-01-09
+Bakerville,BKC,Windows,PI_Storage_SATAAHCIConfigCheck_W,11732,0.4,2016-12-11,LDENG5,Storage,P2,0.3,,MANUAL,0,2018-01-09
+Bakerville,BKC,Windows,PI_Storage_SATAAHCILinkSpeedCheck_W,11733,0.2,2016-12-11,LDENG5,Storage,P2,0.1,,MANUAL,0,2018-01-09
+Bakerville,BKC,Windows,PI_Stress_BurnInTestAllCfg_W,11741,0.3,2016-12-11,ldeng5,Stress & Stability,P1,0.3,Design,MANUAL,48,2018-01-09
+Bakerville,BKC,Windows,PI_Stress_CPUGPU3DMark_W,11743,0.3,2016-12-11,ldeng5,Stress & Stability,P1,0.3,Design,MANUAL,12,2018-01-09
+Bakerville,BKC,Windows,PI_Stress_IOMemCPULOM_W,11742,0.3,2016-12-11,ldeng5,Stress & Stability,P1,0.3,Design,MANUAL,12,2018-01-09
+Bakerville,BKC,Windows,PI_USB_DetectionAndHotPlugUSB20_W,11753,0.2,2016-12-11,pwang8,USB,P2,0.05,Design,MANUAL,0.05,2018-01-09
+Bakerville,BKC,Windows,PI_USB_RearPanel_W,11752,1,2016-12-11,pwang8,USB,P2,0.2,Design,MANUAL,0.5,2018-01-09
+Bakerville,BKC,Windows,PI_USB_USB3BenchmarkingBackwardsCompatibility_W,11755,0.2,2016-12-11,pwang8,USB,P2,0.2,Design,MANUAL,1.5,2018-01-09
+Bakerville,BKC,Windows,PI_USB_USB3BulkTransferReliabilityBackwardsCompatibility_W,11756,0.2,2016-12-11,pwang8,USB,P2,0.2,Design,MANUAL,1.5,2018-01-09
+Bakerville,BKC,Windows,PI_USB_USBHub_W,11754,0.5,2016-12-11,pwang8,USB,P2,0.05,Design,MANUAL,0.5,2018-01-09
+Bakerville,BKC,Windows,PI_Virtualization_HyperVBasicFunctionality_W,11902,1.5,2016-12-15,leiren,Virtualization,P1,1,,MANUAL,0,2018-01-09
+Bakerville,BKC,Windows,PI_Virtualization_HyperVStress_W,11747,1,2016-12-11,leiren,Virtualization,P2,0.5,,MANUAL,2,2018-01-09
+Bakerville,BKC,Windows,PI_Virtualization_PassThroughNetwork_W,12055,1,2016-12-25,leiren,Virtualization,P2,0.5,Design,MANUAL,0,2018-01-09
+Bakerville,BKC,Windows,PI_Virtualization_PassThroughUSB_W,12054,1,2016-12-25,leiren,Virtualization,P2,0.5,Design,MANUAL,0,2018-01-09
+Bakerville,Cycling,Cycling,PI_Stability_ColdBootG3_UEFI,11665,70,2016-12-11,lchen60,Stress & Stability,P1,0.5,Design,MANUAL,0.5,2018-01-09
+Bakerville,Cycling,Cycling,PI_Stability_ColdBootS5_UEFI,11660,70,2016-12-11,LDENG5,Stress & Stability,P1,0.5,,MANUAL,0.5,2018-01-09
+Bakerville,Cycling,Cycling,PI_Stability_WarmBootCycling_L,11661,0,2016-12-11,ldeng5,Stress & Stability,P1,0.5,Design,MANUAL,70,2018-01-09
+Bakerville,Cycling,Cycling,PI_Stability_WarmBootCycling_W,11740,0.3,2016-12-11,LDENG5,Stress & Stability,P1,0.3,,MANUAL,4,2018-01-09
+Bakerville,Gold,Linux,PI_Networking_JacksonVille_ConnectivityEnableDisable_L,11859,0.5,2016-12-15,leiren,Networking,P2,0,Design,MANUAL,0,2018-01-09
+Bakerville,Gold,Linux,PI_Networking_JacksonVille_DriverInstallUninstall_L,11635,0.5,2016-12-11,leiren,Networking,P1,0.1,Design,MANUAL,0,2018-01-09
+Bakerville,Gold,Linux,PI_Networking_JacksonVille_LinkLED_L,11857,0.5,2016-12-15,leiren,Networking,P2,0.5,Design,MANUAL,0,2018-01-09
+Bakerville,Gold,Linux,PI_Networking_JacksonVille_PXE_L,13238,0.5,2017-01-19,leiren,Networking,P2,1,Design,MANUAL,1,2018-01-09
+Bakerville,Gold,Linux,PI_Security_PPIx_UC11_Enable_TXT_PTT_L,11869,0.5,2016-12-15,xiangli3,Security,P2,0.5,Design,MANUAL,0.5,2018-01-09
+Bakerville,Gold,Linux,PI_Security_PPIx_UC12_PTT_Owner_Clear_Only_L,11870,0.5,2016-12-15,xiangli3,Security,P2,0.5,Design,MANUAL,0.5,2018-01-09
+Bakerville,Gold,Linux,PI_Security_PPIx_UC13_PTT_Clear_and_PTT_Activation_L,11871,0.5,2016-12-15,xiangli3,Security,P2,0.5,Design,MANUAL,0.5,2018-01-09
+Bakerville,Gold,Linux,PI_Security_PPIx_UC1_Discover_TXT_TPM_Status_L,11868,0.5,2016-12-15,xiangli3,Security,P2,0.5,Design,MANUAL,0.5,2018-01-09
+Bakerville,Gold,Linux,PI_Security_Security_Boot_OS_Install_Boot_Check_L,11713,0.5,2016-12-11,ywu75,Security,P1,0.5,Ready,MANUAL,2,2018-01-09
+Bakerville,Gold,Linux,PI_Security_TXT_PTT_Trusted Boot_measured launch_in_RHEL7.2_L,11775,1,2016-12-11,xiangli3,Security,P1,1,Ready,MANUAL,1,2018-01-09
+Bakerville,Gold,Linux,PI_Security_TXT_TPM2.0_GETSEC_L,11771,0.5,2016-12-11,xiangli3,Security,P1,0.5,Ready,MANUAL,0.5,2018-01-09
+Bakerville,Gold,Linux,PI_Security_TXT_TPM2.0_SECRETS_L,11772,0.5,2016-12-11,xiangli3,Security,P1,0.5,Ready,MANUAL,0.5,2018-01-09
+Bakerville,Gold,Linux,PI_Security_TXT_TPM2.0_Simple Provisioning [PS AUX Index]_L,11770,0.5,2016-12-11,xiangli3,Security,P1,0.5,Ready,MANUAL,0.5,2018-01-09
+Bakerville,Gold,Linux,PI_Security_TXT_TPM2.0_TXTINFO_L,11773,0.5,2016-12-11,xiangli3,Security,P1,0.5,Ready,MANUAL,0.5,2018-01-09
+Bakerville,Gold,Linux,PI_Security_TXT_TPM2.0_Trusted Boot_measured launch_in_RHEL7.2_L,11774,1,2016-12-11,xiangli3,Security,P1,1,Ready,MANUAL,1,2018-01-09
+Bakerville,Gold,Windows,PI_Networking_JacksonVille_ConnectivityEnableDisable_W,11847,0.5,2016-12-15,leiren,Networking,P2,0,Design,MANUAL,0,2018-01-09
+Bakerville,Gold,Windows,PI_Networking_JacksonVille_DriverInstallUninstall_W,11686,0.5,2016-12-11,leiren,Networking,P1,0,Design,MANUAL,1,2018-01-09
+Bakerville,Gold,Windows,PI_Networking_JacksonVille_LinkLED_W,11848,0.5,2016-12-15,leiren,Networking,P2,0.5,Design,MANUAL,0,2018-01-09
+Bakerville,Gold,Windows,PI_Security_PTT_Clear_W,11893,0.5,2016-12-15,xiangli3,Security,P2,0.5,Design,MANUAL,0.5,2018-01-09
+Bakerville,Gold,Windows,PI_Security_PTT_Enable_W,11892,0.5,2016-12-15,xiangli3,Security,P2,0.5,Design,MANUAL,0.5,2018-01-09
+Bakerville,Gold,Windows,PI_Security_PTT_General Test_W,11891,0.5,2016-12-15,xiangli3,Security,P2,1,Design,MANUAL,0.5,2018-01-09
+Bakerville,Gold,Windows,PI_Security_Security_Boot_OS_Install_Boot_Check_W,11730,1,2016-12-11,ywu75,Security,P1,0.5,Ready,MANUAL,3,2018-01-09
+Bakerville,Gold,Windows,PI_Security_TPM2.0 Clear_W,11890,0.5,2016-12-15,xiangli3,Security,P2,0.5,Design,MANUAL,0.5,2018-01-09
+Bakerville,Gold,Windows,PI_Security_TPM2.0 PCR value check_General_W,11886,2,2016-12-15,xiangli3,Security,P2,2,Ready,MANUAL,2,2018-01-09
+Bakerville,Gold,Windows,PI_Security_TPM2.0 PCR value check_PCR0_W,11882,1,2016-12-15,xiangli3,Security,P2,1,Ready,MANUAL,1,2018-01-09
+Bakerville,Gold,Windows,PI_Security_TPM2.0 PCR value check_PCR1_W,11883,1,2016-12-15,xiangli3,Security,P2,1,Ready,MANUAL,1,2018-01-09
+Bakerville,Gold,Windows,PI_Security_TPM2.0 PCR value check_PCR4_W,11884,1,2016-12-15,xiangli3,Security,P2,1,Ready,MANUAL,1,2018-01-09
+Bakerville,Gold,Windows,PI_Security_TPM2.0 PCR value check_PCR5_W,11885,1,2016-12-15,xiangli3,Security,P2,1,Ready,MANUAL,1,2018-01-09
+Bakerville,Gold,Windows,PI_Security_TPM2.0 PCR value consistent check_W,11887,1,2016-12-15,xiangli3,Security,P2,1,Design,MANUAL,1,2018-01-09
+Bakerville,Gold,Windows,PI_Security_TPM2.0 PCR0 consistence check on multiple boards_W,11888,1,2016-12-15,xiangli3,Security,P2,1,Design,MANUAL,1,2018-01-09
+Bakerville,Gold,Windows,PI_Security_TPM2.0_ACPI table support for TPM v2.0_W,11881,0.5,2016-12-15,xiangli3,Security,P2,0.5,Design,MANUAL,0.5,2018-01-09
+Bakerville,Gold,Windows,PI_Security_TPM2.0_BitLocker_BIOS version change_UEFI_W,11895,1,2016-12-15,xiangli3,Security,P2,1,Design,MANUAL,1,2018-01-09
+Bakerville,Gold,Windows,PI_Security_TPM2.0_BitLocker_Decryption_W,11879,0.5,2016-12-15,xiangli3,Security,P2,0.5,Design,MANUAL,0.5,2018-01-09
+Bakerville,Gold,Windows,PI_Security_TPM2.0_BitLocker_Encryption _W,11878,1,2016-12-15,xiangli3,Security,P2,1,Design,MANUAL,1,2018-01-09
+Bakerville,Gold,Windows,PI_Security_TPM2.0_General Test_W,11880,0.5,2016-12-15,xiangli3,Security,P2,1,Design,MANUAL,0.5,2018-01-09
+Bakerville,Silver,Linux,PI_Memory_DDR4_DIMMMaximumMemory_L,11614,0.5,2016-12-11,lchen60,Memory,P1,0.5,Design,MANUAL,1,2018-01-09
+Bakerville,Silver,Linux,PI_Memory_DDR4_MemoryInfo_L,11613,0.5,2016-12-11,fqin1,Memory,P1,0.5,Design,MANUAL,0,2018-01-09
+Bakerville,Silver,Linux,PI_Powermanagemen_Cstate_SoCwatch_L,11758,0.5,2016-12-11,shichuzh,Power Management,P1,0.5,Ready,MANUAL,0.5,2018-01-09
+Bakerville,Silver,Linux,PI_Powermanagemen_Pstate_SoCwatch_L,11759,0.5,2016-12-11,shichuzh,Power Management,P1,0.5,Ready,MANUAL,0.5,2018-01-09
+Bakerville,Silver,Linux,PI_Powermanagemen_Turbo_SoCwatch_L,11760,0.5,2016-12-11,shichuzh,Power Management,P1,0.5,Design,MANUAL,0.5,2018-01-09
+Bakerville,Silver,Linux,PI_Powermanagement_AC_10cycles_L,13049,0.25,2017-01-18,qtang7,Power Management,P1,0.25,Design,MANUAL,0,2018-01-09
+Bakerville,Silver,Linux,PI_Powermanagement_DC_10cycles_L,13050,0.25,2017-01-18,qtang7,Power Management,P1,0.25,Design,MANUAL,0,2018-01-09
+Bakerville,Silver,Linux,PI_Powermanagement_ForceShutdown_L,11611,0.25,2016-12-11,lchen60,Power Management,P1,0.25,Design,MANUAL,0,2018-01-09
+Bakerville,Silver,Linux,PI_Powermanagement_Graceful_Shutdown_L,11651,0.1,2016-12-11,cindyca,Power Management,P1,0,Design,MANUAL,0,2018-01-09
+Bakerville,Silver,Linux,PI_Powermanagement_Reboot_10cycles_L,13051,0.25,2017-01-18,qtang7,Power Management,P1,0.25,Design,MANUAL,0,2018-01-09
+Bakerville,Silver,Linux,PI_Powermanagement_S4StateCheck_L,11650,0.25,2016-12-11,lchen60,Power Management,P1,0.25,Ready,MANUAL,0,2018-01-09
+Bakerville,Silver,Linux,PI_Powermanagement_S4_10cycles_L,13052,0.25,2017-01-18,qtang7,Power Management,P1,0.25,Design,MANUAL,0,2018-01-09
+Bakerville,Silver,Linux,PI_Powermanagement_WakeupS4ByRTC_L,11648,0.5,2016-12-11,lchen60,Power Management,P1,0.25,Ready,MANUAL,0,2018-01-09
+Bakerville,Silver,Linux,PI_Powermanagement_WakeupS5ByRTC_L,11649,0.5,2016-12-11,lchen60,Power Management,P1,0.25,Ready,MANUAL,0,2018-01-09
+Bakerville,Silver,Windows,PI_Memory_DDR4_DIMMMaximumMemory_W,11679,0.5,2016-12-11,lchen60,Memory,P1,0.5,Design,MANUAL,1,2018-01-09
+Bakerville,Silver,Windows,PI_Memory_DDR4_MemoryInfo_W,11678,0.5,2016-12-11,qiaojuns,Memory,P1,0.5,Design,MANUAL,0,2018-01-09
+Bakerville,Silver,Windows,PI_Powermanagemen_Cstate_SoCwatch_W,11698,0.5,2016-12-11,shichuzh,Power Management,P1,0.5,Ready,MANUAL,0.5,2018-01-09
+Bakerville,Silver,Windows,PI_Powermanagemen_Pstate_SoCwatch_W,11699,0.5,2016-12-11,shichuzh,Power Management,P1,0.5,Ready,MANUAL,0.5,2018-01-09
+Bakerville,Silver,Windows,PI_Powermanagemen_Turbo_SoCwatch_W,11700,0.5,2016-12-11,shichuzh,Power Management,P1,0.5,Ready,MANUAL,0.5,2018-01-09
+Bakerville,Silver,Windows,PI_Powermanagement_AC_10cycles_W,13057,0.25,2017-01-18,qtang7,Power Management,P1,0.25,Ready,MANUAL,0,2018-01-09
+Bakerville,Silver,Windows,PI_Powermanagement_DC_10cycles_W,13058,0.25,2017-01-18,qtang7,Power Management,P1,0.25,Ready,MANUAL,0,2018-01-09
+Bakerville,Silver,Windows,PI_Powermanagement_ForceShutdown_W,11694,0.25,2016-12-11,lchen60,Power Management,P1,0.25,Ready,MANUAL,0,2018-01-09
+Bakerville,Silver,Windows,PI_Powermanagement_Graceful_Shutdown_W,11702,0.1,2016-12-11,cindyca,Power Management,P1,0,Ready,MANUAL,0,2018-01-09
+Bakerville,Silver,Windows,PI_Powermanagement_Reboot_10cycles_W,13059,0.25,2017-01-18,qtang7,Power Management,P1,0.25,Ready,MANUAL,0,2018-01-09
+Bakerville,Silver,Windows,PI_Powermanagement_S4StateCheck_W,11701,0.25,2016-12-11,lchen60,Power Management,P1,0.25,Ready,MANUAL,0,2018-01-09
+Bakerville,Silver,Windows,PI_Powermanagement_S4_10cycles_W,13060,0.25,2017-01-18,qtang7,Power Management,P1,0.25,Ready,MANUAL,0,2018-01-09
+Bakerville,Silver,Windows,PI_Powermanagement_WakeupS4ByRTC_W,11697,0.5,2016-12-11,lchen60,Power Management,P1,0.25,Ready,MANUAL,0,2018-01-09
+Bakerville,Silver,Windows,PI_Powermanagement_WakeupS5ByRTC_W,11695,0.5,2016-12-11,lchen60,Power Management,P1,0.25,Ready,MANUAL,0,2018-01-09
+Bakerville,WHQL,whql-test,BitLocker Drive Encryption USB BIOS Logo Test,19829,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,BitLocker Tpm+PIN+ USB and Recovery Password tests for NON ARM devices,19865,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,Boot Test (SYSTEM),19821,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,Boot from USB (ServerOperating System),19870,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,Clock Interrupt Test,19838,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,Crashdump Support Test (LOGO),19866,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,Debug Capability Test (Logo),19832,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,Disk Stress (SYSTEM),19827,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,KeDelayExecutionThread Test,19855,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,LoadGen Server Stress - Run First - Set Machine Policies,19853,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,LoadGen Server Stress - Run Last - Reset Machine Policies,19860,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,LoadGen Server Stress - Start Test for Server,19875,1,2017-07-30,minhuijx,1,P2,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,Profile Interrupt Test,19854,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,QPC Validation Test,19845,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,Secure Boot Logo Test,19861,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,Secure Boot Manual Logo Test,19864,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,Signed Driver Check (CheckLogo),19850,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,System - Embedded Signature Verification,19823,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,System - PNP (disable and enable) with IO Before and After (Reliability),19852,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,System - Sleep with IO Before and After (Reliability SysFund),19849,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,TPM 2.0 - Clock Tests,19869,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,TPM 2.0 - Cryptographic Operations and RNG,19819,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,TPM 2.0 - Functional,19858,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,"TPM 2.0 - NV Storage, Policy, Error Handling and Attestation",19825,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,TPM 2.0 - Raw Mode Commands,19830,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,TPM 2.0 - Reliability,19836,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,TPM 2.0 - Required Security Patches Tests,19831,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,TPM 2.0 - Self Test,19856,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,TPM 2.0 - Stress,19848,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,TPM 2.0 - Supplemental test,19844,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,TPM 2.0 Core Provisioning Test,19820,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,TPM 2.0 Quality Test,19822,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,TPM 2.0 TCG Physical Presence Interface 1.3 Test,19837,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,TPM 2.0 UEFI Preboot Interface Test,19834,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,TPM Attestation Test,19859,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,TPM Based Virtual Smart Card Interface Test,19857,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,TPM Extend Operation Performance,19841,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,TPM Platform Crypto Provider Key Storage Provider Test,19833,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,USB Exposed Port System Test,19862,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,USB3 Termination,19826,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,Verify Device Driver Is WDDM,19868,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,Verify IOMMU presence and configuration,19835,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,Verify processor virtualization support,19863,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,Verify virtualized environment,19851,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,WDDM PnPStop Test - Update and Rollback,19840,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,WDDM PnPStopModeSwitch Test,19843,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,WGF Feature Level 9.3 Support,19842,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,WGF Feature Level 9.3 Support (WoW64),19846,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,Watchdog Timer Test,19824,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,Windows Client System Check For WDDM 1.3 Display Driver Support,19847,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,Windows System Check For WDDM,19867,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
+Bakerville,WHQL,whql-test,xHCI Debug Capability Compliance (Logo),19839,1,2017-07-30,jli61,WHQL,P1,1,Design,MANUAL,1,2018-01-09
