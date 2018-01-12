@@ -203,7 +203,7 @@ def machine_model_entrance(session, query, purl_bak_string, _logger, file_name, 
             predict_execute_flag, predict_newest_insert_bkc_string, contain_candidate_week, keep_continuous
 
 
-@performance_analysis_decorator('mkm_run.prof')
+# @performance_analysis_decorator('mkm_run.prof')
 @error_tracking_decorator(_logger, os.path.split(__file__)[1], log_time)
 def machine_main():
     file_name = os.path.split(__file__)[1]
@@ -257,7 +257,7 @@ def machine_main():
 
         #todo 如果检测到HPQC模式被打开则跳过后续部分
         HPQC_mode = judge_get_config('hpqc_mode', purl_bak_string)
-        _logger.print_message('HPQC Mode [ %s ] is opened!!!!' % HPQC_mode, file_name)
+        _logger.print_message('HPQC Mode state is [ %s ]!!!!' % HPQC_mode, file_name)
 
         #todo 开启HPQC模式，系统仅执行HOQC功能
         if HPQC_mode == 'YES':

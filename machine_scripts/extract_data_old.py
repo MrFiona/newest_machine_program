@@ -134,34 +134,19 @@ class GetAnalysisData(object):
             self.save_file_name = os.path.split(self.data_url)[-1].split('.')[0] + '_html'
             self.save_file_name = bkc_file_name
 
-        # #todo BKC,Gold,Silver链接分别以num_BKC，num_Gold，num_Silver结尾，NFVi在2017_20WW45的时候BKC结尾与Gold以及Silver不一致导致获取数据Error 2017.11.20
-        #todo NFVi第45周BKC数据结构明显出现了异常
-        # try:
-        #     data = self.cache[self.data_url]
-        # except KeyError:
-        #     split_string = self.data_url.split('/')[2:-1]
-        #     split_string.insert(0, self.purl_bak_string)
-        #     dir_sep_path = '/'.join(split_string)
-        #     dir_sep_path = re.sub('[%]', '_', dir_sep_path)
-        #     html_path = os.path.abspath('/'.join([SRC_CACHE_DIR, dir_sep_path]))
-        #
-        #     if os.path.exists(html_path):
-        #         html_file = os.listdir(html_path)[0]
-        #         html_path = os.path.join(html_path, html_file)
-        #     html_object = codecs.open(html_path, 'r', encoding='utf-8')
-        #     data = ''.join(html_object.readlines())
-
         data = self.cache[self.data_url]
         #todo 提取HW Configuration部分的代码
         regex = re.compile(r'<span class="sh2">&nbsp; %s </span>(.*?)<div class="panel-heading">' % data_type, re.S | re.M)
         header = re.findall(regex, data)
         string_data = ''.join(header)
+        # print 'string_data:\t', string_data
         #todo 提取所有的tr部分
         soup_tr = BeautifulSoup(string_data, 'html.parser')
         tr_list = soup_tr.find_all(re.compile('tr'))
 
         #todo 增加保险措施，通过关键字提取文本html实现
         if not tr_list:
+            # print u'开始通过文件获取数据:\t', self.save_file_path + os.sep + self.save_file_name
             fread = codecs.open(self.save_file_path + os.sep + self.save_file_name, 'r', 'utf-8')
             fwrite = codecs.open(self.save_file_path + os.sep + 'temp.txt', 'wb', 'utf-8')
             pre_keyword = data_type
@@ -995,11 +980,11 @@ class GetAnalysisData(object):
     def get_existing_sighting_data(self, data_type, bkc_flag=True):
         try:
             Silver_Gold_BKC_string, tr_list, header_list, cell_data_list = self.judge_silver_bkc_func(data_type, bkc_flag)
-
             if not tr_list:
                 return Silver_Gold_BKC_string, self.date_string, [], [], []
+
             #todo 获取链接地址
-            cell_last_data = [] ;effective_url_list = []
+            effective_url_list = []
             for tr in tr_list:
                 if tr == tr_list[0]:
                     header_list = list(tr.stripped_strings)
@@ -1036,26 +1021,22 @@ class GetAnalysisData(object):
                                     url = url_soup.a['href']
                                     url_list.append(url)
 
-                    if soup_td.strings:
-                        td_son_list = list(soup_td.strings)
-                        td_son_list = remove_line_break(td_son_list, line_break=True, blank_string=True)
-                        ( temp.append(td_son_list[0]) if len(td_son_list) == 1 else temp.append(td_son_list[-1]) ) \
-                            if len(td_son_list) != 0 else temp.append('')
+                    #todo 需要循环处理，防止丢失无内容的项
+                    if soup_td:
+                        temp_list = list(soup_td.stripped_strings)
+                        if not temp_list:
+                            temp.append('')
+                            continue
+                        if temp_list:
+                            temp.append(temp_list[0])
 
-                cell_last_data.append(cell_last_string_list)
                 #todo 去除多余的换行符和空格，防止插入excel表格时报 255 characters since it exceeds Excel's limit for URLS 长度超过限定长度
                 for k in range(len(url_list)):
                     url_list[k] = re.sub('[\s]', '', url_list[k])
                 effective_url_list.append(url_list)
-                #todo 移除非字母数字字符
                 temp = remove_non_alphanumeric_characters(temp)
                 cell_data_list.append(temp)
-
-            for k in range(len(cell_data_list)):
-                cell_data_list[k].pop()
-                if len(cell_last_data[k]) >= 2:
-                    for e in cell_last_data[k][1:]:
-                        cell_data_list[k].append(e)
+            # print 'url:\t', self.data_url
             # print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
             # print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
             # print '\033[32meffective_link_address_list:\t\033[0m', effective_url_list, len(effective_url_list)
@@ -1263,8 +1244,8 @@ if __name__ == '__main__':
     # key_url_list = ['https://dcg-oss.intel.com/ossreport/auto/Purley-FPGA/Silver/2017%20WW31/6464_Silver.html',]
     for url in key_url_list:
         obj = GetAnalysisData(url, 'NFVi', get_info_not_save_flag=True, insert_flag=True, cache=cache)
-        obj.get_platform_data('Platform Integration Validation Result', True)
-        obj.get_caseresult_data('Platform Integration Validation Result', True)
+        # obj.get_platform_data('Platform Integration Validation Result', True)
+        # obj.get_caseresult_data('Platform Integration Validation Result', True)
         # obj.get_sw_data('SW Configuration', True)
         # obj.get_sw_data_1('SW Configuration', True)
         # obj.get_ifwi_data('IFWI Configuration', True)
@@ -1272,7 +1253,7 @@ if __name__ == '__main__':
         # obj.get_lastest_FPGA_hw_data('HW Configuration', True)
         # obj.get_bak_hw_data('HW Configuration', True)
         # obj.get_lastest_bak_hw_data('HW Configuration', True)
-        # obj.get_existing_sighting_data('Existing Sightings', True)
+        obj.get_existing_sighting_data('Existing Sightings', True)
         # obj.get_new_sightings_data('New Sightings', True)
         # obj.get_bak_rework_data('HW Rework', True)
         # obj.get_closed_sightings_data('Closed Sightings', True)

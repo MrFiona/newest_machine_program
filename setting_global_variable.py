@@ -26,8 +26,8 @@ MANUAL_IMAGE_ORIGINAL_RESULT = os.getcwd() + os.sep + 'manual_image_original_res
 
 HPQC_CACHE_DIR = os.getcwd() + os.sep + 'HPQC' + os.sep + 'test_case_cache'
 HPQC_PARENT_PATH = os.getcwd() + os.sep + 'HPQC'
-EXCEL_TEST_CASE_RESULT = os.getcwd() + os.sep + 'cell_data_list.dump'
-
+EXCEL_TEST_CASE_RESULT = os.getcwd() + os.sep + 'excel_result_test_case_info'
+HPQC_TEST_PLAN_TEST_CASE = os.getcwd() + os.sep + 'HPQC' + os.sep + 'HPQC_test_plan'
 
 DEBUG_FLAG=True
 

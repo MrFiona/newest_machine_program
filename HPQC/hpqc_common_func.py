@@ -13,7 +13,7 @@ from collections import OrderedDict as _dict
 from _hpqc_parser_tool import HPQC_info_parser_tool
 
 
-#todo
+#todo 针对HPQC创建操作的高级装饰器
 def url_access_error_decorator(func_label_name):
     def inner_func(func):
         @functools.wraps(func)
@@ -21,6 +21,8 @@ def url_access_error_decorator(func_label_name):
             cmd = None
             while 1:
                 try:
+                    # print 'args:\t', args, len(args)
+                    # print 'kwargs:\t', kwargs, len(kwargs)
                     cmd = func(*args, **kwargs)
                 except URLError as e:
                     if hasattr(e, 'code'):
@@ -31,7 +33,7 @@ def url_access_error_decorator(func_label_name):
                         if kwargs.get('print_error', False):
                             print 'func_label_name: %s, URLError occurred! We failed to reach a server. Reason: %s' \
                                   % (func_label_name, e.reason)
-                    print 'error occur'
+                    print '%s error occur' % func_label_name
                 except Exception:
                     if kwargs.get('print_error', False):
                         print 'Exception occurred!!!'

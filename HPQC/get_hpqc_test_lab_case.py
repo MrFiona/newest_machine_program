@@ -8,7 +8,6 @@
 
 import threadpool
 from Common import Utils
-from hpqc_query import HPQCQuery
 
 
 #todo 获取test-lab对应目录信息

@@ -8,6 +8,9 @@
 
 import os
 import traceback
+from HPQC.hpqc_main_entrance import HPQC_main_entrance_all_copy
+from HPQC.get_hpqc_test_plan_case import GetHPQCTestPlanCase
+
 
 _file_name = os.path.split(__file__)[1]
 
@@ -71,6 +74,22 @@ def traceback_print_info(logger):
     logger.print_message('Error#####################################################Error', _file_name, 50)
     logger.print_message('traceback.format_exc():\n%s' % traceback.format_exc(), _file_name, 50)
     logger.print_message('Error#####################################################Error', _file_name, 50)
+
+
+#todo HPQC功能
+def HPQC_function(logger, query, session, purl_bak_string):
+    #todo 1、获取test-case
+    #todo 获取test-plan中项目所有的test-case
+    logger.print_message(u'开始获取项目[%s]在HPQC中的test-case信息' % purl_bak_string, _file_name)
+    test_case = GetHPQCTestPlanCase(logger, session, query, purl_bak_string)
+    #todo 在从test_plan中获取test-case时将test-case信息保存到文件
+    test_case.preserve_test_case_info()
+
+    #todo 2、上传test-case
+    #todo 上传test_case到项目指定目录下
+    logger.print_message(u'开始上传test-case', _file_name)
+    HPQC_main_entrance_all_copy(logger, query, session, purl_bak_string)
+    logger.print_message(u'结束上传test-case', _file_name)
 
 
 #todo excel表CaseResult Sheet的操作

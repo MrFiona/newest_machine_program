@@ -8,8 +8,7 @@
 
 
 from collections import OrderedDict
-from Common import TestModels
-from utils_status import UIDisplayHelper
+from Common import TestModels, Utils
 
 
 
@@ -17,7 +16,7 @@ class HPQCParser:
     def ParseTestInstance(self,jsonobj):
         try:
             ret = []
-            uihelper = UIDisplayHelper()
+            uihelper = Utils.UIDisplayHelper()
             for entity in jsonobj[r'entities']:
                 id = 0
                 plan_id = 0
@@ -74,7 +73,7 @@ class HPQCCyclingParser:
     def ParseTestInstance(self,jsonobj):
         try:
             ret = []
-            uihelper = UIDisplayHelper()
+            uihelper = Utils.UIDisplayHelper()
             for entity in jsonobj[r'entities']:
                 id = 0
                 casename = ''

@@ -384,7 +384,7 @@ class ProjectConfigParameterGui(wx.Frame):
         self.excel_template_text.SetBackgroundColour('turquoise')
 
         #todo 其他配置
-        box_other = wx.StaticBox(self, -1, label='Other Config', pos=(430, 340), size=(470, 125))
+        box_other = wx.StaticBox(self, -1, label='Other Config', pos=(430, 340), size=(470, 170))
         box_other.SetFont(wx_font1)
         box_other.SetForegroundColour('orange')
 
@@ -398,13 +398,18 @@ class ProjectConfigParameterGui(wx.Frame):
         self.select_week_choose = wx.ComboBox(self, pos=(630, 420), size=(200, -1), choices=self.sampleList, style=wx.CB_DROPDOWN)
         self.select_week_choose.SetBackgroundColour('wheat')
 
+        self.select_HPQC_label = wx.StaticText(self, label='HPQC Mode', pos=(450, 470))
+        self.select_HPQC_label.SetFont(wx_font)
+        self.select_HPQC_choose = wx.ComboBox(self, pos=(630, 470), size=(200, -1), choices=self.sampleList, style=wx.CB_DROPDOWN)
+        self.select_HPQC_choose.SetBackgroundColour('wheat')
+
         #todo 按钮配置
-        box_default = wx.StaticBox(self, -1, label='Default Config', pos=(430, 480), size=(470, 100))
+        box_default = wx.StaticBox(self, -1, label='Default Config', pos=(430, 530), size=(470, 100))
         box_default.SetFont(wx_font1)
         box_default.SetForegroundColour('orange')
 
-        self.load_button = wx.Button(self, wx.ID_ANY, label='Load Default', pos=(450, 520), size=(120, 40))
-        self.save_button = wx.Button(self, wx.ID_ANY, label='Save Default', pos=(760, 520), size=(120, 40))
+        self.load_button = wx.Button(self, wx.ID_ANY, label='Load Default', pos=(450, 570), size=(120, 40))
+        self.save_button = wx.Button(self, wx.ID_ANY, label='Save Default', pos=(760, 570), size=(120, 40))
 
         self.load_button.SetForegroundColour('red')
         self.save_button.SetForegroundColour('blue')
@@ -543,6 +548,7 @@ class ProjectConfigParameterGui(wx.Frame):
             #todo 其他配置信息(离线在线模式以及是否自定义选择周)
             self.current_on_off_line_save_flag = conf.get_node_info(self.name + '_real-time_control_parameter_value', 'default_on_off_line_save_flag')
             self.current_keep_continuous = conf.get_node_info(self.name + '_real-time_control_parameter_value', 'default_keep_continuous')
+            self.current_HPQC_mode = conf.get_node_info(self.name + '_real-time_control_parameter_value', 'default_hpqc_mode')
         elif status == 'default':
             #todo 加载邮件配置信息
             self.current_server_address = conf.get_node_info(project_name_sep + '_server', 'server_address')
@@ -556,6 +562,8 @@ class ProjectConfigParameterGui(wx.Frame):
             #todo 其他配置信息(离线在线模式以及是否自定义选择周)
             self.current_on_off_line_save_flag = conf.get_node_info(project_name_sep + '_other_config', 'on_off_line_save_flag')
             self.current_keep_continuous = conf.get_node_info(project_name_sep + '_other_config', 'keep_continuous')
+            self.current_HPQC_mode = conf.get_node_info(project_name_sep + '_other_config', 'hpqc_mode')
+
 
         #todo 加载图表配置信息
         self.current_display_software = get_interface_config('display_software', self.name)
@@ -594,6 +602,7 @@ class ProjectConfigParameterGui(wx.Frame):
         #todo 其他配置
         self.mode_setting_choose.SetValue(self.mode_deal_config_value(self.current_on_off_line_save_flag))
         self.select_week_choose.SetValue(self.deal_config_value(self.current_keep_continuous))
+        self.select_HPQC_choose.SetValue(self.deal_config_value(self.current_HPQC_mode))
 
         #todo 根据是否发送邮件标记 来控制邮件相关组件的初始状态
         if self.deal_config_value(self.current_send_email_flag) == 'NO':
@@ -646,6 +655,7 @@ class ProjectConfigParameterGui(wx.Frame):
         #todo 其他部分
         conf.modify_node_value(project_name_sep + '_other_config', 'on_off_line_save_flag', self.mode_setting_choose.GetValue())
         conf.modify_node_value(project_name_sep + '_other_config', 'keep_continuous', self.select_week_choose.GetValue())
+        conf.modify_node_value(project_name_sep + '_other_config', 'hpqc_mode', self.select_HPQC_choose.GetValue())
         #todo 默认配置周数为１００
         conf.modify_node_value(project_name_sep + '_other_config', 'week_num', '100')
 
@@ -677,6 +687,7 @@ class ProjectConfigParameterGui(wx.Frame):
         #todo 其他部分
         conf.modify_node_value(self.name + '_real-time_control_parameter_value', 'default_on_off_line_save_flag', self.mode_setting_choose.GetValue())
         conf.modify_node_value(self.name + '_real-time_control_parameter_value', 'default_keep_continuous', self.select_week_choose.GetValue())
+        conf.modify_node_value(self.name + '_real-time_control_parameter_value', 'default_hpqc_mode', self.select_HPQC_choose.GetValue())
         #todo 默认配置周数为１００
         conf.modify_node_value(self.name + '_real-time_control_parameter_value', 'default_choose_week_num', '100')
 
@@ -790,6 +801,8 @@ def display_config_info(logger, purl_bak_string):
     send_email_flag = judge_get_config('send_email_flag', purl_bak_string)
     template_file = get_interface_config('template_file', purl_bak_string)
     get_default_flag = get_interface_config('default_get_default_flag', purl_bak_string)
+    HPQC_mode = judge_get_config('hpqc_mode', purl_bak_string)
+    print 'main:\t', HPQC_mode, len(HPQC_mode)
 
     display_software = get_interface_config('display_software', purl_bak_string)
     display_new = get_interface_config('display_new', purl_bak_string)
@@ -817,6 +830,8 @@ def display_config_info(logger, purl_bak_string):
             conf.modify_node_value(project_name_sep + '_other_config', 'on_off_line_save_flag', 'online')
         if len(send_email_flag.strip()) == 0:
             conf.modify_node_value(project_name_sep + '_other_config', 'send_email_flag', 'YES')
+        if len(HPQC_mode.strip()) == 0:
+            conf.modify_node_value(project_name_sep + '_other_config', 'hpqc_mode', 'YES')
 
         if len(display_software.strip()) == 0:
             conf.modify_node_value(project_name_sep + '_other_config', 'display_software', 'YES')
@@ -874,6 +889,7 @@ def display_config_info(logger, purl_bak_string):
     send_email_flag = judge_get_config('send_email_flag', purl_bak_string)
     template_file = get_interface_config('template_file', purl_bak_string)
     get_default_flag = get_interface_config('default_get_default_flag', purl_bak_string)
+    HPQC_mode = judge_get_config('hpqc_mode', purl_bak_string)
 
     display_software = get_interface_config('display_software', purl_bak_string)
     display_new = get_interface_config('display_new', purl_bak_string)
@@ -898,6 +914,7 @@ def display_config_info(logger, purl_bak_string):
     logger.print_message('keep_continuous:%s%s' % (' ' * (10 + 19 - len('keep_continuous')), keep_continuous), file_logger_name)
     logger.print_message('send_email_flag:%s%s' % (' ' * (10 + 19 - len('send_email_flag')), send_email_flag), file_logger_name)
     logger.print_message('get_default_flag:%s%s' % (' ' * (10 + 19 - len('get_default_flag')), get_default_flag), file_logger_name)
+    logger.print_message('hpqc_mode:%s%s' % (' ' * (10 + 19 - len('hpqc_mode')), HPQC_mode), file_logger_name)
 
     logger.print_message('display_software:%s%s' % (' ' * (10 + 19 - len('display_software')), display_software), file_logger_name)
     logger.print_message('display_new:%s%s' % (' ' * (10 + 19 - len('display_new')), display_new), file_logger_name)
@@ -915,8 +932,12 @@ def display_config_info(logger, purl_bak_string):
 
 if __name__ == "__main__":
     import time
+    from machine_scripts.custom_log import WorkLogger
+    log_time = time.strftime('%Y_%m_%d_%H_%M_%S', time.localtime(time.time()))
+    _logger = WorkLogger(log_filename='machine_log', log_time=log_time)
     start = time.time()
     app = wx.App(False)
-    frame = ProjectConfigParameterGui('NFVi', '')
+    gui_main(_logger)
+    # frame = ProjectConfigParameterGui('NFVi', '')
     app.MainLoop()
     print time.time() - start

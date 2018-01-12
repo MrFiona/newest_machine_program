@@ -1,5 +1,5 @@
 {
-    "TotalResults": 24, 
+    "TotalResults": 15, 
     "entities": [
         {
             "Fields": [
@@ -12,7 +12,9 @@
                 {
                     "Name": "user-04", 
                     "values": [
-                        {}
+                        {
+                            "value": "MB/Sec"
+                        }
                     ]
                 }, 
                 {
@@ -83,834 +85,7 @@
                     "Name": "id", 
                     "values": [
                         {
-                            "value": "215504"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "ver-stamp", 
-                    "values": [
-                        {
-                            "value": "2"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "os-config", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "host-name", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "data-obj", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-config-id", 
-                    "values": [
-                        {
-                            "value": "12669"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "pinned-baseline", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "exec-date", 
-                    "values": [
-                        {
-                            "value": "2018-01-08"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "cycle-id", 
-                    "values": [
-                        {
-                            "value": "19839"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "cycle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "last-modified", 
-                    "values": [
-                        {
-                            "value": "2018-01-08 22:18:43"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "exec-time", 
-                    "values": [
-                        {
-                            "value": "22:18:43"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "assign-rcyc", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-10", 
-                    "values": []
-                }, 
-                {
-                    "Name": "status", 
-                    "values": [
-                        {
-                            "value": "Passed"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "iterations", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-11", 
-                    "values": []
-                }, 
-                {
-                    "Name": "exec-event-handle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "actual-tester", 
-                    "values": [
-                        {
-                            "value": "jiejielx"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "attachment", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-id", 
-                    "values": [
-                        {
-                            "value": "11628"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "subtype-id", 
-                    "values": [
-                        {
-                            "value": "hp.qc.test-instance.MANUAL"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "test-order", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "owner", 
-                    "values": [
-                        {
-                            "value": "adamqiux"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "bpta-change-awareness", 
-                    "values": [
-                        {}
-                    ]
-                }
-            ], 
-            "RelatedEntities": [
-                {
-                    "Alias": "test", 
-                    "entities": [
-                        {
-                            "Fields": [
-                                {
-                                    "Name": "id", 
-                                    "values": [
-                                        {
-                                            "value": "11628"
-                                        }
-                                    ]
-                                }, 
-                                {
-                                    "Name": "name", 
-                                    "values": [
-                                        {
-                                            "value": "GFX_resolution_checkout_L"
-                                        }
-                                    ]
-                                }
-                            ], 
-                            "Type": "test"
-                        }
-                    ]
-                }
-            ], 
-            "Type": "test-instance"
-        }, 
-        {
-            "Fields": [
-                {
-                    "Name": "user-05", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-04", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-03", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-02", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-01", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-instance", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "eparams", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-09", 
-                    "values": []
-                }, 
-                {
-                    "Name": "user-08", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-07", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-06", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "plan-scheduling-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "plan-scheduling-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "id", 
-                    "values": [
-                        {
-                            "value": "215505"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "ver-stamp", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "os-config", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "host-name", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "data-obj", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-config-id", 
-                    "values": [
-                        {
-                            "value": "12903"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "pinned-baseline", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "exec-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "cycle-id", 
-                    "values": [
-                        {
-                            "value": "19839"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "cycle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "last-modified", 
-                    "values": [
-                        {
-                            "value": "2018-01-08 21:10:53"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "exec-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "assign-rcyc", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-10", 
-                    "values": []
-                }, 
-                {
-                    "Name": "status", 
-                    "values": [
-                        {
-                            "value": "No Run"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "iterations", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-11", 
-                    "values": []
-                }, 
-                {
-                    "Name": "exec-event-handle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "actual-tester", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "attachment", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-id", 
-                    "values": [
-                        {
-                            "value": "11862"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "subtype-id", 
-                    "values": [
-                        {
-                            "value": "hp.qc.test-instance.MANUAL"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "test-order", 
-                    "values": [
-                        {
-                            "value": "2"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "owner", 
-                    "values": [
-                        {
-                            "value": "adamqiux"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "bpta-change-awareness", 
-                    "values": [
-                        {}
-                    ]
-                }
-            ], 
-            "RelatedEntities": [
-                {
-                    "Alias": "test", 
-                    "entities": [
-                        {
-                            "Fields": [
-                                {
-                                    "Name": "id", 
-                                    "values": [
-                                        {
-                                            "value": "11862"
-                                        }
-                                    ]
-                                }, 
-                                {
-                                    "Name": "name", 
-                                    "values": [
-                                        {
-                                            "value": "PI_PCIe_GPGPUAPModelPowerManagement_L"
-                                        }
-                                    ]
-                                }
-                            ], 
-                            "Type": "test"
-                        }
-                    ]
-                }
-            ], 
-            "Type": "test-instance"
-        }, 
-        {
-            "Fields": [
-                {
-                    "Name": "user-05", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-04", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-03", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-02", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-01", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-instance", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "eparams", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-09", 
-                    "values": []
-                }, 
-                {
-                    "Name": "user-08", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-07", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-06", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "plan-scheduling-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "plan-scheduling-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "id", 
-                    "values": [
-                        {
-                            "value": "215506"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "ver-stamp", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "os-config", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "host-name", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "data-obj", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-config-id", 
-                    "values": [
-                        {
-                            "value": "12731"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "pinned-baseline", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "exec-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "cycle-id", 
-                    "values": [
-                        {
-                            "value": "19839"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "cycle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "last-modified", 
-                    "values": [
-                        {
-                            "value": "2018-01-08 21:10:53"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "exec-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "assign-rcyc", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-10", 
-                    "values": []
-                }, 
-                {
-                    "Name": "status", 
-                    "values": [
-                        {
-                            "value": "No Run"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "iterations", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-11", 
-                    "values": []
-                }, 
-                {
-                    "Name": "exec-event-handle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "actual-tester", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "attachment", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-id", 
-                    "values": [
-                        {
-                            "value": "11690"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "subtype-id", 
-                    "values": [
-                        {
-                            "value": "hp.qc.test-instance.MANUAL"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "test-order", 
-                    "values": [
-                        {
-                            "value": "3"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "owner", 
-                    "values": [
-                        {
-                            "value": "adamqiux"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "bpta-change-awareness", 
-                    "values": [
-                        {}
-                    ]
-                }
-            ], 
-            "RelatedEntities": [
-                {
-                    "Alias": "test", 
-                    "entities": [
-                        {
-                            "Fields": [
-                                {
-                                    "Name": "id", 
-                                    "values": [
-                                        {
-                                            "value": "11690"
-                                        }
-                                    ]
-                                }, 
-                                {
-                                    "Name": "name", 
-                                    "values": [
-                                        {
-                                            "value": "PI_PCIe_PCIModelAvailability_L"
-                                        }
-                                    ]
-                                }
-                            ], 
-                            "Type": "test"
-                        }
-                    ]
-                }
-            ], 
-            "Type": "test-instance"
-        }, 
-        {
-            "Fields": [
-                {
-                    "Name": "user-05", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-04", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-03", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-02", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-01", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-instance", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "eparams", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-09", 
-                    "values": []
-                }, 
-                {
-                    "Name": "user-08", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-07", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-06", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "plan-scheduling-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "plan-scheduling-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "id", 
-                    "values": [
-                        {
-                            "value": "215507"
+                            "value": "217057"
                         }
                     ]
                 }, 
@@ -956,13 +131,17 @@
                 }, 
                 {
                     "Name": "exec-date", 
-                    "values": []
+                    "values": [
+                        {
+                            "value": "2018-01-11"
+                        }
+                    ]
                 }, 
                 {
                     "Name": "cycle-id", 
                     "values": [
                         {
-                            "value": "19839"
+                            "value": "19934"
                         }
                     ]
                 }, 
@@ -976,14 +155,16 @@
                     "Name": "last-modified", 
                     "values": [
                         {
-                            "value": "2018-01-08 21:10:53"
+                            "value": "2018-01-11 03:18:33"
                         }
                     ]
                 }, 
                 {
                     "Name": "exec-time", 
                     "values": [
-                        {}
+                        {
+                            "value": "19-18-32"
+                        }
                     ]
                 }, 
                 {
@@ -1007,7 +188,9 @@
                 {
                     "Name": "iterations", 
                     "values": [
-                        {}
+                        {
+                            "value": "1"
+                        }
                     ]
                 }, 
                 {
@@ -1052,16 +235,14 @@
                     "Name": "test-order", 
                     "values": [
                         {
-                            "value": "4"
+                            "value": "1"
                         }
                     ]
                 }, 
                 {
                     "Name": "owner", 
                     "values": [
-                        {
-                            "value": "adamqiux"
-                        }
+                        {}
                     ]
                 }, 
                 {
@@ -1112,7 +293,9 @@
                 {
                     "Name": "user-04", 
                     "values": [
-                        {}
+                        {
+                            "value": "MB/Sec"
+                        }
                     ]
                 }, 
                 {
@@ -1183,7 +366,7 @@
                     "Name": "id", 
                     "values": [
                         {
-                            "value": "215508"
+                            "value": "217055"
                         }
                     ]
                 }, 
@@ -1217,7 +400,7 @@
                     "Name": "test-config-id", 
                     "values": [
                         {
-                            "value": "12744"
+                            "value": "12669"
                         }
                     ]
                 }, 
@@ -1229,13 +412,17 @@
                 }, 
                 {
                     "Name": "exec-date", 
-                    "values": []
+                    "values": [
+                        {
+                            "value": "2018-01-11"
+                        }
+                    ]
                 }, 
                 {
                     "Name": "cycle-id", 
                     "values": [
                         {
-                            "value": "19839"
+                            "value": "19934"
                         }
                     ]
                 }, 
@@ -1249,14 +436,16 @@
                     "Name": "last-modified", 
                     "values": [
                         {
-                            "value": "2018-01-08 21:10:53"
+                            "value": "2018-01-11 03:18:31"
                         }
                     ]
                 }, 
                 {
                     "Name": "exec-time", 
                     "values": [
-                        {}
+                        {
+                            "value": "19-18-30"
+                        }
                     ]
                 }, 
                 {
@@ -1280,7 +469,9 @@
                 {
                     "Name": "iterations", 
                     "values": [
-                        {}
+                        {
+                            "value": "1"
+                        }
                     ]
                 }, 
                 {
@@ -1309,7 +500,7 @@
                     "Name": "test-id", 
                     "values": [
                         {
-                            "value": "11703"
+                            "value": "11628"
                         }
                     ]
                 }, 
@@ -1325,16 +516,14 @@
                     "Name": "test-order", 
                     "values": [
                         {
-                            "value": "5"
+                            "value": "1"
                         }
                     ]
                 }, 
                 {
                     "Name": "owner", 
                     "values": [
-                        {
-                            "value": "adamqiux"
-                        }
+                        {}
                     ]
                 }, 
                 {
@@ -1354,7 +543,7 @@
                                     "Name": "id", 
                                     "values": [
                                         {
-                                            "value": "11703"
+                                            "value": "11628"
                                         }
                                     ]
                                 }, 
@@ -1362,7 +551,7 @@
                                     "Name": "name", 
                                     "values": [
                                         {
-                                            "value": "PI_Processor_Prime95_Stress_L"
+                                            "value": "GFX_resolution_checkout_L"
                                         }
                                     ]
                                 }
@@ -1385,7 +574,9 @@
                 {
                     "Name": "user-04", 
                     "values": [
-                        {}
+                        {
+                            "value": "MB/Sec"
+                        }
                     ]
                 }, 
                 {
@@ -1456,1099 +647,7 @@
                     "Name": "id", 
                     "values": [
                         {
-                            "value": "215509"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "ver-stamp", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "os-config", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "host-name", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "data-obj", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-config-id", 
-                    "values": [
-                        {
-                            "value": "12706"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "pinned-baseline", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "exec-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "cycle-id", 
-                    "values": [
-                        {
-                            "value": "19839"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "cycle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "last-modified", 
-                    "values": [
-                        {
-                            "value": "2018-01-08 21:10:53"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "exec-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "assign-rcyc", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-10", 
-                    "values": []
-                }, 
-                {
-                    "Name": "status", 
-                    "values": [
-                        {
-                            "value": "No Run"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "iterations", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-11", 
-                    "values": []
-                }, 
-                {
-                    "Name": "exec-event-handle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "actual-tester", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "attachment", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-id", 
-                    "values": [
-                        {
-                            "value": "11665"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "subtype-id", 
-                    "values": [
-                        {
-                            "value": "hp.qc.test-instance.MANUAL"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "test-order", 
-                    "values": [
-                        {
-                            "value": "6"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "owner", 
-                    "values": [
-                        {
-                            "value": "adamqiux"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "bpta-change-awareness", 
-                    "values": [
-                        {}
-                    ]
-                }
-            ], 
-            "RelatedEntities": [
-                {
-                    "Alias": "test", 
-                    "entities": [
-                        {
-                            "Fields": [
-                                {
-                                    "Name": "id", 
-                                    "values": [
-                                        {
-                                            "value": "11665"
-                                        }
-                                    ]
-                                }, 
-                                {
-                                    "Name": "name", 
-                                    "values": [
-                                        {
-                                            "value": "PI_Stability_ColdBootG3_UEFI"
-                                        }
-                                    ]
-                                }
-                            ], 
-                            "Type": "test"
-                        }
-                    ]
-                }
-            ], 
-            "Type": "test-instance"
-        }, 
-        {
-            "Fields": [
-                {
-                    "Name": "user-05", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-04", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-03", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-02", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-01", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-instance", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "eparams", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-09", 
-                    "values": []
-                }, 
-                {
-                    "Name": "user-08", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-07", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-06", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "plan-scheduling-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "plan-scheduling-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "id", 
-                    "values": [
-                        {
-                            "value": "215510"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "ver-stamp", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "os-config", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "host-name", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "data-obj", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-config-id", 
-                    "values": [
-                        {
-                            "value": "12701"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "pinned-baseline", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "exec-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "cycle-id", 
-                    "values": [
-                        {
-                            "value": "19839"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "cycle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "last-modified", 
-                    "values": [
-                        {
-                            "value": "2018-01-08 21:10:53"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "exec-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "assign-rcyc", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-10", 
-                    "values": []
-                }, 
-                {
-                    "Name": "status", 
-                    "values": [
-                        {
-                            "value": "No Run"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "iterations", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-11", 
-                    "values": []
-                }, 
-                {
-                    "Name": "exec-event-handle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "actual-tester", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "attachment", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-id", 
-                    "values": [
-                        {
-                            "value": "11660"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "subtype-id", 
-                    "values": [
-                        {
-                            "value": "hp.qc.test-instance.MANUAL"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "test-order", 
-                    "values": [
-                        {
-                            "value": "7"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "owner", 
-                    "values": [
-                        {
-                            "value": "adamqiux"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "bpta-change-awareness", 
-                    "values": [
-                        {}
-                    ]
-                }
-            ], 
-            "RelatedEntities": [
-                {
-                    "Alias": "test", 
-                    "entities": [
-                        {
-                            "Fields": [
-                                {
-                                    "Name": "id", 
-                                    "values": [
-                                        {
-                                            "value": "11660"
-                                        }
-                                    ]
-                                }, 
-                                {
-                                    "Name": "name", 
-                                    "values": [
-                                        {
-                                            "value": "PI_Stability_ColdBootS5_UEFI"
-                                        }
-                                    ]
-                                }
-                            ], 
-                            "Type": "test"
-                        }
-                    ]
-                }
-            ], 
-            "Type": "test-instance"
-        }, 
-        {
-            "Fields": [
-                {
-                    "Name": "user-05", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-04", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-03", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-02", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-01", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-instance", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "eparams", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-09", 
-                    "values": []
-                }, 
-                {
-                    "Name": "user-08", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-07", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-06", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "plan-scheduling-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "plan-scheduling-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "id", 
-                    "values": [
-                        {
-                            "value": "215511"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "ver-stamp", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "os-config", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "host-name", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "data-obj", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-config-id", 
-                    "values": [
-                        {
-                            "value": "12707"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "pinned-baseline", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "exec-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "cycle-id", 
-                    "values": [
-                        {
-                            "value": "19839"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "cycle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "last-modified", 
-                    "values": [
-                        {
-                            "value": "2018-01-08 21:10:53"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "exec-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "assign-rcyc", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-10", 
-                    "values": []
-                }, 
-                {
-                    "Name": "status", 
-                    "values": [
-                        {
-                            "value": "No Run"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "iterations", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-11", 
-                    "values": []
-                }, 
-                {
-                    "Name": "exec-event-handle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "actual-tester", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "attachment", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-id", 
-                    "values": [
-                        {
-                            "value": "11666"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "subtype-id", 
-                    "values": [
-                        {
-                            "value": "hp.qc.test-instance.MANUAL"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "test-order", 
-                    "values": [
-                        {
-                            "value": "8"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "owner", 
-                    "values": [
-                        {
-                            "value": "adamqiux"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "bpta-change-awareness", 
-                    "values": [
-                        {}
-                    ]
-                }
-            ], 
-            "RelatedEntities": [
-                {
-                    "Alias": "test", 
-                    "entities": [
-                        {
-                            "Fields": [
-                                {
-                                    "Name": "id", 
-                                    "values": [
-                                        {
-                                            "value": "11666"
-                                        }
-                                    ]
-                                }, 
-                                {
-                                    "Name": "name", 
-                                    "values": [
-                                        {
-                                            "value": "PI_Stability_Idle_L"
-                                        }
-                                    ]
-                                }
-                            ], 
-                            "Type": "test"
-                        }
-                    ]
-                }
-            ], 
-            "Type": "test-instance"
-        }, 
-        {
-            "Fields": [
-                {
-                    "Name": "user-05", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-04", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-03", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-02", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-01", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-instance", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "eparams", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-09", 
-                    "values": []
-                }, 
-                {
-                    "Name": "user-08", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-07", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-06", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "plan-scheduling-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "plan-scheduling-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "id", 
-                    "values": [
-                        {
-                            "value": "215512"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "ver-stamp", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "os-config", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "host-name", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "data-obj", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-config-id", 
-                    "values": [
-                        {
-                            "value": "12702"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "pinned-baseline", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "exec-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "cycle-id", 
-                    "values": [
-                        {
-                            "value": "19839"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "cycle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "last-modified", 
-                    "values": [
-                        {
-                            "value": "2018-01-08 21:10:53"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "exec-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "assign-rcyc", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-10", 
-                    "values": []
-                }, 
-                {
-                    "Name": "status", 
-                    "values": [
-                        {
-                            "value": "No Run"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "iterations", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-11", 
-                    "values": []
-                }, 
-                {
-                    "Name": "exec-event-handle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "actual-tester", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "attachment", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-id", 
-                    "values": [
-                        {
-                            "value": "11661"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "subtype-id", 
-                    "values": [
-                        {
-                            "value": "hp.qc.test-instance.MANUAL"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "test-order", 
-                    "values": [
-                        {
-                            "value": "9"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "owner", 
-                    "values": [
-                        {
-                            "value": "adamqiux"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "bpta-change-awareness", 
-                    "values": [
-                        {}
-                    ]
-                }
-            ], 
-            "RelatedEntities": [
-                {
-                    "Alias": "test", 
-                    "entities": [
-                        {
-                            "Fields": [
-                                {
-                                    "Name": "id", 
-                                    "values": [
-                                        {
-                                            "value": "11661"
-                                        }
-                                    ]
-                                }, 
-                                {
-                                    "Name": "name", 
-                                    "values": [
-                                        {
-                                            "value": "PI_Stability_WarmBootCycling_L"
-                                        }
-                                    ]
-                                }
-                            ], 
-                            "Type": "test"
-                        }
-                    ]
-                }
-            ], 
-            "Type": "test-instance"
-        }, 
-        {
-            "Fields": [
-                {
-                    "Name": "user-05", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-04", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-03", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-02", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-01", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-instance", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "eparams", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-09", 
-                    "values": []
-                }, 
-                {
-                    "Name": "user-08", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-07", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-06", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "plan-scheduling-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "plan-scheduling-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "id", 
-                    "values": [
-                        {
-                            "value": "215513"
+                            "value": "217061"
                         }
                     ]
                 }, 
@@ -2594,13 +693,17 @@
                 }, 
                 {
                     "Name": "exec-date", 
-                    "values": []
+                    "values": [
+                        {
+                            "value": "2018-01-11"
+                        }
+                    ]
                 }, 
                 {
                     "Name": "cycle-id", 
                     "values": [
                         {
-                            "value": "19839"
+                            "value": "19934"
                         }
                     ]
                 }, 
@@ -2614,14 +717,16 @@
                     "Name": "last-modified", 
                     "values": [
                         {
-                            "value": "2018-01-08 21:10:53"
+                            "value": "2018-01-11 03:18:36"
                         }
                     ]
                 }, 
                 {
                     "Name": "exec-time", 
                     "values": [
-                        {}
+                        {
+                            "value": "19-18-35"
+                        }
                     ]
                 }, 
                 {
@@ -2645,7 +750,9 @@
                 {
                     "Name": "iterations", 
                     "values": [
-                        {}
+                        {
+                            "value": "1"
+                        }
                     ]
                 }, 
                 {
@@ -2690,16 +797,14 @@
                     "Name": "test-order", 
                     "values": [
                         {
-                            "value": "10"
+                            "value": "1"
                         }
                     ]
                 }, 
                 {
                     "Name": "owner", 
                     "values": [
-                        {
-                            "value": "adamqiux"
-                        }
+                        {}
                     ]
                 }, 
                 {
@@ -2750,7 +855,9 @@
                 {
                     "Name": "user-04", 
                     "values": [
-                        {}
+                        {
+                            "value": "MB/Sec"
+                        }
                     ]
                 }, 
                 {
@@ -2821,7 +928,7 @@
                     "Name": "id", 
                     "values": [
                         {
-                            "value": "215514"
+                            "value": "217063"
                         }
                     ]
                 }, 
@@ -2867,13 +974,17 @@
                 }, 
                 {
                     "Name": "exec-date", 
-                    "values": []
+                    "values": [
+                        {
+                            "value": "2018-01-11"
+                        }
+                    ]
                 }, 
                 {
                     "Name": "cycle-id", 
                     "values": [
                         {
-                            "value": "19839"
+                            "value": "19934"
                         }
                     ]
                 }, 
@@ -2887,14 +998,16 @@
                     "Name": "last-modified", 
                     "values": [
                         {
-                            "value": "2018-01-08 21:10:53"
+                            "value": "2018-01-11 03:18:38"
                         }
                     ]
                 }, 
                 {
                     "Name": "exec-time", 
                     "values": [
-                        {}
+                        {
+                            "value": "19-18-37"
+                        }
                     ]
                 }, 
                 {
@@ -2918,7 +1031,9 @@
                 {
                     "Name": "iterations", 
                     "values": [
-                        {}
+                        {
+                            "value": "1"
+                        }
                     ]
                 }, 
                 {
@@ -2963,16 +1078,14 @@
                     "Name": "test-order", 
                     "values": [
                         {
-                            "value": "11"
+                            "value": "1"
                         }
                     ]
                 }, 
                 {
                     "Name": "owner", 
                     "values": [
-                        {
-                            "value": "adamqiux"
-                        }
+                        {}
                     ]
                 }, 
                 {
@@ -3023,7 +1136,9 @@
                 {
                     "Name": "user-04", 
                     "values": [
-                        {}
+                        {
+                            "value": "MB/Sec"
+                        }
                     ]
                 }, 
                 {
@@ -3094,280 +1209,7 @@
                     "Name": "id", 
                     "values": [
                         {
-                            "value": "215515"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "ver-stamp", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "os-config", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "host-name", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "data-obj", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-config-id", 
-                    "values": [
-                        {
-                            "value": "12697"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "pinned-baseline", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "exec-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "cycle-id", 
-                    "values": [
-                        {
-                            "value": "19839"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "cycle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "last-modified", 
-                    "values": [
-                        {
-                            "value": "2018-01-08 21:10:53"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "exec-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "assign-rcyc", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-10", 
-                    "values": []
-                }, 
-                {
-                    "Name": "status", 
-                    "values": [
-                        {
-                            "value": "No Run"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "iterations", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-11", 
-                    "values": []
-                }, 
-                {
-                    "Name": "exec-event-handle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "actual-tester", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "attachment", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-id", 
-                    "values": [
-                        {
-                            "value": "11656"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "subtype-id", 
-                    "values": [
-                        {
-                            "value": "hp.qc.test-instance.MANUAL"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "test-order", 
-                    "values": [
-                        {
-                            "value": "12"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "owner", 
-                    "values": [
-                        {
-                            "value": "adamqiux"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "bpta-change-awareness", 
-                    "values": [
-                        {}
-                    ]
-                }
-            ], 
-            "RelatedEntities": [
-                {
-                    "Alias": "test", 
-                    "entities": [
-                        {
-                            "Fields": [
-                                {
-                                    "Name": "id", 
-                                    "values": [
-                                        {
-                                            "value": "11656"
-                                        }
-                                    ]
-                                }, 
-                                {
-                                    "Name": "name", 
-                                    "values": [
-                                        {
-                                            "value": "PI_Storage_RAID_VMD_L"
-                                        }
-                                    ]
-                                }
-                            ], 
-                            "Type": "test"
-                        }
-                    ]
-                }
-            ], 
-            "Type": "test-instance"
-        }, 
-        {
-            "Fields": [
-                {
-                    "Name": "user-05", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-04", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-03", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-02", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-01", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-instance", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "eparams", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-09", 
-                    "values": []
-                }, 
-                {
-                    "Name": "user-08", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-07", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-06", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "plan-scheduling-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "plan-scheduling-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "id", 
-                    "values": [
-                        {
-                            "value": "215516"
+                            "value": "217064"
                         }
                     ]
                 }, 
@@ -3413,13 +1255,17 @@
                 }, 
                 {
                     "Name": "exec-date", 
-                    "values": []
+                    "values": [
+                        {
+                            "value": "2018-01-11"
+                        }
+                    ]
                 }, 
                 {
                     "Name": "cycle-id", 
                     "values": [
                         {
-                            "value": "19839"
+                            "value": "19934"
                         }
                     ]
                 }, 
@@ -3433,14 +1279,16 @@
                     "Name": "last-modified", 
                     "values": [
                         {
-                            "value": "2018-01-08 21:10:53"
+                            "value": "2018-01-11 03:18:38"
                         }
                     ]
                 }, 
                 {
                     "Name": "exec-time", 
                     "values": [
-                        {}
+                        {
+                            "value": "19-18-38"
+                        }
                     ]
                 }, 
                 {
@@ -3464,7 +1312,9 @@
                 {
                     "Name": "iterations", 
                     "values": [
-                        {}
+                        {
+                            "value": "1"
+                        }
                     ]
                 }, 
                 {
@@ -3509,16 +1359,14 @@
                     "Name": "test-order", 
                     "values": [
                         {
-                            "value": "13"
+                            "value": "1"
                         }
                     ]
                 }, 
                 {
                     "Name": "owner", 
                     "values": [
-                        {
-                            "value": "adamqiux"
-                        }
+                        {}
                     ]
                 }, 
                 {
@@ -3569,7 +1417,9 @@
                 {
                     "Name": "user-04", 
                     "values": [
-                        {}
+                        {
+                            "value": "MB/Sec"
+                        }
                     ]
                 }, 
                 {
@@ -3640,7 +1490,7 @@
                     "Name": "id", 
                     "values": [
                         {
-                            "value": "215517"
+                            "value": "217065"
                         }
                     ]
                 }, 
@@ -3686,13 +1536,17 @@
                 }, 
                 {
                     "Name": "exec-date", 
-                    "values": []
+                    "values": [
+                        {
+                            "value": "2018-01-11"
+                        }
+                    ]
                 }, 
                 {
                     "Name": "cycle-id", 
                     "values": [
                         {
-                            "value": "19839"
+                            "value": "19934"
                         }
                     ]
                 }, 
@@ -3706,14 +1560,16 @@
                     "Name": "last-modified", 
                     "values": [
                         {
-                            "value": "2018-01-08 21:10:54"
+                            "value": "2018-01-11 03:18:39"
                         }
                     ]
                 }, 
                 {
                     "Name": "exec-time", 
                     "values": [
-                        {}
+                        {
+                            "value": "19-18-38"
+                        }
                     ]
                 }, 
                 {
@@ -3737,7 +1593,9 @@
                 {
                     "Name": "iterations", 
                     "values": [
-                        {}
+                        {
+                            "value": "1"
+                        }
                     ]
                 }, 
                 {
@@ -3782,16 +1640,14 @@
                     "Name": "test-order", 
                     "values": [
                         {
-                            "value": "14"
+                            "value": "1"
                         }
                     ]
                 }, 
                 {
                     "Name": "owner", 
                     "values": [
-                        {
-                            "value": "adamqiux"
-                        }
+                        {}
                     ]
                 }, 
                 {
@@ -3842,7 +1698,9 @@
                 {
                     "Name": "user-04", 
                     "values": [
-                        {}
+                        {
+                            "value": "MB/Sec"
+                        }
                     ]
                 }, 
                 {
@@ -3913,7 +1771,1412 @@
                     "Name": "id", 
                     "values": [
                         {
-                            "value": "215518"
+                            "value": "217056"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "ver-stamp", 
+                    "values": [
+                        {
+                            "value": "1"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "os-config", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "host-name", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "data-obj", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "test-config-id", 
+                    "values": [
+                        {
+                            "value": "12731"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "pinned-baseline", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "exec-date", 
+                    "values": [
+                        {
+                            "value": "2018-01-11"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "cycle-id", 
+                    "values": [
+                        {
+                            "value": "19934"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "cycle", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "last-modified", 
+                    "values": [
+                        {
+                            "value": "2018-01-11 03:18:32"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "exec-time", 
+                    "values": [
+                        {
+                            "value": "19-18-31"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "assign-rcyc", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-10", 
+                    "values": []
+                }, 
+                {
+                    "Name": "status", 
+                    "values": [
+                        {
+                            "value": "No Run"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "iterations", 
+                    "values": [
+                        {
+                            "value": "1"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "user-11", 
+                    "values": []
+                }, 
+                {
+                    "Name": "exec-event-handle", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "actual-tester", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "attachment", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "test-id", 
+                    "values": [
+                        {
+                            "value": "11690"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "subtype-id", 
+                    "values": [
+                        {
+                            "value": "hp.qc.test-instance.MANUAL"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "test-order", 
+                    "values": [
+                        {
+                            "value": "1"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "owner", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "bpta-change-awareness", 
+                    "values": [
+                        {}
+                    ]
+                }
+            ], 
+            "RelatedEntities": [
+                {
+                    "Alias": "test", 
+                    "entities": [
+                        {
+                            "Fields": [
+                                {
+                                    "Name": "id", 
+                                    "values": [
+                                        {
+                                            "value": "11690"
+                                        }
+                                    ]
+                                }, 
+                                {
+                                    "Name": "name", 
+                                    "values": [
+                                        {
+                                            "value": "PI_PCIe_PCIModelAvailability_L"
+                                        }
+                                    ]
+                                }
+                            ], 
+                            "Type": "test"
+                        }
+                    ]
+                }
+            ], 
+            "Type": "test-instance"
+        }, 
+        {
+            "Fields": [
+                {
+                    "Name": "user-05", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-04", 
+                    "values": [
+                        {
+                            "value": "MB/Sec"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "user-03", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-02", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-01", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "test-instance", 
+                    "values": [
+                        {
+                            "value": "1"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "eparams", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-09", 
+                    "values": []
+                }, 
+                {
+                    "Name": "user-08", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-07", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-06", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "plan-scheduling-date", 
+                    "values": []
+                }, 
+                {
+                    "Name": "plan-scheduling-time", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "id", 
+                    "values": [
+                        {
+                            "value": "217058"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "ver-stamp", 
+                    "values": [
+                        {
+                            "value": "1"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "os-config", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "host-name", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "data-obj", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "test-config-id", 
+                    "values": [
+                        {
+                            "value": "12744"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "pinned-baseline", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "exec-date", 
+                    "values": [
+                        {
+                            "value": "2018-01-11"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "cycle-id", 
+                    "values": [
+                        {
+                            "value": "19934"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "cycle", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "last-modified", 
+                    "values": [
+                        {
+                            "value": "2018-01-11 03:18:34"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "exec-time", 
+                    "values": [
+                        {
+                            "value": "19-18-33"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "assign-rcyc", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-10", 
+                    "values": []
+                }, 
+                {
+                    "Name": "status", 
+                    "values": [
+                        {
+                            "value": "No Run"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "iterations", 
+                    "values": [
+                        {
+                            "value": "1"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "user-11", 
+                    "values": []
+                }, 
+                {
+                    "Name": "exec-event-handle", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "actual-tester", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "attachment", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "test-id", 
+                    "values": [
+                        {
+                            "value": "11703"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "subtype-id", 
+                    "values": [
+                        {
+                            "value": "hp.qc.test-instance.MANUAL"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "test-order", 
+                    "values": [
+                        {
+                            "value": "1"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "owner", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "bpta-change-awareness", 
+                    "values": [
+                        {}
+                    ]
+                }
+            ], 
+            "RelatedEntities": [
+                {
+                    "Alias": "test", 
+                    "entities": [
+                        {
+                            "Fields": [
+                                {
+                                    "Name": "id", 
+                                    "values": [
+                                        {
+                                            "value": "11703"
+                                        }
+                                    ]
+                                }, 
+                                {
+                                    "Name": "name", 
+                                    "values": [
+                                        {
+                                            "value": "PI_Processor_Prime95_Stress_L"
+                                        }
+                                    ]
+                                }
+                            ], 
+                            "Type": "test"
+                        }
+                    ]
+                }
+            ], 
+            "Type": "test-instance"
+        }, 
+        {
+            "Fields": [
+                {
+                    "Name": "user-05", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-04", 
+                    "values": [
+                        {
+                            "value": "MB/Sec"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "user-03", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-02", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-01", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "test-instance", 
+                    "values": [
+                        {
+                            "value": "1"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "eparams", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-09", 
+                    "values": []
+                }, 
+                {
+                    "Name": "user-08", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-07", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-06", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "plan-scheduling-date", 
+                    "values": []
+                }, 
+                {
+                    "Name": "plan-scheduling-time", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "id", 
+                    "values": [
+                        {
+                            "value": "217059"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "ver-stamp", 
+                    "values": [
+                        {
+                            "value": "1"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "os-config", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "host-name", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "data-obj", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "test-config-id", 
+                    "values": [
+                        {
+                            "value": "12707"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "pinned-baseline", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "exec-date", 
+                    "values": [
+                        {
+                            "value": "2018-01-11"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "cycle-id", 
+                    "values": [
+                        {
+                            "value": "19934"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "cycle", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "last-modified", 
+                    "values": [
+                        {
+                            "value": "2018-01-11 03:18:34"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "exec-time", 
+                    "values": [
+                        {
+                            "value": "19-18-34"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "assign-rcyc", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-10", 
+                    "values": []
+                }, 
+                {
+                    "Name": "status", 
+                    "values": [
+                        {
+                            "value": "No Run"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "iterations", 
+                    "values": [
+                        {
+                            "value": "1"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "user-11", 
+                    "values": []
+                }, 
+                {
+                    "Name": "exec-event-handle", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "actual-tester", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "attachment", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "test-id", 
+                    "values": [
+                        {
+                            "value": "11666"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "subtype-id", 
+                    "values": [
+                        {
+                            "value": "hp.qc.test-instance.MANUAL"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "test-order", 
+                    "values": [
+                        {
+                            "value": "1"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "owner", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "bpta-change-awareness", 
+                    "values": [
+                        {}
+                    ]
+                }
+            ], 
+            "RelatedEntities": [
+                {
+                    "Alias": "test", 
+                    "entities": [
+                        {
+                            "Fields": [
+                                {
+                                    "Name": "id", 
+                                    "values": [
+                                        {
+                                            "value": "11666"
+                                        }
+                                    ]
+                                }, 
+                                {
+                                    "Name": "name", 
+                                    "values": [
+                                        {
+                                            "value": "PI_Stability_Idle_L"
+                                        }
+                                    ]
+                                }
+                            ], 
+                            "Type": "test"
+                        }
+                    ]
+                }
+            ], 
+            "Type": "test-instance"
+        }, 
+        {
+            "Fields": [
+                {
+                    "Name": "user-05", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-04", 
+                    "values": [
+                        {
+                            "value": "MB/Sec"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "user-03", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-02", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-01", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "test-instance", 
+                    "values": [
+                        {
+                            "value": "1"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "eparams", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-09", 
+                    "values": []
+                }, 
+                {
+                    "Name": "user-08", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-07", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-06", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "plan-scheduling-date", 
+                    "values": []
+                }, 
+                {
+                    "Name": "plan-scheduling-time", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "id", 
+                    "values": [
+                        {
+                            "value": "217060"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "ver-stamp", 
+                    "values": [
+                        {
+                            "value": "1"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "os-config", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "host-name", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "data-obj", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "test-config-id", 
+                    "values": [
+                        {
+                            "value": "12702"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "pinned-baseline", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "exec-date", 
+                    "values": [
+                        {
+                            "value": "2018-01-11"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "cycle-id", 
+                    "values": [
+                        {
+                            "value": "19934"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "cycle", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "last-modified", 
+                    "values": [
+                        {
+                            "value": "2018-01-11 03:18:35"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "exec-time", 
+                    "values": [
+                        {
+                            "value": "19-18-35"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "assign-rcyc", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-10", 
+                    "values": []
+                }, 
+                {
+                    "Name": "status", 
+                    "values": [
+                        {
+                            "value": "No Run"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "iterations", 
+                    "values": [
+                        {
+                            "value": "1"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "user-11", 
+                    "values": []
+                }, 
+                {
+                    "Name": "exec-event-handle", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "actual-tester", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "attachment", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "test-id", 
+                    "values": [
+                        {
+                            "value": "11661"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "subtype-id", 
+                    "values": [
+                        {
+                            "value": "hp.qc.test-instance.MANUAL"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "test-order", 
+                    "values": [
+                        {
+                            "value": "1"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "owner", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "bpta-change-awareness", 
+                    "values": [
+                        {}
+                    ]
+                }
+            ], 
+            "RelatedEntities": [
+                {
+                    "Alias": "test", 
+                    "entities": [
+                        {
+                            "Fields": [
+                                {
+                                    "Name": "id", 
+                                    "values": [
+                                        {
+                                            "value": "11661"
+                                        }
+                                    ]
+                                }, 
+                                {
+                                    "Name": "name", 
+                                    "values": [
+                                        {
+                                            "value": "PI_Stability_WarmBootCycling_L"
+                                        }
+                                    ]
+                                }
+                            ], 
+                            "Type": "test"
+                        }
+                    ]
+                }
+            ], 
+            "Type": "test-instance"
+        }, 
+        {
+            "Fields": [
+                {
+                    "Name": "user-05", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-04", 
+                    "values": [
+                        {
+                            "value": "MB/Sec"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "user-03", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-02", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-01", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "test-instance", 
+                    "values": [
+                        {
+                            "value": "1"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "eparams", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-09", 
+                    "values": []
+                }, 
+                {
+                    "Name": "user-08", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-07", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-06", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "plan-scheduling-date", 
+                    "values": []
+                }, 
+                {
+                    "Name": "plan-scheduling-time", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "id", 
+                    "values": [
+                        {
+                            "value": "217062"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "ver-stamp", 
+                    "values": [
+                        {
+                            "value": "1"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "os-config", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "host-name", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "data-obj", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "test-config-id", 
+                    "values": [
+                        {
+                            "value": "12697"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "pinned-baseline", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "exec-date", 
+                    "values": [
+                        {
+                            "value": "2018-01-11"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "cycle-id", 
+                    "values": [
+                        {
+                            "value": "19934"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "cycle", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "last-modified", 
+                    "values": [
+                        {
+                            "value": "2018-01-11 03:18:37"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "exec-time", 
+                    "values": [
+                        {
+                            "value": "19-18-36"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "assign-rcyc", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-10", 
+                    "values": []
+                }, 
+                {
+                    "Name": "status", 
+                    "values": [
+                        {
+                            "value": "No Run"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "iterations", 
+                    "values": [
+                        {
+                            "value": "1"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "user-11", 
+                    "values": []
+                }, 
+                {
+                    "Name": "exec-event-handle", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "actual-tester", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "attachment", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "test-id", 
+                    "values": [
+                        {
+                            "value": "11656"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "subtype-id", 
+                    "values": [
+                        {
+                            "value": "hp.qc.test-instance.MANUAL"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "test-order", 
+                    "values": [
+                        {
+                            "value": "1"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "owner", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "bpta-change-awareness", 
+                    "values": [
+                        {}
+                    ]
+                }
+            ], 
+            "RelatedEntities": [
+                {
+                    "Alias": "test", 
+                    "entities": [
+                        {
+                            "Fields": [
+                                {
+                                    "Name": "id", 
+                                    "values": [
+                                        {
+                                            "value": "11656"
+                                        }
+                                    ]
+                                }, 
+                                {
+                                    "Name": "name", 
+                                    "values": [
+                                        {
+                                            "value": "PI_Storage_RAID_VMD_L"
+                                        }
+                                    ]
+                                }
+                            ], 
+                            "Type": "test"
+                        }
+                    ]
+                }
+            ], 
+            "Type": "test-instance"
+        }, 
+        {
+            "Fields": [
+                {
+                    "Name": "user-05", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-04", 
+                    "values": [
+                        {
+                            "value": "MB/Sec"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "user-03", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-02", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-01", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "test-instance", 
+                    "values": [
+                        {
+                            "value": "1"
+                        }
+                    ]
+                }, 
+                {
+                    "Name": "eparams", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-09", 
+                    "values": []
+                }, 
+                {
+                    "Name": "user-08", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-07", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "user-06", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "plan-scheduling-date", 
+                    "values": []
+                }, 
+                {
+                    "Name": "plan-scheduling-time", 
+                    "values": [
+                        {}
+                    ]
+                }, 
+                {
+                    "Name": "id", 
+                    "values": [
+                        {
+                            "value": "217066"
                         }
                     ]
                 }, 
@@ -3959,13 +3222,17 @@
                 }, 
                 {
                     "Name": "exec-date", 
-                    "values": []
+                    "values": [
+                        {
+                            "value": "2018-01-11"
+                        }
+                    ]
                 }, 
                 {
                     "Name": "cycle-id", 
                     "values": [
                         {
-                            "value": "19839"
+                            "value": "19934"
                         }
                     ]
                 }, 
@@ -3979,14 +3246,16 @@
                     "Name": "last-modified", 
                     "values": [
                         {
-                            "value": "2018-01-08 21:10:54"
+                            "value": "2018-01-11 03:18:40"
                         }
                     ]
                 }, 
                 {
                     "Name": "exec-time", 
                     "values": [
-                        {}
+                        {
+                            "value": "19-18-39"
+                        }
                     ]
                 }, 
                 {
@@ -4010,7 +3279,9 @@
                 {
                     "Name": "iterations", 
                     "values": [
-                        {}
+                        {
+                            "value": "1"
+                        }
                     ]
                 }, 
                 {
@@ -4055,16 +3326,14 @@
                     "Name": "test-order", 
                     "values": [
                         {
-                            "value": "15"
+                            "value": "1"
                         }
                     ]
                 }, 
                 {
                     "Name": "owner", 
                     "values": [
-                        {
-                            "value": "adamqiux"
-                        }
+                        {}
                     ]
                 }, 
                 {
@@ -4115,7 +3384,9 @@
                 {
                     "Name": "user-04", 
                     "values": [
-                        {}
+                        {
+                            "value": "MB/Sec"
+                        }
                     ]
                 }, 
                 {
@@ -4186,7 +3457,7 @@
                     "Name": "id", 
                     "values": [
                         {
-                            "value": "215519"
+                            "value": "217067"
                         }
                     ]
                 }, 
@@ -4232,13 +3503,17 @@
                 }, 
                 {
                     "Name": "exec-date", 
-                    "values": []
+                    "values": [
+                        {
+                            "value": "2018-01-11"
+                        }
+                    ]
                 }, 
                 {
                     "Name": "cycle-id", 
                     "values": [
                         {
-                            "value": "19839"
+                            "value": "19934"
                         }
                     ]
                 }, 
@@ -4252,14 +3527,16 @@
                     "Name": "last-modified", 
                     "values": [
                         {
-                            "value": "2018-01-08 21:10:54"
+                            "value": "2018-01-11 03:18:41"
                         }
                     ]
                 }, 
                 {
                     "Name": "exec-time", 
                     "values": [
-                        {}
+                        {
+                            "value": "19-18-40"
+                        }
                     ]
                 }, 
                 {
@@ -4283,7 +3560,9 @@
                 {
                     "Name": "iterations", 
                     "values": [
-                        {}
+                        {
+                            "value": "1"
+                        }
                     ]
                 }, 
                 {
@@ -4328,16 +3607,14 @@
                     "Name": "test-order", 
                     "values": [
                         {
-                            "value": "16"
+                            "value": "1"
                         }
                     ]
                 }, 
                 {
                     "Name": "owner", 
                     "values": [
-                        {
-                            "value": "adamqiux"
-                        }
+                        {}
                     ]
                 }, 
                 {
@@ -4388,7 +3665,9 @@
                 {
                     "Name": "user-04", 
                     "values": [
-                        {}
+                        {
+                            "value": "MB/Sec"
+                        }
                     ]
                 }, 
                 {
@@ -4459,7 +3738,7 @@
                     "Name": "id", 
                     "values": [
                         {
-                            "value": "215520"
+                            "value": "217068"
                         }
                     ]
                 }, 
@@ -4505,13 +3784,17 @@
                 }, 
                 {
                     "Name": "exec-date", 
-                    "values": []
+                    "values": [
+                        {
+                            "value": "2018-01-11"
+                        }
+                    ]
                 }, 
                 {
                     "Name": "cycle-id", 
                     "values": [
                         {
-                            "value": "19839"
+                            "value": "19934"
                         }
                     ]
                 }, 
@@ -4525,14 +3808,16 @@
                     "Name": "last-modified", 
                     "values": [
                         {
-                            "value": "2018-01-08 21:10:54"
+                            "value": "2018-01-11 03:18:42"
                         }
                     ]
                 }, 
                 {
                     "Name": "exec-time", 
                     "values": [
-                        {}
+                        {
+                            "value": "19-18-41"
+                        }
                     ]
                 }, 
                 {
@@ -4556,7 +3841,9 @@
                 {
                     "Name": "iterations", 
                     "values": [
-                        {}
+                        {
+                            "value": "1"
+                        }
                     ]
                 }, 
                 {
@@ -4601,16 +3888,14 @@
                     "Name": "test-order", 
                     "values": [
                         {
-                            "value": "17"
+                            "value": "1"
                         }
                     ]
                 }, 
                 {
                     "Name": "owner", 
                     "values": [
-                        {
-                            "value": "adamqiux"
-                        }
+                        {}
                     ]
                 }, 
                 {
@@ -4661,7 +3946,9 @@
                 {
                     "Name": "user-04", 
                     "values": [
-                        {}
+                        {
+                            "value": "MB/Sec"
+                        }
                     ]
                 }, 
                 {
@@ -4732,842 +4019,7 @@
                     "Name": "id", 
                     "values": [
                         {
-                            "value": "215521"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "ver-stamp", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "os-config", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "host-name", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "data-obj", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-config-id", 
-                    "values": [
-                        {
-                            "value": "12699"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "pinned-baseline", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "exec-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "cycle-id", 
-                    "values": [
-                        {
-                            "value": "19839"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "cycle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "last-modified", 
-                    "values": [
-                        {
-                            "value": "2018-01-08 21:10:54"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "exec-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "assign-rcyc", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-10", 
-                    "values": []
-                }, 
-                {
-                    "Name": "status", 
-                    "values": [
-                        {
-                            "value": "No Run"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "iterations", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-11", 
-                    "values": []
-                }, 
-                {
-                    "Name": "exec-event-handle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "actual-tester", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "attachment", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-id", 
-                    "values": [
-                        {
-                            "value": "11658"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "subtype-id", 
-                    "values": [
-                        {
-                            "value": "hp.qc.test-instance.MANUAL"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "test-order", 
-                    "values": [
-                        {
-                            "value": "18"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "owner", 
-                    "values": [
-                        {
-                            "value": "adamqiux"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "bpta-change-awareness", 
-                    "values": [
-                        {}
-                    ]
-                }
-            ], 
-            "RelatedEntities": [
-                {
-                    "Alias": "test", 
-                    "entities": [
-                        {
-                            "Fields": [
-                                {
-                                    "Name": "id", 
-                                    "values": [
-                                        {
-                                            "value": "11658"
-                                        }
-                                    ]
-                                }, 
-                                {
-                                    "Name": "name", 
-                                    "values": [
-                                        {
-                                            "value": "PI_USB_DetectionAndHotPlugUSB20_L"
-                                        }
-                                    ]
-                                }
-                            ], 
-                            "Type": "test"
-                        }
-                    ]
-                }
-            ], 
-            "Type": "test-instance"
-        }, 
-        {
-            "Fields": [
-                {
-                    "Name": "user-05", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-04", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-03", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-02", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-01", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-instance", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "eparams", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-09", 
-                    "values": []
-                }, 
-                {
-                    "Name": "user-08", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-07", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-06", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "plan-scheduling-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "plan-scheduling-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "id", 
-                    "values": [
-                        {
-                            "value": "215522"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "ver-stamp", 
-                    "values": [
-                        {
-                            "value": "2"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "os-config", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "host-name", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "data-obj", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-config-id", 
-                    "values": [
-                        {
-                            "value": "12698"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "pinned-baseline", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "exec-date", 
-                    "values": [
-                        {
-                            "value": "2018-01-08"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "cycle-id", 
-                    "values": [
-                        {
-                            "value": "19839"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "cycle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "last-modified", 
-                    "values": [
-                        {
-                            "value": "2018-01-08 22:42:32"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "exec-time", 
-                    "values": [
-                        {
-                            "value": "22:42:31"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "assign-rcyc", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-10", 
-                    "values": []
-                }, 
-                {
-                    "Name": "status", 
-                    "values": [
-                        {
-                            "value": "Passed"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "iterations", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-11", 
-                    "values": []
-                }, 
-                {
-                    "Name": "exec-event-handle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "actual-tester", 
-                    "values": [
-                        {
-                            "value": "jiejielx"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "attachment", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-id", 
-                    "values": [
-                        {
-                            "value": "11657"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "subtype-id", 
-                    "values": [
-                        {
-                            "value": "hp.qc.test-instance.MANUAL"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "test-order", 
-                    "values": [
-                        {
-                            "value": "19"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "owner", 
-                    "values": [
-                        {
-                            "value": "adamqiux"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "bpta-change-awareness", 
-                    "values": [
-                        {}
-                    ]
-                }
-            ], 
-            "RelatedEntities": [
-                {
-                    "Alias": "test", 
-                    "entities": [
-                        {
-                            "Fields": [
-                                {
-                                    "Name": "id", 
-                                    "values": [
-                                        {
-                                            "value": "11657"
-                                        }
-                                    ]
-                                }, 
-                                {
-                                    "Name": "name", 
-                                    "values": [
-                                        {
-                                            "value": "PI_USB_RearPanel_L"
-                                        }
-                                    ]
-                                }
-                            ], 
-                            "Type": "test"
-                        }
-                    ]
-                }
-            ], 
-            "Type": "test-instance"
-        }, 
-        {
-            "Fields": [
-                {
-                    "Name": "user-05", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-04", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-03", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-02", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-01", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-instance", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "eparams", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-09", 
-                    "values": []
-                }, 
-                {
-                    "Name": "user-08", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-07", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-06", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "plan-scheduling-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "plan-scheduling-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "id", 
-                    "values": [
-                        {
-                            "value": "215523"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "ver-stamp", 
-                    "values": [
-                        {
-                            "value": "2"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "os-config", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "host-name", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "data-obj", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-config-id", 
-                    "values": [
-                        {
-                            "value": "12700"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "pinned-baseline", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "exec-date", 
-                    "values": [
-                        {
-                            "value": "2018-01-08"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "cycle-id", 
-                    "values": [
-                        {
-                            "value": "19839"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "cycle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "last-modified", 
-                    "values": [
-                        {
-                            "value": "2018-01-08 22:42:49"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "exec-time", 
-                    "values": [
-                        {
-                            "value": "22:42:49"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "assign-rcyc", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-10", 
-                    "values": []
-                }, 
-                {
-                    "Name": "status", 
-                    "values": [
-                        {
-                            "value": "Passed"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "iterations", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-11", 
-                    "values": []
-                }, 
-                {
-                    "Name": "exec-event-handle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "actual-tester", 
-                    "values": [
-                        {
-                            "value": "jiejielx"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "attachment", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-id", 
-                    "values": [
-                        {
-                            "value": "11659"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "subtype-id", 
-                    "values": [
-                        {
-                            "value": "hp.qc.test-instance.MANUAL"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "test-order", 
-                    "values": [
-                        {
-                            "value": "20"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "owner", 
-                    "values": [
-                        {
-                            "value": "adamqiux"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "bpta-change-awareness", 
-                    "values": [
-                        {}
-                    ]
-                }
-            ], 
-            "RelatedEntities": [
-                {
-                    "Alias": "test", 
-                    "entities": [
-                        {
-                            "Fields": [
-                                {
-                                    "Name": "id", 
-                                    "values": [
-                                        {
-                                            "value": "11659"
-                                        }
-                                    ]
-                                }, 
-                                {
-                                    "Name": "name", 
-                                    "values": [
-                                        {
-                                            "value": "PI_USB_USBHub_L"
-                                        }
-                                    ]
-                                }
-                            ], 
-                            "Type": "test"
-                        }
-                    ]
-                }
-            ], 
-            "Type": "test-instance"
-        }, 
-        {
-            "Fields": [
-                {
-                    "Name": "user-05", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-04", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-03", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-02", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-01", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-instance", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "eparams", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-09", 
-                    "values": []
-                }, 
-                {
-                    "Name": "user-08", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-07", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-06", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "plan-scheduling-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "plan-scheduling-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "id", 
-                    "values": [
-                        {
-                            "value": "215524"
+                            "value": "217069"
                         }
                     ]
                 }, 
@@ -5613,13 +4065,17 @@
                 }, 
                 {
                     "Name": "exec-date", 
-                    "values": []
+                    "values": [
+                        {
+                            "value": "2018-01-11"
+                        }
+                    ]
                 }, 
                 {
                     "Name": "cycle-id", 
                     "values": [
                         {
-                            "value": "19839"
+                            "value": "19934"
                         }
                     ]
                 }, 
@@ -5633,14 +4089,16 @@
                     "Name": "last-modified", 
                     "values": [
                         {
-                            "value": "2018-01-08 21:10:54"
+                            "value": "2018-01-11 03:18:42"
                         }
                     ]
                 }, 
                 {
                     "Name": "exec-time", 
                     "values": [
-                        {}
+                        {
+                            "value": "19-18-42"
+                        }
                     ]
                 }, 
                 {
@@ -5664,7 +4122,9 @@
                 {
                     "Name": "iterations", 
                     "values": [
-                        {}
+                        {
+                            "value": "1"
+                        }
                     ]
                 }, 
                 {
@@ -5709,16 +4169,14 @@
                     "Name": "test-order", 
                     "values": [
                         {
-                            "value": "21"
+                            "value": "1"
                         }
                     ]
                 }, 
                 {
                     "Name": "owner", 
                     "values": [
-                        {
-                            "value": "adamqiux"
-                        }
+                        {}
                     ]
                 }, 
                 {
@@ -5747,825 +4205,6 @@
                                     "values": [
                                         {
                                             "value": "PI_Virtualization_KVMBasicFunctionality_L"
-                                        }
-                                    ]
-                                }
-                            ], 
-                            "Type": "test"
-                        }
-                    ]
-                }
-            ], 
-            "Type": "test-instance"
-        }, 
-        {
-            "Fields": [
-                {
-                    "Name": "user-05", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-04", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-03", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-02", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-01", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-instance", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "eparams", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-09", 
-                    "values": []
-                }, 
-                {
-                    "Name": "user-08", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-07", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-06", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "plan-scheduling-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "plan-scheduling-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "id", 
-                    "values": [
-                        {
-                            "value": "215525"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "ver-stamp", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "os-config", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "host-name", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "data-obj", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-config-id", 
-                    "values": [
-                        {
-                            "value": "12665"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "pinned-baseline", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "exec-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "cycle-id", 
-                    "values": [
-                        {
-                            "value": "19839"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "cycle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "last-modified", 
-                    "values": [
-                        {
-                            "value": "2018-01-08 21:10:54"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "exec-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "assign-rcyc", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-10", 
-                    "values": []
-                }, 
-                {
-                    "Name": "status", 
-                    "values": [
-                        {
-                            "value": "No Run"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "iterations", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-11", 
-                    "values": []
-                }, 
-                {
-                    "Name": "exec-event-handle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "actual-tester", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "attachment", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-id", 
-                    "values": [
-                        {
-                            "value": "11624"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "subtype-id", 
-                    "values": [
-                        {
-                            "value": "hp.qc.test-instance.MANUAL"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "test-order", 
-                    "values": [
-                        {
-                            "value": "22"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "owner", 
-                    "values": [
-                        {
-                            "value": "adamqiux"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "bpta-change-awareness", 
-                    "values": [
-                        {}
-                    ]
-                }
-            ], 
-            "RelatedEntities": [
-                {
-                    "Alias": "test", 
-                    "entities": [
-                        {
-                            "Fields": [
-                                {
-                                    "Name": "id", 
-                                    "values": [
-                                        {
-                                            "value": "11624"
-                                        }
-                                    ]
-                                }, 
-                                {
-                                    "Name": "name", 
-                                    "values": [
-                                        {
-                                            "value": "PI_Virtualization_KVMStress_L"
-                                        }
-                                    ]
-                                }
-                            ], 
-                            "Type": "test"
-                        }
-                    ]
-                }
-            ], 
-            "Type": "test-instance"
-        }, 
-        {
-            "Fields": [
-                {
-                    "Name": "user-05", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-04", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-03", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-02", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-01", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-instance", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "eparams", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-09", 
-                    "values": []
-                }, 
-                {
-                    "Name": "user-08", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-07", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-06", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "plan-scheduling-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "plan-scheduling-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "id", 
-                    "values": [
-                        {
-                            "value": "215526"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "ver-stamp", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "os-config", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "host-name", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "data-obj", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-config-id", 
-                    "values": [
-                        {
-                            "value": "12668"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "pinned-baseline", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "exec-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "cycle-id", 
-                    "values": [
-                        {
-                            "value": "19839"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "cycle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "last-modified", 
-                    "values": [
-                        {
-                            "value": "2018-01-08 21:10:54"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "exec-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "assign-rcyc", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-10", 
-                    "values": []
-                }, 
-                {
-                    "Name": "status", 
-                    "values": [
-                        {
-                            "value": "No Run"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "iterations", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-11", 
-                    "values": []
-                }, 
-                {
-                    "Name": "exec-event-handle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "actual-tester", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "attachment", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-id", 
-                    "values": [
-                        {
-                            "value": "11627"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "subtype-id", 
-                    "values": [
-                        {
-                            "value": "hp.qc.test-instance.MANUAL"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "test-order", 
-                    "values": [
-                        {
-                            "value": "23"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "owner", 
-                    "values": [
-                        {
-                            "value": "adamqiux"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "bpta-change-awareness", 
-                    "values": [
-                        {}
-                    ]
-                }
-            ], 
-            "RelatedEntities": [
-                {
-                    "Alias": "test", 
-                    "entities": [
-                        {
-                            "Fields": [
-                                {
-                                    "Name": "id", 
-                                    "values": [
-                                        {
-                                            "value": "11627"
-                                        }
-                                    ]
-                                }, 
-                                {
-                                    "Name": "name", 
-                                    "values": [
-                                        {
-                                            "value": "PI_Virtualization_PassThroughNetwork_L"
-                                        }
-                                    ]
-                                }
-                            ], 
-                            "Type": "test"
-                        }
-                    ]
-                }
-            ], 
-            "Type": "test-instance"
-        }, 
-        {
-            "Fields": [
-                {
-                    "Name": "user-05", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-04", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-03", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-02", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-01", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-instance", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "eparams", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-09", 
-                    "values": []
-                }, 
-                {
-                    "Name": "user-08", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-07", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-06", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "plan-scheduling-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "plan-scheduling-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "id", 
-                    "values": [
-                        {
-                            "value": "215527"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "ver-stamp", 
-                    "values": [
-                        {
-                            "value": "1"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "os-config", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "host-name", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "data-obj", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-config-id", 
-                    "values": [
-                        {
-                            "value": "12667"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "pinned-baseline", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "exec-date", 
-                    "values": []
-                }, 
-                {
-                    "Name": "cycle-id", 
-                    "values": [
-                        {
-                            "value": "19839"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "cycle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "last-modified", 
-                    "values": [
-                        {
-                            "value": "2018-01-08 21:10:55"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "exec-time", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "assign-rcyc", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-10", 
-                    "values": []
-                }, 
-                {
-                    "Name": "status", 
-                    "values": [
-                        {
-                            "value": "No Run"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "iterations", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "user-11", 
-                    "values": []
-                }, 
-                {
-                    "Name": "exec-event-handle", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "actual-tester", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "attachment", 
-                    "values": [
-                        {}
-                    ]
-                }, 
-                {
-                    "Name": "test-id", 
-                    "values": [
-                        {
-                            "value": "11626"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "subtype-id", 
-                    "values": [
-                        {
-                            "value": "hp.qc.test-instance.MANUAL"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "test-order", 
-                    "values": [
-                        {
-                            "value": "24"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "owner", 
-                    "values": [
-                        {
-                            "value": "adamqiux"
-                        }
-                    ]
-                }, 
-                {
-                    "Name": "bpta-change-awareness", 
-                    "values": [
-                        {}
-                    ]
-                }
-            ], 
-            "RelatedEntities": [
-                {
-                    "Alias": "test", 
-                    "entities": [
-                        {
-                            "Fields": [
-                                {
-                                    "Name": "id", 
-                                    "values": [
-                                        {
-                                            "value": "11626"
-                                        }
-                                    ]
-                                }, 
-                                {
-                                    "Name": "name", 
-                                    "values": [
-                                        {
-                                            "value": "PI_Virtualization_PassThroughUSB_L"
                                         }
                                     ]
                                 }

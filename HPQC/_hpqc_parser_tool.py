@@ -83,6 +83,42 @@ def HPQC_info_parser_tool(data):
 
 if __name__ == '__main__':
     import json
-    with open(r'C:\Users\pengzh5x\Desktop\machine_scripts\HPQC\test_case_cache\Subject\Bakerville\TCD_Candidate_ww51\Linux\P1\Memory\DDR4\PI_Memory_DDR4_DIMMMaximumMemory_L\11614.json', 'r') as p:
-        data = json.load(p)
-        HPQC_info_parser_tool(data)
+    # with open(r'C:\Users\pengzh5x\Desktop\machine_scripts\HPQC\test_case_cache\Subject\Bakerville\TCD_Candidate_ww51\Linux\P1\Memory\DDR4\PI_Memory_DDR4_DIMMMaximumMemory_L\11614.json', 'r') as p:
+    #     data = json.load(p)
+    #     global_info_dict = HPQC_info_parser_tool(data)
+    #     print global_info_dict
+    #
+    #
+    # import os
+    # all_test_case = []
+    # for path, dirs, files in os.walk(r'C:\Users\pengzh5x\Desktop\machine_scripts\HPQC\test_case_cache\Subject\Bakerville'):
+    #     for name in files:
+    #         print os.path.join(path, name)
+    #         all_test_case.append(os.path.join(path, name))
+    #
+    # test_case_name = [test.split(os.sep)[-2] for test in all_test_case ]
+    # # os.path.split()
+    # print 'all_test_case:\t', all_test_case, len(all_test_case)
+    # print 'test_case_name:\t', test_case_name, len(test_case_name)
+    #
+    # all_test_case_key_info = []
+    #
+    # for i in range(len(all_test_case)):
+    #     with open(all_test_case[i], 'r') as fp:
+    #         data = json.load(fp)
+    #         test_case_info_dict = HPQC_info_parser_tool(data)
+    #     print '解析文件第[%d]个test case [ %s ]结果为:\t%s' % (i+1, test_case_name[i], test_case_info_dict)
+    #     all_test_case_key_info.append(test_case_info_dict)
+    #
+    #
+    # with open('test.dump', 'wb') as fp:
+    #     json.dump(all_test_case_key_info, fp)
+
+    # import pickle
+    # with open(r'C:\Users\pengzh5x\Desktop\machine_scripts\HPQC\HPQC_test_plan\Bakerville\test_plan_case_detail_info.dump', 'rb') as fp:
+    #     data = pickle.load(fp)
+    #     # print data, len(data), type(data)
+    #     test_case_dict_list = sorted(data.items(), key=lambda x: x[1][u'_test_name'])
+    #     # print test_case_dict_list, len(test_case_dict_list)
+    #     for ele in test_case_dict_list:
+    #         print ele, type(ele), ele[1]

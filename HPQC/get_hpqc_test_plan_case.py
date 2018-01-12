@@ -171,7 +171,6 @@ class GetHPQCTestPlanCase:
 
 
 if __name__ == '__main__':
-    import time
     from create_session import Session
     from hpqc_query import HPQCQuery
     start = time.time()

@@ -229,7 +229,7 @@ class GetAnalysisData(object):
                     if judge_string_list:
                         temp_list = []
                         split_string_list = [ele for ele in re.split(',', temp_string) if len(ele) != 0]
-                        print 'split_string_list:\t', split_string_list
+                        # print 'split_string_list:\t', split_string_list
                         for deal_num in split_string_list:
                             #todo 2~6
                             if '~' in deal_num:
@@ -313,10 +313,10 @@ class GetAnalysisData(object):
             #todo 将多列合并数据按照顺序展开（根据数字标记）
             effective_header_list, effective_num_list = self._get_hw_bak_effective_header_list(effective_header_list)
             cell_data_list = self._insert_bak_numbers_to_cell_data_list(effective_num_list, m)
-            print '\033[31mSilver_Gold_BKC_string111:\t\033[0m', Silver_Gold_BKC_string
-            print '\033[32meffective_header_list:\t\033[0m', effective_header_list, len(effective_header_list)
-            print '\033[31mleft_header_list:\t\033[0m', left_header_list, len(left_header_list)
-            print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
+            # print '\033[31mSilver_Gold_BKC_string111:\t\033[0m', Silver_Gold_BKC_string
+            # print '\033[32meffective_header_list:\t\033[0m', effective_header_list, len(effective_header_list)
+            # print '\033[31mleft_header_list:\t\033[0m', left_header_list, len(left_header_list)
+            # print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
             return Silver_Gold_BKC_string, self.date_string, effective_header_list, left_header_list, cell_data_list
         except:
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
@@ -348,10 +348,10 @@ class GetAnalysisData(object):
                         pass
                 if temp_url_list:
                     url_list.append(temp_url_list)
-            print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
-            print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
-            print '\033[31murl_list:\t\033[0m', url_list, len(url_list)
-            print '\033[31Silver_Gold_BKC_string:\t\033[0m', Silver_Gold_BKC_string
+            # print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
+            # print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
+            # print '\033[31murl_list:\t\033[0m', url_list, len(url_list)
+            # print '\033[31Silver_Gold_BKC_string:\t\033[0m', Silver_Gold_BKC_string
             return Silver_Gold_BKC_string, header_length, self.date_string, url_list, header_list, cell_data_list
         except:
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url,logger_name=self.__file_name, definition_log_level=ERROR)
@@ -395,9 +395,9 @@ class GetAnalysisData(object):
             if len(cell_data_list[0]) == 1:
                 return Silver_Gold_BKC_string, self.date_string, [], [], []
 
-            print '\033[31mheader_list:\t\033[0m', header_list
-            print '\033[36mcell_data_list:\t\033[0m', cell_data_list
-            print '\033[32meffective_url_list:\t\033[0m', effective_url_list
+            # print '\033[31mheader_list:\t\033[0m', header_list
+            # print '\033[36mcell_data_list:\t\033[0m', cell_data_list
+            # print '\033[32meffective_url_list:\t\033[0m', effective_url_list
             return Silver_Gold_BKC_string, self.date_string, effective_url_list, header_list, cell_data_list
         except:
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url,
@@ -424,6 +424,7 @@ class GetAnalysisData(object):
             effective_url_list = []
             for tr in cell_tr_list:
                 url_list = []
+                temp = []
                 #todo 获取Key Sightings 列url链接
                 temp_url_list = tr.findAll(name='a', attrs={'href': re.compile(r'[https|http]:(.*?)')})
                 if temp_url_list:
@@ -435,16 +436,23 @@ class GetAnalysisData(object):
                 else:
                     effective_url_list.append([])
 
-                temp = list(tr.stripped_strings)
+                td_list = tr.find_all('td')
+
+                for td in td_list:
+                    td_string = list(td.stripped_strings)
+                    if td_string:
+                        temp.append(td_string[0])
+                    else:
+                        temp.append('')
                 cell_data_list.append(temp)
 
             #todo 当cell_data_list长度等于1时约定为当前周无数据 即页面数据为N/A
             if len(cell_data_list[0]) == 1:
                 return Silver_Gold_BKC_string, self.date_string, [], [], []
 
-            print '\033[31mheader_list:\t\033[0m', header_list
-            print '\033[36mcell_data_list:\t\033[0m', cell_data_list
-            print '\033[32meffective_url_list:\t\033[0m', effective_url_list
+            # print '\033[31mheader_list:\t\033[0m', header_list
+            # print '\033[36mcell_data_list:\t\033[0m', cell_data_list
+            # print '\033[32meffective_url_list:\t\033[0m', effective_url_list
             return Silver_Gold_BKC_string, self.date_string, effective_url_list, header_list, cell_data_list
         except:
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
@@ -488,9 +496,9 @@ class GetAnalysisData(object):
             if len(cell_data_list[0]) == 1:
                 return Silver_Gold_BKC_string, self.date_string, [], [], []
 
-            print '\033[31mheader_list:\t\033[0m', header_list
-            print '\033[36mcell_data_list:\t\033[0m', cell_data_list
-            print '\033[32meffective_url_list:\t\033[0m', effective_url_list
+            # print '\033[31mheader_list:\t\033[0m', header_list
+            # print '\033[36mcell_data_list:\t\033[0m', cell_data_list
+            # print '\033[32meffective_url_list:\t\033[0m', effective_url_list
             return Silver_Gold_BKC_string, self.date_string, effective_url_list, header_list, cell_data_list
         except:
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name, definition_log_level=ERROR)
@@ -517,7 +525,7 @@ class GetAnalysisData(object):
             except:
                 object_string_list.extend(temp_list)
 
-            print Silver_Gold_BKC_string, object_string_list, self.date_string
+            # print Silver_Gold_BKC_string, object_string_list, self.date_string
             return Silver_Gold_BKC_string, object_string_list, self.date_string
         except:
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url,
@@ -541,9 +549,9 @@ class GetAnalysisData(object):
             for tr in tr_list[1:]:
                 td_string_list = list(tr.stripped_strings)
                 cell_data_list.append(td_string_list)
-            print '\033[31mheader_list:\t\033[0m', header_list
-            print '\033[36mcell_data_list:\t\033[0m', cell_data_list
-            print '\033[31mSilver_Gold_BKC_string:\t\033[0m', Silver_Gold_BKC_string
+            # print '\033[31mheader_list:\t\033[0m', header_list
+            # print '\033[36mcell_data_list:\t\033[0m', cell_data_list
+            # print '\033[31mSilver_Gold_BKC_string:\t\033[0m', Silver_Gold_BKC_string
             return Silver_Gold_BKC_string, self.date_string, header_list, cell_data_list
         except:
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name,
@@ -622,9 +630,9 @@ class GetAnalysisData(object):
                 if len(cell_data_list[nu]) < len(header_list):
                     cell_data_list[nu].append('')
 
-            print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
-            print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
-            print '\033[32meffective_url_list:\t\033[0m', effective_url_list, len(effective_url_list)
+            # print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
+            # print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
+            # print '\033[32meffective_url_list:\t\033[0m', effective_url_list, len(effective_url_list)
             return Silver_Gold_BKC_string, self.date_string, effective_url_list, header_list, cell_data_list
         except:
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url, logger_name=self.__file_name,
@@ -694,10 +702,10 @@ class GetAnalysisData(object):
                 tr_cell_data = list(soup_tr.stripped_strings)
                 cell_data_list.append(tr_cell_data)
 
-            print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
-            print '\033[32mtip_string:\t\033[0m', tip_string, len(tip_string)
-            print '\033[32mSilver_Gold_BKC_string:\t\033[0m', Silver_Gold_BKC_string
-            print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
+            # print '\033[31mheader_list:\t\033[0m', header_list, len(header_list)
+            # print '\033[32mtip_string:\t\033[0m', tip_string, len(tip_string)
+            # print '\033[32mSilver_Gold_BKC_string:\t\033[0m', Silver_Gold_BKC_string
+            # print '\033[36mcell_data_list:\t\033[0m', cell_data_list, len(cell_data_list)
             return self.date_string, Silver_Gold_BKC_string, tip_string, header_list, cell_data_list
         except:
             self.logger.print_message(msg='Get [ %s ] Original Data Error' % self.data_url,

@@ -19,7 +19,7 @@ import win32com.client
 from logging import ERROR
 from machine_scripts.machine_config import MachineConfig
 from setting_global_variable import (CONFIG_FILE_PATH, MANUAL_SRC_SAVE_MISS_WEEK_DIR,
-    REPORT_HTML_DIR, SRC_SAVE_MISS_WEEK_DIR, IMAGE_ORIGINAL_RESULT, MACHINE_LOG_DIR,
+    REPORT_HTML_DIR, SRC_SAVE_MISS_WEEK_DIR, IMAGE_ORIGINAL_RESULT, MACHINE_LOG_DIR,EXCEL_TEST_CASE_RESULT,
     MANUAL_IMAGE_ORIGINAL_RESULT, ORIGINAL_HTML_RESULT, MANUAL_ORIGINAL_HTML_RESULT, SRC_WEEK_DIR)
 
 _file_name = os.path.split(__file__)[1]
@@ -88,6 +88,11 @@ def get_interface_config(para_name, purl_bak_string):
                                                     'default_keep_continuous')
         return DEFAULT_KEEP_CONTINOUS
 
+    elif para_name == 'default_hpqc_mode':
+        DEFAULT_HPQC_MODE = conf.get_node_info(purl_bak_string + '_real-time_control_parameter_value',
+                                                    'default_hpqc_mode')
+        return DEFAULT_HPQC_MODE
+
     elif para_name == 'server_address':
         server_address = conf.get_node_info(string_sep + '_server', 'server_address')
         return server_address
@@ -119,6 +124,9 @@ def get_interface_config(para_name, purl_bak_string):
     elif para_name == 'keep_continuous':
         keep_continuous = conf.get_node_info(string_sep + '_other_config', 'keep_continuous')
         return keep_continuous
+    elif para_name == 'hpqc_mode':
+        HPQC_mode = conf.get_node_info(string_sep + '_other_config', 'hpqc_mode')
+        return HPQC_mode
 
     elif para_name == 'display_software':
         display_software = conf.get_node_info(string_sep + '_other_config', 'display_software')
@@ -211,6 +219,15 @@ def judge_get_config(name, purl_bak_string):
         else:
             keep_continuous = get_interface_config('default_keep_continuous', purl_bak_string)
         return keep_continuous
+
+    elif name == 'hpqc_mode':
+        #TODO 是否开启HPQC模式即执行HPQC功能  开启:YES   关闭:NO
+        if get_default_flag == 'YES':
+            HPQC_mode = get_interface_config('hpqc_mode', purl_bak_string)
+        else:
+            HPQC_mode = get_interface_config('default_hpqc_mode', purl_bak_string)
+        return HPQC_mode
+
 
     elif name == 'server_address':
         #TODO 服务器地址
@@ -567,7 +584,9 @@ def get_report_data(sheet_name, win_book, purl_bak_string, Silver_url_list, WEEK
 
     logger.print_message('cell_data_list:\t%s' % cell_data_list, _file_name)
     #todo 保存提取的CaseResult表相关test-case数据
-    with open('cell_data_list.dump', 'wb') as fp:
+    if not os.path.exists(EXCEL_TEST_CASE_RESULT):
+        os.makedirs(EXCEL_TEST_CASE_RESULT)
+    with open(EXCEL_TEST_CASE_RESULT + os.sep + 'excel_result_test_case.dump', 'wb') as fp:
         pickle.dump(cell_data_list, fp)
     return cell_data_list
 

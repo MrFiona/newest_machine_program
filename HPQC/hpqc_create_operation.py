@@ -116,7 +116,6 @@ def create_test_instance_json(case_info, session, print_error=True):
 
 
 if __name__ == '__main__':
-    import time
     from create_session import Session
     from hpqc_query import HPQCQuery
 
