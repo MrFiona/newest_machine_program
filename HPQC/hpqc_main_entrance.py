@@ -73,7 +73,7 @@ def generate_newest_week_name(week_name_id_list):
     # return 'WW'.join(split_list)
     time_string = time.strftime("%Y-%m-%d %U", time.strptime(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()), '%Y-%m-%d %X'))
     time_list = re.split('[- ]', time_string)
-    year, week_num = time_list[0], str(int(time_list[-1]) + 8)
+    year, week_num = time_list[0], str(int(time_list[-1]) + 1)
     if len(week_num) == 1:
         week_num = ''.join(['0',week_num])
     return 'WW'.join([year, week_num])
